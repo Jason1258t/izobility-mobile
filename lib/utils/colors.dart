@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors{
   static const pageBackground = Color(0xFFF4F4F4);
-  static const backgorundSecondary = Color(0xFFF2F2F2);
+  static const backgroundSecondary = Color(0xFFF2F2F2);
   static const backgroundContent = Colors.white;
   static const background = Color(0xFFEFEFF0);
   static const textPrimaryBackground = Color(0xFFEFEFF0);
