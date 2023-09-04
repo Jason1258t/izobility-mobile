@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/widgets/button/custom_button.dart';
 
 void main() {
   runApp(const MyApp());
