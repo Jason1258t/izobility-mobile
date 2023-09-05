@@ -17,6 +17,7 @@ class SplashScaffold extends StatelessWidget {
         )
       ),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         body: body,
       ),
     );

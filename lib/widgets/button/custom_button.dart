@@ -27,7 +27,6 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             )),
         child: TextButton(
-            onPressed: () => onTap(),
-            child: Text(text, style: AppFonts.font16w600)));
+            onPressed: onTap, child: Text(text, style: AppFonts.font16w600)));
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
@@ -17,11 +19,16 @@ class _CustomLinearIndicatorState extends State<CustomLinearIndicator>
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 20),
+      duration: const Duration(seconds: 5),
     )..addListener(() {
-        setState(() {});
-      });
+      print(controller.value);
+      if(controller.value >= 0.97){
+        Navigator.pushNamed(context, '/home_screen');
+      }
+      setState(() {});
+    });
     controller.repeat();
+
     super.initState();
   }
 
