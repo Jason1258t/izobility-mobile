@@ -8,6 +8,9 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 3))
+        .then((value) => Navigator.pushNamed(context, '/pin_screen'));
+
     return SplashScaffold(
         body: Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 110),
@@ -20,7 +23,10 @@ class SplashScreen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const CustomLinearIndicator(),
+          const Center(
+            child: CircularProgressIndicator(),
+          )
+          //const CustomLinearIndicator(),
         ],
       ),
     ));

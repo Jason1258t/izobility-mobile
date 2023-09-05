@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:izobility_mobile/feature/auth/enter_name.dart';
+import 'package:izobility_mobile/feature/auth/pin_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MyApp());
 }
 
@@ -23,6 +31,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/' : (context) => const SplashScreen() ,
         '/home_screen' : (context) => const HomeScreen(),
+        '/enter_name' : (context) => EnterNameScreen(),
+        '/pin_screen' : (context) => PinScreen(),
       },
     );
   }
