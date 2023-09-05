@@ -9,6 +9,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+const String _emptyLabel = '';
+
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedTab = 0;
 
@@ -34,60 +36,51 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: widgetOptions[_selectedTab],
         bottomNavigationBar: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 60,
           decoration: const BoxDecoration(
-              border:
-                  Border(top: BorderSide(color: Color(0xffDEE2E7), width: 1))),
-          child: BottomNavigationBar(
-            backgroundColor: const Color(0xffFBFBFC),
-            iconSize: 30,
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _selectedTab,
-            items: [
-              BottomNavigationBarItem(
-                  icon: NavigatorBarItem(
-                    asset: 'assets/icons/home.svg',
-                    isSelected: _selectedTab == 0,
-                  ),
-                  tooltip: 'Page daccueil',
-                  label: 'Page daccueil'),
-              BottomNavigationBarItem(
-                icon: NavigatorBarItem(
-                  asset: 'assets/icons/message.svg',
-                  isSelected: _selectedTab == 1,
-                ),
-                tooltip: 'asdf',
-                label: 'asdf',
+            color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(24), topRight: Radius.circular(24))),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              NavigatorBarItem(
+                asset: 'assets/icons/home.svg',
+                isSelected: _selectedTab == 0,
+                onTap: () {
+                  onSelectTab(0);
+                },
               ),
-              BottomNavigationBarItem(
-                icon: NavigatorBarItem(
-                  asset: 'assets/icons/target.svg',
-                  isSelected: _selectedTab == 2,
-                ),
-                tooltip: 'Délection',
-                label: 'Délection',
+              NavigatorBarItem(
+                asset: 'assets/icons/message.svg',
+                isSelected: _selectedTab == 1,
+                onTap: () {
+                  onSelectTab(1);
+                },
               ),
-              BottomNavigationBarItem(
-                icon: NavigatorBarItem(
-                  asset: 'assets/icons/market.svg',
-                  isSelected: _selectedTab == 3,
-                ),
-                tooltip: 'dfa',
-                label: 'asdf',
+              NavigatorBarItem(
+                asset: 'assets/icons/target.svg',
+                isSelected: _selectedTab == 2,
+                onTap: () {
+                  onSelectTab(2);
+                },
               ),
-              BottomNavigationBarItem(
-                icon: NavigatorBarItem(
-                  asset: 'assets/icons/market.svg',
-                  isSelected: _selectedTab == 3,
-                ),
-                tooltip: 'dfa',
-                label: 'asdf',
+              NavigatorBarItem(
+                asset: 'assets/icons/market.svg',
+                isSelected: _selectedTab == 3,
+                onTap: () {
+                  onSelectTab(3);
+                },
+              ),
+              NavigatorBarItem(
+                asset: 'assets/icons/all.svg',
+                isSelected: _selectedTab == 4,
+                onTap: () {
+                  onSelectTab(4);
+                },
               ),
             ],
-            // selectedLabelStyle: AppTypography.font10red,
-            // unselectedLabelStyle: AppTypography.font10lightGray,
-            onTap: onSelectTab,
-            // selectedItemColor: AppColors.red,
-            // unselectedItemColor: AppColors.lightGray,
           ),
         ),
       ),
@@ -97,20 +90,33 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class NavigatorBarItem extends StatelessWidget {
   const NavigatorBarItem(
-      {Key? key, required this.asset, required this.isSelected})
+      {Key? key,
+      required this.asset,
+      required this.isSelected,
+      required this.onTap})
       : super(key: key);
 
   final String asset;
   final bool isSelected;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      asset,
-      height: 24,
-      width: 24,
-      // ignore: deprecated_member_use
-      color: isSelected ? AppColors.primary : AppColors.disable,
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width / 5,
+        height: MediaQuery.of(context).size.width / 5,
+        child: Center(
+          child: SvgPicture.asset(
+            asset,
+            height: 28,
+            width: 28,
+            // ignore: deprecated_member_use
+            color: isSelected ? AppColors.primary : AppColors.disable,
+          ),
+        ),
+      ),
     );
   }
 }

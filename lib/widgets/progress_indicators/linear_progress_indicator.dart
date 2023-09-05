@@ -21,9 +21,8 @@ class _CustomLinearIndicatorState extends State<CustomLinearIndicator>
       vsync: this,
       duration: const Duration(seconds: 5),
     )..addListener(() {
-      print(controller.value);
-      if(controller.value >= 0.97){
-        Navigator.pushNamed(context, '/home_screen');
+      if(controller.value >= 0.99){
+        //Navigator.pushNamed(context, '/home_screen');
       }
       setState(() {});
     });

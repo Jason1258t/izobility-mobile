@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash_with_progress_bar.dart';
+import 'package:izobility_mobile/utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
