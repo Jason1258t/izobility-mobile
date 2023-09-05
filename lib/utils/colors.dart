@@ -25,4 +25,5 @@ class AppColors{
   static const charity = Color(0xFFDF656D);
   static const sale = Color(0xFFEB2121);
   static const border = Color(0xFFD9D9D9);
+  static const transparentBlack = Color(0x54131313);
 }
