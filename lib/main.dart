@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash_with_progress_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 
@@ -35,7 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // than having to individually change instances of widgets.
-    return const SplashWithProgressBar();
+    return const HomeScreen();
   }
 }
