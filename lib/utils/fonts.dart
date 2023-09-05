@@ -12,58 +12,41 @@ class AppFonts {
           fontWeight: FontWeight.w700,
           letterSpacing: 0.24,
         );
-  static final h3  =_font.copyWith(
+  static final font14w400  =_font.copyWith(
     color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.21,
   );
-  static final h4 = _font.copyWith(
+  static final font14w700 = _font.copyWith(
     color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.w700,
-    height: 1.14,
   );
-  static final textBold = _font.copyWith(
+  static final font12w700 = _font.copyWith(
     color: Colors.white,
     fontSize: 12,
     fontWeight: FontWeight.w700,
     letterSpacing: 0.18,
   );
-  static final text = _font.copyWith(
+  static final font12w400 = _font.copyWith(
     color: Colors.white,
     fontSize: 12,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.18,
   );
-  static final textCompact = _font.copyWith(
-    color: Colors.white,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-  );
-  static final textTiny = _font.copyWith(
+  static final font10w500 = _font.copyWith(
     color: Colors.white,
     fontSize: 10,
     fontWeight: FontWeight.w500,
   );
-  static final micro = _font.copyWith(
+  static final font8w400 = _font.copyWith(
     color: Colors.white,
     fontSize: 8,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.12,
   );
-  static final price = _font.copyWith(
-    color: Colors.white,
-    fontSize: 12,
-    fontWeight: FontWeight.w700,
-    letterSpacing: 0.18,
-  );
-  static final sale = _font.copyWith(
-    color: Colors.white,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-    letterSpacing: 0.84,
-  );
+
   static final font18w700 = _font.copyWith(
     color: Colors.white,
     fontSize: 18,
@@ -76,19 +59,19 @@ class AppFonts {
     fontWeight: FontWeight.w700,
     letterSpacing: 0.12,
   );
-  static final button = _font.copyWith(
+  static final font24w700 = _font.copyWith(
     color: Colors.white,
     fontSize: 24,
     fontWeight: FontWeight.w700,
     letterSpacing: 0.36,
   );
-  static final buttonDefault = _font.copyWith(
+  static final font16w400 = _font.copyWith(
     color: Colors.white,
     fontSize: 16,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.24,
   );
-  static final buttonSmall = _font.copyWith(
+  static final font12w500 = _font.copyWith(
     color: Colors.white,
     fontSize: 12,
     fontWeight: FontWeight.w500,

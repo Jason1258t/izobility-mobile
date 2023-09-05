@@ -56,7 +56,7 @@ class _CustomLinearIndicatorState extends State<CustomLinearIndicator>
         ),
         Text(
           '${(controller.value * 100).round()}% загрузка',
-          style: AppFonts.h3.copyWith(color: AppColors.primary),
+          style: AppFonts.font14w400.copyWith(color: AppColors.primary),
         )
       ],
     );

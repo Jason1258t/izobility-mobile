@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
         height: height,
         child: TextField(
           style:
-              AppFonts.buttonDefault.copyWith(color: AppColors.textSecondary),
+              AppFonts.font16w400.copyWith(color: AppColors.textSecondary),
           decoration: InputDecoration(
               filled: true,
               fillColor: const Color(0xFFF2F2F2),
@@ -34,7 +34,7 @@ class CustomTextField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide.none),
               hintText: hintText,
-              hintStyle: AppFonts.buttonDefault
+              hintStyle: AppFonts.font16w400
                   .copyWith(color: AppColors.textSecondary)),
           keyboardType: keyboardType,
           controller: controller,

@@ -45,7 +45,7 @@ class WalletAction extends StatelessWidget {
         ),
         Text(text,
             textAlign: TextAlign.center,
-            style: AppFonts.buttonSmall
+            style: AppFonts.font12w500
                 .copyWith(color: AppColors.textPrimary, height: 1.50))
       ],
     );
