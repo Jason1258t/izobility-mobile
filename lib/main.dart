@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
-import 'package:izobility_mobile/feature/splash/splash_with_progress_bar.dart';
+import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 
 void main() {
