@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
             // selectedLabelStyle: AppTypography.font10red,
             // unselectedLabelStyle: AppTypography.font10lightGray,
-            // onTap: onSelectTab,
+            onTap: onSelectTab,
             // selectedItemColor: AppColors.red,
             // unselectedItemColor: AppColors.lightGray,
           ),
