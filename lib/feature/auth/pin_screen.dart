@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/utils.dart';
-import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
 import 'package:izobility_mobile/widgets/keyboards/pin_keyboard.dart';
 

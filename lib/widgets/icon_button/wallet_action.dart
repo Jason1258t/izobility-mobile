@@ -35,18 +35,22 @@ class WalletAction extends StatelessWidget {
             child: Center(
               child: SvgPicture.asset(
                 assetName,
+                width: width - 30,
+                height: height - 30,
                 color: AppColors.textPrimary,
               ),
             ),
           ),
         ),
         const SizedBox(
-          width: 4,
+          height: 5,
         ),
-        Text(text,
-            textAlign: TextAlign.center,
-            style: AppFonts.font12w500
-                .copyWith(color: AppColors.textPrimary, height: 1.50))
+        FittedBox(
+          child: Text(text,
+              textAlign: TextAlign.center,
+              style:
+                  AppFonts.font12w500.copyWith(color: AppColors.textPrimary)),
+        )
       ],
     );
   }

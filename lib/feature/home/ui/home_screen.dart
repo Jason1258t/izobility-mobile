@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
-      const Text('Delection'),
+      const MainScreen(),
       const Text('Delection'),
       const Text('Delection'),
       const Text('Delection'),
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           width: MediaQuery.of(context).size.width,
           height: 60,
           decoration: const BoxDecoration(
-            color: Colors.white,
+            color: AppColors.backgroundContent,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(24), topRight: Radius.circular(24))),
           child: Row(
