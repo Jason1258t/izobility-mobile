@@ -37,7 +37,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
           height: 21,
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: AppColors.primary,
+            color: AppColors.backBack,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(21),
             ),
