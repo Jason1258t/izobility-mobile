@@ -4,7 +4,8 @@ import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
 
 class KeyboardButton extends StatelessWidget {
-  KeyboardButton({super.key, required this.onTap, String? number})
+  KeyboardButton(
+      {super.key, required this.onTap, String? number, required this.side})
       : child = number != null
             ? Text(
                 number,
@@ -12,28 +13,31 @@ class KeyboardButton extends StatelessWidget {
               )
             : SvgPicture.asset(
                 'assets/icons/delete-left.svg',
-                width: 24,
               );
 
   final VoidCallback onTap;
   final Widget child;
+  final double side;
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+
     return InkWell(
-      borderRadius: BorderRadius.circular(33),
+      borderRadius: BorderRadius.circular(80),
       onTap: onTap,
       child: Ink(
-        width: 66,
-        height: 66,
+        width: side,
+        height: side,
         decoration: ShapeDecoration(
           color: AppColors.backgroundSecondary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(33),
+            borderRadius: BorderRadius.circular(80),
           ),
         ),
-        child: Center(
-          child: child,
+        child: Container(
+          padding: EdgeInsets.all(size.width * 0.055),
+          child: FittedBox(child: child),
         ),
       ),
     );
