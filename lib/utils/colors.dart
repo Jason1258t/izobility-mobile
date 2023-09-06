@@ -9,6 +9,7 @@ class AppColors{
   static const disable = Color(0xFFB0B0B0);
   static const textPrimary = Colors.black;
   static const textSecondary = Color(0xFF747474);
+  static const hintText = Color(0xFFC2C2C2);
   static const textTertiary = Color(0xFFAAAAAA);
   static const textContrast = Colors.white;
   static const textLink = Color(0xFF2D81E0);

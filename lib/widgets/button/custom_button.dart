@@ -8,11 +8,14 @@ class CustomButton extends StatelessWidget {
   final double width;
   final double height;
 
+  final bool active;
+
   const CustomButton(
       {super.key,
       required this.text,
       required this.onTap,
       required this.width,
+      this.active = true,
       this.height = 52});
 
   @override
@@ -23,10 +26,10 @@ class CustomButton extends StatelessWidget {
         decoration: ShapeDecoration(
             color: AppColors.primary,
             shape: RoundedRectangleBorder(
-              side: const BorderSide(width: 0.50, color: AppColors.primary),
+              side: BorderSide(width: 0.50, color: active ? AppColors.primary : AppColors.backgroundSecondary),
               borderRadius: BorderRadius.circular(8),
             )),
         child: TextButton(
-            onPressed: onTap, child: Text(text, style: AppFonts.font16w600)));
+            onPressed: active ? onTap : () {}, child: Text(text, style: AppFonts.font16w600)));
   }
 }

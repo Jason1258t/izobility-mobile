@@ -35,6 +35,7 @@ class PinScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12,),
               const PinKeyboard(),
+              const SizedBox(height: 40,),
               TextButtonWithoutBackground(onTap: () {}, text: 'Поддержка')
             ],
           ),
