@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3))
-        .then((value) => Navigator.pushNamed(context, '/pin_screen'));
+        .then((value) => Navigator.pushNamed(context, '/enter_email'));
 
     return SplashScaffold(
         body: Padding(

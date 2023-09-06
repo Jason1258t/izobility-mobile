@@ -6,6 +6,8 @@ import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 
+import 'feature/auth/enter_email.dart';
+
 void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/' : (context) => const SplashScreen() ,
         '/home_screen' : (context) => const HomeScreen(),
         '/enter_name' : (context) => EnterNameScreen(),
+        '/enter_email' : (context) => EnterEmailScreen(),
         '/pin_screen' : (context) => PinScreen(),
       },
     );
