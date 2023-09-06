@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/constants.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
-import 'package:izobility_mobile/widgets/text_fild/custom_text_fild.dart';
+import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 class EnterEmailScreen extends StatelessWidget {
   EnterEmailScreen({super.key});
@@ -37,23 +37,12 @@ class EnterEmailScreen extends StatelessWidget {
               const SizedBox(
                 height: 32,
               ),
-              Row(
-                children: [
-                  Text(
-                    'Ваша почта',
-                    style: AppFonts.font14w700
-                        .copyWith(color: AppColors.textSecondary),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 6,
-              ),
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     CustomTextField(
+                      labelText: "Ваша почта",
                       hintText: 'Тут ваша почта',
                       controller: nameController,
                       width: double.infinity,
@@ -70,7 +59,9 @@ class EnterEmailScreen extends StatelessWidget {
                     ),
                     CustomButton(
                         text: 'Продолжить',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed("/enter_name");
+                        },
                         width: double.infinity),
                   ],
                 ),

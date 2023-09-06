@@ -4,7 +4,6 @@ import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
 import 'package:izobility_mobile/widgets/keyboards/pin_keyboard.dart';
-import 'package:izobility_mobile/widgets/text_fild/custom_text_fild.dart';
 
 class PinScreen extends StatelessWidget {
   PinScreen({super.key});

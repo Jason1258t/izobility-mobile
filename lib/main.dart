@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:izobility_mobile/feature/auth/create_password.dart';
 import 'package:izobility_mobile/feature/auth/enter_name.dart';
 import 'package:izobility_mobile/feature/auth/pin_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/enter_name' : (context) => EnterNameScreen(),
         '/enter_email' : (context) => EnterEmailScreen(),
         '/pin_screen' : (context) => PinScreen(),
+        '/create_password': (context) => CreatePasswrordScreen(),
       },
     );
   }

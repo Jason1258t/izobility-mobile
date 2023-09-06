@@ -11,6 +11,8 @@ class CustomTextField extends StatefulWidget {
       required this.width,
       this.keyboardType,
       this.validator,
+      this.labelText,
+      this.isObscured = false,
       this.height = 48});
 
   final TextEditingController controller;
@@ -19,6 +21,8 @@ class CustomTextField extends StatefulWidget {
   final double width;
   final double height;
   final String? Function(String?)? validator;
+  final String? labelText;
+  final bool isObscured;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -34,10 +38,21 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.width,
-      //height: height,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          widget.labelText != null
+              ? Text(
+                  widget.labelText!,
+                  style: AppFonts.font14w700.copyWith(color: AppColors.textSecondary),
+                  textAlign: TextAlign.start,
+                )
+              : SizedBox(),
+          const SizedBox(
+            height: 6,
+          ),
           TextFormField(
+            obscureText: widget.isObscured,
             validator: widget.validator,
             onChanged: (String? value) {
               if (widget.validator != null) {
@@ -46,29 +61,24 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 setState(() {});
               }
             },
-            style: AppFonts.font16w400.copyWith(
-                color: !error ? AppColors.textSecondary : AppColors.negative),
+            style: AppFonts.font16w400.copyWith(color: !error ? AppColors.textSecondary : AppColors.negative),
             decoration: InputDecoration(
                 filled: true,
                 fillColor: AppColors.backgroundSecondary,
                 contentPadding: const EdgeInsets.all(10),
-                errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: _negative)),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none),
+                errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: _negative)),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
                 hintText: widget.hintText,
-                hintStyle: AppFonts.font16w400
-                    .copyWith(color: !error ? AppColors.hintText : _negative)),
+                hintStyle: AppFonts.font16w400.copyWith(color: !error ? AppColors.hintText : _negative)),
             keyboardType: widget.keyboardType,
             controller: widget.controller,
           ),
           if (error) ...[
             Row(
               children: [
-                // SvgPicture.asset(assetName)
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 Text(
                   errorText!,
                   style: AppFonts.font14w400.copyWith(color: _negative),

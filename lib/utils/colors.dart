@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors{
+class AppColors {
   static const pageBackground = Color(0xFFF4F4F4);
   static const backgroundSecondary = Color(0xFFF2F2F2);
   static const backgroundContent = Colors.white;
@@ -27,4 +27,5 @@ class AppColors{
   static const sale = Color(0xFFEB2121);
   static const border = Color(0xFFD9D9D9);
   static const transparentBlack = Color(0x54131313);
+  static const backBack = Color(0xffBFEB10);
 }
