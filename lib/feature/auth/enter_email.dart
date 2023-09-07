@@ -40,15 +40,23 @@ class EnterEmailScreen extends StatelessWidget {
                       hintText: 'Тут ваша почта',
                       controller: emailController,
                       width: double.infinity,
-                      validator: (v) => FieldValidators.emailValidator(v),
+                      validator: (v) => Validator.emailValidator(v),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     CustomButton(
-                        text: 'Продолжить',
+                        text: 'Войти',
                         onTap: () {
-                          Navigator.of(context).pushNamed(RouteNames.authCreateName);
+                          // TODO start process of check on existing an email
+
+                          var fieldValue =
+                              Validator.emailValidator(emailController.text);
+                          if (emailController.text != "" &&
+                              fieldValue == null) {
+                            Navigator.of(context)
+                                .pushNamed(RouteNames.authCreateName);
+                          }
                         },
                         width: double.infinity),
                   ],

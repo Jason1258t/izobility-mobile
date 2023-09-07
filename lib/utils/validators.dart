@@ -1,6 +1,6 @@
 import 'package:izobility_mobile/utils/constants.dart';
 
-abstract class FieldValidators {
+abstract class Validator {
   static emailValidator(value) {
     if (!RegExp(emailRegExp).hasMatch(value!.trim()) && value != "") {
       return 'Неверный email';
@@ -19,5 +19,9 @@ abstract class FieldValidators {
     }
 
     return null;
+  }
+
+  static checkEquality(String one, String two) {
+    return one == two;
   }
 }
