@@ -10,7 +10,7 @@ import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 class EnterNameScreen extends StatelessWidget {
   EnterNameScreen({super.key});
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,10 @@ class EnterNameScreen extends StatelessWidget {
             height: 32,
           ),
           CustomTextField(
-            hintText: 'Ваше имя',
-            controller: nameController,
+            hintText: '*********',
+            controller: passwordController,
             width: double.infinity,
-            labelText: "Как вас зовут",
-            
+            labelText: "Пароль от вашего аккаунта",
           ),
           const SizedBox(
             height: 16,
@@ -41,7 +40,7 @@ class EnterNameScreen extends StatelessWidget {
           CustomButton(
               text: 'Войти',
               onTap: () {
-                Navigator.of(context).pushNamed(RouteNames.authCreatePassword);
+                Navigator.of(context).pushNamed(RouteNames.authEnterPin);
               },
               width: double.infinity)
         ],

@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/constants.dart';
+import 'package:izobility_mobile/utils/route_names.dart';
 import 'package:izobility_mobile/utils/utils.dart';
+import 'package:izobility_mobile/utils/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 class EnterEmailScreen extends StatelessWidget {
   EnterEmailScreen({super.key});
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
-  emailValidator(value) {
-    if (!RegExp(emailRegExp).hasMatch(value!.trim())) {
-      return 'Не верный email';
-    } else {
-      return null;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +38,9 @@ class EnterEmailScreen extends StatelessWidget {
                     CustomTextField(
                       labelText: "Ваша почта",
                       hintText: 'Тут ваша почта',
-                      controller: nameController,
+                      controller: emailController,
                       width: double.infinity,
-                      validator: (value) {
-                        if (!RegExp(emailRegExp).hasMatch(value!.trim())) {
-                          return 'Не верный email';
-                        } else {
-                          return null;
-                        }
-                      },
+                      validator: (v) => FieldValidators.emailValidator(v),
                     ),
                     const SizedBox(
                       height: 16,
@@ -60,7 +48,7 @@ class EnterEmailScreen extends StatelessWidget {
                     CustomButton(
                         text: 'Продолжить',
                         onTap: () {
-                          Navigator.of(context).pushNamed("/enter_name");
+                          Navigator.of(context).pushNamed(RouteNames.authCreateName);
                         },
                         width: double.infinity),
                   ],

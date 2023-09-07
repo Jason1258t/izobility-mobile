@@ -3,9 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:izobility_mobile/feature/auth/create_password.dart';
 import 'package:izobility_mobile/feature/auth/enter_name.dart';
 import 'package:izobility_mobile/feature/auth/pin_screen.dart';
+import 'package:izobility_mobile/feature/auth/pin_screen_enter.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/colors.dart';
+import 'package:izobility_mobile/utils/route_names.dart';
 
 import 'feature/auth/enter_email.dart';
 
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.background,
@@ -32,12 +35,13 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' : (context) => const SplashScreen() ,
-        '/home_screen' : (context) => const HomeScreen(),
-        '/enter_name' : (context) => EnterNameScreen(),
-        '/enter_email' : (context) => EnterEmailScreen(),
-        '/pin_screen' : (context) => PinScreen(),
-        '/create_password': (context) => CreatePasswrordScreen(),
+        RouteNames.root : (context) => const SplashScreen() ,
+        RouteNames.home : (context) => const HomeScreen(),
+        RouteNames.authCreateName : (context) => EnterNameScreen(),
+        RouteNames.auth : (context) => EnterEmailScreen(),
+        RouteNames.authEnterPin: (context) => const PinScreenEnter(),
+        RouteNames.authCreatePassword: (context) => CreatePasswrordScreen(),
+        RouteNames.authCreatePin: (context) => const PinScreen()
       },
     );
   }
