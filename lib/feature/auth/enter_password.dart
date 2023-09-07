@@ -33,6 +33,11 @@ class EnterNameScreen extends StatelessWidget {
             controller: passwordController,
             width: double.infinity,
             labelText: "Пароль от вашего аккаунта",
+            validator: (value) {
+              if (value != null && value != "") {
+                return null;
+              }
+            },
           ),
           const SizedBox(
             height: 16,

@@ -1,35 +1,47 @@
 import 'package:flutter/material.dart';
 import '../../utils/utils.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomButton extends StatefulWidget {
   final String text;
 
   final VoidCallback onTap;
   final double width;
   final double height;
 
-  final bool active;
+  final bool isActive;
 
   const CustomButton(
       {super.key,
       required this.text,
       required this.onTap,
       required this.width,
-      this.active = true,
+      this.isActive = true,
       this.height = 52});
 
   @override
+  State<CustomButton> createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
+  @override
   Widget build(BuildContext context) {
     return Container(
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         decoration: ShapeDecoration(
-            color: AppColors.primary,
+            color: widget.isActive
+                ? AppColors.primary
+                : AppColors.primary.withOpacity(0.7),
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 0.50, color: active ? AppColors.primary : AppColors.backgroundSecondary),
+              side: BorderSide(
+                  width: 0.50,
+                  color: widget.isActive
+                      ? AppColors.primary
+                      : AppColors.backgroundSecondary),
               borderRadius: BorderRadius.circular(8),
             )),
         child: TextButton(
-            onPressed: active ? onTap : () {}, child: Text(text, style: AppFonts.font16w600)));
+            onPressed: widget.isActive ? widget.onTap : () {},
+            child: Text(widget.text, style: AppFonts.font16w600)));
   }
 }

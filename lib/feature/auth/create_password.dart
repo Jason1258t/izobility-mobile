@@ -14,8 +14,8 @@ class CreatePasswrordScreen extends StatelessWidget {
   CreatePasswrordScreen({super.key});
 
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordRepeatedController = TextEditingController();
-
+  final TextEditingController passwordRepeatedController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class CreatePasswrordScreen extends StatelessWidget {
             width: double.infinity,
             labelText: "Придумайте пароль для аккаунта",
             isObscured: true,
-            validator: (v) => FieldValidators.validatePassword(v),
+            validator: (v) => Validator.validatePassword(v),
           ),
           const SizedBox(
             height: 16,
@@ -51,7 +51,7 @@ class CreatePasswrordScreen extends StatelessWidget {
             labelText: "Подтверждение пароля",
             isObscured: true,
             validator: (value) {
-              if (value == null || value == "") {
+              if (value == "") {
                 return null;
               }
 
@@ -68,7 +68,14 @@ class CreatePasswrordScreen extends StatelessWidget {
           CustomButton(
               text: 'Далее',
               onTap: () {
-                Navigator.pushNamed(context, RouteNames.authCreatePin);
+                String repeatedPassword = passwordRepeatedController.text;
+                String password = passwordController.text;
+
+                if (repeatedPassword == password &&
+                    Validator.validatePassword(password) == null &&
+                    password != "") {
+                  Navigator.pushNamed(context, RouteNames.authCreatePin);
+                }
               },
               width: double.infinity)
         ],
