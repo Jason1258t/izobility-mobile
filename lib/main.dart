@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/auth/create_password.dart';
 import 'package:izobility_mobile/feature/auth/enter_name.dart';
 import 'package:izobility_mobile/feature/auth/pin_screen.dart';
 import 'package:izobility_mobile/feature/auth/pin_screen_enter.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
-import 'package:izobility_mobile/utils/colors.dart';
-import 'package:izobility_mobile/utils/route_names.dart';
+import 'package:izobility_mobile/services/remote/api/api_service.dart';
+import 'package:izobility_mobile/utils/utils.dart';
 
 import 'feature/auth/enter_email.dart';
+import 'services/locale/export_locale_services.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  Bloc.observer = CustomBlocObserver();
 
   runApp(const MyApp());
 }

@@ -5,11 +5,15 @@ import 'package:flutter_svg/svg.dart';
 import '../../utils/colors.dart';
 import '../../utils/fonts.dart';
 
-class Conteiner extends StatelessWidget {
-  const Conteiner({super.key, required this.asset, required this.text, required this.onTap});
+class CategoryContainer extends StatelessWidget {
+  const CategoryContainer(
+      {super.key,
+      required this.asset,
+      required this.text,
+      required this.onTap});
 
   final String asset;
-  final  String text;
+  final String text;
   final VoidCallback onTap;
 
   @override
@@ -18,8 +22,8 @@ class Conteiner extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 110,
-        height: 68,
-        padding: const EdgeInsets.only(top: 7, left: 8, right: 18, bottom: 9),
+        height: 70,
+        padding: const EdgeInsets.all(8),
         decoration: ShapeDecoration(
           color: AppColors.backgroundSecondary,
           shape: RoundedRectangleBorder(
@@ -33,7 +37,7 @@ class Conteiner extends StatelessWidget {
             SvgPicture.asset(asset),
             Text(text,
                 style:
-                AppFonts.font12w500.copyWith(color: AppColors.textPrimary))
+                    AppFonts.font12w500.copyWith(color: AppColors.textPrimary))
           ],
         ),
       ),
