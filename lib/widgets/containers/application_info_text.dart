@@ -3,15 +3,14 @@ import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
 
 class ApplicationInfoText extends StatelessWidget {
-  const ApplicationInfoText(
+  ApplicationInfoText(
       {Key? key, required this.paramName, required this.paramValue})
       : super(key: key);
 
   final String paramName;
   final String paramValue;
 
-  final String points =
-      ".........................................................................................................................";
+  final String points = '.' * 200;
 
   @override
   Widget build(BuildContext context) {
