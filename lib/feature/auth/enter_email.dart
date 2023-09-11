@@ -37,7 +37,7 @@ class EnterEmailScreen extends StatelessWidget {
                   children: [
                     CustomTextField(
                       labelText: "Ваша почта",
-                      hintText: 'Тут ваша почта',
+                      //hintText: 'Тут ваша почта',
                       controller: emailController,
                       width: double.infinity,
                       validator: (v) => Validator.emailValidator(v),

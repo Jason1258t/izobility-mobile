@@ -14,6 +14,8 @@ import 'feature/auth/enter_email.dart';
 import 'services/locale/export_locale_services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -39,10 +41,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        RouteNames.root : (context) => const SplashScreen() ,
-        RouteNames.home : (context) => const HomeScreen(),
-        RouteNames.authCreateName : (context) => EnterNameScreen(),
-        RouteNames.auth : (context) => EnterEmailScreen(),
+        RouteNames.root: (context) => const SplashScreen(),
+        RouteNames.home: (context) => const HomeScreen(),
+        RouteNames.authCreateName: (context) => EnterNameScreen(),
+        RouteNames.auth: (context) => EnterEmailScreen(),
         RouteNames.authEnterPin: (context) => const PinScreenEnter(),
         RouteNames.authCreatePassword: (context) => CreatePasswrordScreen(),
         RouteNames.authCreatePin: (context) => const PinScreen()
@@ -61,7 +63,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return const SplashScreen();

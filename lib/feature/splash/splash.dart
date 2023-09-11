@@ -1,31 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/route_names.dart';
-import 'package:izobility_mobile/widgets/progress_indicators/linear_progress_indicator.dart';
-import 'package:izobility_mobile/widgets/scaffold/splash_loading_scaffold.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3))
+    Future.delayed(const Duration(seconds: 5))
         .then((value) => Navigator.pushNamed(context, RouteNames.auth));
 
-    return SplashScaffold(
-        body: Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 110),
+    return Scaffold(
+        body: Center(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SvgPicture.asset(
-            'assets/icons/logo.svg',
-            width: 270,
+            'assets/icons/Logotype.svg',
+            width: MediaQuery.sizeOf(context).width - 40,
           ),
           const SizedBox(
             height: 30,
           ),
           const Center(
-            child: CircularProgressIndicator(),
+            child: SizedBox(
+              width: 44,
+              height: 44,
+              child: CircularProgressIndicator(
+                color: AppColors.primary,
+                strokeWidth: 3,
+              ),
+            ),
           )
           //const CustomLinearIndicator(),
         ],
