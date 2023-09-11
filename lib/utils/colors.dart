@@ -14,7 +14,7 @@ class AppColors {
   static const textContrast = Colors.white;
   static const textLink = Color(0xFF2D81E0);
   static const cityText = Color(0xFF033E67);
-  static const primary = Color(0xFF1E45A2);
+  static const primary = Color(0xFF7E49FF);
   static const negative = Color(0xFFE64646);
   static const positive = Color(0xFF2F8D32);
   static const neutral = Color(0x7FB4B4B4);
@@ -31,4 +31,5 @@ class AppColors {
   static const lightGreyIcon = Color(0xffCCCCCC);
   static Color blackOpacity = Colors.black.withOpacity(0.03999999910593033);
   static const transparentRed = Color(0xFFEDCECE);
+  static const violetBlue = Color(0xff99a3ff);
 }
