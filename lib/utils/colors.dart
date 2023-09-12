@@ -33,4 +33,5 @@ class AppColors {
   static Color blackOpacity = Colors.black.withOpacity(0.03999999910593033);
   static const transparentRed = Color(0xFFEDCECE);
   static const violetBlue = Color(0xff99a3ff);
+  static const primaryPressedBackground = Color(0xFF681EE3);
 }
