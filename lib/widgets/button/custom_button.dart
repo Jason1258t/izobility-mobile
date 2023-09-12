@@ -16,7 +16,7 @@ class CustomButton extends StatefulWidget {
       required this.onTap,
       required this.width,
       this.isActive = true,
-      this.height = 52});
+      this.height = 48});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -29,19 +29,20 @@ class _CustomButtonState extends State<CustomButton> {
         width: widget.width,
         height: widget.height,
         decoration: ShapeDecoration(
-            color: widget.isActive
-                ? AppColors.primary
-                : AppColors.primary.withOpacity(0.7),
             shape: RoundedRectangleBorder(
-              side: BorderSide(
-                  width: 0.50,
-                  color: widget.isActive
-                      ? AppColors.primary
-                      : AppColors.backgroundSecondary),
-              borderRadius: BorderRadius.circular(8),
-            )),
+          side: BorderSide(
+              width: 0.50,
+              color: widget.isActive ? AppColors.primary : AppColors.disable),
+          borderRadius: BorderRadius.circular(12),
+        )),
         child: TextButton(
             onPressed: widget.isActive ? widget.onTap : () {},
+            style: TextButton.styleFrom(
+                backgroundColor: widget.isActive
+                    ? AppColors.primary
+                    : AppColors.disableButton,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12))),
             child: Text(widget.text, style: AppFonts.font16w600)));
   }
 }

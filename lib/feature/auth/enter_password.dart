@@ -7,10 +7,17 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-class EnterNameScreen extends StatelessWidget {
-  EnterNameScreen({super.key});
+class EnterPasswordScreen extends StatefulWidget {
+  EnterPasswordScreen({super.key});
 
+  @override
+  State<EnterPasswordScreen> createState() => _EnterPasswordScreenState();
+}
+
+class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
   final TextEditingController passwordController = TextEditingController();
+
+  bool hidePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +35,16 @@ class EnterNameScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          CustomTextField(
-            hintText: '*********',
+          CustomTextField.password(
+            obscured: hidePassword,
+            //hintText: '*********',
             controller: passwordController,
             width: double.infinity,
-            labelText: "Пароль от вашего аккаунта",
-            validator: (value) {
-              if (value != null && value != "") {
-                return null;
-              }
+            labelText: "Ваш пароль",
+            suffixIconCallback: () {
+              setState(() {
+                hidePassword = !hidePassword;
+              });
             },
           ),
           const SizedBox(

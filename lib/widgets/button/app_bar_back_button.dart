@@ -7,22 +7,18 @@ class AppBarBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.backBack,
-      borderRadius: BorderRadius.circular(8),
-      child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Container(
-          alignment: Alignment.center,
-          child: SvgPicture.asset(
-            "assets/icons/back.svg",
-            color: Colors.black,
-            width: 24,
-            height: 24,
-            fit: BoxFit.contain,
-          ),
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: SvgPicture.asset(
+          "assets/icons/back.svg",
+          color: Colors.black,
+          width: 24,
+          height: 24,
+          fit: BoxFit.contain,
         ),
       ),
     );

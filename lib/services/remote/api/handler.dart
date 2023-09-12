@@ -1,8 +1,8 @@
 part of 'api_service.dart';
 
-mixin class MyApiMethods {
-  late Dio dio;
-  late SharedPreferences sharedPreferences;
+mixin class ApiHandler {
+  late final Dio dio;
+  late final PreferencesService preferencesService;
 
   _errorHandler(Future<Response> method, String url) async {
     try {
@@ -13,8 +13,6 @@ mixin class MyApiMethods {
       rethrow;
     }
   }
-
-  
 
   Future get(String url) async {
     return _errorHandler(dio.get(url), url);
@@ -36,6 +34,12 @@ mixin class MyApiMethods {
       }
     }
 
+  Future<void> refreshToken() async {
+    final res = await get(ApiEndpoints.refreshEndpoint);
 
-  void refreshDio(Dio newDio) => dio = newDio;
+    final token = Token.fromJson(res);
+
+    preferencesService.saveToken(token);
+    dio.options.headers = {};
+  }
 }

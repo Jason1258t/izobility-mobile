@@ -10,12 +10,20 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-class CreatePasswrordScreen extends StatelessWidget {
-  CreatePasswrordScreen({super.key});
+class CreatePasswordScreen extends StatefulWidget {
+  const CreatePasswordScreen({super.key});
 
+  @override
+  State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
+}
+
+class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   final TextEditingController passwordController = TextEditingController();
+
   final TextEditingController passwordRepeatedController =
       TextEditingController();
+
+  bool hidePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,33 +41,29 @@ class CreatePasswrordScreen extends StatelessWidget {
           const SizedBox(
             height: 32,
           ),
-          CustomTextField(
-            hintText: '*********',
+          CustomTextField.password(
+            obscured: hidePassword,
             controller: passwordController,
             width: double.infinity,
-            labelText: "Придумайте пароль для аккаунта",
-            isObscured: true,
-            validator: (v) => Validator.validatePassword(v),
+            labelText: "Придуайте пароль",
+            suffixIconCallback: () {
+              setState(() {
+                hidePassword = !hidePassword;
+              });
+            },
           ),
           const SizedBox(
             height: 16,
           ),
-          CustomTextField(
-            hintText: '*********',
-            controller: passwordRepeatedController,
+          CustomTextField.password(
+            obscured: hidePassword,
+            controller: passwordController,
             width: double.infinity,
-            labelText: "Подтверждение пароля",
-            isObscured: true,
-            validator: (value) {
-              if (value == "") {
-                return null;
-              }
-
-              if (passwordRepeatedController.text != passwordController.text) {
-                return "Парооли не совпадают!";
-              }
-
-              return null;
+            labelText: "Повторите пароль",
+            suffixIconCallback: () {
+              setState(() {
+                hidePassword = !hidePassword;
+              });
             },
           ),
           const SizedBox(

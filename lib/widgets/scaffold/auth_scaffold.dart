@@ -18,8 +18,9 @@ class AuthScaffoldState extends State<AuthScaffold> {
       color: Colors.white,
       padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           leading: const AppBarBackButton(),
           leadingWidth: 36,
           toolbarHeight: 36,

@@ -3,92 +3,101 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {super.key,
       this.hintText,
       required this.controller,
       required this.width,
       this.keyboardType,
-      this.validator,
       this.labelText,
-      this.isObscured = false,
+      this.obscured = false,
+      this.onChange,
+      this.error = false,
+      this.errorText,
+      this.suffixIcon,
+      this.suffixIconCallback,
       this.height = 56});
+
+  CustomTextField.password(
+      {super.key,
+      this.hintText,
+      required this.controller,
+      required this.width,
+      this.labelText,
+      this.onChange,
+      required this.obscured,
+      this.error = false,
+      this.errorText,
+      this.height = 56,
+      required this.suffixIconCallback})
+      : keyboardType = TextInputType.visiblePassword,
+        suffixIcon = SuffixIconPassword(
+          callback: suffixIconCallback!,
+          visible: !obscured,
+        );
 
   final TextEditingController controller;
   final String? hintText;
   final TextInputType? keyboardType;
   final double width;
   final double height;
-  final String? Function(String?)? validator;
   final String? labelText;
-  final bool isObscured;
+  final bool obscured;
+  final bool error;
+  final String? errorText;
+  final VoidCallback? suffixIconCallback;
+  final Widget? suffixIcon;
+  final Function(String?)? onChange;
 
-  @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
   final Color _negative = AppColors.negative;
-
-  bool error = false;
-  String? errorText;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widget.width,
+      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: widget.width,
-            height: widget.height,
+            width: width,
+            height: height,
             child: TextFormField(
-              obscureText: widget.isObscured,
-              validator: widget.validator,
-              onChanged: (String? value) {
-                if (widget.validator != null) {
-                  errorText = widget.validator!(value);
-                  error = errorText != null;
-                  setState(() {});
-                }
-              },
-              style: AppFonts.font16w400.copyWith(
-                  color: !error ? AppColors.textSecondary : AppColors.negative),
+              obscureText: obscured,
+              onChanged: onChange,
+              style:
+                  AppFonts.font16w400.copyWith(color: Colors.black),
               decoration: InputDecoration(
-                  //filled: true,
-                  isDense: true,
+                  //isDense: true,
                   fillColor: AppColors.backgroundSecondary,
                   contentPadding: const EdgeInsets.all(10),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: _negative)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(
                       width: 1,
-                      //strokeAlign: BorderSide.strokeAlignCenter,
                       color: Color(0xFFE2E2E2),
                     ),
                   ),
+                  suffixIcon: suffixIcon,
+                  suffixIconConstraints:
+                      BoxConstraints(maxHeight: 40, maxWidth: 40),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(
                         width: 1,
                         strokeAlign: BorderSide.strokeAlignCenter,
                       )),
-                  labelText: widget.labelText,
+                  labelText: labelText,
                   labelStyle:
                       AppFonts.font16w400.copyWith(color: AppColors.hintText),
-                  floatingLabelStyle:
-                      AppFonts.font12w400.copyWith(color: Colors.black),
+                  floatingLabelStyle: AppFonts.font12w400
+                      .copyWith(color: error ? _negative : Colors.black),
                   floatingLabelAlignment: FloatingLabelAlignment.start,
-                  hintText: widget.hintText ?? widget.labelText,
-                  hintStyle: AppFonts.font16w400.copyWith(
-                      color: !error ? AppColors.hintText : _negative)),
-              keyboardType: widget.keyboardType,
-              controller: widget.controller,
+                  hintText: hintText ?? labelText,
+                  hintStyle:
+                      AppFonts.font16w400.copyWith(color: AppColors.hintText)),
+              keyboardType: keyboardType,
+              controller: controller,
             ),
           ),
           if (error) ...[
@@ -105,6 +114,37 @@ class _CustomTextFieldState extends State<CustomTextField> {
             )
           ]
         ],
+      ),
+    );
+  }
+}
+
+class SuffixIconPassword extends StatelessWidget {
+  const SuffixIconPassword(
+      {super.key, required this.callback, required this.visible});
+
+  final VoidCallback callback;
+  final bool visible;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: callback,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        width: 40,
+        height: 40,
+        child: SvgPicture.asset(
+          'assets/icons/eye.svg',
+          width: 24,
+          height: 24,
+          //color: visible ? AppColors.primary : const Color(0xff757575),
+          colorFilter: ColorFilter.mode(
+              visible ? AppColors.primary : const Color(0xff757575),
+              BlendMode.srcIn),
+        ),
       ),
     );
   }
