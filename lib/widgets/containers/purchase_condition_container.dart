@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../utils/colors.dart';
 import '../../utils/fonts.dart';
 
-class ContainerPurchaseCondition extends StatelessWidget {
-  ContainerPurchaseCondition(
+class PurchaseConditionContainer extends StatelessWidget {
+  const PurchaseConditionContainer(
       {super.key,
       required this.value,
       required this.coinImage,
