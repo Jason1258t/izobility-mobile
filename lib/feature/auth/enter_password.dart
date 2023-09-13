@@ -95,7 +95,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                   },
                   width: double.infinity),
             ),
-            SizedBox(height: 14,),
+            const SizedBox(height: 14,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
