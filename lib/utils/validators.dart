@@ -11,10 +11,6 @@ abstract class Validator {
   }
 
   static validatePassword(value) {
-    if (value == null || value == "") {
-      return null;
-    }
-
     if (value.length < 6) {
       return 'Слишком короткий';
     }
@@ -29,7 +25,7 @@ abstract class Validator {
   static nameValidator(String name) {
     if (name.length >= 3) {
       return null;
-    } else  {
+    } else {
       return 'Длина имени должна быть больше трех';
     }
   }

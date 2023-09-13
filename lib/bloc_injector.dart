@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
+import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/services/locale/export_locale_services.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'feature/auth/bloc/auth/auth_cubit.dart';
 
@@ -12,9 +12,9 @@ final PreferencesService prefs = PreferencesService();
 final ApiService api = ApiService(preferencesService: prefs);
 
 class MyBlocProviders extends StatelessWidget {
-  MyBlocProviders({super.key, required this.myApp});
+  const MyBlocProviders({super.key, required this.myApp});
 
-  Widget myApp;
+  final Widget myApp;
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +29,26 @@ class MyBlocProviders extends StatelessWidget {
             authRepository: RepositoryProvider.of<AuthRepository>(context)),
         lazy: false,
       ),
+      BlocProvider(
+        create: (_) => PasswordRecoveryCubit(),
+        lazy: false,
+      ),
     ], child: myApp);
   }
 }
 
 class MyRepositoryProviders extends StatelessWidget {
-  MyRepositoryProviders({super.key, required this.myApp});
+  const MyRepositoryProviders({super.key, required this.myApp});
 
-  Widget myApp;
+  final Widget myApp;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(create: (_) => AuthRepository(apiService: api))
+          RepositoryProvider(
+              create: (_) =>
+                  AuthRepository(apiService: api, preferences: prefs))
         ],
         child: MyBlocProviders(
           myApp: myApp,

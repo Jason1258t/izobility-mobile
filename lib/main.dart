@@ -3,14 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/bloc_injector.dart';
+import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/create_password.dart';
 import 'package:izobility_mobile/feature/auth/enter_name.dart';
 import 'package:izobility_mobile/feature/auth/enter_password.dart';
-import 'package:izobility_mobile/feature/auth/pin_screen.dart';
-import 'package:izobility_mobile/feature/auth/pin_screen_enter.dart';
+import 'package:izobility_mobile/feature/auth/create_pin_screen.dart';
+import 'package:izobility_mobile/feature/auth/enter_pin_screen.dart';
+import 'package:izobility_mobile/feature/auth/password_recovery.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
-import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 import 'feature/auth/enter_email.dart';
@@ -28,7 +30,7 @@ void main() async {
 
   await dotenv.load();
 
-  runApp(const MyApp());
+  runApp(const MyRepositoryProviders(myApp: MyApp()));
 }
 
 final _router = GoRouter(
@@ -36,7 +38,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: RouteNames.root,
-      builder: (context, state) => const SplashScreen(),
+      builder: (context, state) => const MyHomePage(),
     ),
     GoRoute(
       path: RouteNames.auth,
@@ -45,6 +47,18 @@ final _router = GoRouter(
     GoRoute(
         path: RouteNames.authCreateName,
         builder: (context, state) => const EnterNameScreen()),
+    GoRoute(
+        path: RouteNames.authEnterPassword,
+        builder: (context, state) => const EnterPasswordScreen()),
+    GoRoute(
+        path: RouteNames.authCreatePin,
+        builder: (context, state) => const CreatePinScreen()),
+    GoRoute(
+        path: RouteNames.authCreatePassword,
+        builder: (context, state) => const CreatePasswordScreen()),
+    GoRoute(
+        path: RouteNames.authPasswordRecovery,
+        builder: (context, state) => const PasswordRecoveryScreen()),
   ],
 );
 
@@ -78,9 +92,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -89,6 +101,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const SplashScreen();
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        //Navigator.popUntil(context, ModalRoute.withName(RouteNames.root));
+        if (state is AppUnAuthState) return EnterEmailScreen();
+        if (state is CreatePinState) return const CreatePinScreen();
+        if (state is EnterPinState) return const EnterPinScreen();
+        if (state is AppAuthState) return const HomeScreen();
+        return const SplashScreen();
+      },
+    );
   }
 }

@@ -6,7 +6,6 @@ import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:dio/dio.dart';
 import 'package:izobility_mobile/services/remote/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'handler.dart';
 

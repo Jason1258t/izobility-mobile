@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:izobility_mobile/utils/colors.dart';
 
 class AppBarBackButton extends StatelessWidget {
   const AppBarBackButton({super.key});

@@ -15,7 +15,7 @@ class GuidesSuggestion extends StatelessWidget {
   final String imageUrl;
   final VoidCallback onTap;
 
-  final BorderSide viewBorderSide = BorderSide(
+  final BorderSide viewBorderSide = const BorderSide(
     width: 0.50,
     strokeAlign: BorderSide.strokeAlignOutside,
     color: AppColors.primaryPressedBackground,
@@ -26,8 +26,8 @@ class GuidesSuggestion extends StatelessWidget {
   final bool viewed;
 
   final LinearGradient conteinerColorGradient = LinearGradient(
-    begin: Alignment(-0.12, 0.99),
-    end: Alignment(0.12, -0.99),
+    begin: const Alignment(-0.12, 0.99),
+    end: const Alignment(0.12, -0.99),
     colors: [
       Colors.black.withOpacity(0.6499999761581421),
       Colors.black.withOpacity(0)
@@ -50,7 +50,7 @@ class GuidesSuggestion extends StatelessWidget {
               DecorationImage(image: AssetImage(imageUrl), fit: BoxFit.cover),
         ),
         child: Container(
-          padding: EdgeInsets.all(6),
+          padding: const EdgeInsets.all(6),
           alignment: Alignment.bottomCenter,
           width: 100,
           height: 100,

@@ -11,31 +11,44 @@ enum EmailStateEnum { unregistered, registered }
 
 class AuthRepository {
   final ApiService apiService;
+  final PreferencesService preferences;
 
-  AuthRepository({required this.apiService});
+  AuthRepository({
+    required this.apiService,
+    required this.preferences,
+  });
 
   BehaviorSubject<AppStateEnum> appState =
       BehaviorSubject.seeded(AppStateEnum.wait);
 
-  _auth(Future authMethod) async {
+  Future _auth(Future authMethod) async {
     await authMethod;
-    appState.add(AppStateEnum.auth); // TODO скорее всего переписать: вытаскивать токен и прочая балда
+    appState.add(AppStateEnum
+        .auth); // TODO скорее всего переписать: вытаскивать токен и прочая балда
   }
 
   Future<EmailStateEnum> checkEmail(String email) async {
-    await Future.delayed(Duration(seconds: 1)); // TODO заменить на нормальную проверку через api
-    return EmailStateEnum.unregistered;
+    await Future.delayed(
+        const Duration(seconds: 1)); // TODO заменить на нормальную проверку через api
+    return EmailStateEnum.registered;
   }
 
   Future register(RegisterData data) async {
-    _auth(Future.delayed(Duration(seconds: 1)));
+    await _auth(Future.delayed(const Duration(seconds: 2)));
   }
 
   Future login(LoginData data) async {
-    _auth(Future.delayed(Duration(seconds: 1)));
+    await _auth(Future.delayed(const Duration(seconds: 2)));
   }
 
-  Future logout() async {
-
+  Future checkLogin() async {
+    await Future.delayed(Duration(milliseconds: 500));
+    appState.add(AppStateEnum.unAuth);
   }
+
+  Future<void> setEnterPin(String pin) async => await preferences.setPin(pin);
+
+  Future<String?> getPin() async => await preferences.getPin();
+
+  Future logout() async {}
 }

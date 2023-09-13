@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:izobility_mobile/utils/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,6 +10,8 @@ class PreferencesService {
   static const String _refreshTokenKey = 'refreshToken';
   static const String _accessExpiredKey = 'accessExpired';
   static const String _refreshExpiredKey = 'refreshExpired';
+
+  static const String pinKey = 'pinCode';
 
   Future saveToken(Token token) async {
     final prefs = await _prefs;
@@ -40,6 +40,17 @@ class PreferencesService {
       throw UnAuthenticatedException;
     }
   }
+
+  Future setPin(String pin) async {
+    final prefs = await _prefs;
+    prefs.setString(pinKey, pin);
+  }
+
+  Future<String?> getPin() async {
+    final prefs = await _prefs;
+    return prefs.getString(pinKey);
+  }
+
 
   Future logout() async => (await _prefs).clear();
 }

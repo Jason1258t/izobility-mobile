@@ -80,7 +80,7 @@ class CustomTextField extends StatelessWidget {
                   ),
                   suffixIcon: suffixIcon,
                   suffixIconConstraints:
-                      BoxConstraints(maxHeight: 40, maxWidth: 40),
+                      const BoxConstraints(maxHeight: 40, maxWidth: 40),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(

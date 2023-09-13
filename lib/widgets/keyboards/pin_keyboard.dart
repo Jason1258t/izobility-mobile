@@ -3,7 +3,11 @@ import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/widgets/button/pin_keyboard_button.dart';
 
 class PinKeyboard extends StatefulWidget {
-  const PinKeyboard({super.key});
+  const PinKeyboard(
+      {super.key, required this.commitCallback, required this.commitDuration});
+
+  final Function(List<int>) commitCallback;
+  final Duration commitDuration;
 
   @override
   State<PinKeyboard> createState() => _PinKeyboardState();
@@ -19,7 +23,11 @@ class _PinKeyboardState extends State<PinKeyboard> {
     Future<void> _addNumber(int number) async {
       pin.add(number);
 
-      if (pin.length > 4) {
+      if (pin.length > 3) {
+        setState(() {});
+        await Future.delayed(widget.commitDuration);
+        widget.commitCallback(pin);
+
         pin.clear();
       }
     }
@@ -74,7 +82,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
         List<Widget> line = [];
         for (int j = 1; j < 4; j++) {
           line.add(KeyboardButton(
-            onTap: () async {
+            onTap: () async{
               await _addNumber(3 * i + j);
               setState(() {});
             },
@@ -95,8 +103,8 @@ class _PinKeyboardState extends State<PinKeyboard> {
             width: 66,
           ),
           KeyboardButton(
-            onTap: () {
-              _addNumber(0);
+            onTap: () async {
+              await _addNumber(0);
               setState(() {});
             },
             number: '0',

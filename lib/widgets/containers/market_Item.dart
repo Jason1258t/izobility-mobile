@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/widgets/containers/purchase_condition.dart';
 
 import '../../models/api/coinData.dart';
@@ -44,7 +41,7 @@ class MarketItem extends StatelessWidget {
     return children;
   }
 
-  List<CoinData> hui = List.generate(
+  final List<CoinData> hui = List.generate(
       3, (index) => CoinData(imageUrl: 'assets/Coins.png', value: '1,520'));
 
   @override
@@ -52,7 +49,7 @@ class MarketItem extends StatelessWidget {
     return Container(
       width: 216,
       height: 297,
-      padding: EdgeInsets.all(6),
+      padding: const EdgeInsets.all(6),
       // decoration: ShapeDecoration(
       //   color: AppColors.city,
       //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -80,7 +77,7 @@ class MarketItem extends StatelessWidget {
                         height: 17,
                         alignment: Alignment.center,
                         decoration: ShapeDecoration(
-                          color: Color(0xFFEB2121),
+                          color: const Color(0xFFEB2121),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                         ),
@@ -94,7 +91,7 @@ class MarketItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       width: 36,
                       height: 36,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/utils/route_names.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/utils/validators.dart';
-import 'package:izobility_mobile/widgets/button/app_bar_back_button.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
@@ -20,6 +22,7 @@ class _EnterNameScreenState extends State<EnterNameScreen> {
 
   String? fieldError;
   bool buttonActive = false;
+
   @override
   Widget build(BuildContext context) {
     return AuthScaffold(
@@ -45,7 +48,7 @@ class _EnterNameScreenState extends State<EnterNameScreen> {
             errorText: fieldError,
             onChange: (v) {
               setState(() {
-                fieldError = Validator.nameValidator(v ?? '');
+                fieldError = Validator.nameValidator((v ?? '').trim());
                 buttonActive = fieldError == null;
               });
             },
@@ -57,7 +60,9 @@ class _EnterNameScreenState extends State<EnterNameScreen> {
               text: 'Далее',
               isActive: buttonActive,
               onTap: () {
-                Navigator.of(context).pushNamed(RouteNames.authEnterPassword);
+                BlocProvider.of<AuthCubit>(context).registerData!.name =
+                    nameController.text.trim();
+                context.push(RouteNames.authCreatePassword);
               },
               width: double.infinity)
         ],
