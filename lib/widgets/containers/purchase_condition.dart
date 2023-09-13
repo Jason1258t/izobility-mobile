@@ -1,54 +1,34 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
+import '../../models/api/coinData.dart';
 import '../../utils/colors.dart';
 import '../../utils/fonts.dart';
 
-class ContainerPurchaseCondition extends StatelessWidget {
-  ContainerPurchaseCondition(
-      {super.key,
-      required this.value,
-      required this.coinImage,
-      required this.enough});
+class PurchaseCondition extends StatelessWidget {
+  const PurchaseCondition({super.key, required this.data});
 
-  final String value;
-  final bool enough;
-  final String coinImage;
-  final coloRed = AppColors.transparentRed;
-  final colorWhite = AppColors.textContrast;
-  final String svgGreen = 'assets/icons/green_tick.svg';
-  final String svgRed = 'assets/icons/red_cross.svg';
+  final CoinData data;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 99,
-      height: 87,
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 7),
-      decoration: ShapeDecoration(
-        color: enough ? colorWhite : coloRed,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          SvgPicture.asset(enough ? svgGreen : svgRed),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(coinImage),
-              const SizedBox(width: 3),
-              Text(
-                value,
-                style:
-                    AppFonts.font16w700.copyWith(color: AppColors.textPrimary),
-              )
-            ],
-          )
+          Image.asset(
+            data.imageUrl,
+            width: 16,
+            height: 16,
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(
+            width: 2,
+          ),
+          Text(
+            data.value,
+            style: AppFonts.font8w700.copyWith(color: AppColors.textPrimary),
+          ),
         ],
       ),
     );
