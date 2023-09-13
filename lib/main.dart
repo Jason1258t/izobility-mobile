@@ -12,6 +12,8 @@ import 'package:izobility_mobile/feature/auth/create_pin_screen.dart';
 import 'package:izobility_mobile/feature/auth/enter_pin_screen.dart';
 import 'package:izobility_mobile/feature/auth/password_recovery.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
+import 'package:izobility_mobile/feature/profile/ui/profile.dart';
+import 'package:izobility_mobile/feature/profile/ui/profile_edit.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
@@ -59,6 +61,13 @@ final _router = GoRouter(
     GoRoute(
         path: RouteNames.authPasswordRecovery,
         builder: (context, state) => const PasswordRecoveryScreen()),
+    GoRoute(
+      path: RouteNames.profile,
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+        path: RouteNames.profileEdit,
+        builder: (context, state) => const ProfileEditScreen())
   ],
 );
 

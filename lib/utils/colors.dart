@@ -34,5 +34,6 @@ class AppColors {
   static const transparentRed = Color(0xFFEDCECE);
   static const violetBlue = Color(0xff99a3ff);
   static const primaryPressedBackground = Color(0xFF681EE3);
+  static const darkBlue = Color(0xFF1E45A2);
   static const purple100 = Color(0xFFECE8FF);
 }
