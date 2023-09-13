@@ -7,6 +7,7 @@ import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
 import 'package:izobility_mobile/utils/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/containers/profile/profile_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -207,56 +208,5 @@ class ButtonActivate extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class ProfileCard extends StatefulWidget {
-  // final String name;
-  // final String status;
-  // final String imagePath;
-
-  const ProfileCard({
-    super.key,
-  });
-
-  @override
-  State<ProfileCard> createState() => _ProfileCardState();
-}
-
-class _ProfileCardState extends State<ProfileCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.backBack),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'name',
-                style:
-                    AppFonts.font16w500.copyWith(color: AppColors.textPrimary),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                'status',
-                style:
-                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
-              ),
-            ],
-          ),
-        ]);
   }
 }
