@@ -16,13 +16,13 @@ class PreferencesService {
   Future saveToken(Token token) async {
     final prefs = await _prefs;
 
-    prefs.setString(_accessTokenKey, token.accessToken);
-    prefs.setString(_refreshTokenKey, token.refreshToken);
-    prefs.setString(_accessExpiredKey, token.accessTokenExpired);
-    prefs.setString(_refreshExpiredKey, token.refreshTokenExpired);
+    prefs.setString(_accessTokenKey, token.accessToken!);
+    prefs.setString(_refreshTokenKey, token.refreshToken!);
+    prefs.setString(_accessExpiredKey, token.accessTokenExpired!);
+    prefs.setString(_refreshExpiredKey, token.refreshTokenExpired!);
   }
 
-  Future<Token> getToken() async {
+  Future<Token?> getToken() async {
     final prefs = await _prefs;
 
     final accessToken = prefs.getString(_accessTokenKey);
@@ -32,12 +32,12 @@ class PreferencesService {
 
     try {
       return Token(
-          accessToken: accessToken!,
-          accessTokenExpired: accessTokenExpired!,
-          refreshToken: refreshToken!,
-          refreshTokenExpired: refreshTokenExpired!);
+          accessToken: accessToken,
+          accessTokenExpired: accessTokenExpired,
+          refreshToken: refreshToken,
+          refreshTokenExpired: refreshTokenExpired);
     } catch (e) {
-      throw UnAuthenticatedException;
+      return null;
     }
   }
 
@@ -50,7 +50,6 @@ class PreferencesService {
     final prefs = await _prefs;
     return prefs.getString(pinKey);
   }
-
 
   Future logout() async => (await _prefs).clear();
 }

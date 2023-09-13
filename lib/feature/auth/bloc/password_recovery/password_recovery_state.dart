@@ -5,13 +5,17 @@ abstract class PasswordRecoveryState {}
 class PasswordRecoveryInitial extends PasswordRecoveryState {}
 
 
-class PasswordRecoveryEmailSent extends PasswordRecoveryState {
+class PasswordRecoveryEmailSent extends PasswordRecoveryState {}
+
+class PasswordRecoveryWait extends PasswordRecoveryState {
   int remainingTime;
 
-  PasswordRecoveryEmailSent({required this.remainingTime});
+  PasswordRecoveryWait({required this.remainingTime});
 }
 
 class PasswordRecoveryFailState extends PasswordRecoveryState {}
 
 class PasswordRecoveryProcessState extends PasswordRecoveryState {}
+
+class PasswordRecoverySuccessState extends PasswordRecoveryState {}
 

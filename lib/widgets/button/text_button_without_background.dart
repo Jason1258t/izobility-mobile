@@ -8,11 +8,13 @@ class TextButtonWithoutBackground extends StatelessWidget {
       {super.key,
       required this.onTap,
       required this.text,
-      this.textColor = AppColors.disable});
+      this.textColor = AppColors.disable,
+      this.textStyle});
 
   final VoidCallback onTap;
   final String text;
   final Color textColor;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class TextButtonWithoutBackground extends StatelessWidget {
       onTap: onTap,
       child: Text(
         text,
-        style: AppFonts.font16w400.copyWith(color: textColor),
+        style: (textStyle ?? AppFonts.font16w400).copyWith(color: textColor),
       ),
     );
   }

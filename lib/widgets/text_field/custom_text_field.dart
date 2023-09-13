@@ -65,8 +65,7 @@ class CustomTextField extends StatelessWidget {
             child: TextFormField(
               obscureText: obscured,
               onChanged: onChange,
-              style:
-                  AppFonts.font16w400.copyWith(color: Colors.black),
+              style: AppFonts.font16w400.copyWith(color: Colors.black),
               decoration: InputDecoration(
                   //isDense: true,
                   fillColor: AppColors.backgroundSecondary,
@@ -142,7 +141,7 @@ class SuffixIconPassword extends StatelessWidget {
           height: 24,
           //color: visible ? AppColors.primary : const Color(0xff757575),
           colorFilter: ColorFilter.mode(
-              visible ? AppColors.primary : const Color(0xff757575),
+              visible ? AppColors.primary : AppColors.disabledTextButton,
               BlendMode.srcIn),
         ),
       ),

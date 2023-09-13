@@ -1,10 +1,10 @@
 import 'package:izobility_mobile/utils/constants.dart';
 
 class Token {
-  final String accessToken;
-  final String refreshToken;
-  final String accessTokenExpired;
-  final String refreshTokenExpired;
+  String? accessToken;
+  String? refreshToken;
+  String? accessTokenExpired;
+  String? refreshTokenExpired;
 
   Token.fromJson(Map<String, dynamic> json)
       : accessToken = json[''],
@@ -18,21 +18,35 @@ class Token {
       required this.refreshToken,
       required this.refreshTokenExpired});
 
+  Token.zero()
+      : accessToken = null,
+        accessTokenExpired = null,
+        refreshTokenExpired = null,
+        refreshToken = null;
+
   bool get accessExpired {
-    DateTime expiredTime = DateTime.parse(accessTokenExpired);
-    expiredTime = expiredTime.add(serverOffset);
+    try {
+      DateTime expiredTime = DateTime.parse(accessTokenExpired!);
+      expiredTime = expiredTime.add(serverOffset);
 
-    final Duration difference = DateTime.now().difference(expiredTime);
+      final Duration difference = DateTime.now().difference(expiredTime);
 
-    return difference.inMinutes >= -1;
+      return difference.inMinutes >= -1;
+    } catch (e) {
+      return true;
+    }
   }
 
   bool get refreshExpired {
-    DateTime expiredTime = DateTime.parse(refreshTokenExpired);
-    expiredTime = expiredTime.add(serverOffset);
+    try {
+      DateTime expiredTime = DateTime.parse(refreshTokenExpired!);
+      expiredTime = expiredTime.add(serverOffset);
 
-    final Duration difference = DateTime.now().difference(expiredTime);
+      final Duration difference = DateTime.now().difference(expiredTime);
 
-    return difference.inMinutes >= -1;
+      return difference.inMinutes >= -1;
+    } catch (e) {
+      return true;
+    }
   }
 }

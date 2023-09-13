@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/rendering.dart';
 
 part 'password_recovery_state.dart';
 
@@ -12,12 +13,29 @@ class PasswordRecoveryCubit extends Cubit<PasswordRecoveryState> {
 
     emit(PasswordRecoveryProcessState());
     try {
-      await Future.delayed(const Duration(seconds: 2)); // TODO заменить на api метод
-      emit(PasswordRecoveryEmailSent(remainingTime: repeatDuration));
+      await Future.delayed(
+          const Duration(seconds: 2)); // TODO заменить на api метод
+      emit(PasswordRecoveryEmailSent());
+      emit(PasswordRecoveryWait(remainingTime: repeatDuration));
       _startTimer(repeatDuration);
     } catch (e) {
       emit(PasswordRecoveryFailState());
     }
+  }
+
+  void changePassword(String password) async {
+    emit(PasswordRecoveryProcessState());
+    try {
+      await Future.delayed(const Duration(seconds: 1));
+      emit(PasswordRecoverySuccessState());
+    } catch (e) {
+      emit(PasswordRecoveryFailState());
+    }
+  }
+
+  Future<bool> checkCode(String code) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return true;
   }
 
   void _startTimer(int time) async {
@@ -29,7 +47,7 @@ class PasswordRecoveryCubit extends Cubit<PasswordRecoveryState> {
         timer.cancel();
       } else {
         time--;
-        emit(PasswordRecoveryEmailSent(remainingTime: time));
+        emit(PasswordRecoveryWait(remainingTime: time));
       }
     });
   }

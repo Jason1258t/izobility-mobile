@@ -3,9 +3,15 @@ part of 'api_service.dart';
 mixin class ApiHandler {
   late final Dio dio;
   late final PreferencesService preferencesService;
+  late final Token currentToken;
 
   _errorHandler(Future<Response> method, String url) async {
     try {
+      if (currentToken.accessExpired) {
+        if (currentToken.refreshExpired) throw UnAuthenticatedException;
+        await refreshToken();
+      }
+
       final res = await method;
       return res.data;
     } catch (e) {
@@ -29,10 +35,10 @@ mixin class ApiHandler {
       final res = await dio.delete(url);
       return res.data;
     } catch (e) {
-        log(url);
-        rethrow;
-      }
+      log(url);
+      rethrow;
     }
+  }
 
   Future<void> refreshToken() async {
     final res = await get(ApiEndpoints.refreshEndpoint);
@@ -40,6 +46,12 @@ mixin class ApiHandler {
     final token = Token.fromJson(res);
 
     preferencesService.saveToken(token);
+
+    currentToken.accessToken = token.accessToken;
+    currentToken.refreshToken = token.refreshToken;
+    currentToken.accessTokenExpired = token.accessTokenExpired;
+    currentToken.refreshTokenExpired = token.refreshTokenExpired;
+
     dio.options.headers = {};
   }
 }
