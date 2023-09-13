@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +11,8 @@ import 'package:izobility_mobile/feature/auth/enter_password.dart';
 import 'package:izobility_mobile/feature/auth/pin_screen.dart';
 import 'package:izobility_mobile/feature/auth/pin_screen_enter.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
+import 'package:izobility_mobile/feature/profile/ui/profile.dart';
+import 'package:izobility_mobile/feature/profile/ui/profile_edit.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -45,6 +49,13 @@ final _router = GoRouter(
     GoRoute(
         path: RouteNames.authCreateName,
         builder: (context, state) => const EnterNameScreen()),
+    GoRoute(
+      path: RouteNames.profile,
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+        path: RouteNames.profileEdit,
+        builder: (context, state) => const ProfileEditScreen())
   ],
 );
 

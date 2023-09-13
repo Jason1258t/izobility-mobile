@@ -11,4 +11,8 @@ abstract class RouteNames {
 
   static const String authEnterPassword = "/auth/password_enter";
   static const String authEnterPin = "/auth/pin_enter";
+
+  static const String profile = '/profile';
+
+  static const String profileEdit = '/profile/edit';
 }
