@@ -21,4 +21,8 @@ abstract class RouteNames {
   static const String profile = '/profile';
 
   static const String profileEdit = '/profile/edit';
+  static const String profileInventory = '/profile/inventory';
+  static const String profileSettings = '/profile/settings';
+  static const String profileAbout = '/profile/about';
+
 }

@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         //Navigator.popUntil(context, ModalRoute.withName(RouteNames.root));
-        if (state is AppUnAuthState) return EnterEmailScreen();
+        if (state is AppUnAuthState) return HomeScreen();
         if (state is CreatePinState) return const CreatePinScreen();
         if (state is EnterPinState) return const EnterPinScreen();
         if (state is AppAuthState) return const HomeScreen();

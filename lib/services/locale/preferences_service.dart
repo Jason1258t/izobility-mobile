@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/utils/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,6 +15,8 @@ class PreferencesService {
   static const String _refreshExpiredKey = 'refreshExpired';
 
   static const String pinKey = 'pinCode';
+
+  static const String _userKey = 'user';
 
   Future saveToken(Token token) async {
     final prefs = await _prefs;
@@ -49,6 +54,23 @@ class PreferencesService {
   Future<String?> getPin() async {
     final prefs = await _prefs;
     return prefs.getString(pinKey);
+  }
+
+  Future<void> setUser(User rawUser) async {
+    final prefs = await _prefs;
+    final String user = jsonEncode(rawUser.toJson());
+    prefs.setString(_userKey, user);
+  }
+
+  Future<User?> getUser() async {
+    final prefs = await _prefs;
+    final rawUser = prefs.getString(_userKey);
+    if (rawUser == null) {
+      return null;
+    }
+
+    final User user = User.fromJson(jsonDecode(rawUser));
+    return user;
   }
 
   Future logout() async => (await _prefs).clear();
