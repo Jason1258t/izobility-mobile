@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
 import 'package:izobility_mobile/widgets/icon_button/wallet_action.dart';
+import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../widgets/containers/valid_token.dart';
@@ -22,185 +23,58 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen> {
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
 
-    return Scaffold(
-      backgroundColor: AppColors.backgroundSecondary,
-      appBar: AppBar(
-        backgroundColor: AppColors.backgroundSecondary,
-        title: Text('Кошелёк монет',
-            style: AppFonts.font16w700.copyWith(color: AppColors.textPrimary)),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/monis.svg',
-                          width: 40,
-                          height: 40,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          '14.76786',
-                          style: AppFonts.font31w700
-                              .copyWith(color: AppColors.textPrimary),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 12),
-                      child: InkWell(
-                        child: SvgPicture.asset(
-                          'assets/icons/crossed_out_eye.svg',
-                          color: Colors.black,
-                          width: 30,
-                          height: 30,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                  'Текущий баланс',
-                  style: AppFonts.font12w400
-                      .copyWith(color: AppColors.textPrimary),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: WalletAction(
-                          text: 'Внести',
-                          assetName: 'assets/icons/straight_down_arrow.svg',
-                          callback: () {},
-                          height: (sizeOf.width - 116) / 4,
-                          width: (sizeOf.width - 116) / 4,
-                        )),
-                    Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: WalletAction(
-                          text: 'Вывести',
-                          assetName: 'assets/icons/straight_up_arrow.svg',
-                          callback: () {},
-                          height: (sizeOf.width - 116) / 4,
-                          width: (sizeOf.width - 116) / 4,
-                        )),
-                    Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: WalletAction(
-                          text: 'Внести',
-                          assetName: 'assets/icons/buy.svg',
-                          callback: () {},
-                          height: (sizeOf.width - 116) / 4,
-                          width: (sizeOf.width - 116) / 4,
-                        )),
-                    Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        child: WalletAction(
-                          text: 'Внести',
-                          assetName: 'assets/icons/swap.svg',
-                          callback: () {},
-                          height: (sizeOf.width - 116) / 4,
-                          width: (sizeOf.width - 116) / 4,
-                        )),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                ToggleSwitch(
-                  minWidth: double.infinity,
-                  minHeight: 45,
-                  cornerRadius: 100,
-                  borderWidth: 2,
-                  borderColor: const [AppColors.border],
-                  activeBgColors: const [
-                    [AppColors.backgroundContent],
-                    [AppColors.backgroundContent],
-                  ],
-                  activeFgColor: AppColors.textPrimary,
-                  inactiveBgColor: AppColors.backgroundSecondary,
-                  initialLabelIndex: tokenOrNft,
-                  totalSwitches: 2,
-                  labels: const ['Токены', 'NFT'],
-                  radiusStyle: true,
-                  onToggle: (index) {
-                    tokenOrNft = index!;
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-          ),
-          if (tokenOrNft == 0) ...[
-            _CustomSwitcher(
-              activeTap: walletOrPlayer,
-              onTap: (index) {
-                walletOrPlayer = index;
-                setState(() {});
-              },
-            ),
-            if (walletOrPlayer == 0) ...[
-              Expanded(
-                child: Container(
-                  width: sizeOf.width,
-                  color: AppColors.backgroundContent,
-                  child: SingleChildScrollView(
-                    child: Column(
-                        children: List.generate(
-                            10,
-                            (index) => ValidToken(
-                                  title: '$index',
-                                  subtitle: '$index',
-                                  value: '$index',
-                                  // imageUrl: '$index',
-                                  onTap: () {},
-                                ))),
+    return HomeScaffold(
+        backgroundColor: AppColors.purple100,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          backgroundColor: AppColors.purple100,
+          surfaceTintColor: Colors.transparent,
+          title: Text('Кошелёк монет',
+              style:
+                  AppFonts.font16w700.copyWith(color: AppColors.textPrimary)),
+        ),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: AppColors.purple100,
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ToggleSwitch(
+                    minWidth: double.infinity,
+                    minHeight: 45,
+                    cornerRadius: 100,
+                    borderWidth: 2,
+                    borderColor: const [AppColors.border],
+                    activeBgColors: const [
+                      [AppColors.backgroundContent],
+                      [AppColors.backgroundContent],
+                    ],
+                    activeFgColor: AppColors.textPrimary,
+                    inactiveBgColor: AppColors.backgroundSecondary,
+                    initialLabelIndex: tokenOrNft,
+                    totalSwitches: 2,
+                    labels: const ['Токены', 'NFT'],
+                    radiusStyle: true,
+                    onToggle: (index) {
+                      tokenOrNft = index!;
+                      setState(() {});
+                    },
                   ),
-                ),
-              ),
-            ] else ...[
-              Expanded(
-                child: Container(
-                  width: sizeOf.width,
-                  color: AppColors.backgroundContent,
-                  child: SingleChildScrollView(
-                    child: Column(
-                        children: List.generate(
-                            10,
-                            (index) => ValidToken(
-                                  title: '$index',
-                                  subtitle: '$index',
-                                  value: '$index',
-                                  // imageUrl: '$index',
-                                  onTap: () {},
-                                ))),
+                  const SizedBox(
+                    height: 16,
                   ),
-                ),
+                  Text(
+                    'Текущий баланс',
+                    style: AppFonts.font14w400
+                        .copyWith(color: AppColors.blackGraySecondary),
+                  ),
+                ],
               ),
-            ]
-          ] else ...[
-            Container(
-              width: 10,
-              height: 10,
-              color: AppColors.primary,
-            )
-          ]
-        ],
-      ),
-    );
+            ),
+          ],
+        ));
   }
 }
 
