@@ -12,8 +12,8 @@ import 'package:izobility_mobile/widgets/button/text_button_without_background.d
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-import '../../utils/animations.dart';
-import '../../utils/dialogs.dart';
+import '../../../utils/animations.dart';
+import '../../../utils/dialogs.dart';
 
 class EnterPasswordScreen extends StatefulWidget {
   const EnterPasswordScreen({super.key});
@@ -95,21 +95,28 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                   },
                   width: double.infinity),
             ),
-            const SizedBox(height: 14,),
+            const SizedBox(
+              height: 14,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 BlocBuilder<PasswordRecoveryCubit, PasswordRecoveryState>(
                     builder: (context, state) {
-                  if (state is PasswordRecoveryEmailSent) {
-                    return Text('Забыл пароль (${state.remainingTime} сек)');
+                  if (state is PasswordRecoveryWait) {
+                    return Text(
+                      'Забыл пароль (${state.remainingTime} сек)',
+                      style: AppFonts.font12w400
+                          .copyWith(color: AppColors.disabledTextButton),
+                    );
                   } else {
                     return TextButtonWithoutBackground(
                       onTap: () {
-                        context.push(RouteNames.authPasswordRecovery);
+                        context.push(RouteNames.authPasswordRecoveryEmail);
                       },
                       text: 'Забыл пароль',
                       textColor: Colors.black,
+                      textStyle: AppFonts.font12w400,
                     );
                   }
                 }),

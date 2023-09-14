@@ -5,12 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
-import 'package:izobility_mobile/feature/auth/create_password.dart';
-import 'package:izobility_mobile/feature/auth/enter_name.dart';
-import 'package:izobility_mobile/feature/auth/enter_password.dart';
-import 'package:izobility_mobile/feature/auth/create_pin_screen.dart';
-import 'package:izobility_mobile/feature/auth/enter_pin_screen.dart';
-import 'package:izobility_mobile/feature/auth/password_recovery.dart';
+import 'package:izobility_mobile/feature/auth/ui/create_password.dart';
+import 'package:izobility_mobile/feature/auth/ui/enter_password.dart';
+import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
@@ -19,7 +16,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_settings.dart'
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
-import 'feature/auth/enter_email.dart';
+import 'feature/auth/ui/export_auth_screens.dart';
 import 'services/locale/export_locale_services.dart';
 
 void main() async {
@@ -58,11 +55,14 @@ final _router = GoRouter(
         path: RouteNames.authCreatePin,
         builder: (context, state) => const CreatePinScreen()),
     GoRoute(
-        path: RouteNames.authCreatePassword,
-        builder: (context, state) => const CreatePasswordScreen()),
+        path: '${RouteNames.authCreatePasswordBaseLink}/:variant',
+        builder: (context, state) =>  CreatePasswordScreen(creatingVariant: state.pathParameters['variant'] ?? '',)),
     GoRoute(
-        path: RouteNames.authPasswordRecovery,
-        builder: (context, state) => const PasswordRecoveryScreen()),
+        path: RouteNames.authPasswordRecoveryEmail,
+        builder: (context, state) => const PasswordRecoveryEmailScreen()),
+    GoRoute(
+        path: RouteNames.authPasswordRecoveryVerifyCode,
+        builder: (context, state) => const VerifyRecoveryCodeScreen()),
     GoRoute(
       path: RouteNames.profile,
       builder: (context, state) => const ProfileScreen(),

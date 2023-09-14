@@ -29,4 +29,11 @@ abstract class Validator {
       return 'Длина имени должна быть больше трех';
     }
   }
+  static verifyCodeValidator(String name) {
+    if (name.length == 6) {
+      return null;
+    } else {
+      return 'Код неверной длины';
+    }
+  }
 }

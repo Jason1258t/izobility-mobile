@@ -4,13 +4,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/utils/animations.dart';
 import 'package:izobility_mobile/utils/dialogs.dart';
+import 'package:izobility_mobile/utils/route_names.dart';
 import 'package:izobility_mobile/utils/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
+import '../bloc/password_recovery/password_recovery_cubit.dart';
+
 class CreatePasswordScreen extends StatefulWidget {
-  const CreatePasswordScreen({super.key});
+  const CreatePasswordScreen({super.key, required this.creatingVariant});
+
+  final String creatingVariant;
 
   @override
   State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
@@ -26,6 +31,55 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   String? fieldsError;
 
   bool buttonActive = false;
+
+  final BlocListener createListener = BlocListener<AuthCubit, AuthState>(
+    listener: (context, state) {
+      if (state is AuthProcessState) {
+        Dialogs.showModal(
+            context,
+            const Center(
+              child: AppAnimations.circularProgressIndicator,
+            ));
+      } else {
+        Dialogs.hide(context);
+      }
+    },
+    child: Container(),
+  );
+
+  final BlocListener changeListener =
+      BlocListener<PasswordRecoveryCubit, PasswordRecoveryState>(
+    listener: (context, state) {
+      if (state is PasswordRecoveryProcessState) {
+        Dialogs.showModal(
+            context,
+            const Center(
+              child: AppAnimations.circularProgressIndicator,
+            ));
+      } else {
+        Dialogs.hide(context);
+      }
+
+      if (state is PasswordRecoverySuccessState) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Успешно, возвращаемся на вход')));
+        Future.delayed(const Duration(seconds: 1)).then((value) {
+          Navigator.popUntil(
+              context, ModalRoute.withName(RouteNames.authEnterPassword));
+        });
+      }
+    },
+    child: Container(),
+  );
+
+  createFunction(String password) {
+    BlocProvider.of<AuthCubit>(context).registerData!.password = password;
+    BlocProvider.of<AuthCubit>(context).register();
+  }
+
+  changeFunction(String password) {
+    BlocProvider.of<PasswordRecoveryCubit>(context).changePassword(password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,44 +158,32 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
           const SizedBox(
             height: 16,
           ),
-          BlocListener<AuthCubit, AuthState>(
-            listener: (context, state) {
-              if (state is AuthProcessState) {
-                Dialogs.showModal(
-                    context,
-                    const Center(
-                      child: AppAnimations.circularProgressIndicator,
-                    ));
-              } else {
-                Dialogs.hide(context);
-              }
-            },
-            child: CustomButton(
-                isActive: buttonActive,
-                text: 'Далее',
-                onTap: () {
-                  String repeatedPassword =
-                      passwordRepeatedController.text.trim();
-                  String password = passwordController.text.trim();
+          widget.creatingVariant == 'create' ? createListener : changeListener,
+          CustomButton(
+              isActive: buttonActive,
+              text: 'Далее',
+              onTap: () {
+                String repeatedPassword =
+                    passwordRepeatedController.text.trim();
+                String password = passwordController.text.trim();
 
-                  buttonActive = (repeatedPassword == password &&
-                      Validator.validatePassword(password) == null);
+                buttonActive = (repeatedPassword == password &&
+                    Validator.validatePassword(password) == null);
 
-                  fieldsError = Validator.validatePassword(password);
-                  if (fieldsError == null && repeatedPassword != password) {
-                    fieldsError = 'Пароли не совпадают';
-                  }
+                fieldsError = Validator.validatePassword(password);
+                if (fieldsError == null && repeatedPassword != password) {
+                  fieldsError = 'Пароли не совпадают';
+                }
 
-                  if (fieldsError == null) {
-                    BlocProvider.of<AuthCubit>(context).registerData!.password =
-                        password;
-                    BlocProvider.of<AuthCubit>(context).register();
-                  } else {
-                    setState(() {});
-                  }
-                },
-                width: double.infinity),
-          )
+                if (fieldsError == null) {
+                  widget.creatingVariant == 'create'
+                      ? createFunction(password)
+                      : changeFunction(password);
+                } else {
+                  setState(() {});
+                }
+              },
+              width: double.infinity)
         ],
       ),
     );

@@ -13,7 +13,7 @@ import 'package:izobility_mobile/utils/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-import 'bloc/auth/auth_cubit.dart';
+import '../bloc/auth/auth_cubit.dart';
 
 class EnterEmailScreen extends StatefulWidget {
   EnterEmailScreen({super.key});
@@ -55,7 +55,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                   children: [
                     CustomTextField(
                       labelText: "Ваша почта",
-                      //hintText: 'Тут ваша почта',
+                      keyboardType: TextInputType.emailAddress,
                       errorText: fieldError,
                       error: fieldError != null,
                       controller: emailController,

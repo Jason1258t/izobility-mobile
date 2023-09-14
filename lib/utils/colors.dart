@@ -8,6 +8,7 @@ class AppColors {
   static const textPrimaryBackground = Color(0xFFEFEFF0);
   static const disable = Color(0xFFB0B0B0);
   static const disableButton = Color(0xFFE2E2E2);
+  static const disabledTextButton = Color(0xff757575);
   static const textPrimary = Colors.black;
   static const textSecondary = Color(0xFF747474);
   static const hintText = Color(0xFFC2C2C2);

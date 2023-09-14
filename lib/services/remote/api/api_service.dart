@@ -7,6 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:izobility_mobile/services/remote/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../../../utils/exceptions.dart';
+
 part 'handler.dart';
 
 part 'auth.dart';
@@ -27,10 +29,16 @@ class ApiService {
   final PreferencesService preferencesService;
   final Dio dio = Dio()..interceptors.add(PrettyDioLogger());
 
+  late final Token token;
   late final Auth auth;
 
   ApiService({required this.preferencesService}) {
-    auth = Auth(dio_: dio, preferences: preferencesService);
+    initialServices();
+  }
+
+  void initialServices() async {
+    token = await preferencesService.getToken() ?? Token.zero();
+    auth = Auth(dio_: dio, preferences: preferencesService, token: token);
   }
 
   Future<void> logout() async {
