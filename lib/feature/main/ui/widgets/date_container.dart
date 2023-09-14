@@ -13,8 +13,9 @@ class DateText extends StatefulWidget {
 class _DateTextState extends State<DateText> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
+      color: AppColors.backgroundPurple,
       child: Text(
         widget.date,
         style: AppFonts.font12w400.copyWith(color: AppColors.blackGraySecondary),

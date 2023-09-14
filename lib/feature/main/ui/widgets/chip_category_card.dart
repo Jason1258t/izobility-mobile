@@ -15,6 +15,7 @@ class _ChipCategoryCardState extends State<ChipCategoryCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),

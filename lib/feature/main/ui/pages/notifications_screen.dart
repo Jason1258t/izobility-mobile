@@ -4,6 +4,7 @@ import 'package:izobility_mobile/feature/main/ui/widgets/date_container.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_card.dart';
 import 'package:izobility_mobile/utils/enum/notification_position.dart';
 import 'package:izobility_mobile/utils/utils.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -15,20 +16,32 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return HomeScaffold(
-      appBar: AppBar(title: Text("notes")),
+      appBar: CustomAppBar(
+        isBack: true,
+        text: 'Уведомления',
+        context: context,
+      ),
       body: Container(
-        color: AppColors.backgroundGrey,
+        color: AppColors.backgroundPurple,
         child: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
+              floating: true,
               delegate: ChipsCategoryList(),
             ),
             getWidgets(Colors.red),
             getWidgets(Colors.blue),
-            getWidgets(Colors.purple)
+            getWidgets(Colors.purple),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 30,
+              ),
+            )
           ],
         ),
       ),
@@ -40,7 +53,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       pushPinnedChildren: true,
       children: [
         SliverPinnedHeader(
-            child: DateText(date: "март 41",)),
+            child: DateText(
+          date: "март 41",
+        )),
         SliverList.separated(
             itemCount: 3,
             separatorBuilder: (context, index) => const SizedBox(
@@ -69,28 +84,46 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 }
 
 class ChipsCategoryList extends SliverPersistentHeaderDelegate {
+  List<String> name = [
+    'Все',
+    'Покупка',
+    'Продажа',
+    'Акция',
+    'Акция',
+    'Акция',
+    'Акция',
+    'Акция'
+  ];
+  int currentIndex = 0;
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Row(
-      children: [
-        ChipCategoryCard(
-          text: "Все",
-          isActive: true,
+    return Container(
+      padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
+      alignment: Alignment.bottomLeft,
+      height: double.infinity,
+      color: AppColors.backgroundPurple,
+      child: ListView.separated(
+        shrinkWrap: false,
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) => const SizedBox(
+          width: 10,
         ),
-        ChipCategoryCard(
-          text: "Попы",
-          isActive: false,
-        ),
-      ],
+        itemBuilder: ((context, index) => ChipCategoryCard(
+              text: name[index],
+              isActive: currentIndex == index,
+            )),
+        itemCount: name.length,
+      ),
     );
   }
 
   @override
-  double get maxExtent => 28;
+  double get maxExtent => 40;
 
   @override
-  double get minExtent => 28;
+  double get minExtent => 40;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
