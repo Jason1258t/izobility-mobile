@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/feature/profile/ui/profile.dart';
+import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
+import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/containers/profile/profile_aspect.dart';
-import 'package:izobility_mobile/widgets/containers/profile/profile_card.dart';
+
 
 class ProfileEditScreen extends StatefulWidget {
   const ProfileEditScreen({super.key});

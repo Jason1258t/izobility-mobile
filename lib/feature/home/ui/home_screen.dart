@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
-import 'package:izobility_mobile/feature/profile/ui/profile.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -42,8 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 60,
           decoration: const BoxDecoration(
             color: AppColors.backgroundContent,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(24), topRight: Radius.circular(24))),
+            border: Border(top: BorderSide(color: AppColors.disableButton, width: 1))
+            ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -55,28 +55,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               NavigatorBarItem(
-                asset: 'assets/icons/message.svg',
+                asset: 'assets/icons/wallet.svg',
                 isSelected: _selectedTab == 1,
                 onTap: () {
                   onSelectTab(1);
                 },
               ),
               NavigatorBarItem(
-                asset: 'assets/icons/target.svg',
+                asset: 'assets/icons/gamepad.svg',
                 isSelected: _selectedTab == 2,
                 onTap: () {
                   onSelectTab(2);
                 },
               ),
               NavigatorBarItem(
-                asset: 'assets/icons/market.svg',
+                asset: 'assets/icons/card.svg',
                 isSelected: _selectedTab == 3,
                 onTap: () {
                   onSelectTab(3);
                 },
               ),
               NavigatorBarItem(
-                asset: 'assets/icons/all.svg',
+                asset: 'assets/icons/user.svg',
                 isSelected: _selectedTab == 4,
                 onTap: () {
                   onSelectTab(4);
@@ -115,7 +115,7 @@ class NavigatorBarItem extends StatelessWidget {
             height: 28,
             width: 28,
             // ignore: deprecated_member_use
-            color: isSelected ? AppColors.primary : AppColors.disable,
+            color: isSelected ? AppColors.textPrimary : AppColors.disable,
           ),
         ),
       ),
