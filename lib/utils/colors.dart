@@ -39,4 +39,7 @@ class AppColors {
   static const primaryPressedBackground = Color(0xFF681EE3);
   static const darkBlue = Color(0xFF1E45A2);
   static const purple100 = Color(0xFFECE8FF);
+  static const grey700 = Color(0xFF333333);
+  static const backgroundGrey = Color(0xffeeeeee);
+  static const backgroundPurple = Color(0xffF5F2FF);
 }

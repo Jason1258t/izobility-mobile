@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
                 icon: const Icon(Icons.sports_baseball_outlined))
           ],
         ),
-        child: SafeArea(
+        body: SafeArea(
           child: SingleChildScrollView(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [

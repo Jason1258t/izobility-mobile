@@ -22,7 +22,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
           text: 'Настройки',
           isBack: true,
         ),
-        child: const SingleChildScrollView(
+        body: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

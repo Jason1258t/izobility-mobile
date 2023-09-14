@@ -31,7 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         text: "Профиль",
         isBack: false,
       ),
-      child: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
