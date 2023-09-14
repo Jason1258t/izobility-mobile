@@ -9,7 +9,7 @@ import 'package:izobility_mobile/feature/auth/ui/create_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/enter_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
-import 'package:izobility_mobile/feature/main/ui/notifications_screen.dart';
+import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
@@ -18,6 +18,7 @@ import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 import 'feature/auth/ui/export_auth_screens.dart';
+import 'feature/crypto_wallet/ui/crypto_wallet_screen.dart';
 import 'services/locale/export_locale_services.dart';
 
 void main() async {
@@ -81,7 +82,10 @@ final _router = GoRouter(
         builder: (context, state) => const ProfileAppAboutScreen()),
     GoRoute(
         path: RouteNames.notifications,
-        builder: (context, state) => const NotificationsScreen())
+        builder: (context, state) => const NotificationsScreen()),
+    GoRoute(
+        path: RouteNames.wallet,
+        builder: (context, state) => const CryptoWalletScreen())
   ],
 );
 

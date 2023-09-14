@@ -9,10 +9,10 @@ import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.d
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_switch_card.dart';
 import 'package:izobility_mobile/utils/colors.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
 import 'package:izobility_mobile/utils/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_outline_button.dart';
+import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 
 class ProfileScreen extends StatefulWidget {
@@ -25,114 +25,112 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          context: context,
-          text: "Профиль",
-        ),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-                color: AppColors.backgroundSecondary,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                        padding: const EdgeInsets.all(12).copyWith(right: 19),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16)),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ProfileCard(),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Stack(
-                                clipBehavior: Clip.none,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/edit.svg',
-                                    color: AppColors.lightGreyIcon,
-                                    width: 24,
-                                    height: 24,
-                                  ),
-                                  Positioned.fill(
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        onTap: () {
-                                          context.push(RouteNames.profileEdit);
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        )),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const CustomOutlineButton(),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const Wrap(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.spaceBetween,
-                      runAlignment: WrapAlignment.start,
-                      runSpacing: 10,
-                      children: [
-                        ProfileActionContainer(),
-                        ProfileActionContainer(),
-                        ProfileActionContainer()
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                  ],
-                ),
-              ),
-              Column(
+    return HomeScaffold(
+      appBar: CustomAppBar(
+        context: context,
+        text: "Профиль",
+        isBack: false,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+              color: AppColors.backgroundSecondary,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const ProfileSwitchCard(
-                    iconPath: 'assets/icons/music.svg',
-                    label: "Бизнес аккаунт",
-                    description: "Какое то описание",
+                  Container(
+                      padding: const EdgeInsets.all(12).copyWith(right: 19),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16)),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ProfileCard(),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/icons/edit.svg',
+                                  color: AppColors.lightGreyIcon,
+                                  width: 24,
+                                  height: 24,
+                                ),
+                                Positioned.fill(
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        context.push(RouteNames.profileEdit);
+                                      },
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                  const SizedBox(
+                    height: 16,
                   ),
-
-                  const PorfileBlocLabel(
-                    text: 'Приложение',
+                  const CustomOutlineButton(),
+                  const SizedBox(
+                    height: 16,
                   ),
-
-                  ProfileActionTile(
-                    onTap: () {
-                      context.push(RouteNames.profileSettings);
-                    },
-                    label: 'Настройки',
-                    iconPath: 'assets/icons/settings.svg',
+                  const Wrap(
+                    direction: Axis.horizontal,
+                    alignment: WrapAlignment.spaceBetween,
+                    runAlignment: WrapAlignment.start,
+                    runSpacing: 10,
+                    children: [
+                      ProfileActionContainer(),
+                      ProfileActionContainer(),
+                      ProfileActionContainer()
+                    ],
                   ),
-                  ProfileActionTile(
-                    onTap: () {
-                      context.push(RouteNames.profileAbout);
-                    },
-                    label: 'О приложении',
-                    iconPath: 'assets/icons/warning_raunded.svg',
+                  const SizedBox(
+                    height: 16,
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const ProfileSwitchCard(
+                  iconPath: 'assets/icons/music.svg',
+                  label: "Бизнес аккаунт",
+                  description: "Какое то описание",
+                ),
+
+                const PorfileBlocLabel(
+                  text: 'Приложение',
+                ),
+
+                ProfileActionTile(
+                  onTap: () {
+                    context.push(RouteNames.profileSettings);
+                  },
+                  label: 'Настройки',
+                  iconPath: 'assets/icons/settings.svg',
+                ),
+                ProfileActionTile(
+                  onTap: () {
+                    context.push(RouteNames.profileAbout);
+                  },
+                  label: 'О приложении',
+                  iconPath: 'assets/icons/warning_raunded.svg',
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

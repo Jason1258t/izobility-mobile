@@ -11,6 +11,7 @@ class AppColors {
   static const disabledTextButton = Color(0xff757575);
   static const textPrimary = Colors.black;
   static const textSecondary = Color(0xFF747474);
+  static const blackGraySecondary = Color(0xFF545454);
   static const hintText = Color(0xFFC2C2C2);
   static const textTertiary = Color(0xFFAAAAAA);
   static const textContrast = Colors.white;
@@ -29,6 +30,7 @@ class AppColors {
   static const sale = Color(0xFFEB2121);
   static const border = Color(0xFFD9D9D9);
   static const transparentBlack = Color(0x54131313);
+  static const switcherBackground = Color(0xFF333333);
   static const backBack = Color(0xffBFEB10);
   static const lightGreyIcon = Color(0xffCCCCCC);
   static Color blackOpacity = Colors.black.withOpacity(0.03999999910593033);
@@ -39,4 +41,6 @@ class AppColors {
   static const purple100 = Color(0xFFECE8FF);
   static const purpleBcg = Color(0xFFF5F2FF);
   static const notificationRed = Color(0xFFFF3B30);
+  static const grey700 = Color(0xFF333333);
+  static const backgroundGrey = Color(0xffeeeeee);
 }
