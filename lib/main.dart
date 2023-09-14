@@ -9,6 +9,7 @@ import 'package:izobility_mobile/feature/auth/ui/create_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/enter_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
+import 'package:izobility_mobile/feature/main/ui/notifications_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
@@ -56,7 +57,9 @@ final _router = GoRouter(
         builder: (context, state) => const CreatePinScreen()),
     GoRoute(
         path: '${RouteNames.authCreatePasswordBaseLink}/:variant',
-        builder: (context, state) =>  CreatePasswordScreen(creatingVariant: state.pathParameters['variant'] ?? '',)),
+        builder: (context, state) => CreatePasswordScreen(
+              creatingVariant: state.pathParameters['variant'] ?? '',
+            )),
     GoRoute(
         path: RouteNames.authPasswordRecoveryEmail,
         builder: (context, state) => const PasswordRecoveryEmailScreen()),
@@ -75,7 +78,10 @@ final _router = GoRouter(
         builder: (context, state) => const ProfileSettingsScreen()),
     GoRoute(
         path: RouteNames.profileAbout,
-        builder: (context, state) => const ProfileAppAboutScreen())
+        builder: (context, state) => const ProfileAppAboutScreen()),
+    GoRoute(
+        path: RouteNames.notifications,
+        builder: (context, state) => const NotificationsScreen())
   ],
 );
 
