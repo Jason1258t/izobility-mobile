@@ -21,7 +21,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
         text: "Редактирование профиля",
         isBack: true,
       ),
-      child: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 16),
           child: Column(

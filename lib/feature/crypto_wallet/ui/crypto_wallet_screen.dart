@@ -34,7 +34,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen> {
               style:
                   AppFonts.font16w700.copyWith(color: AppColors.textPrimary)),
         ),
-        child: CustomScrollView(
+        body: CustomScrollView(
           slivers: [
             SliverAppBar(
               backgroundColor: AppColors.purple100,

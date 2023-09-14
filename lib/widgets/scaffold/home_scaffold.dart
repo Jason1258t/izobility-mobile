@@ -4,11 +4,11 @@ import 'package:izobility_mobile/utils/colors.dart';
 class HomeScaffold extends StatelessWidget {
   const HomeScaffold(
       {super.key,
-      required this.child,
+      required this.body,
       required this.appBar,
       this.backgroundColor = AppColors.backgroundContent});
 
-  final Widget child;
+  final Widget body;
   final AppBar appBar;
   final Color backgroundColor;
 
@@ -20,7 +20,7 @@ class HomeScaffold extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: appBar,
-          body: child,
+          body: body,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -11,17 +12,16 @@ class NotificationsScreen extends StatefulWidget {
 class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return HomeScaffold(
       appBar: AppBar(title: Text("notes")),
       body: CustomScrollView(
-        slivers: [
-          getWidgets(Colors.red),
-          getWidgets(Colors.blue),
-          getWidgets(Colors.purple)
-        ],
+    slivers: [
+      getWidgets(Colors.red),
+      getWidgets(Colors.blue),
+      getWidgets(Colors.purple)
+    ],
       ),
-    ));
+    );
   }
 
   Widget getWidgets(Color color) {
