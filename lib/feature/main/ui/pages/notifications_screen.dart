@@ -51,11 +51,50 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 }
 
 final notification = {
-  'date': DateTime.now(),
-  'type': '/transaction type',
-  'data': {
-    'name': 'super 228 game',
-    'price': '11', // OPTIONAL
-    'description': 'really super mega game',
-  }
+  'date_interval_start': DateTime.now(),
+  'date_interval_end': DateTime.now(),
+  'data': [
+    {
+      'date': DateTime.now(), // requried (group of notifications by day)
+      'notifications': [
+        {
+          'type': 'SEND/GET/BUY/SELL', // required
+          'label': 'oaoaoa', // required
+          'time': DateTime.now(), // required
+          'description': 'hahahah',
+          'coin_type': 'BEBRA',
+          'price': '2000',
+        },
+        {
+          'type': 'SEND/GET/BUY/SELL', // required
+          'label': 'oaoaoa', // required
+          'time': DateTime.now(), // required
+          'description': 'hahahah',
+          'coin_type': 'BEBRA',
+          'price': '2000',
+        },
+      ]
+    },
+    {
+      'date': DateTime.now(), // requried (group of notifications by day)
+      'notifications': [
+        {
+          'type': 'SEND/GET/BUY/SELL', // required
+          'label': 'oaoaoa', // required
+          'time': DateTime.now(), // required
+          'description': 'hahahah',
+          'coin_type': 'BEBRA',
+          'price': '2000',
+        },
+        {
+          'type': 'SEND/GET/BUY/SELL', // required
+          'label': 'oaoaoa', // required
+          'time': DateTime.now(), // required
+          'description': 'hahahah',
+          'coin_type': 'BEBRA',
+          'price': '2000',
+        },
+      ]
+    }
+  ]
 };
