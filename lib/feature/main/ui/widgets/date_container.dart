@@ -15,7 +15,7 @@ class _DateTextState extends State<DateText> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
-      color: AppColors.backgroundPurple,
+      color: AppColors.purpleBcg,
       child: Text(
         widget.date,
         style: AppFonts.font12w400.copyWith(color: AppColors.blackGraySecondary),

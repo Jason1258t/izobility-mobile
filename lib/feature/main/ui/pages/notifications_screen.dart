@@ -27,7 +27,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         context: context,
       ),
       body: Container(
-        color: AppColors.backgroundPurple,
+        color: AppColors.purpleBcg,
         child: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
@@ -103,7 +103,7 @@ class ChipsCategoryList extends SliverPersistentHeaderDelegate {
       padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
       alignment: Alignment.bottomLeft,
       height: double.infinity,
-      color: AppColors.backgroundPurple,
+      color: AppColors.purpleBcg,
       child: ListView.separated(
         shrinkWrap: false,
         scrollDirection: Axis.horizontal,
