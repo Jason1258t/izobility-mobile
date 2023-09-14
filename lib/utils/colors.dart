@@ -30,6 +30,7 @@ class AppColors {
   static const sale = Color(0xFFEB2121);
   static const border = Color(0xFFD9D9D9);
   static const transparentBlack = Color(0x54131313);
+  static const switcherBackground = Color(0xFF333333);
   static const backBack = Color(0xffBFEB10);
   static const lightGreyIcon = Color(0xffCCCCCC);
   static Color blackOpacity = Colors.black.withOpacity(0.03999999910593033);

@@ -1,12 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
-import 'package:izobility_mobile/widgets/icon_button/wallet_action.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 
-import '../../../widgets/containers/valid_token.dart';
+final list = List.generate(100, (index) => 1);
 
 class CryptoWalletScreen extends StatefulWidget {
   const CryptoWalletScreen({super.key});
@@ -15,134 +16,264 @@ class CryptoWalletScreen extends StatefulWidget {
   State<CryptoWalletScreen> createState() => _CryptoWalletScreenState();
 }
 
-class _CryptoWalletScreenState extends State<CryptoWalletScreen> {
+class _CryptoWalletScreenState extends State<CryptoWalletScreen>
+    with SingleTickerProviderStateMixin {
   int tokenOrNft = 0;
   int walletOrPlayer = 0;
 
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
 
-    return HomeScaffold(
-        backgroundColor: AppColors.purple100,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          backgroundColor: AppColors.purple100,
-          surfaceTintColor: Colors.transparent,
-          title: Text('Кошелёк монет',
-              style:
-                  AppFonts.font16w700.copyWith(color: AppColors.textPrimary)),
-        ),
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: AppColors.purple100,
-              title: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ToggleSwitch(
-                    minWidth: double.infinity,
-                    minHeight: 45,
-                    cornerRadius: 100,
-                    borderWidth: 2,
-                    borderColor: const [AppColors.border],
-                    activeBgColors: const [
-                      [AppColors.backgroundContent],
-                      [AppColors.backgroundContent],
-                    ],
-                    activeFgColor: AppColors.textPrimary,
-                    inactiveBgColor: AppColors.backgroundSecondary,
-                    initialLabelIndex: tokenOrNft,
-                    totalSwitches: 2,
-                    labels: const ['Токены', 'NFT'],
-                    radiusStyle: true,
-                    onToggle: (index) {
-                      tokenOrNft = index!;
-                      setState(() {});
-                    },
+    return Container(
+      color: AppColors.purple100,
+      child: SafeArea(
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverPersistentHeader(
+                pinned: true,
+                floating: true,
+                delegate: _SliverAppBarDelegate(
+                  minHeight: 60,
+                  maxHeight: 90,
+                  child: Container(
+                    color: AppColors.purple100,
+                    alignment: Alignment.center,
+                    child: Text('Кошелёк',
+                        style: AppFonts.font18w700
+                            .copyWith(color: AppColors.textPrimary)),
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    'Текущий баланс',
-                    style: AppFonts.font14w400
-                        .copyWith(color: AppColors.blackGraySecondary),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ],
-        ));
+              SliverPersistentHeader(
+                pinned: false,
+                floating: true,
+                delegate: _SliverAppBarDelegate(
+                  minHeight: 98,
+                  maxHeight: 98,
+                  child: Container(
+                    color: AppColors.purple100,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomSwitcher(
+                            active: walletOrPlayer,
+                            onTap: (int val) {
+                              setState(() {
+                                walletOrPlayer = val;
+                              });
+                            },
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            'Текущий баланс',
+                            style: AppFonts.font14w400
+                                .copyWith(color: AppColors.blackGraySecondary),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: false,
+                delegate: _SliverAppBarDelegate(
+                  minHeight: 40,
+                  maxHeight: 40,
+                  child: Container(
+                    color: AppColors.purple100,
+                    alignment: Alignment.center,
+                    child: Text('123 123\$',
+                        style: AppFonts.font32w700
+                            .copyWith(color: AppColors.textPrimary)),
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: true,
+                delegate: _SliverAppBarDelegate(
+                  minHeight: sizeOf.width * 0.078 + 75,
+                  maxHeight: sizeOf.width * 0.078 + 75,
+                  child: Container(
+                    color: AppColors.purple100,
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 16, right: 16, top: 16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _WalletAction(
+                            title: 'asdf',
+                            icon: SvgPicture.asset(
+                              'assets/icons/send.svg',
+                              width: sizeOf.width * 0.067,
+                              height: sizeOf.width * 0.067,
+                            ),
+                          ),
+                          _WalletAction(
+                            title: 'asdf',
+                            icon: SvgPicture.asset(
+                              'assets/icons/send.svg',
+                              width: sizeOf.width * 0.067,
+                              height: sizeOf.width * 0.067,
+                            ),
+                          ),
+                          _WalletAction(
+                            title: 'asdf',
+                            icon: SvgPicture.asset(
+                              'assets/icons/send.svg',
+                              width: sizeOf.width * 0.067,
+                              height: sizeOf.width * 0.067,
+                            ),
+                          ),
+                          _WalletAction(
+                            title: 'asdf',
+                            icon: SvgPicture.asset(
+                              'assets/icons/send.svg',
+                              width: sizeOf.width * 0.067,
+                              height: sizeOf.width * 0.067,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: false,
+                delegate: _SliverAppBarDelegate(
+                  minHeight: 16,
+                  maxHeight: 16,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: AppColors.purple100,
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(16))),
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: false,
+                delegate: _SliverAppBarDelegate(
+                  minHeight: 40,
+                  maxHeight: 40,
+                  child: Container(
+                    color: AppColors.backgroundSecondary,
+                    child: TabBar(
+                      labelColor: AppColors.textPrimary,
+                      indicatorColor: AppColors.textPrimary,
+                      indicatorWeight: 2,
+                      indicator: const UnderlineTabIndicator(
+                        borderSide: BorderSide(color: AppColors.textPrimary, width: 2),
+                        insets: EdgeInsets.symmetric(horizontal: -40)
+                      ),
+                      onTap: (int val) {
+                        setState(() {
+                          tokenOrNft = val;
+                        });
+                      },
+                      controller: _tabController,
+                      tabs: const [
+                        Tab(
+                          text: 'Токены',
+                        ),
+                        Tab(text: 'NFT'),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  tokenOrNft == 0 ? list
+                      .map((item) =>
+                          SizedBox(height: 100, child: Text('${item}')))
+                      .toList() : list
+                      .map((item) =>
+                      SizedBox(height: 100, child: Text('${23}')))
+                      .toList(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
-class _CustomSwitcher extends StatelessWidget {
-  const _CustomSwitcher(
-      {super.key, required this.onTap, required this.activeTap});
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
 
-  final Function(int) onTap;
-  final int activeTap;
+  _SliverAppBarDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
+  }
+}
+
+class _WalletAction extends StatelessWidget {
+  const _WalletAction({super.key, required this.title, required this.icon});
+
+  final String title;
+  final SvgPicture icon;
 
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
 
-    return Row(
+    return Column(
       children: [
-        InkWell(
-          onTap: () {
-            onTap(0);
-          },
-          child: Container(
-            width: sizeOf.width / 2,
-            height: 36,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: activeTap == 0
-                  ? AppColors.backgroundContent
-                  : Colors.transparent,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(16),
-              ),
-            ),
-            child: Text(
-              'Кошелек',
-              style: AppFonts.font16w400.copyWith(
-                  color: activeTap == 0
-                      ? AppColors.primary
-                      : AppColors.textTertiary),
-            ),
-          ),
+        CircleAvatar(
+            radius: sizeOf.width * 0.078,
+            backgroundColor: AppColors.primary,
+            child: icon),
+        const SizedBox(
+          height: 4,
         ),
-        InkWell(
-          onTap: () {
-            onTap(1);
-          },
-          child: Container(
-            width: sizeOf.width / 2,
-            height: 36,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: activeTap == 1
-                  ? AppColors.backgroundContent
-                  : Colors.transparent,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(16),
-              ),
-            ),
-            child: Text(
-              'Игровые',
-              style: AppFonts.font16w400.copyWith(
-                  color: activeTap == 1
-                      ? AppColors.primary
-                      : AppColors.textTertiary),
-            ),
-          ),
-        ),
+        Text(title),
       ],
     );
   }
