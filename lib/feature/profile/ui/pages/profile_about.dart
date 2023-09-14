@@ -19,7 +19,7 @@ class _ProfileAppAboutScreenState extends State<ProfileAppAboutScreen> {
           text: 'О приложении',
           isBack: true,
         ),
-        child: SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

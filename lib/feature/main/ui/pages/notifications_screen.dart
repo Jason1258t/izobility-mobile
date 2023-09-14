@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/chip_category_card.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/date_container.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/notification_card.dart';
+import 'package:izobility_mobile/utils/enum/notification_position.dart';
+import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -14,12 +19,18 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return HomeScaffold(
       appBar: AppBar(title: Text("notes")),
-      body: CustomScrollView(
-    slivers: [
-      getWidgets(Colors.red),
-      getWidgets(Colors.blue),
-      getWidgets(Colors.purple)
-    ],
+      body: Container(
+        color: AppColors.backgroundGrey,
+        child: CustomScrollView(
+          slivers: [
+            SliverPersistentHeader(
+              delegate: ChipsCategoryList(),
+            ),
+            getWidgets(Colors.red),
+            getWidgets(Colors.blue),
+            getWidgets(Colors.purple)
+          ],
+        ),
       ),
     );
   }
@@ -29,72 +40,59 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       pushPinnedChildren: true,
       children: [
         SliverPinnedHeader(
-            child: Container(
-                height: 40,
-                color: Colors.amber,
-                child: Text(
-                  'fuck ${color.toString()}',
-                ))),
+            child: DateText(date: "март 41",)),
         SliverList.separated(
-            itemCount: 10,
-            separatorBuilder: (context, index) => SizedBox(
-                  height: 10,
+            itemCount: 3,
+            separatorBuilder: (context, index) => const SizedBox(
+                  height: 5,
                 ),
-            itemBuilder: (context, index) => Container(
-                  height: 40,
-                  color: color,
-                  child: Text(index.toString()),
-                )),
+            itemBuilder: (context, index) {
+              NotificationPosition cardPose = NotificationPosition.mid;
+
+              if (index == 0) {
+                cardPose = NotificationPosition.start;
+              } else if (index == 3 - 1) {
+                cardPose = NotificationPosition.end;
+              }
+
+              return NotificationCard(
+                pose: cardPose,
+                mainText: "Продажа товара %Название-дилнное очень%",
+                time: "21 01",
+                subText:
+                    "Имеется спорная точка зрения, гласящая примерно следующее: некоторые особенности внутренней политики",
+              );
+            }),
       ],
     );
   }
 }
 
-final notification = {
-  'date_interval_start': DateTime.now(),
-  'date_interval_end': DateTime.now(),
-  'data': [
-    {
-      'date': DateTime.now(), // requried (group of notifications by day)
-      'notifications': [
-        {
-          'type': 'SEND/GET/BUY/SELL', // required
-          'label': 'oaoaoa', // required
-          'time': DateTime.now(), // required
-          'description': 'hahahah',
-          'coin_type': 'BEBRA',
-          'price': '2000',
-        },
-        {
-          'type': 'SEND/GET/BUY/SELL', // required
-          'label': 'oaoaoa', // required
-          'time': DateTime.now(), // required
-          'description': 'hahahah',
-          'coin_type': 'BEBRA',
-          'price': '2000',
-        },
-      ]
-    },
-    {
-      'date': DateTime.now(), // requried (group of notifications by day)
-      'notifications': [
-        {
-          'type': 'SEND/GET/BUY/SELL', // required
-          'label': 'oaoaoa', // required
-          'time': DateTime.now(), // required
-          'description': 'hahahah',
-          'coin_type': 'BEBRA',
-          'price': '2000',
-        },
-        {
-          'type': 'SEND/GET/BUY/SELL', // required
-          'label': 'oaoaoa', // required
-          'time': DateTime.now(), // required
-          'description': 'hahahah',
-          'coin_type': 'BEBRA',
-          'price': '2000',
-        },
-      ]
-    }
-  ]
-};
+class ChipsCategoryList extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Row(
+      children: [
+        ChipCategoryCard(
+          text: "Все",
+          isActive: true,
+        ),
+        ChipCategoryCard(
+          text: "Попы",
+          isActive: false,
+        ),
+      ],
+    );
+  }
+
+  @override
+  double get maxExtent => 28;
+
+  @override
+  double get minExtent => 28;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      true;
+}
