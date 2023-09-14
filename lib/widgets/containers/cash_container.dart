@@ -12,8 +12,8 @@ class CashContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        width: 89.33,
-        height: 32,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        height: 36,
         decoration: ShapeDecoration(
           color: AppColors.backgroundContent,
           shape: RoundedRectangleBorder(
@@ -23,13 +23,12 @@ class CashContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const Padding(padding: EdgeInsets.only(left: 10)),
-            SvgPicture.asset(
+            Image.asset(
               assetName,
-              width: 21.33,
+              width: 24,
             ),
             const SizedBox(
-              width: 7,
+              width: 4,
             ),
             Text(text,
                 style: AppFonts.font16w700

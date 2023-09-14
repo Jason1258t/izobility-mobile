@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/utils/colors.dart';
+import 'package:izobility_mobile/utils/fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,13 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
         body: widgetOptions[_selectedTab],
         bottomNavigationBar: Container(
           width: MediaQuery.of(context).size.width,
-          height: 60,
+          padding: const EdgeInsets.only(top: 8),
+          height: 64,
           decoration: const BoxDecoration(
-            color: AppColors.backgroundContent,
-            border: Border(top: BorderSide(color: AppColors.disableButton, width: 1))
-            ),
+              color: AppColors.backgroundContent,
+              border: Border(
+                  top: BorderSide(color: AppColors.disableButton, width: 1))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               NavigatorBarItem(
                 asset: 'assets/icons/home.svg',
@@ -53,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   onSelectTab(0);
                 },
+                name: 'Главная',
               ),
               NavigatorBarItem(
                 asset: 'assets/icons/wallet.svg',
@@ -60,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   onSelectTab(1);
                 },
+                name: 'Кошелек',
               ),
               NavigatorBarItem(
                 asset: 'assets/icons/gamepad.svg',
@@ -67,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   onSelectTab(2);
                 },
+                name: 'Игротека',
               ),
               NavigatorBarItem(
                 asset: 'assets/icons/card.svg',
@@ -74,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   onSelectTab(3);
                 },
+                name: 'Корзина',
               ),
               NavigatorBarItem(
                 asset: 'assets/icons/user.svg',
@@ -81,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   onSelectTab(4);
                 },
+                name: 'Профиль',
               ),
             ],
           ),
@@ -95,10 +103,12 @@ class NavigatorBarItem extends StatelessWidget {
       {Key? key,
       required this.asset,
       required this.isSelected,
-      required this.onTap})
+      required this.onTap,
+      required this.name})
       : super(key: key);
 
   final String asset;
+  final String name;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -110,12 +120,22 @@ class NavigatorBarItem extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 5,
         height: MediaQuery.of(context).size.width / 5,
         child: Center(
-          child: SvgPicture.asset(
-            asset,
-            height: 28,
-            width: 28,
-            // ignore: deprecated_member_use
-            color: isSelected ? AppColors.textPrimary : AppColors.disable,
+          child: Column(
+            children: [
+              SvgPicture.asset(
+                asset,
+                height: 28,
+                width: 28,
+                // ignore: deprecated_member_use
+                color: isSelected ? AppColors.textPrimary : AppColors.disable,
+              ),
+              Text(
+                name,
+                style: AppFonts.font12w700.copyWith(
+                    color:
+                        isSelected ? AppColors.textPrimary : AppColors.disable),
+              )
+            ],
           ),
         ),
       ),

@@ -16,7 +16,7 @@ class GuidesSuggestion extends StatelessWidget {
   final VoidCallback onTap;
 
   final BorderSide viewBorderSide = const BorderSide(
-    width: 0.50,
+    width: 1,
     strokeAlign: BorderSide.strokeAlignOutside,
     color: AppColors.primaryPressedBackground,
   );
@@ -37,8 +37,10 @@ class GuidesSuggestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(16),
       onTap: onTap,
       child: Container(
+        margin: const EdgeInsets.only(right: 6, left: 2),
         width: 100,
         height: 100,
         decoration: ShapeDecoration(

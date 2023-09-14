@@ -65,6 +65,11 @@ class AppFonts {
     fontWeight: FontWeight.w700,
     letterSpacing: 0.36,
   );
+  static final font20w700 = _font.copyWith(
+    color: Colors.white,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
   static final font16w400 = _font.copyWith(
     color: Colors.white,
     fontSize: 16,
