@@ -1,24 +1,14 @@
-import 'dart:js_util';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
-import 'package:izobility_mobile/feature/main/ui/widgets/chip_category_card.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
-import 'package:izobility_mobile/feature/main/ui/widgets/date_container.dart';
-import 'package:izobility_mobile/feature/main/ui/widgets/notification_text_card.dart';
-import 'package:izobility_mobile/feature/main/ui/widgets/notification_card_container.dart.dart';
-import 'package:izobility_mobile/feature/main/ui/widgets/notification_coin_card.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notifications_date_sector.dart';
 import 'package:izobility_mobile/models/notifications/notification_coin_model.dart';
 import 'package:izobility_mobile/models/notifications/notification_model.dart';
-import 'package:izobility_mobile/utils/constants.dart';
 import 'package:izobility_mobile/utils/enum/notification_category.dart';
-import 'package:izobility_mobile/utils/enum/notification_position.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
 final notificationResponse = [
   NotificationCoinModel(
