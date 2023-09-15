@@ -20,6 +20,7 @@ class AppColors {
   static const primary = Color(0xFF7E49FF);
   static const negative = Color(0xFFE64646);
   static const positive = Color(0xFF2F8D32);
+  static const green = Color(0xFF00B505);
   static const neutral = Color(0x7FB4B4B4);
   static const adtimer = Color(0xFFFACC74);
   static const add = Color(0xFFFFFCE5);
@@ -43,4 +44,6 @@ class AppColors {
   static const notificationRed = Color(0xFFFF3B30);
   static const grey700 = Color(0xFF333333);
   static const backgroundGrey = Color(0xffeeeeee);
+  static const purple600 = Color(0xFF7630F7);
+
 }

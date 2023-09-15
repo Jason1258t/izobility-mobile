@@ -4,6 +4,8 @@ import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
+import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
+import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/services/locale/export_locale_services.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
@@ -37,6 +39,10 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => StoryCubit(),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => NotificationsCubit( RepositoryProvider.of<NotificationsRepository>(context)),
         lazy: false,
       ),
     ], child: myApp);
