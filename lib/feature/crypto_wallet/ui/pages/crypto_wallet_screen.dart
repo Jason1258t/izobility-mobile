@@ -118,7 +118,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           WalletAction(
-                            title: 'asdf',
+                            title: 'Отправить',
                             icon: SvgPicture.asset(
                               'assets/icons/send.svg',
                               width: sizeOf.width * 0.067,
@@ -126,25 +126,25 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                             ),
                           ),
                           WalletAction(
-                            title: 'asdf',
+                            title: 'Пополнить',
                             icon: SvgPicture.asset(
-                              'assets/icons/send.svg',
+                              'assets/icons/get.svg',
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
                           ),
                           WalletAction(
-                            title: 'asdf',
+                            title: 'Купить',
                             icon: SvgPicture.asset(
-                              'assets/icons/send.svg',
+                              'assets/icons/buy.svg',
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
                           ),
                           WalletAction(
-                            title: 'asdf',
+                            title: 'Своп ',
                             icon: SvgPicture.asset(
-                              'assets/icons/send.svg',
+                              'assets/icons/swap.svg',
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
