@@ -50,10 +50,6 @@ class MarketItem extends StatelessWidget {
       width: 216,
       height: 297,
       padding: const EdgeInsets.all(6),
-      // decoration: ShapeDecoration(
-      //   color: AppColors.city,
-      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      // ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
