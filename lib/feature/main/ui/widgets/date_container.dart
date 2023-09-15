@@ -14,7 +14,7 @@ class _DateTextState extends State<DateText> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       color: AppColors.purpleBcg,
       child: Text(
         widget.date,

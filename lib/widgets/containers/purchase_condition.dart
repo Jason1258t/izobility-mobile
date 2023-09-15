@@ -12,7 +12,7 @@ class PurchaseCondition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.only(top: 2),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -27,7 +27,7 @@ class PurchaseCondition extends StatelessWidget {
           ),
           Text(
             data.value,
-            style: AppFonts.font8w700.copyWith(color: AppColors.textPrimary),
+            style: AppFonts.font14w700.copyWith(color: AppColors.purple600),
           ),
         ],
       ),

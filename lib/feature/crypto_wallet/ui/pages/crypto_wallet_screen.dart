@@ -211,9 +211,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                             .map((item) => ValidToken(
                                   title: 'Protocol',
                                   value: '211,12',
-                                  onTap: () {
-                                    context.push(RouteNames.walletCurrency);
-                                  },
+                                  onTap: () {},
                                   prise: '0,29',
                                   increment: '0,02',
                                   usdValue: '0,0021',
@@ -223,22 +221,20 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                     : SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => MarketItem(
-                            imageUrl: 'assets/images/img.jpg',
+                            imageUrl: 'assets/images/burger.png',
                             textDescription:
                                 'Набор бонусов для игры Reapers rush +156 к мощности',
                             isNew: true,
                             pizdulkaUrl: '',
-                            maxCount: 1000,
-                            currentCount: 1,
                           ),
-                          childCount: 10,
+                          childCount: 12,
                         ),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            crossAxisSpacing: 18,
-                            mainAxisSpacing: 16,
+                            crossAxisSpacing: 8,
+
                             maxCrossAxisExtent:
-                                MediaQuery.of(context).size.width / 2,
-                            childAspectRatio: 160 / 272)),
+                                (MediaQuery.of(context).size.width - 40) / 2,
+                            childAspectRatio: 160 / 229)),
               ),
             ],
           ),
