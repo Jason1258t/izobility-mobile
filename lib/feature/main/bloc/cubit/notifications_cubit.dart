@@ -15,7 +15,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
 
   void loadNotifications({int page = 1}) async {
     emit(NotificationsWaitingState());
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     try {
       await _notificationsRepository.loadNotificationList(page);
       emit(NotificationsLoadedSuccessState());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
+import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notifications_date_sector.dart';
 import 'package:izobility_mobile/models/notifications/notification_coin_model.dart';
@@ -9,39 +10,6 @@ import 'package:izobility_mobile/utils/enum/notification_category.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
-
-final notificationResponse = [
-  NotificationCoinModel(
-      type: NotificationTransactionType.get,
-      time: DateTime.now(),
-      name: "АНАЛЬНАЯ ЗАРУБА",
-      count: 5200,
-      coinImagePath: 'assets/icons/coin.svg'),
-  NotificationModel(
-      type: NotificationTransactionType.get,
-      time: DateTime.now(),
-      name: "бой с теньи",
-      description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the iscrambled"),
-  NotificationCoinModel(
-      type: NotificationTransactionType.get,
-      time: DateTime.now(),
-      name: "РАСКОЛБАС",
-      count: 5200,
-      coinImagePath: 'assets/icons/coin.svg'),
-  NotificationModel(
-      type: NotificationTransactionType.get,
-      time: DateTime.now(),
-      name: "ангри беурдс",
-      description:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
-  NotificationModel(
-      type: NotificationTransactionType.get,
-      time: DateTime.now(),
-      name: "ангри беурдс",
-      description:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
-];
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -65,7 +33,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (_scrollController.hasClients)
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent - 1);
     });
   }
 
@@ -77,17 +44,20 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         text: 'Уведомления',
         context: context,
       ),
-      body: BlocBuilder<NotificationsCubit, NotificationsState>(
-        builder: (context, state) {
-          if (state is NotificationsWaitingState) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is NotificationsLoadedSuccessState) {
-            return Container(
-              padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-              color: AppColors.purpleBcg,
-              child: CustomScrollView(
+      body: Container(
+        padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+        color: AppColors.purpleBcg,
+        child: BlocBuilder<NotificationsCubit, NotificationsState>(
+          builder: (context, state) {
+            final data =
+                context.read<NotificationsRepository>().notificationList;
+
+            if (state is NotificationsWaitingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is NotificationsLoadedSuccessState) {
+              return CustomScrollView(
                 controller: _scrollController,
                 slivers: [
                   SliverPersistentHeader(
@@ -96,15 +66,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     delegate: ChipsCategoryList(),
                   ),
                   NotificationsDateSector(
-                    cards: notificationResponse,
+                    cards: data,
                     date: DateTime.now(),
                   ),
                   NotificationsDateSector(
-                    cards: notificationResponse,
+                    cards: data,
                     date: DateTime.now(),
                   ),
                   NotificationsDateSector(
-                    cards: notificationResponse,
+                    cards: data,
                     date: DateTime.now(),
                   ),
                   const SliverToBoxAdapter(
@@ -113,17 +83,18 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     ),
                   )
                 ],
-              ),
-            );
-          } else {
-            return Center(
-              child: Text(
-                'Sorry, something wetn wrong. Try again later',
-                style: AppFonts.font20w700.copyWith(color: AppColors.darkBlue),
-              ),
-            );
-          }
-        },
+              );
+            } else {
+              return Center(
+                child: Text(
+                  'Sorry, something wetn wrong. Try again later',
+                  style:
+                      AppFonts.font20w700.copyWith(color: AppColors.darkBlue),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
