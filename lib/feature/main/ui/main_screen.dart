@@ -50,15 +50,15 @@ class _MainScreenState extends State<MainScreen> {
                       children: [
                         UtilityContainer(
                             name: 'QR\nСканер',
-                            assetName: 'assets/icons/qr.svg',
+                            assetName: 'assets/icons/qrscaner.svg',
                             callback: () {}),
                         UtilityContainer(
                             name: 'AR\nСканер',
-                            assetName: 'assets/icons/ar.svg',
+                            assetName: 'assets/icons/aritem.svg',
                             callback: () {}),
                         UtilityContainer(
                             name: 'AR\nКарта',
-                            assetName: 'assets/icons/geo.svg',
+                            assetName: 'assets/icons/armap.svg',
                             callback: () {}),
                       ],
                     ),
