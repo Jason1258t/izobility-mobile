@@ -29,4 +29,5 @@ abstract class RouteNames {
   static const String profileAbout = '/profile/about';
 
   static const String notifications = '/notifications';
+  static const String story = '/story';
 }
