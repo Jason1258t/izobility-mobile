@@ -42,7 +42,8 @@ class MyBlocProviders extends StatelessWidget {
         lazy: false,
       ),
       BlocProvider(
-        create: (_) => NotificationsCubit( RepositoryProvider.of<NotificationsRepository>(context)),
+        create: (_) => NotificationsCubit(
+            RepositoryProvider.of<NotificationsRepository>(context)),
         lazy: false,
       ),
     ], child: myApp);
@@ -63,7 +64,10 @@ class MyRepositoryProviders extends StatelessWidget {
                   AuthRepository(apiService: api, preferences: prefs)),
           RepositoryProvider(
             create: (_) => UserRepository(apiService: api, preferences: prefs),
-          )
+          ),
+          RepositoryProvider(
+              create: (context) =>
+                  NotificationsRepository(apiService: api, preferences: prefs))
         ],
         child: MyBlocProviders(
           myApp: myApp,
