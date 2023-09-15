@@ -1,14 +1,17 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
+import 'package:izobility_mobile/feature/crypto_wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/utils/route_names.dart';
 import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 
-import '../../../widgets/containers/market_Item.dart';
+import '../../../../widgets/containers/market_Item.dart';
 
 final list = List.generate(100, (index) => 1);
 
@@ -44,25 +47,15 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
           backgroundColor: AppColors.purpleBcg,
           body: CustomScrollView(
             slivers: [
-              SliverPersistentHeader(
-                pinned: true,
-                floating: true,
-                delegate: _SliverAppBarDelegate(
-                  minHeight: 90,
-                  maxHeight: 90,
-                  child: Container(
-                    color: AppColors.purple100,
-                    alignment: Alignment.center,
-                    child: Text('Кошелёк',
-                        style: AppFonts.font18w700
-                            .copyWith(color: AppColors.textPrimary)),
-                  ),
-                ),
+              const CustomSliverAppBar(
+                height: 90,
+                isBack: false,
+                title: 'Кошелек',
               ),
               SliverPersistentHeader(
                 pinned: false,
                 floating: true,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: 98,
                   maxHeight: 98,
                   child: Container(
@@ -97,7 +90,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
               SliverPersistentHeader(
                 pinned: true,
                 floating: false,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: 43,
                   maxHeight: 43,
                   child: Container(
@@ -112,7 +105,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
               SliverPersistentHeader(
                 pinned: true,
                 floating: true,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: sizeOf.width * 0.078 + 75,
                   maxHeight: sizeOf.width * 0.078 + 75,
                   child: Container(
@@ -124,7 +117,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          _WalletAction(
+                          WalletAction(
                             title: 'asdf',
                             icon: SvgPicture.asset(
                               'assets/icons/send.svg',
@@ -132,7 +125,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               height: sizeOf.width * 0.067,
                             ),
                           ),
-                          _WalletAction(
+                          WalletAction(
                             title: 'asdf',
                             icon: SvgPicture.asset(
                               'assets/icons/send.svg',
@@ -140,7 +133,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               height: sizeOf.width * 0.067,
                             ),
                           ),
-                          _WalletAction(
+                          WalletAction(
                             title: 'asdf',
                             icon: SvgPicture.asset(
                               'assets/icons/send.svg',
@@ -148,7 +141,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               height: sizeOf.width * 0.067,
                             ),
                           ),
-                          _WalletAction(
+                          WalletAction(
                             title: 'asdf',
                             icon: SvgPicture.asset(
                               'assets/icons/send.svg',
@@ -165,7 +158,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
               SliverPersistentHeader(
                 pinned: true,
                 floating: false,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: 17,
                   maxHeight: 17,
                   child: Container(
@@ -180,7 +173,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
               SliverPersistentHeader(
                 pinned: true,
                 floating: false,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: 60,
                   maxHeight: 60,
                   child: Container(
@@ -210,106 +203,47 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                   ),
                 ),
               ),
-              tokenOrNft == 0
-                  ? SliverList(
-                      delegate: SliverChildListDelegate(list
-                          .map((item) => ValidToken(
-                                title: 'Protocol',
-                                value: '211,12',
-                                onTap: () {},
-                                prise: '0,29',
-                                increment: '0,02',
-                                usdValue: '0,0021',
-                              ))
-                          .toList()),
-                    )
-                  : SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) => MarketItem(
-                          imageUrl: 'assets/images/img.jpg',
-                          textDescription:
-                              'Набор бонусов для игры Reapers rush +156 к мощности',
-                          isNew: true,
-                          pizdulkaUrl: '', maxCount: 1000, currentCount: 1,
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                sliver: tokenOrNft == 0
+                    ? SliverList(
+                        delegate: SliverChildListDelegate(list
+                            .map((item) => ValidToken(
+                                  title: 'Protocol',
+                                  value: '211,12',
+                                  onTap: () {
+                                    context.push(RouteNames.walletCurrency);
+                                  },
+                                  prise: '0,29',
+                                  increment: '0,02',
+                                  usdValue: '0,0021',
+                                ))
+                            .toList()),
+                      )
+                    : SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => MarketItem(
+                            imageUrl: 'assets/images/img.jpg',
+                            textDescription:
+                                'Набор бонусов для игры Reapers rush +156 к мощности',
+                            isNew: true,
+                            pizdulkaUrl: '',
+                            maxCount: 1000,
+                            currentCount: 1,
+                          ),
+                          childCount: 10,
                         ),
-                        childCount: 10,
-                      ),
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          crossAxisSpacing: 18,
-                          mainAxisSpacing: 16,
-                          maxCrossAxisExtent:
-                              MediaQuery.of(context).size.width / 2,
-                          childAspectRatio: 160 / 272)),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            crossAxisSpacing: 18,
+                            mainAxisSpacing: 16,
+                            maxCrossAxisExtent:
+                                MediaQuery.of(context).size.width / 2,
+                            childAspectRatio: 160 / 272)),
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => max(maxHeight, minHeight);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
-  }
-}
-
-class _WalletAction extends StatelessWidget {
-  const _WalletAction({required this.title, required this.icon});
-
-  final String title;
-  final SvgPicture icon;
-
-  @override
-  Widget build(BuildContext context) {
-    final sizeOf = MediaQuery.sizeOf(context);
-
-    return Column(
-      children: [
-        Container(
-          width: sizeOf.width * 0.156,
-          height: sizeOf.width * 0.156,
-          decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(100)),
-          child: IconButton(
-            onPressed: () {},
-            icon: icon,
-          ),
-        ),
-        const SizedBox(
-          height: 4,
-        ),
-        Text(
-          title,
-          style: AppFonts.font12w700.copyWith(color: AppColors.primary),
-        ),
-      ],
     );
   }
 }

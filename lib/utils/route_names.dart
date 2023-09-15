@@ -21,6 +21,7 @@ abstract class RouteNames {
   static const String profile = '/profile';
 
   static const String wallet = '/wallet';
+  static const String walletCurrency = '/wallet/currency';
 
   static const String profileEdit = '/profile/edit';
   static const String profileInventory = '/profile/inventory';

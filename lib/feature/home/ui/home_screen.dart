@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/feature/crypto_wallet/ui/crypto_wallet_screen.dart';
+import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/crypto_wallet_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/utils/colors.dart';
