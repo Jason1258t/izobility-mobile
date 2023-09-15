@@ -5,8 +5,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
-import 'package:izobility_mobile/feature/auth/ui/create_password.dart';
-import 'package:izobility_mobile/feature/auth/ui/enter_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/currency_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
@@ -93,7 +91,7 @@ final _router = GoRouter(
         builder: (context, state) => const CryptoWalletScreen()),
     GoRoute(
         path: RouteNames.walletCurrency,
-        builder: (context, state) => const CurrencyWalletScreen())
+        builder: (context, state) => const CurrencyWalletScreen()),
   ],
 );
 
@@ -111,17 +109,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routerConfig: _router,
-      // initialRoute: RouteNames.root,
-      // routes: {
-      //   RouteNames.root: (context) => const SplashScreen(),
-      //   RouteNames.home: (context) => const HomeScreen(),
-      //   RouteNames.authCreateName: (context) => EnterNameScreen(),
-      //   RouteNames.auth: (context) => EnterEmailScreen(),
-      //   RouteNames.authEnterPin: (context) => const PinScreenEnter(),
-      //   RouteNames.authCreatePassword: (context) => CreatePasswordScreen(),
-      //   RouteNames.authEnterPassword: (context) => EnterPasswordScreen(),
-      //   RouteNames.authCreatePin: (context) => const PinScreen()
-      // },
     );
   }
 }

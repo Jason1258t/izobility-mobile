@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
+import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
@@ -64,6 +65,9 @@ class MyRepositoryProviders extends StatelessWidget {
                   AuthRepository(apiService: api, preferences: prefs)),
           RepositoryProvider(
             create: (_) => UserRepository(apiService: api, preferences: prefs),
+          ),
+          RepositoryProvider(
+            create: (_) => HomeRepository(),
           ),
           RepositoryProvider(
               create: (context) =>

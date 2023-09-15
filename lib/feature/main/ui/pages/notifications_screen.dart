@@ -4,9 +4,6 @@ import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dar
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notifications_date_sector.dart';
-import 'package:izobility_mobile/models/notifications/notification_coin_model.dart';
-import 'package:izobility_mobile/models/notifications/notification_model.dart';
-import 'package:izobility_mobile/utils/enum/notification_category.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
@@ -26,14 +23,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     context.read<NotificationsCubit>().loadNotifications();
 
     super.initState();
-    _scrollDown();
-  }
-
-  void _scrollDown() async {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (_scrollController.hasClients)
-        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    });
   }
 
   @override
@@ -58,6 +47,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               );
             } else if (state is NotificationsLoadedSuccessState) {
               return CustomScrollView(
+                physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
                 controller: _scrollController,
                 slivers: [
                   SliverPersistentHeader(

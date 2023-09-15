@@ -211,7 +211,9 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                             .map((item) => ValidToken(
                                   title: 'Protocol',
                                   value: '211,12',
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.push(RouteNames.walletCurrency);
+                                  },
                                   prise: '0,29',
                                   increment: '0,02',
                                   usdValue: '0,0021',

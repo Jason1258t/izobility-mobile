@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/crypto_wallet_screen.dart';
+import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/widgets/navigator_bar/custom_main_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,11 +16,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-const String _emptyLabel = '';
-
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedTab = 0;
-
   @override
   Widget build(BuildContext context) {
     final List<Widget> widgetOptions = <Widget>[
@@ -28,73 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
       const ProfileScreen(),
     ];
 
-    void onSelectTab(int index) {
-      if (_selectedTab == index) return;
-      setState(() {
-        _selectedTab = index;
-      });
-    }
+    final homeRepository = context.read<HomeRepository>();
 
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: widgetOptions[_selectedTab],
-        bottomNavigationBar: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.only(top: 8),
-          height: 64,
-          decoration: const BoxDecoration(
-              color: AppColors.backgroundContent,
-              border: Border(
-                  top: BorderSide(color: AppColors.disableButton, width: 1))),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              NavigatorBarItem(
-                asset: 'assets/icons/home.svg',
-                isSelected: _selectedTab == 0,
-                onTap: () {
-                  onSelectTab(0);
-                },
-                name: 'Главная',
-              ),
-              NavigatorBarItem(
-                asset: 'assets/icons/wallet.svg',
-                isSelected: _selectedTab == 1,
-                onTap: () {
-                  onSelectTab(1);
-                },
-                name: 'Кошелек',
-              ),
-              NavigatorBarItem(
-                asset: 'assets/icons/gamepad.svg',
-                isSelected: _selectedTab == 2,
-                onTap: () {
-                  onSelectTab(2);
-                },
-                name: 'Игротека',
-              ),
-              NavigatorBarItem(
-                asset: 'assets/icons/card.svg',
-                isSelected: _selectedTab == 3,
-                onTap: () {
-                  onSelectTab(3);
-                },
-                name: 'Корзина',
-              ),
-              NavigatorBarItem(
-                asset: 'assets/icons/user.svg',
-                isSelected: _selectedTab == 4,
-                onTap: () {
-                  onSelectTab(4);
-                },
-                name: 'Профиль',
-              ),
-            ],
-          ),
-        ),
-      ),
+          body: widgetOptions[homeRepository.selectedTab],
+          bottomNavigationBar: CustomMainNavigationBar(
+            onTap: () {
+              setState(() {});
+            },
+          )),
     );
   }
 }
@@ -130,11 +73,14 @@ class NavigatorBarItem extends StatelessWidget {
                 // ignore: deprecated_member_use
                 color: isSelected ? AppColors.textPrimary : AppColors.disable,
               ),
-              Text(
-                name,
-                style: AppFonts.font12w700.copyWith(
-                    color:
-                        isSelected ? AppColors.textPrimary : AppColors.disable),
+              FittedBox(
+                child: Text(
+                  name,
+                  style: AppFonts.font12w700.copyWith(
+                      color: isSelected
+                          ? AppColors.textPrimary
+                          : AppColors.disable),
+                ),
               )
             ],
           ),
