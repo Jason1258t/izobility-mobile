@@ -5,7 +5,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
+
+import '../../../widgets/containers/market_Item.dart';
 
 final list = List.generate(100, (index) => 1);
 
@@ -38,13 +41,14 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
       color: AppColors.purple100,
       child: SafeArea(
         child: Scaffold(
+          backgroundColor: AppColors.purpleBcg,
           body: CustomScrollView(
             slivers: [
               SliverPersistentHeader(
                 pinned: true,
                 floating: true,
                 delegate: _SliverAppBarDelegate(
-                  minHeight: 60,
+                  minHeight: 90,
                   maxHeight: 90,
                   child: Container(
                     color: AppColors.purple100,
@@ -94,13 +98,13 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                 pinned: true,
                 floating: false,
                 delegate: _SliverAppBarDelegate(
-                  minHeight: 40,
-                  maxHeight: 40,
+                  minHeight: 43,
+                  maxHeight: 43,
                   child: Container(
                     color: AppColors.purple100,
                     alignment: Alignment.center,
                     child: Text('123 123\$',
-                        style: AppFonts.font32w700
+                        style: AppFonts.font36w700
                             .copyWith(color: AppColors.textPrimary)),
                   ),
                 ),
@@ -162,9 +166,10 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                 pinned: true,
                 floating: false,
                 delegate: _SliverAppBarDelegate(
-                  minHeight: 16,
-                  maxHeight: 16,
+                  minHeight: 17,
+                  maxHeight: 17,
                   child: Container(
+                    height: 18,
                     decoration: const BoxDecoration(
                         color: AppColors.purple100,
                         borderRadius:
@@ -176,18 +181,19 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                 pinned: true,
                 floating: false,
                 delegate: _SliverAppBarDelegate(
-                  minHeight: 40,
-                  maxHeight: 40,
+                  minHeight: 60,
+                  maxHeight: 60,
                   child: Container(
-                    color: AppColors.backgroundSecondary,
+                    color: AppColors.purpleBcg,
+                    alignment: Alignment.center,
                     child: TabBar(
                       labelColor: AppColors.textPrimary,
                       indicatorColor: AppColors.textPrimary,
                       indicatorWeight: 2,
                       indicator: const UnderlineTabIndicator(
-                        borderSide: BorderSide(color: AppColors.textPrimary, width: 2),
-                        insets: EdgeInsets.symmetric(horizontal: -40)
-                      ),
+                          borderSide: BorderSide(
+                              color: AppColors.textPrimary, width: 2),
+                          insets: EdgeInsets.symmetric(horizontal: -40)),
                       onTap: (int val) {
                         setState(() {
                           tokenOrNft = val;
@@ -204,17 +210,36 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                   ),
                 ),
               ),
-              SliverList(
-                delegate: SliverChildListDelegate(
-                  tokenOrNft == 0 ? list
-                      .map((item) =>
-                          SizedBox(height: 100, child: Text('${item}')))
-                      .toList() : list
-                      .map((item) =>
-                      SizedBox(height: 100, child: Text('${23}')))
-                      .toList(),
-                ),
-              ),
+              tokenOrNft == 0
+                  ? SliverList(
+                      delegate: SliverChildListDelegate(list
+                          .map((item) => ValidToken(
+                                title: 'Protocol',
+                                value: '211,12',
+                                onTap: () {},
+                                prise: '0,29',
+                                increment: '0,02',
+                                usdValue: '0,0021',
+                              ))
+                          .toList()),
+                    )
+                  : SliverGrid(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) => MarketItem(
+                          imageUrl: 'assets/images/img.jpg',
+                          textDescription:
+                              'Набор бонусов для игры Reapers rush +156 к мощности',
+                          isNew: true,
+                          pizdulkaUrl: '', maxCount: 1000, currentCount: 1,
+                        ),
+                        childCount: 10,
+                      ),
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          crossAxisSpacing: 18,
+                          mainAxisSpacing: 16,
+                          maxCrossAxisExtent:
+                              MediaQuery.of(context).size.width / 2,
+                          childAspectRatio: 160 / 272)),
             ],
           ),
         ),
@@ -255,7 +280,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 }
 
 class _WalletAction extends StatelessWidget {
-  const _WalletAction({super.key, required this.title, required this.icon});
+  const _WalletAction({required this.title, required this.icon});
 
   final String title;
   final SvgPicture icon;
@@ -266,14 +291,24 @@ class _WalletAction extends StatelessWidget {
 
     return Column(
       children: [
-        CircleAvatar(
-            radius: sizeOf.width * 0.078,
-            backgroundColor: AppColors.primary,
-            child: icon),
+        Container(
+          width: sizeOf.width * 0.156,
+          height: sizeOf.width * 0.156,
+          decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(100)),
+          child: IconButton(
+            onPressed: () {},
+            icon: icon,
+          ),
+        ),
         const SizedBox(
           height: 4,
         ),
-        Text(title),
+        Text(
+          title,
+          style: AppFonts.font12w700.copyWith(color: AppColors.primary),
+        ),
       ],
     );
   }
