@@ -210,36 +210,39 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                   ),
                 ),
               ),
-              tokenOrNft == 0
-                  ? SliverList(
-                      delegate: SliverChildListDelegate(list
-                          .map((item) => ValidToken(
-                                title: 'Protocol',
-                                value: '211,12',
-                                onTap: () {},
-                                prise: '0,29',
-                                increment: '0,02',
-                                usdValue: '0,0021',
-                              ))
-                          .toList()),
-                    )
-                  : SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) => MarketItem(
-                          imageUrl: 'assets/images/img.jpg',
-                          textDescription:
-                              'Набор бонусов для игры Reapers rush +156 к мощности',
-                          isNew: true,
-                          pizdulkaUrl: '', maxCount: 1000, currentCount: 1,
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                sliver: tokenOrNft == 0
+                    ? SliverList(
+                        delegate: SliverChildListDelegate(list
+                            .map((item) => ValidToken(
+                                  title: 'Protocol',
+                                  value: '211,12',
+                                  onTap: () {},
+                                  prise: '0,29',
+                                  increment: '0,02',
+                                  usdValue: '0,0021',
+                                ))
+                            .toList()),
+                      )
+                    : SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => MarketItem(
+                            imageUrl: 'assets/images/burger.png',
+                            textDescription:
+                                'Набор бонусов для игры Reapers rush +156 к мощности',
+                            isNew: true,
+                            pizdulkaUrl: '',
+                          ),
+                          childCount: 12,
                         ),
-                        childCount: 10,
-                      ),
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          crossAxisSpacing: 18,
-                          mainAxisSpacing: 16,
-                          maxCrossAxisExtent:
-                              MediaQuery.of(context).size.width / 2,
-                          childAspectRatio: 160 / 272)),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            crossAxisSpacing: 8,
+
+                            maxCrossAxisExtent:
+                                (MediaQuery.of(context).size.width - 40) / 2,
+                            childAspectRatio: 160 / 229)),
+              ),
             ],
           ),
         ),

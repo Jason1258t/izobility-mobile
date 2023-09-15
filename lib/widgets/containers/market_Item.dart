@@ -10,14 +10,10 @@ class MarketItem extends StatelessWidget {
       {super.key,
       required this.imageUrl,
       required this.textDescription,
-      required this.maxCount,
-      required this.currentCount,
       required this.isNew,
       required this.pizdulkaUrl});
 
   final String imageUrl;
-  final int maxCount;
-  final int currentCount;
   final String textDescription;
   final bool isNew;
   final String pizdulkaUrl;
@@ -29,7 +25,7 @@ class MarketItem extends StatelessWidget {
       children.add(PurchaseCondition(data: i));
       children.add(
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
           child: Text(
             '+',
             style: AppFonts.font12w700.copyWith(color: AppColors.textSecondary),
@@ -42,21 +38,24 @@ class MarketItem extends StatelessWidget {
   }
 
   final List<CoinData> hui = List.generate(
-      3, (index) => CoinData(imageUrl: 'assets/Coins.png', value: '1,520'));
+      1, (index) => CoinData(imageUrl: 'assets/images/Coins1.png', value: '1,520'));
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 216,
-      height: 297,
+      width: 160,
+      height: 229,
       padding: const EdgeInsets.all(6),
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8)),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 204,
-            height: 204,
+            width: (MediaQuery.of(context).size.width - 40) / 2,
+            height: (MediaQuery.of(context).size.width - 28) / 2,
             decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
@@ -69,11 +68,12 @@ class MarketItem extends StatelessWidget {
                   children: [
                     if (isNew) ...[
                       Container(
+                        margin: EdgeInsets.all(6),
                         width: 64,
                         height: 17,
                         alignment: Alignment.center,
                         decoration: ShapeDecoration(
-                          color: const Color(0xFFEB2121),
+                          color: AppColors.primaryPressedBackground,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                         ),
@@ -102,22 +102,8 @@ class MarketItem extends StatelessWidget {
               ],
             ),
           ),
-          Text('Осталось  $currentCount  из  $maxCount',
-              style: AppFonts.font8w400.copyWith(
-                color: AppColors.textSecondary,
-                fontSize: 10,
-              )),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            decoration: ShapeDecoration(
-              color: AppColors.purple100,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4)),
-            ),
-            child: Wrap(
-              children: _generatePriceItem(hui),
-            ),
+          Wrap(
+            children: _generatePriceItem(hui),
           ),
           SizedBox(
             width: 204,
@@ -125,7 +111,7 @@ class MarketItem extends StatelessWidget {
             child: Text(
               textDescription,
               style:
-                  AppFonts.font12w400.copyWith(color: AppColors.textSecondary),
+                  AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
             ),
           )
         ],
