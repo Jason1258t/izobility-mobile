@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:izobility_mobile/widgets/containers/purchase_condition.dart';
 
 import '../../models/api/coinData.dart';
-import '../../utils/colors.dart';
-import '../../utils/fonts.dart';
+import '../../utils/ui/colors.dart';
+import '../../utils/ui/fonts.dart';
 
 class MarketItem extends StatelessWidget {
   MarketItem(

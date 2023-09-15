@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/utils/colors.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class CustomSwitcher extends StatelessWidget {
   const CustomSwitcher({super.key, required this.active, required this.onTap});

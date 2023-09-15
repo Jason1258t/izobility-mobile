@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
-import 'package:izobility_mobile/utils/colors.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 
 class CustomMainNavigationBar extends StatefulWidget {
   const CustomMainNavigationBar({super.key, required this.onTap});

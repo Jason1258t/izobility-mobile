@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:izobility_mobile/models/user.dart';
-import 'package:izobility_mobile/utils/exceptions.dart';
+import 'package:izobility_mobile/utils/logic/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/api/token.dart';

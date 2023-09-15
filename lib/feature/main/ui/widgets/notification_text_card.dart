@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_card_container.dart.dart';
 import 'package:izobility_mobile/models/notifications/notification_model.dart';
-import 'package:izobility_mobile/utils/enum/notification_category.dart';
-import 'package:izobility_mobile/utils/enum/notification_position.dart';
+import 'package:izobility_mobile/utils/logic/enum/notification_category.dart';
+import 'package:izobility_mobile/utils/logic/enum/notification_position.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 

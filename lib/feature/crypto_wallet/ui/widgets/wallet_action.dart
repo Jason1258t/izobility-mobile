@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/utils/colors.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class WalletAction extends StatelessWidget {
   const WalletAction({required this.title, required this.icon});

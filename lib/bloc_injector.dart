@@ -8,6 +8,7 @@ import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/services/locale/export_locale_services.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 
@@ -17,9 +18,7 @@ final PreferencesService prefs = PreferencesService();
 final ApiService api = ApiService(preferencesService: prefs);
 
 class MyBlocProviders extends StatelessWidget {
-  const MyBlocProviders({super.key, required this.myApp});
-
-  final Widget myApp;
+  const MyBlocProviders({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,34 +46,27 @@ class MyBlocProviders extends StatelessWidget {
             RepositoryProvider.of<NotificationsRepository>(context)),
         lazy: false,
       ),
-    ], child: myApp);
+    ], child: const MyApp());
   }
 }
 
 class MyRepositoryProviders extends StatelessWidget {
-  const MyRepositoryProviders({super.key, required this.myApp});
-
-  final Widget myApp;
+  const MyRepositoryProviders({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider(
-              create: (_) =>
-                  AuthRepository(apiService: api, preferences: prefs)),
-          RepositoryProvider(
-            create: (_) => UserRepository(apiService: api, preferences: prefs),
-          ),
-          RepositoryProvider(
-            create: (_) => HomeRepository(),
-          ),
-          RepositoryProvider(
-              create: (context) =>
-                  NotificationsRepository(apiService: api, preferences: prefs))
-        ],
-        child: MyBlocProviders(
-          myApp: myApp,
-        ));
+    return MultiRepositoryProvider(providers: [
+      RepositoryProvider(
+          create: (_) => AuthRepository(apiService: api, preferences: prefs)),
+      RepositoryProvider(
+        create: (_) => UserRepository(apiService: api, preferences: prefs),
+      ),
+      RepositoryProvider(
+        create: (_) => HomeRepository(),
+      ),
+      RepositoryProvider(
+          create: (context) =>
+              NotificationsRepository(apiService: api, preferences: prefs))
+    ], child: const MyBlocProviders());
   }
 }

@@ -33,11 +33,16 @@ void main() async {
 
   await dotenv.load();
 
-  runApp(const MyRepositoryProviders(myApp: MyApp()));
+  runApp(const MyRepositoryProviders());
 }
+
+final _defaultKey = GlobalKey<NavigatorState>();
+final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
   initialLocation: RouteNames.root,
+    navigatorKey: _defaultKey,
+
   routes: [
     GoRoute(
       path: RouteNames.root,
@@ -126,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         //Navigator.popUntil(context, ModalRoute.withName(RouteNames.root));
-        if (state is AppUnAuthState) return HomeScreen();
+        if (state is AppUnAuthState) return const HomeScreen();
         if (state is CreatePinState) return const CreatePinScreen();
         if (state is EnterPinState) return const EnterPinScreen();
         if (state is AppAuthState) return const HomeScreen();

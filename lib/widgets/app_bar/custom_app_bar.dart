@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
 
-import '../../utils/colors.dart';
+import '../../utils/ui/colors.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar(

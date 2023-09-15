@@ -1,8 +1,6 @@
 import 'package:izobility_mobile/models/notifications/abstract_notification.dart';
-import 'package:izobility_mobile/utils/enum/notification_category.dart';
 
 class NotificationModel extends AbstractNotificationModel {
-  @override
   final String description;
 
   NotificationModel(

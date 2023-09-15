@@ -5,8 +5,8 @@ import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/crypto_wallet_sc
 import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
-import 'package:izobility_mobile/utils/colors.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/navigator_bar/custom_main_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {

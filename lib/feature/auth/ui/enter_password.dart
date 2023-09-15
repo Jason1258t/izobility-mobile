@@ -4,16 +4,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
-import 'package:izobility_mobile/utils/route_names.dart';
+import 'package:izobility_mobile/utils/logic/route_names.dart';
 import 'package:izobility_mobile/utils/utils.dart';
-import 'package:izobility_mobile/utils/validators.dart';
+import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-import '../../../utils/animations.dart';
-import '../../../utils/dialogs.dart';
+import '../../../utils/ui/animations.dart';
+import '../../../utils/ui/dialogs.dart';
 
 class EnterPasswordScreen extends StatefulWidget {
   const EnterPasswordScreen({super.key});

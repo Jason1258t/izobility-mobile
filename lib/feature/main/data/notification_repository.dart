@@ -2,7 +2,7 @@ import 'package:izobility_mobile/models/notifications/notification_coin_model.da
 import 'package:izobility_mobile/models/notifications/notification_model.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
-import 'package:izobility_mobile/utils/enum/notification_category.dart';
+import 'package:izobility_mobile/utils/logic/enum/notification_category.dart';
 
 final notificationResponse = [
   NotificationCoinModel(

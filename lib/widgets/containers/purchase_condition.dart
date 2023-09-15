@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../models/api/coinData.dart';
-import '../../utils/colors.dart';
-import '../../utils/fonts.dart';
+import '../../utils/ui/colors.dart';
+import '../../utils/ui/fonts.dart';
 
 class PurchaseCondition extends StatelessWidget {
   const PurchaseCondition({super.key, required this.data});

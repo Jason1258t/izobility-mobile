@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:izobility_mobile/services/remote/api/endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import '../../../utils/exceptions.dart';
+import '../../../utils/logic/exceptions.dart';
 
 part 'handler.dart';
 

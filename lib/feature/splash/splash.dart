@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/utils/animations.dart';
+import 'package:izobility_mobile/utils/ui/animations.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

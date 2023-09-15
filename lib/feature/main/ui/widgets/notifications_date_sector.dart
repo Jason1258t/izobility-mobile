@@ -3,8 +3,8 @@ import 'package:izobility_mobile/feature/main/ui/widgets/date_container.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_coin_card.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_text_card.dart';
 import 'package:izobility_mobile/models/notifications/notification_model.dart';
-import 'package:izobility_mobile/utils/constants.dart';
-import 'package:izobility_mobile/utils/enum/notification_position.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enum/notification_position.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class NotificationsDateSector extends StatelessWidget {

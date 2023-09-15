@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../utils/colors.dart';
-import '../../utils/fonts.dart';
+import '../../utils/ui/colors.dart';
+import '../../utils/ui/fonts.dart';
 
 class GuidesSuggestion extends StatelessWidget {
   GuidesSuggestion({

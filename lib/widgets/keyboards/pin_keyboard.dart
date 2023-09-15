@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/utils/colors.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/button/pin_keyboard_button.dart';
 
 class PinKeyboard extends StatefulWidget {

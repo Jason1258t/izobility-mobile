@@ -7,10 +7,10 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 
-import '../../../utils/animations.dart';
-import '../../../utils/dialogs.dart';
-import '../../../utils/route_names.dart';
-import '../../../utils/validators.dart';
+import '../../../utils/ui/animations.dart';
+import '../../../utils/ui/dialogs.dart';
+import '../../../utils/logic/route_names.dart';
+import '../../../utils/logic/validators.dart';
 import '../../../widgets/button/custom_button.dart';
 import '../../../widgets/text_field/custom_text_field.dart';
 import '../bloc/auth/auth_cubit.dart';

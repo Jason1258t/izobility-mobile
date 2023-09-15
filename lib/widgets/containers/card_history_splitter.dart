@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/utils/colors.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:intl/intl.dart';
 
 class CardHistorySplitter extends StatelessWidget {

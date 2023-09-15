@@ -1,4 +1,4 @@
-import 'package:izobility_mobile/utils/enum/notification_category.dart';
+import 'package:izobility_mobile/utils/logic/enum/notification_category.dart';
 
 abstract class AbstractNotificationModel {
   final NotificationTransactionType type;

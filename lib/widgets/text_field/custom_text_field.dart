@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
-import 'package:izobility_mobile/utils/colors.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(

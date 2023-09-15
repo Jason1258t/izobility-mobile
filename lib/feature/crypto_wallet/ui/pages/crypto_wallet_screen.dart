@@ -5,9 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/crypto_wallet/ui/widgets/wallet_action.dart';
-import 'package:izobility_mobile/utils/colors.dart';
-import 'package:izobility_mobile/utils/fonts.dart';
-import 'package:izobility_mobile/utils/route_names.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/logic/route_names.dart';
 import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 
