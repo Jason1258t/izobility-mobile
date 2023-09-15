@@ -10,6 +10,7 @@ import 'package:izobility_mobile/feature/auth/ui/enter_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
+import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
@@ -83,6 +84,9 @@ final _router = GoRouter(
     GoRoute(
         path: RouteNames.notifications,
         builder: (context, state) => const NotificationsScreen()),
+    GoRoute(
+        path: RouteNames.story,
+        builder: (context, state) => const StoryScreen()),
     GoRoute(
         path: RouteNames.wallet,
         builder: (context, state) => const CryptoWalletScreen())
