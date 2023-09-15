@@ -1,12 +1,57 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chip_category_card.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/date_container.dart';
-import 'package:izobility_mobile/feature/main/ui/widgets/notification_card.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/notification_text_card.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/notification_card_container.dart.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/notification_coin_card.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/notifications_date_sector.dart';
+import 'package:izobility_mobile/models/notifications/notification_coin_model.dart';
+import 'package:izobility_mobile/models/notifications/notification_model.dart';
+import 'package:izobility_mobile/utils/constants.dart';
+import 'package:izobility_mobile/utils/enum/notification_category.dart';
 import 'package:izobility_mobile/utils/enum/notification_position.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+
+final notificationResponse = [
+  NotificationCoinModel(
+      type: NotificationTransactionType.get,
+      time: DateTime.now(),
+      name: "АНАЛЬНАЯ ЗАРУБА",
+      count: 5200,
+      coinImagePath: 'assets/icons/coin.svg'),
+  NotificationModel(
+      type: NotificationTransactionType.get,
+      time: DateTime.now(),
+      name: "бой с теньи",
+      description:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the iscrambled"),
+  NotificationCoinModel(
+      type: NotificationTransactionType.get,
+      time: DateTime.now(),
+      name: "РАСКОЛБАС",
+      count: 5200,
+      coinImagePath: 'assets/icons/coin.svg'),
+  NotificationModel(
+      type: NotificationTransactionType.get,
+      time: DateTime.now(),
+      name: "ангри беурдс",
+      description:
+          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
+  NotificationModel(
+      type: NotificationTransactionType.get,
+      time: DateTime.now(),
+      name: "ангри беурдс",
+      description:
+          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
+];
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -19,6 +64,22 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
+  void initState() {
+    context.read<NotificationsCubit>().loadNotifications();
+
+    super.initState();
+    _scrollDown();
+  }
+
+  void _scrollDown() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (_scrollController.hasClients)
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent - 1);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return HomeScaffold(
       appBar: CustomAppBar(
@@ -26,106 +87,54 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         text: 'Уведомления',
         context: context,
       ),
-      body: Container(
-        color: AppColors.purpleBcg,
-        child: CustomScrollView(
-          slivers: [
-            SliverPersistentHeader(
-              floating: true,
-              delegate: ChipsCategoryList(),
-            ),
-            getWidgets(Colors.red),
-            getWidgets(Colors.blue),
-            getWidgets(Colors.purple),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 30,
+      body: BlocBuilder<NotificationsCubit, NotificationsState>(
+        builder: (context, state) {
+          if (state is NotificationsWaitingState) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is NotificationsLoadedSuccessState) {
+            return Container(
+              padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+              color: AppColors.purpleBcg,
+              child: CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SliverPersistentHeader(
+                    floating: true,
+                    pinned: true,
+                    delegate: ChipsCategoryList(),
+                  ),
+                  NotificationsDateSector(
+                    cards: notificationResponse,
+                    date: DateTime.now(),
+                  ),
+                  NotificationsDateSector(
+                    cards: notificationResponse,
+                    date: DateTime.now(),
+                  ),
+                  NotificationsDateSector(
+                    cards: notificationResponse,
+                    date: DateTime.now(),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 30,
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
+            );
+          } else {
+            return Center(
+              child: Text(
+                'Sorry, something wetn wrong. Try again later',
+                style: AppFonts.font20w700.copyWith(color: AppColors.darkBlue),
+              ),
+            );
+          }
+        },
       ),
     );
   }
-
-  Widget getWidgets(Color color) {
-    return MultiSliver(
-      pushPinnedChildren: true,
-      children: [
-        SliverPinnedHeader(
-            child: DateText(
-          date: "март 41",
-        )),
-        SliverList.separated(
-            itemCount: 3,
-            separatorBuilder: (context, index) => const SizedBox(
-                  height: 5,
-                ),
-            itemBuilder: (context, index) {
-              NotificationPosition cardPose = NotificationPosition.mid;
-
-              if (index == 0) {
-                cardPose = NotificationPosition.start;
-              } else if (index == 3 - 1) {
-                cardPose = NotificationPosition.end;
-              }
-
-              return NotificationCard(
-                pose: cardPose,
-                mainText: "Продажа товара %Название-дилнное очень%",
-                time: "21 01",
-                subText:
-                    "Имеется спорная точка зрения, гласящая примерно следующее: некоторые особенности внутренней политики",
-              );
-            }),
-      ],
-    );
-  }
-}
-
-class ChipsCategoryList extends SliverPersistentHeaderDelegate {
-  List<String> name = [
-    'Все',
-    'Покупка',
-    'Продажа',
-    'Акция',
-    'Акция',
-    'Акция',
-    'Акция',
-    'Акция'
-  ];
-  int currentIndex = 0;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      padding: const EdgeInsets.only(top: 12, right: 16, left: 16),
-      alignment: Alignment.bottomLeft,
-      height: double.infinity,
-      color: AppColors.purpleBcg,
-      child: ListView.separated(
-        shrinkWrap: false,
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) => const SizedBox(
-          width: 10,
-        ),
-        itemBuilder: ((context, index) => ChipCategoryCard(
-              text: name[index],
-              isActive: currentIndex == index,
-            )),
-        itemCount: name.length,
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 40;
-
-  @override
-  double get minExtent => 40;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
 }

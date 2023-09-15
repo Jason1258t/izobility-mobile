@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/utils/colors.dart';
 import 'package:izobility_mobile/utils/fonts.dart';
+import 'package:izobility_mobile/utils/route_names.dart';
 
 class NotificationsIndicator extends StatelessWidget {
   const NotificationsIndicator({super.key});
@@ -19,7 +21,9 @@ class NotificationsIndicator extends StatelessWidget {
             alignment: Alignment.center,
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
-              onTap: () {},
+              onTap: () {
+                context.push(RouteNames.notifications);
+              },
               child: Ink(
                 width: 36,
                 height: 36,
