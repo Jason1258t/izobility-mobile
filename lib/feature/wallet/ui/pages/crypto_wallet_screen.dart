@@ -40,16 +40,19 @@ class _WalletScreenState extends State<WalletScreen>
     final sizeOf = MediaQuery.sizeOf(context);
 
     return Container(
-      color: AppColors.purple100,
+      color: AppColors.purple200,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.purpleBcg,
           body: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+                decelerationRate: ScrollDecelerationRate.fast),
             slivers: [
               const CustomSliverAppBar(
                 height: 90,
                 isBack: false,
                 title: 'Кошелек',
+                color: AppColors.purple200,
               ),
               SliverPersistentHeader(
                 pinned: false,
@@ -58,7 +61,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: 98,
                   maxHeight: 98,
                   child: Container(
-                    color: AppColors.purple100,
+                    color: AppColors.purple200,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
@@ -93,7 +96,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: 43,
                   maxHeight: 43,
                   child: Container(
-                    color: AppColors.purple100,
+                    color: AppColors.purple200,
                     alignment: Alignment.center,
                     child: Text('123 123\$',
                         style: AppFonts.font36w700
@@ -105,10 +108,10 @@ class _WalletScreenState extends State<WalletScreen>
                 pinned: true,
                 floating: true,
                 delegate: SliverAppBarDelegate(
-                  minHeight: sizeOf.width * 0.078 + 75,
-                  maxHeight: sizeOf.width * 0.078 + 75,
+                  minHeight: sizeOf.width * 0.156 + 75,
+                  maxHeight: sizeOf.width * 0.156 + 75,
                   child: Container(
-                    color: AppColors.purple100,
+                    color: AppColors.purple200,
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
@@ -118,38 +121,22 @@ class _WalletScreenState extends State<WalletScreen>
                         children: [
                           WalletAction(
                             title: 'Отправить',
-                            icon: SvgPicture.asset(
-                              'assets/icons/send.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/send.svg',
                             onTap: () {},
                           ),
                           WalletAction(
                             title: 'Пополнить',
-                            icon: SvgPicture.asset(
-                              'assets/icons/get.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/get.svg',
                             onTap: () {},
                           ),
                           WalletAction(
                             title: 'Купить',
-                            icon: SvgPicture.asset(
-                              'assets/icons/buy.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/buy.svg',
                             onTap: () {},
                           ),
                           WalletAction(
                             title: 'Своп ',
-                            icon: SvgPicture.asset(
-                              'assets/icons/swap.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/swap.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
                             },
@@ -169,7 +156,7 @@ class _WalletScreenState extends State<WalletScreen>
                   child: Container(
                     height: 18,
                     decoration: const BoxDecoration(
-                        color: AppColors.purple100,
+                        color: AppColors.purple200,
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
