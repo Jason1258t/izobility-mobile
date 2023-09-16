@@ -14,6 +14,7 @@ import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/crypto_wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
@@ -28,7 +29,6 @@ class CustomGoRoutes{
   static final defaultKey = GlobalKey<NavigatorState>();
   static final shellNavigatorKey = GlobalKey<NavigatorState>();
 
-
   static final router = GoRouter(
     initialLocation: RouteNames.root,
     navigatorKey: defaultKey,
@@ -36,6 +36,10 @@ class CustomGoRoutes{
       GoRoute(
         path: RouteNames.root,
         builder: (context, state) => const MyHomePage(),
+      ),
+      GoRoute(
+        path: RouteNames.walletChooseCoin,
+        builder: (context, state) => const ChooseCoinScreen(),
       ),
       GoRoute(
         path: RouteNames.auth,

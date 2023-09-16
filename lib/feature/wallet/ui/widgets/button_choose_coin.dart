@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -5,17 +7,24 @@ import 'package:izobility_mobile/utils/utils.dart';
 class ButtonChooseCoin extends StatelessWidget {
   final String coinName;
   final String imagePath;
+  final double width;
 
   const ButtonChooseCoin(
-      {super.key, required this.coinName, required this.imagePath});
+      {super.key, required this.coinName, required this.imagePath, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      constraints: const BoxConstraints(
+        minWidth: 128,
+        maxWidth: 300
+      ),
       padding: EdgeInsets.zero,
       alignment: Alignment.centerLeft,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.only(left: 18),
           foregroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
@@ -25,24 +34,31 @@ class ButtonChooseCoin extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          log(width.toString());
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              width: 32,
-              height: 32,
               alignment: Alignment.center,
               child: SvgPicture.asset(imagePath),
             ),
             const SizedBox(
               width: 4,
             ),
-            Text(
-              coinName,
-              style: AppFonts.font16w700.copyWith(color: Colors.black),
+            Container(
+              alignment: Alignment.centerLeft,
+              width: 70,
+              height: 24,
+              child: FittedBox(
+                child: Text(
+                  coinName,
+                  style: AppFonts.font16w700.copyWith(color: Colors.black),
+                ),
+              ),
             ),
             const SizedBox(
               width: 8,
