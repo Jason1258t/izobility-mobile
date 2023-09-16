@@ -14,14 +14,19 @@ abstract class RouteNames {
   static const String authEnterPassword = "/auth/password_enter";
   static const String authEnterPin = "/auth/pin_enter";
 
-  static const String authPasswordRecoveryEmail = '/auth/password_recovery_email';
-  static const String authPasswordRecoveryVerifyCode = '/auth/password_recovery_verify';
-  static const String authPasswordRecoveryChangePassword = '/auth/password_create/change';
-
-  static const String profile = '/profile';
+  static const String authPasswordRecoveryEmail =
+      '/auth/password_recovery_email';
+  static const String authPasswordRecoveryVerifyCode =
+      '/auth/password_recovery_verify';
+  static const String authPasswordRecoveryChangePassword =
+      '/auth/password_create/change';
 
   static const String wallet = '/wallet';
+
   static const String walletCurrency = '/wallet/currency';
+  static const String walletSwop = '/wallet/swop';
+
+  static const String profile = '/profile';
 
   static const String profileEdit = '/profile/edit';
   static const String profileInventory = '/profile/inventory';
@@ -29,5 +34,6 @@ abstract class RouteNames {
   static const String profileAbout = '/profile/about';
 
   static const String notifications = '/notifications';
+
   static const String story = '/story';
 }

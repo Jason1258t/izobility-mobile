@@ -4,10 +4,11 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class WalletAction extends StatelessWidget {
-  const WalletAction({required this.title, required this.icon});
+  const WalletAction({required this.title, required this.icon, required this.onTap});
 
   final String title;
   final SvgPicture icon;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class WalletAction extends StatelessWidget {
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(100)),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () => onTap(),
             icon: icon,
           ),
         ),

@@ -124,6 +124,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {},
                           ),
                           WalletAction(
                             title: 'Пополнить',
@@ -132,6 +133,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {},
                           ),
                           WalletAction(
                             title: 'Купить',
@@ -140,6 +142,7 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {},
                           ),
                           WalletAction(
                             title: 'Своп ',
@@ -148,6 +151,9 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {
+                              context.push(RouteNames.walletSwop);
+                            },
                           ),
                         ],
                       ),
@@ -233,7 +239,6 @@ class _CryptoWalletScreenState extends State<CryptoWalletScreen>
                         ),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                             crossAxisSpacing: 8,
-
                             maxCrossAxisExtent:
                                 (MediaQuery.of(context).size.width - 40) / 2,
                             childAspectRatio: 160 / 229)),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/utils/logic/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/crypto_wallet/ui/widgets/wallet_action.dart';
@@ -72,7 +74,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
-                      const EdgeInsets.only(left: 16, right: 16, top: 16),
+                          const EdgeInsets.only(left: 16, right: 16, top: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -83,6 +85,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {},
                           ),
                           WalletAction(
                             title: 'Пополнить',
@@ -91,6 +94,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {},
                           ),
                           WalletAction(
                             title: 'Купить',
@@ -99,6 +103,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {},
                           ),
                           WalletAction(
                             title: 'Своп ',
@@ -107,6 +112,9 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
+                            onTap: () {
+                              context.push(RouteNames.walletSwop);
+                            },
                           ),
                         ],
                       ),

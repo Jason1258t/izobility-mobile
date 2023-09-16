@@ -7,6 +7,7 @@ import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/currency_screen.dart';
+import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/swop_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
@@ -41,8 +42,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
 final _router = GoRouter(
   initialLocation: RouteNames.root,
-    navigatorKey: _defaultKey,
-
+  navigatorKey: _defaultKey,
   routes: [
     GoRoute(
       path: RouteNames.root,
@@ -97,6 +97,9 @@ final _router = GoRouter(
     GoRoute(
         path: RouteNames.walletCurrency,
         builder: (context, state) => const CurrencyWalletScreen()),
+    GoRoute(
+        path: RouteNames.walletSwop,
+        builder: (context, state) => const SwopScreen()),
   ],
 );
 

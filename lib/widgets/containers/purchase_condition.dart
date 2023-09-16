@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../models/api/coinData.dart';
+import '../../models/api/coin_data.dart';
 import '../../utils/ui/colors.dart';
 import '../../utils/ui/fonts.dart';
 
