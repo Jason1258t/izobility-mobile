@@ -15,26 +15,103 @@ class CustomTextField extends StatelessWidget {
       this.onChange,
       this.error = false,
       this.errorText,
+      this.backgroundColor = AppColors.backgroundSecondary,
       this.suffixIcon,
       this.suffixIconCallback,
+      this.secondSuffixIconCallback,
       this.height = 56});
 
-  CustomTextField.password(
-      {super.key,
-      this.hintText,
-      required this.controller,
-      required this.width,
-      this.labelText,
-      this.onChange,
-      required this.obscured,
-      this.error = false,
-      this.errorText,
-      this.height = 56,
-      required this.suffixIconCallback})
-      : keyboardType = TextInputType.visiblePassword,
-        suffixIcon = SuffixIconPassword(
-          callback: suffixIconCallback!,
-          visible: !obscured,
+  CustomTextField.password({
+    super.key,
+    this.hintText,
+    required this.controller,
+    required this.width,
+    this.labelText,
+    this.onChange,
+    required this.obscured,
+    this.error = false,
+    this.errorText,
+    this.backgroundColor = AppColors.backgroundSecondary,
+    this.height = 56,
+    required this.suffixIconCallback,
+    this.secondSuffixIconCallback,
+  })  : keyboardType = TextInputType.visiblePassword,
+        suffixIcon = Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SuffixIconPassword(
+              callback: suffixIconCallback!,
+              visible: !obscured,
+            ),
+            const SizedBox(width: 15,),
+          ],
+        );
+
+  CustomTextField.withTwoIcon({
+    super.key,
+    this.hintText,
+    required this.controller,
+    required this.width,
+    required this.suffixIconCallback,
+    required this.secondSuffixIconCallback,
+    this.labelText,
+    this.onChange,
+    this.error = false,
+    this.errorText,
+    this.backgroundColor = AppColors.backgroundSecondary,
+    this.height = 56,
+    this.obscured = true,
+  })  : keyboardType = TextInputType.visiblePassword,
+        suffixIcon = Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            InkWell(
+                onTap: suffixIconCallback!,
+                child: SvgPicture.asset('assets/icons/scaner.svg')),
+            const SizedBox(
+              width: 4,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: InkWell(
+                  onTap: secondSuffixIconCallback!,
+                  child: SvgPicture.asset('assets/icons/clipboard.svg')),
+            )
+          ],
+        );
+
+  CustomTextField.withOneIcon({
+    super.key,
+    this.hintText,
+    required this.controller,
+    required this.width,
+    required this.suffixIconCallback,
+    this.secondSuffixIconCallback,
+    this.labelText,
+    this.onChange,
+    this.error = false,
+    this.errorText,
+    this.backgroundColor = AppColors.backgroundSecondary,
+    this.height = 56,
+    this.obscured = true,
+  })  : keyboardType = TextInputType.visiblePassword,
+        suffixIcon = Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: InkWell(
+                child: const CircleAvatar(
+                  radius: 15,
+                  backgroundColor: AppColors.primary,
+                ),
+                onTap: () {},
+              ),
+            ),
+          ],
         );
 
   final TextEditingController controller;
@@ -47,8 +124,10 @@ class CustomTextField extends StatelessWidget {
   final bool error;
   final String? errorText;
   final VoidCallback? suffixIconCallback;
+  final VoidCallback? secondSuffixIconCallback;
   final Widget? suffixIcon;
   final Function(String?)? onChange;
+  final Color backgroundColor;
 
   final Color _negative = AppColors.negative;
 
@@ -59,25 +138,29 @@ class CustomTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          Container(
             width: width,
             height: height,
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
             child: TextFormField(
               obscureText: obscured,
               onChanged: onChange,
               style: AppFonts.font16w400.copyWith(color: Colors.black),
               decoration: InputDecoration(
-                  fillColor: AppColors.backgroundSecondary,
+                  fillColor: backgroundColor,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(
                       width: 1,
-                      color: Color(0xFFE2E2E2),
+                      color: AppColors.disableButton,
                     ),
                   ),
                   suffixIcon: suffixIcon,
                   suffixIconConstraints:
-                      const BoxConstraints(maxHeight: 40, maxWidth: 40),
+                      const BoxConstraints(maxHeight: 45, maxWidth: 70),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(

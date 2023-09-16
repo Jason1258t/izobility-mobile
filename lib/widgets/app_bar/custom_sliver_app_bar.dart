@@ -44,7 +44,7 @@ class CustomSliverAppBar extends StatelessWidget {
                   width: 24,
                 )
               ],
-              Text('Кошелёк',
+              Text(title,
                   style: AppFonts.font18w700
                       .copyWith(color: AppColors.textPrimary)),
               const SizedBox(

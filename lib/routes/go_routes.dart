@@ -16,6 +16,8 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/crypto_wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swop_screen.dart';
 import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
@@ -79,8 +81,14 @@ class CustomGoRoutes{
           path: RouteNames.walletCurrency,
           builder: (context, state) => const CurrencyWalletScreen()),
       GoRoute(
-          path: RouteNames.walletSwop,
+          path: RouteNames.walletSwap,
           builder: (context, state) => const SwopScreen()),
+      GoRoute(
+          path: RouteNames.walletSendCurrency,
+          builder: (context, state) => const SendCurrencyScreen()),
+      GoRoute(
+          path: RouteNames.walletReplenish,
+          builder: (context, state) => const ReplenishScreen()),
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         builder: (context, state, child) {

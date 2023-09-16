@@ -16,7 +16,7 @@ class CustomButton extends StatefulWidget {
       required this.onTap,
       required this.width,
       this.isActive = true,
-      this.height = 48});
+      this.height = 55});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();

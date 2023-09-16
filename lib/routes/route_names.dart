@@ -22,9 +22,10 @@ abstract class RouteNames {
       '/auth/password_create/change';
 
   static const String wallet = '/wallet';
-
   static const String walletCurrency = '/wallet/currency';
-  static const String walletSwop = '/wallet/swop';
+  static const String walletSwap = '/wallet/swap';
+  static const String walletSendCurrency = '/wallet/send_currency';
+  static const String walletReplenish = '/wallet/replenish';
 
   static const String profile = '/profile';
 

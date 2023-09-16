@@ -23,8 +23,8 @@ class WalletScreen extends StatefulWidget {
 
 class _WalletScreenState extends State<WalletScreen>
     with SingleTickerProviderStateMixin {
-  int tokenOrNft = 0;
   int walletOrPlayer = 0;
+  int tokenOrNft = 0;
 
   late TabController _tabController;
 
@@ -151,7 +151,7 @@ class _WalletScreenState extends State<WalletScreen>
                               height: sizeOf.width * 0.067,
                             ),
                             onTap: () {
-                              context.push(RouteNames.walletSwop);
+                              context.push(RouteNames.walletSwap);
                             },
                           ),
                         ],

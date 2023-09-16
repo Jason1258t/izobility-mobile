@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
@@ -85,7 +86,9 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              context.push(RouteNames.walletSendCurrency);
+                            },
                           ),
                           WalletAction(
                             title: 'Пополнить',
@@ -94,7 +97,9 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               width: sizeOf.width * 0.067,
                               height: sizeOf.width * 0.067,
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              context.push(RouteNames.walletReplenish);
+                            },
                           ),
                           WalletAction(
                             title: 'Купить',
@@ -113,7 +118,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               height: sizeOf.width * 0.067,
                             ),
                             onTap: () {
-                              context.push(RouteNames.walletSwop);
+                              context.push(RouteNames.walletSwap);
                             },
                           ),
                         ],
@@ -141,13 +146,11 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(list
-                        .map((item) => ValidToken(
-                              title: 'Protocol',
-                              value: '211,12',
+                        .map((item) => TransactionContainer(
+                              title: 'Перевод',
                               onTap: () {},
                               prise: '0,29',
-                              increment: '0,02',
-                              usdValue: '0,0021',
+                              address: 'asdfasdfasdf', isAddition: true,
                             ))
                         .toList()),
                   )),
