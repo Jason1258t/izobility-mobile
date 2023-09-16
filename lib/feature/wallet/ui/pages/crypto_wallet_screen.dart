@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
-import 'package:izobility_mobile/feature/crypto_wallet/ui/widgets/wallet_action.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
-import 'package:izobility_mobile/utils/logic/route_names.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 
@@ -15,14 +14,14 @@ import '../../../../widgets/containers/market_Item.dart';
 
 final list = List.generate(100, (index) => 1);
 
-class CryptoWalletScreen extends StatefulWidget {
-  const CryptoWalletScreen({super.key});
+class WalletScreen extends StatefulWidget {
+  const WalletScreen({super.key});
 
   @override
-  State<CryptoWalletScreen> createState() => _CryptoWalletScreenState();
+  State<WalletScreen> createState() => _WalletScreenState();
 }
 
-class _CryptoWalletScreenState extends State<CryptoWalletScreen>
+class _WalletScreenState extends State<WalletScreen>
     with SingleTickerProviderStateMixin {
   int tokenOrNft = 0;
   int walletOrPlayer = 0;

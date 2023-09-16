@@ -7,7 +7,7 @@ import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:izobility_mobile/widgets/containers/utility_container.dart';
 import 'package:izobility_mobile/widgets/indicators/notifications_indicator.dart';
 
-import '../../../widgets/containers/guides_suggestion.dart';
+import '../../../../widgets/containers/guides_suggestion.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

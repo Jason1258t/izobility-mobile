@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
-import 'package:izobility_mobile/utils/logic/route_names.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
 
 class NotificationsIndicator extends StatelessWidget {
   const NotificationsIndicator({super.key});

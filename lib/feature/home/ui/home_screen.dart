@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/crypto_wallet_screen.dart';
 import 'package:izobility_mobile/feature/home/data/home_repository.dart';
-import 'package:izobility_mobile/feature/main/ui/main_screen.dart';
-import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/navigator_bar/custom_main_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.body, });
+
+  final Widget body;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -19,20 +18,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final List<Widget> widgetOptions = <Widget>[
-      const MainScreen(),
-      const CryptoWalletScreen(),
-      const Text('Delection'),
-      const Text('Delection'),
-      const ProfileScreen(),
-    ];
-
-    final homeRepository = context.read<HomeRepository>();
-
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          body: widgetOptions[homeRepository.selectedTab],
+          body: widget.body,
           bottomNavigationBar: CustomMainNavigationBar(
             onTap: () {
               setState(() {});

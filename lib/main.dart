@@ -2,24 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
-import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
-import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/currency_screen.dart';
-import 'package:izobility_mobile/feature/crypto_wallet/ui/pages/swop_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
-import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
-import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
-import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
-import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
-import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
-import 'package:izobility_mobile/feature/profile/ui/pages/profile_settings.dart';
+import 'package:izobility_mobile/feature/main/ui/pages/main_screen.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 import 'feature/auth/ui/export_auth_screens.dart';
-import 'feature/crypto_wallet/ui/pages/crypto_wallet_screen.dart';
 import 'services/locale/export_locale_services.dart';
 
 void main() async {
@@ -37,72 +28,6 @@ void main() async {
   runApp(const MyRepositoryProviders());
 }
 
-final _defaultKey = GlobalKey<NavigatorState>();
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
-
-final _router = GoRouter(
-  initialLocation: RouteNames.root,
-  navigatorKey: _defaultKey,
-  routes: [
-    GoRoute(
-      path: RouteNames.root,
-      builder: (context, state) => const MyHomePage(),
-    ),
-    GoRoute(
-      path: RouteNames.auth,
-      builder: (context, state) => EnterEmailScreen(),
-    ),
-    GoRoute(
-        path: RouteNames.authCreateName,
-        builder: (context, state) => const EnterNameScreen()),
-    GoRoute(
-        path: RouteNames.authEnterPassword,
-        builder: (context, state) => const EnterPasswordScreen()),
-    GoRoute(
-        path: RouteNames.authCreatePin,
-        builder: (context, state) => const CreatePinScreen()),
-    GoRoute(
-        path: '${RouteNames.authCreatePasswordBaseLink}/:variant',
-        builder: (context, state) => CreatePasswordScreen(
-              creatingVariant: state.pathParameters['variant'] ?? '',
-            )),
-    GoRoute(
-        path: RouteNames.authPasswordRecoveryEmail,
-        builder: (context, state) => const PasswordRecoveryEmailScreen()),
-    GoRoute(
-        path: RouteNames.authPasswordRecoveryVerifyCode,
-        builder: (context, state) => const VerifyRecoveryCodeScreen()),
-    GoRoute(
-      path: RouteNames.profile,
-      builder: (context, state) => const ProfileScreen(),
-    ),
-    GoRoute(
-        path: RouteNames.profileEdit,
-        builder: (context, state) => const ProfileEditScreen()),
-    GoRoute(
-        path: RouteNames.profileSettings,
-        builder: (context, state) => const ProfileSettingsScreen()),
-    GoRoute(
-        path: RouteNames.profileAbout,
-        builder: (context, state) => const ProfileAppAboutScreen()),
-    GoRoute(
-        path: RouteNames.notifications,
-        builder: (context, state) => const NotificationsScreen()),
-    GoRoute(
-        path: RouteNames.story,
-        builder: (context, state) => const StoryScreen()),
-    GoRoute(
-        path: RouteNames.wallet,
-        builder: (context, state) => const CryptoWalletScreen()),
-    GoRoute(
-        path: RouteNames.walletCurrency,
-        builder: (context, state) => const CurrencyWalletScreen()),
-    GoRoute(
-        path: RouteNames.walletSwop,
-        builder: (context, state) => const SwopScreen()),
-  ],
-);
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -116,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      routerConfig: _router,
+      routerConfig: CustomGoRoutes.router,
     );
   }
 }
@@ -133,11 +58,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
-        //Navigator.popUntil(context, ModalRoute.withName(RouteNames.root));
-        if (state is AppUnAuthState) return const HomeScreen();
+        if (state is AppUnAuthState) {
+          return const HomeScreen(
+            body: MainScreen(),
+          );
+        }
         if (state is CreatePinState) return const CreatePinScreen();
         if (state is EnterPinState) return const EnterPinScreen();
-        if (state is AppAuthState) return const HomeScreen();
+        if (state is AppAuthState) {
+          return const HomeScreen(
+            body: MainScreen(),
+          );
+        }
         return const SplashScreen();
       },
     );

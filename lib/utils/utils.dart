@@ -1,3 +1,3 @@
 export 'ui/colors.dart';
 export 'ui/fonts.dart';
-export 'logic/route_names.dart';
+export '../routes/route_names.dart';

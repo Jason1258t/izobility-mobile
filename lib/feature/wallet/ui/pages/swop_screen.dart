@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/feature/crypto_wallet/ui/widgets/button_choose_coin.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -50,7 +50,7 @@ class _SwopScreenState extends State<SwopScreen> {
                   const SizedBox(
                     width: 8,
                   ),
-                  ButtonChooseCoin(
+                  const ButtonChooseCoin(
                     coinName: 'SEX',
                     imagePath: 'assets/icons/coin.svg',
                   ),

@@ -59,8 +59,7 @@ class CustomTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            color: Colors.green,
+          SizedBox(
             width: width,
             height: height,
             child: TextFormField(
@@ -68,9 +67,7 @@ class CustomTextField extends StatelessWidget {
               onChanged: onChange,
               style: AppFonts.font16w400.copyWith(color: Colors.black),
               decoration: InputDecoration(
-                  //isDense: true,
                   fillColor: AppColors.backgroundSecondary,
-                  // contentPadding: const EdgeInsets.all(10),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: const BorderSide(

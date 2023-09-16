@@ -9,7 +9,7 @@ import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 
 import '../../../utils/ui/animations.dart';
 import '../../../utils/ui/dialogs.dart';
-import '../../../utils/logic/route_names.dart';
+import '../../../routes/route_names.dart';
 import '../../../utils/logic/validators.dart';
 import '../../../widgets/button/custom_button.dart';
 import '../../../widgets/text_field/custom_text_field.dart';

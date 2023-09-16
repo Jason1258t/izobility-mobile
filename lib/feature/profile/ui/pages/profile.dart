@@ -9,7 +9,7 @@ import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.d
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_switch_card.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
-import 'package:izobility_mobile/utils/logic/route_names.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_outline_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';

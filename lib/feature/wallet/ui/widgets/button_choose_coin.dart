@@ -11,14 +11,21 @@ class ButtonChooseCoin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Container(
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 18),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(width: 2, color: Colors.black),
-            borderRadius: BorderRadius.circular(12)),
+    return Container(
+      padding: EdgeInsets.zero,
+      alignment: Alignment.centerLeft,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(width: 2, color: Colors.black),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.white,
+        ),
+        onPressed: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +47,6 @@ class ButtonChooseCoin extends StatelessWidget {
             const SizedBox(
               width: 8,
             ),
-            // SvgPicture.asset("assets/icons/бля я хз где оно.svg")
             const Icon(
               Icons.arrow_forward_ios_rounded,
               color: Colors.black,

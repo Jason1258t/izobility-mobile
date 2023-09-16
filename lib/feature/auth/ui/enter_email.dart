@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
-import 'package:izobility_mobile/utils/logic/route_names.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';

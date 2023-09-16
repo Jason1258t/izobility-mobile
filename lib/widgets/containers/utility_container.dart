@@ -25,7 +25,6 @@ class UtilityContainer extends StatelessWidget {
       onTap: callback,
       child: Ink(
         width: width,
-        //height: width * 12 / 13,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: ShapeDecoration(
           color: Colors.white,
