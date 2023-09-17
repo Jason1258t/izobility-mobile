@@ -6,11 +6,16 @@ import '../../utils/ui/colors.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar(
-      {super.key, required context, required String text,required Function() onTap, required bool isBack})
+      {super.key,
+      required context,
+      required String text,
+      required Function() onTap,
+      required bool isBack,
+      Color backgroundColor = Colors.white})
       : super(
           surfaceTintColor: Colors.transparent,
           titleSpacing: 12,
-          backgroundColor: AppColors.backgroundContent,
+          backgroundColor: backgroundColor,
           centerTitle: true,
           leading: isBack
               ? InkWell(

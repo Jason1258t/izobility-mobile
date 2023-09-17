@@ -98,7 +98,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         },
                       ),
                       ProfileActionContainer(
-                        onTap: () {},
+                        onTap: () {
+                          context.push(RouteNames.cardsAdd);
+                        },
                       ),
                       ProfileActionContainer(
                         onTap: () {},

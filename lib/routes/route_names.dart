@@ -45,4 +45,7 @@ abstract class RouteNames {
   static const String gameMarket = '/game_Market';
 
   static const String basket = '/basket';
+
+  static const String cardsAdd = '/cards/add';
+  
 }

@@ -7,6 +7,7 @@ import 'package:izobility_mobile/feature/auth/ui/enter_name.dart';
 import 'package:izobility_mobile/feature/auth/ui/enter_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/password_recovery_email.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
+import 'package:izobility_mobile/feature/cards/ui/pages/cards_add_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/main_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
@@ -26,7 +27,7 @@ import 'package:izobility_mobile/routes/route_names.dart';
 
 import '../feature/profile/ui/pages/profile_settings.dart';
 
-class CustomGoRoutes{
+class CustomGoRoutes {
   static final defaultKey = GlobalKey<NavigatorState>();
   static final shellNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -43,6 +44,10 @@ class CustomGoRoutes{
         builder: (context, state) => EnterEmailScreen(),
       ),
       GoRoute(
+        path: RouteNames.cardsAdd,
+        builder: (context, state) => const CardsAddScreen(),
+      ),
+      GoRoute(
           path: RouteNames.authCreateName,
           builder: (context, state) => const EnterNameScreen()),
       GoRoute(
@@ -53,8 +58,7 @@ class CustomGoRoutes{
           builder: (context, state) => const CreatePinScreen()),
       GoRoute(
           path: '${RouteNames.authCreatePasswordBaseLink}/:variant',
-          builder: (context, state) =>
-              CreatePasswordScreen(
+          builder: (context, state) => CreatePasswordScreen(
                 creatingVariant: state.pathParameters['variant'] ?? '',
               )),
       GoRoute(
@@ -92,7 +96,9 @@ class CustomGoRoutes{
           builder: (context, state) => const ReplenishScreen()),
       GoRoute(
         path: '${RouteNames.walletChooseCoin}/:screen',
-        builder: (context, state) => ChooseCoinScreen(path: state.pathParameters['screen'] ?? '',),
+        builder: (context, state) => ChooseCoinScreen(
+          path: state.pathParameters['screen'] ?? '',
+        ),
       ),
       GoRoute(
           path: RouteNames.walletBuyCurrency,
@@ -105,73 +111,68 @@ class CustomGoRoutes{
         routes: [
           GoRoute(
             path: RouteNames.main,
-            pageBuilder: (context, state) =>
-                CustomTransitionPage<void>(
-                  key: state.pageKey,
-                  child: const MainScreen(),
-                  transitionsBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation,
-                      Widget child) {
-                    return child;
-                  },
-                ),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const MainScreen(),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return child;
+              },
+            ),
           ),
           GoRoute(
             path: RouteNames.wallet,
-            pageBuilder: (context, state) =>
-                CustomTransitionPage<void>(
-                  key: state.pageKey,
-                  child: const WalletScreen(),
-                  transitionsBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation,
-                      Widget child) {
-                    return child;
-                  },
-                ),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const WalletScreen(),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return child;
+              },
+            ),
           ),
           GoRoute(
             path: RouteNames.gameMarket,
-            pageBuilder: (context, state) =>
-                CustomTransitionPage<void>(
-                  key: state.pageKey,
-                  child: const Text('GameMarket'),
-                  transitionsBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation,
-                      Widget child) {
-                    return child;
-                  },
-                ),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const Text('GameMarket'),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return child;
+              },
+            ),
           ),
           GoRoute(
             path: RouteNames.basket,
-            pageBuilder: (context, state) =>
-                CustomTransitionPage<void>(
-                  key: state.pageKey,
-                  child: const Text('Basket'),
-                  transitionsBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation,
-                      Widget child) {
-                    return child;
-                  },
-                ),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const Text('Basket'),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return child;
+              },
+            ),
           ),
           GoRoute(
             path: RouteNames.profile,
-            pageBuilder: (context, state) =>
-                CustomTransitionPage<void>(
-                  key: state.pageKey,
-                  child: const ProfileScreen(),
-                  transitionsBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation,
-                      Widget child) {
-                    return child;
-                  },
-                ),
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+              key: state.pageKey,
+              child: const ProfileScreen(),
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return child;
+              },
+            ),
           ),
         ],
       ),
