@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
@@ -8,7 +7,6 @@ import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
-import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 
 final list = List.generate(100, (index) => 1);
 
@@ -25,16 +23,19 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
     final sizeOf = MediaQuery.sizeOf(context);
 
     return Container(
-      color: AppColors.purple100,
+      color: AppColors.purple200,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.purpleBcg,
           body: CustomScrollView(
+            physics: const BouncingScrollPhysics(
+                decelerationRate: ScrollDecelerationRate.fast),
             slivers: [
               const CustomSliverAppBar(
                 height: 90,
                 isBack: true,
                 title: 'Usd',
+                color: AppColors.purple200,
               ),
               SliverPersistentHeader(
                 pinned: true,
@@ -43,7 +44,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   minHeight: 115,
                   maxHeight: 115,
                   child: Container(
-                    color: AppColors.purple100,
+                    color: AppColors.purple200,
                     alignment: Alignment.center,
                     child: Column(
                       children: [
@@ -71,7 +72,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   minHeight: sizeOf.width * 0.078 + 75,
                   maxHeight: sizeOf.width * 0.078 + 75,
                   child: Container(
-                    color: AppColors.purple100,
+                    color: AppColors.purple200,
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
@@ -81,42 +82,28 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                         children: [
                           WalletAction(
                             title: 'Отправить',
-                            icon: SvgPicture.asset(
-                              'assets/icons/send.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/send.svg',
                             onTap: () {
                               context.push(RouteNames.walletSendCurrency);
                             },
                           ),
                           WalletAction(
                             title: 'Пополнить',
-                            icon: SvgPicture.asset(
-                              'assets/icons/get.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/get.svg',
                             onTap: () {
                               context.push(RouteNames.walletReplenish);
                             },
                           ),
                           WalletAction(
                             title: 'Купить',
-                            icon: SvgPicture.asset(
-                              'assets/icons/buy.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
-                            onTap: () {},
+                            icon: 'assets/icons/buy.svg',
+                            onTap: () {
+                              context.push(RouteNames.walletBuyCurrency);
+                            },
                           ),
                           WalletAction(
                             title: 'Своп ',
-                            icon: SvgPicture.asset(
-                              'assets/icons/swap.svg',
-                              width: sizeOf.width * 0.067,
-                              height: sizeOf.width * 0.067,
-                            ),
+                            icon: 'assets/icons/swap.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
                             },
@@ -136,7 +123,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   child: Container(
                     height: 18,
                     decoration: const BoxDecoration(
-                        color: AppColors.purple100,
+                        color: AppColors.purple200,
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
@@ -150,7 +137,8 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               title: 'Перевод',
                               onTap: () {},
                               prise: '0,29',
-                              address: 'asdfasdfasdf', isAddition: true,
+                              address: 'asdfasdfasdf',
+                              isAddition: true,
                             ))
                         .toList()),
                   )),

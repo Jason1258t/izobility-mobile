@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
-import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-class SendCurrencyScreen extends StatefulWidget {
-  const SendCurrencyScreen({super.key});
+class BuyCurrencyScreen extends StatefulWidget {
+  const BuyCurrencyScreen({super.key});
 
   @override
-  State<SendCurrencyScreen> createState() => _SendCurrencyScreenState();
+  State<BuyCurrencyScreen> createState() => _BuyCurrencyScreenState();
 }
 
-class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
-  final addressController = TextEditingController();
+class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
   final amountController = TextEditingController();
 
   @override
@@ -42,8 +41,8 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                   pinned: true,
                   floating: false,
                   delegate: SliverAppBarDelegate(
-                    minHeight: 115,
-                    maxHeight: 115,
+                    minHeight: 95,
+                    maxHeight: 95,
                     child: Container(
                       color: AppColors.purple200,
                       alignment: Alignment.center,
@@ -56,11 +55,6 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                           Text('123 123\$',
                               style: AppFonts.font36w700
                                   .copyWith(color: AppColors.textPrimary)),
-                          Text(
-                            '≈ 2,545 \$',
-                            style: AppFonts.font16w400
-                                .copyWith(color: AppColors.blackGraySecondary),
-                          ),
                         ],
                       ),
                     ),
@@ -86,20 +80,11 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomTextField.withTwoIcon(
+                      error: false,
+                      errorText: 'Ошибка',
+                      labelText: 'Ваша сумма в \$',
                       suffixIconCallback: () {},
                       secondSuffixIconCallback: () {},
-                      controller: addressController,
-                      width: double.infinity,
-                      backgroundColor: Colors.white,
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 17, right: 17, top: 20),
-                    child: CustomTextField.withOneIcon(
-                      suffixIconCallback: () {},
                       controller: amountController,
                       width: double.infinity,
                       backgroundColor: Colors.white,
@@ -111,7 +96,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomButton(
-                      text: 'Продолжить',
+                      text: 'Подтвердить',
                       onTap: () {},
                       width: double.infinity,
                     ),

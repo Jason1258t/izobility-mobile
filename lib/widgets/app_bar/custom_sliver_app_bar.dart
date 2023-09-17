@@ -30,18 +30,21 @@ class CustomSliverAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (isBack) ...[
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
-                      size: 24,
-                    )),
-              ]else...[
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        size: 24,
+                      )),
+                ),
+              ] else ...[
                 const SizedBox(
                   height: 24,
-                  width: 24,
+                  width: 55,
                 )
               ],
               Text(title,
@@ -49,7 +52,7 @@ class CustomSliverAppBar extends StatelessWidget {
                       .copyWith(color: AppColors.textPrimary)),
               const SizedBox(
                 height: 24,
-                width: 45,
+                width: 55,
               )
             ],
           ),
