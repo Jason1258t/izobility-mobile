@@ -28,8 +28,8 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
             separatorBuilder: (context, index) => const SizedBox(
                   height: 8,
                 ),
-            itemBuilder: (context, index) => const
-                ChooseCoinCard(name: "Dick", coinPath: 'assets/icons/coin.svg')),
+            itemBuilder: (context, index) => ChooseCoinCard(
+                onTap: () {}, name: "Dick", coinPath: 'assets/icons/coin.svg')),
       ),
     );
   }
