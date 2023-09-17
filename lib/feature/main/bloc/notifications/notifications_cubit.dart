@@ -25,4 +25,8 @@ class NotificationsCubit extends Cubit<NotificationsState> {
       rethrow;
     }
   }
+
+  void changeFilterCategory(int categoryIndex) {
+    _notificationsRepository.currentFilterIndex = categoryIndex;
+  }
 }
