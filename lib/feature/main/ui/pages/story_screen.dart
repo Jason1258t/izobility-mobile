@@ -67,7 +67,7 @@ class _StoryScreenState extends State<StoryScreen>
                   return Container(
                     width: size.width,
                     height: size.height,
-                    padding: EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(bloc
