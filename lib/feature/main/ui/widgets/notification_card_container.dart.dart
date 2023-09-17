@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/utils/logic/enum/notification_position.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 
 
 class NotificationCardContainer extends StatelessWidget {
-  final NotificationPosition pose;
+  final NotificationPositionEnum pose;
   final Widget child;
 
   const NotificationCardContainer(
@@ -14,7 +14,7 @@ class NotificationCardContainer extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        pose == NotificationPosition.end
+        pose == NotificationPositionEnum.end
             ? const Icon(
                 Icons.pets_rounded,
                 size: 28,
@@ -28,16 +28,16 @@ class NotificationCardContainer extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                topLeft: pose == NotificationPosition.start
+                topLeft: pose == NotificationPositionEnum.start
                     ? const Radius.circular(16)
                     : const Radius.circular(4),
-                topRight: pose == NotificationPosition.start
+                topRight: pose == NotificationPositionEnum.start
                     ? const Radius.circular(16)
                     : const Radius.circular(4),
-                bottomLeft: pose == NotificationPosition.end
+                bottomLeft: pose == NotificationPositionEnum.end
                     ? const Radius.circular(16)
                     : const Radius.circular(4),
-                bottomRight: pose == NotificationPosition.end
+                bottomRight: pose == NotificationPositionEnum.end
                     ? const Radius.circular(16)
                     : const Radius.circular(4),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:izobility_mobile/widgets/containers/purchase_condition.dart';
 
 import '../../models/api/coin_data.dart';
@@ -11,12 +12,14 @@ class MarketItem extends StatelessWidget {
       required this.imageUrl,
       required this.textDescription,
       required this.isNew,
+      required this.onTap,
       required this.pizdulkaUrl});
 
   final String imageUrl;
   final String textDescription;
   final bool isNew;
   final String pizdulkaUrl;
+  final VoidCallback onTap;
 
   List<Widget> _generatePriceItem(List<CoinData> coinsInfo) {
     List<Widget> children = [];
@@ -38,83 +41,88 @@ class MarketItem extends StatelessWidget {
   }
 
   final List<CoinData> hui = List.generate(
-      1, (index) => CoinData(imageUrl: 'assets/images/Coins1.png', value: '1,520'));
+      1,
+      (index) =>
+          CoinData(imageUrl: 'assets/images/Coins1.png', value: '1,520'));
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      height: 229,
-      padding: const EdgeInsets.all(6),
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: (MediaQuery.of(context).size.width - 40) / 2,
-            height: (MediaQuery.of(context).size.width - 28) / 2,
-            decoration: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
-                image: DecorationImage(
-                    image: AssetImage(imageUrl), fit: BoxFit.cover)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    if (isNew) ...[
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: (MediaQuery.of(context).size.width - 40) / 2,
+        height: (MediaQuery.of(context).size.width - 40) / 2 * 160 / 230,
+        padding: const EdgeInsets.all(6),
+        decoration: ShapeDecoration(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: (MediaQuery.of(context).size.width - 40) / 2,
+              height: (MediaQuery.of(context).size.width - 28) / 2,
+              decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  image: DecorationImage(
+                      image: NetworkImage(imageUrl), fit: BoxFit.cover)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      if (isNew) ...[
+                        Container(
+                          margin: EdgeInsets.all(6),
+                          width: 64,
+                          height: 17,
+                          alignment: Alignment.center,
+                          decoration: ShapeDecoration(
+                            color: AppColors.primaryPressedBackground,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          child: Text(
+                            'НОВОЕ',
+                            style: AppFonts.font12w400,
+                          ),
+                        )
+                      ]
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Spacer(),
                       Container(
-                        margin: EdgeInsets.all(6),
-                        width: 64,
-                        height: 17,
-                        alignment: Alignment.center,
-                        decoration: ShapeDecoration(
-                          color: AppColors.primaryPressedBackground,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                        ),
-                        child: Text(
-                          'НОВОЕ',
-                          style: AppFonts.font12w400,
+                        width: 36,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(pizdulkaUrl)),
                         ),
                       )
-                    ]
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Spacer(),
-                    Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                            fit: BoxFit.cover, image: AssetImage(pizdulkaUrl)),
-                      ),
-                    )
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Wrap(
-            children: _generatePriceItem(hui),
-          ),
-          SizedBox(
-            width: 204,
-            height: 30,
-            child: Text(
-              textDescription,
-              style:
-                  AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
+            Wrap(
+              children: _generatePriceItem(hui),
             ),
-          )
-        ],
+            SizedBox(
+              width: 204,
+              height: 30,
+              child: Text(
+                textDescription,
+                style:
+                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

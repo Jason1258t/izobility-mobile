@@ -11,14 +11,14 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-class SwopScreen extends StatefulWidget {
-  const SwopScreen({super.key});
+class SwapScreen extends StatefulWidget {
+  const SwapScreen({super.key});
 
   @override
-  State<SwopScreen> createState() => _SwopScreenState();
+  State<SwapScreen> createState() => _SwapScreenState();
 }
 
-class _SwopScreenState extends State<SwopScreen> {
+class _SwapScreenState extends State<SwapScreen> {
   TextEditingController _enterCoinController = TextEditingController();
 
   @override

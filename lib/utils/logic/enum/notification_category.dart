@@ -1,1 +1,0 @@
-enum NotificationTransactionType{get, give}

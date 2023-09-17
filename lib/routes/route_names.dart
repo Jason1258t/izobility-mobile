@@ -46,6 +46,8 @@ abstract class RouteNames {
 
   static const String basket = '/basket';
 
+  static const String cards = '/cards';
+
   static const String cardsAdd = '/cards/add';
   
 }
