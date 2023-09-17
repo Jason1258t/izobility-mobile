@@ -74,8 +74,8 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                 pinned: true,
                 floating: true,
                 delegate: SliverAppBarDelegate(
-                  minHeight: sizeOf.width * 0.078 + 75,
-                  maxHeight: sizeOf.width * 0.078 + 75,
+                  minHeight: sizeOf.width * 0.156 + 40,
+                  maxHeight: sizeOf.width * 0.156 + 40,
                   child: Container(
                     color: AppColors.purple200,
                     alignment: Alignment.center,

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
-
 class ProfileActionContainer extends StatefulWidget {
-  const ProfileActionContainer({
-    super.key,
-  });
+  final Function onTap;
+
+  const ProfileActionContainer({super.key, required this.onTap});
 
   @override
   State<ProfileActionContainer> createState() => _ProfileActionContainerState();
 }
-
 
 class _ProfileActionContainerState extends State<ProfileActionContainer> {
   @override
@@ -20,7 +18,9 @@ class _ProfileActionContainerState extends State<ProfileActionContainer> {
       borderRadius: BorderRadius.circular(8),
       child: InkWell(
         borderRadius: BorderRadius.circular(8.0),
-        onTap: () {},
+        onTap: () {
+          widget.onTap();
+        },
         child: Container(
           constraints: const BoxConstraints(minHeight: 140),
           alignment: Alignment.topLeft,

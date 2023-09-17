@@ -14,7 +14,6 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_outline_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
-
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -87,15 +86,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  const Wrap(
+                  Wrap(
                     direction: Axis.horizontal,
                     alignment: WrapAlignment.spaceBetween,
                     runAlignment: WrapAlignment.start,
                     runSpacing: 10,
                     children: [
-                      ProfileActionContainer(),
-                      ProfileActionContainer(),
-                      ProfileActionContainer()
+                      ProfileActionContainer(
+                        onTap: () {
+                          context.push(RouteNames.cards);
+                        },
+                      ),
+                      ProfileActionContainer(
+                        onTap: () {},
+                      ),
+                      ProfileActionContainer(
+                        onTap: () {},
+                      )
                     ],
                   ),
                   const SizedBox(
@@ -112,11 +119,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   label: "Бизнес аккаунт",
                   description: "Какое то описание",
                 ),
-
                 const PorfileBlocLabel(
                   text: 'Приложение',
                 ),
-
                 ProfileActionTile(
                   onTap: () {
                     context.push(RouteNames.profileSettings);
