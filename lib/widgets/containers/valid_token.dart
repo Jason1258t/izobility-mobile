@@ -92,7 +92,7 @@ class ValidToken extends StatelessWidget {
                     const SizedBox(
                       height: 3,
                     ),
-                    Text('$usdValue \$',
+                    Text('$usdValue',
                         style: AppFonts.font12w400
                             .copyWith(color: AppColors.disabledTextButton)),
                   ],

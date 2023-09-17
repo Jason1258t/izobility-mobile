@@ -20,7 +20,7 @@ class NotificationsDateSector extends StatelessWidget {
       children: [
          SliverPinnedHeader(
             child: DateText(
-          date: "${date.day} ${monthes[date.month.toString()]}",
+          date: "${date.day} ${AppStrings.months[date.month.toString()]}",
         )),
         SliverList.separated(
             itemCount: cards.length,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -19,6 +22,8 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final walletRepository = context.read<WalletRepository>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -53,11 +58,11 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                             radius: 20,
                             backgroundColor: AppColors.primary,
                           ),
-                          Text('123 123\$',
+                          Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
                               style: AppFonts.font36w700
                                   .copyWith(color: AppColors.textPrimary)),
                           Text(
-                            '≈ 2,545 \$',
+                            walletRepository.obscured ? AppStrings.obscuredText : '≈ 2,545 \$',
                             style: AppFonts.font16w400
                                 .copyWith(color: AppColors.blackGraySecondary),
                           ),

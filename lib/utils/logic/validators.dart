@@ -2,7 +2,7 @@ import 'package:izobility_mobile/utils/logic/constants.dart';
 
 abstract class Validator {
   static emailValidator(String? value) {
-    if (!RegExp(emailRegExp).hasMatch((value ?? "").trim()) ||
+    if (!RegExp(AppStrings.emailRegExp).hasMatch((value ?? "").trim()) ||
         (value ?? "").isEmpty) {
       return 'Неверный email';
     } else {

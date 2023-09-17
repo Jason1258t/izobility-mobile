@@ -8,18 +8,20 @@ class ButtonChooseCoin extends StatelessWidget {
   final String coinName;
   final String imagePath;
   final double width;
+  final Function() onTap;
 
   const ButtonChooseCoin(
-      {super.key, required this.coinName, required this.imagePath, required this.width});
+      {super.key,
+      required this.coinName,
+      required this.imagePath,
+      required this.width,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      constraints: const BoxConstraints(
-        minWidth: 128,
-        maxWidth: 300
-      ),
+      constraints: const BoxConstraints(minWidth: 128, maxWidth: 300),
       padding: EdgeInsets.zero,
       alignment: Alignment.centerLeft,
       child: ElevatedButton(
@@ -34,9 +36,7 @@ class ButtonChooseCoin extends StatelessWidget {
           elevation: 0,
           backgroundColor: Colors.white,
         ),
-        onPressed: () {
-          log(width.toString());
-        },
+        onPressed: onTap,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

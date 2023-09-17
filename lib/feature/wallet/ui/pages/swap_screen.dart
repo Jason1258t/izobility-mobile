@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -50,18 +51,20 @@ class _SwopScreenState extends State<SwopScreen> {
                 children: [
                   Flexible(
                       child: CustomTextField(
-                        backgroundColor: Colors.white,
-                        hintText: "Кол-во",
-                        controller: _enterCoinController, 
-                        width: double.maxFinite)
-                      ),
+                          backgroundColor: Colors.white,
+                          hintText: "Кол-во",
+                          controller: _enterCoinController,
+                          width: double.maxFinite)),
                   const SizedBox(
                     width: 8,
                   ),
-                   ButtonChooseCoin(
+                  ButtonChooseCoin(
                     width: size.width * 0.3555,
                     coinName: 'SEX',
                     imagePath: 'assets/icons/coin.svg',
+                    onTap: () {
+                      context.push('${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
+                    },
                   ),
                 ],
               ),
@@ -70,12 +73,9 @@ class _SwopScreenState extends State<SwopScreen> {
               margin: const EdgeInsets.symmetric(vertical: 16),
               alignment: Alignment.center,
               child: ButtonSwop(
-                onTap: () {
-                  context.push('${RouteNames.walletChooseCoin}/null');
-                },
+                onTap: () {},
               ),
             ),
-
             Text(
               'Вы получите',
               style: AppFonts.font20w700.copyWith(color: Colors.black),
@@ -86,11 +86,10 @@ class _SwopScreenState extends State<SwopScreen> {
                 children: [
                   Flexible(
                       child: CustomTextField(
-                        backgroundColor: Colors.white,
+                          backgroundColor: Colors.white,
                           hintText: "Кол-во",
                           controller: _enterCoinController,
-                          width: double.maxFinite)
-                  ),
+                          width: double.maxFinite)),
                   const SizedBox(
                     width: 8,
                   ),
@@ -98,6 +97,9 @@ class _SwopScreenState extends State<SwopScreen> {
                     width: size.width * 0.3555,
                     coinName: 'WWWWWWWWW',
                     imagePath: 'assets/icons/coin.svg',
+                    onTap: () {
+                      context.push('${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
+                    },
                   ),
                 ],
               ),
