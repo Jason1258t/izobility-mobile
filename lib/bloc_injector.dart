@@ -5,7 +5,7 @@ import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_re
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
-import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
+import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';

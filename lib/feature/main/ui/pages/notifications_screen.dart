@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
+import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notifications_date_sector.dart';
@@ -49,9 +49,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is NotificationsLoadedSuccessState) {
+            } else if (state is NotificationsLoadedSuccessState ||
+                state is NotificationsFiltersUpdated) {
               return CustomScrollView(
-                physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
+                physics: const BouncingScrollPhysics(
+                    decelerationRate: ScrollDecelerationRate.fast),
                 controller: _scrollController,
                 slivers: [
                   SliverPersistentHeader(

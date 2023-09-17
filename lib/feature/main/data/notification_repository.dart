@@ -4,6 +4,32 @@ import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enum/notification_category.dart';
 
+class NotificationsRepository {
+  final ApiService apiService;
+  final PreferencesService preferences;
+
+  final List<String> filterCategories = [
+    'Все',
+    'Покупка',
+    'Продажа',
+    'Акция',
+    '123',
+    '312',
+    'sdfsdf',
+  ];
+
+  int currentFilterIndex = 0;
+
+  List<dynamic> notificationList = [];
+
+  NotificationsRepository(
+      {required this.apiService, required this.preferences});
+
+  Future<dynamic> loadNotificationList(int page) async {
+    notificationList = notificationResponse;
+  }
+}
+
 final notificationResponse = [
   NotificationCoinModel(
       type: NotificationTransactionType.get,
@@ -36,19 +62,3 @@ final notificationResponse = [
       description:
           "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
 ];
-
-
-
-class NotificationsRepository {
-  final ApiService apiService;
-  final PreferencesService preferences;
-
-  List<dynamic> notificationList = [];
-
-  NotificationsRepository(
-      {required this.apiService, required this.preferences});
-
-  Future<dynamic> loadNotificationList(int page) async {
-    notificationList = notificationResponse;
-  }
-}

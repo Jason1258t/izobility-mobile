@@ -28,5 +28,6 @@ class NotificationsCubit extends Cubit<NotificationsState> {
 
   void changeFilterCategory(int categoryIndex) {
     _notificationsRepository.currentFilterIndex = categoryIndex;
+    emit(NotificationsLoadedSuccessState());
   }
 }

@@ -10,3 +10,5 @@ final class NotificationsWaitingState extends NotificationsState {}
 final class NotificationsLoadedSuccessState extends NotificationsState {}
 
 final class NotificationsLoadedFailureState extends NotificationsState {}
+
+final class NotificationsFiltersUpdated extends NotificationsState {}
