@@ -1,14 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 
 class StoryDurationIndicator extends StatefulWidget {
-  const StoryDurationIndicator({
-    super.key,
-    required this.width,
-    required this.duration,
-    required this.index,
-  });
+  const StoryDurationIndicator(
+      {super.key,
+      required this.width,
+      required this.duration,
+      required this.index});
 
   final double width;
   final Duration duration;
@@ -18,19 +19,15 @@ class StoryDurationIndicator extends StatefulWidget {
   State<StoryDurationIndicator> createState() => _StoryDurationIndicatorState();
 }
 
-class _StoryDurationIndicatorState extends State<StoryDurationIndicator>
-    with TickerProviderStateMixin {
-
+class _StoryDurationIndicatorState extends State<StoryDurationIndicator> {
   @override
   void initState() {
+    activateListener();
+    super.initState();
+  }
+
+  void activateListener() {
     final bloc = BlocProvider.of<StoryCubit>(context);
-    if (bloc.controller == null) {
-      AnimationController controller = AnimationController(
-        vsync: this,
-        duration: widget.duration,
-      );
-      bloc.setController(controller);
-    }
     if (widget.index == bloc.currentStoryIndex) {
       bloc.controller!.addListener(() {
         if (widget.index == bloc.currentStoryIndex) {
@@ -38,7 +35,6 @@ class _StoryDurationIndicatorState extends State<StoryDurationIndicator>
         }
       });
     }
-    super.initState();
   }
 
   @override
@@ -47,31 +43,27 @@ class _StoryDurationIndicatorState extends State<StoryDurationIndicator>
 
     return BlocListener<StoryCubit, StoryState>(
       listener: (context, state) {
-        final bloc = BlocProvider.of<StoryCubit>(context);
-        if (bloc.controller == null) {
-          AnimationController controller = AnimationController(
-            vsync: this,
-            duration: widget.duration,
-          );
-          bloc.setController(controller);
-        }
-        if (widget.index == bloc.currentStoryIndex) {
-          bloc.controller!.addListener(() {
-            if (widget.index == bloc.currentStoryIndex) {
-              setState(() {});
-            }
-          });
-        }
+        activateListener();
       },
-      child: SizedBox(
-        width: widget.width,
-        child: LinearProgressIndicator(
-            value: bloc.currentStoryIndex > widget.index ? 1 : bloc.controller!
-                .value,
-            minHeight: 2,
-            borderRadius: BorderRadius.circular(1),
-            backgroundColor: Colors.white.withOpacity(0.4),
-            color: Colors.white),
+      child: GestureDetector(
+        onTap: () {
+          BlocProvider.of<StoryCubit>(context).changeStory(index: widget.index);
+          log('aboba');
+        },
+        child: SizedBox(
+          child: Container(
+            height: 22,
+            width: widget.width,
+            padding: const EdgeInsets.only(top: 12, bottom: 8),
+            child: LinearProgressIndicator(
+                value: bloc.currentStoryIndex > widget.index
+                    ? 1
+                    : bloc.controller!.value,
+                borderRadius: BorderRadius.circular(1),
+                backgroundColor: Colors.white.withOpacity(0.4),
+                color: Colors.white),
+          ),
+        ),
       ),
     );
   }
