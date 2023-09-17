@@ -20,13 +20,15 @@ class NotificationsRepository {
 
   int currentFilterIndex = 0;
 
-  List<dynamic> notificationList = [];
+  List<dynamic> rawNotificationList = [];
+
+  List<dynamic> sortedNotificationList = [];
 
   NotificationsRepository(
       {required this.apiService, required this.preferences});
 
   Future<dynamic> loadNotificationList(int page) async {
-    notificationList = notificationResponse;
+    rawNotificationList = notificationResponse;
   }
 }
 

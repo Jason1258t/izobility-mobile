@@ -43,7 +43,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         child: BlocBuilder<NotificationsCubit, NotificationsState>(
           builder: (context, state) {
             final data =
-                context.read<NotificationsRepository>().notificationList;
+                context.read<NotificationsRepository>().rawNotificationList;
 
             if (state is NotificationsWaitingState) {
               return const Center(
