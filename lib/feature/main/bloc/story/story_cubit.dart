@@ -14,7 +14,7 @@ final List<Story> stories = [
           'Get ready spro bros - its time to brew the espresso you dream about.',
       imageUrl:
           'https://img3.akspic.ru/crops/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-1407x3045.jpg',
-      duration: const Duration(seconds: 10)),
+      duration: const Duration(seconds: 10), index: 0, id:'0'),
   Story(
       title: 'Абобус is here!',
       subtitle:
@@ -22,7 +22,7 @@ final List<Story> stories = [
       imageUrl:
           'https://neyrosety.ru/wp-content/uploads/2023/03/00505-1011766434-576x1024.jpg',
       buttonUrl: 'https://pub.dev/packages/url_launcher',
-      duration: const Duration(seconds: 10))
+      duration: const Duration(seconds: 10), index: 1, id: '1')
 ];
 
 class StoryCubit extends Cubit<StoryState> {
