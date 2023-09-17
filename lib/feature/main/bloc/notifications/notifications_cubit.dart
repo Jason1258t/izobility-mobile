@@ -25,4 +25,10 @@ class NotificationsCubit extends Cubit<NotificationsState> {
       rethrow;
     }
   }
+
+  void changeFilterCategory(int categoryIndex) {
+    _notificationsRepository.currentFilterIndex = categoryIndex;
+    // TODO make function of sorting list accroding to new category
+    emit(NotificationsLoadedSuccessState());
+  }
 }

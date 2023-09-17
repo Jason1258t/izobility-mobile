@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
@@ -21,6 +24,8 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
+
+    final walletRepository = context.read<WalletRepository>();
 
     return Container(
       color: AppColors.purple200,
@@ -52,11 +57,11 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                           radius: 20,
                           backgroundColor: AppColors.primary,
                         ),
-                        Text('123 123\$',
+                        Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
                             style: AppFonts.font36w700
                                 .copyWith(color: AppColors.textPrimary)),
                         Text(
-                          '≈ 2,545 \$',
+                          walletRepository.obscured ? AppStrings.obscuredText : '≈ 2,545 \$',
                           style: AppFonts.font16w400
                               .copyWith(color: AppColors.blackGraySecondary),
                         ),
@@ -136,7 +141,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                         .map((item) => TransactionContainer(
                               title: 'Перевод',
                               onTap: () {},
-                              prise: '0,29',
+                              prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
                               address: 'asdfasdfasdf',
                               isAddition: true,
                             ))

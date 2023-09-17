@@ -30,6 +30,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         context: context,
         text: "Профиль",
         isBack: false,
+        onTap: () {
+          context.pop();
+        },
       ),
       body: SingleChildScrollView(
         child: Column(

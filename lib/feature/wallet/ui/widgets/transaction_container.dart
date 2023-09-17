@@ -83,7 +83,7 @@ class TransactionContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(  '${isAddition ? '+' : '-'}${prise} USDT',
+                Text(  '${prise}',
                     style: AppFonts.font16w500
                         .copyWith(color: !isAddition ? AppColors.negative : AppColors.positive)),
               ],

@@ -4,16 +4,16 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class ChooseCoinCard extends StatelessWidget {
   final String name;
-
   final String coinPath;
-
   final Function onTap;
+  final String amount;
 
   const ChooseCoinCard(
       {super.key,
       required this.name,
       required this.coinPath,
-      required this.onTap});
+      required this.onTap,
+      required this.amount});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class ChooseCoinCard extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                "0",
+                amount,
                 style: AppFonts.font18w700.copyWith(color: Colors.black),
               )
             ],

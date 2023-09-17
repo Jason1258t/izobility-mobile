@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
@@ -38,6 +41,8 @@ class _WalletScreenState extends State<WalletScreen>
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
+
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
     return Container(
       color: AppColors.purple200,
@@ -98,9 +103,20 @@ class _WalletScreenState extends State<WalletScreen>
                   child: Container(
                     color: AppColors.purple200,
                     alignment: Alignment.center,
-                    child: Text('123 123\$',
-                        style: AppFonts.font36w700
-                            .copyWith(color: AppColors.textPrimary)),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          walletRepository
+                              .setObscured(!walletRepository.obscured);
+                        });
+                      },
+                      child: Text(
+                          walletRepository.obscured
+                              ? AppStrings.obscuredText
+                              : '123 123\$',
+                          style: AppFonts.font36w700
+                              .copyWith(color: AppColors.textPrimary)),
+                    ),
                   ),
                 ),
               ),
@@ -108,8 +124,8 @@ class _WalletScreenState extends State<WalletScreen>
                 pinned: true,
                 floating: true,
                 delegate: SliverAppBarDelegate(
-                  minHeight: sizeOf.width * 0.156 + 75,
-                  maxHeight: sizeOf.width * 0.156 + 75,
+                  minHeight: sizeOf.width * 0.156 + 40,
+                  maxHeight: sizeOf.width * 0.156 + 40,
                   child: Container(
                     color: AppColors.purple200,
                     alignment: Alignment.center,
@@ -122,20 +138,29 @@ class _WalletScreenState extends State<WalletScreen>
                           WalletAction(
                             title: 'Отправить',
                             icon: 'assets/icons/send.svg',
-                            onTap: () {},
+                            onTap: () {
+                              context.push(
+                                  '${RouteNames.walletChooseCoin}/send_currency');
+                            },
                           ),
                           WalletAction(
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
-                            onTap: () {},
+                            onTap: () {
+                              context.push(
+                                  '${RouteNames.walletChooseCoin}/replenish');
+                            },
                           ),
                           WalletAction(
                             title: 'Купить',
                             icon: 'assets/icons/buy.svg',
-                            onTap: () {},
+                            onTap: () {
+                              context
+                                  .push('${RouteNames.walletChooseCoin}/buy');
+                            },
                           ),
                           WalletAction(
-                            title: 'Своп ',
+                            title: 'Своп',
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
@@ -206,9 +231,13 @@ class _WalletScreenState extends State<WalletScreen>
                                   onTap: () {
                                     context.push(RouteNames.walletCurrency);
                                   },
-                                  prise: '0,29',
+                                  prise: walletRepository.obscured
+                                      ? AppStrings.obscuredText
+                                      : '0,29',
                                   increment: '0,02',
-                                  usdValue: '0,0021',
+                                  usdValue: walletRepository.obscured
+                                      ? AppStrings.obscuredText
+                                      : '0,0021 \$',
                                 ))
                             .toList()),
                       )

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -18,6 +21,8 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final walletRepository = context.read<WalletRepository>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -41,22 +46,23 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
                   pinned: true,
                   floating: false,
                   delegate: SliverAppBarDelegate(
-                    minHeight: 95,
-                    maxHeight: 95,
+                    minHeight: 100,
+                    maxHeight: 100,
                     child: Container(
                       color: AppColors.purple200,
                       alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          const CircleAvatar(
-                            radius: 20,
-                            backgroundColor: AppColors.primary,
-                          ),
-                          Text('123 123\$',
-                              style: AppFonts.font36w700
-                                  .copyWith(color: AppColors.textPrimary)),
-                        ],
-                      ),
+                      child: Column(children: [
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundColor: AppColors.primary,
+                        ),
+                        Text(
+                            walletRepository.obscured
+                                ? AppStrings.obscuredText
+                                : '123 123\$',
+                            style: AppFonts.font36w700
+                                .copyWith(color: AppColors.textPrimary)),
+                      ]),
                     ),
                   ),
                 ),

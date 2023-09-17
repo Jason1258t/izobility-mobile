@@ -6,7 +6,7 @@ import '../../utils/ui/colors.dart';
 
 class CustomAppBar extends AppBar {
   CustomAppBar(
-      {super.key, required context, required String text, required bool isBack})
+      {super.key, required context, required String text,required Function() onTap, required bool isBack})
       : super(
           surfaceTintColor: Colors.transparent,
           titleSpacing: 12,
@@ -14,9 +14,7 @@ class CustomAppBar extends AppBar {
           centerTitle: true,
           leading: isBack
               ? InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+                  onTap: onTap,
                   child: Container(
                       alignment: Alignment.center,
                       child: SvgPicture.asset(

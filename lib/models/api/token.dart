@@ -27,7 +27,7 @@ class Token {
   bool get accessExpired {
     try {
       DateTime expiredTime = DateTime.parse(accessTokenExpired!);
-      expiredTime = expiredTime.add(serverOffset);
+      expiredTime = expiredTime.add(AppStrings.serverOffset);
 
       final Duration difference = DateTime.now().difference(expiredTime);
 
@@ -40,7 +40,7 @@ class Token {
   bool get refreshExpired {
     try {
       DateTime expiredTime = DateTime.parse(refreshTokenExpired!);
-      expiredTime = expiredTime.add(serverOffset);
+      expiredTime = expiredTime.add(AppStrings.serverOffset);
 
       final Duration difference = DateTime.now().difference(expiredTime);
 
