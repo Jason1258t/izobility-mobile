@@ -76,8 +76,8 @@ class CustomGoRoutes{
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),
       GoRoute(
-          path: RouteNames.story,
-          builder: (context, state) => const StoryScreen()),
+          path: '${RouteNames.story}/:story_id',
+          builder: (context, state) => StoryScreen(initialStoryIndex: int.parse(state.pathParameters['story_id'] ?? 0 as String),)),
       GoRoute(
           path: RouteNames.walletCurrency,
           builder: (context, state) => const CurrencyWalletScreen()),

@@ -1,1 +1,0 @@
-enum NotificationPosition{start, mid, end}

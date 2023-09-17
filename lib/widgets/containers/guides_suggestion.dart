@@ -49,7 +49,7 @@ class GuidesSuggestion extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           image:
-              DecorationImage(image: AssetImage(imageUrl), fit: BoxFit.cover),
+              DecorationImage(image: NetworkImage(imageUrl), fit: BoxFit.cover),
         ),
         child: Container(
           padding: const EdgeInsets.all(6),

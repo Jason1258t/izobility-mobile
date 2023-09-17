@@ -2,37 +2,30 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/animation.dart';
+import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/models/story.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:meta/meta.dart';
 
 part 'story_state.dart';
 
-final List<Story> stories = [
-  Story(
-      title: 'Espresso is here!',
-      subtitle:
-          'Get ready spro bros - its time to brew the espresso you dream about.',
-      imageUrl:
-          'https://img3.akspic.ru/crops/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-1407x3045.jpg',
-      duration: const Duration(seconds: 10), index: 0, id:'0'),
-  Story(
-      title: 'Абобус is here!',
-      subtitle:
-          'Get ready spro bros - its time to brew the espresso you dream about.',
-      imageUrl:
-          'https://neyrosety.ru/wp-content/uploads/2023/03/00505-1011766434-576x1024.jpg',
-      buttonUrl: 'https://pub.dev/packages/url_launcher',
-      duration: const Duration(seconds: 10), index: 1, id: '1')
-];
-
 class StoryCubit extends Cubit<StoryState> {
-  StoryCubit() : super(StoryInitial());
+  final MainScreenRepository repository;
+
+  StoryCubit({required this.repository}) : super(StoryInitial()) {
+    repository.loadingState.stream.listen((event) {
+      if (event == LoadingStateEnum.success) {
+        storiesList = repository.storiesList;
+        storiesCount = storiesList.length;
+      }
+    });
+  }
 
   AnimationController? controller;
   int currentStoryIndex = 0;
-  int storiesCount = stories.length;
+  int storiesCount = 0;
 
-  List<Story> storiesList = stories;
+  List<Story> storiesList = [];
 
   bool paused = false;
 
@@ -54,9 +47,9 @@ class StoryCubit extends Cubit<StoryState> {
     }
   }
 
-  void initController(AnimationController newController) {
+  void initController(AnimationController newController, {int initialStoryIndex = 0}) {
     controller = newController;
-    changeStory(index: 0);
+    changeStory(index: initialStoryIndex);
   }
 
   void changeStory({int? index}) {

@@ -249,6 +249,7 @@ class _WalletScreenState extends State<WalletScreen>
                                 'Набор бонусов для игры Reapers rush +156 к мощности',
                             isNew: true,
                             pizdulkaUrl: '',
+                            onTap: () {},
                           ),
                           childCount: 12,
                         ),

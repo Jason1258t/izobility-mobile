@@ -4,8 +4,10 @@ import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/feature/home/data/home_repository.dart';
+import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
+import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -39,7 +41,13 @@ class MyBlocProviders extends StatelessWidget {
         lazy: false,
       ),
       BlocProvider(
-        create: (_) => StoryCubit(),
+        create: (_) => StoryCubit(
+            repository: RepositoryProvider.of<MainScreenRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) => MainScreenCubit(
+            repository: RepositoryProvider.of<MainScreenRepository>(context)),
         lazy: false,
       ),
       BlocProvider(
@@ -67,6 +75,9 @@ class MyRepositoryProviders extends StatelessWidget {
       ),
       RepositoryProvider(
         create: (_) => WalletRepository(),
+      ),
+      RepositoryProvider(
+        create: (_) => MainScreenRepository(),
       ),
       RepositoryProvider(
           create: (context) =>

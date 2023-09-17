@@ -1,7 +1,7 @@
-import 'package:izobility_mobile/utils/logic/enum/notification_category.dart';
+import '../../utils/logic/enums.dart';
 
 abstract class AbstractNotificationModel {
-  final NotificationTransactionType type;
+  final NotificationTransactionTypeEnum type;
 
   final DateTime time;
 

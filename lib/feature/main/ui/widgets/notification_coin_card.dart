@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_card_container.dart.dart';
 import 'package:izobility_mobile/models/notifications/notification_coin_model.dart';
-import 'package:izobility_mobile/utils/logic/enum/notification_category.dart';
-import 'package:izobility_mobile/utils/logic/enum/notification_position.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 
 
 class NotificationCoinCard extends StatelessWidget {
   final NotificationCoinModel data;
-  final NotificationPosition pose;
+  final NotificationPositionEnum pose;
 
   const NotificationCoinCard({super.key, required this.data, required this.pose});
 
@@ -27,7 +26,7 @@ class NotificationCoinCard extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  "${data.type == NotificationTransactionType.get ? "Вы получили монеты в" : "Вы отправили монеты в"}  ${data.name.toUpperCase()}",
+                  "${data.type == NotificationTransactionTypeEnum.get ? "Вы получили монеты в" : "Вы отправили монеты в"}  ${data.name.toUpperCase()}",
                   style: AppFonts.font14w700.copyWith(
                     color: AppColors.grey700,
                   ),
