@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_text_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
@@ -18,6 +19,9 @@ class _ProfileAppAboutScreenState extends State<ProfileAppAboutScreen> {
           context: context,
           text: 'О приложении',
           isBack: true,
+          onTap: () {
+            context.pop();
+          },
         ),
         body: SingleChildScrollView(
           child: Column(

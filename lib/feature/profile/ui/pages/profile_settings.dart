@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
@@ -21,6 +22,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
           context: context,
           text: 'Настройки',
           isBack: true,
+          onTap: () {
+            context.pop();
+          },
         ),
         body: const SingleChildScrollView(
           child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -20,6 +21,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
         context: context,
         text: "Редактирование профиля",
         isBack: true,
+        onTap: () {
+          context.pop();
+        },
       ),
       body: SingleChildScrollView(
         child: Container(

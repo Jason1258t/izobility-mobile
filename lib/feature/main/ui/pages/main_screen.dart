@@ -119,7 +119,9 @@ class _MainScreenState extends State<MainScreen> {
                                   text: 'Где искать клиентов',
                                   imageUrl: 'assets/images/img.jpg',
                                   onTap: () {
-                                    context.push(RouteNames.story);
+                                    GoRouter router = GoRouter.of(context);
+
+                                    router.go(RouteNames.story);
                                   },
                                   viewed: true,
                                 )),

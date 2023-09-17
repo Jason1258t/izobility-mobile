@@ -8,6 +8,7 @@ import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/services/locale/export_locale_services.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
@@ -63,6 +64,9 @@ class MyRepositoryProviders extends StatelessWidget {
       ),
       RepositoryProvider(
         create: (_) => HomeRepository(),
+      ),
+      RepositoryProvider(
+        create: (_) => WalletRepository(),
       ),
       RepositoryProvider(
           create: (context) =>

@@ -108,8 +108,8 @@ class _WalletScreenState extends State<WalletScreen>
                 pinned: true,
                 floating: true,
                 delegate: SliverAppBarDelegate(
-                  minHeight: sizeOf.width * 0.156 + 75,
-                  maxHeight: sizeOf.width * 0.156 + 75,
+                  minHeight: sizeOf.width * 0.156 + 40,
+                  maxHeight: sizeOf.width * 0.156 + 40,
                   child: Container(
                     color: AppColors.purple200,
                     alignment: Alignment.center,
@@ -122,20 +122,26 @@ class _WalletScreenState extends State<WalletScreen>
                           WalletAction(
                             title: 'Отправить',
                             icon: 'assets/icons/send.svg',
-                            onTap: () {},
+                            onTap: () {
+                              context.push('${RouteNames.walletChooseCoin}/send_currency');
+                            },
                           ),
                           WalletAction(
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
-                            onTap: () {},
+                            onTap: () {
+                              context.push('${RouteNames.walletChooseCoin}/replenish');
+                            },
                           ),
                           WalletAction(
                             title: 'Купить',
                             icon: 'assets/icons/buy.svg',
-                            onTap: () {},
+                            onTap: () {
+                              context.push('${RouteNames.walletChooseCoin}/buy');
+                            },
                           ),
                           WalletAction(
-                            title: 'Своп ',
+                            title: 'Своп',
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);

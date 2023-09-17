@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/cubit/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
@@ -32,6 +33,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         isBack: true,
         text: 'Уведомления',
         context: context,
+        onTap: () {
+          context.pop();
+        },
       ),
       body: Container(
         padding: const EdgeInsets.all(16).copyWith(bottom: 0),

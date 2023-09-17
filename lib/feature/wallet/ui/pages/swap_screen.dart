@@ -29,6 +29,9 @@ class _SwopScreenState extends State<SwopScreen> {
         context: context,
         text: "Своп",
         isBack: true,
+        onTap: () {
+          context.pop();
+        },
       ),
       body: Container(
         color: AppColors.purpleBcg,
@@ -68,7 +71,7 @@ class _SwopScreenState extends State<SwopScreen> {
               alignment: Alignment.center,
               child: ButtonSwop(
                 onTap: () {
-                  context.push(RouteNames.walletChooseCoin);
+                  context.push('${RouteNames.walletChooseCoin}/null');
                 },
               ),
             ),

@@ -20,7 +20,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/crypto_wallet_screen.da
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/swop_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
 
@@ -37,10 +37,6 @@ class CustomGoRoutes{
       GoRoute(
         path: RouteNames.root,
         builder: (context, state) => const MyHomePage(),
-      ),
-      GoRoute(
-        path: RouteNames.walletChooseCoin,
-        builder: (context, state) => const ChooseCoinScreen(),
       ),
       GoRoute(
         path: RouteNames.auth,
@@ -94,6 +90,10 @@ class CustomGoRoutes{
       GoRoute(
           path: RouteNames.walletReplenish,
           builder: (context, state) => const ReplenishScreen()),
+      GoRoute(
+        path: '${RouteNames.walletChooseCoin}/:screen',
+        builder: (context, state) => ChooseCoinScreen(path: state.pathParameters['screen'] ?? '',),
+      ),
       GoRoute(
           path: RouteNames.walletBuyCurrency,
           builder: (context, state) => const BuyCurrencyScreen()),

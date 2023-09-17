@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/crypto_wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -27,6 +28,9 @@ class _ReplenishScreenState extends State<ReplenishScreen> {
         context: context,
         text: 'Получить %Валюты%',
         isBack: true,
+        onTap: () {
+          context.pop();
+        },
       ),
       body: Container(
         color: AppColors.purpleBcg,

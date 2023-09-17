@@ -4,9 +4,7 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class ChooseCoinCard extends StatelessWidget {
   final String name;
-
   final String coinPath;
-
   final Function onTap;
 
   const ChooseCoinCard(
