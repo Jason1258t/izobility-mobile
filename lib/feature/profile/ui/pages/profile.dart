@@ -94,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       ProfileActionContainer(
                         onTap: () {
-                          // for you
+                          context.push(RouteNames.cards);
                         },
                       ),
                       ProfileActionContainer(
