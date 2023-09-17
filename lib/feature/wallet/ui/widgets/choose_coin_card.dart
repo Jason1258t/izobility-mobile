@@ -7,39 +7,50 @@ class ChooseCoinCard extends StatelessWidget {
 
   final String coinPath;
 
-  const ChooseCoinCard({super.key, required this.name, required this.coinPath});
+  final Function onTap;
+
+  const ChooseCoinCard(
+      {super.key,
+      required this.name,
+      required this.coinPath,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16)
-      ),
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                shape: BoxShape.circle
+    return Material(
+      borderRadius: BorderRadius.circular(16),
+      color: Colors.white,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: () {
+          onTap();
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                  padding: const EdgeInsets.all(8),
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                      color: Colors.black, shape: BoxShape.circle),
+                  child: SvgPicture.asset(coinPath)),
+              const SizedBox(
+                width: 12,
               ),
-              child: SvgPicture.asset(coinPath)),
-          const SizedBox(width: 12,),
-          Text(
-            name,
-            style: AppFonts.font16w400.copyWith(color: Colors.black),
+              Text(
+                name,
+                style: AppFonts.font16w400.copyWith(color: Colors.black),
+              ),
+              Spacer(),
+              Text(
+                "0",
+                style: AppFonts.font18w700.copyWith(color: Colors.black),
+              )
+            ],
           ),
-          Spacer(),
-          IconButton(
-              onPressed: () {
-                Navigator.pop(context); // TODO REFACTOR THIS IMMIDEATELY
-              },
-              icon: const Icon(Icons.add, color: Colors.black, size: 20,))
-        ],
+        ),
       ),
     );
   }
