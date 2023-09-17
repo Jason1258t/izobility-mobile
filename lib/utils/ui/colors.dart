@@ -45,5 +45,5 @@ class AppColors {
   static const grey700 = Color(0xFF333333);
   static const backgroundGrey = Color(0xffeeeeee);
   static const purple600 = Color(0xFF7630F7);
-
+  static const purple200 = Color(0xFFDAD4FF);
 }

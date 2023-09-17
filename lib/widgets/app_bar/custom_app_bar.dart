@@ -11,6 +11,7 @@ class CustomAppBar extends AppBar {
           surfaceTintColor: Colors.transparent,
           titleSpacing: 12,
           backgroundColor: AppColors.backgroundContent,
+          centerTitle: true,
           leading: isBack
               ? InkWell(
                   onTap: () {

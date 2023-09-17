@@ -47,22 +47,24 @@ class StoryCubit extends Cubit<StoryState> {
     paused = !paused;
   }
 
-  void setController(AnimationController newController) {
-    controller = newController;
-    controller!.repeat();
-    controller!.addListener(() {
-      log(controller!.status.toString());
-      if (controller!.value > 0.99) {
-        changeStory();
-      }
-    });
+  void controllerListener() {
+    log(controller!.status.toString());
+    if (controller!.value > 0.99) {
+      changeStory();
+    }
   }
 
-  void changeStory() {
-    currentStoryIndex++;
+  void initController(AnimationController newController) {
+    controller = newController;
+    changeStory(index: 0);
+  }
+
+  void changeStory({int? index}) {
+    currentStoryIndex = index ?? currentStoryIndex + 1;
     if (currentStoryIndex >= storiesCount) {
       controller!.stop();
       currentStoryIndex = 0;
+      emit(EndOfStories());
     } else {
       controller!.value = 0;
       controller!.duration = storiesList[currentStoryIndex].duration;
@@ -73,9 +75,7 @@ class StoryCubit extends Cubit<StoryState> {
   }
 
   void dispose() {
-    controller!.stop();
-    controller!.value = 0;
-    controller!.dispose();
+    controller = null;
     currentStoryIndex = 0;
     emit(ChangeStory());
   }
