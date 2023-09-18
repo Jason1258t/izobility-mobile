@@ -25,7 +25,7 @@ class GamesDetialsStatsCard extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Text(
-          "${description}",
+          description,
           style: AppFonts.font12w400.copyWith(color: Colors.black),
           textAlign: TextAlign.center,
         ),

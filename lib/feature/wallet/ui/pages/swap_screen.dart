@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';

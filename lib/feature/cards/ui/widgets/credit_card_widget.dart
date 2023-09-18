@@ -12,7 +12,6 @@ class CreditCardWidget extends StatelessWidget {
 
     return Container(
       width: sizeof.width - 40,
-      height: 170,
       decoration: BoxDecoration(
         color: AppColors.primary,
         borderRadius: BorderRadius.circular(16),
@@ -27,12 +26,14 @@ class CreditCardWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '3 753 ₽',
-                    style: AppFonts.font24w700.copyWith(color: Colors.white),
+                  FittedBox(
+                    child: Text(
+                      '3 753 ₽',
+                      style: AppFonts.font24w700.copyWith(color: Colors.white),
+                    ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 8,
                   ),
                   Row(
                     children: [

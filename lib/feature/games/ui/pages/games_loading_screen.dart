@@ -5,7 +5,6 @@ import 'package:izobility_mobile/feature/games/data/games_repository.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class GamesLoadingScreen extends StatefulWidget {
   const GamesLoadingScreen({super.key});
@@ -55,7 +54,7 @@ class _GamesLoadingScreenState extends State<GamesLoadingScreen> {
             const SizedBox(
               height: 32,
             ),
-            CircularProgressIndicator.adaptive()
+            const CircularProgressIndicator.adaptive()
           ],
         )),
       ),

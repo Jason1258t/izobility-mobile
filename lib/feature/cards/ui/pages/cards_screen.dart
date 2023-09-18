@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/card_transaction_widget.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/credit_card_widget.dart';
-import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -39,20 +38,21 @@ class _CardsScreenState extends State<CardsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 170,
+            Container(
+              height: sizeOf.width * 0.45,
+              constraints: const BoxConstraints(minHeight: 170),
               child: PageView.builder(
                   itemCount: 3,
                   controller: pageController,
                   pageSnapping: true,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(6.0),
+                    return const Padding(
+                      padding: EdgeInsets.all(6.0),
                       child: CreditCardWidget(),
                     );
                   }),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
@@ -93,7 +93,7 @@ class _CardsScreenState extends State<CardsScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 18,
                   ),
                   Text(

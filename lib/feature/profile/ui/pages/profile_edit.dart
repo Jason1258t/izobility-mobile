@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
-import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
@@ -33,32 +32,32 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             children: [
               Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ProfileCard()),
-              ProfileAspect(
+                  child: const ProfileCard()),
+              const ProfileAspect(
                 label: "Имя",
                 text: "Сосунок",
               ),
-              ProfileAspect(
+              const ProfileAspect(
                 label: "Ник",
                 text: "anus132",
               ),
-              ProfileAspect(
+              const ProfileAspect(
                 label: "Фамилия",
                 text: "Нагиботоров",
               ),
-              ProfileAspect(
+              const ProfileAspect(
                 label: "Пол",
                 text: "ламинат жесткий",
               ),
-              ProfileAspect(
+              const ProfileAspect(
                 label: "Дата рождения",
                 text: "19.12.2005",
               ),
-              ProfileAspect(
+              const ProfileAspect(
                 label: "Телефон",
                 text: "8 800 555 35 35",
               ),
-              ProfileAspect(
+              const ProfileAspect(
                 label: "Почта",
                 text: "fuckmy@ass.ru",
               )

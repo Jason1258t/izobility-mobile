@@ -1,13 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
-import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
-import 'package:izobility_mobile/models/market_preview_item.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
 import 'package:izobility_mobile/widgets/containers/utility_container.dart';
@@ -29,6 +25,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
         backgroundColor: AppColors.purpleBcg,
         appBar: AppBar(
+          surfaceTintColor: Colors.transparent,
           title: Row(
             children: [
               SvgPicture.asset(

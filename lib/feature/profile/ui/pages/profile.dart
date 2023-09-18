@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -52,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ProfileCard(),
+                          const ProfileCard(),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Stack(

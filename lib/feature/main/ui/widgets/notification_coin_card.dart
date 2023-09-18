@@ -43,24 +43,22 @@ class NotificationCoinCard extends StatelessWidget {
           const SizedBox(
             height: 3,
           ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  '${data.count}',
-                  style: AppFonts.font20w700
-                      .copyWith(color: AppColors.primaryPressedBackground),
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                SvgPicture.asset(
-                  data.coinImagePath,
-                  width: 24.5,
-                )
-              ],
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '${data.count}',
+                style: AppFonts.font20w700
+                    .copyWith(color: AppColors.primaryPressedBackground),
+              ),
+              const SizedBox(
+                width: 4,
+              ),
+              SvgPicture.asset(
+                data.coinImagePath,
+                width: 24.5,
+              )
+            ],
           )
         ],
       ),

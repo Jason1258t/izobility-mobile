@@ -68,7 +68,7 @@ class ValidToken extends StatelessWidget {
                           height: 3,
                         ),
                         Row(children: [
-                          Text('${value}\$',
+                          Text('$value\$',
                               style: AppFonts.font14w400.copyWith(
                                   color: AppColors.disabledTextButton)),
                           const SizedBox(
@@ -92,7 +92,7 @@ class ValidToken extends StatelessWidget {
                     const SizedBox(
                       height: 3,
                     ),
-                    Text('$usdValue',
+                    Text(usdValue,
                         style: AppFonts.font12w400
                             .copyWith(color: AppColors.disabledTextButton)),
                   ],

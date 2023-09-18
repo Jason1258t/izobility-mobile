@@ -66,7 +66,6 @@ class _StoryScreenState extends State<StoryScreen>
             child: SafeArea(
               child: BlocBuilder<StoryCubit, StoryState>(
                 builder: (context, state) {
-                  int i = 0;
                   return Container(
                     width: size.width,
                     height: size.height,

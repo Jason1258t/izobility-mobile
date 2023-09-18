@@ -17,7 +17,7 @@ class GamesScreenshotCardState extends State<GamesScreenshotCard> {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.sizeOf(context).width * 0.4,
-        constraints: BoxConstraints(maxWidth: 144),
+        constraints: const BoxConstraints(maxWidth: 144),
         height: double.infinity,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
         child: Material(

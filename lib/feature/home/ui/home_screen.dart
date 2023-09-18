@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/navigator_bar/custom_main_nav_bar.dart';

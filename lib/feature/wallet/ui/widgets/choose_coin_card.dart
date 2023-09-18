@@ -43,7 +43,7 @@ class ChooseCoinCard extends StatelessWidget {
                 name,
                 style: AppFonts.font16w400.copyWith(color: Colors.black),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 amount,
                 style: AppFonts.font18w700.copyWith(color: Colors.black),

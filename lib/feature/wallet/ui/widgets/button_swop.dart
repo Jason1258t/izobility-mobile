@@ -23,7 +23,7 @@ class ButtonSwop extends StatelessWidget {
         child: Container(
           width: 56,
           height: 56,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
           ),

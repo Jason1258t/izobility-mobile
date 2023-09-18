@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
-import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -18,7 +17,7 @@ class GamesScreenshotsGallery extends StatefulWidget {
 }
 
 class _GamesScreenshotsGalleryState extends State<GamesScreenshotsGallery> {
-  late final _pageController;
+  late PageController _pageController;
 
   @override
   void initState() {
@@ -39,7 +38,7 @@ class _GamesScreenshotsGalleryState extends State<GamesScreenshotsGallery> {
           },
           text: "Фоточки"),
       body: PhotoViewGallery.builder(
-          backgroundDecoration: BoxDecoration(color: Colors.black),
+          backgroundDecoration: const BoxDecoration(color: Colors.black),
           pageController: _pageController,
           itemCount: game.screenshotList.length,
           builder: (context, index) => PhotoViewGalleryPageOptions(

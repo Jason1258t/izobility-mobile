@@ -13,8 +13,6 @@ import '../../../routes/route_names.dart';
 import '../../../utils/logic/validators.dart';
 import '../../../widgets/button/custom_button.dart';
 import '../../../widgets/text_field/custom_text_field.dart';
-import '../bloc/auth/auth_cubit.dart';
-import '../data/auth_repository.dart';
 
 class PasswordRecoveryEmailScreen extends StatefulWidget {
   const PasswordRecoveryEmailScreen({super.key});

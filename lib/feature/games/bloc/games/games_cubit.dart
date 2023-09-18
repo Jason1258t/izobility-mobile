@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
-import 'package:meta/meta.dart';
 
 part 'games_state.dart';
 
@@ -11,7 +11,7 @@ class GamesCubit extends Cubit<GamesState> {
 
   void loadGameDetails(int gameId) async {
     emit(GamesWaitingState());
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
 
     emit(GamesLoadedSuccessState());
   }

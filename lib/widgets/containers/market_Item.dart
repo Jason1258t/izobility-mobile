@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/widgets/containers/purchase_condition.dart';
 
@@ -74,7 +73,7 @@ class MarketItem extends StatelessWidget {
                     children: [
                       if (isNew) ...[
                         Container(
-                          margin: EdgeInsets.all(6),
+                          margin: const EdgeInsets.all(6),
                           width: 64,
                           height: 17,
                           alignment: Alignment.center,

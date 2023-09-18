@@ -171,7 +171,7 @@ class CustomGoRoutes {
             path: RouteNames.basket,
             pageBuilder: (context, state) => CustomTransitionPage<void>(
               key: state.pageKey,
-              child: const GamesScreen(),
+              child: const Text('basket'),
               transitionsBuilder: (BuildContext context,
                   Animation<double> animation,
                   Animation<double> secondaryAnimation,

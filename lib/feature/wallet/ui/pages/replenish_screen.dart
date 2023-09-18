@@ -70,7 +70,7 @@ class _ReplenishScreenState extends State<ReplenishScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  Container(
+                  SizedBox(
                     width: sizeOf.width * 0.5,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,7 +79,7 @@ class _ReplenishScreenState extends State<ReplenishScreen> {
                           title: 'Копировать',
                           icon: 'assets/icons/copy.svg',
                           onTap: () {
-                            Clipboard.setData(new ClipboardData(
+                            Clipboard.setData(const ClipboardData(
                                 text:
                                     '0xe92d1a43df510f82c66382592a047d288f85226f'));
                             ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.snackBar);
