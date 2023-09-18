@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -19,6 +20,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
   final _cvvController = TextEditingController();
 
   final _dateController = TextEditingController();
+  String? cvvErrorText;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,9 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
         body: Container(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             CustomTextField(
               backgroundColor: Colors.white,
               hintText: "Номер карты",
@@ -54,7 +58,9 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
               height: 16,
             ),
             Row(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomTextField(
                   backgroundColor: Colors.white,

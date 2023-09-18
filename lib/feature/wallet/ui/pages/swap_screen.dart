@@ -19,91 +19,102 @@ class SwapScreen extends StatefulWidget {
 
 class _SwapScreenState extends State<SwapScreen> {
   TextEditingController _enterCoinController = TextEditingController();
+  TextEditingController _getCoinController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
-    return HomeScaffold(
-      appBar: CustomAppBar(
-        context: context,
-        text: "Своп",
-        isBack: true,
-        onTap: () {
-          context.pop();
-        },
-      ),
-      body: Container(
-        color: AppColors.purpleBcg,
-        padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'Вы отправите',
-              style: AppFonts.font20w700.copyWith(color: Colors.black),
-            ),
-            SizedBox(
-              height: 56,
-              child: Row(
-                children: [
-                  Flexible(
-                      child: CustomTextField(
-                          backgroundColor: Colors.white,
-                          hintText: "Кол-во",
-                          controller: _enterCoinController,
-                          width: double.maxFinite)),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  ButtonChooseCoin(
-                    width: size.width * 0.3555,
-                    coinName: 'SEX',
-                    imagePath: 'assets/icons/coin.svg',
-                    onTap: () {
-                      context.push('${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
-                    },
-                  ),
-                ],
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: HomeScaffold(
+        appBar: CustomAppBar(
+          context: context,
+          text: "Своп",
+          isBack: true,
+          onTap: () {
+            context.pop();
+          },
+        ),
+        body: Container(
+          color: AppColors.purpleBcg,
+          padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'Вы отправите',
+                style: AppFonts.font20w700.copyWith(color: Colors.black),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 16),
-              alignment: Alignment.center,
-              child: ButtonSwop(
-                onTap: () {},
+              SizedBox(
+                height: 56,
+                child: Row(
+                  children: [
+                    Flexible(
+                        child: CustomTextField(
+                            keyboardType: TextInputType.number,
+                            backgroundColor: Colors.white,
+                            hintText: "Кол-во",
+                            controller: _enterCoinController,
+                            width: double.maxFinite)),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    ButtonChooseCoin(
+                      width: size.width * 0.3555,
+                      coinName: 'SEX',
+                      imagePath: 'assets/icons/coin.svg',
+                      onTap: () {
+                        context.push(
+                            '${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Text(
-              'Вы получите',
-              style: AppFonts.font20w700.copyWith(color: Colors.black),
-            ),
-            SizedBox(
-              height: 56,
-              child: Row(
-                children: [
-                  Flexible(
-                      child: CustomTextField(
-                          backgroundColor: Colors.white,
-                          hintText: "Кол-во",
-                          controller: _enterCoinController,
-                          width: double.maxFinite)),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  ButtonChooseCoin(
-                    width: size.width * 0.3555,
-                    coinName: 'WWWWWWWWW',
-                    imagePath: 'assets/icons/coin.svg',
-                    onTap: () {
-                      context.push('${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
-                    },
-                  ),
-                ],
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 16),
+                alignment: Alignment.center,
+                child: ButtonSwop(
+                  onTap: () {},
+                ),
               ),
-            )
-          ],
+              Text(
+                'Вы получите',
+                style: AppFonts.font20w700.copyWith(color: Colors.black),
+              ),
+              SizedBox(
+                height: 56,
+                child: Row(
+                  children: [
+                    Flexible(
+                        child: CustomTextField(
+                            keyboardType: TextInputType.number,
+                            backgroundColor: Colors.white,
+                            hintText: "Кол-во",
+                            controller: _getCoinController,
+                            width: double.maxFinite)),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    ButtonChooseCoin(
+                      width: size.width * 0.3555,
+                      coinName: 'BTC',
+                      imagePath: 'assets/icons/coin.svg',
+                      onTap: () {
+                        context.push(
+                            '${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
+                      },
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
