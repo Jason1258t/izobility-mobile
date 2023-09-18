@@ -160,8 +160,9 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
         SliverToBoxAdapter(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: SizedBox(
-              height: 256,
+            child: Container(
+              height: size.height * 0.32,
+              constraints: BoxConstraints(minHeight: 150, maxHeight: 250),
               child: Row(
                 children: [
                   ...List.generate(game.screenshotList.length * 2, (index) {
