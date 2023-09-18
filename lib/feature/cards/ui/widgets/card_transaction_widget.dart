@@ -2,27 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
-class WalletTransactionContainer extends StatelessWidget {
+class CardTransactionContainer extends StatelessWidget {
   final String title;
   final String prise;
-  final String address;
-  final bool isAddition;
+  final String secondaryTitle;
+  final String usdValue;
 
   final VoidCallback onTap;
 
-  const WalletTransactionContainer({
-    super.key,
-    required this.title,
-    required this.prise,
-    required this.onTap,
-    required this.address,
-    required this.isAddition,
-  });
+  const CardTransactionContainer(
+      {super.key,
+      required this.title,
+      required this.prise,
+      required this.secondaryTitle,
+      required this.onTap,
+      required this.usdValue});
 
   @override
   Widget build(BuildContext context) {
-    final sizeOf = MediaQuery.sizeOf(context);
-
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: InkWell(
@@ -30,23 +27,21 @@ class WalletTransactionContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Ink(
           width: double.infinity,
-          height: 64,
           decoration: ShapeDecoration(
-              color: AppColors.textContrast,
+              color: AppColors.purple100,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               )),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 17),
+          child: Container(
+            padding: EdgeInsets.all(12),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: 34,
-                      height: 34,
+                      width: 40,
+                      height: 40,
                       padding: const EdgeInsets.all(4),
                       decoration: ShapeDecoration(
                         color: AppColors.backgroundSecondary,
@@ -70,22 +65,28 @@ class WalletTransactionContainer extends StatelessWidget {
                         const SizedBox(
                           height: 3,
                         ),
-                        SizedBox(
-                          width: sizeOf.width - 230,
-                          child: Text(
-                              'На: ${address} asdfasdfasdasdfasdfasdffasdf',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppFonts.font14w400.copyWith(
-                                  color: AppColors.disabledTextButton)),
-                        ),
+                        Text(secondaryTitle,
+                            style: AppFonts.font14w400
+                                .copyWith(color: AppColors.disabledTextButton))
                       ],
                     ),
                   ],
                 ),
-                Text(  '${prise}',
-                    style: AppFonts.font16w500
-                        .copyWith(color: !isAddition ? AppColors.negative : AppColors.positive)),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(prise,
+                        style: AppFonts.font16w400
+                            .copyWith(color: AppColors.textPrimary)),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    Text('$usdValue',
+                        style: AppFonts.font12w400
+                            .copyWith(color: AppColors.disabledTextButton)),
+                  ],
+                ),
               ],
             ),
           ),
