@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -44,6 +45,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             CustomTextField(
+              mask: AppMask.maskCardFormatter,
               backgroundColor: Colors.white,
               hintText: "Номер карты",
               controller: _cardNumbeerController,
@@ -57,6 +59,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomTextField(
+                  mask: AppMask.maskDateFormatter,
                   backgroundColor: Colors.white,
                   hintText: "Срок действия",
                   controller: _cvvController,
@@ -64,6 +67,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                   keyboardType: TextInputType.number,
                 ),
                 CustomTextField(
+                  mask: AppMask.maskCvvFormatter,
                   backgroundColor: Colors.white,
                   hintText: "CVV / CVC",
                   controller: _dateController,
