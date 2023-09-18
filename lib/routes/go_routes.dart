@@ -112,6 +112,12 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.cards,
           builder: (context, state) => const CardsScreen()),
+      GoRoute(
+        path: '${RouteNames.games}/:game_id',
+        builder: (context, state) => GamesDetailsScreen(
+          gameId: state.pathParameters['game_id'] ?? '0',
+        ),
+      ),
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         builder: (context, state, child) {

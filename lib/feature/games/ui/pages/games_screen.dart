@@ -44,9 +44,10 @@ class _GamesScreenState extends State<GamesScreen> {
                         ),
                     itemBuilder: ((context, index) => GamesCard(
                           game: GameModel(
+                              gameId: 0,
                               grade: 4.5,
                               name: "Забивной танец со шпагой 3дэ",
-                              imagePath: 'asdasd'),
+                              imagePath: 'https://memepedia.ru/wp-content/uploads/2021/09/abobus-1.jpg'),
                         ))),
               )
             ],

@@ -10,13 +10,16 @@ class CustomButton extends StatefulWidget {
 
   final bool isActive;
 
+  final double radius;
+
   const CustomButton(
       {super.key,
       required this.text,
       required this.onTap,
       required this.width,
       this.isActive = true,
-      this.height = 55});
+      this.height = 55,
+      this.radius = 12});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -33,7 +36,7 @@ class _CustomButtonState extends State<CustomButton> {
           side: BorderSide(
               width: 0.50,
               color: widget.isActive ? AppColors.primary : AppColors.disable),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(widget.radius),
         )),
         child: TextButton(
             onPressed: widget.isActive ? widget.onTap : () {},
@@ -42,7 +45,7 @@ class _CustomButtonState extends State<CustomButton> {
                     ? AppColors.primary
                     : AppColors.disableButton,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12))),
+                    borderRadius: BorderRadius.circular(widget.radius))),
             child: Text(widget.text, style: AppFonts.font16w600)));
   }
 }

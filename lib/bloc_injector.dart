@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
+import 'package:izobility_mobile/feature/games/bloc/games/games_cubit.dart';
+import 'package:izobility_mobile/feature/games/data/games_repository.dart';
 import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
@@ -55,6 +57,11 @@ class MyBlocProviders extends StatelessWidget {
             RepositoryProvider.of<NotificationsRepository>(context)),
         lazy: false,
       ),
+      BlocProvider(
+        create: (_) =>
+            GamesCubit(RepositoryProvider.of<GamesRepository>(context)),
+        lazy: false,
+      ),
     ], child: const MyApp());
   }
 }
@@ -78,6 +85,9 @@ class MyRepositoryProviders extends StatelessWidget {
       ),
       RepositoryProvider(
         create: (_) => MainScreenRepository(),
+      ),
+      RepositoryProvider(
+        create: (_) => GamesRepository(),
       ),
       RepositoryProvider(
           create: (context) =>

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/models/game.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
@@ -27,7 +28,12 @@ class GamesCardState extends State<GamesCard> {
             width: 64,
             height: 64,
             decoration: BoxDecoration(
-                color: Colors.green, borderRadius: BorderRadius.circular(8)),
+                color: Colors.green, borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: NetworkImage(widget.game.imagePath),
+                  fit: BoxFit.cover
+                )
+                ),
           ),
           const SizedBox(
             width: 8,
@@ -70,7 +76,7 @@ class GamesCardState extends State<GamesCard> {
                 borderRadius: BorderRadius.circular(8),
                 child: InkWell(
                     onTap: () {
-                      // TODO redirect to games details screen
+                      context.push('${RouteNames.games}/${widget.game.gameId}');
                     },
                     borderRadius: BorderRadius.circular(8),
                     child: Padding(
