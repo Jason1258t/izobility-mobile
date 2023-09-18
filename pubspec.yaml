@@ -32,6 +32,7 @@ dependencies:
   sliver_tools: ^0.2.12
 
   qr_flutter: ^4.1.0
+  photo_view: ^0.14.0
 
 dev_dependencies:
   flutter_test:
