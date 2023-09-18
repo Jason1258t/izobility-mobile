@@ -122,6 +122,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
                     onTap: () {},
                     text: "Скачать",
                     radius: 100,
+                    height: 40,
                   ),
                 ),
               ),
