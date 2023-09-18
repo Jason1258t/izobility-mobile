@@ -138,7 +138,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate(list
-                        .map((item) => TransactionContainer(
+                        .map((item) => WalletTransactionContainer(
                               title: 'Перевод',
                               onTap: () {},
                               prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
