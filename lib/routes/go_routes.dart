@@ -9,6 +9,8 @@ import 'package:izobility_mobile/feature/auth/ui/password_recovery_email.dart';
 import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/cards/ui/pages/cards_screen.dart';
 import 'package:izobility_mobile/feature/cards/ui/pages/cards_add_screen.dart';
+import 'package:izobility_mobile/feature/games/ui/pages/games_details_screen.dart';
+import 'package:izobility_mobile/feature/games/ui/pages/games_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/main_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
@@ -82,7 +84,10 @@ class CustomGoRoutes {
           builder: (context, state) => const NotificationsScreen()),
       GoRoute(
           path: '${RouteNames.story}/:story_id',
-          builder: (context, state) => StoryScreen(initialStoryIndex: int.parse(state.pathParameters['story_id'] ?? 0 as String),)),
+          builder: (context, state) => StoryScreen(
+                initialStoryIndex:
+                    int.parse(state.pathParameters['story_id'] ?? 0 as String),
+              )),
       GoRoute(
           path: RouteNames.walletCurrency,
           builder: (context, state) => const CurrencyWalletScreen()),
@@ -140,10 +145,10 @@ class CustomGoRoutes {
             ),
           ),
           GoRoute(
-            path: RouteNames.gameMarket,
+            path: RouteNames.games,
             pageBuilder: (context, state) => CustomTransitionPage<void>(
               key: state.pageKey,
-              child: const Text('GameMarket'),
+              child: const GamesScreen(),
               transitionsBuilder: (BuildContext context,
                   Animation<double> animation,
                   Animation<double> secondaryAnimation,
@@ -156,7 +161,7 @@ class CustomGoRoutes {
             path: RouteNames.basket,
             pageBuilder: (context, state) => CustomTransitionPage<void>(
               key: state.pageKey,
-              child: const Text('Basket'),
+              child: const GamesScreen(),
               transitionsBuilder: (BuildContext context,
                   Animation<double> animation,
                   Animation<double> secondaryAnimation,

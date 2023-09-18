@@ -61,7 +61,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
             onTap: () {
               homeRepository.onSelectTab(2);
               
-              router.go(RouteNames.gameMarket);
+              router.go(RouteNames.games);
             },
             name: 'Игротека',
           ),
