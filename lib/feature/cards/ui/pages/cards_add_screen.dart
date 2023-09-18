@@ -16,10 +16,10 @@ class CardsAddScreen extends StatefulWidget {
 }
 
 class _CardsAddScreenState extends State<CardsAddScreen> {
-  final _cardNumbeerController = TextEditingController();
+  final _cardNumberController = TextEditingController();
   final _cvvController = TextEditingController();
 
-  final _dateController = TextEditingController();
+  final _dateController = TextEditingController(
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +43,14 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
         body: Container(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             CustomTextField(
               mask: AppMask.maskCardFormatter,
               backgroundColor: Colors.white,
               hintText: "Номер карты",
-              controller: _cardNumbeerController,
+              controller: _cardNumberController,
               width: double.infinity,
               keyboardType: TextInputType.number,
             ),
@@ -56,7 +58,9 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
               height: 16,
             ),
             Row(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomTextField(
                   mask: AppMask.maskDateFormatter,
