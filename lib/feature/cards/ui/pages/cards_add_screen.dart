@@ -19,7 +19,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
   final _cardNumberController = TextEditingController();
   final _cvvController = TextEditingController();
 
-  final _dateController = TextEditingController(
+  final _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
