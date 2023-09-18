@@ -49,4 +49,6 @@ abstract class RouteNames {
   static const String cardsAdd = '/cards/add';
 
   static const String games = '/games';
+  static const String gamesDetails = '/games/:game_id';
+  static const String gamesDetailsLoading = '/games/:game_id/loading';
 }

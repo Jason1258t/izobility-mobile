@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/games/bloc/games/games_cubit.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_details_stats_card.dart';
@@ -145,7 +146,9 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CustomButton(
               width: double.infinity,
-              onTap: () {},
+              onTap: () {
+                context.push(RouteNames.gamesDetailsLoading);
+              },
               text: "Скачать",
               radius: 100,
               height: 40,

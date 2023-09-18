@@ -10,6 +10,7 @@ import 'package:izobility_mobile/feature/auth/ui/verify_recovery_code.dart';
 import 'package:izobility_mobile/feature/cards/ui/pages/cards_screen.dart';
 import 'package:izobility_mobile/feature/cards/ui/pages/cards_add_screen.dart';
 import 'package:izobility_mobile/feature/games/ui/pages/games_details_screen.dart';
+import 'package:izobility_mobile/feature/games/ui/pages/games_loading_screen.dart';
 import 'package:izobility_mobile/feature/games/ui/pages/games_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/main_screen.dart';
@@ -113,11 +114,14 @@ class CustomGoRoutes {
           path: RouteNames.cards,
           builder: (context, state) => const CardsScreen()),
       GoRoute(
-        path: '${RouteNames.games}/:game_id',
+        path: RouteNames.gamesDetails,
         builder: (context, state) => GamesDetailsScreen(
           gameId: state.pathParameters['game_id'] ?? '0',
         ),
       ),
+      GoRoute(
+          path: RouteNames.gamesDetailsLoading,
+          builder: (context, state) => const GamesLoadingScreen()),
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         builder: (context, state, child) {
