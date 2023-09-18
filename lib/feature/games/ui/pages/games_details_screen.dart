@@ -141,6 +141,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
                             (index) {
                           if (index % 2 == 1) {
                             return GamesScreenshotCard(
+                              imageIndex: index ~/ 2,
                               imagePath: game.screenshotList[index ~/ 2],
                             );
                           } else {
