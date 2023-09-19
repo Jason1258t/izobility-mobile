@@ -22,14 +22,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final router = GoRouter.of(context);
+
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
         text: "Профиль",
         isBack: false,
-        onTap: () {
-          context.pop();
-        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -92,12 +91,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       ProfileActionContainer(
                         onTap: () {
-                          context.push(RouteNames.cards);
+                          GoRouter.of(context).go(RouteNames.cards);
                         },
                       ),
                       ProfileActionContainer(
                         onTap: () {
-                          context.push(RouteNames.cardsAdd);
+                          GoRouter.of(context).go(RouteNames.cardsAdd);
                         },
                       ),
                       ProfileActionContainer(

@@ -7,7 +7,7 @@ class CustomAppBar extends AppBar {
       {super.key,
       required context,
       required String text,
-      required Function() onTap,
+      Function()? onTap,
       required bool isBack,
       Color backgroundColor = Colors.white})
       : super(
