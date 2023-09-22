@@ -60,7 +60,6 @@ class _StoryScreenState extends State<StoryScreen>
       },
       child: Stack(
         children: [
-
           GestureDetector(
             onTap: bloc.changeStory,
             child: SafeArea(
