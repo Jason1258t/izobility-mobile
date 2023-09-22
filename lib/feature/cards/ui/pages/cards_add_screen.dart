@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
+import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -15,7 +17,7 @@ class CardsAddScreen extends StatefulWidget {
 }
 
 class _CardsAddScreenState extends State<CardsAddScreen> {
-  final _cardNumbeerController = TextEditingController();
+  final _cardNumberController = TextEditingController();
   final _cvvController = TextEditingController();
 
   final _dateController = TextEditingController();
@@ -35,18 +37,21 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
           context: context,
           isBack: true,
           onTap: () {
-            context.pop();
+            GoRouter.of(context).go(RouteNames.profile);
           },
           text: "Привязать новую кару",
         ),
         body: Container(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             CustomTextField(
+              mask: AppMask.maskCardFormatter,
               backgroundColor: Colors.white,
               hintText: "Номер карты",
-              controller: _cardNumbeerController,
+              controller: _cardNumberController,
               width: double.infinity,
               keyboardType: TextInputType.number,
             ),
@@ -54,9 +59,12 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
               height: 16,
             ),
             Row(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomTextField(
+                  mask: AppMask.maskDateFormatter,
                   backgroundColor: Colors.white,
                   hintText: "Срок действия",
                   controller: _cvvController,
@@ -64,6 +72,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                   keyboardType: TextInputType.number,
                 ),
                 CustomTextField(
+                  mask: AppMask.maskCvvFormatter,
                   backgroundColor: Colors.white,
                   hintText: "CVV / CVC",
                   controller: _dateController,

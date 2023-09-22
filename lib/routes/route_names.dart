@@ -23,6 +23,7 @@ abstract class RouteNames {
 
   static const String wallet = '/wallet';
   static const String walletCurrency = '/wallet/currency';
+  static const String walletInfoCurrency = '/wallet/currency/info';
   static const String walletSwap = '/wallet/swap';
   static const String walletSendCurrency = '/wallet/send_currency';
   static const String walletReplenish = '/wallet/replenish';

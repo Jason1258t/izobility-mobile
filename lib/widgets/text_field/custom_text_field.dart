@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {super.key,
       this.hintText,
       required this.controller,
+      this.mask,
       required this.width,
       this.keyboardType,
       this.labelText,
@@ -25,6 +27,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     this.hintText,
     required this.controller,
+    this.mask,
     required this.width,
     this.labelText,
     this.onChange,
@@ -44,13 +47,16 @@ class CustomTextField extends StatelessWidget {
               callback: suffixIconCallback!,
               visible: !obscured,
             ),
-            const SizedBox(width: 15,),
+            const SizedBox(
+              width: 15,
+            ),
           ],
         );
 
   CustomTextField.withTwoIcon({
     super.key,
     this.hintText,
+    this.mask,
     required this.controller,
     required this.width,
     required this.suffixIconCallback,
@@ -85,6 +91,7 @@ class CustomTextField extends StatelessWidget {
   CustomTextField.withOneIcon({
     super.key,
     this.hintText,
+    this.mask,
     required this.controller,
     required this.width,
     required this.suffixIconCallback,
@@ -128,6 +135,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final Function(String?)? onChange;
   final Color backgroundColor;
+  final MaskTextInputFormatter? mask;
 
   final Color _negative = AppColors.negative;
 
@@ -136,6 +144,7 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
@@ -146,6 +155,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: TextFormField(
+              inputFormatters: mask == null ? [] : [mask!],
               obscureText: obscured,
               onChanged: onChange,
               style: AppFonts.font16w400.copyWith(color: Colors.black),

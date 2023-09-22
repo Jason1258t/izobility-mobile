@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -8,6 +10,7 @@ class CustomSliverAppBar extends StatelessWidget {
       {super.key,
       required this.height,
       this.color = AppColors.purple100,
+      this.isInfo = false,
       required this.isBack,
       required this.title});
 
@@ -15,6 +18,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final Color color;
   final bool isBack;
   final String title;
+  final bool isInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +54,24 @@ class CustomSliverAppBar extends StatelessWidget {
               Text(title,
                   style: AppFonts.font18w700
                       .copyWith(color: AppColors.textPrimary)),
-              const SizedBox(
-                height: 24,
-                width: 55,
-              )
+              if (isBack) ...[
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: IconButton(
+                      onPressed: () {
+                        context.push(RouteNames.walletInfoCurrency);
+                      },
+                      icon: const Icon(
+                        Icons.info_outline,
+                        size: 24,
+                      )),
+                ),
+              ] else ...[
+                const SizedBox(
+                  height: 24,
+                  width: 55,
+                )
+              ],
             ],
           ),
         ),
