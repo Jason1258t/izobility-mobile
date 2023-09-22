@@ -47,7 +47,8 @@ class StoryCubit extends Cubit<StoryState> {
     }
   }
 
-  void initController(AnimationController newController, {int initialStoryIndex = 0}) {
+  void initController(AnimationController newController,
+      {int initialStoryIndex = 0}) {
     controller = newController;
     changeStory(index: initialStoryIndex);
   }
@@ -64,6 +65,12 @@ class StoryCubit extends Cubit<StoryState> {
       controller!.repeat();
 
       emit(ChangeStory());
+    }
+  }
+
+  void prevStory() {
+    if (currentStoryIndex > 0) {
+      changeStory(index: currentStoryIndex - 1);
     }
   }
 

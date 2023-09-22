@@ -37,7 +37,8 @@ class _StoryScreenState extends State<StoryScreen>
       animationController = AnimationController(
         vsync: this,
       );
-      bloc.initController(animationController, initialStoryIndex: widget.initialStoryIndex);
+      bloc.initController(animationController,
+          initialStoryIndex: widget.initialStoryIndex);
       animationController.addListener(bloc.controllerListener);
     }
 
@@ -60,95 +61,122 @@ class _StoryScreenState extends State<StoryScreen>
       },
       child: Stack(
         children: [
-
-          GestureDetector(
-            onTap: bloc.changeStory,
-            child: SafeArea(
-              child: BlocBuilder<StoryCubit, StoryState>(
-                builder: (context, state) {
-                  return Container(
-                    width: size.width,
-                    height: size.height,
-                    padding: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(bloc
-                                .storiesList[bloc.currentStoryIndex].imageUrl),
-                            fit: BoxFit.cover)),
-                    child: Scaffold(
-                      backgroundColor: Colors.transparent,
-                      body: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: InkWell(
-                              onTap: exit,
-                              child: Ink(
-                                child: SvgPicture.asset(
-                                  'assets/icons/cross_rounded.svg',
-                                  color: Colors.white,
-                                  width: 24,
-                                  height: 24,
-                                ),
+          SafeArea(
+            child: BlocBuilder<StoryCubit, StoryState>(
+              builder: (context, state) {
+                return Container(
+                  width: size.width,
+                  height: size.height,
+                  padding: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(bloc
+                              .storiesList[bloc.currentStoryIndex].imageUrl),
+                          fit: BoxFit.cover)),
+                  child: Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 64),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Espresso is here!',
+                                style: AppFonts.font24w700,
                               ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 64),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Espresso is here!',
-                                  style: AppFonts.font24w700,
-                                ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                'Get ready spro bros - its time to brew the espresso you dream about.',
+                                style: AppFonts.font14w400,
+                              ),
+                              if (bloc.storiesList[bloc.currentStoryIndex]
+                                      .buttonUrl !=
+                                  null) ...[
                                 const SizedBox(
-                                  height: 8,
+                                  height: 16,
                                 ),
-                                Text(
-                                  'Get ready spro bros - its time to brew the espresso you dream about.',
-                                  style: AppFonts.font14w400,
-                                ),
-                                if (bloc.storiesList[bloc.currentStoryIndex]
-                                        .buttonUrl !=
-                                    null) ...[
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  CustomButton(
-                                      text: 'Читать',
-                                      onTap: () {
-                                        openUrl(bloc
-                                            .storiesList[bloc.currentStoryIndex]
-                                            .buttonUrl!);
-                                      },
-                                      width: double.infinity)
-                                ]
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                CustomButton(
+                                    text: 'Читать',
+                                    onTap: () {
+                                      openUrl(bloc
+                                          .storiesList[bloc.currentStoryIndex]
+                                          .buttonUrl!);
+                                    },
+                                    width: double.infinity)
+                              ]
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
           SafeArea(
-            child: BlocBuilder<StoryCubit, StoryState>(builder: (context, state) {
+              child: Row(children: [
+            GestureDetector(
+              onTap: bloc.prevStory,
+              child: Container(
+                color: Colors.transparent,
+                width: size.width / 2,
+                height: size.height,
+              ),
+            ),
+            GestureDetector(
+              onTap: bloc.changeStory,
+              child: Container(
+                color: Colors.transparent,
+                width: size.width / 2,
+                height: size.height,
+              ),
+            ),
+          ])),
+          SafeArea(
+            child:
+                BlocBuilder<StoryCubit, StoryState>(builder: (context, state) {
               int i = 0;
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: bloc.storiesList.map((e) {
-                      i++;
-                      return StoryDurationIndicator(
-                          width: itemSize, duration: e.duration, index: i - 1);
-                    }).toList()),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: bloc.storiesList.map((e) {
+                          i++;
+                          return StoryDurationIndicator(
+                              width: itemSize,
+                              duration: e.duration,
+                              index: i - 1);
+                        }).toList()),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: exit,
+                        child: Ink(
+                          padding: const EdgeInsets.all(8),
+                          child: SvgPicture.asset(
+                            'assets/icons/cross_rounded.svg',
+                            color: Colors.white,
+                            width: 24,
+                            height: 24,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               );
             }),
           ),
