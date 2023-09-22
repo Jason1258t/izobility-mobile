@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/button_social_media_link.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -150,12 +151,46 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                         style: AppFonts.font16w400
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Text(
                         'Криптовалюта и платформа для создания децентрализованных онлайн-сервисов на базе блокчейна, работающих на базе умных контрактов. Реализована как единая децентрализованная виртуальная машина. Концепт был предложен Виталиком Бутериным в конце 2013 года, сеть была запущена 30 июля 2015 года',
-                        style: AppFonts.font14w400
-                            .copyWith(color: Colors.black),
+                        style:
+                            AppFonts.font14w400.copyWith(color: Colors.black),
                       ),
+                    ],
+                  ),
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'Описание',
+                        style: AppFonts.font16w400
+                            .copyWith(color: AppColors.blackGraySecondary),
+                      ),
+                      const SizedBox(height: 8,),
+                      const Wrap( // remove const
+                        direction: Axis.horizontal,
+                        alignment: WrapAlignment.spaceBetween,
+                        runAlignment: WrapAlignment.start,
+                        runSpacing: 10,
+                        children: [
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                          ButtonSocialMediaLink(text: "SEX"),
+                        ],
+                      )
                     ],
                   ),
                 ),
