@@ -41,6 +41,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                 isBack: true,
                 title: 'Usd',
                 color: AppColors.purple200,
+                isInfo: true,
               ),
               SliverPersistentHeader(
                 pinned: true,

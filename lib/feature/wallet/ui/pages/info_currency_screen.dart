@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -13,14 +12,15 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 final list = List.generate(100, (index) => 1);
 
-class CurrencyWalletScreen extends StatefulWidget {
-  const CurrencyWalletScreen({super.key});
+class InfoCurrencyWalletScreen extends StatefulWidget {
+  const InfoCurrencyWalletScreen({super.key});
 
   @override
-  State<CurrencyWalletScreen> createState() => _CurrencyWalletScreenState();
+  State<InfoCurrencyWalletScreen> createState() =>
+      _InfoCurrencyWalletScreenState();
 }
 
-class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
+class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
@@ -57,11 +57,16 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                           radius: 20,
                           backgroundColor: AppColors.primary,
                         ),
-                        Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
+                        Text(
+                            walletRepository.obscured
+                                ? AppStrings.obscuredText
+                                : '123 123\$',
                             style: AppFonts.font36w700
                                 .copyWith(color: AppColors.textPrimary)),
                         Text(
-                          walletRepository.obscured ? AppStrings.obscuredText : '≈ 2,545 \$',
+                          walletRepository.obscured
+                              ? AppStrings.obscuredText
+                              : '≈ 2,545 \$',
                           style: AppFonts.font16w400
                               .copyWith(color: AppColors.blackGraySecondary),
                         ),
@@ -81,7 +86,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
-                      const EdgeInsets.only(left: 16, right: 16, top: 16),
+                          const EdgeInsets.only(left: 16, right: 16, top: 16),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -130,23 +135,31 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                     decoration: const BoxDecoration(
                         color: AppColors.purple200,
                         borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(16))),
+                            BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
                 ),
               ),
               SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate(list
-                        .map((item) => WalletTransactionContainer(
-                      title: 'Перевод',
-                      onTap: () {},
-                      prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
-                      address: 'asdfasdfasdf',
-                      isAddition: true,
-                    ))
-                        .toList()),
-                  )),
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Описание',
+                        style: AppFonts.font16w400
+                            .copyWith(color: AppColors.blackGraySecondary),
+                      ),
+                      const SizedBox(height: 10,),
+                      Text(
+                        'Криптовалюта и платформа для создания децентрализованных онлайн-сервисов на базе блокчейна, работающих на базе умных контрактов. Реализована как единая децентрализованная виртуальная машина. Концепт был предложен Виталиком Бутериным в конце 2013 года, сеть была запущена 30 июля 2015 года',
+                        style: AppFonts.font14w400
+                            .copyWith(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),

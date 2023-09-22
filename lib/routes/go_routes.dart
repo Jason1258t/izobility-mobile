@@ -22,6 +22,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/info_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
@@ -92,6 +93,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.walletCurrency,
           builder: (context, state) => const CurrencyWalletScreen()),
+      GoRoute(
+          path: RouteNames.walletInfoCurrency,
+          builder: (context, state) => const InfoCurrencyWalletScreen()),
       GoRoute(
           path: RouteNames.walletSwap,
           builder: (context, state) => const SwapScreen()),
