@@ -44,7 +44,7 @@ class AuthRepository {
   }
 
   Future login(LoginData data) async {
-    await _auth(Future.delayed(const Duration(seconds: 2)));
+    await apiService.auth.login(email: data.email, password: data.password!);
   }
 
   Future checkLogin() async {

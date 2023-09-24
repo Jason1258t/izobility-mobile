@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
@@ -70,6 +70,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
             ),
             BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
+                print(state);
                 if (state is AuthProcessState) {
                   Dialogs.showModal(
                       context,
@@ -79,8 +80,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                 } else {
                   Dialogs.hide(context);
                   if (state is AuthSuccessState) {
-                    Navigator.popUntil(
-                        context, ModalRoute.withName(RouteNames.root));
+                    context.push(RouteNames.root);
                   }
                 }
               },
@@ -92,6 +92,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                     BlocProvider.of<AuthCubit>(context).loginData!.password =
                         passwordController.text.trim();
                     BlocProvider.of<AuthCubit>(context).login();
+                    BlocProvider.of<AppCubit>(context).emit(AppAuthState());
                   },
                   width: double.infinity),
             ),
