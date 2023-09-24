@@ -11,6 +11,12 @@ class Auth with ApiHandler {
   }
 
   Future<dynamic> registerUser() async {
-    final data = await get("");
+    return await post("/user/registration", queryParameters: {
+      "phone": "",
+      "phone_country": "+7",
+      "email": "dgerasimov2006@gmail.com",
+      "promo": "",
+      "site_id": 0
+    });
   }
 }

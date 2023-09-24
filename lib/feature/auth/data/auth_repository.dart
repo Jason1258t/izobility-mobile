@@ -28,8 +28,8 @@ class AuthRepository {
   }
 
   Future<EmailStateEnum> checkEmail(String email) async {
-    await Future.delayed(
-        const Duration(seconds: 1)); // TODO заменить на нормальную проверку через api
+    apiService.auth.registerUser();
+
     return EmailStateEnum.registered;
   }
 
