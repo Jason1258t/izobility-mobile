@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_square.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
@@ -22,9 +24,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final router = GoRouter.of(context);
-
     return HomeScaffold(
+      backgroundColor: Colors.white,
       appBar: CustomAppBar(
         context: context,
         text: "Профиль",
@@ -36,12 +37,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Container(
               padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-              color: AppColors.backgroundSecondary,
+              color: AppColors.purpleBcg,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
-                      padding: const EdgeInsets.all(12).copyWith(right: 19),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16)),
@@ -49,31 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const ProfileCard(),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/icons/edit.svg',
-                                  color: AppColors.lightGreyIcon,
-                                  width: 24,
-                                  height: 24,
-                                ),
-                                Positioned.fill(
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                      onTap: () {
-                                        context.push(RouteNames.profileEdit);
-                                      },
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                          ProfileCard(),
                         ],
                       )),
                   const SizedBox(
@@ -113,26 +90,63 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const ProfileSwitchCard(
-                  iconPath: 'assets/icons/music.svg',
-                  label: "Бизнес аккаунт",
-                  description: "Какое то описание",
+                const PorfileBlocLabel(
+                  text: 'Аккаунт',
+                ),
+                ProfileActionTile(
+                  onTap: () {
+                    context.push(RouteNames.profileEdit);
+                  },
+                  label: 'Данные аккаунта',
+                  iconPath: 'assets/icons/people.svg',
                 ),
                 const PorfileBlocLabel(
-                  text: 'Приложение',
+                  text: 'Социальные сети Emerald',
                 ),
                 ProfileActionTile(
                   onTap: () {
                     context.push(RouteNames.profileSettings);
                   },
-                  label: 'Настройки',
+                  label: 'TikTok',
                   iconPath: 'assets/icons/settings.svg',
                 ),
                 ProfileActionTile(
                   onTap: () {
                     context.push(RouteNames.profileAbout);
                   },
+                  label: 'Intagram',
+                  iconPath: 'assets/icons/warning_raunded.svg',
+                ),
+                ProfileActionTile(
+                  onTap: () {
+                    context.push(RouteNames.profileAbout);
+                  },
+                  label: 'Telegram',
+                  iconPath: 'assets/icons/warning_raunded.svg',
+                ),
+                const PorfileBlocLabel(
+                  text: 'Общие',
+                ),
+                ProfileActionTile(
+                  onTap: () {
+                    context.push(RouteNames.profileAbout);
+                  },
                   label: 'О приложении',
+                  iconPath: 'assets/icons/warning_raunded.svg',
+                ),
+                ProfileActionTile(
+                  onTap: () {
+                    context.push(RouteNames.profileAbout);
+                  },
+                  label: 'Политика конфиденциальности',
+                  iconPath: 'assets/icons/warning_raunded.svg',
+                ),
+                ProfileActionTile(
+                  onTap: () {
+                    context.read<ProfileCubit>().logout();
+
+                  },
+                  label: 'Выйти',
                   iconPath: 'assets/icons/warning_raunded.svg',
                 ),
               ],
