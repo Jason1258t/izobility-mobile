@@ -62,7 +62,6 @@ class User {
     data['is_active'] = this.isActive;
     data['is_admin'] = this.isAdmin;
     data['is_partner'] = this.isPartner;
-    data['refresh_token'] = this.refreshToken;
     data['created_at'] = this.createdAt;
     data['last_login'] = this.lastLogin;
     data['date_limit'] = this.dateLimit;
