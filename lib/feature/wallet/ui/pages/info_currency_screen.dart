@@ -175,7 +175,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),
                       const SizedBox(height: 8,),
-                      const Wrap( // remove const
+                      const Wrap(
                         direction: Axis.horizontal,
                         alignment: WrapAlignment.spaceBetween,
                         runAlignment: WrapAlignment.start,
