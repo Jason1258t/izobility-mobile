@@ -4,6 +4,7 @@ import 'package:izobility_mobile/models/register_data.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../models/user.dart';
 import '../../../services/locale/preferences_service.dart';
 
 enum AppStateEnum { wait, auth, unAuth }
@@ -23,9 +24,12 @@ class AuthRepository {
       BehaviorSubject.seeded(AppStateEnum.wait);
 
   Future _auth(Future authMethod) async {
-    await authMethod;
-    appState.add(AppStateEnum
-        .auth); // TODO скорее всего переписать: вытаскивать токен и прочая балда
+    final res = await authMethod;
+
+    final UserModel user = UserModel.fromJson(res);
+    await preferences.setUser(user);
+
+    appState.add(AppStateEnum.auth);
   }
 
   Future<EmailStateEnum> checkEmail(String email) async {
@@ -43,14 +47,11 @@ class AuthRepository {
   }
 
   Future login(LoginData data) async {
-    final responseData = await apiService.auth
-        .login(email: data.email, password: data.password!);
-
-    return responseData;
+    _auth(apiService.auth.login(email: data.email, password: data.password!));
   }
 
   Future checkLogin() async {
-    if(await preferences.getUser() != null){
+    if (await preferences.getUser() != null) {
       appState.add(AppStateEnum.auth);
     }
     appState.add(AppStateEnum.unAuth);

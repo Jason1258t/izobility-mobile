@@ -27,7 +27,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 16),
-          child:  Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const ProfileAspect(

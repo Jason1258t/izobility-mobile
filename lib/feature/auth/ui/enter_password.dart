@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -91,8 +93,10 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                     FocusScope.of(context).unfocus();
                     BlocProvider.of<AuthCubit>(context).loginData!.password =
                         passwordController.text.trim();
-                    BlocProvider.of<AuthCubit>(context).login();
-                    BlocProvider.of<AppCubit>(context).emit(AppAuthState());
+                    BlocProvider.of<AuthCubit>(context).login().then((value) {
+                      log('Славик уебан');
+                      context.pop();
+                    });
                   },
                   width: double.infinity),
             ),

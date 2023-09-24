@@ -11,6 +11,7 @@ import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
+import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -66,6 +67,11 @@ class MyBlocProviders extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) =>
+            ProfileCubit(RepositoryProvider.of<UserRepository>(context)),
+        lazy: false,
+      ),
+      BlocProvider(
+        create: (_) =>
             MainCoinCubit(walletRepository: RepositoryProvider.of<WalletRepository>(context)),
         lazy: false,
       ),
@@ -75,8 +81,6 @@ class MyBlocProviders extends StatelessWidget {
 
 class MyRepositoryProviders extends StatelessWidget {
   const MyRepositoryProviders({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
