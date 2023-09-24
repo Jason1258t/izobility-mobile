@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 
@@ -25,8 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void nextLoad() async{
-    await Future.delayed(const Duration(seconds: 5));
-
     await BlocProvider.of<AppCubit>(context).checkTokenExistence();
 
     GoRouter.of(context).go(RouteNames.root);

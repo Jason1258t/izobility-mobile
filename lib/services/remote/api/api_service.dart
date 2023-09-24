@@ -33,6 +33,7 @@ class ApiService {
 
   late final Token token;
   late final Auth auth;
+  late final Wallet wallet;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -40,6 +41,7 @@ class ApiService {
 
   void initialServices() async {
     token = await preferencesService.getToken() ?? Token.zero();
+    wallet = Wallet(dio_: dio, preferences: preferencesService, token: token);
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
   }
 
