@@ -11,7 +11,7 @@ abstract class Validator {
   }
 
   static validatePassword(value) {
-    if (value.length < 6) {
+    if (value.length < 3) {
       return 'Слишком короткий';
     }
 
