@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:izobility_mobile/models/api/token.dart';
 import 'package:izobility_mobile/models/login_data.dart';
 import 'package:izobility_mobile/models/register_data.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';

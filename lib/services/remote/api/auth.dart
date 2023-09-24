@@ -11,13 +11,15 @@ class Auth with ApiHandler {
   }
 
   Future<dynamic> registerUser(String email) async {
-    return await dio.post(ApiMethodsUrl.register, data: {
+    final res =  await dio.post(ApiMethodsUrl.register, data: {
       "phone": "",
       "phone_country": "+7",
       "email": email,
       "promo": "",
       "site_id": 0
     });
+
+    return res;
   }
 
   Future<dynamic> confirmRegistration(
@@ -37,6 +39,8 @@ class Auth with ApiHandler {
       "password": password,
       "site_id": 0
     });
+
+    refreshToken(response.data['jwt']);
 
     return response.data;
   }

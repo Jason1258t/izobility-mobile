@@ -4,4 +4,6 @@ class ApiMethodsUrl {
   static const String confirmRegister = '/user/registration-confirm';
 
   static const String login = '/user/login';
+
+  static const String wallet = '/balance/balance';
 }

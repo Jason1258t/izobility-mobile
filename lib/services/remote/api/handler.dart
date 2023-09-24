@@ -40,18 +40,16 @@ mixin class ApiHandler {
     }
   }
 
-  Future<void> refreshToken() async {
-    final res = await get(ApiEndpoints.refreshEndpoint);
-
-    final token = Token.fromJson(res);
-
+  Future<void> refreshToken(String jwt) async {
+    Token token = Token(accessToken: jwt, refreshToken: null);
+    
     preferencesService.saveToken(token);
 
     currentToken.accessToken = token.accessToken;
     currentToken.refreshToken = token.refreshToken;
-    // currentToken.accessTokenExpired = token.accessTokenExpired;
-    // currentToken.refreshTokenExpired = token.refreshTokenExpired;
 
-    dio.options.headers = {};
+    dio.options.headers = {
+      'bearerAuth': currentToken.accessToken
+    };
   }
 }

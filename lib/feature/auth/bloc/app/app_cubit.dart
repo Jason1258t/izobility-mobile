@@ -33,4 +33,13 @@ class AppCubit extends Cubit<AppState> {
     if (pin == savedPin) emit(AppAuthState());
     return (pin == savedPin);
   }
+
+  Future<void> checkTokenExistence() async {
+    if(await authRepository.preferences.getUser() != null){
+      emit(AppAuthState());
+    }
+    else{
+      emit(AppUnAuthState());
+    }
+  }
 }
