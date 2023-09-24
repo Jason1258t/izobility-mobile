@@ -27,7 +27,7 @@ BaseOptions dioOptions = BaseOptions(
 
 class ApiService {
   final PreferencesService preferencesService;
-  final Dio dio = Dio()..interceptors.add(PrettyDioLogger());
+  final Dio dio = Dio(dioOptions)..interceptors.add(PrettyDioLogger());
 
   late final Token token;
   late final Auth auth;
