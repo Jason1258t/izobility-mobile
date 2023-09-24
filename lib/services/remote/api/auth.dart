@@ -11,7 +11,7 @@ class Auth with ApiHandler {
   }
 
   Future<dynamic> registerUser(String email) async {
-    final res =  await dio.post(ApiMethodsUrl.register, data: {
+    final res =  await dio.post(ApiEndpoints.register, data: {
       "phone": "",
       "phone_country": "+7",
       "email": email,
@@ -24,7 +24,7 @@ class Auth with ApiHandler {
 
   Future<dynamic> confirmRegistration(
       {required String confirmCode, required String userId}) async {
-    final response = post(ApiMethodsUrl.confirmRegister,
+    final response = post(ApiEndpoints.confirmRegister,
         data: {"token": confirmCode, "id": userId});
 
     return response;
@@ -32,7 +32,7 @@ class Auth with ApiHandler {
 
   Future<dynamic> login(
       {required String email, required String password}) async {
-    final response = await dio.post(ApiMethodsUrl.login, data: {
+    final response = await dio.post(ApiEndpoints.login, data: {
       "login": "",
       "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
       "email": email,

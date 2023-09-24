@@ -144,9 +144,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 ProfileActionTile(
                   onTap: () {
-                    context.read<ProfileCubit>().logout().then((value) =>
-                        context.read<AppCubit>().checkTokenExistence());
- 
+                    context
+                        .read<ProfileCubit>()
+                        .logout()
+                        .then((value) =>
+                            context.read<AppCubit>().checkTokenExistence())
+                        .then((value) =>
+                            GoRouter.of(context).go(RouteNames.auth));
                   },
                   label: 'Выйти',
                   iconPath: 'assets/icons/warning_raunded.svg',

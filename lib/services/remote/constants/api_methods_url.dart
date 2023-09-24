@@ -1,4 +1,4 @@
-class ApiMethodsUrl {
+class ApiEndpoints {
   static const String register = "/user/registration";
 
   static const String confirmRegister = '/user/registration-confirm';

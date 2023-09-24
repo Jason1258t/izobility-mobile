@@ -21,7 +21,7 @@ class PreferencesService {
     final prefs = await _prefs;
 
     prefs.setString(_accessTokenKey, token.accessToken!);
-    prefs.setString(_refreshTokenKey, token.refreshToken!);
+    prefs.setString(_refreshTokenKey, token.refreshToken ?? '');
     // prefs.setString(_accessExpiredKey, token.accessTokenExpired!);
     // prefs.setString(_refreshExpiredKey, token.refreshTokenExpired!);
   }
