@@ -19,6 +19,7 @@ import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
+import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
@@ -37,7 +38,7 @@ class CustomGoRoutes {
   static final shellNavigatorKey = GlobalKey<NavigatorState>();
 
   static final router = GoRouter(
-    initialLocation: RouteNames.root,
+    initialLocation: RouteNames.splash,
     navigatorKey: defaultKey,
     routes: [
       GoRoute(
@@ -45,8 +46,12 @@ class CustomGoRoutes {
         builder: (context, state) => const MyHomePage(),
       ),
       GoRoute(
+        path: RouteNames.splash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
         path: RouteNames.auth,
-        builder: (context, state) => EnterEmailScreen(),
+        builder: (context, state) => const EnterEmailScreen(),
       ),
       GoRoute(
         path: RouteNames.cardsAdd,
@@ -63,7 +68,8 @@ class CustomGoRoutes {
           builder: (context, state) => const CreatePinScreen()),
       GoRoute(
           path: '${RouteNames.authCreatePasswordBaseLink}/:variant',
-          builder: (context, state) => CreatePasswordScreen(
+          builder: (context, state) =>
+              CreatePasswordScreen(
                 creatingVariant: state.pathParameters['variant'] ?? '',
               )),
       GoRoute(
@@ -86,9 +92,10 @@ class CustomGoRoutes {
           builder: (context, state) => const NotificationsScreen()),
       GoRoute(
           path: '${RouteNames.story}/:story_id',
-          builder: (context, state) => StoryScreen(
+          builder: (context, state) =>
+              StoryScreen(
                 initialStoryIndex:
-                    int.parse(state.pathParameters['story_id'] ?? 0 as String),
+                int.parse(state.pathParameters['story_id'] ?? 0 as String),
               )),
       GoRoute(
           path: RouteNames.walletCurrency,
@@ -107,9 +114,10 @@ class CustomGoRoutes {
           builder: (context, state) => const ReplenishScreen()),
       GoRoute(
         path: '${RouteNames.walletChooseCoin}/:screen',
-        builder: (context, state) => ChooseCoinScreen(
-          path: state.pathParameters['screen'] ?? '',
-        ),
+        builder: (context, state) =>
+            ChooseCoinScreen(
+              path: state.pathParameters['screen'] ?? '',
+            ),
       ),
       GoRoute(
           path: RouteNames.walletBuyCurrency,
@@ -119,9 +127,10 @@ class CustomGoRoutes {
           builder: (context, state) => const CardsScreen()),
       GoRoute(
         path: RouteNames.gamesDetails,
-        builder: (context, state) => GamesDetailsScreen(
-          gameId: state.pathParameters['game_id'] ?? '0',
-        ),
+        builder: (context, state) =>
+            GamesDetailsScreen(
+              gameId: state.pathParameters['game_id'] ?? '0',
+            ),
       ),
       GoRoute(
           path: RouteNames.gamesDetailsLoading,
@@ -134,71 +143,77 @@ class CustomGoRoutes {
         routes: [
           GoRoute(
             path: RouteNames.main,
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              key: state.pageKey,
-              child: const MainScreen(),
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
-            ),
+            pageBuilder: (context, state) =>
+                CustomTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const MainScreen(),
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return child;
+                  },
+                ),
           ),
           GoRoute(
             path: RouteNames.wallet,
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              key: state.pageKey,
-              child: const WalletScreen(),
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
-            ),
+            pageBuilder: (context, state) =>
+                CustomTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const WalletScreen(),
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return child;
+                  },
+                ),
           ),
           GoRoute(
             path: RouteNames.games,
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              key: state.pageKey,
-              child: const GamesScreen(),
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
-            ),
+            pageBuilder: (context, state) =>
+                CustomTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const GamesScreen(),
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return child;
+                  },
+                ),
           ),
           GoRoute(
             path: RouteNames.basket,
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              key: state.pageKey,
-              child: const Text('basket'),
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
-            ),
+            pageBuilder: (context, state) =>
+                CustomTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const Text('basket'),
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return child;
+                  },
+                ),
           ),
           GoRoute(
             path: RouteNames.profile,
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              key: state.pageKey,
-              child: const ProfileScreen(),
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
-            ),
+            pageBuilder: (context, state) =>
+                CustomTransitionPage<void>(
+                  key: state.pageKey,
+                  child: const ProfileScreen(),
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return child;
+                  },
+                ),
           ),
         ],
       ),
     ],
   );
 }
+

@@ -1,6 +1,8 @@
 abstract class RouteNames {
   static const root = '/';
 
+  static const splash = '/splash';
+
   static const String home = "/home";
 
   static const String auth = "/auth";

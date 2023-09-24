@@ -42,7 +42,9 @@ class AuthRepository {
   }
 
   Future checkLogin() async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    if(await preferences.getUser() != null){
+      appState.add(AppStateEnum.auth);
+    }
     appState.add(AppStateEnum.unAuth);
   }
 

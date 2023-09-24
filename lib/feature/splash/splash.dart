@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState(){
+    super.initState();
+
+    nextLoad();
+  }
+
+  void nextLoad() async{
+    await Future.delayed(const Duration(seconds: 5));
+    GoRouter.of(context).go(RouteNames.root);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +41,6 @@ class SplashScreen extends StatelessWidget {
                 height: 30,
               ),
               const Center(child: AppAnimations.circularProgressIndicator)
-              //const CustomLinearIndicator(),
             ],
           ),
         ));
