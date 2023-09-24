@@ -3,10 +3,6 @@ import 'package:izobility_mobile/utils/utils.dart';
 
 
 class ProfileCard extends StatefulWidget {
-  // final String name;
-  // final String status;
-  // final String imagePath;
-
   const ProfileCard({
     super.key,
   });
@@ -16,6 +12,8 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,11 +23,13 @@ class _ProfileCardState extends State<ProfileCard> {
           Container(
             width: 64,
             height: 64,
+            alignment: Alignment.center,
             decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.backBack),
+                shape: BoxShape.circle, color: AppColors.primary),
+            child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 23,),
           ),
           const SizedBox(
-            width: 10,
+            width: 16,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,15 +37,13 @@ class _ProfileCardState extends State<ProfileCard> {
               Text(
                 'name',
                 style:
-                    AppFonts.font16w500.copyWith(color: AppColors.textPrimary),
+                    AppFonts.font18w700.copyWith(color: AppColors.textPrimary, height: 1),
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              const SizedBox(height: 3,),
               Text(
                 'status',
                 style:
-                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
+                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary, height: 1),
               ),
             ],
           ),

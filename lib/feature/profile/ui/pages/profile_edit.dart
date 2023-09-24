@@ -27,12 +27,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.only(top: 16),
-          child: Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: const ProfileCard()),
               const ProfileAspect(
                 label: "Имя",
                 text: "Сосунок",
