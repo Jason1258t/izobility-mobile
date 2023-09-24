@@ -14,7 +14,7 @@ class Token {
 
   Token.fromJson(Map<String, dynamic> json)
       : accessToken = json['jwt'],
-        refreshToken = json['jwt']['refresh_token'];
+        refreshToken = json['user']['refresh_token'];
 
 
 

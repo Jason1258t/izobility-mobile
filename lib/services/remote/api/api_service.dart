@@ -13,6 +13,7 @@ import '../../../utils/logic/exceptions.dart';
 part 'handler.dart';
 
 part 'auth.dart';
+part 'wallet.dart';
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',

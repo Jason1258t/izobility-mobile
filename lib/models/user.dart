@@ -29,8 +29,7 @@ class UserModel {
       this.createdAt,
       this.lastLogin,
       this.dateLimit,
-      this.siteId,
-      this.permissions});
+      this.siteId});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,26 +46,24 @@ class UserModel {
     lastLogin = json['last_login'];
     dateLimit = json['date_limit'];
     siteId = json['site_id'];
-    permissions = json['permissions'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['phone'] = this.phone;
-    data['phone_country'] = this.phoneCountry;
-    data['emailPartner'] = this.emailPartner;
-    data['phonePartner'] = this.phonePartner;
-    data['city_id'] = this.cityId;
-    data['is_active'] = this.isActive;
-    data['is_admin'] = this.isAdmin;
-    data['is_partner'] = this.isPartner;
-    data['created_at'] = this.createdAt;
-    data['last_login'] = this.lastLogin;
-    data['date_limit'] = this.dateLimit;
-    data['site_id'] = this.siteId;
-    data['permissions'] = this.permissions;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['phone_country'] = phoneCountry;
+    data['emailPartner'] = emailPartner;
+    data['phonePartner'] = phonePartner;
+    data['city_id'] = cityId;
+    data['is_active'] = isActive;
+    data['is_admin'] = isAdmin;
+    data['is_partner'] = isPartner;
+    data['created_at'] = createdAt;
+    data['last_login'] = lastLogin;
+    data['date_limit'] = dateLimit;
+    data['site_id'] = siteId;
     return data;
   }
 }
