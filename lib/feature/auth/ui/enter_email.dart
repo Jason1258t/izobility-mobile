@@ -16,7 +16,7 @@ import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 import '../bloc/auth/auth_cubit.dart';
 
 class EnterEmailScreen extends StatefulWidget {
-  EnterEmailScreen({super.key});
+  const EnterEmailScreen({super.key});
 
   @override
   State<EnterEmailScreen> createState() => _EnterEmailScreenState();
@@ -85,16 +85,16 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                               ));
 
                           BlocProvider.of<AuthCubit>(context)
-                              .checkEmail(emailController.text.trim())
-                              .then((accountState) {
-                            if (accountState == EmailStateEnum.unregistered) {
-                              context.push(RouteNames.authCreateName);
-                            } else {
-                              context.push(RouteNames.authEnterPassword);
-                            }
-
-                            Dialogs.hide(context);
-                          });
+                              .checkEmail(emailController.text.trim());
+                          //     .then((accountState) {
+                          //   if (accountState == EmailStateEnum.unregistered) {
+                          //     context.push(RouteNames.authCreateName);
+                          //   } else {
+                          //     context.push(RouteNames.authEnterPassword);
+                          //   }
+                          //
+                          // });
+                          Dialogs.hide(context);
                         },
                         isActive: buttonActive,
                         width: double.infinity),

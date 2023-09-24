@@ -59,9 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         if (state is AppUnAuthState) {
-          return const HomeScreen(
-            body: MainScreen(),
-          );
+          return const EnterEmailScreen();
         }
         if (state is CreatePinState) return const CreatePinScreen();
         if (state is EnterPinState) return const EnterPinScreen();
