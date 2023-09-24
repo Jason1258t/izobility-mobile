@@ -30,7 +30,7 @@ class Auth with ApiHandler {
 
   Future<dynamic> login(
       {required String email, required String password}) async {
-    final user = post(ApiMethodsUrl.login, data: {
+    final user = dio.post(ApiMethodsUrl.login, data: {
       "login": "",
       "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
       "email": email,
