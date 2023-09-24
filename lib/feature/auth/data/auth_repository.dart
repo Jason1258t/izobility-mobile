@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:izobility_mobile/models/api/token.dart';
 import 'package:izobility_mobile/models/login_data.dart';
 import 'package:izobility_mobile/models/register_data.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
@@ -31,10 +32,9 @@ class AuthRepository {
   Future<EmailStateEnum> checkEmail(String email) async {
     Response response = await apiService.auth.registerUser(email);
 
-    if(response.statusCode == 201){
+    if (response.statusCode == 201) {
       return EmailStateEnum.unregistered;
-    }
-    else{
+    } else {
       return EmailStateEnum.registered;
     }
   }
@@ -44,11 +44,14 @@ class AuthRepository {
   }
 
   Future login(LoginData data) async {
-    await apiService.auth.login(email: data.email, password: data.password!);
+    final responseData = await apiService.auth
+        .login(email: data.email, password: data.password!);
+
+    return responseData;
   }
 
   Future checkLogin() async {
-    if(await preferences.getUser() != null){
+    if (await preferences.getUser() != null) {
       appState.add(AppStateEnum.auth);
     }
     appState.add(AppStateEnum.unAuth);

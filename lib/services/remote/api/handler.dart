@@ -7,10 +7,10 @@ mixin class ApiHandler {
 
   _errorHandler(Future<Response> method, String url) async {
     try {
-      if (currentToken.accessExpired) {
-        if (currentToken.refreshExpired) throw UnAuthenticatedException;
-        await refreshToken();
-      }
+      // if (currentToken.accessExpired) {
+      //   if (currentToken.refreshExpired) throw UnAuthenticatedException;
+      //   await refreshToken();
+      // }
 
       final res = await method;
       return res.data;
@@ -49,8 +49,8 @@ mixin class ApiHandler {
 
     currentToken.accessToken = token.accessToken;
     currentToken.refreshToken = token.refreshToken;
-    currentToken.accessTokenExpired = token.accessTokenExpired;
-    currentToken.refreshTokenExpired = token.refreshTokenExpired;
+    // currentToken.accessTokenExpired = token.accessTokenExpired;
+    // currentToken.refreshTokenExpired = token.refreshTokenExpired;
 
     dio.options.headers = {};
   }

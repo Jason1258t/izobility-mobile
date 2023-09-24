@@ -1,4 +1,4 @@
-class User {
+class UserModel {
   int? id;
   String? email;
   String? phone;
@@ -15,7 +15,7 @@ class User {
   int? siteId;
   List<String>? permissions;
 
-  User(
+  UserModel(
       {this.id,
       this.email,
       this.phone,
@@ -32,7 +32,7 @@ class User {
       this.siteId,
       this.permissions});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     email = json['email'];
     phone = json['phone'];

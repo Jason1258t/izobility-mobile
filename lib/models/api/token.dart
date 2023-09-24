@@ -3,50 +3,47 @@ import 'package:izobility_mobile/utils/logic/constants.dart';
 class Token {
   String? accessToken;
   String? refreshToken;
-  String? accessTokenExpired;
-  String? refreshTokenExpired;
+  // String? accessTokenExpired;
+  // String? refreshTokenExpired;
 
-  Token.fromJson(Map<String, dynamic> json)
-      : accessToken = json[''],
-        refreshToken = json[''],
-        accessTokenExpired = json[''],
-        refreshTokenExpired = json[''];
-
-  Token(
-      {required this.accessToken,
-      required this.accessTokenExpired,
-      required this.refreshToken,
-      required this.refreshTokenExpired});
+  Token({required this.accessToken, required this.refreshToken});
 
   Token.zero()
       : accessToken = null,
-        accessTokenExpired = null,
-        refreshTokenExpired = null,
         refreshToken = null;
 
-  bool get accessExpired {
-    try {
-      DateTime expiredTime = DateTime.parse(accessTokenExpired!);
-      expiredTime = expiredTime.add(AppStrings.serverOffset);
+  Token.fromJson(Map<String, dynamic> json)
+      : accessToken = json['jwt'],
+        refreshToken = json['jwt']['refresh_token'];
 
-      final Duration difference = DateTime.now().difference(expiredTime);
 
-      return difference.inMinutes >= -1;
-    } catch (e) {
-      return true;
-    }
-  }
 
-  bool get refreshExpired {
-    try {
-      DateTime expiredTime = DateTime.parse(refreshTokenExpired!);
-      expiredTime = expiredTime.add(AppStrings.serverOffset);
+  // accessTokenExpired = json[''],
+  // refreshTokenExpired = json[''];
 
-      final Duration difference = DateTime.now().difference(expiredTime);
+  // bool get accessExpired {
+  //   try {
+  //     DateTime expiredTime = DateTime.parse(accessTokenExpired!);
+  //     expiredTime = expiredTime.add(AppStrings.serverOffset);
 
-      return difference.inMinutes >= -1;
-    } catch (e) {
-      return true;
-    }
-  }
+  //     final Duration difference = DateTime.now().difference(expiredTime);
+
+  //     return difference.inMinutes >= -1;
+  //   } catch (e) {
+  //     return true;
+  //   }
+  // }
+
+  // bool get refreshExpired {
+  //   try {
+  //     DateTime expiredTime = DateTime.parse(refreshTokenExpired!);
+  //     expiredTime = expiredTime.add(AppStrings.serverOffset);
+
+  //     final Duration difference = DateTime.now().difference(expiredTime);
+
+  //     return difference.inMinutes >= -1;
+  //   } catch (e) {
+  //     return true;
+  //   }
+  // }
 }

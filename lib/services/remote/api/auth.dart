@@ -30,7 +30,7 @@ class Auth with ApiHandler {
 
   Future<dynamic> login(
       {required String email, required String password}) async {
-    final user = dio.post(ApiMethodsUrl.login, data: {
+    final response = await dio.post(ApiMethodsUrl.login, data: {
       "login": "",
       "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
       "email": email,
@@ -38,6 +38,6 @@ class Auth with ApiHandler {
       "site_id": 0
     });
 
-    return user;
+    return response.data;
   }
 }

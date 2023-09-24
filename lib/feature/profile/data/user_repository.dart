@@ -5,11 +5,11 @@ import 'package:izobility_mobile/services/remote/api/api_service.dart';
 class UserRepository {
   final ApiService apiService;
   final PreferencesService preferences;
-  late User user;
+  late UserModel user;
 
   UserRepository({required this.apiService, required this.preferences});
 
-  Future<User?> getUserInfo() async {
+  Future<UserModel?> getUserInfo() async {
     final user = preferences.getUser();
     return user;
   }
