@@ -15,7 +15,7 @@ part 'handler.dart';
 part 'auth.dart';
 
 const Map<String, dynamic> _authHeaders = {
-  'Content-Type': 'application/x-www-form-urlencoded',
+  'Content-Type': 'application/json',
 };
 
 BaseOptions dioOptions = BaseOptions(

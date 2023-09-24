@@ -85,16 +85,16 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                               ));
 
                           BlocProvider.of<AuthCubit>(context)
-                              .checkEmail(emailController.text.trim());
-                          //     .then((accountState) {
-                          //   if (accountState == EmailStateEnum.unregistered) {
-                          //     context.push(RouteNames.authCreateName);
-                          //   } else {
-                          //     context.push(RouteNames.authEnterPassword);
-                          //   }
-                          //
-                          // });
-                          Dialogs.hide(context);
+                              .checkEmail(emailController.text.trim())
+                              .then((accountState) {
+                            if (accountState == EmailStateEnum.unregistered) {
+                              context.push(RouteNames.authCreateName);
+                            } else {
+                              context.push(RouteNames.authEnterPassword);
+                            }
+
+                            Dialogs.hide(context);
+                          });
                         },
                         isActive: buttonActive,
                         width: double.infinity),

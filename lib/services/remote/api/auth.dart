@@ -10,11 +10,11 @@ class Auth with ApiHandler {
     currentToken = token;
   }
 
-  Future<dynamic> registerUser() async {
-    return await post("/user/registration", queryParameters: {
+  Future<dynamic> registerUser(String email) async {
+    return await dio.post(ApiMethodsUrl.register, data: {
       "phone": "",
       "phone_country": "+7",
-      "email": "dgerasimov2006@gmail.com",
+      "email": email,
       "promo": "",
       "site_id": 0
     });
