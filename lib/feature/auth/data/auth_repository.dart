@@ -53,6 +53,7 @@ class AuthRepository {
   Future checkLogin() async {
     if (await preferences.getUser() != null) {
       appState.add(AppStateEnum.auth);
+      return;
     }
     appState.add(AppStateEnum.unAuth);
   }
