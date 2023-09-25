@@ -20,14 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
     super.initState();
-
-    nextLoad();
-  }
-
-  void nextLoad() async{
-    await BlocProvider.of<AppCubit>(context).checkTokenExistence();
-
-    GoRouter.of(context).go(RouteNames.root);
   }
 
   @override

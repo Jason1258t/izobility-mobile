@@ -81,9 +81,6 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                       ));
                 } else {
                   Dialogs.hide(context);
-                  if (state is AuthSuccessState) {
-                    context.push(RouteNames.root);
-                  }
                 }
               },
               child: CustomButton(
@@ -95,7 +92,6 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                         passwordController.text.trim();
                     BlocProvider.of<AuthCubit>(context).login().then((value) {
                       log('Славик уебан');
-                      context.pop();
                     });
                   },
                   width: double.infinity),

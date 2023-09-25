@@ -146,10 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         builder: (context) => PopupChoose(
                               label: "Вы точно хотите выйти?",
                               onAccept: () {
-                                context.read<ProfileCubit>().logout().then(
-                                    (value) => context
-                                        .read<AppCubit>()
-                                        .checkTokenExistence());
+                                context.read<ProfileCubit>().logout();
                               },
                               onDecline: () {
                                 context.pop();

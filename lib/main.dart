@@ -45,34 +45,34 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<AppCubit, AppState>(
-      listener: (context, state) {
-        if (state is AppUnAuthState) {
-          GoRouter.of(context).go(RouteNames.auth);
-        }
-        if (state is CreatePinState) {
-          GoRouter.of(context).go(RouteNames.authCreatePin);
-        }
-        if (state is EnterPinState) {
-          GoRouter.of(context).go(RouteNames.authEnterPin);
-        }
-        if (state is AppAuthState) {
-          log('Славик соси хуй');
-          return GoRouter.of(context).go(RouteNames.main);
-        }
-      },
-      child: const SplashScreen(),
-    );
-  }
-}
+//
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({super.key});
+//
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocListener<AppCubit, AppState>(
+//       listener: (context, state) {
+//         if (state is AppUnAuthState) {
+//           GoRouter.of(context).go(RouteNames.auth);
+//         }
+//         if (state is CreatePinState) {
+//           GoRouter.of(context).go(RouteNames.authCreatePin);
+//         }
+//         if (state is EnterPinState) {
+//           GoRouter.of(context).go(RouteNames.authEnterPin);
+//         }
+//         if (state is AppAuthState) {
+//           log('Славик соси хуй');
+//           return GoRouter.of(context).go(RouteNames.main);
+//         }
+//       },
+//       child: const SplashScreen(),
+//     );
+//   }
+// }

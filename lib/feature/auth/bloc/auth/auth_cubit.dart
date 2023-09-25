@@ -1,10 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
-import 'package:izobility_mobile/models/api/token.dart';
 import 'package:izobility_mobile/models/login_data.dart';
 import 'package:izobility_mobile/models/register_data.dart';
-import 'package:izobility_mobile/models/user.dart';
 
 import '../../data/auth_repository.dart';
 

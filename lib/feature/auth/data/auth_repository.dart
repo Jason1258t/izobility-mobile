@@ -61,5 +61,8 @@ class AuthRepository {
 
   Future<String?> getPin() async => await preferences.getPin();
 
-  Future logout() async {}
+  Future logout() async {
+    apiService.logout();
+    appState.add(AppStateEnum.unAuth);
+  }
 }

@@ -10,7 +10,10 @@ class AppCubit extends Cubit<AppState> {
 
   AppCubit({required this.authRepository}) : super(AppInitial()) {
     authRepository.appState.stream.listen((event) async {
-      if (event == AppStateEnum.unAuth) emit(AppUnAuthState());
+      if (event == AppStateEnum.unAuth) {
+        authRepository.logout();
+        emit(AppUnAuthState());
+      }
       if (event == AppStateEnum.auth) {
         final String? pin = await authRepository.getPin();
 
@@ -32,14 +35,5 @@ class AppCubit extends Cubit<AppState> {
     final String? savedPin = await authRepository.getPin();
     if (pin == savedPin) emit(AppAuthState());
     return (pin == savedPin);
-  }
-
-  Future<void> checkTokenExistence() async {
-    if(await authRepository.preferences.getUser() != null){
-      emit(AppAuthState());
-    }
-    else{
-      emit(AppUnAuthState());
-    }
   }
 }
