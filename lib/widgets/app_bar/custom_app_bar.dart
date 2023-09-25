@@ -9,12 +9,15 @@ class CustomAppBar extends AppBar {
       required String text,
       Function()? onTap,
       required bool isBack,
-      Color backgroundColor = Colors.white})
+      List<Widget>? actions,
+      Color backgroundColor = Colors.white,
+      })
       : super(
           surfaceTintColor: Colors.transparent,
           titleSpacing: 12,
           backgroundColor: backgroundColor,
           centerTitle: true,
+          actions: actions,
           leading: isBack
               ? InkWell(
                   onTap: onTap,

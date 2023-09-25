@@ -13,6 +13,7 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_outline_button.dart';
+import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -54,10 +55,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ProfileCard(),
                         ],
                       )),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  const CustomOutlineButton(),
                   const SizedBox(
                     height: 16,
                   ),
@@ -144,9 +141,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 ProfileActionTile(
                   onTap: () {
-                    context.read<ProfileCubit>().logout().then((value) =>
-                        context.read<AppCubit>().checkTokenExistence());
- 
+                    showDialog(
+                        context: context,
+                        builder: (context) => PopupChoose(
+                              label: "Вы точно хотите выйти?",
+                              onAccept: () {
+                                context.read<ProfileCubit>().logout().then(
+                                    (value) => context
+                                        .read<AppCubit>()
+                                        .checkTokenExistence());
+                              },
+                              onDecline: () {
+                                context.pop();
+                              },
+                            ));
                   },
                   label: 'Выйти',
                   iconPath: 'assets/icons/warning_raunded.svg',
