@@ -66,4 +66,9 @@ class UserModel {
     data['site_id'] = siteId;
     return data;
   }
+
+  @override
+  String toString() {
+    return "($id = user id )";
+  }
 }

@@ -27,6 +27,7 @@ class CustomAppBar extends AppBar {
                         "assets/icons/back.svg",
                         width: 24,
                         height: 24,
+                        color: Colors.black,
                       )),
                 )
               : null,
