@@ -17,7 +17,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
   List<int> pin = [];
 
   Future<void> _addNumber(int number) async {
-    pin.add(number);
+    if (pin.length < 4) pin.add(number);
 
     if (pin.length > 3) {
       setState(() {});
