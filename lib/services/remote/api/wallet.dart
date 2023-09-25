@@ -10,7 +10,8 @@ class Wallet with ApiHandler {
     currentToken = token;
   }
 
-  Future<dynamic> getEmeraldCurrency(String email) async {
-    return await dio.get(ApiMethodsUrl.wallet);
+  Future<dynamic> getEmeraldCoin() async {
+
+    return (await dio.get(ApiEndpoints.wallet)).data;
   }
 }

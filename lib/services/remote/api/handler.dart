@@ -49,7 +49,8 @@ mixin class ApiHandler {
     currentToken.refreshToken = token.refreshToken;
 
     dio.options.headers = {
-      'bearerAuth': currentToken.accessToken
+      'Content-Type': 'application/json',
+      'Authorization': currentToken.accessToken
     };
   }
 }

@@ -57,22 +57,15 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void login() async {
+  Future login() async {
     emit(AuthProcessState());
     try {
-      final responseData = await authRepository.login(loginData!);
-
-      final Token token = Token.fromJson(responseData);
-      final UserModel user = UserModel.fromJson(responseData);
-
-      loginData = null;
-
-      await authRepository.preferences.setUser(user);
-      await authRepository.preferences.saveToken(token);
+      await authRepository.login(loginData!);
 
       emit(AuthSuccessState());
     } catch (e) {
       emit(AuthFailState());
+      rethrow;
     }
   }
 }

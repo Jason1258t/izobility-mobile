@@ -4,7 +4,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:izobility_mobile/models/api/token.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:dio/dio.dart';
-import 'package:izobility_mobile/services/remote/api/endpoints.dart';
 import 'package:izobility_mobile/services/remote/constants/api_methods_url.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -33,6 +32,7 @@ class ApiService {
 
   late final Token token;
   late final Auth auth;
+  late final Wallet wallet;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -40,6 +40,7 @@ class ApiService {
 
   void initialServices() async {
     token = await preferencesService.getToken() ?? Token.zero();
+    wallet = Wallet(dio_: dio, preferences: preferencesService, token: token);
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -34,8 +35,11 @@ class _WalletScreenState extends State<WalletScreen>
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
 
+    BlocProvider.of<MainCoinCubit>(context).loadEmeraldCoin();
+
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,12 +113,23 @@ class _WalletScreenState extends State<WalletScreen>
                               .setObscured(!walletRepository.obscured);
                         });
                       },
-                      child: Text(
-                          walletRepository.obscured
-                              ? AppStrings.obscuredText
-                              : '123 123\$',
-                          style: AppFonts.font36w700
-                              .copyWith(color: AppColors.textPrimary)),
+                      child: BlocBuilder<MainCoinCubit, MainCoinState>(
+                        builder: (context, state) {
+                          if(state is MainCoinSuccess) {
+                            return Text(
+                                walletRepository.obscured
+                                    ? AppStrings.obscuredText
+                                    : walletRepository.emeraldCoin.toString(),
+                                style: AppFonts.font36w700
+                                    .copyWith(color: AppColors.textPrimary));
+                          }
+                          else if(state is MainCoinLoading){
+                            return const CircularProgressIndicator();
+                          }
+
+                          return Container();
+                        },
+                      ),
                     ),
                   ),
                 ),

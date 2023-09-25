@@ -29,11 +29,14 @@ class _StoryDurationIndicatorState extends State<StoryDurationIndicator> {
   void activateListener() {
     final bloc = BlocProvider.of<StoryCubit>(context);
     if (widget.index == bloc.currentStoryIndex) {
-      bloc.controller!.addListener(() {
-        if (widget.index == bloc.currentStoryIndex) {
-          setState(() {});
-        }
-      });
+      try {
+        bloc.controller!.addListener(() {
+          if (widget.index == bloc.currentStoryIndex) {
+            setState(() {});
+          }
+        });
+      } catch (e) {}
+
     }
   }
 
@@ -58,7 +61,7 @@ class _StoryDurationIndicatorState extends State<StoryDurationIndicator> {
             child: LinearProgressIndicator(
                 value: bloc.currentStoryIndex > widget.index
                     ? 1
-                    : bloc.controller!.value,
+                    : bloc.controller != null ? bloc.controller!.value : 0,
                 borderRadius: BorderRadius.circular(1),
                 backgroundColor: Colors.white.withOpacity(0.4),
                 color: Colors.white),

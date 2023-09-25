@@ -123,7 +123,13 @@ class _StoryScreenState extends State<StoryScreen>
           SafeArea(
               child: Row(children: [
             GestureDetector(
-              onTap: bloc.prevStory,
+              onTapDown: (TapDownDetails details) {
+                bloc.pause();
+              },
+              onTapUp: (details) {
+                bloc.play();
+              },
+              onDoubleTap: bloc.prevStory,
               child: Container(
                 color: Colors.transparent,
                 width: size.width / 2,
@@ -131,7 +137,13 @@ class _StoryScreenState extends State<StoryScreen>
               ),
             ),
             GestureDetector(
-              onTap: bloc.changeStory,
+              onTapDown: (TapDownDetails details) {
+                bloc.pause();
+              },
+              onTapUp: (details) {
+                bloc.play();
+              },
+              onDoubleTap: bloc.changeStory,
               child: Container(
                 color: Colors.transparent,
                 width: size.width / 2,

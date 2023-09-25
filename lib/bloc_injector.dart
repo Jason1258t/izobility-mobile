@@ -13,6 +13,7 @@ import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/services/locale/export_locale_services.dart';
@@ -22,6 +23,7 @@ import 'feature/auth/bloc/auth/auth_cubit.dart';
 
 final PreferencesService prefs = PreferencesService();
 final ApiService api = ApiService(preferencesService: prefs);
+
 
 class MyBlocProviders extends StatelessWidget {
   const MyBlocProviders({super.key});
@@ -68,6 +70,11 @@ class MyBlocProviders extends StatelessWidget {
             ProfileCubit(RepositoryProvider.of<UserRepository>(context)),
         lazy: false,
       ),
+      BlocProvider(
+        create: (_) =>
+            MainCoinCubit(walletRepository: RepositoryProvider.of<WalletRepository>(context)),
+        lazy: false,
+      ),
     ], child: const MyApp());
   }
 }
@@ -87,7 +94,7 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => HomeRepository(),
       ),
       RepositoryProvider(
-        create: (_) => WalletRepository(),
+        create: (_) => WalletRepository(api),
       ),
       RepositoryProvider(
         create: (_) => MainScreenRepository(),

@@ -40,6 +40,16 @@ class StoryCubit extends Cubit<StoryState> {
     paused = !paused;
   }
 
+  void pause() {
+    controller!.stop();
+  }
+
+  void play() {
+    controller!
+      ..forward(from: controller!.value)
+      ..repeat();
+  }
+
   void controllerListener() {
     log(controller!.status.toString());
     if (controller!.value > 0.99) {
