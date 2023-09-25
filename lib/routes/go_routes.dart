@@ -72,15 +72,15 @@ class CustomGoRoutes {
         RouteNames.gamesDetailsLoading,
       ];
 
-      print(appState);
-      print(state.matchedLocation);
-      print(appState is AppAuthState &&
-          !mainRoutes.contains(state.matchedLocation));
-
-
+      bool containsRout(String route) {
+        for (String defaultRoute in mainRoutes) {
+          if (route.startsWith(defaultRoute)) return true;
+        }
+        return false;
+      }
 
       if (appState is AppAuthState &&
-          !mainRoutes.contains(state.matchedLocation)) {
+          !containsRout(state.matchedLocation)) {
         return RouteNames.main;
       }
       if (appState is CreatePinState) {

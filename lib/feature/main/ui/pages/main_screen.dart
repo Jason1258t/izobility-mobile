@@ -131,10 +131,7 @@ class _MainScreenState extends State<MainScreen> {
                                           imageUrl: repository
                                               .storiesList[ind].previewUrl,
                                           onTap: () {
-                                            GoRouter router =
-                                                GoRouter.of(context);
-
-                                            router
+                                            context
                                                 .go('${RouteNames.story}/$ind');
                                           },
                                           viewed: true,
