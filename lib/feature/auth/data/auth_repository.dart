@@ -26,7 +26,7 @@ class AuthRepository {
   Future _auth(Future authMethod) async {
     final res = await authMethod;
 
-    final UserModel user = UserModel.fromJson(res);
+    final UserModel user = UserModel.fromJson(res['user']);
     await preferences.setUser(user);
 
     appState.add(AppStateEnum.auth);
