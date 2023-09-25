@@ -47,7 +47,6 @@ class CustomGoRoutes {
     navigatorKey: defaultKey,
     redirect: (BuildContext context, GoRouterState state) async {
       final AppState appState = StreamAuthNotifier.of(context).state;
-
       final mainRoutes = [
         RouteNames.wallet,
         RouteNames.walletCurrency,
@@ -73,6 +72,13 @@ class CustomGoRoutes {
         RouteNames.gamesDetailsLoading,
       ];
 
+      print(appState);
+      print(state.matchedLocation);
+      print(appState is AppAuthState &&
+          !mainRoutes.contains(state.matchedLocation));
+
+
+
       if (appState is AppAuthState &&
           !mainRoutes.contains(state.matchedLocation)) {
         return RouteNames.main;
@@ -88,8 +94,8 @@ class CustomGoRoutes {
       final authRoutes = [
         RouteNames.auth,
         RouteNames.authEnterPin,
-        RouteNames.authCreateName,
         RouteNames.authCreatePin,
+        RouteNames.authCreateName,
         RouteNames.authEnterPassword
       ];
 
@@ -284,6 +290,7 @@ class StreamAuthScope extends InheritedNotifier<StreamAuthNotifier> {
 class StreamAuthNotifier extends ChangeNotifier {
   StreamAuthNotifier({required this.appCubit}) : super() {
     appCubit.stream.listen((event) {
+      print(event);
       notifyListeners();
     });
   }

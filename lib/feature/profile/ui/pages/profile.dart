@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
+import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_square.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
@@ -147,6 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               label: "Вы точно хотите выйти?",
                               onAccept: () {
                                 context.read<ProfileCubit>().logout();
+                                context.read<AuthCubit>().checkLogin();
                               },
                               onDecline: () {
                                 context.pop();

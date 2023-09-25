@@ -63,6 +63,5 @@ class AuthRepository {
 
   Future logout() async {
     apiService.logout();
-    appState.add(AppStateEnum.unAuth);
   }
 }
