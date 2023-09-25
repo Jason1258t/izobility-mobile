@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
       this.suffixIcon,
       this.suffixIconCallback,
       this.secondSuffixIconCallback,
+      this.readOnly = false,
       this.height = 56});
 
   CustomTextField.password({
@@ -36,6 +37,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.backgroundColor = AppColors.backgroundSecondary,
     this.height = 56,
+    this.readOnly = false,
     required this.suffixIconCallback,
     this.secondSuffixIconCallback,
   })  : keyboardType = TextInputType.visiblePassword,
@@ -67,6 +69,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.backgroundColor = AppColors.backgroundSecondary,
     this.height = 56,
+    this.readOnly = false,
     this.obscured = true,
   })  : keyboardType = TextInputType.visiblePassword,
         suffixIcon = Row(
@@ -102,6 +105,7 @@ class CustomTextField extends StatelessWidget {
     this.errorText,
     this.backgroundColor = AppColors.backgroundSecondary,
     this.height = 56,
+    this.readOnly = false,
     this.obscured = true,
   })  : keyboardType = TextInputType.visiblePassword,
         suffixIcon = Row(
@@ -136,6 +140,7 @@ class CustomTextField extends StatelessWidget {
   final Function(String?)? onChange;
   final Color backgroundColor;
   final MaskTextInputFormatter? mask;
+  final bool readOnly;
 
   final Color _negative = AppColors.negative;
 
@@ -155,6 +160,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: TextFormField(
+              readOnly: readOnly,
               inputFormatters: mask == null ? [] : [mask!],
               obscureText: obscured,
               onChanged: onChange,

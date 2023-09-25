@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     context.push(RouteNames.profileEdit);
                   },
                   label: 'Данные аккаунта',
-                  iconPath: 'assets/icons/people.svg',
+                  iconPath: 'assets/icons/user.svg',
                 ),
                 const PorfileBlocLabel(
                   text: 'Социальные сети Emerald',

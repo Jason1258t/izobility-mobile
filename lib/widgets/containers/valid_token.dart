@@ -76,7 +76,7 @@ class ValidToken extends StatelessWidget {
                           ),
                           Text('+$increment',
                               style: AppFonts.font14w400
-                                  .copyWith(color: AppColors.green))
+                                  .copyWith(color: AppColors.primary))
                         ])
                       ],
                     ),

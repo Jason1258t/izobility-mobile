@@ -39,7 +39,7 @@ class PreferencesService {
           accessToken: accessToken,
           // accessTokenExpired: accessTokenExpired,
           refreshToken: refreshToken);
-          // refreshTokenExpired: refreshTokenExpired);
+      // refreshTokenExpired: refreshTokenExpired);
     } catch (e) {
       return null;
     }
@@ -67,7 +67,9 @@ class PreferencesService {
     if (rawUser == null) {
       return null;
     }
-
+    print('-------------');
+    print(rawUser);
+    print('-----------');
     final UserModel user = UserModel.fromJson(jsonDecode(rawUser));
     return user;
   }
