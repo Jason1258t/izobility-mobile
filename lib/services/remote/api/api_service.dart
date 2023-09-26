@@ -15,6 +15,7 @@ part 'handler.dart';
 part 'auth.dart';
 part 'wallet.dart';
 part "user.dart";
+part 'notifications.dart';
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
@@ -36,6 +37,7 @@ class ApiService {
   late final Auth auth;
   late final Wallet wallet;
   late final User user;
+  late final NotificationsApi notifications;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -47,6 +49,8 @@ class ApiService {
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
     auth.refreshToken(token.accessToken ?? '');
     user = User(dio_: dio, preferences: preferencesService, token: token);
+    notifications = NotificationsApi(
+        dio_: dio, preferences: preferencesService, token: token);
 
     auth.refreshToken(token.accessToken ?? '');
   }

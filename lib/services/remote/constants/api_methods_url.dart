@@ -20,4 +20,6 @@ class ApiEndpoints {
   static const String userUpdateBirthday = '/user/update-birth';
 
   static const String userUpdateGender = '/user/update-gender';
+
+  static const String getNotifications = '/user/notifications';
 }

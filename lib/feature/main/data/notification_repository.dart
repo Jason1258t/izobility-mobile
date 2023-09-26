@@ -27,7 +27,9 @@ class NotificationsRepository {
   NotificationsRepository(
       {required this.apiService, required this.preferences});
 
-  Future<dynamic> loadNotificationList(int page) async {
+  Future<dynamic> loadNotificationList() async {
+    // final rawNotifications = await apiService.notifications.loadNotifications();
+
     rawNotificationList = notificationResponse;
   }
 }

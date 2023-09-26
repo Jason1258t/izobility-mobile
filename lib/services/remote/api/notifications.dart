@@ -1,7 +1,18 @@
-import 'package:izobility_mobile/services/remote/api/api_service.dart';
+part of 'api_service.dart';
 
 class NotificationsApi with ApiHandler {
-  dynamic loadNotifications(int page) {
-    throw UnimplementedError();
+  NotificationsApi(
+      {required Dio dio_,
+      required PreferencesService preferences,
+      required Token token}) {
+    preferencesService = preferences;
+    dio = dio_;
+    currentToken = token;
+  }
+
+  Future<dynamic> loadNotifications() async {
+    final response = await get(ApiEndpoints.getNotifications);
+    print(response);
+    return response;
   }
 }
