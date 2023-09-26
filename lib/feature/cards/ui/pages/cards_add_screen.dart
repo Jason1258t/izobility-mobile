@@ -92,7 +92,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.purple400,
+                color: AppColors.primary.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(

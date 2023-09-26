@@ -1,3 +1,5 @@
+import 'package:izobility_mobile/models/user_details.dart';
+
 class UserModel {
   int? id;
   String? email;
@@ -14,6 +16,7 @@ class UserModel {
   String? dateLimit;
   int? siteId;
   List<String>? permissions;
+  UserDetailsModel? details;
 
   UserModel(
       {this.id,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/utils/utils.dart';
-
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard({
@@ -12,8 +14,6 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,7 +26,11 @@ class _ProfileCardState extends State<ProfileCard> {
             alignment: Alignment.center,
             decoration: const BoxDecoration(
                 shape: BoxShape.circle, color: AppColors.primary),
-            child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 23,),
+            child: const Icon(
+              Icons.camera_alt_outlined,
+              color: Colors.white,
+              size: 23,
+            ),
           ),
           const SizedBox(
             width: 16,
@@ -36,14 +40,16 @@ class _ProfileCardState extends State<ProfileCard> {
             children: [
               Text(
                 'name',
-                style:
-                    AppFonts.font18w700.copyWith(color: AppColors.textPrimary, height: 1),
+                style: AppFonts.font18w700
+                    .copyWith(color: AppColors.textPrimary, height: 1),
               ),
-              const SizedBox(height: 3,),
+              const SizedBox(
+                height: 3,
+              ),
               Text(
-                'status',
-                style:
-                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary, height: 1),
+                context.read<UserRepository>().user?.email ?? "email",
+                style: AppFonts.font12w400
+                    .copyWith(color: AppColors.textPrimary, height: 1),
               ),
             ],
           ),
