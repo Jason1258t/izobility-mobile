@@ -30,7 +30,7 @@ class CashContainer extends StatelessWidget {
               width: 4,
             ),
             Text(text,
-                style: AppFonts.font16w700
+                style: AppTypography.font16w700
                     .copyWith(color: AppColors.textSecondary))
           ],
         ),

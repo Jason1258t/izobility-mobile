@@ -36,7 +36,7 @@ class CategoryContainer extends StatelessWidget {
             SvgPicture.asset(asset),
             Text(text,
                 style:
-                    AppFonts.font12w500.copyWith(color: AppColors.textPrimary))
+                    AppTypography.font12w500.copyWith(color: AppColors.textPrimary))
           ],
         ),
       ),

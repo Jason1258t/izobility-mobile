@@ -218,12 +218,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                       AppStrings.gender[user.details?.gender] == null
                           ? Text(
                               "Пол",
-                              style: AppFonts.font16w400
+                              style: AppTypography.font16w400
                                   .copyWith(color: AppColors.hintText),
                             )
                           : Text(
                               AppStrings.gender[user.details?.gender]!,
-                              style: AppFonts.font16w400
+                              style: AppTypography.font16w400
                                   .copyWith(color: Colors.black),
                             ),
                       const Icon(
@@ -295,7 +295,7 @@ class ProfileGenderChooseCard extends StatelessWidget {
           ),
           Text(
             text,
-            style: AppFonts.font16w400.copyWith(color: Colors.black),
+            style: AppTypography.font16w400.copyWith(color: Colors.black),
           )
         ],
       ),

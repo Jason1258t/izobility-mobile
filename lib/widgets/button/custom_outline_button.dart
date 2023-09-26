@@ -19,7 +19,7 @@ class CustomOutlineButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8)),
         child: Text(
           "Активировать промокод",
-          style: AppFonts.font18w600.copyWith(color: AppColors.darkBlue),
+          style: AppTypography.font18w600.copyWith(color: AppColors.darkBlue),
         ),
       ),
     );

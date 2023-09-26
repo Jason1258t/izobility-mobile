@@ -23,7 +23,7 @@ abstract class CustomSnackBar {
             ),
             Text(
               'Скопировано!',
-              style: AppFonts.font18w700.copyWith(color: AppColors.primary),
+              style: AppTypography.font18w700.copyWith(color: AppColors.primary),
             )
           ],
         )),

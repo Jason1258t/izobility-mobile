@@ -27,7 +27,7 @@ class PurchaseCondition extends StatelessWidget {
           ),
           Text(
             data.value,
-            style: AppFonts.font14w700.copyWith(color: AppColors.purple600),
+            style: AppTypography.font14w700.copyWith(color: AppColors.purple600),
           ),
         ],
       ),

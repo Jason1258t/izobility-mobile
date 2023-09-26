@@ -46,6 +46,6 @@ class _CustomButtonState extends State<CustomButton> {
                     : AppColors.disableButton,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(widget.radius))),
-            child: Text(widget.text, style: AppFonts.font16w600)));
+            child: Text(widget.text, style: AppTypography.font16w600)));
   }
 }

@@ -85,7 +85,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 child: Text(
                   'Sorry, something wetn wrong. Try again later',
                   style:
-                      AppFonts.font20w700.copyWith(color: AppColors.darkBlue),
+                      AppTypography.font20w700.copyWith(color: AppColors.darkBlue),
                 ),
               );
             }

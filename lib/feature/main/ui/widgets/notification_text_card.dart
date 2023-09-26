@@ -25,7 +25,7 @@ class NotificationTextCard extends StatelessWidget {
                 Flexible(
                   child: Text(
                     "${data.type == NotificationTransactionTypeEnum.get ? "Продажа товара в" : "Получен  товар в"}  ${data.name.toUpperCase()}",
-                    style: AppFonts.font14w700.copyWith(
+                    style: AppTypography.font14w700.copyWith(
                       color: AppColors.grey700,
                     ),
                     softWrap: true,
@@ -33,7 +33,7 @@ class NotificationTextCard extends StatelessWidget {
                 ),
                 Text(
                   "${data.time.hour}:${data.time.minute}",
-                  style: AppFonts.font12w400
+                  style: AppTypography.font12w400
                       .copyWith(color: AppColors.blackGraySecondary),
                 )
               ],
@@ -43,7 +43,7 @@ class NotificationTextCard extends StatelessWidget {
             ),
             Text(
               data.description,
-              style: AppFonts.font12w400
+              style: AppTypography.font12w400
                   .copyWith(color: AppColors.blackGraySecondary),
             )
           ],

@@ -9,7 +9,7 @@ class KeyboardButton extends StatelessWidget {
       : child = number != null
             ? Text(
                 number,
-                style: AppFonts.font16w700.copyWith(color: Colors.black),
+                style: AppTypography.font16w700.copyWith(color: Colors.black),
               )
             : SvgPicture.asset(
                 'assets/icons/delete-left.svg',

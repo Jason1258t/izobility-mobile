@@ -38,13 +38,13 @@ class _ProfileActionContainerState extends State<ProfileActionContainer> {
             children: [
               Text(
                 widget.label,
-                style: AppFonts.font18w700.copyWith(color: Colors.black),
+                style: AppTypography.font18w700.copyWith(color: Colors.black),
               ),
               const SizedBox(
                 height: 4,
               ),
               Text(widget.description,
-                  style: AppFonts.font14w400.copyWith(color: Colors.black)),
+                  style: AppTypography.font14w400.copyWith(color: Colors.black)),
             ],
           ),
         ),

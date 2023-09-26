@@ -51,12 +51,12 @@ class _PopupChooseState extends State<PopupChoose> {
                         Text(
                           widget.label,
                           style:
-                              AppFonts.font18w700.copyWith(color: Colors.black),
+                              AppTypography.font18w700.copyWith(color: Colors.black),
                         ),
                         if (widget.description != null)
                           Text(
                             widget.description!,
-                            style: AppFonts.font12w400
+                            style: AppTypography.font12w400
                                 .copyWith(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -138,7 +138,7 @@ class PopupActionButton extends StatelessWidget {
           width: width,
           child: Text(
             text,
-            style: AppFonts.font16w500
+            style: AppTypography.font16w500
                 .copyWith(color: isDark ? Colors.white : Colors.black),
           ),
         ),

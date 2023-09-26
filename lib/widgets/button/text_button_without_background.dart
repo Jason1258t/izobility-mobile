@@ -22,7 +22,7 @@ class TextButtonWithoutBackground extends StatelessWidget {
       onTap: onTap,
       child: Text(
         text,
-        style: (textStyle ?? AppFonts.font16w400).copyWith(color: textColor),
+        style: (textStyle ?? AppTypography.font16w400).copyWith(color: textColor),
       ),
     );
   }

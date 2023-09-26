@@ -33,7 +33,7 @@ class CustomAppBar extends AppBar {
               : null,
           title: Text(
             text,
-            style: AppFonts.font16w700.copyWith(color: Colors.black),
+            style: AppTypography.font16w700.copyWith(color: Colors.black),
           ),
         );
 }

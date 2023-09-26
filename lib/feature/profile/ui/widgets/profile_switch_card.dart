@@ -46,7 +46,7 @@ class _ProfileSwitchCardState extends State<ProfileSwitchCard> {
               children: [
                 Text(
                   widget.label,
-                  style: AppFonts.font16w500
+                  style: AppTypography.font16w500
                       .copyWith(color: AppColors.textPrimary, height: 1),
                 ),
                 const SizedBox(
@@ -54,7 +54,7 @@ class _ProfileSwitchCardState extends State<ProfileSwitchCard> {
                 ),
                 Text(
                   widget.description,
-                  style: AppFonts.font12w400
+                  style: AppTypography.font12w400
                       .copyWith(color: AppColors.textSecondary),
                 )
               ],

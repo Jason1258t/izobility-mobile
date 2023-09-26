@@ -28,6 +28,6 @@ class RoundedButton extends StatelessWidget {
         child:TextButton(
           onPressed: onTap,
           child:  Text(text,
-            style: AppFonts.font16w600.copyWith(color:AppColors.textPrimary ),),) );
+            style: AppTypography.font16w600.copyWith(color:AppColors.textPrimary ),),) );
   }
 }

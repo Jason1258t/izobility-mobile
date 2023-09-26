@@ -63,7 +63,7 @@ class NavigatorBarItem extends StatelessWidget {
               FittedBox(
                 child: Text(
                   name,
-                  style: AppFonts.font12w700.copyWith(
+                  style: AppTypography.font12w700.copyWith(
                       color: isSelected
                           ? AppColors.textPrimary
                           : AppColors.disable),

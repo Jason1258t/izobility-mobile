@@ -28,7 +28,7 @@ class _CardButtonSheetState extends State<CardButtonSheet> {
                 children: [
                   SvgPicture.asset('assets/icons/verified.svg',color: Colors.black,),
                   const SizedBox(width: 16,),
-                  Text('Сделать основной', style: AppFonts.font18w600.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
+                  Text('Сделать основной', style: AppTypography.font18w600.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
                 ],
               ),
             ),
@@ -38,7 +38,7 @@ class _CardButtonSheetState extends State<CardButtonSheet> {
                 children: [
                   SvgPicture.asset('assets/icons/trash_bin.svg'),
                   const SizedBox(width: 16,),
-                  Text('Сделать основной', style: AppFonts.font18w600.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
+                  Text('Сделать основной', style: AppTypography.font18w600.copyWith(color: Colors.black, fontWeight: FontWeight.w400),),
                 ],
               ),
             )

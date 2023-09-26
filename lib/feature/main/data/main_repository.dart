@@ -23,9 +23,9 @@ class MainScreenRepository {
       marketItems = List.generate(4, (index) => MarketPreviewItem.fish());
       storiesList = [
         Story(
-            title: 'Espresso is here!',
+            title: 'Как жеско обыграть казино',
             subtitle:
-            'Get ready spro bros - its time to brew the espresso you dream about.',
+            'План такой: учим теорию вероятности говно вопрос минут на 15, потом корешимся с чеченцами...',
             imageUrl:
             'https://img3.akspic.ru/crops/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-1407x3045.jpg',
             previewUrl:
@@ -34,14 +34,14 @@ class MainScreenRepository {
             index: 0,
             id: '0'),
         Story(
-            title: 'Абобус is here!',
+            title: 'Чекайте кота',
             subtitle:
-            'Get ready spro bros - its time to brew the espresso you dream about.',
+            'Не ну кто скажет что кот херня. Ну имба ж нет?',
             imageUrl:
             'https://neyrosety.ru/wp-content/uploads/2023/03/00505-1011766434-576x1024.jpg',
             previewUrl:
             'https://www.perunica.ru/uploads/posts/2019-03/1552932077_1.jpg',
-            buttonUrl: 'https://pub.dev/packages/url_launcher',
+            buttonUrl: 'https://ru.pinterest.com/pin/610941505684151390/',
             duration: const Duration(seconds: 10),
             index: 1,
             id: '1')

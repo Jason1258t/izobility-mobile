@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AppFonts {
+class AppTypography {
   static final TextStyle _font = GoogleFonts.inter();
-
-  //*static final font16gray = _font.copyWith();
 
   static final font16w700  =_font.copyWith(
           color: Colors.white,

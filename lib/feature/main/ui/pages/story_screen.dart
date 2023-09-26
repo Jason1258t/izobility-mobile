@@ -86,30 +86,32 @@ class _StoryScreenState extends State<StoryScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Espresso is here!',
-                                style: AppFonts.font24w700,
+                                bloc.storiesList[bloc.currentStoryIndex].title,
+                                style: AppTypography.font24w700,
                               ),
                               const SizedBox(
                                 height: 8,
                               ),
                               Text(
-                                'Get ready spro bros - its time to brew the espresso you dream about.',
-                                style: AppFonts.font14w400,
+                                bloc.storiesList[bloc.currentStoryIndex]
+                                    .subtitle,
+                                style: AppTypography.font14w400,
                               ),
                               if (bloc.storiesList[bloc.currentStoryIndex]
                                       .buttonUrl !=
                                   null) ...[
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                CustomButton(
-                                    text: 'Читать',
-                                    onTap: () {
-                                      openUrl(bloc
-                                          .storiesList[bloc.currentStoryIndex]
-                                          .buttonUrl!);
-                                    },
-                                    width: double.infinity)
+                                const SizedBox(height: 72),
+                                // const SizedBox(
+                                //   height: 16,
+                                // ),
+                                // CustomButton(
+                                //     text: 'Читать',
+                                //     onTap: () {
+                                //       openUrl(bloc
+                                //           .storiesList[bloc.currentStoryIndex]
+                                //           .buttonUrl!);
+                                //     },
+                                //     width: double.infinity)
                               ]
                             ],
                           ),
@@ -171,28 +173,55 @@ class _StoryScreenState extends State<StoryScreen>
                               index: i - 1);
                         }).toList()),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: exit,
-                        child: Ink(
-                          padding: const EdgeInsets.all(8),
-                          child: SvgPicture.asset(
-                            'assets/icons/cross_rounded.svg',
-                            color: Colors.white,
-                            width: 24,
-                            height: 24,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               );
             }),
           ),
+          SafeArea(child:
+              BlocBuilder<StoryCubit, StoryState>(builder: (context, state) {
+            return Container(
+                width: size.width,
+                padding: const EdgeInsets.only(top: 10),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 64),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: exit,
+                              child: Ink(
+                                padding: const EdgeInsets.all(8),
+                                child: SvgPicture.asset(
+                                  'assets/icons/cross_rounded.svg',
+                                  color: Colors.white,
+                                  width: 24,
+                                  height: 24,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (bloc.storiesList[bloc.currentStoryIndex]
+                            .buttonUrl !=
+                            null) ...[
+                          const Spacer(),
+                          CustomButton(
+                              text: 'Читать',
+                              onTap: () {
+                                openUrl(bloc
+                                    .storiesList[bloc.currentStoryIndex]
+                                    .buttonUrl!);
+                              },
+                              width: double.infinity)
+                        ]
+                      ]),
+                ));
+          }))
         ],
       ),
     );

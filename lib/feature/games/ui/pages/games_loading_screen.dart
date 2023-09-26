@@ -49,7 +49,7 @@ class _GamesLoadingScreenState extends State<GamesLoadingScreen> {
             ),
             Text(
               game.name,
-              style: AppFonts.font18w700.copyWith(color: Colors.black),
+              style: AppTypography.font18w700.copyWith(color: Colors.black),
             ),
             const SizedBox(
               height: 32,

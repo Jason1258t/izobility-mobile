@@ -18,7 +18,7 @@ class _DateTextState extends State<DateText> {
       color: AppColors.purpleBcg,
       child: Text(
         widget.date,
-        style: AppFonts.font12w400.copyWith(color: AppColors.blackGraySecondary),
+        style: AppTypography.font12w400.copyWith(color: AppColors.blackGraySecondary),
         textAlign: TextAlign.center,
       ),
     );

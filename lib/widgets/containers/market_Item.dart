@@ -30,7 +30,7 @@ class MarketItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
           child: Text(
             '+',
-            style: AppFonts.font12w700.copyWith(color: AppColors.textSecondary),
+            style: AppTypography.font12w700.copyWith(color: AppColors.textSecondary),
           ),
         ),
       );
@@ -78,33 +78,33 @@ class MarketItem extends StatelessWidget {
                           height: 17,
                           alignment: Alignment.center,
                           decoration: ShapeDecoration(
-                            color: AppColors.primaryPressedBackground,
+                            color: AppColors.primary,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
                           child: Text(
                             'НОВОЕ',
-                            style: AppFonts.font12w400,
+                            style: AppTypography.font12w400,
                           ),
                         )
                       ]
                     ],
                   ),
-                  Row(
-                    children: [
-                      const Spacer(),
-                      Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(pizdulkaUrl)),
-                        ),
-                      )
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     const Spacer(),
+                  //     Container(
+                  //       width: 36,
+                  //       height: 36,
+                  //       decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(8),
+                  //         image: DecorationImage(
+                  //             fit: BoxFit.cover,
+                  //             image: AssetImage(pizdulkaUrl)),
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -117,7 +117,7 @@ class MarketItem extends StatelessWidget {
               child: Text(
                 textDescription,
                 style:
-                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
+                    AppTypography.font12w400.copyWith(color: AppColors.textPrimary),
               ),
             )
           ],

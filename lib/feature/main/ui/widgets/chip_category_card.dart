@@ -39,7 +39,7 @@ class _ChipCategoryCardState extends State<ChipCategoryCard> {
             color: widget.isActive ? AppColors.primary : Colors.white),
         child: Text(
           widget.text,
-          style: AppFonts.font12w700.copyWith(
+          style: AppTypography.font12w700.copyWith(
               color: widget.isActive
                   ? Colors.white
                   : AppColors.blackGraySecondary),

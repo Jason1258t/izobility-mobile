@@ -29,7 +29,7 @@ class _GamesScreenState extends State<GamesScreen> {
                 centerTitle: true,
                 title: Text(
                   "Игротека",
-                  style: AppFonts.font16w700.copyWith(color: Colors.black),
+                  style: AppTypography.font16w700.copyWith(color: Colors.black),
                 ),
               ),
               const SliverToBoxAdapter(

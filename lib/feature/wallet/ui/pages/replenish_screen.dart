@@ -61,7 +61,7 @@ class _ReplenishScreenState extends State<ReplenishScreen> {
                     child: Text(
                       '0xe92d1a43df510f82c66382592a047d288f85226f',
                       maxLines: 2,
-                      style: AppFonts.font14w400
+                      style: AppTypography.font14w400
                           .copyWith(color: AppColors.disabledTextButton),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,

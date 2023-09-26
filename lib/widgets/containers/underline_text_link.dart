@@ -17,7 +17,7 @@ class UnderlineTextLink extends StatelessWidget {
       onTap: onTap,
       child: Text(
         text,
-        style: AppFonts.font12w400.copyWith(
+        style: AppTypography.font12w400.copyWith(
           color: AppColors.textSecondary,
           decoration: TextDecoration.underline,
         ),

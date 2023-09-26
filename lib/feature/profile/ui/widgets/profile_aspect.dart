@@ -25,13 +25,13 @@ class _ProfileAspectState extends State<ProfileAspect> {
           children: [
             Text(
               widget.label,
-              style: AppFonts.font16w500.copyWith(color: AppColors.textPrimary),
+              style: AppTypography.font16w500.copyWith(color: AppColors.textPrimary),
             ),
             const SizedBox(
               height: 8,
             ),
             Text(widget.text,
-                style: AppFonts.font12w400
+                style: AppTypography.font12w400
                     .copyWith(color: AppColors.textSecondary))
           ],
         ),

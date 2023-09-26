@@ -18,7 +18,7 @@ class GuidesSuggestion extends StatelessWidget {
   final BorderSide viewBorderSide = const BorderSide(
     width: 1,
     strokeAlign: BorderSide.strokeAlignOutside,
-    color: AppColors.primaryPressedBackground,
+    color: AppColors.primary,
   );
 
   final BorderSide notWhite = BorderSide.none;
@@ -64,7 +64,7 @@ class GuidesSuggestion extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: AppFonts.font8w700.copyWith(fontSize: 10),
+            style: AppTypography.font8w700.copyWith(fontSize: 10),
           ),
         ),
       ),
