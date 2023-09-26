@@ -5,13 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
-import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
-import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 class ProfileEditScreen extends StatefulWidget {
@@ -42,7 +41,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     _nameController.text = userRepository.user.details?.name ?? "";
     _surnameController.text = userRepository.user.details?.fam ?? "";
     _emailController.text = userRepository.user.email ?? "";
-    print(userRepository.user);
     _phoneController.text = userRepository.user.details?.phone ?? "";
   }
 
@@ -67,17 +65,18 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               description:
                                   "Иначе вы потеряете введенные вами изменения",
                               onAccept: () async {
-                                final user = await context
-                                    .read<UserRepository>()
-                                    .preferences
-                                    .getUser();
+                                context.read<ProfileCubit>().updateUserData(
+                                      birthday: "",
+                                      gender: context
+                                          .read<UserRepository>()
+                                          .user
+                                          .details!
+                                          .gender!,
+                                      name: _nameController.text,
+                                      surname: _surnameController.text,
+                                    );
 
-                                final token = await context
-                                    .read<UserRepository>()
-                                    .preferences
-                                    .getToken();
-                                print(user!.id);
-                                print(token!.accessToken);
+                                context.pop();
                               },
                               onDecline: () => context.pop())));
                     },
@@ -109,7 +108,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 } else if (state is ProfileSuccessState) {
                   return buildUserDetialsInfo();
                 } else {
-                  return Center(
+                  return const Center(
                     child: Text('Sorry something wetn wrong'),
                   );
                 }
@@ -179,16 +178,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 ProfileGenderChooseCard(
+                                  genderIndex: 0,
                                   text: "Мужской",
-                                  isActive: false,
                                 ),
                                 ProfileGenderChooseCard(
+                                  genderIndex: 1,
                                   text: "Женский",
-                                  isActive: false,
                                 ),
                                 ProfileGenderChooseCard(
+                                  genderIndex: 2,
                                   text: "Другой",
-                                  isActive: false,
                                 )
                               ]),
                         );
@@ -205,12 +204,18 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "genderType" ?? "Пол",
-                        style: AppFonts.font16w400
-                            .copyWith(color: AppColors.hintText),
-                      ),
-                      Icon(
+                      AppStrings.gender[user.details?.gender] == null
+                          ? Text(
+                              "Пол",
+                              style: AppFonts.font16w400
+                                  .copyWith(color: AppColors.hintText),
+                            )
+                          : Text(
+                              AppStrings.gender[user.details?.gender]!,
+                              style: AppFonts.font16w400
+                                  .copyWith(color: Colors.black),
+                            ),
+                      const Icon(
                         Icons.arrow_drop_down_outlined,
                         size: 35,
                         color: Colors.black,
@@ -226,8 +231,10 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             CustomTextField(
                 backgroundColor: Colors.white,
                 labelText: "Дата рождения",
+                keyboardType: TextInputType.number,
                 hintText: "Дата рождения",
                 controller: _birthdayController,
+                mask: AppMask.maskDatetimeFormatter,
                 width: double.infinity),
             const SizedBox(
               height: 16,
@@ -249,31 +256,38 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 }
 
 class ProfileGenderChooseCard extends StatelessWidget {
-  final bool isActive;
   final String text;
+  final int genderIndex;
 
   const ProfileGenderChooseCard({
     super.key,
-    required this.isActive,
     required this.text,
+    required this.genderIndex,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox.adaptive(
-          value: isActive,
-          onChanged: (_) {},
-        ),
-        const SizedBox(
-          width: 0,
-        ),
-        Text(
-          text,
-          style: AppFonts.font16w400.copyWith(color: Colors.black),
-        )
-      ],
+    return InkWell(
+      onTap: () {
+        context.read<ProfileCubit>().changeUserGender(genderIndex);
+        context.pop();
+      },
+      child: Row(
+        children: [
+          Checkbox.adaptive(
+            value: context.read<UserRepository>().user.details?.gender ==
+                genderIndex,
+            onChanged: (_) {},
+          ),
+          const SizedBox(
+            width: 0,
+          ),
+          Text(
+            text,
+            style: AppFonts.font16w400.copyWith(color: Colors.black),
+          )
+        ],
+      ),
     );
   }
 }

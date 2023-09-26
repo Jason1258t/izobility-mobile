@@ -10,3 +10,5 @@ final class ProfileWaiting extends ProfileState {}
 final class ProfileSuccessState extends ProfileState {}
 
 final class ProfileFailureState extends ProfileState {}
+
+final class ProfileDataRefreshedState extends ProfileState {}

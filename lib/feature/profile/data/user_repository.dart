@@ -30,9 +30,20 @@ class UserRepository {
       print("-=-=-=-=-=-=-=");
 
       user.details = userDetails;
+      await preferences.setUser(user);
     } catch (ex) {
       print(ex);
       rethrow;
     }
+  }
+
+  Future<void> updateUserData({
+    required String name,
+    required String surname,
+    required int gender,
+    required String birthday,
+  }) async {
+    await apiService.user.updateUserData(
+        name: name, surname: surname, gender: gender, birthday: birthday);
   }
 }

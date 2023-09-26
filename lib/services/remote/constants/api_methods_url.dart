@@ -8,4 +8,14 @@ class ApiEndpoints {
   static const String wallet = '/balance/balance';
 
   static const String userInfo = '/user/';
+
+  static const String userUpdateName = '/user/update-fio';
+
+  static const String userUpdatePhoto = '/user/update-photo';
+
+  static const String userUpdatePhone = '/user/update-phone';
+
+  static const String userUpdateBirthday = '/user/update-birth';
+
+  static const String userUpdateGender = '/user/update-gender';
 }

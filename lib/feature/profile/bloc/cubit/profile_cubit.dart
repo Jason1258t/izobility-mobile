@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/services/remote/api/api_service.dart';
 
 part 'profile_state.dart';
 
@@ -30,6 +31,28 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileWaiting());
     try {
       await _userRepository.loadUserDetailsInfo();
+      emit(ProfileSuccessState());
+    } catch (ex) {
+      print(ex);
+      emit(ProfileFailureState());
+    }
+  }
+
+  Future<void> changeUserGender(int genderIndex) async {
+    _userRepository.user.details!.gender = genderIndex;
+    emit(ProfileSuccessState());
+  }
+
+  Future<void> updateUserData({
+    required String name,
+    required String surname,
+    required int gender,
+    required String birthday,
+  }) async {
+    emit(ProfileWaiting());
+    try {
+      await _userRepository.updateUserData(
+          name: name, surname: surname, gender: gender, birthday: birthday);
       emit(ProfileSuccessState());
     } catch (ex) {
       print(ex);
