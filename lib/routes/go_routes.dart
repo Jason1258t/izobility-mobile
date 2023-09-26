@@ -25,6 +25,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
@@ -39,8 +40,11 @@ import '../feature/auth/bloc/app/app_cubit.dart';
 import '../feature/profile/ui/pages/profile_settings.dart';
 
 part 'main_routes.dart';
+
 part 'auth_routes.dart';
+
 part 'route_names.dart';
+
 part 'stream_auth_scope.dart';
 
 class CustomGoRoutes {
@@ -62,8 +66,7 @@ class CustomGoRoutes {
         return false;
       }
 
-      if (appState is AppAuthState &&
-          !containsRout(state.matchedLocation)) {      
+      if (appState is AppAuthState && !containsRout(state.matchedLocation)) {
         return RouteNames.main;
       }
       if (appState is CreatePinState) {
@@ -225,7 +228,7 @@ class CustomGoRoutes {
             path: RouteNames.basket,
             pageBuilder: (context, state) => CustomTransitionPage<void>(
               key: state.pageKey,
-              child: const Text('basket'),
+              child: const StoreScreen(),
               transitionsBuilder: (BuildContext context,
                   Animation<double> animation,
                   Animation<double> secondaryAnimation,
@@ -252,4 +255,3 @@ class CustomGoRoutes {
     ],
   );
 }
-

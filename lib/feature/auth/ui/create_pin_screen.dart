@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
@@ -56,9 +55,10 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(width: double.infinity, height: 32),
-            SvgPicture.asset(
-              'assets/icons/logo.svg',
-              width: 180,
+            Image.asset(
+              'assets/images/emerald_logo.png',
+              width: 160,
+              fit: BoxFit.fitWidth,
             ),
             const SizedBox(
               height: 32,

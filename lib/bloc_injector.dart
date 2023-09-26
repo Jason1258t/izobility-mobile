@@ -45,7 +45,7 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (_) => PasswordRecoveryCubit(),
+            create: (_) => PasswordRecoveryCubit(apiService: api),
             lazy: false,
           ),
           BlocProvider(
@@ -78,7 +78,8 @@ class MyBlocProviders extends StatelessWidget {
           BlocProvider(
             create: (_) => MainCoinCubit(
                 walletRepository:
-                    RepositoryProvider.of<WalletRepository>(context)),
+                    RepositoryProvider.of<WalletRepository>(context))
+              ..loadEmeraldCoin(),
             lazy: false,
           ),
         ],
@@ -101,7 +102,7 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => UserRepository(apiService: api, preferences: prefs),
       ),
       RepositoryProvider(
-        create: (_) => HomeRepository(),
+        create: (_) => HomeRepository()..onSelectTab(0),
       ),
       RepositoryProvider(
         create: (_) => WalletRepository(api),

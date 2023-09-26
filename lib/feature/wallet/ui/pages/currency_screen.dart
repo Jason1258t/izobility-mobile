@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
@@ -54,9 +55,10 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        const CircleAvatar(
-                          radius: 20,
-                          backgroundColor: AppColors.primary,
+                        SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: Image.asset('assets/images/emerald_coin.png', fit: BoxFit.fill,),
                         ),
                         Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
                             style: AppFonts.font36w700

@@ -19,6 +19,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   void checkLogin() => authRepository.checkLogin();
 
+  int? getUserId() => authRepository.userId;
+
   void _initialRegister(String email) {
     loginData = null;
     registerData = RegisterData(email: email);
@@ -29,16 +31,16 @@ class AuthCubit extends Cubit<AuthState> {
     loginData = LoginData(email: email);
   }
 
-  Future<EmailStateEnum> checkEmail(String email) async {
-    final result = await authRepository.checkEmail(email);
+  Future<EmailStateEnum> checkEmail(String email, String? promo) async {
+    final result = await authRepository.checkEmail(email, promo);
 
-    if (result == EmailStateEnum.registered) {
-      _initialLogin(email);
-      emit(LoginState());
-    } else {
-      _initialRegister(email);
-      emit(RegisterState());
-    }
+    // if (result == EmailStateEnum.registered) {
+    _initialLogin(email);
+    emit(LoginState());
+    // } else {
+    //   _initialRegister(email);
+    //   emit(RegisterState());
+    // }
 
     return result;
   }

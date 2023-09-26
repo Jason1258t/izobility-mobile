@@ -10,12 +10,12 @@ class Auth with ApiHandler {
     currentToken = token;
   }
 
-  Future<dynamic> registerUser(String email) async {
+  Future<dynamic> registerUser(String email, String? promo) async {
     final res =  await dio.post(ApiEndpoints.register, data: {
       "phone": "",
       "phone_country": "+7",
       "email": email,
-      "promo": "",
+      "promo": promo ?? "",
       "site_id": 0
     });
 
@@ -43,5 +43,11 @@ class Auth with ApiHandler {
     refreshToken(response.data['jwt']);
 
     return response.data;
+  }
+
+  Future<dynamic> resendVerificationCode({required int userId}) async {
+    final res = await post(ApiEndpoints.resendCode, data: {'id': userId});
+
+    return res;
   }
 }

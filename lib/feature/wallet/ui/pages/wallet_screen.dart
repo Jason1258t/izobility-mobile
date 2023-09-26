@@ -26,7 +26,6 @@ class WalletScreen extends StatefulWidget {
 
 class _WalletScreenState extends State<WalletScreen>
     with SingleTickerProviderStateMixin {
-  int walletOrPlayer = 0;
   int tokenOrNft = 0;
 
   late TabController _tabController;
@@ -76,10 +75,10 @@ class _WalletScreenState extends State<WalletScreen>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomSwitcher(
-                            active: walletOrPlayer,
+                            active: walletRepository.walletPage,
                             onTap: (int val) {
                               setState(() {
-                                walletOrPlayer = val;
+                                walletRepository.setWalletPage(val);
                               });
                             },
                           ),

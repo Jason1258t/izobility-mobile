@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
@@ -23,6 +23,7 @@ class EnterEmailScreen extends StatefulWidget {
 
 class _EnterEmailScreenState extends State<EnterEmailScreen> {
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController referalCodeController = TextEditingController();
 
   bool buttonActive = false;
 
@@ -43,9 +44,14 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset(
-                  'assets/icons/logo.svg',
-                  width: 180,
+                // SvgPicture.asset(
+                //   'assets/icons/emerald_logo.svg',
+                //   width: 160,
+                // ),
+                Image.asset(
+                  'assets/images/emerald_logo.png',
+                  width: 160,
+                  fit: BoxFit.fitWidth,
                 ),
                 const SizedBox(
                   height: 32,
@@ -74,6 +80,19 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                     const SizedBox(
                       height: 16,
                     ),
+                    CustomTextField.withOneIcon(
+                      labelText: "Реферальный код",
+                      controller: referalCodeController,
+                      width: double.infinity,
+                      suffixIconCallback: () {},
+                      suffixIconChild: SvgPicture.asset(
+                        'assets/icons/scaner.svg',
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     CustomButton(
                         text: 'Далее',
                         onTap: () {
@@ -84,13 +103,9 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                               ));
 
                           BlocProvider.of<AuthCubit>(context)
-                              .checkEmail(emailController.text.trim())
+                              .checkEmail(emailController.text.trim(), referalCodeController.text)
                               .then((accountState) {
-                            if (accountState == EmailStateEnum.unregistered) {
-                              context.push(RouteNames.authCreateName);
-                            } else {
-                              context.push(RouteNames.authEnterPassword);
-                            }
+                            context.push(RouteNames.authEnterPassword);
 
                             Dialogs.hide(context);
                           });

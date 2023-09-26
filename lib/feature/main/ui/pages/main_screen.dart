@@ -86,10 +86,10 @@ class _MainScreenState extends State<MainScreen> {
                             decoration: BoxDecoration(
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(12),
-                                image: const DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/test_banner.jpg'),
-                                    fit: BoxFit.cover)),
+                              image: const DecorationImage(
+                                image: AssetImage('assets/image'),
+                              )
+                                ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

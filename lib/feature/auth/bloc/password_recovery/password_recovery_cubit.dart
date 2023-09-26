@@ -2,23 +2,27 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 
+import '../../../../services/remote/api/api_service.dart';
+
 part 'password_recovery_state.dart';
 
 class PasswordRecoveryCubit extends Cubit<PasswordRecoveryState> {
-  PasswordRecoveryCubit() : super(PasswordRecoveryInitial());
+  final ApiService apiService;
 
-  void sendRecoveryEmail(String email) async {
+  PasswordRecoveryCubit({required this.apiService}) : super(PasswordRecoveryInitial());
+
+  void sendRecoveryEmail(int userId) async {
     int repeatDuration = 60;
 
     emit(PasswordRecoveryProcessState());
     try {
-      await Future.delayed(
-          const Duration(seconds: 2)); // TODO заменить на api метод
+      await apiService.auth.resendVerificationCode(userId: userId);
       emit(PasswordRecoveryEmailSent());
       emit(PasswordRecoveryWait(remainingTime: repeatDuration));
       _startTimer(repeatDuration);
     } catch (e) {
       emit(PasswordRecoveryFailState());
+      rethrow;
     }
   }
 

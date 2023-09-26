@@ -88,8 +88,8 @@ class _PasswordRecoveryEmailScreenState
                   child: CustomButton(
                       text: 'Восстановить',
                       onTap: () {
-                        BlocProvider.of<PasswordRecoveryCubit>(context)
-                            .sendRecoveryEmail(emailController.text.trim());
+                        // BlocProvider.of<PasswordRecoveryCubit>(context)
+                        //     .sendRecoveryEmail(emailController.text.trim());
                       },
                       isActive: buttonActive,
                       width: double.infinity),
