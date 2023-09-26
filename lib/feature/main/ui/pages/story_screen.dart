@@ -4,10 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/story_indicator.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../routes/go_routes.dart';
 
 class StoryScreen extends StatefulWidget {
   const StoryScreen({super.key, required this.initialStoryIndex});

@@ -1,0 +1,26 @@
+part of 'go_routes.dart';
+
+final mainRoutesNames = [
+  RouteNames.wallet,
+  RouteNames.walletCurrency,
+  RouteNames.walletInfoCurrency,
+  RouteNames.walletSwap,
+  RouteNames.walletSendCurrency,
+  RouteNames.walletReplenish,
+  RouteNames.walletChooseCoin,
+  RouteNames.walletBuyCurrency,
+  RouteNames.profile,
+  RouteNames.profileEdit,
+  RouteNames.profileInventory,
+  RouteNames.profileSettings,
+  RouteNames.profileAbout,
+  RouteNames.notifications,
+  RouteNames.story,
+  RouteNames.main,
+  RouteNames.basket,
+  RouteNames.cards,
+  RouteNames.cardsAdd,
+  RouteNames.games,
+  RouteNames.gamesDetails,
+  RouteNames.gamesDetailsLoading,
+];

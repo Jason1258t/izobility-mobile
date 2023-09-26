@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
 
 import '../../../utils/logic/validators.dart';
 import '../../../widgets/button/custom_button.dart';

@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
 import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 

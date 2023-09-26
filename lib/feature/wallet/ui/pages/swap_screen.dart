@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';

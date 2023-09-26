@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/card_transaction_widget.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/credit_card_widget.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';

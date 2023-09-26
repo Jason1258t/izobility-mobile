@@ -3,8 +3,14 @@ import 'dart:developer';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 
 class CustomBlocObserver extends BlocObserver {
+  CustomBlocObserver({required this.authNotifier});
+
+  final StreamAuthNotifier authNotifier;
+
   @override
   void onCreate(bloc) {
     log('***$bloc***', name: '-------------------- onCreate BLoC');
@@ -28,6 +34,11 @@ class CustomBlocObserver extends BlocObserver {
   void onChange(bloc, Change change) {
     log('*** bloc = $bloc*** *** change = $change***',
         name: '-------------------- onChange BLoC');
+
+    if (bloc is AppCubit) {
+      authNotifier.notify(
+          message: change.nextState.toString(), state: change.nextState);
+    }
 
     super.onChange(bloc, change);
   }

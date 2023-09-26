@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';

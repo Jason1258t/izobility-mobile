@@ -1,3 +1,5 @@
+part of 'go_routes.dart';
+
 abstract class RouteNames {
   static const root = '/';
 

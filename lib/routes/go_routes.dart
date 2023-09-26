@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/ui/create_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/create_pin_screen.dart';
@@ -33,10 +34,14 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.da
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/main.dart';
-import 'package:izobility_mobile/routes/route_names.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
 import '../feature/profile/ui/pages/profile_settings.dart';
+
+part 'main_routes.dart';
+part 'auth_routes.dart';
+part 'route_names.dart';
+part 'stream_auth_scope.dart';
 
 class CustomGoRoutes {
   static final defaultKey = GlobalKey<NavigatorState>();
@@ -46,34 +51,12 @@ class CustomGoRoutes {
     initialLocation: RouteNames.splash,
     navigatorKey: defaultKey,
     redirect: (BuildContext context, GoRouterState state) async {
-      final AppState appState = StreamAuthNotifier.of(context).state;
-      final mainRoutes = [
-        RouteNames.wallet,
-        RouteNames.walletCurrency,
-        RouteNames.walletInfoCurrency,
-        RouteNames.walletSwap,
-        RouteNames.walletSendCurrency,
-        RouteNames.walletReplenish,
-        RouteNames.walletChooseCoin,
-        RouteNames.walletBuyCurrency,
-        RouteNames.profile,
-        RouteNames.profileEdit,
-        RouteNames.profileInventory,
-        RouteNames.profileSettings,
-        RouteNames.profileAbout,
-        RouteNames.notifications,
-        RouteNames.story,
-        RouteNames.main,
-        RouteNames.basket,
-        RouteNames.cards,
-        RouteNames.cardsAdd,
-        RouteNames.games,
-        RouteNames.gamesDetails,
-        RouteNames.gamesDetailsLoading,
-      ];
+      final AppState appState = StreamAuthNotifier.of(context) ?? AppInitial();
+
+      print(appState);
 
       bool containsRout(String route) {
-        for (String defaultRoute in mainRoutes) {
+        for (String defaultRoute in mainRoutesNames) {
           if (route.startsWith(defaultRoute)) return true;
         }
         return false;
@@ -91,18 +74,10 @@ class CustomGoRoutes {
         return RouteNames.authEnterPin;
       }
 
-      final authRoutes = [
-        RouteNames.auth,
-        RouteNames.authEnterPin,
-        RouteNames.authCreatePin,
-        RouteNames.authCreateName,
-        RouteNames.authEnterPassword
-      ];
-
-      log(state.matchedLocation.toString());
-      log((appState is AppUnAuthState &&
-              !authRoutes.contains(state.matchedLocation))
-          .toString());
+      // log(state.matchedLocation.toString());
+      // log((appState is AppUnAuthState &&
+      //         !authRoutes.contains(state.matchedLocation))
+      //     .toString());
 
       if (appState is AppUnAuthState &&
           !authRoutes.contains(state.matchedLocation)) {
@@ -278,29 +253,3 @@ class CustomGoRoutes {
   );
 }
 
-class StreamAuthScope extends InheritedNotifier<StreamAuthNotifier> {
-  StreamAuthScope({super.key, required super.child, required this.appCubit})
-      : super(
-          notifier: StreamAuthNotifier(appCubit: appCubit),
-        );
-
-  final AppCubit appCubit;
-}
-
-class StreamAuthNotifier extends ChangeNotifier {
-  StreamAuthNotifier({required this.appCubit}) : super() {
-    appCubit.stream.listen((event) {
-      print(event);
-      notifyListeners();
-    });
-  }
-
-  final AppCubit appCubit;
-
-  static AppCubit of(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<StreamAuthScope>()!
-        .notifier!
-        .appCubit;
-  }
-}

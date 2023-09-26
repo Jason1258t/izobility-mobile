@@ -5,6 +5,7 @@ import 'package:izobility_mobile/feature/games/bloc/games/games_cubit.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_details_stats_card.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_screenshot_card.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';

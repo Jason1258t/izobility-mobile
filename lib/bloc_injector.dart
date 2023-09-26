@@ -26,8 +26,8 @@ final PreferencesService prefs = PreferencesService();
 final ApiService api = ApiService(preferencesService: prefs);
 
 class MyBlocProviders extends StatelessWidget {
-  const MyBlocProviders({super.key});
-
+  const MyBlocProviders(this.notifier, {super.key});
+  final StreamAuthNotifier notifier;
   @override
   Widget build(BuildContext context) {
     final appCubit = AppCubit(
@@ -83,15 +83,15 @@ class MyBlocProviders extends StatelessWidget {
           ),
         ],
         child: StreamAuthScope(
-          appCubit: appCubit,
+          customNotifier: notifier,
           child: const MyApp(),
         ));
   }
 }
 
 class MyRepositoryProviders extends StatelessWidget {
-  const MyRepositoryProviders({super.key});
-
+  const MyRepositoryProviders({super.key, required this.notifier});
+  final StreamAuthNotifier notifier;
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(providers: [
@@ -115,6 +115,6 @@ class MyRepositoryProviders extends StatelessWidget {
       RepositoryProvider(
           create: (context) =>
               NotificationsRepository(apiService: api, preferences: prefs))
-    ], child: const MyBlocProviders());
+    ], child: MyBlocProviders(notifier));
   }
 }
