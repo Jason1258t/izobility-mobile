@@ -42,6 +42,17 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     _surnameController.text = userRepository.user.details?.fam ?? "";
     _emailController.text = userRepository.user.email ?? "";
     _phoneController.text = userRepository.user.details?.phone ?? "";
+    _birthdayController.text = userRepository.user.details?.birthday ?? "";
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _surnameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _birthdayController.dispose();
+    super.dispose();
   }
 
   @override
@@ -66,7 +77,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   "Иначе вы потеряете введенные вами изменения",
                               onAccept: () async {
                                 context.read<ProfileCubit>().updateUserData(
-                                      birthday: "",
+                                      birthday: _birthdayController.text,
                                       gender: context
                                           .read<UserRepository>()
                                           .user
@@ -232,7 +243,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 backgroundColor: Colors.white,
                 labelText: "Дата рождения",
                 keyboardType: TextInputType.number,
-                hintText: "Дата рождения",
+                hintText: "2005-12-31",
                 controller: _birthdayController,
                 mask: AppMask.maskDatetimeFormatter,
                 width: double.infinity),

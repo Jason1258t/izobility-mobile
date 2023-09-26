@@ -24,4 +24,5 @@ final mainRoutesNames = [
   RouteNames.gamesDetails,
   RouteNames.gamesDetailsLoading,
   RouteNames.store,
+  RouteNames.develop
 ];

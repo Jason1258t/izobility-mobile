@@ -17,7 +17,7 @@ class AppMask {
       type: MaskAutoCompletionType.lazy);
 
   static final maskDatetimeFormatter = MaskTextInputFormatter(
-      mask: '##.##.####',
+      mask: '####-##-##',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 }

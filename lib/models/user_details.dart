@@ -22,6 +22,7 @@ class UserDetailsModel {
   int? gender;
   int? notif;
   String? fio;
+  String? birthday;
 
   UserDetailsModel(
       {required this.id,
@@ -46,34 +47,35 @@ class UserDetailsModel {
       required this.countryname,
       required this.gender,
       required this.notif,
-      required this.fio});
+      required this.fio,
+      required this.birthday});
 
   factory UserDetailsModel.fromJson(Map<String, dynamic> json) {
     return UserDetailsModel(
-      id: json['id'],
-      email: json['email'],
-      phone: json['phone'],
-      phoneCountry: json['phone_country'],
-      cityId: json['city_id'],
-      isActive: json['is_active'],
-      isAdmin: json['is_admin'],
-      isPartner: json['is_partner'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
-      fam: json['fam'],
-      name: json['name'],
-      otch: json['otch'],
-      partnerRole: json['partner_role'],
-      referalcode: json['referalcode'],
-      lastLogin: json['last_login'],
-      dateLimit: json['date_limit'],
-      siteId: json['site_id'],
-      cityname: json['cityname'],
-      countryname: json['countryname'],
-      gender: json['gender'],
-      notif: json['notif'],
-      fio: json['fio'],
-    );
+        id: json['id'],
+        email: json['email'],
+        phone: json['phone'],
+        phoneCountry: json['phone_country'],
+        cityId: json['city_id'],
+        isActive: json['is_active'],
+        isAdmin: json['is_admin'],
+        isPartner: json['is_partner'],
+        createdAt: json['created_at'],
+        updatedAt: json['updated_at'],
+        fam: json['fam'],
+        name: json['name'],
+        otch: json['otch'],
+        partnerRole: json['partner_role'],
+        referalcode: json['referalcode'],
+        lastLogin: json['last_login'],
+        dateLimit: json['date_limit'],
+        siteId: json['site_id'],
+        cityname: json['cityname'],
+        countryname: json['countryname'],
+        gender: json['gender'],
+        notif: json['notif'],
+        fio: json['fio'],
+        birthday: json['date_birth']);
   }
 
   Map<String, dynamic> toJson() {
@@ -101,6 +103,7 @@ class UserDetailsModel {
     data['gender'] = gender;
     data['notif'] = notif;
     data['fio'] = fio;
+    data['date_birth'] = birthday;
     return data;
   }
 

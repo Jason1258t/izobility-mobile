@@ -33,7 +33,7 @@ class User with ApiHandler {
         await post(ApiEndpoints.userUpdateName, data: {
       "fam": surname.toString(),
       "name": name.toString(),
-      "otch": "12.04.2007",
+      "otch": "",
     });
 
     final responseUpdateBirthDay = await post(ApiEndpoints.userUpdateBirthday,
