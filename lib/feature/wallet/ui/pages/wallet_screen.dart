@@ -257,7 +257,7 @@ class _WalletScreenState extends State<WalletScreen>
                     : SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => MarketItem(
-                            imageUrl: 'assets/images/burger.png',
+                            imageUrl: 'https://kartinkin.net/uploads/posts/2022-08/1661214768_6-kartinkin-net-p-burger-king-chiken-barbekyu-vkontakte-11.jpg',
                             textDescription:
                                 'Набор бонусов для игры Reapers rush +156 к мощности',
                             isNew: true,

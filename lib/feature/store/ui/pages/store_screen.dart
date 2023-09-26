@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class StoreScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _StoreScreenState extends State<StoreScreen> {
         isBack: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -78,6 +79,48 @@ class _StoreScreenState extends State<StoreScreen> {
             storyRepository.activeCategory,
             style: AppTypography.font24w700.copyWith(color: Colors.black),
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          Column(
+            children: List.generate(
+              20,
+              (index) => SizedBox(
+                height: 260,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      height: 260,
+                      child: MarketItem(
+                        imageUrl:
+                            'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
+                        textDescription:
+                            'Набор бонусов для игры Reapers rush +156 к мощности',
+                        isNew: true,
+                        pizdulkaUrl: '',
+                        onTap: () {},
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    SizedBox(
+                      height: 260,
+                      child: MarketItem(
+                        imageUrl:
+                            'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
+                        textDescription:
+                            'Набор бонусов для игры Reapers rush +156 к мощности',
+                        isNew: true,
+                        pizdulkaUrl: '',
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
         ])),
       ),
     );
