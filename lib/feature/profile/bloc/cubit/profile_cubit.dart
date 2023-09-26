@@ -53,6 +53,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     try {
       await _userRepository.updateUserData(
           name: name, surname: surname, gender: gender, birthday: birthday);
+      await _userRepository.loadUserDetailsInfo();
       emit(ProfileSuccessState());
     } catch (ex) {
       print(ex);

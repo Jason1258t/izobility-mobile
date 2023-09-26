@@ -29,8 +29,6 @@ class User with ApiHandler {
     required int gender,
     required String birthday,
   }) async {
-    print(name);
-    print(surname);
     final responseUpdateName =
         await post(ApiEndpoints.userUpdateName, data: {
       "fam": surname.toString(),
