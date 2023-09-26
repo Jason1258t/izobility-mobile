@@ -47,7 +47,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 height: 3,
               ),
               Text(
-                context.read<UserRepository>().user?.email ?? "email",
+                context.read<UserRepository>().user.email ?? "email",
                 style: AppFonts.font12w400
                     .copyWith(color: AppColors.textPrimary, height: 1),
               ),

@@ -24,7 +24,7 @@ class UserRepository {
       final response = await apiService.user.getUserDetailsInfo(userId: user.id!);
 
       final UserDetailsModel userDetails =
-          UserDetailsModel.fromJson(response.data);
+          UserDetailsModel.fromJson(response);
 
       user.details = userDetails;
     } catch (ex) {
