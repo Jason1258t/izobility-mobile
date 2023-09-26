@@ -60,6 +60,7 @@ class AuthRepository {
   }
 
   Future checkLogin() async {
+    await Future.delayed(Duration(seconds: 5));
     if (await preferences.getUser() != null) {
       appState.add(AppStateEnum.auth);
       return;

@@ -44,9 +44,14 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset(
-                  'assets/icons/logo.svg',
-                  width: 180,
+                // SvgPicture.asset(
+                //   'assets/icons/emerald_logo.svg',
+                //   width: 160,
+                // ),
+                Image.asset(
+                  'assets/images/emerald_logo.png',
+                  width: 160,
+                  fit: BoxFit.fitWidth,
                 ),
                 const SizedBox(
                   height: 32,

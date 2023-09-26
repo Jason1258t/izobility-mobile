@@ -10,9 +10,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
@@ -24,9 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture.asset(
-                'assets/icons/Logotype.svg',
-                width: MediaQuery.sizeOf(context).width - 40,
+              // SvgPicture.asset(
+              //   'assets/icons/Logotype.svg',
+              //   width: MediaQuery.sizeOf(context).width - 40,
+              // ),
+              Image.asset(
+                'assets/images/logo.png',
+                width: MediaQuery.sizeOf(context).width * 2 / 3,
+                fit: BoxFit.fitWidth,
               ),
               const SizedBox(
                 height: 30,

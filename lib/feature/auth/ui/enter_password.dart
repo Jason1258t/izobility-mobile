@@ -41,9 +41,10 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
             const SizedBox(
               height: 32,
             ),
-            SvgPicture.asset(
-              'assets/icons/logo.svg',
-              width: 180,
+            Image.asset(
+              'assets/images/emerald_logo.png',
+              width: 160,
+              fit: BoxFit.fitWidth,
             ),
             const SizedBox(
               height: 32,
