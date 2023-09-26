@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
-import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_square.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
-import 'package:izobility_mobile/feature/profile/ui/widgets/profile_switch_card.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
-import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/button/custom_outline_button.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
