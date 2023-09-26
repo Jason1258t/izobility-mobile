@@ -58,12 +58,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(16)),
-                            child:const  Row(
+                            child: const Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ProfileCard(
-                                ),
+                                ProfileCard(),
                               ],
                             )),
                         const SizedBox(
@@ -92,7 +91,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ProfileActionContainer(
                               label: "Инвентарь",
                               description: '2056 предметов',
-                              onTap: () {},
+                              onTap: () {
+                                context.push(RouteNames.develop);
+                              },
                             )
                           ],
                         ),
