@@ -59,11 +59,11 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                             backgroundColor: AppColors.primary,
                           ),
                           Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
-                              style: AppFonts.font36w700
+                              style: AppTypography.font36w700
                                   .copyWith(color: AppColors.textPrimary)),
                           Text(
                             walletRepository.obscured ? AppStrings.obscuredText : '≈ 2,545 \$',
-                            style: AppFonts.font16w400
+                            style: AppTypography.font16w400
                                 .copyWith(color: AppColors.blackGraySecondary),
                           ),
                         ],

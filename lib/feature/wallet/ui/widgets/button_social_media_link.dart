@@ -23,7 +23,7 @@ class ButtonSocialMediaLink extends StatelessWidget {
             borderRadius: BorderRadius.circular(100)),
         padding: const EdgeInsets.symmetric(vertical: 4),
         width: sizeOf.width * 0.45,
-        child: Text(text, style: AppFonts.font14w700.copyWith(color: Colors.black),),
+        child: Text(text, style: AppTypography.font14w700.copyWith(color: Colors.black),),
       ),
     );
   }

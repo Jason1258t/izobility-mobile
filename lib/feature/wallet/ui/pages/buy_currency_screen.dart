@@ -60,7 +60,7 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
                             walletRepository.obscured
                                 ? AppStrings.obscuredText
                                 : '123 123\$',
-                            style: AppFonts.font36w700
+                            style: AppTypography.font36w700
                                 .copyWith(color: AppColors.textPrimary)),
                       ]),
                     ),

@@ -38,7 +38,7 @@ class CustomSwitcher extends StatelessWidget {
               ),
               child: Text(
                 'Wallet',
-                style: AppFonts.font16w700.copyWith(
+                style: AppTypography.font16w700.copyWith(
                     color: active == 0
                         ? AppColors.backgroundContent
                         : AppColors.textPrimary),
@@ -61,7 +61,7 @@ class CustomSwitcher extends StatelessWidget {
               ),
               child: Text(
                 'Игровые',
-                style: AppFonts.font16w700.copyWith(
+                style: AppTypography.font16w700.copyWith(
                     color: active == 1
                         ? AppColors.backgroundContent
                         : AppColors.textPrimary),

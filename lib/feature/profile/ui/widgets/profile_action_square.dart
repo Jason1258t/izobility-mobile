@@ -32,13 +32,13 @@ class _ProfileActionContainerState extends State<ProfileActionContainer> {
             children: [
               Text(
                 'fuck my ass bih',
-                style: AppFonts.font16w700.copyWith(color: Colors.black),
+                style: AppTypography.font16w700.copyWith(color: Colors.black),
               ),
               const SizedBox(
                 height: 12,
               ),
               Text('additionaol text',
-                  style: AppFonts.font11w400.copyWith(color: Colors.black)),
+                  style: AppTypography.font11w400.copyWith(color: Colors.black)),
             ],
           ),
         ),

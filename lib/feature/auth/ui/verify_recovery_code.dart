@@ -95,14 +95,14 @@ class _VerifyRecoveryCodeScreenState extends State<VerifyRecoveryCodeScreen> {
               children: [
                 Text(
                   'Проверить почту',
-                  style: AppFonts.font24w700,
+                  style: AppTypography.font24w700,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Text(
                   'Мы отправили письмо для восстановления вашего аккаунта',
-                  style: AppFonts.font12w400,
+                  style: AppTypography.font12w400,
                 )
               ],
             ),

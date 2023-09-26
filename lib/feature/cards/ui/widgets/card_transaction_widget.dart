@@ -59,14 +59,14 @@ class CardTransactionContainer extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: AppFonts.font16w400
+                          style: AppTypography.font16w400
                               .copyWith(color: AppColors.textPrimary),
                         ),
                         const SizedBox(
                           height: 3,
                         ),
                         Text(secondaryTitle,
-                            style: AppFonts.font14w400
+                            style: AppTypography.font14w400
                                 .copyWith(color: AppColors.disabledTextButton))
                       ],
                     ),
@@ -77,13 +77,13 @@ class CardTransactionContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(prise,
-                        style: AppFonts.font16w400
+                        style: AppTypography.font16w400
                             .copyWith(color: AppColors.textPrimary)),
                     const SizedBox(
                       height: 3,
                     ),
                     Text(usdValue,
-                        style: AppFonts.font12w400
+                        style: AppTypography.font12w400
                             .copyWith(color: AppColors.disabledTextButton)),
                   ],
                 ),

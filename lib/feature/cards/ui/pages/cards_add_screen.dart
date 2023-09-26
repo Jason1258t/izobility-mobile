@@ -101,14 +101,14 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                   children: [
                     Text(
                       "Включите NFC\nи приложите карту",
-                      style: AppFonts.font24w700,
+                      style: AppTypography.font24w700,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
                       "Мы автоматически соберём данные и внесём их",
-                      style: AppFonts.font12w400,
+                      style: AppTypography.font12w400,
                     ),
                     const SizedBox(
                       height: 8,
@@ -126,7 +126,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                               horizontal: 28.5, vertical: 4),
                           child: Text(
                             "Включить NFC",
-                            style: AppFonts.font14w700,
+                            style: AppTypography.font14w700,
                           ),
                         ),
                       ),

@@ -64,7 +64,7 @@ class WalletTransactionContainer extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: AppFonts.font16w400
+                          style: AppTypography.font16w400
                               .copyWith(color: AppColors.textPrimary),
                         ),
                         const SizedBox(
@@ -76,7 +76,7 @@ class WalletTransactionContainer extends StatelessWidget {
                               'На: $address asdfasdfasdasdfasdfasdffasdf',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: AppFonts.font14w400.copyWith(
+                              style: AppTypography.font14w400.copyWith(
                                   color: AppColors.disabledTextButton)),
                         ),
                       ],
@@ -84,7 +84,7 @@ class WalletTransactionContainer extends StatelessWidget {
                   ],
                 ),
                 Text(  prise,
-                    style: AppFonts.font16w500
+                    style: AppTypography.font16w500
                         .copyWith(color: !isAddition ? AppColors.negative : AppColors.positive)),
               ],
             ),

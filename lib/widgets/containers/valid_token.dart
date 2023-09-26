@@ -61,7 +61,7 @@ class ValidToken extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: AppFonts.font16w400
+                          style: AppTypography.font16w400
                               .copyWith(color: AppColors.textPrimary),
                         ),
                         const SizedBox(
@@ -69,13 +69,13 @@ class ValidToken extends StatelessWidget {
                         ),
                         Row(children: [
                           Text('$value\$',
-                              style: AppFonts.font14w400.copyWith(
+                              style: AppTypography.font14w400.copyWith(
                                   color: AppColors.disabledTextButton)),
                           const SizedBox(
                             width: 5,
                           ),
                           Text('+$increment',
-                              style: AppFonts.font14w400
+                              style: AppTypography.font14w400
                                   .copyWith(color: AppColors.primary))
                         ])
                       ],
@@ -87,13 +87,13 @@ class ValidToken extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(prise,
-                        style: AppFonts.font16w400
+                        style: AppTypography.font16w400
                             .copyWith(color: AppColors.textPrimary)),
                     const SizedBox(
                       height: 3,
                     ),
                     Text(usdValue,
-                        style: AppFonts.font12w400
+                        style: AppTypography.font12w400
                             .copyWith(color: AppColors.disabledTextButton)),
                   ],
                 ),

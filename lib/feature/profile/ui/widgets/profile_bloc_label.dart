@@ -14,7 +14,7 @@ class PorfileBlocLabel extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 12, top: 32),
       child: Text(
         text,
-        style: AppFonts.font12w400.copyWith(color: AppColors.textSecondary),
+        style: AppTypography.font12w400.copyWith(color: AppColors.textSecondary),
       ),
     );
   }

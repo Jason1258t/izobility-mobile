@@ -49,7 +49,7 @@ class UtilityContainer extends StatelessWidget {
             Text(name,
                 textAlign: TextAlign.center,
                 style:
-                    AppFonts.font14w400.copyWith(color: Colors.black))
+                    AppTypography.font14w400.copyWith(color: Colors.black))
           ],
         ),
       ),

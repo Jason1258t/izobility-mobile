@@ -99,7 +99,7 @@ class _CardsScreenState extends State<CardsScreen> {
                   ),
                   Text(
                     'История',
-                    style: AppFonts.font12w700
+                    style: AppTypography.font12w700
                         .copyWith(color: AppColors.blackGraySecondary),
                   ),
                   Column(

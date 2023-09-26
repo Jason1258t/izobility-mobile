@@ -21,7 +21,7 @@ class CustomTextButton extends StatelessWidget {
         child: Text(
           title,
           textAlign: TextAlign.left,
-          style: AppFonts.font16w500.copyWith(
+          style: AppTypography.font16w500.copyWith(
             color: AppColors.textPrimary,
           ),
         ),

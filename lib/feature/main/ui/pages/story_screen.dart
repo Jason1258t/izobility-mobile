@@ -87,14 +87,14 @@ class _StoryScreenState extends State<StoryScreen>
                             children: [
                               Text(
                                 'Espresso is here!',
-                                style: AppFonts.font24w700,
+                                style: AppTypography.font24w700,
                               ),
                               const SizedBox(
                                 height: 8,
                               ),
                               Text(
                                 'Get ready spro bros - its time to brew the espresso you dream about.',
-                                style: AppFonts.font14w400,
+                                style: AppTypography.font14w400,
                               ),
                               if (bloc.storiesList[bloc.currentStoryIndex]
                                       .buttonUrl !=

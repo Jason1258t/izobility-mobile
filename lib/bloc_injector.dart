@@ -13,6 +13,7 @@ import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
@@ -27,7 +28,9 @@ final ApiService api = ApiService(preferencesService: prefs);
 
 class MyBlocProviders extends StatelessWidget {
   const MyBlocProviders(this.notifier, {super.key});
+
   final StreamAuthNotifier notifier;
+
   @override
   Widget build(BuildContext context) {
     final appCubit = AppCubit(
@@ -78,8 +81,7 @@ class MyBlocProviders extends StatelessWidget {
           BlocProvider(
             create: (_) => MainCoinCubit(
                 walletRepository:
-                    RepositoryProvider.of<WalletRepository>(context))
-              ..loadEmeraldCoin(),
+                    RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),
         ],
@@ -92,7 +94,9 @@ class MyBlocProviders extends StatelessWidget {
 
 class MyRepositoryProviders extends StatelessWidget {
   const MyRepositoryProviders({super.key, required this.notifier});
+
   final StreamAuthNotifier notifier;
+
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(providers: [
@@ -112,6 +116,9 @@ class MyRepositoryProviders extends StatelessWidget {
       ),
       RepositoryProvider(
         create: (_) => GamesRepository(),
+      ),
+      RepositoryProvider(
+        create: (_) => StoreRepository(),
       ),
       RepositoryProvider(
           create: (context) =>

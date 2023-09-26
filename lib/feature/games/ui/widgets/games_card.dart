@@ -50,14 +50,14 @@ class GamesCardState extends State<GamesCard> {
                   width: size.width * 0.4,
                   child: Text(
                     widget.game.name,
-                    style: AppFonts.font16w400.copyWith(color: Colors.black),
+                    style: AppTypography.font16w400.copyWith(color: Colors.black),
                   ),
                 ),
                 Row(
                   children: [
                     Text(
                       widget.game.grade.toString(),
-                      style: AppFonts.font12w400
+                      style: AppTypography.font12w400
                           .copyWith(color: AppColors.grey500),
                     ),
                     const SizedBox(
@@ -87,7 +87,7 @@ class GamesCardState extends State<GamesCard> {
                         child: Text(
                           'Скачать',
                           style:
-                              AppFonts.font12w400.copyWith(color: Colors.black),
+                              AppTypography.font12w400.copyWith(color: Colors.black),
                         ),
                       ))),
             )

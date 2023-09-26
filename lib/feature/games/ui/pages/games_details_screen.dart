@@ -97,7 +97,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
                     width: size.width * 0.4,
                     child: Text(
                       game.name,
-                      style: AppFonts.font16w400.copyWith(color: Colors.black),
+                      style: AppTypography.font16w400.copyWith(color: Colors.black),
                     ),
                   ),
                   const SizedBox(
@@ -106,7 +106,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
                   Text(
                     game.companyName,
                     style:
-                        AppFonts.font12w400.copyWith(color: AppColors.grey500),
+                        AppTypography.font12w400.copyWith(color: AppColors.grey500),
                   )
                 ],
               ),
@@ -201,14 +201,14 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
               children: [
                 Text(
                   "Описание",
-                  style: AppFonts.font18w700.copyWith(color: Colors.black),
+                  style: AppTypography.font18w700.copyWith(color: Colors.black),
                 ),
                 const SizedBox(
                   height: 4,
                 ),
                 Text(
                   game.description,
-                  style: AppFonts.font12w400.copyWith(color: Colors.black),
+                  style: AppTypography.font12w400.copyWith(color: Colors.black),
                 )
               ],
             ),

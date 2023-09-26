@@ -207,7 +207,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     children: [
                       Text(
                         "genderType" ?? "Пол",
-                        style: AppFonts.font16w400
+                        style: AppTypography.font16w400
                             .copyWith(color: AppColors.hintText),
                       ),
                       Icon(
@@ -271,7 +271,7 @@ class ProfileGenderChooseCard extends StatelessWidget {
         ),
         Text(
           text,
-          style: AppFonts.font16w400.copyWith(color: Colors.black),
+          style: AppTypography.font16w400.copyWith(color: Colors.black),
         )
       ],
     );

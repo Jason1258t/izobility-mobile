@@ -87,7 +87,7 @@ class _WalletScreenState extends State<WalletScreen>
                           ),
                           Text(
                             'Текущий баланс',
-                            style: AppFonts.font14w400
+                            style: AppTypography.font14w400
                                 .copyWith(color: AppColors.blackGraySecondary),
                           ),
                         ],
@@ -119,7 +119,7 @@ class _WalletScreenState extends State<WalletScreen>
                                 walletRepository.obscured
                                     ? AppStrings.obscuredText
                                     : walletRepository.emeraldCoin.toString(),
-                                style: AppFonts.font36w700
+                                style: AppTypography.font36w700
                                     .copyWith(color: AppColors.textPrimary));
                           }
                           else if(state is MainCoinLoading){

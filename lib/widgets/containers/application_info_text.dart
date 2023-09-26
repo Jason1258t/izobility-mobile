@@ -19,7 +19,7 @@ class ApplicationInfoText extends StatelessWidget {
         Text(
           paramName,
           textAlign: TextAlign.left,
-          style: AppFonts.font12w400.copyWith(
+          style: AppTypography.font12w400.copyWith(
             color: AppColors.textSecondary,
           ),
         ),
@@ -28,7 +28,7 @@ class ApplicationInfoText extends StatelessWidget {
             points,
             maxLines: 1,
             overflow: TextOverflow.clip,
-            style: AppFonts.font14w400.copyWith(
+            style: AppTypography.font14w400.copyWith(
               color: AppColors.textSecondary,
             ),
           ),
@@ -36,7 +36,7 @@ class ApplicationInfoText extends StatelessWidget {
         Text(
           paramValue,
           textAlign: TextAlign.right,
-          style: AppFonts.font12w400.copyWith(
+          style: AppTypography.font12w400.copyWith(
             color: AppColors.textSecondary,
           ),
         ),

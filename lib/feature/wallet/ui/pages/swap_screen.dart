@@ -48,7 +48,7 @@ class _SwapScreenState extends State<SwapScreen> {
             children: [
               Text(
                 'Вы отправите',
-                style: AppFonts.font20w700.copyWith(color: Colors.black),
+                style: AppTypography.font20w700.copyWith(color: Colors.black),
               ),
               SizedBox(
                 height: 56,
@@ -85,7 +85,7 @@ class _SwapScreenState extends State<SwapScreen> {
               ),
               Text(
                 'Вы получите',
-                style: AppFonts.font20w700.copyWith(color: Colors.black),
+                style: AppTypography.font20w700.copyWith(color: Colors.black),
               ),
               SizedBox(
                 height: 56,

@@ -50,7 +50,7 @@ class CreditCardWidget extends StatelessWidget {
                     FittedBox(
                       child: Text(
                         '3 753 ₽',
-                        style: AppFonts.font24w700.copyWith(color: Colors.white),
+                        style: AppTypography.font24w700.copyWith(color: Colors.white),
                       ),
                     ),
                     const SizedBox(
@@ -67,7 +67,7 @@ class CreditCardWidget extends StatelessWidget {
                         Text(
                           '... 5623',
                           style:
-                              AppFonts.font16w400.copyWith(color: Colors.white),
+                              AppTypography.font16w400.copyWith(color: Colors.white),
                         ),
                         const Spacer(),
                         Container(
@@ -76,7 +76,7 @@ class CreditCardWidget extends StatelessWidget {
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Text('основная',style: AppFonts.font14w400,),
+                          child: Text('основная',style: AppTypography.font14w400,),
                         ),
                       ],
                     ),

@@ -95,13 +95,13 @@ class _MainScreenState extends State<MainScreen> {
                               children: [
                                 Text(
                                   'Играй и зарабатывай',
-                                  style: AppFonts.font20w700,
+                                  style: AppTypography.font20w700,
                                 ),
                                 SizedBox(
                                   width: MediaQuery.sizeOf(context).width / 2,
                                   child: Text(
                                     'Игры в дополненной реальности',
-                                    style: AppFonts.font14w400,
+                                    style: AppTypography.font14w400,
                                   ),
                                 )
                               ],
@@ -146,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
                           children: [
                             Text(
                               'Магазин',
-                              style: AppFonts.font24w700
+                              style: AppTypography.font24w700
                                   .copyWith(color: Colors.black),
                             ),
                             InkWell(
@@ -158,7 +158,7 @@ class _MainScreenState extends State<MainScreen> {
                                     left: 18, top: 6, bottom: 6),
                                 child: Text(
                                   'Ещё',
-                                  style: AppFonts.font12w400
+                                  style: AppTypography.font12w400
                                       .copyWith(color: AppColors.disable),
                                 ),
                               ),

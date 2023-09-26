@@ -50,7 +50,7 @@ class NotificationsIndicator extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 notificationsCount.toString(),
-                style: AppFonts.font11w400,
+                style: AppTypography.font11w400,
               ),
             ),
           )

@@ -52,7 +52,7 @@ class CustomSliverAppBar extends StatelessWidget {
                 )
               ],
               Text(title,
-                  style: AppFonts.font18w700
+                  style: AppTypography.font18w700
                       .copyWith(color: AppColors.textPrimary)),
               if (isBack) ...[
                 Padding(

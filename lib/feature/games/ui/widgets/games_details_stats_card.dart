@@ -21,12 +21,12 @@ class GamesDetialsStatsCard extends StatelessWidget {
       child: Column(children: [
         Text(
           label.toString(),
-          style: AppFonts.font18w700.copyWith(color: Colors.black),
+          style: AppTypography.font18w700.copyWith(color: Colors.black),
           textAlign: TextAlign.center,
         ),
         Text(
           description,
-          style: AppFonts.font12w400.copyWith(color: Colors.black),
+          style: AppTypography.font12w400.copyWith(color: Colors.black),
           textAlign: TextAlign.center,
         ),
       ]),

@@ -50,7 +50,7 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
             Text(
               message,
               style:
-                  AppFonts.font14w700.copyWith(color: AppColors.textSecondary),
+                  AppTypography.font14w700.copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(
               height: 12,

@@ -30,7 +30,7 @@ class MarketItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
           child: Text(
             '+',
-            style: AppFonts.font12w700.copyWith(color: AppColors.textSecondary),
+            style: AppTypography.font12w700.copyWith(color: AppColors.textSecondary),
           ),
         ),
       );
@@ -84,7 +84,7 @@ class MarketItem extends StatelessWidget {
                           ),
                           child: Text(
                             'НОВОЕ',
-                            style: AppFonts.font12w400,
+                            style: AppTypography.font12w400,
                           ),
                         )
                       ]
@@ -117,7 +117,7 @@ class MarketItem extends StatelessWidget {
               child: Text(
                 textDescription,
                 style:
-                    AppFonts.font12w400.copyWith(color: AppColors.textPrimary),
+                    AppTypography.font12w400.copyWith(color: AppColors.textPrimary),
               ),
             )
           ],

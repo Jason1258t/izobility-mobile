@@ -62,13 +62,13 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                             walletRepository.obscured
                                 ? AppStrings.obscuredText
                                 : '123 123\$',
-                            style: AppFonts.font36w700
+                            style: AppTypography.font36w700
                                 .copyWith(color: AppColors.textPrimary)),
                         Text(
                           walletRepository.obscured
                               ? AppStrings.obscuredText
                               : '≈ 2,545 \$',
-                          style: AppFonts.font16w400
+                          style: AppTypography.font16w400
                               .copyWith(color: AppColors.blackGraySecondary),
                         ),
                       ],
@@ -148,7 +148,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     children: [
                       Text(
                         'Описание',
-                        style: AppFonts.font16w400
+                        style: AppTypography.font16w400
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),
                       const SizedBox(
@@ -157,7 +157,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                       Text(
                         'Криптовалюта и платформа для создания децентрализованных онлайн-сервисов на базе блокчейна, работающих на базе умных контрактов. Реализована как единая децентрализованная виртуальная машина. Концепт был предложен Виталиком Бутериным в конце 2013 года, сеть была запущена 30 июля 2015 года',
                         style:
-                            AppFonts.font14w400.copyWith(color: Colors.black),
+                            AppTypography.font14w400.copyWith(color: Colors.black),
                       ),
                     ],
                   ),
@@ -171,7 +171,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     children: [
                       Text(
                         'Описание',
-                        style: AppFonts.font16w400
+                        style: AppTypography.font16w400
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),
                       const SizedBox(height: 8,),

@@ -165,7 +165,7 @@ class CustomTextField extends StatelessWidget {
               inputFormatters: mask == null ? [] : [mask!],
               obscureText: obscured,
               onChanged: onChange,
-              style: AppFonts.font16w400.copyWith(color: Colors.black),
+              style: AppTypography.font16w400.copyWith(color: Colors.black),
               decoration: InputDecoration(
                   fillColor: backgroundColor,
                   enabledBorder: OutlineInputBorder(
@@ -186,13 +186,13 @@ class CustomTextField extends StatelessWidget {
                       )),
                   labelText: labelText,
                   labelStyle:
-                      AppFonts.font16w400.copyWith(color: AppColors.hintText),
-                  floatingLabelStyle: AppFonts.font12w400
+                      AppTypography.font16w400.copyWith(color: AppColors.hintText),
+                  floatingLabelStyle: AppTypography.font12w400
                       .copyWith(color: error ? _negative : Colors.black),
                   floatingLabelAlignment: FloatingLabelAlignment.start,
                   hintText: hintText ?? labelText,
                   hintStyle:
-                      AppFonts.font16w400.copyWith(color: AppColors.hintText)),
+                      AppTypography.font16w400.copyWith(color: AppColors.hintText)),
               keyboardType: keyboardType,
               controller: controller,
             ),
@@ -205,7 +205,7 @@ class CustomTextField extends StatelessWidget {
                 ),
                 Text(
                   '* ${errorText!}',
-                  style: AppFonts.font14w400.copyWith(color: _negative),
+                  style: AppTypography.font14w400.copyWith(color: _negative),
                 )
               ],
             )

@@ -42,7 +42,7 @@ class _ProfileCardState extends State<ProfileCard> {
             children: [
               Text(
                 user.details?.name ?? "Ваше имя",
-                style: AppFonts.font18w700
+                style: AppTypography.font18w700
                     .copyWith(color: AppColors.textPrimary, height: 1),
               ),
               const SizedBox(
@@ -50,7 +50,7 @@ class _ProfileCardState extends State<ProfileCard> {
               ),
               Text(
                 user.email ?? "email",
-                style: AppFonts.font12w400
+                style: AppTypography.font12w400
                     .copyWith(color: AppColors.textPrimary, height: 1),
               ),
             ],

@@ -45,7 +45,7 @@ class PurchaseConditionContainer extends StatelessWidget {
               Text(
                 value,
                 style:
-                    AppFonts.font16w700.copyWith(color: AppColors.textPrimary),
+                    AppTypography.font16w700.copyWith(color: AppColors.textPrimary),
               )
             ],
           )

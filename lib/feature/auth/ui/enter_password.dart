@@ -105,7 +105,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                   if (state is PasswordRecoveryWait) {
                     return Text(
                       'Отправить ещё раз (${state.remainingTime} сек)',
-                      style: AppFonts.font12w400
+                      style: AppTypography.font12w400
                           .copyWith(color: AppColors.disabledTextButton),
                     );
                   } else {
@@ -118,7 +118,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                       },
                       text: 'Отправить ещё раз',
                       textColor: Colors.black,
-                      textStyle: AppFonts.font12w400,
+                      textStyle: AppTypography.font12w400,
                     );
                   }
                 }),
@@ -139,14 +139,14 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                   children: [
                     Text(
                       'Проверить почту',
-                      style: AppFonts.font24w700,
+                      style: AppTypography.font24w700,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
                       'Мы отправили письмо для восстановления вашего аккаунта',
-                      style: AppFonts.font12w400,
+                      style: AppTypography.font12w400,
                     )
                   ],
                 ),

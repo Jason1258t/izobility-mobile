@@ -27,7 +27,7 @@ class NotificationCoinCard extends StatelessWidget {
               Flexible(
                 child: Text(
                   "${data.type == NotificationTransactionTypeEnum.get ? "Вы получили монеты в" : "Вы отправили монеты в"}  ${data.name.toUpperCase()}",
-                  style: AppFonts.font14w700.copyWith(
+                  style: AppTypography.font14w700.copyWith(
                     color: AppColors.grey700,
                   ),
                   softWrap: true,
@@ -35,7 +35,7 @@ class NotificationCoinCard extends StatelessWidget {
               ),
               Text(
                 "${data.time.hour}:${data.time.minute}",
-                style: AppFonts.font12w400
+                style: AppTypography.font12w400
                     .copyWith(color: AppColors.blackGraySecondary),
               )
             ],
@@ -48,7 +48,7 @@ class NotificationCoinCard extends StatelessWidget {
             children: [
               Text(
                 '${data.count}',
-                style: AppFonts.font20w700
+                style: AppTypography.font20w700
                     .copyWith(color: AppColors.primaryPressedBackground),
               ),
               const SizedBox(

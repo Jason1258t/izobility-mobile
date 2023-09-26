@@ -33,7 +33,7 @@ class ProfileActionTile extends StatelessWidget {
             ),
             Text(
               label,
-              style: AppFonts.font16w500.copyWith(color: AppColors.textPrimary),
+              style: AppTypography.font16w500.copyWith(color: AppColors.textPrimary),
             )
           ],
         ),

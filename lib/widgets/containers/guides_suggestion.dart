@@ -64,7 +64,7 @@ class GuidesSuggestion extends StatelessWidget {
           ),
           child: Text(
             text,
-            style: AppFonts.font8w700.copyWith(fontSize: 10),
+            style: AppTypography.font8w700.copyWith(fontSize: 10),
           ),
         ),
       ),
