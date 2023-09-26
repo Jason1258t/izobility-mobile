@@ -47,6 +47,8 @@ class ApiService {
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
     auth.refreshToken(token.accessToken ?? '');
     user = User(dio_: dio, preferences: preferencesService, token: token);
+
+    auth.refreshToken(token.accessToken ?? '');
   }
 
   Future<void> logout() async {

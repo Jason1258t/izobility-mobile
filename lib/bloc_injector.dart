@@ -45,7 +45,7 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (_) => PasswordRecoveryCubit(),
+            create: (_) => PasswordRecoveryCubit(apiService: api),
             lazy: false,
           ),
           BlocProvider(

@@ -15,6 +15,8 @@ class AuthRepository {
   final ApiService apiService;
   final PreferencesService preferences;
 
+  int? userId;
+
   AuthRepository({
     required this.apiService,
     required this.preferences,
@@ -32,14 +34,17 @@ class AuthRepository {
     appState.add(AppStateEnum.auth);
   }
 
-  Future<EmailStateEnum> checkEmail(String email) async {
-    Response response = await apiService.auth.registerUser(email);
+  Future<EmailStateEnum> checkEmail(String email, String? promo) async {
+    Response response = await apiService.auth.registerUser(email, promo);
 
     if (response.statusCode == 201) {
+      userId = response.data['id'];
       return EmailStateEnum.unregistered;
     } else {
       return EmailStateEnum.registered;
     }
+
+
   }
 
   Future register(RegisterData data) async {
@@ -47,6 +52,10 @@ class AuthRepository {
   }
 
   Future login(LoginData data) async {
+    if (userId != null) {
+      await apiService.auth.confirmRegistration(confirmCode: data.password!, userId: userId.toString());
+    }
+
     _auth(apiService.auth.login(email: data.email, password: data.password!));
   }
 

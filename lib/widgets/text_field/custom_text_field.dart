@@ -98,6 +98,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.width,
     required this.suffixIconCallback,
+    Widget? suffixIconChild,
     this.secondSuffixIconCallback,
     this.labelText,
     this.onChange,
@@ -115,11 +116,11 @@ class CustomTextField extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 15),
               child: InkWell(
-                child: const CircleAvatar(
+                onTap: suffixIconCallback,
+                child: suffixIconChild ?? const CircleAvatar(
                   radius: 15,
                   backgroundColor: AppColors.primary,
                 ),
-                onTap: () {},
               ),
             ),
           ],
