@@ -76,16 +76,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           runSpacing: 10,
                           children: [
                             ProfileActionContainer(
+                              label: "Реферальная программа",
+                              description: "Алмазный статус",
                               onTap: () {
                                 GoRouter.of(context).go(RouteNames.cards);
                               },
                             ),
                             ProfileActionContainer(
+                              label: "Партнёрская программа",
+                              description: "Стандартный партнёр",
                               onTap: () {
                                 GoRouter.of(context).go(RouteNames.cardsAdd);
                               },
                             ),
                             ProfileActionContainer(
+                              label: "Инвентарь",
+                              description: '2056 предметов',
                               onTap: () {},
                             )
                           ],
