@@ -3,8 +3,9 @@ import 'package:izobility_mobile/widgets/button/app_bar_back_button.dart';
 
 class AuthScaffold extends StatefulWidget {
   final Widget body;
+  final bool isAppBar;
 
-  const AuthScaffold({super.key, required this.body});
+  const AuthScaffold({super.key, required this.body, this.isAppBar = true});
 
   @override
   State<AuthScaffold> createState() => AuthScaffoldState();
@@ -23,8 +24,9 @@ class AuthScaffoldState extends State<AuthScaffold> {
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
-            leading: const AppBarBackButton(),
+            leading: widget.isAppBar ? const AppBarBackButton() : null,
             leadingWidth: 36,
             toolbarHeight: 36,
           ),

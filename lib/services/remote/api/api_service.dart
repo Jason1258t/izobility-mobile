@@ -45,6 +45,7 @@ class ApiService {
     token = await preferencesService.getToken() ?? Token.zero();
     wallet = Wallet(dio_: dio, preferences: preferencesService, token: token);
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
+    auth.refreshToken(token.accessToken ?? '');
     user = User(dio_: dio, preferences: preferencesService, token: token);
   }
 

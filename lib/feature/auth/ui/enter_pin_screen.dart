@@ -33,6 +33,7 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: AuthScaffold(
+        isAppBar: false,
         body: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
