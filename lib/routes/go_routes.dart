@@ -63,7 +63,7 @@ class CustomGoRoutes {
       }
 
       if (appState is AppAuthState &&
-          !containsRout(state.matchedLocation)) {
+          !containsRout(state.matchedLocation)) {      
         return RouteNames.main;
       }
       if (appState is CreatePinState) {

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:izobility_mobile/models/api/token.dart';
+import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:dio/dio.dart';
 import 'package:izobility_mobile/services/remote/constants/api_methods_url.dart';
@@ -13,6 +14,7 @@ part 'handler.dart';
 
 part 'auth.dart';
 part 'wallet.dart';
+part "user.dart";
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
@@ -33,6 +35,7 @@ class ApiService {
   late final Token token;
   late final Auth auth;
   late final Wallet wallet;
+  late final User user;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -42,6 +45,7 @@ class ApiService {
     token = await preferencesService.getToken() ?? Token.zero();
     wallet = Wallet(dio_: dio, preferences: preferencesService, token: token);
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
+    user = User(dio_: dio, preferences: preferencesService, token: token);
   }
 
   Future<void> logout() async {

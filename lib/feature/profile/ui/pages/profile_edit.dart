@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
@@ -24,6 +25,12 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   final _nameController = TextEditingController();
 
   String? genderType;
+
+  @override
+  void initState() {
+    context.read<ProfileCubit>().laodUserDetailsInfo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,127 +86,145 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 context.pop();
               },
             ),
-            body: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    CustomTextField(
-                        backgroundColor: Colors.white,
-                        labelText: "Имя",
-                        hintText: "Имя",
-                        controller: _nameController,
-                        width: double.infinity),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                        backgroundColor: Colors.white,
-                        labelText: "Фамилия",
-                        hintText: "Фамилия",
-                        controller: _nameController,
-                        width: double.infinity),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                        backgroundColor: Colors.white,
-                        labelText: "Почта",
-                        hintText: "Почта",
-                        controller: _nameController,
-                        width: double.infinity),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Material(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {
-                          showModalBottomSheet(
-                              isScrollControlled: true,
-                              context: context,
-                              builder: (context) {
-                                return Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 36, vertical: 16),
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(16)),
-                                  child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        ProfileGenderChooseCard(
-                                          text: "Мужской",
-                                          isActive: false,
-                                        ),
-                                        ProfileGenderChooseCard(
-                                          text: "Женский",
-                                          isActive: false,
-                                        ),
-                                        ProfileGenderChooseCard(
-                                          text: "Другой",
-                                          isActive: false,
-                                        )
-                                      ]),
-                                );
-                              });
-                        },
-                        child: Container(
-                          height: 56,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.transparent,
-                              border: Border.all(
-                                  width: 1, color: AppColors.disableButton)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                genderType ?? "Пол",
-                                style: AppFonts.font16w400
-                                    .copyWith(color: AppColors.hintText),
-                              ),
-                              Icon(
-                                Icons.arrow_drop_down_outlined,
-                                size: 35,
-                                color: Colors.black,
-                              )
-                            ],
+            body: BlocBuilder<ProfileCubit, ProfileState>(
+              builder: (context, state) {
+                if (state is ProfileWaiting || state is ProfileInitial) {
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  );
+                } else if (state is ProfileSuccessState) {
+                  return SingleChildScrollView(
+                    child: Container(
+                      padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          CustomTextField(
+                              backgroundColor: Colors.white,
+                              labelText: "Имя",
+                              hintText: "Имя",
+                              controller: _nameController,
+                              width: double.infinity),
+                          const SizedBox(
+                            height: 16,
                           ),
-                        ),
+                          CustomTextField(
+                              backgroundColor: Colors.white,
+                              labelText: "Фамилия",
+                              hintText: "Фамилия",
+                              controller: _nameController,
+                              width: double.infinity),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          CustomTextField(
+                              backgroundColor: Colors.white,
+                              labelText: "Почта",
+                              hintText: "Почта",
+                              controller: _nameController,
+                              width: double.infinity),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Material(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(12),
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 36, vertical: 16),
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
+                                        child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: [
+                                              ProfileGenderChooseCard(
+                                                text: "Мужской",
+                                                isActive: false,
+                                              ),
+                                              ProfileGenderChooseCard(
+                                                text: "Женский",
+                                                isActive: false,
+                                              ),
+                                              ProfileGenderChooseCard(
+                                                text: "Другой",
+                                                isActive: false,
+                                              )
+                                            ]),
+                                      );
+                                    });
+                              },
+                              child: Container(
+                                height: 56,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: Colors.transparent,
+                                    border: Border.all(
+                                        width: 1,
+                                        color: AppColors.disableButton)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      genderType ?? "Пол",
+                                      style: AppFonts.font16w400
+                                          .copyWith(color: AppColors.hintText),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_drop_down_outlined,
+                                      size: 35,
+                                      color: Colors.black,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          CustomTextField(
+                              backgroundColor: Colors.white,
+                              labelText: "Дата рождения",
+                              hintText: "Дата рождения",
+                              controller: _nameController,
+                              width: double.infinity),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          CustomTextField(
+                              backgroundColor: Colors.white,
+                              labelText: "Телефон",
+                              hintText: "Телефон",
+                              controller: _nameController,
+                              width: double.infinity),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                        backgroundColor: Colors.white,
-                        labelText: "Дата рождения",
-                        hintText: "Дата рождения",
-                        controller: _nameController,
-                        width: double.infinity),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                        backgroundColor: Colors.white,
-                        labelText: "Телефон",
-                        hintText: "Телефон",
-                        controller: _nameController,
-                        width: double.infinity),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                  ],
-                ),
-              ),
+                  );
+                } else {
+                  return Center(
+                    child: Text('Sorry something wetn wrong'),
+                  );
+                }
+              },
             ),
           ),
         ),

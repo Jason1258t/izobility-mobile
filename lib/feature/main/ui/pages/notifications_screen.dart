@@ -58,7 +58,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 slivers: [
                   SliverPersistentHeader(
                     floating: true,
-                    pinned: true,
+                    pinned: false,
                     delegate: ChipsCategoryList(),
                   ),
                   NotificationsDateSector(

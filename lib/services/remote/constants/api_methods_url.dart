@@ -6,4 +6,6 @@ class ApiEndpoints {
   static const String login = '/user/login';
 
   static const String wallet = '/balance/balance';
+
+  static const String userInfo = '/user/';
 }
