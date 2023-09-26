@@ -78,7 +78,7 @@ class MarketItem extends StatelessWidget {
                           height: 17,
                           alignment: Alignment.center,
                           decoration: ShapeDecoration(
-                            color: AppColors.primaryPressedBackground,
+                            color: AppColors.primary,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                           ),
@@ -90,21 +90,21 @@ class MarketItem extends StatelessWidget {
                       ]
                     ],
                   ),
-                  Row(
-                    children: [
-                      const Spacer(),
-                      Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(pizdulkaUrl)),
-                        ),
-                      )
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     const Spacer(),
+                  //     Container(
+                  //       width: 36,
+                  //       height: 36,
+                  //       decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(8),
+                  //         image: DecorationImage(
+                  //             fit: BoxFit.cover,
+                  //             image: AssetImage(pizdulkaUrl)),
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
                 ],
               ),
             ),

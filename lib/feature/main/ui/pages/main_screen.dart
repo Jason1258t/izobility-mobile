@@ -29,9 +29,10 @@ class _MainScreenState extends State<MainScreen> {
           surfaceTintColor: Colors.transparent,
           title: Row(
             children: [
-              SvgPicture.asset(
-                'assets/icons/top page navigation.svg',
+              Image.asset(
+                'assets/images/logo.png',
                 width: MediaQuery.sizeOf(context).width / 3.6,
+                fit: BoxFit.fitWidth,
               ),
               const Spacer(),
               const CashContainer(

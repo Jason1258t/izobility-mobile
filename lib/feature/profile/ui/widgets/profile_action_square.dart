@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 class ProfileActionContainer extends StatefulWidget {
+  final String label;
+  final String description;
   final Function onTap;
 
-  const ProfileActionContainer({super.key, required this.onTap});
+  const ProfileActionContainer(
+      {super.key,
+      required this.onTap,
+      required this.label,
+      required this.description});
 
   @override
   State<ProfileActionContainer> createState() => _ProfileActionContainerState();
@@ -31,14 +37,14 @@ class _ProfileActionContainerState extends State<ProfileActionContainer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'fuck my ass bih',
-                style: AppTypography.font16w700.copyWith(color: Colors.black),
+                widget.label,
+                style: AppTypography.font18w700.copyWith(color: Colors.black),
               ),
               const SizedBox(
-                height: 12,
+                height: 4,
               ),
-              Text('additionaol text',
-                  style: AppTypography.font11w400.copyWith(color: Colors.black)),
+              Text(widget.description,
+                  style: AppTypography.font14w400.copyWith(color: Colors.black)),
             ],
           ),
         ),

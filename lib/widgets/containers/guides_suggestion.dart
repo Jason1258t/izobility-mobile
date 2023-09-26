@@ -18,7 +18,7 @@ class GuidesSuggestion extends StatelessWidget {
   final BorderSide viewBorderSide = const BorderSide(
     width: 1,
     strokeAlign: BorderSide.strokeAlignOutside,
-    color: AppColors.primaryPressedBackground,
+    color: AppColors.primary,
   );
 
   final BorderSide notWhite = BorderSide.none;

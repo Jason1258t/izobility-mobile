@@ -106,6 +106,30 @@ class UserDetailsModel {
 
   @override
   String toString() {
-    return "User DEtails = phone $phone";
+    return 'UserDetailsModel {'
+        'id: $id, '
+        'email: $email, '
+        'phone: $phone, '
+        'phoneCountry: $phoneCountry, '
+        'cityId: $cityId, '
+        'isActive: $isActive, '
+        'isAdmin: $isAdmin, '
+        'isPartner: $isPartner, '
+        'createdAt: $createdAt, '
+        'updatedAt: $updatedAt, '
+        'fam: $fam, '
+        'name: $name, '
+        'otch: $otch, '
+        'partnerRole: $partnerRole, '
+        'referalcode: $referalcode, '
+        'lastLogin: $lastLogin, '
+        'dateLimit: $dateLimit, '
+        'siteId: $siteId, '
+        'cityname: $cityname, '
+        'countryname: $countryname, '
+        'gender: $gender, '
+        'notif: $notif, '
+        'fio: $fio'
+        '}';
   }
 }

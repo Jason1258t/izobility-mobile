@@ -1,6 +1,6 @@
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class AppMask{
+class AppMask {
   static final maskCardFormatter = MaskTextInputFormatter(
       mask: '#### #### #### ####',
       filter: {"#": RegExp(r'[0-9]')},
@@ -13,6 +13,11 @@ class AppMask{
 
   static final maskCvvFormatter = MaskTextInputFormatter(
       mask: '###',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
+
+  static final maskDatetimeFormatter = MaskTextInputFormatter(
+      mask: '##.##.####',
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 }

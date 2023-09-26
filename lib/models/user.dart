@@ -49,6 +49,10 @@ class UserModel {
     lastLogin = json['last_login'];
     dateLimit = json['date_limit'];
     siteId = json['site_id'];
+
+    if (json['details'] != null) {
+      details = UserDetailsModel.fromJson(json["details"]);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -67,11 +71,32 @@ class UserModel {
     data['last_login'] = lastLogin;
     data['date_limit'] = dateLimit;
     data['site_id'] = siteId;
+    if (details != null) {
+      data["details"] = details!.toJson();
+    }
+
     return data;
   }
 
   @override
   String toString() {
-    return "($id = user id ||| details $details)";
+    return 'UserModel {'
+        'id: $id, '
+        'email: $email, '
+        'phone: $phone, '
+        'phoneCountry: $phoneCountry, '
+        'emailPartner: $emailPartner, '
+        'phonePartner: $phonePartner, '
+        'cityId: $cityId, '
+        'isActive: $isActive, '
+        'isAdmin: $isAdmin, '
+        'isPartner: $isPartner, '
+        'createdAt: $createdAt, '
+        'lastLogin: $lastLogin, '
+        'dateLimit: $dateLimit, '
+        'siteId: $siteId, '
+        'permissions: $permissions, '
+        'details: $details'
+        '}';
   }
 }
