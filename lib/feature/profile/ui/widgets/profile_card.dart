@@ -16,6 +16,8 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
+    final user = context.read<UserRepository>().user;
+
     return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +41,7 @@ class _ProfileCardState extends State<ProfileCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'name',
+                user.details?.name ?? "Ваше имя",
                 style: AppFonts.font18w700
                     .copyWith(color: AppColors.textPrimary, height: 1),
               ),
@@ -47,7 +49,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 height: 3,
               ),
               Text(
-                context.read<UserRepository>().user.email ?? "email",
+                user.email ?? "email",
                 style: AppFonts.font12w400
                     .copyWith(color: AppColors.textPrimary, height: 1),
               ),

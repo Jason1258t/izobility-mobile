@@ -26,7 +26,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(ProfileSuccessState());
   }
 
-  Future<void> laodUserDetailsInfo() async {
+  Future<void> loadUserDetailsInfo() async {
     emit(ProfileWaiting());
     try {
       await _userRepository.loadUserDetailsInfo();
