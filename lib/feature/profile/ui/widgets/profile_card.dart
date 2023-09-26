@@ -17,7 +17,7 @@ class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserRepository>().user;
-
+    print(user);
     return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +41,9 @@ class _ProfileCardState extends State<ProfileCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user.details?.name ?? "Ваше имя",
+                user.details?.name == null || user.details?.name == ""
+                    ? "Ваше имя"
+                    : user.details!.name!,
                 style: AppFonts.font18w700
                     .copyWith(color: AppColors.textPrimary, height: 1),
               ),

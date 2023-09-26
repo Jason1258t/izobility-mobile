@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:izobility_mobile/models/user.dart';
+import 'package:izobility_mobile/models/user_details.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/api/token.dart';
