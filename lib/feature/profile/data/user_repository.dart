@@ -12,19 +12,22 @@ class UserRepository {
 
   Future<void> loadUserData() async {
     final cachedUser = await preferences.getUser();
-    user = cachedUser ?? user;
+    user = cachedUser!;
   }
 
   Future<dynamic> loadUserDetailsInfo() async {
-    final UserModel? user = await preferences.getUser();
-    if (user == null) {
+    final UserModel? cachedUser = await preferences.getUser();
+    if (cachedUser == null) {
       return null;
     }
     try {
-      final response = await apiService.user.getUserDetailsInfo(userId: user.id!);
+      final response =
+          await apiService.user.getUserDetailsInfo(userId: user.id!);
 
-      final UserDetailsModel userDetails =
-          UserDetailsModel.fromJson(response);
+      final UserDetailsModel userDetails = UserDetailsModel.fromJson(response);
+      print("-=-=-=-=-=-=-=");
+      print(userDetails);
+      print("-=-=-=-=-=-=-=");
 
       user.details = userDetails;
     } catch (ex) {

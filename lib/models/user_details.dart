@@ -23,7 +23,6 @@ class UserDetailsModel {
   int? notif;
   String? fio;
 
-
   UserDetailsModel(
       {required this.id,
       required this.email,
@@ -103,5 +102,10 @@ class UserDetailsModel {
     data['notif'] = notif;
     data['fio'] = fio;
     return data;
+  }
+
+  @override
+  String toString() {
+    return "User DEtails = phone $phone";
   }
 }

@@ -72,6 +72,6 @@ class UserModel {
 
   @override
   String toString() {
-    return "($id = user id )";
+    return "($id = user id ||| details $details)";
   }
 }
