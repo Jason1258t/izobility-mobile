@@ -15,10 +15,7 @@ class NotificationCardContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         pose == NotificationPositionEnum.end
-            ? const Icon(
-                Icons.pets_rounded,
-                size: 28,
-              )
+            ?  Image.asset("assets/images/emerald_coin.png")
             : const SizedBox(
                 width: 28,
               ),

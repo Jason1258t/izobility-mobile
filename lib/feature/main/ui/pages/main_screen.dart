@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
@@ -61,15 +62,25 @@ class _MainScreenState extends State<MainScreen> {
                             UtilityContainer(
                                 name: 'QR\nСканер',
                                 assetName: 'assets/icons/qrscaner.svg',
-                                callback: () {}),
+                                callback: () {
+                                  context.push(RouteNames.develop);
+                                }),
                             UtilityContainer(
                                 name: 'AR\nСканер',
                                 assetName: 'assets/icons/aritem.svg',
-                                callback: () {}),
+                                callback: () {
+                                  print(context
+                                      .read<UserRepository>()
+                                      .apiService
+                                      .token.accessToken);
+                                  context.push(RouteNames.develop);
+                                }),
                             UtilityContainer(
                                 name: 'AR\nКарта',
                                 assetName: 'assets/icons/armap.svg',
-                                callback: () {}),
+                                callback: () {
+                                  context.push(RouteNames.develop);
+                                }),
                           ],
                         ),
                         const SizedBox(
@@ -87,10 +98,9 @@ class _MainScreenState extends State<MainScreen> {
                             decoration: BoxDecoration(
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(12),
-                              image: const DecorationImage(
-                                image: AssetImage('assets/image'),
-                              )
-                                ),
+                                image: const DecorationImage(
+                                  image: AssetImage('assets/image'),
+                                )),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
