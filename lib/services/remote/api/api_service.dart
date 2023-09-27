@@ -5,7 +5,7 @@ import 'package:izobility_mobile/models/api/token.dart';
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:dio/dio.dart';
-import 'package:izobility_mobile/services/remote/constants/api_methods_url.dart';
+import 'package:izobility_mobile/services/remote/constants/api_endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../utils/logic/exceptions.dart';
@@ -15,6 +15,7 @@ part 'handler.dart';
 part 'auth.dart';
 part 'wallet.dart';
 part "user.dart";
+part 'news.dart';
 
 const Map<String, dynamic> _authHeaders = {
   'Content-Type': 'application/json',
@@ -36,6 +37,7 @@ class ApiService {
   late final Auth auth;
   late final Wallet wallet;
   late final User user;
+  late final News news;
 
   ApiService({required this.preferencesService}) {
     initialServices();
@@ -43,9 +45,12 @@ class ApiService {
 
   void initialServices() async {
     token = await preferencesService.getToken() ?? Token.zero();
+
+    log(token.accessToken.toString());
+
     wallet = Wallet(dio_: dio, preferences: preferencesService, token: token);
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
-    auth.refreshToken(token.accessToken ?? '');
+    news = News(dio_: dio, preferences: preferencesService, token: token);
     user = User(dio_: dio, preferences: preferencesService, token: token);
 
     auth.refreshToken(token.accessToken ?? '');
@@ -55,3 +60,5 @@ class ApiService {
     await preferencesService.logout();
   }
 }
+
+

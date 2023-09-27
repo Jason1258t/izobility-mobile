@@ -35,7 +35,6 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
-import 'package:izobility_mobile/main.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
 import '../feature/profile/ui/pages/profile_settings.dart';
