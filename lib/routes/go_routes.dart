@@ -144,6 +144,9 @@ class CustomGoRoutes {
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),
       GoRoute(
+          path: RouteNames.storeProduct,
+          builder: (context, state) => const StoreScreen()),
+      GoRoute(
           path: '${RouteNames.story}/:story_id',
           builder: (context, state) => StoryScreen(
                 initialStoryIndex:

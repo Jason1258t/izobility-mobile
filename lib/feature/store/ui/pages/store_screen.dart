@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/containers/market_Item.dart';
@@ -98,7 +100,9 @@ class _StoreScreenState extends State<StoreScreen> {
                             'Набор бонусов для игры Reapers rush +156 к мощности',
                         isNew: true,
                         pizdulkaUrl: '',
-                        onTap: () {},
+                        onTap: () {
+                          context.push(RouteNames.storeProduct);
+                        },
                       ),
                     ),
                     const SizedBox(
@@ -113,7 +117,9 @@ class _StoreScreenState extends State<StoreScreen> {
                             'Набор бонусов для игры Reapers rush +156 к мощности',
                         isNew: true,
                         pizdulkaUrl: '',
-                        onTap: () {},
+                        onTap: () {
+                          context.push(RouteNames.storeProduct);
+                        },
                       ),
                     ),
                   ],

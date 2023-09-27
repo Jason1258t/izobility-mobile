@@ -115,6 +115,8 @@ class _WalletScreenState extends State<WalletScreen>
                       child: BlocBuilder<MainCoinCubit, MainCoinState>(
                         builder: (context, state) {
                           if(state is MainCoinSuccess) {
+                            print(walletRepository.emeraldCoin.toString());
+                            print('------------------');
                             return Text(
                                 walletRepository.obscured
                                     ? AppStrings.obscuredText
