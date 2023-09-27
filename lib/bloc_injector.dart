@@ -33,6 +33,7 @@ class MyBlocProviders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appCubit = AppCubit(
+        userRepository: RepositoryProvider.of<UserRepository>(context),
         authRepository: RepositoryProvider.of<AuthRepository>(context),
         mainRepository: RepositoryProvider.of<MainScreenRepository>(context),
         walletRepository: RepositoryProvider.of<WalletRepository>(context));

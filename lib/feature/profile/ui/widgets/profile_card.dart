@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -16,8 +17,6 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
-    final user = context.read<UserRepository>().user;
-    print(user);
     return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,25 +36,38 @@ class _ProfileCardState extends State<ProfileCard> {
           const SizedBox(
             width: 16,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                user.details?.name == null || user.details?.name == ""
-                    ? "Ваше имя"
-                    : user.details!.name!,
-                style: AppTypography.font18w700
-                    .copyWith(color: AppColors.textPrimary, height: 1),
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Text(
-                user.email ?? "email",
-                style: AppTypography.font12w400
-                    .copyWith(color: AppColors.textPrimary, height: 1),
-              ),
-            ],
+          BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              if (state is ProfileWaiting) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              } else if (state is ProfileSuccessState) {
+                final user = context.read<UserRepository>().user;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      user.details?.name == null || user.details?.name == ""
+                          ? "Ваше имя"
+                          : user.details!.name!,
+                      style: AppTypography.font18w700
+                          .copyWith(color: AppColors.textPrimary, height: 1),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      user.email ?? "email",
+                      style: AppTypography.font12w400
+                          .copyWith(color: AppColors.textPrimary, height: 1),
+                    ),
+                  ],
+                );
+              }
+
+              return Container();
+            },
           ),
         ]);
   }

@@ -34,8 +34,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   }
 
   Future<void> loadData() async {
-    await context.read<ProfileCubit>().loadUserDetailsInfo();
-
     final userRepository = context.read<UserRepository>();
 
     _nameController.text = userRepository.user.details?.name ?? "";
