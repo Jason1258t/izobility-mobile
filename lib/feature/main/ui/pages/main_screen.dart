@@ -5,7 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
 import 'package:izobility_mobile/widgets/containers/utility_container.dart';
@@ -36,8 +39,20 @@ class _MainScreenState extends State<MainScreen> {
                 fit: BoxFit.fitWidth,
               ),
               const Spacer(),
-              const CashContainer(
-                  text: '150K', assetName: 'assets/images/Coins.png'),
+              BlocBuilder<MainCoinCubit, MainCoinState>(
+                builder: (context, state) {
+                  if (state is MainCoinSuccess) {
+                    return CashContainer(
+                        text: RepositoryProvider.of<WalletRepository>(context)
+                            .emeraldCoin
+                            .toString(),
+                        assetName: 'assets/images/emerald_coin.png');
+                  }
+
+                  return const CashContainer(
+                      text: '0', assetName: 'assets/images/emerald_coin.png');
+                },
+              ),
               const SizedBox(
                 width: 12,
               ),
@@ -72,7 +87,8 @@ class _MainScreenState extends State<MainScreen> {
                                   print(context
                                       .read<UserRepository>()
                                       .apiService
-                                      .token.accessToken);
+                                      .token
+                                      .accessToken);
                                   context.push(RouteNames.develop);
                                 }),
                             UtilityContainer(
