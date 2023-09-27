@@ -25,10 +25,6 @@ class UserRepository {
           await apiService.user.getUserDetailsInfo(userId: user.id!);
 
       final UserDetailsModel userDetails = UserDetailsModel.fromJson(response);
-      print("-=-=-=-=-=-=-=");
-      print(userDetails);
-      print("-=-=-=-=-=-=-=");
-
       user.details = userDetails;
       await preferences.setUser(user);
     } catch (ex) {
