@@ -35,6 +35,7 @@ class MyBlocProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     final appCubit = AppCubit(
         authRepository: RepositoryProvider.of<AuthRepository>(context),
+        mainRepository: RepositoryProvider.of<MainScreenRepository>(context),
         walletRepository: RepositoryProvider.of<WalletRepository>(context));
 
     return MultiBlocProvider(
@@ -113,7 +114,7 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => WalletRepository(api),
       ),
       RepositoryProvider(
-        create: (_) => MainScreenRepository(),
+        create: (_) => MainScreenRepository(apiService: api),
       ),
       RepositoryProvider(
         create: (_) => GamesRepository(),

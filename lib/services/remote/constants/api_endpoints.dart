@@ -21,5 +21,9 @@ class ApiEndpoints {
 
   static const String userUpdateGender = '/user/update-gender';
 
+  static const String mediaFiles = '/media';
+
+  static const String news = '/news/list';
+
   static const String getNotifications = '/user/notifications';
 }

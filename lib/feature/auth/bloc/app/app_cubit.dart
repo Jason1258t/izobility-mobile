@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 
 import '../../data/auth_repository.dart';
@@ -8,16 +9,17 @@ part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   final AuthRepository authRepository;
+  final MainScreenRepository mainRepository;
   final WalletRepository walletRepository;
 
-  AppCubit({required this.authRepository, required this.walletRepository})
-      : super(AppInitial()) {
+  AppCubit({required this.authRepository, required this.mainRepository, required this.walletRepository}) : super(AppInitial()) {
     authRepository.appState.stream.listen((event) async {
       if (event == AppStateEnum.unAuth) {
         authRepository.logout();
         emit(AppUnAuthState());
       }
       if (event == AppStateEnum.auth) {
+        mainRepository.getPreview();
         final String? pin = await authRepository.getPin();
         walletRepository.loadEmeraldCoin();
 

@@ -146,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
                                             context
                                                 .go('${RouteNames.story}/$ind');
                                           },
-                                          viewed: true,
+                                          viewed: false,
                                         ))
                                 : Container(),
                           ),
