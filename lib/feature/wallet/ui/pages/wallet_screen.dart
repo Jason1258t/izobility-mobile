@@ -269,6 +269,7 @@ class _WalletScreenState extends State<WalletScreen>
                             isNew: true,
                             pizdulkaUrl: '',
                             onTap: () {},
+                            coinData: [],
                           ),
                           childCount: 12,
                         ),

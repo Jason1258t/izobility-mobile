@@ -23,6 +23,8 @@ class MarketItem extends StatelessWidget {
   final VoidCallback onTap;
 
   List<Widget> _generatePriceItem(List<CoinData> coinsInfo) {
+    if(coinsInfo.isEmpty)  return [];
+
     List<Widget> children = [];
 
     for (var i in coinsInfo) {

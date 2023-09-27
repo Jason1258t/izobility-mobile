@@ -93,12 +93,12 @@ class _StoreScreenState extends State<StoreScreen> {
                   children: [
                     SizedBox(
                       height: 260,
+                      width: (sizeOf.width - 40) / 2,
                       child: MarketItem(
-
                         imageUrl:
-                            'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
+                        'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
                         textDescription:
-                            'Набор бонусов для игры Reapers rush +156 к мощности',
+                        'Набор бонусов для игры Reapers rush +156 к мощности',
                         isNew: true,
                         pizdulkaUrl: '',
                         onTap: () {
