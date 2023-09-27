@@ -8,9 +8,7 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key, required this.title});
-
-  final String title;
+  const ProductScreen({super.key});
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -22,7 +20,7 @@ class _ProductScreenState extends State<ProductScreen> {
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
-        text: widget.title,
+        text: "Промокод",
         isBack: true,
         onTap: () {
           context.pop();
