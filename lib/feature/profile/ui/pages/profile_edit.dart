@@ -272,6 +272,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
               height: 16,
             ),
             CustomTextField(
+                readOnly: true,
                 backgroundColor: Colors.white,
                 labelText: "Телефон",
                 hintText: "Телефон",

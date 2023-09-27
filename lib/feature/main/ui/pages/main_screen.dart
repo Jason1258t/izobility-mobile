@@ -163,7 +163,9 @@ class _MainScreenState extends State<MainScreen> {
                             InkWell(
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
-                              onTap: () {},
+                              onTap: () {
+                                context.go(RouteNames.basket);
+                              },
                               child: Ink(
                                 padding: const EdgeInsets.only(
                                     left: 18, top: 6, bottom: 6),
