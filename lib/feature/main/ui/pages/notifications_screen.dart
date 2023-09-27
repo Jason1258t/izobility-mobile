@@ -65,14 +65,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     cards: data,
                     date: DateTime.now(),
                   ),
-                  NotificationsDateSector(
-                    cards: data,
-                    date: DateTime.now(),
-                  ),
-                  NotificationsDateSector(
-                    cards: data,
-                    date: DateTime.now(),
-                  ),
                   const SliverToBoxAdapter(
                     child: SizedBox(
                       height: 30,

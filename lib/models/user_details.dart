@@ -22,7 +22,7 @@ class UserDetailsModel {
   int? gender;
   int? notif;
   String? fio;
-  String? birthday;
+  DateTime? birthday;
 
   UserDetailsModel(
       {required this.id,
@@ -75,7 +75,9 @@ class UserDetailsModel {
         gender: json['gender'],
         notif: json['notif'],
         fio: json['fio'],
-        birthday: json['date_birth']);
+        birthday: json["date_birth"] == null
+            ? null
+            : DateTime.parse(json["date_birth"]));
   }
 
   Map<String, dynamic> toJson() {
@@ -103,7 +105,7 @@ class UserDetailsModel {
     data['gender'] = gender;
     data['notif'] = notif;
     data['fio'] = fio;
-    data['date_birth'] = birthday;
+    data['date_birth'] = birthday.toString();
     return data;
   }
 

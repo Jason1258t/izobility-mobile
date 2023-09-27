@@ -49,7 +49,7 @@ class NotificationCoinCard extends StatelessWidget {
               Text(
                 '${data.count}',
                 style: AppTypography.font20w700
-                    .copyWith(color: AppColors.primaryPressedBackground),
+                    .copyWith(color: AppColors.primary),
               ),
               const SizedBox(
                 width: 4,

@@ -78,14 +78,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               label: "Реферальная программа",
                               description: "Алмазный статус",
                               onTap: () {
-                                GoRouter.of(context).go(RouteNames.cards);
+                                context.push(RouteNames.develop);
                               },
                             ),
                             ProfileActionContainer(
                               label: "Партнёрская программа",
                               description: "Стандартный партнёр",
                               onTap: () {
-                                GoRouter.of(context).go(RouteNames.cardsAdd);
+                                context.push(RouteNames.develop);
                               },
                             ),
                             ProfileActionContainer(
@@ -93,6 +93,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               description: '2056 предметов',
                               onTap: () {
                                 context.push(RouteNames.develop);
+                              },
+                            ),
+                            ProfileActionContainer(
+                              label: "Карты",
+                              description: 'Мои банковские карты',
+                              onTap: () {
+                                context.push(RouteNames.cards);
                               },
                             )
                           ],

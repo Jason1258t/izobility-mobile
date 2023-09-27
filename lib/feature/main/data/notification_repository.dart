@@ -13,9 +13,6 @@ class NotificationsRepository {
     'Покупка',
     'Продажа',
     'Акция',
-    '123',
-    '312',
-    'sdfsdf',
   ];
 
   int currentFilterIndex = 0;
@@ -27,40 +24,18 @@ class NotificationsRepository {
   NotificationsRepository(
       {required this.apiService, required this.preferences});
 
-  Future<dynamic> loadNotificationList(int page) async {
+  Future<dynamic> loadNotificationList() async {
+    // final rawNotifications = await apiService.notifications.loadNotifications();
+
     rawNotificationList = notificationResponse;
   }
 }
 
 final notificationResponse = [
-  NotificationCoinModel(
-      type: NotificationTransactionTypeEnum.get,
-      time: DateTime.now(),
-      name: "АНАЛЬНАЯ ЗАРУБА",
-      count: 5200,
-      coinImagePath: 'assets/icons/coin.svg'),
   NotificationModel(
-      type: NotificationTransactionTypeEnum.get,
+      type: NotificationTransactionTypeEnum.none,
       time: DateTime.now(),
-      name: "бой с теньи",
+      name: "EMERALD",
       description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the iscrambled"),
-  NotificationCoinModel(
-      type: NotificationTransactionTypeEnum.get,
-      time: DateTime.now(),
-      name: "РАСКОЛБАС",
-      count: 5200,
-      coinImagePath: 'assets/icons/coin.svg'),
-  NotificationModel(
-      type: NotificationTransactionTypeEnum.get,
-      time: DateTime.now(),
-      name: "ангри беурдс",
-      description:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
-  NotificationModel(
-      type: NotificationTransactionTypeEnum.get,
-      time: DateTime.now(),
-      name: "ангри беурдс",
-      description:
-          "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin"),
+          "Мы рады приветствовать вас в нашем замечатльном приложении Emerald! Желаем весело провести время здесь, удачи!"),
 ];

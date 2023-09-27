@@ -24,4 +24,6 @@ class ApiEndpoints {
   static const String mediaFiles = '/media';
 
   static const String news = '/news/list';
+
+  static const String getNotifications = '/user/notifications';
 }

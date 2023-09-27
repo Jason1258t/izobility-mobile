@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/card_transaction_widget.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/credit_card_widget.dart';
@@ -29,7 +30,7 @@ class _CardsScreenState extends State<CardsScreen> {
       appBar: CustomAppBar(
         backgroundColor: AppColors.purpleBcg,
         onTap: () {
-          GoRouter.of(context).go(RouteNames.profile);
+          context.pop();
         },
         context: context,
         text: 'Карты',
@@ -43,14 +44,36 @@ class _CardsScreenState extends State<CardsScreen> {
               height: sizeOf.width * 0.45,
               constraints: const BoxConstraints(minHeight: 170),
               child: PageView.builder(
-                  itemCount: 3,
+                  itemCount: 4,
                   controller: pageController,
                   pageSnapping: true,
                   itemBuilder: (context, index) {
-                    return const Padding(
-                      padding: EdgeInsets.all(6.0),
-                      child: CreditCardWidget(),
-                    );
+                    if (index != 3) {
+                      return const Padding(
+                        padding: EdgeInsets.all(6.0),
+                        child: CreditCardWidget(),
+                      );
+                    } else {
+                      return Padding(
+                        padding: const EdgeInsets.all(6),
+                        child: InkWell(
+                          onTap: () {
+                            context.push(RouteNames.cardsAdd);
+                          },
+                          child: Container(
+                              width: sizeOf.width - 40,
+                              decoration: BoxDecoration(
+                                color: AppColors.grey500,
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: const Icon(
+                                Icons.add_rounded,
+                                size: 50,
+                                color: Colors.white,
+                              )),
+                        ),
+                      );
+                    }
                   }),
             ),
             const SizedBox(

@@ -55,11 +55,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: 30,
-                          height: 30,
-                          child: Image.asset('assets/images/emerald_coin.png', fit: BoxFit.fill,),
-                        ),
+                        Image.asset('assets/images/emerald_coin.png', fit: BoxFit.fill,),
                         Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
                             style: AppTypography.font36w700
                                 .copyWith(color: AppColors.textPrimary)),

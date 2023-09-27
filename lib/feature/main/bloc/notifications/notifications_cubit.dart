@@ -11,14 +11,13 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit(this._notificationsRepository)
       : super(NotificationsInitial());
 
-  void loadNotifications({int page = 1}) async {
+  void loadNotifications() async {
     emit(NotificationsWaitingState());
-    await Future.delayed(const Duration(seconds: 1));
     try {
-      await _notificationsRepository.loadNotificationList(page);
+      await _notificationsRepository.loadNotificationList();
       emit(NotificationsLoadedSuccessState());
     } catch (e) {
-      log(e.toString());
+      print(e.toString());
       emit(NotificationsLoadedFailureState());
       rethrow;
     }

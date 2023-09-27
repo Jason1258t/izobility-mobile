@@ -42,7 +42,10 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     _surnameController.text = userRepository.user.details?.fam ?? "";
     _emailController.text = userRepository.user.email ?? "";
     _phoneController.text = userRepository.user.details?.phone ?? "";
-    _birthdayController.text = userRepository.user.details?.birthday ?? "";
+    if (userRepository.user.details != null) {
+      _birthdayController.text =
+          "${userRepository.user.details!.birthday!.day}.${userRepository.user.details!.birthday!.month}.${userRepository.user.details!.birthday!.year}";
+    }
   }
 
   @override
@@ -206,7 +209,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 },
                 child: Container(
                   height: 56,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.only(right: 5, left: 16),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.transparent,
@@ -228,7 +231,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                             ),
                       const Icon(
                         Icons.arrow_drop_down_outlined,
-                        size: 35,
+                        size: 20,
                         color: Colors.black,
                       )
                     ],
@@ -239,18 +242,37 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             const SizedBox(
               height: 16,
             ),
-            CustomTextField(
-                backgroundColor: Colors.white,
-                labelText: "Дата рождения",
-                keyboardType: TextInputType.number,
-                hintText: "2005-12-31",
-                controller: _birthdayController,
-                mask: AppMask.maskDatetimeFormatter,
-                width: double.infinity),
+            CustomTextField.withOneIcon(
+              readOnly: true,
+              backgroundColor: Colors.white,
+              labelText: "Дата рождения",
+              hintText: "Дата рождения",
+              controller: _birthdayController,
+              width: double.infinity,
+              obscured: false,
+              suffixIconChild: const Icon(
+                Icons.date_range_outlined,
+                size: 20,
+                color: Colors.black,
+              ),
+              suffixIconCallback: () async {
+                final date = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(200),
+                  lastDate: DateTime(2100),
+                );
+                if (date != null) {
+                  _birthdayController.text =
+                      "${date.day}.${date.month}.${date.year}";
+                }
+              },
+            ),
             const SizedBox(
               height: 16,
             ),
             CustomTextField(
+                readOnly: true,
                 backgroundColor: Colors.white,
                 labelText: "Телефон",
                 hintText: "Телефон",

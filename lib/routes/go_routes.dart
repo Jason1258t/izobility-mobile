@@ -26,6 +26,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_inventory.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/product_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
@@ -35,6 +36,8 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
+import 'package:izobility_mobile/main.dart';
+import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
 import '../feature/profile/ui/pages/profile_settings.dart';
@@ -141,6 +144,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),
+      GoRoute(
+          path: RouteNames.storeProduct,
+          builder: (context, state) => const ProductScreen(title: 'Магазин')),
       GoRoute(
           path: '${RouteNames.story}/:story_id',
           builder: (context, state) => StoryScreen(

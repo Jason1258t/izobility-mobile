@@ -37,7 +37,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
           context: context,
           isBack: true,
           onTap: () {
-            GoRouter.of(context).go(RouteNames.profile);
+            context.pop();
           },
           text: "Привязать новую кару",
         ),

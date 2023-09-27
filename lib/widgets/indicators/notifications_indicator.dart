@@ -10,7 +10,7 @@ class NotificationsIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const int notificationsCount = 5;
+    const int notificationsCount = 0;
 
     return SizedBox(
       width: 44,
@@ -41,7 +41,7 @@ class NotificationsIndicator extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topRight,
-            child: Container(
+            child: notificationsCount == 0 ? const SizedBox(width: 16, height: 16,) : Container(
               width: 16,
               height: 16,
               decoration: BoxDecoration(
@@ -49,7 +49,7 @@ class NotificationsIndicator extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8)),
               alignment: Alignment.center,
               child: Text(
-                notificationsCount.toString(),
+                notificationsCount.toString() ,
                 style: AppTypography.font11w400,
               ),
             ),
