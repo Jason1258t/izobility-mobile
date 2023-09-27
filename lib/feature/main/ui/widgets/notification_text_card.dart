@@ -24,7 +24,7 @@ class NotificationTextCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    "${data.type == NotificationTransactionTypeEnum.get ? "Продажа товара в" : "Получен  товар в"}  ${data.name.toUpperCase()}",
+                    "Добро пожаловать в ${data.name.toUpperCase()}!",
                     style: AppTypography.font14w700.copyWith(
                       color: AppColors.grey700,
                     ),

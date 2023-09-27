@@ -11,14 +11,15 @@ class NotificationsDateSector extends StatelessWidget {
   final List<dynamic> cards;
   final DateTime date;
 
-  const NotificationsDateSector({super.key, required this.cards, required this.date});
+  const NotificationsDateSector(
+      {super.key, required this.cards, required this.date});
 
   @override
   Widget build(BuildContext context) {
     return MultiSliver(
       pushPinnedChildren: true,
       children: [
-         SliverPinnedHeader(
+        SliverPinnedHeader(
             child: DateText(
           date: "${date.day} ${AppStrings.months[date.month.toString()]}",
         )),
@@ -30,7 +31,7 @@ class NotificationsDateSector extends StatelessWidget {
             itemBuilder: (context, index) {
               NotificationPositionEnum cardPose = NotificationPositionEnum.mid;
               final item = cards[index];
-              if (index == 0) {
+              if (index == 0 && cards.length != 1) {
                 cardPose = NotificationPositionEnum.start;
               } else if (index == cards.length - 1) {
                 cardPose = NotificationPositionEnum.end;
