@@ -12,12 +12,14 @@ class MarketItem extends StatelessWidget {
       required this.textDescription,
       required this.isNew,
       required this.onTap,
-      required this.pizdulkaUrl});
+      required this.pizdulkaUrl,
+      this.coinData});
 
   final String imageUrl;
   final String textDescription;
   final bool isNew;
   final String pizdulkaUrl;
+  final List<CoinData>? coinData;
   final VoidCallback onTap;
 
   List<Widget> _generatePriceItem(List<CoinData> coinsInfo) {
@@ -30,7 +32,8 @@ class MarketItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
           child: Text(
             '+',
-            style: AppTypography.font12w700.copyWith(color: AppColors.textSecondary),
+            style: AppTypography.font12w700
+                .copyWith(color: AppColors.textSecondary),
           ),
         ),
       );
@@ -38,11 +41,6 @@ class MarketItem extends StatelessWidget {
     children.removeLast();
     return children;
   }
-
-  final List<CoinData> hui = List.generate(
-      1,
-      (index) =>
-          CoinData(imageUrl: 'assets/images/Coins1.png', value: '1,520'));
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +51,8 @@ class MarketItem extends StatelessWidget {
         height: (MediaQuery.of(context).size.width - 40) / 2 * 160 / 230,
         padding: const EdgeInsets.all(6),
         decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,15 +108,15 @@ class MarketItem extends StatelessWidget {
               ),
             ),
             Wrap(
-              children: _generatePriceItem(hui),
+              children: _generatePriceItem(coinData ?? []),
             ),
             SizedBox(
               width: 204,
               height: 30,
               child: Text(
                 textDescription,
-                style:
-                    AppTypography.font12w400.copyWith(color: AppColors.textPrimary),
+                style: AppTypography.font12w400
+                    .copyWith(color: AppColors.textPrimary),
               ),
             )
           ],

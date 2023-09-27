@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'api/coin_data.dart';
 
 class MarketPreviewItem {
@@ -16,4 +18,16 @@ class MarketPreviewItem {
           CoinData(imageUrl: 'assets/images/Coins1.png', value: '1567.60')
         ],
         id = 'market';
+
+  MarketPreviewItem.fromJson({required Map<String, dynamic> json})
+      : name = json['name'],
+        imageUrl = dotenv.get('BASE_SERVER_URL') +
+            '/media/' +
+            json['images'][0]['path'],
+        isNew = true,
+        id = json['id'],
+        coins = [
+          CoinData(
+              imageUrl: 'assets/images/emerald_coin.png', value: json['price'])
+        ];
 }

@@ -194,6 +194,7 @@ class _MainScreenState extends State<MainScreen> {
                                     shrinkWrap: true,
                                     itemCount: repository.marketItems.length,
                                     itemBuilder: (ctx, ind) => MarketItem(
+                                      coinData: repository.marketItems[ind].coins,
                                           textDescription:
                                               repository.marketItems[ind].name,
                                           imageUrl: repository

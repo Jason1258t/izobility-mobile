@@ -94,6 +94,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     SizedBox(
                       height: 260,
                       child: MarketItem(
+
                         imageUrl:
                             'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
                         textDescription:

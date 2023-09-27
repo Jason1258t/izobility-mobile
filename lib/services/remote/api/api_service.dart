@@ -16,6 +16,7 @@ part 'auth.dart';
 part 'wallet.dart';
 part "user.dart";
 part 'news.dart';
+part 'shop.dart';
 part 'notifications.dart';
 
 const Map<String, dynamic> _authHeaders = {
@@ -39,6 +40,7 @@ class ApiService {
   late final Wallet wallet;
   late final User user;
   late final News news;
+  late final Shop shop;
   late final NotificationsApi notifications;
 
   ApiService({required this.preferencesService}) {
@@ -53,6 +55,7 @@ class ApiService {
     wallet = Wallet(dio_: dio, preferences: preferencesService, token: token);
     auth = Auth(dio_: dio, preferences: preferencesService, token: token);
     news = News(dio_: dio, preferences: preferencesService, token: token);
+    shop = Shop(dio_: dio, preferences: preferencesService, token: token);
     user = User(dio_: dio, preferences: preferencesService, token: token);
     notifications = NotificationsApi(
         dio_: dio, preferences: preferencesService, token: token);
