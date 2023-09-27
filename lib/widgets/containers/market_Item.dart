@@ -63,6 +63,7 @@ class MarketItem extends StatelessWidget {
               decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
+                  color: Colors.grey[300],
                   image: DecorationImage(
                       image: NetworkImage(imageUrl), fit: BoxFit.cover)),
               child: Column(
@@ -89,21 +90,6 @@ class MarketItem extends StatelessWidget {
                       ]
                     ],
                   ),
-                  // Row(
-                  //   children: [
-                  //     const Spacer(),
-                  //     Container(
-                  //       width: 36,
-                  //       height: 36,
-                  //       decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(8),
-                  //         image: DecorationImage(
-                  //             fit: BoxFit.cover,
-                  //             image: AssetImage(pizdulkaUrl)),
-                  //       ),
-                  //     )
-                  //   ],
-                  // ),
                 ],
               ),
             ),

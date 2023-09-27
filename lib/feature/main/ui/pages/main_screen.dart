@@ -201,9 +201,10 @@ class _MainScreenState extends State<MainScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: SizedBox(
                             width: MediaQuery.sizeOf(context).width - 32,
-                            height: 300,
+                            height: 260,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
+
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 2),
                                     scrollDirection: Axis.horizontal,
