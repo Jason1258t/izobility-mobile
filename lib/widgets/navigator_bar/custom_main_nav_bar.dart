@@ -7,8 +7,9 @@ import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 
 class CustomMainNavigationBar extends StatefulWidget {
-  const CustomMainNavigationBar({super.key, required this.onTap});
+  const CustomMainNavigationBar({super.key, required this.onTap, required this.pageIndex});
 
+  final int pageIndex;
   final Function onTap;
 
   @override
@@ -19,8 +20,6 @@ class CustomMainNavigationBar extends StatefulWidget {
 class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
   @override
   Widget build(BuildContext context) {
-    final homeRepository = RepositoryProvider.of<HomeRepository>(context);
-    
     GoRouter router = GoRouter.of(context);
     
     return Container(
@@ -37,9 +36,9 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
         children: [
           NavigatorBarItem(
             asset: 'assets/icons/home.svg',
-            isSelected: homeRepository.selectedTab == 0,
+            isSelected: widget.pageIndex == 0,
             onTap: () {
-              homeRepository.onSelectTab(0);
+              //homeRepository.onSelectTab(0);
 
               router.go(RouteNames.main);
             },
@@ -47,9 +46,9 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
           ),
           NavigatorBarItem(
             asset: 'assets/icons/wallet.svg',
-            isSelected: homeRepository.selectedTab == 1,
+            isSelected: widget.pageIndex == 1,
             onTap: () {
-              homeRepository.onSelectTab(1);
+              //homeRepository.onSelectTab(1);
 
               router.go(RouteNames.wallet);
             },
@@ -57,9 +56,9 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
           ),
           NavigatorBarItem(
             asset: 'assets/icons/gamepad.svg',
-            isSelected: homeRepository.selectedTab == 2,
+            isSelected: widget.pageIndex == 2,
             onTap: () {
-              homeRepository.onSelectTab(2);
+              //homeRepository.onSelectTab(2);
               
               router.go(RouteNames.games);
             },
@@ -67,9 +66,9 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
           ),
           NavigatorBarItem(
             asset: 'assets/icons/card.svg',
-            isSelected: homeRepository.selectedTab == 3,
+            isSelected: widget.pageIndex == 3,
             onTap: () {
-              homeRepository.onSelectTab(3);
+              //homeRepository.onSelectTab(3);
 
               router.go(RouteNames.basket);
             },
@@ -77,9 +76,9 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
           ),
           NavigatorBarItem(
             asset: 'assets/icons/user.svg',
-            isSelected: homeRepository.selectedTab == 4,
+            isSelected: widget.pageIndex == 4,
             onTap: () {
-              homeRepository.onSelectTab(4);
+              //homeRepository.onSelectTab(4);
 
               router.go(RouteNames.profile);
             },

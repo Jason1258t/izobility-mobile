@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/ui/create_password.dart';
 import 'package:izobility_mobile/feature/auth/ui/create_pin_screen.dart';
@@ -24,7 +22,6 @@ import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
-import 'package:izobility_mobile/feature/profile/ui/pages/profile_inventory.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
@@ -36,7 +33,6 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
-import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
@@ -192,7 +188,18 @@ class CustomGoRoutes {
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         builder: (context, state, child) {
-          return HomeScreen(body: child);
+          final routeIndexes = [
+            RouteNames.main,
+            RouteNames.wallet,
+            RouteNames.games,
+            RouteNames.basket,
+            RouteNames.profile
+          ];
+
+          return HomeScreen(
+            body: child,
+            pageIndex: routeIndexes.indexOf(state.matchedLocation),
+          );
         },
         routes: [
           GoRoute(

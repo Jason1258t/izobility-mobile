@@ -5,9 +5,10 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/navigator_bar/custom_main_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.body, });
+  const HomeScreen({super.key, required this.body, required this.pageIndex});
 
   final Widget body;
+  final int pageIndex;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
           body: widget.body,
           bottomNavigationBar: CustomMainNavigationBar(
+            pageIndex: widget.pageIndex,
             onTap: () {
               setState(() {});
             },
