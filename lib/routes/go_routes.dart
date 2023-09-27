@@ -26,6 +26,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_inventory.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/product_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
@@ -145,7 +146,7 @@ class CustomGoRoutes {
           builder: (context, state) => const NotificationsScreen()),
       GoRoute(
           path: RouteNames.storeProduct,
-          builder: (context, state) => const StoreScreen()),
+          builder: (context, state) => const ProductScreen(title: 'Магазин')),
       GoRoute(
           path: '${RouteNames.story}/:story_id',
           builder: (context, state) => StoryScreen(

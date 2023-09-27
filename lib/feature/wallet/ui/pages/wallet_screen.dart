@@ -34,8 +34,6 @@ class _WalletScreenState extends State<WalletScreen>
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
 
-    BlocProvider.of<MainCoinCubit>(context).loadEmeraldCoin();
-
     super.initState();
   }
 
@@ -115,14 +113,20 @@ class _WalletScreenState extends State<WalletScreen>
                       child: BlocBuilder<MainCoinCubit, MainCoinState>(
                         builder: (context, state) {
                           if(state is MainCoinSuccess) {
-                            print(walletRepository.emeraldCoin.toString());
-                            print('------------------');
-                            return Text(
-                                walletRepository.obscured
-                                    ? AppStrings.obscuredText
-                                    : walletRepository.emeraldCoin.toString(),
-                                style: AppTypography.font36w700
-                                    .copyWith(color: AppColors.textPrimary));
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                    walletRepository.obscured
+                                        ? AppStrings.obscuredText
+                                        : walletRepository.emeraldCoin.toString(),
+                                    style: AppTypography.font36w700
+                                        .copyWith(color: AppColors.textPrimary, height: 1)),
+                                const SizedBox(width: 10,),
+                                Image.asset('assets/images/emerald_coin.png',),
+                              ],
+                            );
                           }
                           else if(state is MainCoinLoading){
                             return const CircularProgressIndicator();

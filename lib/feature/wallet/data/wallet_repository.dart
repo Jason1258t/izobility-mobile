@@ -1,6 +1,6 @@
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
-
-enum StateWalletPage { wallet, gaming }
+import 'package:izobility_mobile/utils/logic/enums.dart';
+import 'package:rxdart/subjects.dart';
 
 class WalletRepository {
   final ApiService apiService;
@@ -15,13 +15,22 @@ class WalletRepository {
     obscured = f;
   }
 
-  void setWalletPage(int page){
+  void setWalletPage(int page) {
     walletPage = page;
   }
 
-  void loadEmeraldCoin() async{
-    final data = await apiService.wallet.getEmeraldCoin();
+  BehaviorSubject<LoadingStateEnum> emeraldCoinStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
-    emeraldCoin = data['balance'];
+  void loadEmeraldCoin() async {
+    emeraldCoinStream.add(LoadingStateEnum.loading);
+    try {
+      final data = await apiService.wallet.getEmeraldCoin();
+
+      emeraldCoin = data['balance'];
+      emeraldCoinStream.add(LoadingStateEnum.success);
+    } catch (e) {
+      emeraldCoinStream.add(LoadingStateEnum.fail);
+    }
   }
 }
