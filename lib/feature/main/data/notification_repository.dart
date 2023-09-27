@@ -1,4 +1,3 @@
-import 'package:izobility_mobile/models/notifications/notification_coin_model.dart';
 import 'package:izobility_mobile/models/notifications/notification_model.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
