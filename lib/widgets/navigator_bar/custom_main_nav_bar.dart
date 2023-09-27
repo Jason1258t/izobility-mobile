@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';

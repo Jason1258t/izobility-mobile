@@ -5,7 +5,6 @@ import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_re
 import 'package:izobility_mobile/feature/auth/data/auth_repository.dart';
 import 'package:izobility_mobile/feature/games/bloc/games/games_cubit.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
-import 'package:izobility_mobile/feature/home/data/home_repository.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
@@ -106,9 +105,6 @@ class MyRepositoryProviders extends StatelessWidget {
           create: (_) => AuthRepository(apiService: api, preferences: prefs)),
       RepositoryProvider(
         create: (_) => UserRepository(apiService: api, preferences: prefs),
-      ),
-      RepositoryProvider(
-        create: (_) => HomeRepository()..onSelectTab(0),
       ),
       RepositoryProvider(
         create: (_) => WalletRepository(api),
