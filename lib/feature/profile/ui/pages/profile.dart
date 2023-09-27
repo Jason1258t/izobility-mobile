@@ -121,7 +121,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   ProfileActionTile(
                     onTap: () {
-                      context.push(RouteNames.profileSettings);
                     },
                     label: 'TikTok',
                     iconPath: 'assets/icons/tiktok.svg',
