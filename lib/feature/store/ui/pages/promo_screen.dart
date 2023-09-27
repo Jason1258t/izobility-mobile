@@ -7,14 +7,14 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
-class ProductScreen extends StatefulWidget {
-  const ProductScreen({super.key});
+class PromoScreen extends StatefulWidget {
+  const PromoScreen({super.key});
 
   @override
-  State<ProductScreen> createState() => _ProductScreenState();
+  State<PromoScreen> createState() => _PromoScreenState();
 }
 
-class _ProductScreenState extends State<ProductScreen> {
+class _PromoScreenState extends State<PromoScreen> {
   @override
   Widget build(BuildContext context) {
     return HomeScaffold(
