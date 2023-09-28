@@ -8,6 +8,7 @@ import 'package:izobility_mobile/feature/store/ui/widgets/product_link.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/profuct_my_coin_quantity.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_container.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -50,7 +51,7 @@ class _ProductScreenState extends State<ProductScreen> {
               );
             } else if (state is StoreItemSuccessState) {
               return buildMarketItemData();
-            }else {
+            } else {
               return Container();
             }
           },
@@ -61,6 +62,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   Container buildMarketItemData() {
     final marketItem = context.read<StoreRepository>().lastOpenedMarketItem;
+    final emeraldCoin = context.read<WalletRepository>().emeraldCoin;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -71,29 +73,30 @@ class _ProductScreenState extends State<ProductScreen> {
             color: Colors.red,
             height: 150,
           ),
-          const StorePriceContainer(),
+
+          Text(
+            marketItem.name!,
+            style: AppTypography.font20w700.copyWith(color: Colors.black),
+          ),
+
+          StorePriceContainer(
+            price: marketItem.price!,
+          ),
           const SizedBox(
             height: 4,
           ),
-          const StoreItemQuantityContainer(itemsLost: 10, itemsAll: 15),
+          StoreItemQuantityContainer(
+              itemsLost: marketItem.quantity!, itemsAll: 1000),
           const SizedBox(
             height: 16,
           ),
           const Text("У вас есть"),
-          const ProductMyCoinQuantity(
+          ProductMyCoinQuantity(
             imagePath: "assets/icons/coin.svg",
-            quantity: 1233.0,
-          ),
-          const ProductMyCoinQuantity(
-            imagePath: "assets/icons/coin.svg",
-            quantity: 1233.0,
-          ),
-          const ProductMyCoinQuantity(
-            imagePath: "assets/icons/coin.svg",
-            quantity: 1233.0,
+            quantity: emeraldCoin.toDouble(),
           ),
           const SizedBox(
-            height: 8,
+            height: 15,
           ),
           CustomButton(
               isActive: false,
@@ -122,7 +125,7 @@ class _ProductScreenState extends State<ProductScreen> {
             marketItem.description!,
             style: AppTypography.font12w400.copyWith(color: AppColors.grey500),
           ),
-                    const SizedBox(
+          const SizedBox(
             height: 15,
           ),
           const ProductLink(

@@ -8,6 +8,7 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 import '../widgets/product_coin_price_container.dart';
@@ -72,7 +73,9 @@ class _PromoScreenState extends State<PromoScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              const StorePriceContainer(),
+               StorePriceContainer(
+                price: 1452,
+               ),
               const SizedBox(
                 height: 4,
               ),

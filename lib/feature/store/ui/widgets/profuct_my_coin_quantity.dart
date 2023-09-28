@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/product_coin_card.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -31,15 +33,20 @@ class ProductMyCoinQuantity extends StatelessWidget {
             imagePath: imagePath,
             quantity: quantity,
           ),
-          Icon(
-            Icons.check,
-            color: AppColors.primary,
-            size: 24,
-          )
+          (context.read<StoreRepository>().lastOpenedMarketItem.price ?? 0) <=
+                  quantity
+              ? Icon(
+                  Icons.check,
+                  color: AppColors.primary,
+                  size: 24,
+                )
+              : Icon(
+                  Icons.block_flipped,
+                  color: Colors.red[600],
+                  size: 24,
+                )
         ],
       ),
     );
   }
 }
-
-

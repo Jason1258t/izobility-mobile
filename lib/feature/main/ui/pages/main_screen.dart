@@ -214,7 +214,9 @@ class _MainScreenState extends State<MainScreen> {
                                               repository.marketItems[ind].name,
                                           imageUrl: repository
                                               .marketItems[ind].imageUrl,
-                                          onTap: () {},
+                                          onTap: () {
+                                            context.push("/store/${repository.marketItems[ind].id}");
+                                          },
                                           isNew:
                                               repository.marketItems[ind].isNew,
                                           pizdulkaUrl: '',

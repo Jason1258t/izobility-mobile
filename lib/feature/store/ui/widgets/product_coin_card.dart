@@ -18,7 +18,7 @@ class ProductCoinCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(imagePath),
+        Image.asset('assets/images/emerald_coin.png', width: 27,),
         const SizedBox(
           width: 6,
         ),

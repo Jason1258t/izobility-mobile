@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/product_coin_card.dart';
-import 'package:izobility_mobile/utils/ui/fonts.dart';
+
 
 class ProductCoinPriceContainer extends StatelessWidget {
   final String imagePath;
