@@ -77,7 +77,7 @@ class UserDetailsModel {
         fio: json['fio'],
         birthday: json["date_birth"] == null
             ? null
-            : DateTime.parse(json["date_birth"]));
+            : DateTime.tryParse(json["date_birth"]));
   }
 
   Map<String, dynamic> toJson() {
