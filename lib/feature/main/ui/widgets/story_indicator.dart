@@ -36,7 +36,6 @@ class _StoryDurationIndicatorState extends State<StoryDurationIndicator> {
           }
         });
       } catch (e) {}
-
     }
   }
 
@@ -51,21 +50,23 @@ class _StoryDurationIndicatorState extends State<StoryDurationIndicator> {
       child: GestureDetector(
         onTap: () {
           BlocProvider.of<StoryCubit>(context).changeStory(index: widget.index);
-          log('aboba');
         },
-        child: SizedBox(
-          child: Container(
-            height: 22,
-            width: widget.width,
-            padding: const EdgeInsets.only(top: 12, bottom: 8),
-            child: LinearProgressIndicator(
-                value: bloc.currentStoryIndex > widget.index
-                    ? 1
-                    : bloc.controller != null ? bloc.controller!.value : 0,
-                borderRadius: BorderRadius.circular(1),
-                backgroundColor: Colors.white.withOpacity(0.4),
-                color: Colors.white),
-          ),
+        child: Container(
+          color: Colors.transparent,
+          height: 18,
+          width: widget.width,
+          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          child: LinearProgressIndicator(
+              value: bloc.currentStoryIndex > widget.index
+                  ? 1
+                  : bloc.currentStoryIndex < widget.index
+                      ? 0
+                      : bloc.controller != null
+                          ? bloc.controller!.value
+                          : 0,
+              borderRadius: BorderRadius.circular(1),
+              backgroundColor: Colors.white.withOpacity(0.4),
+              color: Colors.white),
         ),
       ),
     );

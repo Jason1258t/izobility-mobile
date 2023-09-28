@@ -51,7 +51,6 @@ class StoryCubit extends Cubit<StoryState> {
   }
 
   void controllerListener() {
-    log(controller!.status.toString());
     if (controller!.value > 0.99) {
       changeStory();
     }
