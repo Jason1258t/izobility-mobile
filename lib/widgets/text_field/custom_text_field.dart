@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
     this.readOnly = false,
     required this.suffixIconCallback,
     this.secondSuffixIconCallback,
-  })  : keyboardType = TextInputType.visiblePassword,
+  })  : keyboardType = TextInputType.number,
         suffixIcon = Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,

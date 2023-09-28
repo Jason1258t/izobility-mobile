@@ -13,6 +13,7 @@ import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
 import 'package:izobility_mobile/widgets/containers/utility_container.dart';
 import 'package:izobility_mobile/widgets/indicators/notifications_indicator.dart';
+import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
@@ -25,6 +26,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final TextEditingController codeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +38,9 @@ class _MainScreenState extends State<MainScreen> {
             children: [
               Image.asset(
                 'assets/images/logo.png',
-                width: MediaQuery.sizeOf(context).width / 3.6,
+                width: MediaQuery
+                    .sizeOf(context)
+                    .width / 3.6,
                 fit: BoxFit.fitWidth,
               ),
               const Spacer(),
@@ -43,7 +48,8 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (context, state) {
                   if (state is MainCoinSuccess) {
                     return CashContainer(
-                        text: RepositoryProvider.of<WalletRepository>(context)
+                        text: RepositoryProvider
+                            .of<WalletRepository>(context)
                             .emeraldCoin
                             .toString(),
                         assetName: 'assets/images/emerald_coin.png');
@@ -63,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
         body: BlocBuilder<MainScreenCubit, MainScreenState>(
           builder: (context, state) {
             final repository =
-                RepositoryProvider.of<MainScreenRepository>(context);
+            RepositoryProvider.of<MainScreenRepository>(context);
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(16).copyWith(bottom: 0),
@@ -84,11 +90,6 @@ class _MainScreenState extends State<MainScreen> {
                                 name: 'AR\nСканер',
                                 assetName: 'assets/icons/aritem.svg',
                                 callback: () {
-                                  print(context
-                                      .read<UserRepository>()
-                                      .apiService
-                                      .token
-                                      .accessToken);
                                   context.push(RouteNames.develop);
                                 }),
                             UtilityContainer(
@@ -99,9 +100,16 @@ class _MainScreenState extends State<MainScreen> {
                                 }),
                           ],
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: CustomTextField.withTwoIcon(
+                              suffixIconCallback: () {},
+                              secondSuffixIconCallback: () {},
+                              controller: codeController,
+                              width: double.infinity,
+                              backgroundColor: Colors.white,
+                              hintText: 'Ваш промо-код',
+                            )),
                         InkWell(
                           borderRadius: BorderRadius.circular(12),
                           onTap: () {},
@@ -124,7 +132,9 @@ class _MainScreenState extends State<MainScreen> {
                                   style: AppTypography.font20w700,
                                 ),
                                 SizedBox(
-                                  width: MediaQuery.sizeOf(context).width / 2,
+                                  width: MediaQuery
+                                      .sizeOf(context)
+                                      .width / 2,
                                   child: Text(
                                     'Игры в дополненной реальности',
                                     style: AppTypography.font14w400,
@@ -143,26 +153,29 @@ class _MainScreenState extends State<MainScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: SizedBox(
-                            width: MediaQuery.sizeOf(context).width - 32,
+                            width: MediaQuery
+                                .sizeOf(context)
+                                .width - 32,
                             height: 102,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemCount: repository.storiesList.length,
-                                    itemBuilder: (ctx, ind) => GuidesSuggestion(
-                                          text:
-                                              repository.storiesList[ind].title,
-                                          imageUrl: repository
-                                              .storiesList[ind].previewUrl,
-                                          onTap: () {
-                                            context
-                                                .go('${RouteNames.story}/$ind');
-                                          },
-                                          viewed: false,
-                                        ))
+                                padding:
+                                const EdgeInsets.symmetric(vertical: 2),
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: repository.storiesList.length,
+                                itemBuilder: (ctx, ind) =>
+                                    GuidesSuggestion(
+                                      text:
+                                      repository.storiesList[ind].title,
+                                      imageUrl: repository
+                                          .storiesList[ind].previewUrl,
+                                      onTap: () {
+                                        context
+                                            .go('${RouteNames.story}/$ind');
+                                      },
+                                      viewed: false,
+                                    ))
                                 : Container(),
                           ),
                         ),
@@ -199,28 +212,33 @@ class _MainScreenState extends State<MainScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: SizedBox(
-                            width: MediaQuery.sizeOf(context).width - 32,
+                            width: MediaQuery
+                                .sizeOf(context)
+                                .width - 32,
                             height: 260,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 2),
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemCount: repository.marketItems.length,
-                                    itemBuilder: (ctx, ind) => MarketItem(
-                                      coinData: repository.marketItems[ind].coins,
-                                          textDescription:
-                                              repository.marketItems[ind].name,
-                                          imageUrl: repository
-                                              .marketItems[ind].imageUrl,
-                                          onTap: () {
-                                            context.push("/store/${repository.marketItems[ind].id}");
-                                          },
-                                          isNew:
-                                              repository.marketItems[ind].isNew,
-                                          pizdulkaUrl: '',
-                                        ))
+                                padding:
+                                const EdgeInsets.symmetric(vertical: 2),
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: repository.marketItems.length,
+                                itemBuilder: (ctx, ind) =>
+                                    MarketItem(
+                                      coinData: repository.marketItems[ind]
+                                          .coins,
+                                      textDescription:
+                                      repository.marketItems[ind].name,
+                                      imageUrl: repository
+                                          .marketItems[ind].imageUrl,
+                                      onTap: () {
+                                        context.push("/store/${repository
+                                            .marketItems[ind].id}");
+                                      },
+                                      isNew:
+                                      repository.marketItems[ind].isNew,
+                                      pizdulkaUrl: '',
+                                    ))
                                 : Container(),
                           ),
                         ),

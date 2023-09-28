@@ -16,6 +16,11 @@ class AppMask {
       filter: {"#": RegExp(r'[0-9]')},
       type: MaskAutoCompletionType.lazy);
 
+  static final maskVerificationCodeFormatter = MaskTextInputFormatter(
+      mask: '####',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
+
   static final maskDatetimeFormatter = MaskTextInputFormatter(
       mask: '####-##-##',
       filter: {"#": RegExp(r'[0-9]')},
