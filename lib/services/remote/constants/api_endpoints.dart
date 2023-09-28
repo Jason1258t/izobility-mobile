@@ -28,4 +28,5 @@ class ApiEndpoints {
   static const String getNotifications = '/user/notifications';
 
   static const String productsList = '/product/list';
+  static const String productItemInfo = '/product/view/';
 }

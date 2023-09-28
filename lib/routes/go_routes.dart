@@ -146,7 +146,9 @@ class CustomGoRoutes {
           builder: (context, state) => const PromoScreen()),
       GoRoute(
           path: RouteNames.storeProduct,
-          builder: (context, state) => const ProductScreen()),
+          builder: (context, state) =>  ProductScreen(
+            id: state.pathParameters['id'] ?? "0",
+          )),
       GoRoute(
           path: '${RouteNames.story}/:story_id',
           builder: (context, state) => StoryScreen(

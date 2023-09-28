@@ -1,3 +1,4 @@
+import 'package:izobility_mobile/models/market_item.dart';
 import 'package:izobility_mobile/models/market_preview_item.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
@@ -5,6 +6,8 @@ import 'package:rxdart/rxdart.dart';
 
 class StoreRepository {
   final ApiService apiService;
+
+  MarketItemModel lastOpenedMarketItem = MarketItemModel();
 
   StoreRepository({required this.apiService});
 
@@ -28,9 +31,21 @@ class StoreRepository {
         marketItems.add(MarketPreviewItem.fromJson(json: res[i]));
       }
       marketItemsStream.add(LoadingStateEnum.success);
-    }
-    catch(e){
+    } catch (e) {
       marketItemsStream.add(LoadingStateEnum.fail);
+    }
+  }
+
+  Future<MarketItemModel?> getMarketItemInfo(int id) async {
+    try {
+      final response = await apiService.shop.getMarketItemInfo(id);
+      print(response);
+      final MarketItemModel marketItem = MarketItemModel.fromJson(response);
+
+      return marketItem;
+    } catch (ex) {
+      print(ex);
+      return null;
     }
   }
 }
