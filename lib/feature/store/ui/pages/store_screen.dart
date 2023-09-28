@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
-import 'package:izobility_mobile/routes/go_routes.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/containers/market_Item.dart';
@@ -20,115 +20,110 @@ class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-    final storyRepository = context.read<StoreRepository>();
+    final storyRepository = RepositoryProvider.of<StoreRepository>(context);
 
     return HomeScaffold(
       appBar: CustomAppBar(
-        context: context,
         text: 'Магазин',
+        context: context,
         isBack: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ContainerWithText(
-                title: 'Промокоды',
-                path: 'category',
-                width: (sizeOf.width - 50) / 2,
-                onTap: () {
-                  setState(() {
-                    storyRepository.setActiveCategory("Промокоды");
-                  });
-                },
-              ),
-              const SizedBox(
-                width: 14,
-              ),
-              ContainerWithText(
-                title: 'Подарки',
-                path: 'gift',
-                width: (sizeOf.width - 50) / 2,
-                onTap: () {
-                  setState(() {
-                    storyRepository.setActiveCategory("Подарки");
-                  });
-                },
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          ContainerWithText(
-            title: 'Товары и NFT',
-            path: 'card',
-            width: sizeOf.width - 36,
-            onTap: () {
-              setState(() {
-                storyRepository.setActiveCategory("Товары и NFT");
-              });
-            },
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            storyRepository.activeCategory,
-            style: AppTypography.font24w700.copyWith(color: Colors.black),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Column(
-            children: List.generate(
-              20,
-              (index) => SizedBox(
-                height: 260,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      height: 260,
-                      width: (sizeOf.width - 40) / 2,
-                      child: MarketItem(
-                        imageUrl:
-                        'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
-                        textDescription:
-                        'Набор бонусов для игры Reapers rush +156 к мощности',
-                        isNew: true,
-                        pizdulkaUrl: '',
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: CustomScrollView(slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ContainerWithText(
+                        title: 'Промокоды',
+                        path: 'category',
+                        width: (sizeOf.width - 50) / 2,
                         onTap: () {
-                          context.push(RouteNames.storeProduct);
+                          setState(() {
+                            storyRepository.setActiveCategory("Промокоды");
+                          });
                         },
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      height: 260,
-                      child: MarketItem(
-                        imageUrl:
-                            'https://www.gastronom.ru/binfiles/images/20170626/b0fc70ba.jpg',
-                        textDescription:
-                            'Набор бонусов для игры Reapers rush +156 к мощности',
-                        isNew: true,
-                        pizdulkaUrl: '',
+                      const SizedBox(
+                        width: 14,
+                      ),
+                      ContainerWithText(
+                        title: 'Подарки',
+                        path: 'gift',
+                        width: (sizeOf.width - 50) / 2,
                         onTap: () {
-                          context.push(RouteNames.storeProduct);
+                          setState(() {
+                            storyRepository.setActiveCategory("Подарки");
+                          });
                         },
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ContainerWithText(
+                    title: 'Товары и NFT',
+                    path: 'card',
+                    width: sizeOf.width - 36,
+                    onTap: () {
+                      setState(() {
+                        storyRepository.setActiveCategory("Товары и NFT");
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    storyRepository.activeCategory,
+                    style:
+                        AppTypography.font24w700.copyWith(color: Colors.black),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
             ),
+          ),
+          BlocBuilder<StoreCubit, StoreState>(
+            builder: (context, state) {
+              if(state is StoreSuccess){
+              return SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => MarketItem(
+                      coinData: storyRepository.marketItems[index].coins,
+                      textDescription: storyRepository.marketItems[index].name,
+                      imageUrl: storyRepository.marketItems[index].imageUrl,
+                      onTap: () {},
+                      isNew: storyRepository.marketItems[index].isNew,
+                      pizdulkaUrl: '',
+                    ),
+                    childCount: storyRepository.marketItems.length,
+                  ),
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      crossAxisSpacing: 8,
+                      maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+                      childAspectRatio: 160 / 229));}
+              else if(state is StoreLoading){
+                return const SliverToBoxAdapter(
+                  child: CircularProgressIndicator(color: AppColors.primary,),
+                );
+              }
+
+              return const SliverToBoxAdapter(
+                child: Text('проблемс с беком'),
+              );
+            },
           )
-        ])),
+        ]),
       ),
     );
   }

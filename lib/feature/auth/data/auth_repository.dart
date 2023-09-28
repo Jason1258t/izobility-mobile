@@ -29,6 +29,7 @@ class AuthRepository {
     final res = await authMethod;
 
     final UserModel user = UserModel.fromJson(res['user']);
+
     await preferences.setUser(user);
 
     appState.add(AppStateEnum.auth);
@@ -43,8 +44,6 @@ class AuthRepository {
     } else {
       return EmailStateEnum.registered;
     }
-
-
   }
 
   Future register(RegisterData data) async {
@@ -53,7 +52,8 @@ class AuthRepository {
 
   Future login(LoginData data) async {
     if (userId != null) {
-      await apiService.auth.confirmRegistration(confirmCode: data.password!, userId: userId.toString());
+      await apiService.auth.confirmRegistration(
+          confirmCode: data.password!, userId: userId.toString());
     }
 
     _auth(apiService.auth.login(email: data.email, password: data.password!));

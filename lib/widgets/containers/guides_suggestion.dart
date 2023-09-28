@@ -38,7 +38,10 @@ class GuidesSuggestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: onTap,
+      onTap: () {
+        onTap();
+        print("tapped");
+      },
       child: Container(
         margin: const EdgeInsets.only(right: 6, left: 2),
         width: 100,

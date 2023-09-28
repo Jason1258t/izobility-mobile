@@ -66,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
                 RepositoryProvider.of<MainScreenRepository>(context);
             return SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16).copyWith(bottom: 0),
                 child: SingleChildScrollView(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +110,6 @@ class _MainScreenState extends State<MainScreen> {
                             height: 120,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 8),
-                            //constraints: const BoxConstraints(minHeight: 120),
                             decoration: BoxDecoration(
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(12),
@@ -204,7 +203,6 @@ class _MainScreenState extends State<MainScreen> {
                             height: 260,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
-
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 2),
                                     scrollDirection: Axis.horizontal,
@@ -224,6 +222,7 @@ class _MainScreenState extends State<MainScreen> {
                                 : Container(),
                           ),
                         ),
+                        const SizedBox(height: 30,),
                       ]),
                 ),
               ),

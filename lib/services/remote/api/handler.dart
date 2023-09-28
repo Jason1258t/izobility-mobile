@@ -20,8 +20,8 @@ mixin class ApiHandler {
     }
   }
 
-  Future get(String url) async {
-    return _errorHandler(dio.get(url), url);
+  Future get(String url, {Map<String, dynamic>? queryParameters}) async {
+    return _errorHandler(dio.get(url, queryParameters: queryParameters), url);
   }
 
   Future post(String url,
@@ -42,7 +42,7 @@ mixin class ApiHandler {
 
   Future<void> refreshToken(String jwt) async {
     Token token = Token(accessToken: jwt, refreshToken: null);
-    
+
     preferencesService.saveToken(token);
 
     currentToken.accessToken = token.accessToken;

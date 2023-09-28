@@ -34,8 +34,6 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   }
 
   Future<void> loadData() async {
-    await context.read<ProfileCubit>().loadUserDetailsInfo();
-
     final userRepository = context.read<UserRepository>();
 
     _nameController.text = userRepository.user.details?.name ?? "";
@@ -79,18 +77,33 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               description:
                                   "Иначе вы потеряете введенные вами изменения",
                               onAccept: () async {
-                                context.read<ProfileCubit>().updateUserData(
-                                      birthday: _birthdayController.text,
-                                      gender: context
+                                if (_nameController.text == "" ||
+                                    _surnameController.text == "") {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              "Вы не можете изменить свое имя на пустое")));
+                                  context.pop();
+                                  _nameController.text ==
+                                      context
                                           .read<UserRepository>()
                                           .user
                                           .details!
-                                          .gender!,
-                                      name: _nameController.text,
-                                      surname: _surnameController.text,
-                                    );
+                                          .name;
+                                } else {
+                                  context.read<ProfileCubit>().updateUserData(
+                                        birthday: _birthdayController.text,
+                                        gender: context
+                                            .read<UserRepository>()
+                                            .user
+                                            .details!
+                                            .gender!,
+                                        name: _nameController.text,
+                                        surname: _surnameController.text,
+                                      );
 
-                                context.pop();
+                                  context.pop();
+                                }
                               },
                               onDecline: () => context.pop())));
                     },
