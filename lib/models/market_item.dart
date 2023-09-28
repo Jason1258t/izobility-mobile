@@ -19,10 +19,9 @@ class MarketItemModel {
   bool? isEnabled;
   int? siteId;
   int? monetaId;
-  int? categ;
+  String? categ;
   bool? like;
   List<MarketItemModelImage>? images;
-  // MarketItemModelMoneta? moneta;
 
   MarketItemModel({
     this.id,
@@ -35,10 +34,6 @@ class MarketItemModel {
     this.partnerId,
     this.cityId,
     this.countryId,
-    this.price1,
-    this.price2,
-    this.price3,
-    this.price4,
     this.isMarketplace,
     this.isContest,
     this.dateEnd,
@@ -48,7 +43,6 @@ class MarketItemModel {
     this.categ,
     this.like,
     this.images,
-    // this.moneta,
   });
 
   factory MarketItemModel.fromJson(Map<String, dynamic> json) {
@@ -56,29 +50,23 @@ class MarketItemModel {
       id: json['id'],
       name: json['name'],
       description: json['description'],
-      quantity: int.parse(json['quantity']),
-      price: double.parse(json['price']),
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
-      // partnerId: int.parse(json['partner_id']),
-      cityId: json['city_id'],
-      countryId: json['country_id'],
-      // price1: json['price1'],
-      // price2: json['price2'].toDouble(),
-      // price3: json['price3'].toDouble(),
-      // price4: json['price4'].toDouble(),
-      isMarketplace: json['is_marketplace'],
-      isContest: json['is_contest'],
-      dateEnd: json['date_end'],
-      isEnabled: json['is_enabled'],
-      siteId: int.parse(json['site_id']),
-      monetaId: json['moneta_id'],
-      categ: int.parse(json['categ']),
-      like: json['like'],
+      // quantity: int.tryParse(json['quantity']),
+      // price: double.tryParse(json['price']),
+      // createdAt: json['created_at'],
+      // updatedAt: json['updated_at'],
+      // cityId: int.tryParse(json['city_id']),
+      // countryId: json['country_id'],
+      // isMarketplace: json['is_marketplace'],
+      // isContest: json['is_contest'],
+      // dateEnd: json['date_end'],
+      // isEnabled: json['is_enabled'],
+      // siteId: int.tryParse(json['site_id']),
+      // monetaId: int.tryParse(json['moneta_id']),
+      // categ: json['categ'],
+      // like: json['like'],
       images: (json['images'] as List<dynamic>)
           .map((e) => MarketItemModelImage.fromJson(e))
           .toList(),
-      // moneta: MarketItemModelMoneta.fromJson(json['moneta']),
     );
   }
 
@@ -107,7 +95,6 @@ class MarketItemModel {
       'categ': categ,
       'like': like,
       'images': images?.map((e) => e.toJson()).toList(),
-      // 'moneta': moneta?.toJson(),
     };
   }
 

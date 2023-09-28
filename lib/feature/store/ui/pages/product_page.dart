@@ -65,7 +65,7 @@ class _ProductScreenState extends State<ProductScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             color: Colors.red,
@@ -122,11 +122,8 @@ class _ProductScreenState extends State<ProductScreen> {
             marketItem.description!,
             style: AppTypography.font12w400.copyWith(color: AppColors.grey500),
           ),
-          const ProductLink(
-            linkText: "О компании",
-          ),
-          const SizedBox(
-            height: 5,
+                    const SizedBox(
+            height: 15,
           ),
           const ProductLink(
             linkText: "О компании",
@@ -135,13 +132,19 @@ class _ProductScreenState extends State<ProductScreen> {
             height: 5,
           ),
           const ProductLink(
-            linkText: "О компании",
+            linkText: "Об акции",
           ),
           const SizedBox(
             height: 5,
           ),
           const ProductLink(
-            linkText: "О компании",
+            linkText: "Публичная офёрта",
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          const ProductLink(
+            linkText: "О возврате",
           ),
           const SizedBox(
             height: 5,
