@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_item/store_item_cubit.dart';
+import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/product_link.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/profuct_my_coin_quantity.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_container.dart';
@@ -59,6 +60,8 @@ class _ProductScreenState extends State<ProductScreen> {
   }
 
   Container buildMarketItemData() {
+    final marketItem = context.read<StoreRepository>().lastOpenedMarketItem;
+
     return Container(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -116,7 +119,7 @@ class _ProductScreenState extends State<ProductScreen> {
             height: 10,
           ),
           Text(
-            "Есть над чем задуматься: предприниматели в сети интернет лишь добавляют фракционных разногласий и ассоциативно распределены по отраслям. В целом, конечно, постоянное информационно-пропагандистское обеспечение нашей деятельности способствует повышению качества анализа существующих паттернов поведения.",
+            marketItem.description!,
             style: AppTypography.font12w400.copyWith(color: AppColors.grey500),
           ),
           const ProductLink(
