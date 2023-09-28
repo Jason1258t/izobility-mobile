@@ -36,7 +36,8 @@ class MyBlocProviders extends StatelessWidget {
         userRepository: RepositoryProvider.of<UserRepository>(context),
         authRepository: RepositoryProvider.of<AuthRepository>(context),
         mainRepository: RepositoryProvider.of<MainScreenRepository>(context),
-        walletRepository: RepositoryProvider.of<WalletRepository>(context));
+        walletRepository: RepositoryProvider.of<WalletRepository>(context),
+        storeRepository: RepositoryProvider.of<StoreRepository>(context));
 
     return MultiBlocProvider(
         providers: [
@@ -117,7 +118,7 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => GamesRepository(),
       ),
       RepositoryProvider(
-        create: (_) => StoreRepository(),
+        create: (_) => StoreRepository(apiService: api),
       ),
       RepositoryProvider(
           create: (context) =>

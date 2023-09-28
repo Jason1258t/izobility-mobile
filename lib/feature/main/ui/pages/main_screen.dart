@@ -203,7 +203,6 @@ class _MainScreenState extends State<MainScreen> {
                             height: 260,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
-
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 2),
                                     scrollDirection: Axis.horizontal,
