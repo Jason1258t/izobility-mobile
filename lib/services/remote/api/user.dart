@@ -29,12 +29,15 @@ class User with ApiHandler {
     required int gender,
     required String birthday,
   }) async {
-    final responseUpdateName =
-        await post(ApiEndpoints.userUpdateName, data: {
-      "fam": surname.toString(),
-      "name": name.toString(),
-      "otch": "",
-    });
+    if (name != "" && surname != "") {
+      final responseUpdateName = await post(ApiEndpoints.userUpdateName, data: {
+        "fam": surname.toString(),
+        "name": name.toString(),
+        "otch": "",
+      }); 
+
+
+    }
 
     final responseUpdateBirthDay = await post(ApiEndpoints.userUpdateBirthday,
         data: {"date_birth": birthday});
