@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
+import 'package:izobility_mobile/feature/store/ui/widgets/product_coin_price_container.dart';
+import 'package:izobility_mobile/feature/store/ui/widgets/product_link.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/profuct_my_coin_quantity.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_container.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.dart';
@@ -10,16 +13,14 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
-import '../widgets/product_coin_price_container.dart';
-
-class PromoScreen extends StatefulWidget {
-  const PromoScreen({super.key});
+class ProductScreen extends StatefulWidget {
+  const ProductScreen({super.key});
 
   @override
-  State<PromoScreen> createState() => _PromoScreenState();
+  State<ProductScreen> createState() => _ProductScreenState();
 }
 
-class _PromoScreenState extends State<PromoScreen> {
+class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return HomeScaffold(
@@ -35,69 +36,32 @@ class _PromoScreenState extends State<PromoScreen> {
         child: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "Промокод на бесплатный бургер в ресторанах Burger King",
-                style: AppTypography.font20w700.copyWith(color: Colors.black),
-                textAlign: TextAlign.start,
-              ),
-              const SizedBox(height: 16),
               Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: AppColors.disableButton,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      "Ваш промокод",
-                      style: AppTypography.font14w700
-                          .copyWith(color: AppColors.grey500),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 18,
-                      decoration: BoxDecoration(
-                        color: AppColors.grey500,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                  ],
-                ),
+                color: Colors.red,
+                height: 150,
               ),
-              const SizedBox(height: 16),
               const StorePriceContainer(),
               const SizedBox(
                 height: 4,
               ),
-              const StoreItemQuantityContainer(
-                itemsLost: 0,
-                itemsAll: 5,
-              ),
+              const StoreItemQuantityContainer(itemsLost: 10, itemsAll: 15),
               const SizedBox(
                 height: 16,
               ),
-              Text(
-                "У вас есть",
-                style: AppTypography.font18w700.copyWith(color: Colors.black),
+              const Text("У вас есть"),
+              const ProductMyCoinQuantity(
+                imagePath: "assets/icons/coin.svg",
+                quantity: 1233.0,
               ),
-              ProductMyCoinQuantity(
-                imagePath: 'assets/icons/coin.svg',
-                quantity: 900,
+              const ProductMyCoinQuantity(
+                imagePath: "assets/icons/coin.svg",
+                quantity: 1233.0,
               ),
-              ProductMyCoinQuantity(
-                imagePath: 'assets/icons/coin.svg',
-                quantity: 900,
-              ),
-              ProductMyCoinQuantity(
-                imagePath: 'assets/icons/coin.svg',
-                quantity: 900,
+              const ProductMyCoinQuantity(
+                imagePath: "assets/icons/coin.svg",
+                quantity: 1233.0,
               ),
               const SizedBox(
                 height: 8,
@@ -129,7 +93,24 @@ class _PromoScreenState extends State<PromoScreen> {
                 "Есть над чем задуматься: предприниматели в сети интернет лишь добавляют фракционных разногласий и ассоциативно распределены по отраслям. В целом, конечно, постоянное информационно-пропагандистское обеспечение нашей деятельности способствует повышению качества анализа существующих паттернов поведения.",
                 style:
                     AppTypography.font12w400.copyWith(color: AppColors.grey500),
-              )
+              ),
+              const ProductLink(
+                linkText: "О компании",
+              ),
+              const SizedBox(height: 5,),
+                            const ProductLink(
+                linkText: "О компании",
+              ),
+              const SizedBox(height: 5,),
+                            const ProductLink(
+                linkText: "О компании",
+              ),
+              const SizedBox(height: 5,),
+                            const ProductLink(
+                linkText: "О компании",
+              ),
+              const SizedBox(height: 5,),
+
             ],
           ),
         ),
@@ -137,4 +118,3 @@ class _PromoScreenState extends State<PromoScreen> {
     );
   }
 }
-
