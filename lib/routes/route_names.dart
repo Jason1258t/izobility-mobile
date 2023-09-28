@@ -59,6 +59,7 @@ abstract class RouteNames {
 
   static const String store = '/store';
   static const String storeProduct = '/store/product';
+  static const String storePromo = '/store/promo';
 
   static const String develop = '/develop';
 }

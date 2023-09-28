@@ -26,4 +26,5 @@ final mainRoutesNames = [
   RouteNames.store,
   RouteNames.develop,
   RouteNames.storeProduct,
+  RouteNames.storePromo
 ];
