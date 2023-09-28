@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/containers/market_Item.dart';
@@ -19,7 +20,7 @@ class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-    final storyRepository = context.read<StoreRepository>();
+    final storyRepository = RepositoryProvider.of<StoreRepository>(context);
 
     return HomeScaffold(
       appBar: CustomAppBar(
@@ -92,22 +93,36 @@ class _StoreScreenState extends State<StoreScreen> {
               ),
             ),
           ),
-          SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => MarketItem(
-                  coinData: storyRepository.marketItems[index].coins,
-                  textDescription: storyRepository.marketItems[index].name,
-                  imageUrl: storyRepository.marketItems[index].imageUrl,
-                  onTap: () {},
-                  isNew: storyRepository.marketItems[index].isNew,
-                  pizdulkaUrl: '',
-                ),
-                childCount: storyRepository.marketItems.length,
-              ),
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  crossAxisSpacing: 8,
-                  maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
-                  childAspectRatio: 160 / 229))
+          BlocBuilder<StoreCubit, StoreState>(
+            builder: (context, state) {
+              if(state is StoreSuccess){
+              return SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => MarketItem(
+                      coinData: storyRepository.marketItems[index].coins,
+                      textDescription: storyRepository.marketItems[index].name,
+                      imageUrl: storyRepository.marketItems[index].imageUrl,
+                      onTap: () {},
+                      isNew: storyRepository.marketItems[index].isNew,
+                      pizdulkaUrl: '',
+                    ),
+                    childCount: storyRepository.marketItems.length,
+                  ),
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      crossAxisSpacing: 8,
+                      maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+                      childAspectRatio: 160 / 229));}
+              else if(state is StoreLoading){
+                return const SliverToBoxAdapter(
+                  child: CircularProgressIndicator(color: AppColors.primary,),
+                );
+              }
+
+              return const SliverToBoxAdapter(
+                child: Text('проблемс с беком'),
+              );
+            },
+          )
         ]),
       ),
     );
