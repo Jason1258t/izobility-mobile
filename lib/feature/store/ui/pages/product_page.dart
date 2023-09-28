@@ -11,6 +11,7 @@ import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
@@ -43,19 +44,20 @@ class _ProductScreenState extends State<ProductScreen> {
     super.initState();
   }
 
-  Row getImageIndicator(int count){
+  Row getImageIndicator(int count) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(count, (index) => Container(
-        margin: const EdgeInsets.only(right: 5),
-        width:  page == index ? 25 : 9,
-        height: 9,
-        decoration: BoxDecoration(
-          color: AppColors.disableButton,
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ))
-    );
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+            count,
+            (index) => Container(
+                  margin: const EdgeInsets.only(right: 5),
+                  width: page == index ? 25 : 9,
+                  height: 9,
+                  decoration: BoxDecoration(
+                    color: AppColors.disableButton,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                )));
   }
 
   @override
@@ -136,7 +138,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 marketItem.name!,
                 style: AppTypography.font20w700.copyWith(color: Colors.black),
               ),
-              const SizedBox(height: 8,),
+              const SizedBox(
+                height: 8,
+              ),
               StorePriceContainer(
                 price: marketItem.price!,
               ),
@@ -160,9 +164,11 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 8,
               ),
               CustomButton(
-                  isActive: false,
+                  isActive: marketItem.price! <= emeraldCoin,
                   text: "Получить",
-                  onTap: () {},
+                  onTap: () {
+                    context.push(RouteNames.develop);
+                  },
                   width: double.infinity),
               const SizedBox(
                 height: 8,
@@ -170,7 +176,9 @@ class _ProductScreenState extends State<ProductScreen> {
               CustomButton(
                   isActive: true,
                   text: "Купить монет",
-                  onTap: () {},
+                  onTap: () {
+                    context.push(RouteNames.develop);
+                  },
                   width: double.infinity),
               const SizedBox(
                 height: 16,
