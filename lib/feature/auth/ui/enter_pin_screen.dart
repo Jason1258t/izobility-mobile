@@ -36,7 +36,8 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
         topPadding: 0,
         isAppBar: false,
         body: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(width: double.infinity, height: 32),

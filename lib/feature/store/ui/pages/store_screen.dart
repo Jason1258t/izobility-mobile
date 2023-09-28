@@ -124,7 +124,6 @@ class _StoreScreenState extends State<StoreScreen> {
                   ),
                 );
               }
-
               return const SliverToBoxAdapter(
                 child: Text('проблемс с беком'),
               );

@@ -121,7 +121,7 @@ class MarketItemModelImage {
   factory MarketItemModelImage.fromJson(Map<String, dynamic> json) {
     return MarketItemModelImage(
       id: json['id'],
-      path: json['path'],
+      path: "https://api.z-boom.ru/media/" + json['path'],
       position: json['position'],
       productId: json['product_id'],
     );

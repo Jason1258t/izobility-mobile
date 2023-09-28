@@ -26,10 +26,13 @@ class StoreRepository {
 
     try {
       final res = await apiService.shop.getLimitedItems();
+
       marketItems.clear();
+
       for (int i = 0; i < res.length; i++) {
         marketItems.add(MarketPreviewItem.fromJson(json: res[i]));
       }
+
       marketItemsStream.add(LoadingStateEnum.success);
     } catch (e) {
       marketItemsStream.add(LoadingStateEnum.fail);
