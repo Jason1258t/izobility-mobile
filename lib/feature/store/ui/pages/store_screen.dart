@@ -23,96 +23,92 @@ class _StoreScreenState extends State<StoreScreen> {
 
     return HomeScaffold(
       appBar: CustomAppBar(
-        context: context,
         text: 'Магазин',
+        context: context,
         isBack: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: BlocBuilder<StoreCubit, StoreState>(
-          builder: (context, state) {
-            return CustomScrollView(slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        ContainerWithText(
-                          title: 'Промокоды',
-                          path: 'category',
-                          width: (sizeOf.width - 50) / 2,
-                          onTap: () {
-                            setState(() {
-                              storyRepository.setActiveCategory("Промокоды");
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 14,
-                        ),
-                        ContainerWithText(
-                          title: 'Подарки',
-                          path: 'gift',
-                          width: (sizeOf.width - 50) / 2,
-                          onTap: () {
-                            setState(() {
-                              storyRepository.setActiveCategory("Подарки");
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ContainerWithText(
-                      title: 'Товары и NFT',
-                      path: 'card',
-                      width: sizeOf.width - 36,
-                      onTap: () {
-                        setState(() {
-                          storyRepository.setActiveCategory("Товары и NFT");
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      storyRepository.activeCategory,
-                      style: AppTypography.font24w700
-                          .copyWith(color: Colors.black),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ),
-              state is StoreSuccess ? SliverGrid(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) => MarketItem(
-                      coinData: storyRepository.marketItems[index].coins,
-                      textDescription: storyRepository.marketItems[index].name,
-                      imageUrl: storyRepository.marketItems[index].imageUrl,
-                      onTap: () {},
-                      isNew: storyRepository.marketItems[index].isNew,
-                      pizdulkaUrl: '',
-                    ),
-                    childCount: storyRepository.marketItems.length,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: CustomScrollView(slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      ContainerWithText(
+                        title: 'Промокоды',
+                        path: 'category',
+                        width: (sizeOf.width - 50) / 2,
+                        onTap: () {
+                          setState(() {
+                            storyRepository.setActiveCategory("Промокоды");
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        width: 14,
+                      ),
+                      ContainerWithText(
+                        title: 'Подарки',
+                        path: 'gift',
+                        width: (sizeOf.width - 50) / 2,
+                        onTap: () {
+                          setState(() {
+                            storyRepository.setActiveCategory("Подарки");
+                          });
+                        },
+                      ),
+                    ],
                   ),
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      crossAxisSpacing: 8,
-                      maxCrossAxisExtent:
-                          (MediaQuery.of(context).size.width - 40) / 2,
-                      childAspectRatio: 160 / 229)) : const SliverToBoxAdapter(
-                child: Text('asdf'),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ContainerWithText(
+                    title: 'Товары и NFT',
+                    path: 'card',
+                    width: sizeOf.width - 36,
+                    onTap: () {
+                      setState(() {
+                        storyRepository.setActiveCategory("Товары и NFT");
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    storyRepository.activeCategory,
+                    style:
+                        AppTypography.font24w700.copyWith(color: Colors.black),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
-            ]);
-          },
-        ),
+            ),
+          ),
+          SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => MarketItem(
+                  coinData: storyRepository.marketItems[index].coins,
+                  textDescription: storyRepository.marketItems[index].name,
+                  imageUrl: storyRepository.marketItems[index].imageUrl,
+                  onTap: () {},
+                  isNew: storyRepository.marketItems[index].isNew,
+                  pizdulkaUrl: '',
+                ),
+                childCount: storyRepository.marketItems.length,
+              ),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  crossAxisSpacing: 8,
+                  maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+                  childAspectRatio: 160 / 229))
+        ]),
       ),
     );
   }
