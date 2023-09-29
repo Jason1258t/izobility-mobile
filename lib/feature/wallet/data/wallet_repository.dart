@@ -9,7 +9,7 @@ class WalletRepository {
 
   bool obscured = false;
   int emeraldCoin = 0;
-  int walletPage = 0;
+  int walletPage = 1;
 
   void setObscured(bool f) {
     obscured = f;

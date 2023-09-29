@@ -198,12 +198,6 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          width: double.infinity,
-                          height: 1,
-                          color: AppColors.disableButton,
-                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: SizedBox(

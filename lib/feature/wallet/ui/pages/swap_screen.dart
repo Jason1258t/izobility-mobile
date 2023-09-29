@@ -18,9 +18,8 @@ class SwapScreen extends StatefulWidget {
 }
 
 class _SwapScreenState extends State<SwapScreen> {
-  TextEditingController _enterCoinController = TextEditingController();
-  TextEditingController _getCoinController = TextEditingController();
-
+  final TextEditingController _enterCoinController = TextEditingController();
+  final TextEditingController _getCoinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,7 @@ class _SwapScreenState extends State<SwapScreen> {
                     ),
                     ButtonChooseCoin(
                       width: size.width * 0.3555,
-                      coinName: 'SEX',
+                      coinName: 'Emerald',
                       imagePath: 'assets/icons/coin.svg',
                       onTap: () {
                         context.push(
