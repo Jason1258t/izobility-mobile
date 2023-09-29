@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -155,11 +155,11 @@ class _MainScreenState extends State<MainScreen> {
                           CustomButton(
                               text: 'Активировать',
                               onTap: () {
+                                BlocProvider.of<PromoCodeCubit>(context)
+                                    .activateCode(codeController.text.trim());
                                 setState(() {
                                   codeController.text = '';
                                 });
-                                BlocProvider.of<PromoCodeCubit>(context)
-                                    .activateCode(codeController.text.trim());
                               },
                               width: double.infinity),
                           const SizedBox(

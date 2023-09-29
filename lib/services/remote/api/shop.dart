@@ -11,10 +11,7 @@ class Shop with ApiHandler {
   }
 
   Future activatePromoCode(String code) =>
-      post(ApiEndpoints.usePromoCode, data: {
-        ''
-            'code': code
-      });
+      post(ApiEndpoints.usePromoCode, data: {'code': code});
 
   Future<List> getLimitedItems() async {
     final res = await get(ApiEndpoints.productsList);

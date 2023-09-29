@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
@@ -36,7 +36,6 @@ class _WalletScreenState extends State<WalletScreen>
 
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +111,7 @@ class _WalletScreenState extends State<WalletScreen>
                       },
                       child: BlocBuilder<MainCoinCubit, MainCoinState>(
                         builder: (context, state) {
-                          if(state is MainCoinSuccess) {
+                          if (state is MainCoinSuccess) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,15 +119,20 @@ class _WalletScreenState extends State<WalletScreen>
                                 Text(
                                     walletRepository.obscured
                                         ? AppStrings.obscuredText
-                                        : walletRepository.emeraldCoin.toString(),
-                                    style: AppTypography.font36w700
-                                        .copyWith(color: AppColors.textPrimary, height: 1)),
-                                const SizedBox(width: 10,),
-                                Image.asset('assets/images/emerald_coin.png',),
+                                        : walletRepository.emeraldCoin
+                                            .toString(),
+                                    style: AppTypography.font36w700.copyWith(
+                                        color: AppColors.textPrimary,
+                                        height: 1)),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Image.asset(
+                                  'assets/images/emerald_coin.png',
+                                ),
                               ],
                             );
-                          }
-                          else if(state is MainCoinLoading){
+                          } else if (state is MainCoinLoading) {
                             return const CircularProgressIndicator();
                           }
 
@@ -243,27 +247,33 @@ class _WalletScreenState extends State<WalletScreen>
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 sliver: tokenOrNft == 0
                     ? SliverList(
-                        delegate: SliverChildListDelegate(list
-                            .map((item) => ValidToken(
-                                  title: 'Protocol',
-                                  value: '211,12',
-                                  onTap: () {
-                                    context.push(RouteNames.walletCurrency);
-                                  },
-                                  prise: walletRepository.obscured
-                                      ? AppStrings.obscuredText
-                                      : '0,29',
-                                  increment: '0,02',
-                                  usdValue: walletRepository.obscured
-                                      ? AppStrings.obscuredText
-                                      : '0,0021 \$',
-                                ))
-                            .toList()),
+                        delegate: SliverChildListDelegate(
+                            RepositoryProvider.of<WalletRepository>(context)
+                                .gameTokens
+                                .map((item) => ValidToken(
+                                      title: item.name,
+                                      value:
+                                          double.parse(item.rubleExchangeRate)
+                                              .toStringAsFixed(2),
+                                      onTap: () {
+                                        context.push(RouteNames.walletCurrency);
+                                      },
+                                      imageUrl: item.imageUrl,
+                                      prise: walletRepository.obscured
+                                          ? AppStrings.obscuredText
+                                          : item.amount,
+                                      increment: '0,02',
+                                      usdValue: walletRepository.obscured
+                                          ? AppStrings.obscuredText
+                                          : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
+                                    ))
+                                .toList()),
                       )
                     : SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => MarketItem(
-                            imageUrl: 'https://kartinkin.net/uploads/posts/2022-08/1661214768_6-kartinkin-net-p-burger-king-chiken-barbekyu-vkontakte-11.jpg',
+                            imageUrl:
+                                'https://kartinkin.net/uploads/posts/2022-08/1661214768_6-kartinkin-net-p-burger-king-chiken-barbekyu-vkontakte-11.jpg',
                             textDescription:
                                 'Набор бонусов для игры Reapers rush +156 к мощности',
                             isNew: true,

@@ -15,7 +15,7 @@ import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_item/store_item_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/main_coin/main_coin_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
@@ -87,7 +87,10 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (_) => PromoCodeCubit(apiService: api),
+            create: (_) => PromoCodeCubit(
+                apiService: api,
+                walletRepository:
+                    RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),
           BlocProvider(

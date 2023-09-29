@@ -16,5 +16,7 @@ class TokenData {
       : amount = json['amount'],
         rubleExchangeRate = json['kurs_rub'],
         name = json['name'],
-        imageUrl = '${dotenv.get('BASE_SERVER_URL')}/media/' + json['logo'];
+        imageUrl = '${dotenv.get('BASE_SERVER_URL')}media/' + json['logo'] {
+    print(imageUrl);
+  }
 }

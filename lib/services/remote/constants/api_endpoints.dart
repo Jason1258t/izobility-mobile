@@ -8,6 +8,7 @@ class ApiEndpoints {
   static const String resendCode = '/user/registration-resend';
 
   static const String wallet = '/balance/balance';
+  static const String userGameTokens = '/balance/monets-list';
 
   static const String userInfo = '/user/';
 

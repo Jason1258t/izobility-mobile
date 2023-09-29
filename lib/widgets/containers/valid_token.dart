@@ -7,6 +7,7 @@ class ValidToken extends StatelessWidget {
   final String increment;
   final String value;
   final String usdValue;
+  final String imageUrl;
 
   final VoidCallback onTap;
 
@@ -17,7 +18,8 @@ class ValidToken extends StatelessWidget {
       required this.increment,
       required this.onTap,
       required this.value,
-      required this.usdValue});
+      required this.usdValue,
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +47,11 @@ class ValidToken extends StatelessWidget {
                       width: 34,
                       height: 34,
                       padding: const EdgeInsets.all(4),
-                      decoration: ShapeDecoration(
-                        color: AppColors.backgroundSecondary,
-                        shape: RoundedRectangleBorder(
+                      decoration: BoxDecoration(
+                          color: AppColors.backgroundSecondary,
                           borderRadius: BorderRadius.circular(32),
-                        ),
-                      ),
+                          image: DecorationImage(
+                              image: NetworkImage(imageUrl), fit: BoxFit.cover)),
                     ),
                     const SizedBox(
                       width: 12,
