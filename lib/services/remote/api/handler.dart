@@ -7,11 +7,6 @@ mixin class ApiHandler {
 
   _errorHandler(Future<Response> method, String url) async {
     try {
-      // if (currentToken.accessExpired) {
-      //   if (currentToken.refreshExpired) throw UnAuthenticatedException;
-      //   await refreshToken();
-      // }
-
       final res = await method;
       return res.data;
     } catch (e) {
