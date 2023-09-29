@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -131,7 +132,16 @@ class _MainScreenState extends State<MainScreen> {
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               child: CustomTextField.withTwoIcon(
                                 suffixIconCallback: () {},
-                                secondSuffixIconCallback: () {},
+                                obscured: false,
+                                secondSuffixIconCallback: () {
+                                  Clipboard.getData('text/plain').then((value) {
+                                    setState(() {
+                                      codeController.text = value != null
+                                          ? value.text ?? codeController.text
+                                          : codeController.text;
+                                    });
+                                  });
+                                },
                                 controller: codeController,
                                 width: double.infinity,
                                 backgroundColor: Colors.white,
