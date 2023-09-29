@@ -6,13 +6,18 @@ import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
+import 'package:izobility_mobile/utils/ui/animations.dart';
+import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
+import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
 import 'package:izobility_mobile/widgets/containers/utility_container.dart';
 import 'package:izobility_mobile/widgets/indicators/notifications_indicator.dart';
+import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 import '../../../../widgets/containers/guides_suggestion.dart';
@@ -38,9 +43,7 @@ class _MainScreenState extends State<MainScreen> {
             children: [
               Image.asset(
                 'assets/images/logo.png',
-                width: MediaQuery
-                    .sizeOf(context)
-                    .width / 3.6,
+                width: MediaQuery.sizeOf(context).width / 3.6,
                 fit: BoxFit.fitWidth,
               ),
               const Spacer(),
@@ -48,8 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                 builder: (context, state) {
                   if (state is MainCoinSuccess) {
                     return CashContainer(
-                        text: RepositoryProvider
-                            .of<WalletRepository>(context)
+                        text: RepositoryProvider.of<WalletRepository>(context)
                             .emeraldCoin
                             .toString(),
                         assetName: 'assets/images/emerald_coin.png');
@@ -69,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
         body: BlocBuilder<MainScreenCubit, MainScreenState>(
           builder: (context, state) {
             final repository =
-            RepositoryProvider.of<MainScreenRepository>(context);
+                RepositoryProvider.of<MainScreenRepository>(context);
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(16).copyWith(bottom: 0),
@@ -100,16 +102,60 @@ class _MainScreenState extends State<MainScreen> {
                                 }),
                           ],
                         ),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: CustomTextField.withTwoIcon(
-                              suffixIconCallback: () {},
-                              secondSuffixIconCallback: () {},
-                              controller: codeController,
-                              width: double.infinity,
-                              backgroundColor: Colors.white,
-                              hintText: 'Ваш промо-код',
-                            )),
+                        BlocListener<PromoCodeCubit, PromoCodeState>(
+                          listener: (context, state) {
+                            if (state is PromoActivateProcessState) {
+                              Dialogs.showModal(
+                                  context,
+                                  const Center(
+                                    child:
+                                        AppAnimations.circularProgressIndicator,
+                                  ));
+                            } else {
+                              Dialogs.hide(context);
+                            }
+                            final scaffoldMessenger =
+                                ScaffoldMessenger.of(context);
+                            if (state is PromoActivatedState) {
+                              scaffoldMessenger.showSnackBar(
+                                  CustomSnackBar.snackBarWithCustomText(
+                                      'Код активирован'));
+                            }
+                            if (state is PromoInvalidState) {
+                              scaffoldMessenger.showSnackBar(
+                                  CustomSnackBar.snackBarWithCustomText(
+                                      'Ошибка активации'));
+                            }
+                          },
+                          child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: CustomTextField.withTwoIcon(
+                                suffixIconCallback: () {},
+                                secondSuffixIconCallback: () {},
+                                controller: codeController,
+                                width: double.infinity,
+                                backgroundColor: Colors.white,
+                                hintText: 'Ваш промо-код',
+                                onChange: (v) {
+                                  setState(() {});
+                                },
+                              )),
+                        ),
+                        if (codeController.text.isNotEmpty) ...[
+                          CustomButton(
+                              text: 'Активировать',
+                              onTap: () {
+                                setState(() {
+                                  codeController.text = '';
+                                });
+                                BlocProvider.of<PromoCodeCubit>(context)
+                                    .activateCode(codeController.text.trim());
+                              },
+                              width: double.infinity),
+                          const SizedBox(
+                            height: 16,
+                          )
+                        ],
                         InkWell(
                           borderRadius: BorderRadius.circular(12),
                           onTap: () {},
@@ -132,9 +178,7 @@ class _MainScreenState extends State<MainScreen> {
                                   style: AppTypography.font20w700,
                                 ),
                                 SizedBox(
-                                  width: MediaQuery
-                                      .sizeOf(context)
-                                      .width / 2,
+                                  width: MediaQuery.sizeOf(context).width / 2,
                                   child: Text(
                                     'Игры в дополненной реальности',
                                     style: AppTypography.font14w400,
@@ -153,29 +197,26 @@ class _MainScreenState extends State<MainScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: SizedBox(
-                            width: MediaQuery
-                                .sizeOf(context)
-                                .width - 32,
+                            width: MediaQuery.sizeOf(context).width - 32,
                             height: 102,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
-                                padding:
-                                const EdgeInsets.symmetric(vertical: 2),
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: repository.storiesList.length,
-                                itemBuilder: (ctx, ind) =>
-                                    GuidesSuggestion(
-                                      text:
-                                      repository.storiesList[ind].title,
-                                      imageUrl: repository
-                                          .storiesList[ind].previewUrl,
-                                      onTap: () {
-                                        context
-                                            .go('${RouteNames.story}/$ind');
-                                      },
-                                      viewed: false,
-                                    ))
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 2),
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: repository.storiesList.length,
+                                    itemBuilder: (ctx, ind) => GuidesSuggestion(
+                                          text:
+                                              repository.storiesList[ind].title,
+                                          imageUrl: repository
+                                              .storiesList[ind].previewUrl,
+                                          onTap: () {
+                                            context
+                                                .go('${RouteNames.story}/$ind');
+                                          },
+                                          viewed: false,
+                                        ))
                                 : Container(),
                           ),
                         ),
@@ -212,37 +253,36 @@ class _MainScreenState extends State<MainScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           child: SizedBox(
-                            width: MediaQuery
-                                .sizeOf(context)
-                                .width - 32,
+                            width: MediaQuery.sizeOf(context).width - 32,
                             height: 260,
                             child: state is MainScreenPreview
                                 ? ListView.builder(
-                                padding:
-                                const EdgeInsets.symmetric(vertical: 2),
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: repository.marketItems.length,
-                                itemBuilder: (ctx, ind) =>
-                                    MarketItem(
-                                      coinData: repository.marketItems[ind]
-                                          .coins,
-                                      textDescription:
-                                      repository.marketItems[ind].name,
-                                      imageUrl: repository
-                                          .marketItems[ind].imageUrl,
-                                      onTap: () {
-                                        context.push("/store/${repository
-                                            .marketItems[ind].id}");
-                                      },
-                                      isNew:
-                                      repository.marketItems[ind].isNew,
-                                      pizdulkaUrl: '',
-                                    ))
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 2),
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: repository.marketItems.length,
+                                    itemBuilder: (ctx, ind) => MarketItem(
+                                          coinData:
+                                              repository.marketItems[ind].coins,
+                                          textDescription:
+                                              repository.marketItems[ind].name,
+                                          imageUrl: repository
+                                              .marketItems[ind].imageUrl,
+                                          onTap: () {
+                                            context.push(
+                                                "/store/${repository.marketItems[ind].id}");
+                                          },
+                                          isNew:
+                                              repository.marketItems[ind].isNew,
+                                          pizdulkaUrl: '',
+                                        ))
                                 : Container(),
                           ),
                         ),
-                        const SizedBox(height: 30,),
+                        const SizedBox(
+                          height: 30,
+                        ),
                       ]),
                 ),
               ),

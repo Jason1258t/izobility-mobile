@@ -82,7 +82,7 @@ class _ReplenishScreenState extends State<ReplenishScreen> {
                             Clipboard.setData(const ClipboardData(
                                 text:
                                     '0xe92d1a43df510f82c66382592a047d288f85226f'));
-                            ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.snackBar);
+                            ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.snackBarCopied);
                           },
                         ),
                         const SizedBox(
