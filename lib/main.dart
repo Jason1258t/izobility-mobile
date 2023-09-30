@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
+import 'package:trust_wallet_core/flutter_trust_wallet_core.dart';
 
 import 'services/locale/export_locale_services.dart';
 
@@ -15,7 +16,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-
+  FlutterTrustWalletCore.init();
   StreamAuthNotifier notifier = StreamAuthNotifier();
 
   Bloc.observer = CustomBlocObserver(authNotifier: notifier);
