@@ -34,6 +34,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_enter_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
@@ -193,6 +194,9 @@ class CustomGoRoutes {
         ),
       ),
       GoRoute(
+          path: RouteNames.walletEnterSeedPhrase,
+          builder: (context, state) => const EnterSeedPhraseScreen()),
+      GoRoute(
           path: RouteNames.gamesDetailsLoading,
           builder: (context, state) => const GamesLoadingScreen()),
       ShellRoute(
@@ -208,7 +212,9 @@ class CustomGoRoutes {
 
           return HomeScreen(
             body: child,
-            pageIndex: routeIndexes.indexOf(state.matchedLocation),
+            pageIndex: routeIndexes.indexOf(state.matchedLocation
+                .replaceFirst('/false', '')
+                .replaceFirst('/true', '')),
           );
         },
         routes: [
@@ -226,18 +232,18 @@ class CustomGoRoutes {
             ),
           ),
           GoRoute(
-            path: RouteNames.wallet,
-            pageBuilder: (context, state) => CustomTransitionPage<void>(
-              key: state.pageKey,
-              child: const WalletScreen(),
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
-            ),
-          ),
+              path: '${RouteNames.wallet}/:isAuth',
+              pageBuilder: (context, state) => CustomTransitionPage<void>(
+                  key: state.pageKey,
+                  child: bool.parse(state.pathParameters['isAuth'] ?? 'false')
+                      ? const WalletScreen()
+                      : const WalletAuthScreen(),
+                  transitionsBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation,
+                      Widget child) {
+                    return child;
+                  })),
           GoRoute(
             path: RouteNames.games,
             pageBuilder: (context, state) => CustomTransitionPage<void>(

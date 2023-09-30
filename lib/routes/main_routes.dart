@@ -27,5 +27,6 @@ final mainRoutesNames = [
   RouteNames.develop,
   RouteNames.storeProduct,
   RouteNames.storePromo,
-  RouteNames.walletAuth
+  RouteNames.walletAuth,
+  RouteNames.walletEnterSeedPhrase,
 ];

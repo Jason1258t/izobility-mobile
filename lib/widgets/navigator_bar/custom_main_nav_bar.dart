@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 
 class CustomMainNavigationBar extends StatefulWidget {
-  const CustomMainNavigationBar({super.key, required this.onTap, required this.pageIndex});
+  const CustomMainNavigationBar(
+      {super.key, required this.onTap, required this.pageIndex});
 
   final int pageIndex;
   final Function onTap;
@@ -19,9 +22,14 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
   @override
   Widget build(BuildContext context) {
     GoRouter router = GoRouter.of(context);
-    
+
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       padding: const EdgeInsets.only(top: 8),
       height: 64,
       decoration: const BoxDecoration(
@@ -45,10 +53,12 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
           NavigatorBarItem(
             asset: 'assets/icons/wallet.svg',
             isSelected: widget.pageIndex == 1,
-            onTap: () {
+            onTap: () async{
               //homeRepository.onSelectTab(1);
 
-              router.go(RouteNames.walletAuth);
+              bool isAuth = await walletRepository.auth;
+
+              router.go('${RouteNames.wallet}/${isAuth.toString()}');
             },
             name: 'Кошелек',
           ),
@@ -57,7 +67,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
             isSelected: widget.pageIndex == 2,
             onTap: () {
               //homeRepository.onSelectTab(2);
-              
+
               router.go(RouteNames.games);
             },
             name: 'Игротека',
