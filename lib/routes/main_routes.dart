@@ -30,4 +30,5 @@ final mainRoutesNames = [
   RouteNames.walletAuth,
   RouteNames.walletEnterSeedPhrase,
   RouteNames.walletSetting,
+  RouteNames.walletViewSeed,
 ];

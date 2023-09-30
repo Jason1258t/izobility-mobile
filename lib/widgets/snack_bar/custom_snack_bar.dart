@@ -12,7 +12,7 @@ abstract class CustomSnackBar {
     content: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppColors.purple200,
+          color: AppColors.lightGreen,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
