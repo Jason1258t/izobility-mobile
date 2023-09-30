@@ -48,7 +48,7 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
               maxLines: 7,
               hintText: 'Введите Seed-фразу',
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             CustomButton(text: 'Войти', onTap: () {}, width: double.infinity)
           ],
         ),
