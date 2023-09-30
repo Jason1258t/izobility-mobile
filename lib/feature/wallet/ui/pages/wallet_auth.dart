@@ -39,7 +39,10 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
               children: [
                 InkWell(
                   borderRadius: BorderRadius.circular(8),
-                  onTap: () {},
+                  onTap: () {
+                    walletRepository.setWalletAuth(true);
+                    context.push('${RouteNames.wallet}/true');
+                  },
                   child: Ink(
                     padding: const EdgeInsets.only(left: 15),
                     decoration: BoxDecoration(

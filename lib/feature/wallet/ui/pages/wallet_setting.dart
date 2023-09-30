@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
@@ -32,7 +33,9 @@ class _WalletSettingScreenState extends State<WalletSettingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButton(
-                  text: 'Моя Seed-фраза', onTap: () {}, width: double.infinity),
+                  text: 'Моя Seed-фраза', onTap: () {
+                    context.push(RouteNames.walletViewSeed);
+              }, width: double.infinity),
               CustomButton(
                   text: 'Выйти', onTap: () {}, width: double.infinity,
                 color: Colors.black,
