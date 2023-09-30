@@ -33,6 +33,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/info_currency_screen.da
 import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
@@ -146,9 +147,9 @@ class CustomGoRoutes {
           builder: (context, state) => const PromoScreen()),
       GoRoute(
           path: RouteNames.storeProduct,
-          builder: (context, state) =>  ProductScreen(
-            id: state.pathParameters['id'] ?? "0",
-          )),
+          builder: (context, state) => ProductScreen(
+                id: state.pathParameters['id'] ?? "0",
+              )),
       GoRoute(
           path: '${RouteNames.story}/:story_id',
           builder: (context, state) => StoryScreen(
@@ -158,6 +159,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.walletCurrency,
           builder: (context, state) => const CurrencyWalletScreen()),
+      GoRoute(
+          path: RouteNames.walletAuth,
+          builder: (context, state) => const WalletAuthScreen()),
       GoRoute(
           path: RouteNames.walletInfoCurrency,
           builder: (context, state) => const InfoCurrencyWalletScreen()),

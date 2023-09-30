@@ -48,7 +48,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
             onTap: () {
               //homeRepository.onSelectTab(1);
 
-              router.go(RouteNames.wallet);
+              router.go(RouteNames.walletAuth);
             },
             name: 'Кошелек',
           ),
