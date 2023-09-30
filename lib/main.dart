@@ -15,7 +15,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  // FlutterTrustWalletCore.init();
+
   StreamAuthNotifier notifier = StreamAuthNotifier();
 
   Bloc.observer = CustomBlocObserver(authNotifier: notifier);

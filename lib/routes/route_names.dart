@@ -35,6 +35,7 @@ abstract class RouteNames {
   static const String walletBuyCurrency = '/wallet/buy';
   static const String walletViewSeed = '/wallet/seed/view';
   static const String walletAuth = '/wallet/auth';
+  static const String walletSetting = '/wallet/setting';
   static const String walletEnterSeedPhrase = '/wallet/enter/seed_phrase';
 
   static const String profile = '/profile';

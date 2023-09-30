@@ -6,19 +6,22 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar(
-      {super.key,
-      required this.height,
-      this.color = AppColors.purple100,
-      this.isInfo = false,
-      required this.isBack,
-      required this.title});
+  const CustomSliverAppBar({super.key,
+    required this.height,
+    this.color = AppColors.purple100,
+    this.isInfo = false,
+    required this.isBack,
+    required this.title,
+    this.isSetting = false,
+    this.onTapRightIcon});
 
   final double height;
   final Color color;
   final bool isBack;
   final String title;
   final bool isInfo;
+  final bool isSetting;
+  final Function()? onTapRightIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -45,33 +48,37 @@ class CustomSliverAppBar extends StatelessWidget {
                         size: 24,
                       )),
                 ),
-              ] else ...[
-                const SizedBox(
-                  height: 24,
-                  width: 55,
-                )
-              ],
+              ] else
+                ...[
+                  const SizedBox(
+                    height: 24,
+                    width: 55,
+                  )
+                ],
               Text(title,
                   style: AppTypography.font18w700
                       .copyWith(color: AppColors.textPrimary)),
-              if (isBack) ...[
+              if (isInfo) ...[
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: IconButton(
-                      onPressed: () {
+                      onPressed:
+                      onTapRightIcon ?? () {
                         context.push(RouteNames.walletInfoCurrency);
                       },
-                      icon: const Icon(
-                        Icons.info_outline,
+                      icon: Icon(
+                        !isSetting ? Icons.info_outline : Icons.settings,
                         size: 24,
+                        color: Colors.black,
                       )),
                 ),
-              ] else ...[
-                const SizedBox(
-                  height: 24,
-                  width: 55,
-                )
-              ],
+              ] else
+                ...[
+                  const SizedBox(
+                    height: 24,
+                    width: 55,
+                  )
+                ],
             ],
           ),
         ),

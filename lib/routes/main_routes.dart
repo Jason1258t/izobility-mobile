@@ -29,4 +29,5 @@ final mainRoutesNames = [
   RouteNames.storePromo,
   RouteNames.walletAuth,
   RouteNames.walletEnterSeedPhrase,
+  RouteNames.walletSetting,
 ];

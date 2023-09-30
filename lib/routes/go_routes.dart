@@ -36,6 +36,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_enter_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_setting.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
@@ -176,6 +177,9 @@ class CustomGoRoutes {
           path: RouteNames.walletReplenish,
           builder: (context, state) => const ReplenishScreen()),
       GoRoute(
+          path: RouteNames.walletSetting,
+          builder: (context, state) => const WalletSettingScreen()),
+      GoRoute(
         path: '${RouteNames.walletChooseCoin}/:screen',
         builder: (context, state) => ChooseCoinScreen(
           path: state.pathParameters['screen'] ?? '',
@@ -235,7 +239,7 @@ class CustomGoRoutes {
               path: '${RouteNames.wallet}/:isAuth',
               pageBuilder: (context, state) => CustomTransitionPage<void>(
                   key: state.pageKey,
-                  child: bool.parse(state.pathParameters['isAuth'] ?? 'false')
+                  child:  true //bool.parse(state.pathParameters['isAuth'] ?? 'false')
                       ? const WalletScreen()
                       : const WalletAuthScreen(),
                   transitionsBuilder: (BuildContext context,

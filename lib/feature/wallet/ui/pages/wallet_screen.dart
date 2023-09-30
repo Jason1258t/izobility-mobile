@@ -52,11 +52,16 @@ class _WalletScreenState extends State<WalletScreen>
             physics: const BouncingScrollPhysics(
                 decelerationRate: ScrollDecelerationRate.fast),
             slivers: [
-              const CustomSliverAppBar(
+              CustomSliverAppBar(
                 height: 90,
                 isBack: false,
                 title: 'Кошелек',
                 color: AppColors.purple200,
+                isSetting: true,
+                isInfo: true,
+                onTapRightIcon: () {
+                  context.push(RouteNames.walletSetting);
+                },
               ),
               SliverPersistentHeader(
                 pinned: false,
