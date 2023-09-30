@@ -36,6 +36,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_enter_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_view_seed.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
@@ -160,6 +161,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.walletCurrency,
           builder: (context, state) => const CurrencyWalletScreen()),
+      GoRoute(
+          path: RouteNames.walletViewSeed,
+          builder: (context, state) => const WalletViewSeedPhraseScreen()),
       GoRoute(
           path: RouteNames.walletAuth,
           builder: (context, state) => const WalletAuthScreen()),
