@@ -85,6 +85,10 @@ class WalletRepository {
     }
   }
 
+  Future<void> sendCoin(String address, int amount) async {
+    await apiCripto.sendEmeraldTo(address, amount);
+  }
+
   void loadEmeraldCoin() async {
     emeraldInGameStream.add(LoadingStateEnum.loading);
     try {

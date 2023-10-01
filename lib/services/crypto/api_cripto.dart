@@ -46,7 +46,7 @@ class ApiCripto {
     return emeraldQuantity;
   }
 
-  Future<dynamic> sendEmeraldTo() async {}
+  Future<dynamic> sendEmeraldTo(String address, int amount) async {}
 
   Future<dynamic> somethingElse() async {}
 }
