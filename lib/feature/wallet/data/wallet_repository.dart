@@ -26,10 +26,6 @@ class WalletRepository {
     return wallet != null;
   }
 
-  Future<void> clearWallet() async {
-    await prefs.clearWallet();
-  }
-
   Future<void> createWallet() async {
     HDWallet wallet = HDWallet();
 
@@ -37,16 +33,30 @@ class WalletRepository {
         wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
     final seedPhrase = wallet.mnemonic();
 
-    final WalletModel walletModel =
-        WalletModel(seedPhrase: seedPhrase, address: walletAddress);
+    walletModel = WalletModel(seedPhrase: seedPhrase, address: walletAddress);
 
     print(walletModel);
-    await prefs.setWalletData(walletModel);
-
-    await getWallet();
+    await prefs.setWalletData(walletModel!);
   }
 
-  Future<WalletModel?> getWallet() async{
+  Future<void> enterWalletBySeedPhrase(String seedPhrase) async {
+    HDWallet wallet = HDWallet.createWithMnemonic(seedPhrase);
+
+    final walletAddress =
+        wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+
+    walletModel = WalletModel(seedPhrase: seedPhrase, address: walletAddress);
+
+    print('wallet entired');
+    print(wallet);
+    await prefs.setWalletData(walletModel!);
+  }
+
+  Future<void> clearWallet() async {
+    await prefs.clearWallet();
+  }
+
+  Future<WalletModel?> getWallet() async {
     final wallet = await prefs.getWallet();
 
     walletModel = wallet;
