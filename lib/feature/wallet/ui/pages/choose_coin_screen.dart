@@ -22,43 +22,48 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
 
-    return HomeScaffold(
-      appBar: CustomAppBar(
-        context: context,
-        text: "Coin",
-        isBack: true,
-        onTap: () {
-          context.pop();
-        },
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        color: AppColors.purpleBcg,
-        child: SingleChildScrollView(
-          child: Column(children: [
-            const SizedBox(
-              height: 16,
-            ),
-            Column(
-              children: List.generate(
-                  20,
-                  (index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: ChooseCoinCard(
-                        onTap: () {
-                          if(widget.path != AppStrings.nullText){
-                            context.push('/wallet/${widget.path}');
-                          }
-                          else{
-                            context.pop();
-                          }
-                        },
-                        amount: walletRepository.obscured ? AppStrings.obscuredText : '0,21',
-                        name: "index",
-                        coinPath: 'assets/icons/coin.svg'),
-                  )),
-            )
-          ]),
+    return Container(
+      color: Colors.white,
+      child: Scaffold(
+        backgroundColor: AppColors.purpleBcg,
+        appBar: CustomAppBar(
+          context: context,
+          text: "Coin",
+          isBack: true,
+          onTap: () {
+            context.pop();
+          },
+        ),
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              const SizedBox(
+                height: 16,
+              ),
+              Column(
+                children: List.generate(
+                    1,
+                    (index) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: ChooseCoinCard(
+                              onTap: () {
+                                if (widget.path != AppStrings.nullText) {
+                                  context.push('/wallet/${widget.path}');
+                                } else {
+                                  context.pop();
+                                }
+                              },
+                              amount: walletRepository.obscured
+                                  ? AppStrings.obscuredText
+                                  : walletRepository.emeraldInWalletBalance
+                                      .toString(),
+                              name: "Emerald",
+                              coinPath: 'assets/images/emerald_coin.png'),
+                        )),
+              )
+            ]),
+          ),
         ),
       ),
     );

@@ -31,11 +31,11 @@ class ChooseCoinCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                  padding: const EdgeInsets.all(8),
-                  alignment: Alignment.center,
-                  decoration: const BoxDecoration(
-                      color: Colors.black, shape: BoxShape.circle),
-                  child: SvgPicture.asset(coinPath)),
+                alignment: Alignment.center,
+                child: Image.asset(
+                  coinPath,
+                ),
+              ),
               const SizedBox(
                 width: 12,
               ),
