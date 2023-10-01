@@ -96,6 +96,7 @@ class CustomTextField extends StatelessWidget {
     this.hintText,
     this.mask,
     required this.controller,
+    this.keyboardType,
     required this.width,
     required this.suffixIconCallback,
     Widget? suffixIconChild,
@@ -108,8 +109,7 @@ class CustomTextField extends StatelessWidget {
     this.height = 56,
     this.readOnly = false,
     this.obscured = true,
-  })  : keyboardType = TextInputType.visiblePassword,
-        suffixIcon = Row(
+  }) : suffixIcon = Row(
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -117,10 +117,11 @@ class CustomTextField extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15),
               child: InkWell(
                 onTap: suffixIconCallback,
-                child: suffixIconChild ?? const CircleAvatar(
-                  radius: 15,
-                  backgroundColor: AppColors.primary,
-                ),
+                child: suffixIconChild ??
+                    const CircleAvatar(
+                      radius: 15,
+                      backgroundColor: AppColors.primary,
+                    ),
               ),
             ),
           ],
@@ -185,14 +186,14 @@ class CustomTextField extends StatelessWidget {
                         strokeAlign: BorderSide.strokeAlignCenter,
                       )),
                   labelText: labelText,
-                  labelStyle:
-                      AppTypography.font16w400.copyWith(color: AppColors.hintText),
+                  labelStyle: AppTypography.font16w400
+                      .copyWith(color: AppColors.hintText),
                   floatingLabelStyle: AppTypography.font12w400
                       .copyWith(color: error ? _negative : Colors.black),
                   floatingLabelAlignment: FloatingLabelAlignment.start,
                   hintText: hintText ?? labelText,
-                  hintStyle:
-                      AppTypography.font16w400.copyWith(color: AppColors.hintText)),
+                  hintStyle: AppTypography.font16w400
+                      .copyWith(color: AppColors.hintText)),
               keyboardType: keyboardType,
               controller: controller,
             ),

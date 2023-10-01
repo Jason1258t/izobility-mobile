@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -97,10 +99,17 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                   child: Padding(
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
-                    child: CustomTextField.withTwoIcon(
+                    child: CustomTextField.withOneIcon(
+                      obscured: false,
+                      suffixIconChild: SvgPicture.asset('assets/icons/clipboard.svg'),
                       hintText: "Адрес или имя",
-                      suffixIconCallback: () {},
-                      secondSuffixIconCallback: () {},
+                      suffixIconCallback: () {
+                        Clipboard.getData(Clipboard.kTextPlain).then((value) {
+                          setState(() {
+                            addressController.text = value!.text!;
+                          });
+                        });
+                      },
                       controller: addressController,
                       width: double.infinity,
                       backgroundColor: Colors.white,
@@ -112,6 +121,9 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomTextField.withOneIcon(
+                      keyboardType: TextInputType.number,
+                      obscured: false,
+                      suffixIconChild: Image.asset('assets/images/emerald_coin.png'),
                       hintText: "Сумма",
                       suffixIconCallback: () {},
                       controller: amountController,
