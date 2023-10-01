@@ -17,18 +17,7 @@ class WalletViewSeedPhraseScreen extends StatefulWidget {
 
 class _WalletViewSeedPhraseScreenState
     extends State<WalletViewSeedPhraseScreen> {
-  final List<String> phraseList = [
-    'popa',
-    'anus',
-    'lego',
-    'meny',
-    'nas',
-    'vog',
-    'poprls',
-    'asda',
-    'asdas',
-    'denial',
-  ];
+  final phraseList = ['1', '2', '3'];
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +41,7 @@ class _WalletViewSeedPhraseScreenState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ...List.generate(
-                      phraseList.length,
+                      ['1', '2', '3'].length,
                       (index) => Container(
                             margin: const EdgeInsets.symmetric(vertical: 5),
                             decoration: BoxDecoration(
