@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:izobility_mobile/services/crypto/contracts.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
@@ -35,10 +37,12 @@ class ApiCripto {
       ],
       null,
     );
+
+    final emeraldQuantity = BigInt.parse(res[0].toString());
+    print("${'-' * 10} EMERALD COIN ON MY NECK");
+    print(emeraldQuantity ~/ BigInt.from(pow(10, 18)));
     print('-' * 10);
-    print(res);
-    print('-' * 10);
-    return res[0].toInt();
+    return emeraldQuantity;
   }
 
   Future<dynamic> sendEmeraldTo() async {}
