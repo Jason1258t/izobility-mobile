@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -17,10 +19,10 @@ class WalletViewSeedPhraseScreen extends StatefulWidget {
 
 class _WalletViewSeedPhraseScreenState
     extends State<WalletViewSeedPhraseScreen> {
-  final phraseList = ['1', '2', '3'];
-
   @override
   Widget build(BuildContext context) {
+    final walletSeed = context.read<WalletRepository>().walletModel!.seedPhrase.split(" ");
+
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -41,7 +43,7 @@ class _WalletViewSeedPhraseScreenState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ...List.generate(
-                      ['1', '2', '3'].length,
+                      walletSeed.length,
                       (index) => Container(
                             margin: const EdgeInsets.symmetric(vertical: 5),
                             decoration: BoxDecoration(
@@ -52,7 +54,7 @@ class _WalletViewSeedPhraseScreenState
                             child: SizedBox(
                               width: 70,
                               child: Text(
-                                "${index + 1}. ${phraseList[index]}",
+                                "${index + 1}. ${walletSeed[index]}",
                                 style: AppTypography.font14w700
                                     .copyWith(color: Colors.black),
                                 softWrap: false,
@@ -68,7 +70,7 @@ class _WalletViewSeedPhraseScreenState
                       text: "Скопировать",
                       onTap: () {
                         Clipboard.setData(
-                            ClipboardData(text: phraseList.join(" ")));
+                            ClipboardData(text: walletSeed.join(" ")));
 
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context)
