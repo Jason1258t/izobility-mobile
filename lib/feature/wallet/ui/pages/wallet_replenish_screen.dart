@@ -11,20 +11,21 @@ import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class ReplenishWalletScreen extends StatefulWidget {
-  const ReplenishWalletScreen({super.key});
+class WalletReplenishScreen extends StatefulWidget {
+  const WalletReplenishScreen({super.key});
 
   @override
-  State<ReplenishWalletScreen> createState() => _ReplenishWalletScreenState();
+  State<WalletReplenishScreen> createState() => _WalletReplenishScreenState();
 }
 
-class _ReplenishWalletScreenState extends State<ReplenishWalletScreen> {
+class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
     final sizeOf = MediaQuery.sizeOf(context);
 
+    final address = walletRepository.walletModel!.address;
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
@@ -52,7 +53,7 @@ class _ReplenishWalletScreenState extends State<ReplenishWalletScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: QrImageView(
-                      data: '0xe92d1a43df510f82c66382592a047d288f85226f',
+                      data: address,
                       version: QrVersions.auto,
                       size: sizeOf.width / 2,
                     ),
@@ -63,7 +64,7 @@ class _ReplenishWalletScreenState extends State<ReplenishWalletScreen> {
                   SizedBox(
                     width: sizeOf.width / 2,
                     child: Text(
-                      '0xe92d1a43df510f82c66382592a047d288f85226f',
+                      address,
                       maxLines: 2,
                       style: AppTypography.font14w400
                           .copyWith(color: AppColors.disabledTextButton),
@@ -83,10 +84,9 @@ class _ReplenishWalletScreenState extends State<ReplenishWalletScreen> {
                           title: 'Копировать',
                           icon: 'assets/icons/copy.svg',
                           onTap: () {
-                            Clipboard.setData(const ClipboardData(
-                                text:
-                                    '0xe92d1a43df510f82c66382592a047d288f85226f'));
-                            ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar.snackBarCopied);
+                            Clipboard.setData(ClipboardData(text: address));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(CustomSnackBar.snackBarCopied);
                           },
                         ),
                         const SizedBox(

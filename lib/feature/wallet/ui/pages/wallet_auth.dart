@@ -40,7 +40,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                 InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () async{
-                   await  walletRepository.createWallet();
+                   await walletRepository.createWallet();
 
                    walletRepository.loadEmeraldCoin();
 

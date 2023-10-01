@@ -30,11 +30,11 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dar
 import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/info_currency_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/replenish_wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_enter_seed.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_view_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_setting.dart';
@@ -179,7 +179,7 @@ class CustomGoRoutes {
           builder: (context, state) => const SendCurrencyScreen()),
       GoRoute(
           path: RouteNames.walletReplenish,
-          builder: (context, state) => const ReplenishWalletScreen()),
+          builder: (context, state) => const WalletReplenishScreen()),
       GoRoute(
           path: RouteNames.walletSetting,
           builder: (context, state) => const WalletSettingScreen()),
