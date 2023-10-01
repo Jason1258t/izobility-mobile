@@ -21,8 +21,9 @@ class WalletRepository {
   WalletModel? walletModel;
 
   Future<bool> checkWalletAuth() async {
-    final seedPhrase = await prefs.getSeedPhrase();
-    return seedPhrase != null && seedPhrase != "";
+    final wallet = await prefs.getWallet();
+
+    return wallet != null;
   }
 
   Future<void> setSeedPhrase(String seedPhrase) async {
