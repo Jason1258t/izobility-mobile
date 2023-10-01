@@ -168,7 +168,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         text: 'Продолжить',
                         onTap: () {
                           final address = addressController.text;
-                          final amount = int.parse(amountController.text);
+                          final amount = double.parse(amountController.text);
 
                           context
                               .read<CoinSendCubit>()

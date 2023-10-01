@@ -15,7 +15,7 @@ class ApiCripto {
   );
   static const chainIdBSC = 56;
 
-  Future<BigInt> getUserEmeraldBill(
+  Future<double> getUserEmeraldBill(
     HDWallet wallet,
   ) async {
     final abi = ContractAbi.fromJson(
@@ -39,7 +39,9 @@ class ApiCripto {
       null,
     );
 
-    final emeraldQuantity = BigInt.parse(res[0].toString()) ~/ BigInt.from(pow(10, 18));
+    final emeraldQuantity =
+        (BigInt.parse(res[0].toString()) ~/ BigInt.from(pow(10, 16))).toInt() /
+            100;
     print("${'-' * 10} EMERALD COIN ON MY NECK");
     print(emeraldQuantity);
     print('-' * 10);
@@ -47,7 +49,9 @@ class ApiCripto {
     return emeraldQuantity;
   }
 
-  Future<dynamic> sendEmeraldTo(HDWallet wallet, String address, int amount) async {
+  Future<dynamic> sendEmeraldTo(
+      HDWallet wallet, String address, double amount) async {
+    final grade = (amount % 1).toString().substring(2).length;
 
     final PrivateKey privateKey =
         wallet.getKeyForCoin(TWCoinType.TWCoinTypeSmartChain);
@@ -60,12 +64,15 @@ class ApiCripto {
       to: EthereumAddress.fromHex(Contracts.emerald),
     );
 
-    final String fromAddress = wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+    final String fromAddress =
+        wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
 
     final abi = ContractAbi.fromJson(
-        await rootBundle.loadString('assets/abi/emerald_abi.json'), 'emerald_send');
+        await rootBundle.loadString('assets/abi/emerald_abi.json'),
+        'emerald_send');
 
-    final contract = DeployedContract(abi, EthereumAddress.fromHex(Contracts.emerald));
+    final contract =
+        DeployedContract(abi, EthereumAddress.fromHex(Contracts.emerald));
 
     final token = Token(contract, clientBSC, chainIdBSC);
 
@@ -75,14 +82,12 @@ class ApiCripto {
       contract.function("transfer"),
       [
         EthereumAddress.fromHex(address),
-        BigInt.from(amount) * BigInt.from(pow(10, 18)),
+        BigInt.from(amount * pow(10, grade)) * BigInt.from(pow(10, 18 - grade)),
       ],
     );
 
     return res;
   }
-
-  
 
   Future<dynamic> somethingElse() async {}
 }

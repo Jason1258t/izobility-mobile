@@ -18,7 +18,7 @@ class WalletRepository {
 
   bool obscured = false;
   int emeraldInGameBalance = 0;
-  BigInt emeraldInWalletBalance = BigInt.from(0);
+  double emeraldInWalletBalance = 0;
   int walletPage = 1;
 
   HDWallet? walletModel;
@@ -85,7 +85,7 @@ class WalletRepository {
     }
   }
 
-  Future<void> sendCoin(String address, int amount) async {
+  Future<void> sendCoin(String address, double amount) async {
     await apiCripto.sendEmeraldTo(walletModel!, address, amount);
   }
 
