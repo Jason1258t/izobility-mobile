@@ -18,6 +18,8 @@ class PreferencesService {
 
   static const String _userKey = 'user';
 
+  static const String _seedPhrase = 'seedPhrase';
+
   Future saveToken(Token token) async {
     final prefs = await _prefs;
 
@@ -73,6 +75,21 @@ class PreferencesService {
     print('-----------');
     final UserModel user = UserModel.fromJson(jsonDecode(rawUser));
     return user;
+  }
+
+  Future<void> setSeedPhrase(String seedPhrase) async {
+    final prefs = await _prefs;
+    prefs.setString(_seedPhrase, seedPhrase);
+  }
+
+  Future<String?> getSeedPhrase() async {
+    final prefs = await _prefs;
+    return prefs.getString(_seedPhrase);
+  }
+
+  Future<void> clearSeedPhrase() async {
+    final prefs = await _prefs;
+    prefs.remove(_seedPhrase);
   }
 
   Future logout() async => (await _prefs).clear();

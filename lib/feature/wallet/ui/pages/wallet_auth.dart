@@ -40,7 +40,8 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                 InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () {
-                    walletRepository.setWalletAuth(true);
+                    walletRepository.setSeedPhrase(
+                        "жопа жопа жопа жопа жопа жопа жопа жопа жопа жопа жопа жопа");
                     context.push('${RouteNames.wallet}/true');
                   },
                   child: Ink(
@@ -66,13 +67,17 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Text(
                   'или',
                   style: AppTypography.font14w400
                       .copyWith(color: AppColors.disabledTextButton),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () {

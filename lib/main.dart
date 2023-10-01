@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
+import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
 
 import 'services/locale/export_locale_services.dart';
 
@@ -21,8 +22,11 @@ void main() async {
   Bloc.observer = CustomBlocObserver(authNotifier: notifier);
 
   await dotenv.load();
-
-  runApp(MyRepositoryProviders(notifier: notifier,));
+  TrustWalletCoreLib.init();
+  
+  runApp(MyRepositoryProviders(
+    notifier: notifier,
+  ));
 }
 
 class MyApp extends StatelessWidget {

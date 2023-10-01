@@ -3,4 +3,7 @@ package com.example.izobility_mobile
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity: FlutterActivity() {
+    init {
+        System.loadLibrary("TrustWalletCore")
+    }
 }

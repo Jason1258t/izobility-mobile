@@ -131,7 +131,7 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => UserRepository(apiService: api, preferences: prefs),
       ),
       RepositoryProvider(
-        create: (_) => WalletRepository(api),
+        create: (_) => WalletRepository(apiService: api, prefs: prefs),
       ),
       RepositoryProvider(
         create: (_) => MainScreenRepository(apiService: api),

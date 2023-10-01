@@ -1,4 +1,5 @@
 import 'package:izobility_mobile/models/api/token_data.dart';
+import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
@@ -6,19 +7,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class WalletRepository {
   final ApiService apiService;
-  final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+  final PreferencesService prefs;
 
-  WalletRepository(this.apiService);
+  WalletRepository({required this.apiService, required this.prefs});
 
   bool obscured = false;
   int emeraldCoin = 0;
   int walletPage = 1;
 
-  Future<bool> get auth async =>
-      (await prefs).getBool('wallet_auth') ?? false;
+  Future<bool> checkWalletAuth() async {
+    final seedPhrase = await prefs.getSeedPhrase();
+    return seedPhrase != null && seedPhrase != "";
+  }
 
-  Future<void> setWalletAuth(bool f)async{
-    (await prefs).setBool('wallet_auth', f);
+  Future<void> setSeedPhrase(String seedPhrase) async {
+    await prefs.setSeedPhrase(seedPhrase);
+  }
+
+  Future<void> clearSeedPhrase() async {
+    await prefs.clearSeedPhrase();
   }
 
   List<TokenData> gameTokens = [];
