@@ -26,10 +26,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(top: 8),
       height: 64,
       decoration: const BoxDecoration(
@@ -53,10 +50,11 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
           NavigatorBarItem(
             asset: 'assets/icons/wallet.svg',
             isSelected: widget.pageIndex == 1,
-            onTap: () async{
+            onTap: () async {
               //homeRepository.onSelectTab(1);
 
               bool isAuth = await walletRepository.checkWalletAuth();
+              await context.read<WalletRepository>().getWallet();
 
               router.go('${RouteNames.wallet}/${isAuth.toString()}');
             },

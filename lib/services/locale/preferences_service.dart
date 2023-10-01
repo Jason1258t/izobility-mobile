@@ -80,19 +80,9 @@ class PreferencesService {
     return user;
   }
 
-  Future<void> setSeedPhrase(String seedPhrase) async {
+  Future<void> clearWallet() async {
     final prefs = await _prefs;
-    prefs.setString(_seedPhrase, seedPhrase);
-  }
-
-  Future<String?> getSeedPhrase() async {
-    final prefs = await _prefs;
-    return prefs.getString(_seedPhrase);
-  }
-
-  Future<void> clearSeedPhrase() async {
-    final prefs = await _prefs;
-    prefs.remove(_seedPhrase);
+    prefs.remove(_wallet);
   }
 
   Future<void> setWalletData(WalletModel wallet) async {

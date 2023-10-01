@@ -42,9 +42,11 @@ class _WalletSettingScreenState extends State<WalletSettingScreen> {
                   width: double.infinity),
               CustomButton(
                 text: 'Выйти',
-                onTap: () {
-                  context.read<WalletRepository>().clearSeedPhrase();
-                  context.replace(RouteNames.walletAuth);
+                onTap: () async {
+                  await context
+                      .read<WalletRepository>()
+                      .clearWallet()
+                      .then((value) => context.replace(RouteNames.walletAuth));
                 },
                 width: double.infinity,
                 color: Colors.black,

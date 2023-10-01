@@ -26,12 +26,8 @@ class WalletRepository {
     return wallet != null;
   }
 
-  Future<void> setSeedPhrase(String seedPhrase) async {
-    await prefs.setSeedPhrase(seedPhrase);
-  }
-
-  Future<void> clearSeedPhrase() async {
-    await prefs.clearSeedPhrase();
+  Future<void> clearWallet() async {
+    await prefs.clearWallet();
   }
 
   Future<void> createWallet() async {
