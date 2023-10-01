@@ -91,7 +91,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   Column buildMarketItemData() {
     final marketItem = context.read<StoreRepository>().lastOpenedMarketItem;
-    final emeraldCoin = context.read<WalletRepository>().emeraldCoin;
+    final emeraldCoin = context.read<WalletRepository>().emeraldInGameBalance;
 
     final sizeOf = MediaQuery.sizeOf(context);
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/main_coin/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
@@ -34,7 +35,7 @@ class _WalletScreenState extends State<WalletScreen>
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
-
+    context.read<WalletRepository>().getUserEmeraldBill();
     super.initState();
   }
 
@@ -62,9 +63,9 @@ class _WalletScreenState extends State<WalletScreen>
                               .setObscured(!walletRepository.obscured);
                         });
                       },
-                      child: BlocBuilder<MainCoinCubit, MainCoinState>(
+                      child: BlocBuilder<CoinInWalletCubit, CoinInWalletState>(
                         builder: (context, state) {
-                          if (state is MainCoinSuccess) {
+                          if (state is CoinInWalletLoadedSuccessState) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,7 +73,8 @@ class _WalletScreenState extends State<WalletScreen>
                                 Text(
                                     walletRepository.obscured
                                         ? AppStrings.obscuredText
-                                        : walletRepository.emeraldCoin
+                                        : walletRepository
+                                            .emeraldInWalletBalance
                                             .toString(),
                                     style: AppTypography.font36w700.copyWith(
                                         color: AppColors.textPrimary,
@@ -85,7 +87,7 @@ class _WalletScreenState extends State<WalletScreen>
                                 ),
                               ],
                             );
-                          } else if (state is MainCoinLoading) {
+                          } else if (state is CoinInWalletLoadingState) {
                             return const CircularProgressIndicator();
                           }
 
@@ -131,7 +133,6 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Купить',
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
-                              walletRepository.getUserEmeraldBill();
                               // context
                               //     .push('${RouteNames.walletChooseCoin}/buy');
                             },
@@ -263,9 +264,9 @@ class _WalletScreenState extends State<WalletScreen>
                               .setObscured(!walletRepository.obscured);
                         });
                       },
-                      child: BlocBuilder<MainCoinCubit, MainCoinState>(
+                      child: BlocBuilder<CoinInGameCubit, CoinInGameState>(
                         builder: (context, state) {
-                          if (state is MainCoinSuccess) {
+                          if (state is CoinInGameSuccess) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -273,7 +274,7 @@ class _WalletScreenState extends State<WalletScreen>
                                 Text(
                                     walletRepository.obscured
                                         ? AppStrings.obscuredText
-                                        : walletRepository.emeraldCoin
+                                        : walletRepository.emeraldInGameBalance
                                             .toString(),
                                     style: AppTypography.font36w700.copyWith(
                                         color: AppColors.textPrimary,
@@ -286,7 +287,7 @@ class _WalletScreenState extends State<WalletScreen>
                                 ),
                               ],
                             );
-                          } else if (state is MainCoinLoading) {
+                          } else if (state is CoinInGameLoading) {
                             return const CircularProgressIndicator();
                           }
 
@@ -332,7 +333,7 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Купить',
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
-                              walletRepository.getUserEmeraldBill();
+                              // walletRepository.getUserEmeraldBill();
                               // context
                               //     .push('${RouteNames.walletChooseCoin}/buy');
                             },

@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/main_coin/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -48,12 +48,12 @@ class _MainScreenState extends State<MainScreen> {
                 fit: BoxFit.fitWidth,
               ),
               const Spacer(),
-              BlocBuilder<MainCoinCubit, MainCoinState>(
+              BlocBuilder<CoinInGameCubit, CoinInGameState>(
                 builder: (context, state) {
-                  if (state is MainCoinSuccess) {
+                  if (state is CoinInGameSuccess) {
                     return CashContainer(
                         text: RepositoryProvider.of<WalletRepository>(context)
-                            .emeraldCoin
+                            .emeraldInGameBalance
                             .toString(),
                         assetName: 'assets/images/emerald_coin.png');
                   }
@@ -175,9 +175,9 @@ class _MainScreenState extends State<MainScreen> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 8),
                             decoration: BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(12),
-                                ),
+                              color: AppColors.primary,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

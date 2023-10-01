@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/services/crypto/api_cripto.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
@@ -15,7 +17,8 @@ class WalletRepository {
       {required this.apiService, required this.prefs, required this.apiCripto});
 
   bool obscured = false;
-  int emeraldCoin = 0;
+  int emeraldInGameBalance = 0;
+  BigInt emeraldInWalletBalance = BigInt.from(0);
   int walletPage = 1;
 
   HDWallet? walletModel;
@@ -64,26 +67,35 @@ class WalletRepository {
     walletPage = page;
   }
 
-  BehaviorSubject<LoadingStateEnum> emeraldCoinStream =
+  BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
+  BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   Future<void> getUserEmeraldBill() async {
-    await apiCripto.getUserEmeraldBill(
-      walletModel!
-    );
+    emeraldInWalletStream.add(LoadingStateEnum.loading);
+
+    try {
+      emeraldInWalletBalance = await apiCripto.getUserEmeraldBill(walletModel!);
+      emeraldInWalletStream.add(LoadingStateEnum.success);
+    } catch (ex) {
+      log(ex.toString());
+      emeraldInWalletStream.add(LoadingStateEnum.success);
+    }
   }
 
   void loadEmeraldCoin() async {
-    emeraldCoinStream.add(LoadingStateEnum.loading);
+    emeraldInGameStream.add(LoadingStateEnum.loading);
     try {
       final data = await apiService.wallet.getEmeraldCoin();
-      emeraldCoin = data['balance'];
+      emeraldInGameBalance = data['balance'];
 
       await getGameTokens();
 
-      emeraldCoinStream.add(LoadingStateEnum.success);
+      emeraldInGameStream.add(LoadingStateEnum.success);
     } catch (e) {
-      emeraldCoinStream.add(LoadingStateEnum.fail);
+      emeraldInGameStream.add(LoadingStateEnum.fail);
     }
   }
 

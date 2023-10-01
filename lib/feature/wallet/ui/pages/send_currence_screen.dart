@@ -40,7 +40,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                 const CustomSliverAppBar(
                   height: 90,
                   isBack: true,
-                  title: 'Usd',
+                  title: 'Отправить',
                   color: AppColors.purple200,
                 ),
                 SliverPersistentHeader(
@@ -56,13 +56,20 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         children: [
                           const CircleAvatar(
                             radius: 20,
-                            backgroundColor: AppColors.primary,
+                            backgroundImage:
+                                AssetImage('assets/images/emerald_coin.png'),
                           ),
-                          Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
+                          Text(
+                              walletRepository.obscured
+                                  ? AppStrings.obscuredText
+                                  : "${walletRepository.emeraldInWalletBalance}"
+                                      .toString(),
                               style: AppTypography.font36w700
                                   .copyWith(color: AppColors.textPrimary)),
                           Text(
-                            walletRepository.obscured ? AppStrings.obscuredText : '≈ 2,545 \$',
+                            walletRepository.obscured
+                                ? AppStrings.obscuredText
+                                : '', // here might be price in rub or dollars
                             style: AppTypography.font16w400
                                 .copyWith(color: AppColors.blackGraySecondary),
                           ),
@@ -91,6 +98,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomTextField.withTwoIcon(
+                      hintText: "Адрес или имя",
                       suffixIconCallback: () {},
                       secondSuffixIconCallback: () {},
                       controller: addressController,
@@ -104,6 +112,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomTextField.withOneIcon(
+                      hintText: "Сумма",
                       suffixIconCallback: () {},
                       controller: amountController,
                       width: double.infinity,
@@ -117,7 +126,10 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomButton(
                       text: 'Продолжить',
-                      onTap: () {},
+                      onTap: () {
+                        final address = addressController.text;
+                        final amount = amountController.text;
+                      },
                       width: double.infinity,
                     ),
                   ),

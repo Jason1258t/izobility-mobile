@@ -15,7 +15,8 @@ import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_item/store_item_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/main_coin/main_coin_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/wallet_auth/wallet_auth_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -106,13 +107,18 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (_) => MainCoinCubit(
+            create: (_) => CoinInGameCubit(
                 walletRepository:
                     RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),
           BlocProvider(
             create: (_) => WalletAuthCubit(
+                RepositoryProvider.of<WalletRepository>(context)),
+            lazy: false,
+          ),
+          BlocProvider(
+            create: (_) => CoinInWalletCubit(
                 RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),
@@ -138,7 +144,8 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => UserRepository(apiService: api, preferences: prefs),
       ),
       RepositoryProvider(
-        create: (_) => WalletRepository(apiService: api, prefs: prefs, apiCripto: ApiCripto()),
+        create: (_) => WalletRepository(
+            apiService: api, prefs: prefs, apiCripto: ApiCripto()),
       ),
       RepositoryProvider(
         create: (_) => MainScreenRepository(apiService: api),

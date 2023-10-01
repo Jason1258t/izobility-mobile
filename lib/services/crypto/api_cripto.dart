@@ -14,7 +14,7 @@ class ApiCripto {
   );
   static const chainIdBSC = 56;
 
-  Future<dynamic> getUserEmeraldBill(
+  Future<BigInt> getUserEmeraldBill(
     HDWallet wallet,
   ) async {
     final abi = ContractAbi.fromJson(
@@ -38,10 +38,11 @@ class ApiCripto {
       null,
     );
 
-    final emeraldQuantity = BigInt.parse(res[0].toString());
+    final emeraldQuantity = BigInt.parse(res[0].toString()) ~/ BigInt.from(pow(10, 18));
     print("${'-' * 10} EMERALD COIN ON MY NECK");
-    print(emeraldQuantity ~/ BigInt.from(pow(10, 18)));
+    print(emeraldQuantity);
     print('-' * 10);
+
     return emeraldQuantity;
   }
 
