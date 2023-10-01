@@ -25,14 +25,14 @@ abstract class CustomSnackBar {
             ),
             Text(
               'Скопировано!',
-              style: AppTypography.font18w700.copyWith(color: AppColors.primary),
+              style:
+                  AppTypography.font18w700.copyWith(color: AppColors.primary),
             )
           ],
         )),
   );
 
-  static SnackBar snackBarWithCustomText(String text) =>
-      SnackBar(
+  static SnackBar snackBarWithCustomText(String text) => SnackBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         content: Container(
@@ -52,8 +52,33 @@ abstract class CustomSnackBar {
             )),
       );
 
-  static SnackBar errorSnackBar(String text) =>
-      SnackBar(
+  static SnackBar successSnackBar(String text) => SnackBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppColors.lightGreen,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/icons/verified.svg',
+                  width: 28,
+                  color: AppColors.primary,
+                ),
+                Text(
+                  text,
+                  style: AppTypography.font18w700
+                      .copyWith(color: AppColors.primary),
+                )
+              ],
+            )),
+      );
+
+  static SnackBar errorSnackBar(String text) => SnackBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         content: Container(
@@ -69,16 +94,17 @@ abstract class CustomSnackBar {
                   Icons.error_outline_sharp,
                   color: AppColors.negative,
                 ),
-                const SizedBox(width: 3,),
+                const SizedBox(
+                  width: 3,
+                ),
                 FittedBox(
                   child: Text(
                     text,
-                    style: AppTypography.font18w700.copyWith(color: AppColors.negative),
+                    style: AppTypography.font18w700
+                        .copyWith(color: AppColors.negative),
                   ),
                 )
               ],
             )),
       );
 }
-
-
