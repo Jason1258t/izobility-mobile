@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:izobility_mobile/services/crypto/contracts.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
+import 'package:hex/hex.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:flutter/services.dart';
@@ -46,7 +47,42 @@ class ApiCripto {
     return emeraldQuantity;
   }
 
-  Future<dynamic> sendEmeraldTo(String address, int amount) async {}
+  Future<dynamic> sendEmeraldTo(HDWallet wallet, String address, int amount) async {
+
+    final PrivateKey privateKey =
+        wallet.getKeyForCoin(TWCoinType.TWCoinTypeSmartChain);
+
+    final credentials = EthPrivateKey.fromHex(
+      HEX.encode(privateKey.data()),
+    );
+
+    final transaction = Transaction(
+      to: EthereumAddress.fromHex(Contracts.emerald),
+    );
+
+    final String fromAddress = wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+
+    final abi = ContractAbi.fromJson(
+        await rootBundle.loadString('assets/abi/emerald_abi.json'), 'emerald_send');
+
+    final contract = DeployedContract(abi, EthereumAddress.fromHex(Contracts.emerald));
+
+    final token = Token(contract, clientBSC, chainIdBSC);
+
+    final res = await token.write(
+      credentials,
+      transaction,
+      contract.function("transfer"),
+      [
+        EthereumAddress.fromHex(address),
+        BigInt.from(amount) * BigInt.from(pow(10, 18)),
+      ],
+    );
+
+    return res;
+  }
+
+  
 
   Future<dynamic> somethingElse() async {}
 }

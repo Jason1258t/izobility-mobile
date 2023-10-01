@@ -86,7 +86,7 @@ class WalletRepository {
   }
 
   Future<void> sendCoin(String address, int amount) async {
-    await apiCripto.sendEmeraldTo(address, amount);
+    await apiCripto.sendEmeraldTo(walletModel!, address, amount);
   }
 
   void loadEmeraldCoin() async {
