@@ -38,6 +38,7 @@ dependencies:
   trust_wallet_core_lib: ^0.0.7+3.0.4
 
   share_plus: ^7.1.0
+  web3dart: ^2.7.1
 
 dev_dependencies:
   flutter_test:
@@ -52,4 +53,5 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/splash_background.png
+    - assets/abi/
     - .env

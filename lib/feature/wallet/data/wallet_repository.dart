@@ -11,7 +11,8 @@ class WalletRepository {
   final PreferencesService prefs;
   final ApiCripto apiCripto;
 
-  WalletRepository({required this.apiService, required this.prefs, required this.apiCripto});
+  WalletRepository(
+      {required this.apiService, required this.prefs, required this.apiCripto});
 
   bool obscured = false;
   int emeraldCoin = 0;
@@ -65,6 +66,12 @@ class WalletRepository {
 
   BehaviorSubject<LoadingStateEnum> emeraldCoinStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
+
+  Future<void> getUserEmeraldBill() async {
+    await apiCripto.getUserEmeraldBill(
+      walletModel!
+    );
+  }
 
   void loadEmeraldCoin() async {
     emeraldCoinStream.add(LoadingStateEnum.loading);

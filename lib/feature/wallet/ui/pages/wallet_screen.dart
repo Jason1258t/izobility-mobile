@@ -183,8 +183,9 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Купить',
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
-                              context
-                                  .push('${RouteNames.walletChooseCoin}/buy');
+                              walletRepository.getUserEmeraldBill();
+                              // context
+                              //     .push('${RouteNames.walletChooseCoin}/buy');
                             },
                           ),
                           WalletAction(
