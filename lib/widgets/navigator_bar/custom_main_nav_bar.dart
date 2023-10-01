@@ -80,7 +80,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
               router.go(RouteNames.basket);
             },
-            name: 'Корзина',
+            name: 'Магазин',
           ),
           NavigatorBarItem(
             asset: 'assets/icons/user.svg',
