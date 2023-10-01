@@ -18,6 +18,8 @@ class WalletRepository {
   int emeraldCoin = 0;
   int walletPage = 1;
 
+  WalletModel? walletModel;
+
   Future<bool> checkWalletAuth() async {
     final seedPhrase = await prefs.getSeedPhrase();
     return seedPhrase != null && seedPhrase != "";
@@ -31,7 +33,7 @@ class WalletRepository {
     await prefs.clearSeedPhrase();
   }
 
-  void createWallet() async {
+  Future<void> createWallet() async {
     HDWallet wallet = HDWallet();
 
     final walletAddress =
@@ -43,12 +45,14 @@ class WalletRepository {
 
     print(walletModel);
     await prefs.setWalletData(walletModel);
+
+    await getWallet();
   }
 
   Future<WalletModel?> getWallet() async{
     final wallet = await prefs.getWallet();
 
-    return wallet;
+    walletModel = wallet;
   }
 
   List<TokenData> gameTokens = [];

@@ -39,11 +39,12 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
               children: [
                 InkWell(
                   borderRadius: BorderRadius.circular(8),
-                  onTap: () {
-                    walletRepository.createWallet();
-                    context.push('${RouteNames.wallet}/true');
+                  onTap: () async{
+                   await  walletRepository.createWallet();
 
-                    walletRepository.loadEmeraldCoin();
+                   walletRepository.loadEmeraldCoin();
+
+                    context.push('${RouteNames.wallet}/true');
                   },
                   child: Ink(
                     padding: const EdgeInsets.only(left: 15),

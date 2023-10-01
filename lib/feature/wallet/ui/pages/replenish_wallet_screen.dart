@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -9,16 +11,18 @@ import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class ReplenishScreen extends StatefulWidget {
-  const ReplenishScreen({super.key});
+class ReplenishWalletScreen extends StatefulWidget {
+  const ReplenishWalletScreen({super.key});
 
   @override
-  State<ReplenishScreen> createState() => _ReplenishScreenState();
+  State<ReplenishWalletScreen> createState() => _ReplenishWalletScreenState();
 }
 
-class _ReplenishScreenState extends State<ReplenishScreen> {
+class _ReplenishWalletScreenState extends State<ReplenishWalletScreen> {
   @override
   Widget build(BuildContext context) {
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+
     final sizeOf = MediaQuery.sizeOf(context);
 
     return HomeScaffold(
