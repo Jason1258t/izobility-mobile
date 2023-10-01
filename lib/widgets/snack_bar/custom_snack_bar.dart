@@ -51,6 +51,34 @@ abstract class CustomSnackBar {
               ],
             )),
       );
+
+  static SnackBar errorSnackBar(String text) =>
+      SnackBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.red.shade100,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.error_outline_sharp,
+                  color: AppColors.negative,
+                ),
+                const SizedBox(width: 3,),
+                FittedBox(
+                  child: Text(
+                    text,
+                    style: AppTypography.font18w700.copyWith(color: AppColors.negative),
+                  ),
+                )
+              ],
+            )),
+      );
 }
 
 

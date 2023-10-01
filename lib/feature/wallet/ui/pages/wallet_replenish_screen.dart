@@ -10,6 +10,7 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WalletReplenishScreen extends StatefulWidget {
   const WalletReplenishScreen({super.key});
@@ -94,9 +95,11 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
                         ),
                         WalletAction(
                           iconColor: AppColors.primary,
-                          title: 'Копировать',
+                          title: 'Поделиться',
                           icon: 'assets/icons/share.svg',
-                          onTap: () {},
+                          onTap: () async{
+                            await Share.share(address);
+                          },
                           isActive: false,
                         ),
                       ],

@@ -30,15 +30,18 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
         ScaffoldMessenger.of(context).clearSnackBars();
 
         if (state is WalletAuthFailureState) {
+          context.pop();
+
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.snackBarCopied);
+              .showSnackBar(CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
         } else if (state is WalletAuthLoadingState) {
-          // Dialogs.show(
-          //     context,
-          //     Center(
-          //       child: CircularProgressIndicator.adaptive(),
-          //     ));
+          Dialogs.show(
+              context,
+              const Center(
+                child: CircularProgressIndicator.adaptive(),
+              ));
         } else if (state is WalletAuthSuccessState) {
+          context.pop();
 
           context.read<WalletRepository>().loadEmeraldCoin();
           context.push('${RouteNames.wallet}/true');

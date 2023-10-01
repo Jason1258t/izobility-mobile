@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:meta/meta.dart';
@@ -14,9 +16,12 @@ class WalletAuthCubit extends Cubit<WalletAuthState> {
 
     try {
       await _walletRepository.enterWalletBySeedPhrase(seedPhrase);
+
+      await Future.delayed(const Duration(seconds: 1));
       emit(WalletAuthSuccessState());
     } catch (ex) {
-      print(ex);
+      log(ex.toString());
+
       emit(WalletAuthFailureState());
     }
   }
