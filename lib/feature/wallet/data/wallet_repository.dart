@@ -1,11 +1,8 @@
 import 'package:izobility_mobile/models/api/token_data.dart';
-import 'package:izobility_mobile/models/wallet.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
 
 class WalletRepository {
@@ -18,48 +15,40 @@ class WalletRepository {
   int emeraldCoin = 0;
   int walletPage = 1;
 
-  WalletModel? walletModel;
+  HDWallet? walletModel;
 
   Future<bool> checkWalletAuth() async {
-    final wallet = await prefs.getWallet();
+    final seedPhrase = await prefs.getSeedPhrase();
 
-    return wallet != null;
+    return seedPhrase != null;
   }
 
   Future<void> createWallet() async {
     HDWallet wallet = HDWallet();
 
-    final walletAddress =
-        wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
-    final seedPhrase = wallet.mnemonic();
-
-    walletModel = WalletModel(seedPhrase: seedPhrase, address: walletAddress);
-
+    walletModel = wallet;
     print(walletModel);
-    await prefs.setWalletData(walletModel!);
+
+    await prefs.setSeedPhrase(wallet.mnemonic());
   }
 
   Future<void> enterWalletBySeedPhrase(String seedPhrase) async {
     HDWallet wallet = HDWallet.createWithMnemonic(seedPhrase);
 
-    final walletAddress =
-        wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+    walletModel = wallet;
+    print(walletModel);
 
-    walletModel = WalletModel(seedPhrase: seedPhrase, address: walletAddress);
-
-    print('wallet entired');
-    print(wallet);
-    await prefs.setWalletData(walletModel!);
+    await prefs.setSeedPhrase(wallet.mnemonic());
   }
 
   Future<void> clearWallet() async {
-    await prefs.clearWallet();
+    await prefs.clearSeedPhrase();
   }
 
-  Future<WalletModel?> getWallet() async {
-    final wallet = await prefs.getWallet();
+  Future<void> getWallet() async {
+    final seedPhrase = await prefs.getSeedPhrase();
 
-    walletModel = wallet;
+    walletModel = HDWallet.createWithMnemonic(seedPhrase!);
   }
 
   List<TokenData> gameTokens = [];

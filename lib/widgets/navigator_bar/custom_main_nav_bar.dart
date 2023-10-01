@@ -54,7 +54,9 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
               //homeRepository.onSelectTab(1);
 
               bool isAuth = await walletRepository.checkWalletAuth();
-              await context.read<WalletRepository>().getWallet();
+              if (isAuth == true){
+                await context.read<WalletRepository>().getWallet();
+              }
 
               router.go('${RouteNames.wallet}/${isAuth.toString()}');
             },

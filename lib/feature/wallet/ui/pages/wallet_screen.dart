@@ -79,9 +79,9 @@ class _WalletScreenState extends State<WalletScreen>
                           CustomSwitcher(
                             active: walletRepository.walletPage,
                             onTap: (int val) {
-                              // setState(() {
-                              //   walletRepository.setWalletPage(val);
-                              // });
+                              setState(() {
+                                walletRepository.setWalletPage(val);
+                              });
                             },
                           ),
                           const SizedBox(

@@ -32,8 +32,8 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
         if (state is WalletAuthFailureState) {
           context.pop();
 
-          ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
+          ScaffoldMessenger.of(context).showSnackBar(
+              CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
         } else if (state is WalletAuthLoadingState) {
           Dialogs.show(
               context,
@@ -47,49 +47,54 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
           context.push('${RouteNames.wallet}/true');
         }
       },
-      child: Container(
-        color: Colors.white,
-        child: Scaffold(
-          backgroundColor: AppColors.purpleBcg,
-          appBar: CustomAppBar(
-            context: context,
-            text: 'Ввод seed-phrase',
-            onTap: () {
-              context.pop();
-            },
-            isBack: true,
-          ),
-          body: Container(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                OutLineTextField(
-                  onTapSuffixIcon: () {
-                    Clipboard.getData(Clipboard.kTextPlain).then((value) {
-                      setState(() {
-                        seedPhraseController.text = value!.text!;
+      child: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: Container(
+          color: Colors.white,
+          child: Scaffold(
+            backgroundColor: AppColors.purpleBcg,
+            appBar: CustomAppBar(
+              context: context,
+              text: 'Ввод seed-phrase',
+              onTap: () {
+                context.pop();
+              },
+              isBack: true,
+            ),
+            body: Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  OutLineTextField(
+                    onTapSuffixIcon: () {
+                      Clipboard.getData(Clipboard.kTextPlain).then((value) {
+                        setState(() {
+                          seedPhraseController.text = value!.text!;
+                        });
                       });
-                    });
-                  },
-                  icon: 'assets/icons/clipboard.svg',
-                  controller: seedPhraseController,
-                  width: double.infinity,
-                  height: 200,
-                  maxLines: 7,
-                  hintText: 'Введите Seed-фразу',
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomButton(
-                    text: 'Войти',
-                    onTap: () {
-                      context
-                          .read<WalletAuthCubit>()
-                          .authWalletBySeedPhrase(seedPhraseController.text);
                     },
-                    width: double.infinity)
-              ],
+                    icon: 'assets/icons/clipboard.svg',
+                    controller: seedPhraseController,
+                    width: double.infinity,
+                    height: 200,
+                    maxLines: 7,
+                    hintText: 'Введите Seed-фразу',
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                      text: 'Войти',
+                      onTap: () {
+                        context
+                            .read<WalletAuthCubit>()
+                            .authWalletBySeedPhrase(seedPhraseController.text);
+                      },
+                      width: double.infinity)
+                ],
+              ),
             ),
           ),
         ),

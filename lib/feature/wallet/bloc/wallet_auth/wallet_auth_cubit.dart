@@ -17,7 +17,6 @@ class WalletAuthCubit extends Cubit<WalletAuthState> {
     try {
       await _walletRepository.enterWalletBySeedPhrase(seedPhrase);
 
-      await Future.delayed(const Duration(seconds: 1));
       emit(WalletAuthSuccessState());
     } catch (ex) {
       log(ex.toString());

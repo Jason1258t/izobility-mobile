@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:izobility_mobile/models/user.dart';
-import 'package:izobility_mobile/models/user_details.dart';
-import 'package:izobility_mobile/models/wallet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/api/token.dart';
@@ -80,28 +78,22 @@ class PreferencesService {
     return user;
   }
 
-  Future<void> clearWallet() async {
+  Future<void> clearSeedPhrase() async {
     final prefs = await _prefs;
-    prefs.remove(_wallet);
+    prefs.remove(_seedPhrase);
   }
 
-  Future<void> setWalletData(WalletModel wallet) async {
+  Future<void> setSeedPhrase(String seedPhrase) async {
     final prefs = await _prefs;
 
-    final walletString = jsonEncode(wallet.toJson());
-    prefs.setString(_wallet, walletString);
+    prefs.setString(_seedPhrase, seedPhrase);
   }
 
-  Future<WalletModel?> getWallet() async {
+  Future<String?> getSeedPhrase() async {
     final prefs = await _prefs;
 
-    final walletString = prefs.getString(_wallet);
-    if (walletString == null) {
-      return null;
-    }
-
-    final wallet = WalletModel.fromJson(jsonDecode(walletString));
-    return wallet;
+    final seedPhrase = prefs.getString(_seedPhrase);
+    return seedPhrase;
   }
 
   Future logout() async => (await _prefs).clear();

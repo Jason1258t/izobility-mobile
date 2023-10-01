@@ -11,6 +11,7 @@ import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
 
 class WalletReplenishScreen extends StatefulWidget {
   const WalletReplenishScreen({super.key});
@@ -26,7 +27,7 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
 
     final sizeOf = MediaQuery.sizeOf(context);
 
-    final address = walletRepository.walletModel!.address;
+    final address = walletRepository.walletModel!.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,

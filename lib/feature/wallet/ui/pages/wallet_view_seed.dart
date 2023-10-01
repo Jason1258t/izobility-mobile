@@ -21,7 +21,7 @@ class _WalletViewSeedPhraseScreenState
     extends State<WalletViewSeedPhraseScreen> {
   @override
   Widget build(BuildContext context) {
-    final walletSeed = context.read<WalletRepository>().walletModel!.seedPhrase.split(" ");
+    final walletSeed = context.read<WalletRepository>().walletModel!.mnemonic().split(" ");
 
     return Container(
       color: Colors.white,
