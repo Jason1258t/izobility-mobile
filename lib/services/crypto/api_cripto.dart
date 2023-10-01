@@ -1,3 +1,4 @@
+
 class ApiCripto{
   Future<dynamic> getUserEmeraldBill () async {
 
@@ -10,4 +11,4 @@ class ApiCripto{
   Future<dynamic> somethingElse () async {
 
   }
-}
+} 

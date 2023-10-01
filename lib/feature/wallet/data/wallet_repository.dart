@@ -1,9 +1,12 @@
 import 'package:izobility_mobile/models/api/token_data.dart';
+import 'package:izobility_mobile/models/wallet.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
+import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
 
 class WalletRepository {
   final ApiService apiService;
@@ -26,6 +29,20 @@ class WalletRepository {
 
   Future<void> clearSeedPhrase() async {
     await prefs.clearSeedPhrase();
+  }
+
+  void createWallet() async {
+    HDWallet wallet = HDWallet();
+
+    final walletAddress =
+        wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+    final seedPhrase = wallet.mnemonic();
+
+    final WalletModel walletModel =
+        WalletModel(seedPhrase: seedPhrase, address: walletAddress);
+
+    print(walletModel);
+    await prefs.setWalletData(walletModel);
   }
 
   List<TokenData> gameTokens = [];

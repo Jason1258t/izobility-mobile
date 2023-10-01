@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/models/user_details.dart';
+import 'package:izobility_mobile/models/wallet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/api/token.dart';
@@ -19,6 +20,8 @@ class PreferencesService {
   static const String _userKey = 'user';
 
   static const String _seedPhrase = 'seedPhrase';
+
+  static const String _wallet = 'wallet';
 
   Future saveToken(Token token) async {
     final prefs = await _prefs;
@@ -90,6 +93,25 @@ class PreferencesService {
   Future<void> clearSeedPhrase() async {
     final prefs = await _prefs;
     prefs.remove(_seedPhrase);
+  }
+
+  Future<void> setWalletData(WalletModel wallet) async {
+    final prefs = await _prefs;
+
+    final walletString = jsonEncode(wallet.toJson());
+    prefs.setString(_wallet, walletString);
+  }
+
+  Future<WalletModel?> getWallet() async {
+    final prefs = await _prefs;
+
+    final walletString = prefs.getString(_wallet);
+    if (walletString == null) {
+      return null;
+    }
+
+    final wallet = WalletModel.fromJson(jsonDecode(walletString));
+    return wallet;
   }
 
   Future logout() async => (await _prefs).clear();

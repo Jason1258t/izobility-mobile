@@ -40,8 +40,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                 InkWell(
                   borderRadius: BorderRadius.circular(8),
                   onTap: () {
-                    walletRepository.setSeedPhrase(
-                        "жопа жопа жопа жопа жопа жопа жопа жопа жопа жопа жопа жопа");
+                    walletRepository.createWallet();
                     context.push('${RouteNames.wallet}/true');
                   },
                   child: Ink(
