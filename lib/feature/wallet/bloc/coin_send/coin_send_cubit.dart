@@ -18,6 +18,8 @@ class CoinSendCubit extends Cubit<CoinSendState> {
 
       emit(CoinSendSuccess());
     } catch (ex) {
+      print('-' * 10);
+      print(ex);
       emit(CoinSendFailure());
     }
   }
