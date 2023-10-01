@@ -21,6 +21,7 @@ import 'package:izobility_mobile/feature/wallet/bloc/wallet_auth/wallet_auth_cub
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
+import 'package:izobility_mobile/services/crypto/api_cripto.dart';
 import 'package:izobility_mobile/services/locale/export_locale_services.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 
@@ -137,7 +138,7 @@ class MyRepositoryProviders extends StatelessWidget {
         create: (_) => UserRepository(apiService: api, preferences: prefs),
       ),
       RepositoryProvider(
-        create: (_) => WalletRepository(apiService: api, prefs: prefs),
+        create: (_) => WalletRepository(apiService: api, prefs: prefs, apiCripto: ApiCripto()),
       ),
       RepositoryProvider(
         create: (_) => MainScreenRepository(apiService: api),
