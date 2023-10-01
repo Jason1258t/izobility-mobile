@@ -45,6 +45,12 @@ class WalletRepository {
     await prefs.setWalletData(walletModel);
   }
 
+  Future<WalletModel?> getWallet() async{
+    final wallet = await prefs.getWallet();
+
+    return wallet;
+  }
+
   List<TokenData> gameTokens = [];
 
   void setObscured(bool f) {

@@ -3,16 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class CustomAppBar extends AppBar {
-  CustomAppBar(
-      {super.key,
-      required context,
-      required String text,
-      Function()? onTap,
-      required bool isBack,
-      List<Widget>? actions,
-      Color backgroundColor = Colors.white,
-      })
-      : super(
+  CustomAppBar({
+    super.key,
+    required context,
+    required String text,
+    Function()? onTap,
+    required bool isBack,
+    List<Widget>? actions,
+    Color backgroundColor = Colors.white,
+  }) : super(
+          automaticallyImplyLeading: false,
           surfaceTintColor: Colors.transparent,
           titleSpacing: 12,
           backgroundColor: backgroundColor,

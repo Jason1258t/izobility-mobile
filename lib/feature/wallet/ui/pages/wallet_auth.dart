@@ -42,6 +42,8 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                   onTap: () {
                     walletRepository.createWallet();
                     context.push('${RouteNames.wallet}/true');
+
+                    walletRepository.loadEmeraldCoin();
                   },
                   child: Ink(
                     padding: const EdgeInsets.only(left: 15),
