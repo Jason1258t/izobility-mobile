@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_social_media_link.dart';
+import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -14,7 +15,9 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 final list = List.generate(100, (index) => 1);
 
 class InfoCurrencyWalletScreen extends StatefulWidget {
-  const InfoCurrencyWalletScreen({super.key});
+  const InfoCurrencyWalletScreen({super.key, required this.token});
+
+  final TokenData token;
 
   @override
   State<InfoCurrencyWalletScreen> createState() =>
@@ -54,73 +57,31 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        const CircleAvatar(
+                         CircleAvatar(
                           radius: 20,
-                          backgroundColor: AppColors.primary,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                image: NetworkImage(widget.token.imageUrl)
+                              )
+                            ),
+                          ),
                         ),
                         Text(
                             walletRepository.obscured
                                 ? AppStrings.obscuredText
-                                : '123 123\$',
+                                : widget.token.amount,
                             style: AppTypography.font36w700
                                 .copyWith(color: AppColors.textPrimary)),
                         Text(
                           walletRepository.obscured
                               ? AppStrings.obscuredText
-                              : '≈ 2,545 \$',
+                              : '≈ ${widget.token.rubleExchangeRate} ₽',
                           style: AppTypography.font16w400
                               .copyWith(color: AppColors.blackGraySecondary),
                         ),
                       ],
-                    ),
-                  ),
-                ),
-              ),
-              SliverPersistentHeader(
-                pinned: true,
-                floating: true,
-                delegate: SliverAppBarDelegate(
-                  minHeight: sizeOf.width * 0.156 + 40,
-                  maxHeight: sizeOf.width * 0.156 + 40,
-                  child: Container(
-                    color: AppColors.purple200,
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 16, right: 16, top: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          WalletAction(
-                            title: 'Отправить',
-                            icon: 'assets/icons/send.svg',
-                            onTap: () {
-                              context.push(RouteNames.walletSendCurrency);
-                            },
-                          ),
-                          WalletAction(
-                            title: 'Пополнить',
-                            icon: 'assets/icons/get.svg',
-                            onTap: () {
-                              context.push(RouteNames.walletReplenish);
-                            },
-                          ),
-                          WalletAction(
-                            title: 'Купить',
-                            icon: 'assets/icons/buy.svg',
-                            onTap: () {
-                              context.push(RouteNames.walletBuyCurrency);
-                            },
-                          ),
-                          WalletAction(
-                            title: 'Своп ',
-                            icon: 'assets/icons/swap.svg',
-                            onTap: () {
-                              context.push(RouteNames.walletSwap);
-                            },
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ),
@@ -155,7 +116,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                         height: 10,
                       ),
                       Text(
-                        'Криптовалюта и платформа для создания децентрализованных онлайн-сервисов на базе блокчейна, работающих на базе умных контрактов. Реализована как единая децентрализованная виртуальная машина. Концепт был предложен Виталиком Бутериным в конце 2013 года, сеть была запущена 30 июля 2015 года',
+                        widget.token.description,
                         style:
                             AppTypography.font14w400.copyWith(color: Colors.black),
                       ),
@@ -170,7 +131,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Описание',
+                        'Контракты',
                         style: AppTypography.font16w400
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),

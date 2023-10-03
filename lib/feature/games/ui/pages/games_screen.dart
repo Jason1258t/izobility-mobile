@@ -20,6 +20,7 @@ class _GamesScreenState extends State<GamesScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           body: CustomScrollView(
+            physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
             slivers: [
               SliverAppBar(
                 backgroundColor: AppColors.purpleBcg,

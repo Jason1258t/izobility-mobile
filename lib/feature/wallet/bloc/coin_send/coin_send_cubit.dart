@@ -9,12 +9,14 @@ class CoinSendCubit extends Cubit<CoinSendState> {
 
   CoinSendCubit({required this.walletRepository}) : super(CoinSendInitial());
 
-  Future<void> sendCoin(String address, double amount) async {
+  Future<void> sendCoinOnChain(String address, double amount) async {
     emit(CoinSendLoading());
 
     await Future.delayed(Duration(seconds: 1));
     try {
-      await walletRepository.sendCoin(address, amount);
+      if (walletRepository.walletPage == 0) {
+        await walletRepository.sendCoinOnChain(address, amount);
+      } else if (walletRepository.walletPage == 1) {}
 
       emit(CoinSendSuccess());
     } catch (ex) {

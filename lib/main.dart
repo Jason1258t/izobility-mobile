@@ -7,10 +7,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
-import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'services/locale/export_locale_services.dart';
 
@@ -32,10 +30,30 @@ void main() async {
   runApp(MyRepositoryProviders(
     notifier: notifier,
   ));
+
+
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static void setLocale(BuildContext context, Locale newLocale){
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = Locale('en');
+
+  setLocale(Locale locale){
+    setState(() {
+      _locale = locale;
+    });
+  }
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -69,6 +87,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
     return MaterialApp.router(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: _locale,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

@@ -117,16 +117,16 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Отправить',
                             icon: 'assets/icons/send.svg',
                             onTap: () {
-                              context.push(
-                                  '${RouteNames.walletChooseCoin}/send_currency');
+                              // context.push(
+                              //     '${RouteNames.walletChooseCoin}/send_currency');
                             },
                           ),
                           WalletAction(
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
                             onTap: () {
-                              context.push(
-                                  '${RouteNames.walletChooseCoin}/replenish');
+                              // context.push(
+                              //     '${RouteNames.walletChooseCoin}/replenish');
                             },
                           ),
                           WalletAction(
@@ -141,7 +141,7 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Своп',
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
-                              context.push(RouteNames.walletSwap);
+                              // context.push(RouteNames.walletSwap);
                             },
                           ),
                         ],
@@ -199,51 +199,20 @@ class _WalletScreenState extends State<WalletScreen>
                 ),
               ),
               SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                sliver: tokenOrNft == 0
-                    ? SliverList(
-                        delegate: SliverChildListDelegate(
-                            RepositoryProvider.of<WalletRepository>(context)
-                                .gameTokens
-                                .map((item) => ValidToken(
-                                      title: item.name,
-                                      value:
-                                          double.parse(item.rubleExchangeRate)
-                                              .toStringAsFixed(2),
-                                      onTap: () {
-                                        context.push(RouteNames.walletCurrency);
-                                      },
-                                      imageUrl: item.imageUrl,
-                                      prise: walletRepository.obscured
-                                          ? AppStrings.obscuredText
-                                          : item.amount,
-                                      increment: '0,02',
-                                      usdValue: walletRepository.obscured
-                                          ? AppStrings.obscuredText
-                                          : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
-                                    ))
-                                .toList()),
-                      )
-                    : SliverGrid(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => MarketItem(
-                            imageUrl:
-                                'https://kartinkin.net/uploads/posts/2022-08/1661214768_6-kartinkin-net-p-burger-king-chiken-barbekyu-vkontakte-11.jpg',
-                            textDescription:
-                                'Набор бонусов для игры Reapers rush +156 к мощности',
-                            isNew: true,
-                            pizdulkaUrl: '',
-                            onTap: () {},
-                            coinData: const [],
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  sliver: tokenOrNft == 0
+                      ? const SliverToBoxAdapter(
+                          child: Text(
+                            'Еще нету контрактов',
+                            textAlign: TextAlign.center,
                           ),
-                          childCount: 12,
-                        ),
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            crossAxisSpacing: 8,
-                            maxCrossAxisExtent:
-                                (MediaQuery.of(context).size.width - 40) / 2,
-                            childAspectRatio: 160 / 229)),
-              ),
+                        )
+                      : const SliverToBoxAdapter(
+                          child: Text(
+                            'Еще нету контрактов',
+                            textAlign: TextAlign.center,
+                          ),
+                        )),
             ],
           )
         : MultiSliver(
@@ -333,9 +302,11 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Купить',
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
-                              // walletRepository.getUserEmeraldBill();
-                              // context
-                              //     .push('${RouteNames.walletChooseCoin}/buy');
+                              // print('~~~~~~~~~~~~~~~~~');
+                              // walletRepository.apiService.wallet.walletFunc1();
+                              // print(RepositoryProvider.of<WalletRepository>(
+                              //         context)
+                              //     .gameTokens);
                             },
                           ),
                           WalletAction(
@@ -348,21 +319,6 @@ class _WalletScreenState extends State<WalletScreen>
                         ],
                       ),
                     ),
-                  ),
-                ),
-              ),
-              SliverPersistentHeader(
-                pinned: true,
-                floating: false,
-                delegate: SliverAppBarDelegate(
-                  minHeight: 17,
-                  maxHeight: 17,
-                  child: Container(
-                    height: 18,
-                    decoration: const BoxDecoration(
-                        color: AppColors.purple200,
-                        borderRadius:
-                            BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
                 ),
               ),
@@ -412,7 +368,8 @@ class _WalletScreenState extends State<WalletScreen>
                                           double.parse(item.rubleExchangeRate)
                                               .toStringAsFixed(2),
                                       onTap: () {
-                                        context.push(RouteNames.walletCurrency);
+                                        context.push(RouteNames.walletCurrency,
+                                            extra: item);
                                       },
                                       imageUrl: item.imageUrl,
                                       prise: walletRepository.obscured

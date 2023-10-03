@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -16,7 +17,9 @@ import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 class SendCurrencyScreen extends StatefulWidget {
-  const SendCurrencyScreen({super.key});
+  const SendCurrencyScreen({super.key, required this.coin});
+
+  final TokenData coin;
 
   @override
   State<SendCurrencyScreen> createState() => _SendCurrencyScreenState();
@@ -25,6 +28,8 @@ class SendCurrencyScreen extends StatefulWidget {
 class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
   final addressController = TextEditingController();
   final amountController = TextEditingController();
+
+  bool isError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -82,22 +87,26 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         alignment: Alignment.center,
                         child: Column(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 20,
-                              backgroundImage:
-                                  AssetImage('assets/images/emerald_coin.png'),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            widget.coin.imageUrl))),
+                              ),
                             ),
                             Text(
                                 walletRepository.obscured
                                     ? AppStrings.obscuredText
-                                    : "${walletRepository.emeraldInWalletBalance}"
-                                        .toString(),
+                                    : widget.coin.amount,
                                 style: AppTypography.font36w700
                                     .copyWith(color: AppColors.textPrimary)),
                             Text(
                               walletRepository.obscured
                                   ? AppStrings.obscuredText
-                                  : '', // here might be price in rub or dollars
+                                  : '≈ ${widget.coin.rubleExchangeRate} ₽',
                               style: AppTypography.font16w400.copyWith(
                                   color: AppColors.blackGraySecondary),
                             ),
@@ -129,7 +138,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         obscured: false,
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),
-                        hintText: "Адрес или имя",
+                        hintText: "Адрес",
                         suffixIconCallback: () {
                           Clipboard.getData(Clipboard.kTextPlain).then((value) {
                             setState(() {
@@ -148,6 +157,18 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
+                        errorText: 'Ваш баланс меньше',
+                        error: isError,
+                        onChange: (val) {
+                          setState(() {
+                            if (double.parse(widget.coin.amount.toString()) <
+                                double.parse(val!)) {
+                              isError = true;
+                              return;
+                            }
+                            isError = false;
+                          });
+                        },
                         keyboardType: TextInputType.number,
                         obscured: false,
                         suffixIconChild:
@@ -165,6 +186,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomButton(
+                        isActive: !isError,
                         text: 'Продолжить',
                         onTap: () {
                           final address = addressController.text;
@@ -172,7 +194,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
 
                           context
                               .read<CoinSendCubit>()
-                              .sendCoin(address, amount);
+                              .sendCoinOnChain(address, amount);
                         },
                         width: double.infinity,
                       ),

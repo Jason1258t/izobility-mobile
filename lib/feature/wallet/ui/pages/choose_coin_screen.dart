@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/choose_coin_card.dart';
+import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -41,27 +42,24 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
               const SizedBox(
                 height: 16,
               ),
-              Column(
-                children: List.generate(
-                    1,
+              Column(children: [
+                ...List.generate(
+                    walletRepository.gameTokens.length,
                     (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: ChooseCoinCard(
-                              onTap: () {
-                                if (widget.path != AppStrings.nullText) {
-                                  context.push('/wallet/${widget.path}');
-                                } else {
-                                  context.pop();
-                                }
-                              },
-                              amount: walletRepository.obscured
-                                  ? AppStrings.obscuredText
-                                  : walletRepository.emeraldInWalletBalance
-                                      .toString(),
-                              name: "Emerald",
-                              coinPath: 'assets/images/emerald_coin.png'),
+                            onTap: () {
+                              if (widget.path != AppStrings.nullText) {
+                                context.push('/wallet/${widget.path}',
+                                    extra: walletRepository.gameTokens[index]);
+                              } else {
+                                context.pop();
+                              }
+                            },
+                            coin: walletRepository.gameTokens[index],
+                          ),
                         )),
-              )
+              ])
             ]),
           ),
         ),
