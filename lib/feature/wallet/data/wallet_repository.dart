@@ -68,10 +68,10 @@ class WalletRepository {
   }
 
   BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
-      BehaviorSubject.seeded(LoadingStateEnum.wait);
+  BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
-      BehaviorSubject.seeded(LoadingStateEnum.wait);
+  BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   Future<void> getUserEmeraldBill() async {
     emeraldInWalletStream.add(LoadingStateEnum.loading);
@@ -93,12 +93,17 @@ class WalletRepository {
     emeraldInGameStream.add(LoadingStateEnum.loading);
     try {
       final data = await apiService.wallet.getEmeraldCoin();
+      print(data);
+      print('-' * 100);
+
       emeraldInGameBalance = data['balance'];
 
       await getGameTokens();
 
       emeraldInGameStream.add(LoadingStateEnum.success);
     } catch (e) {
+      print(e);
+      print('-' * 100);
       emeraldInGameStream.add(LoadingStateEnum.fail);
     }
   }
@@ -108,7 +113,12 @@ class WalletRepository {
     gameTokens.clear();
 
     for (var json in res) {
-      gameTokens.add(TokenData.fromJson(json));
+      try {
+        gameTokens.add(TokenData.fromJson(json));
+      }
+      catch (e){
+        print(e);
+      }
     }
   }
 }
