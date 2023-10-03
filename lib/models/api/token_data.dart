@@ -16,7 +16,7 @@ class TokenData {
 
   TokenData.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        amount = json['amount'],
+        amount = json['amount'] ?? "0",
         rubleExchangeRate = json['kurs_rub'],
         name = json['name'],
         imageUrl = '${dotenv.get('BASE_SERVER_URL')}media/' + json['logo'];
