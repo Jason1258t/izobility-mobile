@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class ChooseCoinCard extends StatelessWidget {
-  final String name;
-  final String coinPath;
   final Function onTap;
-  final String amount;
+  final TokenData coin;
 
-  const ChooseCoinCard(
-      {super.key,
-      required this.name,
-      required this.coinPath,
-      required this.onTap,
-      required this.amount});
+  const ChooseCoinCard({
+    super.key,
+    required this.onTap, required this.coin,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +28,30 @@ class ChooseCoinCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  coinPath,
-                ),
+                width: 32,
+                clipBehavior: Clip.hardEdge,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(1000)),
+                child: coin.name == "Emerald"
+                    ? Image.asset(
+                        coin.imageUrl,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.network(
+                        coin.imageUrl,
+                        fit: BoxFit.cover,
+                      ),
               ),
               const SizedBox(
                 width: 12,
               ),
               Text(
-                name,
+                coin.name,
                 style: AppTypography.font16w400.copyWith(color: Colors.black),
               ),
               const Spacer(),
               Text(
-                amount,
+                coin.amount,
                 style: AppTypography.font18w700.copyWith(color: Colors.black),
               )
             ],

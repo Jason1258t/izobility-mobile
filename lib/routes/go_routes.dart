@@ -38,6 +38,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_replenish_screen
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_view_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_setting.dart';
+import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
@@ -176,7 +177,9 @@ class CustomGoRoutes {
           builder: (context, state) => const SwapScreen()),
       GoRoute(
           path: RouteNames.walletSendCurrency,
-          builder: (context, state) => const SendCurrencyScreen()),
+          builder: (context, state) => SendCurrencyScreen(
+            coin: state.extra as TokenData,
+          )),
       GoRoute(
           path: RouteNames.walletReplenish,
           builder: (context, state) => const WalletReplenishScreen()),
