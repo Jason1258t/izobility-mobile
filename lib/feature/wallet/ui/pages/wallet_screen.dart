@@ -117,16 +117,16 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Отправить',
                             icon: 'assets/icons/send.svg',
                             onTap: () {
-                              context.push(
-                                  '${RouteNames.walletChooseCoin}/send_currency');
+                              // context.push(
+                              //     '${RouteNames.walletChooseCoin}/send_currency');
                             },
                           ),
                           WalletAction(
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
                             onTap: () {
-                              context.push(
-                                  '${RouteNames.walletChooseCoin}/replenish');
+                              // context.push(
+                              //     '${RouteNames.walletChooseCoin}/replenish');
                             },
                           ),
                           WalletAction(
@@ -141,7 +141,7 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Своп',
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
-                              context.push(RouteNames.walletSwap);
+                              // context.push(RouteNames.walletSwap);
                             },
                           ),
                         ],
@@ -286,16 +286,16 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Отправить',
                             icon: 'assets/icons/send.svg',
                             onTap: () {
-                              // context.push(
-                              //     '${RouteNames.walletChooseCoin}/send_currency');
+                              context.push(
+                                  '${RouteNames.walletChooseCoin}/send_currency');
                             },
                           ),
                           WalletAction(
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
                             onTap: () {
-                              // context.push(
-                              //     '${RouteNames.walletChooseCoin}/replenish');
+                              context.push(
+                                  '${RouteNames.walletChooseCoin}/replenish');
                             },
                           ),
                           WalletAction(
@@ -313,7 +313,7 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Своп',
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
-                              // context.push(RouteNames.walletSwap);
+                              context.push(RouteNames.walletSwap);
                             },
                           ),
                         ],

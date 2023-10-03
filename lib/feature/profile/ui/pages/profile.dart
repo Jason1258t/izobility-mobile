@@ -37,6 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           isBack: false,
         ),
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -120,8 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     text: 'Социальные сети Emerald',
                   ),
                   ProfileActionTile(
-                    onTap: () {
-                    },
+                    onTap: () {},
                     label: 'TikTok',
                     iconPath: 'assets/icons/tiktok.svg',
                   ),

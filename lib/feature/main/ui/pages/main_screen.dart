@@ -81,6 +81,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 0),
                   child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

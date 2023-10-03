@@ -61,6 +61,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
     final size = MediaQuery.sizeOf(context);
     final game = context.read<GamesRepository>().lastLoadedGameDetials;
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
       slivers: [
         const SliverAppBar(
           pinned: true,

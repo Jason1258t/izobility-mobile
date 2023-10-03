@@ -31,7 +31,8 @@ class _StoreScreenState extends State<StoreScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: CustomScrollView(slivers: [
+        child: CustomScrollView(
+            physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),slivers: [
           SliverToBoxAdapter(
             child: SizedBox(
               height: 200,
