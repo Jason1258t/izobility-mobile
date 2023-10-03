@@ -68,10 +68,10 @@ class WalletRepository {
   }
 
   BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
-  BehaviorSubject.seeded(LoadingStateEnum.wait);
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
-  BehaviorSubject.seeded(LoadingStateEnum.wait);
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   Future<void> getUserEmeraldBill() async {
     emeraldInWalletStream.add(LoadingStateEnum.loading);
@@ -110,11 +110,23 @@ class WalletRepository {
     final res = await apiService.wallet.getUserGameTokens();
     gameTokens.clear();
 
+    gameTokens.add(
+      TokenData(
+        amount: obscured
+            ? "****"
+            : walletPage == 0
+                ? emeraldInWalletBalance.toString()
+                : emeraldInGameBalance.toString(),
+        id: "21",
+        imageUrl: 'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
+        name: "Emerald",
+        rubleExchangeRate: "0",
+        description: ''));
+
     for (var json in res) {
       try {
         gameTokens.add(TokenData.fromJson(json));
-      }
-      catch (e){
+      } catch (e) {
         print(e);
       }
     }

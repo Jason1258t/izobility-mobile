@@ -43,33 +43,6 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
                 height: 16,
               ),
               Column(children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: ChooseCoinCard(
-                    onTap: () {
-                      if (widget.path != AppStrings.nullText) {
-                        context.push(
-                          '/wallet/${widget.path}',
-                        );
-                      } else {
-                        context.pop();
-                      }
-                    },
-                    coin: TokenData(
-                        amount: walletRepository.obscured
-                            ? AppStrings.obscuredText
-                            : walletRepository.walletPage == 0
-                                ? walletRepository.emeraldInWalletBalance
-                                    .toString()
-                                : walletRepository.emeraldInGameBalance
-                                    .toString(),
-                        id: "21",
-                        imageUrl: 'assets/images/emerald_coin.png',
-                        name: "Emerald",
-                        rubleExchangeRate: "-",
-                        description: ''),
-                  ),
-                ),
                 ...List.generate(
                     walletRepository.gameTokens.length,
                     (index) => Padding(

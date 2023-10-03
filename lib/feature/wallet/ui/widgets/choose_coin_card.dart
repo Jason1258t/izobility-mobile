@@ -9,7 +9,8 @@ class ChooseCoinCard extends StatelessWidget {
 
   const ChooseCoinCard({
     super.key,
-    required this.onTap, required this.coin,
+    required this.onTap,
+    required this.coin,
   });
 
   @override
@@ -28,20 +29,14 @@ class ChooseCoinCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: 32,
-                clipBehavior: Clip.hardEdge,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(1000)),
-                child: coin.name == "Emerald"
-                    ? Image.asset(
-                        coin.imageUrl,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.network(
-                        coin.imageUrl,
-                        fit: BoxFit.cover,
-                      ),
-              ),
+                  width: 32,
+                  clipBehavior: Clip.hardEdge,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(1000)),
+                  child: Image.network(
+                    coin.imageUrl,
+                    fit: BoxFit.cover,
+                  )),
               const SizedBox(
                 width: 12,
               ),
