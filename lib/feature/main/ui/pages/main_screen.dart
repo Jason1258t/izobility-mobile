@@ -173,7 +173,9 @@ class _MainScreenState extends State<MainScreen> {
                           ],
                           InkWell(
                             borderRadius: BorderRadius.circular(12),
-                            onTap: () {},
+                            onTap: () {
+                              context.go(RouteNames.games);
+                            },
                             child: Ink(
                               width: double.infinity,
                               height: 120,
@@ -182,22 +184,12 @@ class _MainScreenState extends State<MainScreen> {
                               decoration: BoxDecoration(
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Играй и зарабатывай',
-                                    style: AppTypography.font20w700,
+                                image: const DecorationImage(
+                                  image: AssetImage(
+                                    'assets/images/Frame 1000007448.png'
                                   ),
-                                  SizedBox(
-                                    width: MediaQuery.sizeOf(context).width / 2,
-                                    child: Text(
-                                      'Игры в дополненной реальности',
-                                      style: AppTypography.font14w400,
-                                    ),
-                                  )
-                                ],
+                                  fit: BoxFit.cover
+                                )
                               ),
                             ),
                           ),
