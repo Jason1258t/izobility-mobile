@@ -26,18 +26,16 @@ void main() async {
 
   await dotenv.load();
   TrustWalletCoreLib.init();
-  
+
   runApp(MyRepositoryProviders(
     notifier: notifier,
   ));
-
-
 }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  static void setLocale(BuildContext context, Locale newLocale){
+  static void setLocale(BuildContext context, Locale newLocale) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(newLocale);
   }
@@ -46,20 +44,15 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  Locale _locale = Locale('en');
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  Locale _locale = const Locale('en');
 
-  setLocale(Locale locale){
+  setLocale(Locale locale) {
     setState(() {
       _locale = locale;
     });
   }
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);

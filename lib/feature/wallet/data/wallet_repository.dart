@@ -57,7 +57,8 @@ class WalletRepository {
     walletModel = HDWallet.createWithMnemonic(seedPhrase!);
   }
 
-  List<TokenData> gameTokens = [];
+  List<TokenData> coinsInGame = [];
+  List<TokenData> coinsInChain = [];
 
   void setObscured(bool f) {
     obscured = f;
@@ -121,9 +122,10 @@ class WalletRepository {
 
   Future getGameTokens() async {
     final res = await apiService.wallet.getUserGameTokens();
-    gameTokens.clear();
+    coinsInGame.clear();
+    coinsInChain.clear();
 
-    gameTokens.add(TokenData(
+    coinsInChain.add(TokenData(
         amount: obscured
             ? "****"
             : walletPage == 0
@@ -138,7 +140,7 @@ class WalletRepository {
 
     for (var json in res) {
       try {
-        gameTokens.add(TokenData.fromJson(json));
+        coinsInGame.add(TokenData.fromJson(json));
       } catch (e) {
         print(e);
       }
