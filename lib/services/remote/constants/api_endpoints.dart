@@ -8,7 +8,7 @@ class ApiEndpoints {
   static const String resendCode = '/user/registration-resend';
 
   static const String wallet = '/balance/balance';
-  static const String userGameTokens = '/balance/monets-list';
+  static const String userGameTokens = '/wallet/list';
 
   static const String userInfo = '/user/';
 
@@ -31,4 +31,8 @@ class ApiEndpoints {
   static const String usePromoCode = '/code/use';
   static const String productsList = '/product/list';
   static const String productItemInfo = '/product/view/';
+
+  static const String walletTransferEmeraldOnChain = "/wallet/transfer";
+  static const String walletTransferEmeraldInGame = '/wallet/return';
+  static const String walletTokenList = '/wallet/tokens-balance';
 }
