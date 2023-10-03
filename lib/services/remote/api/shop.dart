@@ -14,7 +14,8 @@ class Shop with ApiHandler {
       post(ApiEndpoints.usePromoCode, data: {'code': code});
 
   Future<List> getLimitedItems() async {
-    final res = await get(ApiEndpoints.productsList);
+    final res = await get(ApiEndpoints.productsList,
+        queryParameters: {'site_id': siteId});
 
     return res['objects'];
   }
