@@ -19,11 +19,10 @@ class Wallet with ApiHandler {
     return await get(ApiEndpoints.wallet);
   }
 
-  Future<void> walletFunc1() async {
-    print(await post("/wallet/list", data: {
-      // 'moneta_id': 21,
-      // 'amount': 1,
-      'site_id': 2,
-    }));
+  Future<void> transferCoinToOnChain(int coinId, double amount) async {
+    await post(ApiEndpoints.walletTransferEmeraldToOnChain, data: {
+      'moneta_id': coinId,
+      'amount': amount
+    });
   }
 }

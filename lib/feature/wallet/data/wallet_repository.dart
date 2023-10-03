@@ -85,8 +85,21 @@ class WalletRepository {
     }
   }
 
-  Future<void> sendCoin(String address, double amount) async {
+  Future<void> sendCoinOnChain(String address, double amount) async {
     await apiCripto.sendEmeraldTo(walletModel!, address, amount);
+  }
+
+  Future<void> sendCoinInGameTo() async {
+    throw UnimplementedError();
+    // await apiService.wallet.sendCoinInGameTo(address, amount);
+  }
+
+  Future<void> transferCoinToOnChain(int coinId, double amount) async {
+    await apiService.wallet.transferCoinToOnChain(coinId, amount);
+  }
+
+  Future<void> transferCoinToInGame() {
+    throw UnimplementedError();
   }
 
   void loadEmeraldCoin() async {
@@ -110,15 +123,15 @@ class WalletRepository {
     final res = await apiService.wallet.getUserGameTokens();
     gameTokens.clear();
 
-    gameTokens.add(
-      TokenData(
+    gameTokens.add(TokenData(
         amount: obscured
             ? "****"
             : walletPage == 0
                 ? emeraldInWalletBalance.toString()
                 : emeraldInGameBalance.toString(),
         id: "21",
-        imageUrl: 'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
+        imageUrl:
+            'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
         name: "Emerald",
         rubleExchangeRate: "0",
         description: ''));

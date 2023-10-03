@@ -194,7 +194,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
 
                           context
                               .read<CoinSendCubit>()
-                              .sendCoin(address, amount);
+                              .sendCoinOnChain(address, amount);
                         },
                         width: double.infinity,
                       ),
