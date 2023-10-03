@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
@@ -26,6 +25,13 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
         });
       }
     });
+  }
+
+  @override
+  void initState() {
+    BlocProvider.of<AppCubit>(context).authWithBiometric();
+
+    super.initState();
   }
 
   @override

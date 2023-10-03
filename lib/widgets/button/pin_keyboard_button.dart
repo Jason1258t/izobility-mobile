@@ -3,21 +3,33 @@ import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
+enum KeyboardButtonType { number, delete, biometric }
+
 class KeyboardButton extends StatelessWidget {
   KeyboardButton(
-      {super.key, required this.onTap, String? number, required this.side})
+      {super.key,
+      required this.onTap,
+      String? number,
+      required this.side,
+      this.keyboardButtonType = KeyboardButtonType.number})
       : child = number != null
             ? Text(
                 number,
                 style: AppTypography.font16w700.copyWith(color: Colors.black),
               )
             : SvgPicture.asset(
-                'assets/icons/delete-left.svg',
-              );
+                keyboardButtonType == KeyboardButtonType.delete
+                    ? 'assets/icons/delete-left.svg'
+                    : 'assets/icons/fingerprint.svg',
+              ) {
+    assert(
+        !(number == null && keyboardButtonType == KeyboardButtonType.number));
+  }
 
   final VoidCallback onTap;
   final Widget child;
   final double side;
+  final KeyboardButtonType keyboardButtonType;
 
   @override
   Widget build(BuildContext context) {

@@ -2,10 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:izobility_mobile/models/login_data.dart';
 import 'package:izobility_mobile/models/register_data.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../models/user.dart';
 import '../../../services/locale/preferences_service.dart';
+import 'package:local_auth_android/local_auth_android.dart';
+import 'package:local_auth_ios/local_auth_ios.dart';
 
 enum AppStateEnum { wait, auth, unAuth }
 
@@ -14,6 +17,31 @@ enum EmailStateEnum { unregistered, registered }
 class AuthRepository {
   final ApiService apiService;
   final PreferencesService preferences;
+  final LocalAuthentication _localAuth = LocalAuthentication();
+
+  Future<bool> _canLocalAuth() async =>
+      await _localAuth.canCheckBiometrics ||
+      await _localAuth.isDeviceSupported();
+
+  Future localAuthenticate() async {
+    if (await _canLocalAuth()) {
+      final bool didAuthenticate = await _localAuth.authenticate(
+          localizedReason: 'Подтвердите свою личность',
+          authMessages: const <AuthMessages>[
+            AndroidAuthMessages(
+              signInTitle: 'Вход в Emerald',
+              biometricHint: '',
+              cancelButton: 'Отмена',
+            ),
+            IOSAuthMessages(
+              cancelButton: 'Отмена',
+            ),
+          ],
+      options: const AuthenticationOptions(biometricOnly: true));
+
+      return didAuthenticate;
+    }
+  }
 
   int? userId;
 

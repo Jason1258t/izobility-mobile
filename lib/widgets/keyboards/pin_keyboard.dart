@@ -1,6 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/button/pin_keyboard_button.dart';
+import 'package:local_auth/local_auth.dart';
+
+import '../../feature/auth/bloc/app/app_cubit.dart';
 
 class PinKeyboard extends StatefulWidget {
   const PinKeyboard(
@@ -95,8 +103,19 @@ class _PinKeyboardState extends State<PinKeyboard> {
     children.add(Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const SizedBox(
-          width: 66,
+        InkWell(
+          onTap: () {
+            BlocProvider.of<AppCubit>(context).authWithBiometric();
+          },
+          child: Ink(
+            width: size.width * 0.19,
+            height: size.width * 0.19,
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset(
+              color: Colors.grey[500],
+              'assets/icons/fingerprint.svg',
+            ),
+          ),
         ),
         KeyboardButton(
           onTap: () async {
@@ -111,6 +130,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
             _deleteNumber();
             setState(() {});
           },
+          keyboardButtonType: KeyboardButtonType.delete,
           side: size.width * 0.19,
         ),
       ],

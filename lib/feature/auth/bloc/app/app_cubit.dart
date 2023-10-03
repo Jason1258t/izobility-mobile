@@ -54,4 +54,21 @@ class AppCubit extends Cubit<AppState> {
     if (pin == savedPin) emit(AppAuthState());
     return (pin == savedPin);
   }
+
+  Future authWithBiometric() async {
+   final bool auth = await authRepository.localAuthenticate();
+   if (auth) emit(AppAuthState());
+  }
+
+  bool needRepeatPin = false;
+
+  void pauseApp() async {
+    emit(EnterPinState());
+  }
+
+  void resumeApp() {
+    if (needRepeatPin) {
+      emit(EnterPinState());
+    }
+  }
 }
