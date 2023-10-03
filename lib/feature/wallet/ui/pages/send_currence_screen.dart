@@ -18,6 +18,7 @@ import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
 class SendCurrencyScreen extends StatefulWidget {
   const SendCurrencyScreen({super.key, required this.coin});
+
   final TokenData coin;
 
   @override
@@ -27,6 +28,8 @@ class SendCurrencyScreen extends StatefulWidget {
 class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
   final addressController = TextEditingController();
   final amountController = TextEditingController();
+
+  bool isError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +93,8 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
                                     image: DecorationImage(
-                                        image: NetworkImage(widget.coin.imageUrl)
-                                    )
-                                ),
+                                        image: NetworkImage(
+                                            widget.coin.imageUrl))),
                               ),
                             ),
                             Text(
@@ -105,8 +107,8 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                               walletRepository.obscured
                                   ? AppStrings.obscuredText
                                   : '≈ ${widget.coin.rubleExchangeRate} ₽',
-                              style: AppTypography.font16w400
-                                  .copyWith(color: AppColors.blackGraySecondary),
+                              style: AppTypography.font16w400.copyWith(
+                                  color: AppColors.blackGraySecondary),
                             ),
                           ],
                         ),
@@ -136,7 +138,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         obscured: false,
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),
-                        hintText: "Адрес или имя",
+                        hintText: "Адрес",
                         suffixIconCallback: () {
                           Clipboard.getData(Clipboard.kTextPlain).then((value) {
                             setState(() {
@@ -155,6 +157,18 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
+                        errorText: 'Ваш баланс меньше',
+                        error: isError,
+                        onChange: (val) {
+                          setState(() {
+                            if (double.parse(widget.coin.amount.toString()) <
+                                double.parse(val!)) {
+                              isError = true;
+                              return;
+                            }
+                            isError = false;
+                          });
+                        },
                         keyboardType: TextInputType.number,
                         obscured: false,
                         suffixIconChild:
@@ -172,6 +186,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomButton(
+                        isActive: !isError,
                         text: 'Продолжить',
                         onTap: () {
                           final address = addressController.text;

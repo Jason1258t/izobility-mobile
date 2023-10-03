@@ -109,7 +109,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                             title: 'Отправить',
                             icon: 'assets/icons/send.svg',
                             onTap: () {
-                              context.push(RouteNames.walletSendCurrency);
+                              context.push(RouteNames.walletSendCurrency, extra: widget.token);
                             },
                           ),
                           WalletAction(
