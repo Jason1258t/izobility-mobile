@@ -84,24 +84,29 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         alignment: Alignment.center,
                         child: Column(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 20,
-                              backgroundImage:
-                                  AssetImage('assets/images/emerald_coin.png'),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    image: DecorationImage(
+                                        image: NetworkImage(widget.coin.imageUrl)
+                                    )
+                                ),
+                              ),
                             ),
                             Text(
                                 walletRepository.obscured
                                     ? AppStrings.obscuredText
-                                    : "${walletRepository.emeraldInWalletBalance}"
-                                        .toString(),
+                                    : widget.coin.amount,
                                 style: AppTypography.font36w700
                                     .copyWith(color: AppColors.textPrimary)),
                             Text(
                               walletRepository.obscured
                                   ? AppStrings.obscuredText
-                                  : '', // here might be price in rub or dollars
-                              style: AppTypography.font16w400.copyWith(
-                                  color: AppColors.blackGraySecondary),
+                                  : '≈ ${widget.coin.rubleExchangeRate} ₽',
+                              style: AppTypography.font16w400
+                                  .copyWith(color: AppColors.blackGraySecondary),
                             ),
                           ],
                         ),

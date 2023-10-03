@@ -414,7 +414,7 @@ class _WalletScreenState extends State<WalletScreen>
                                           double.parse(item.rubleExchangeRate)
                                               .toStringAsFixed(2),
                                       onTap: () {
-                                        context.push(RouteNames.walletCurrency);
+                                        context.push(RouteNames.walletCurrency, extra: item);
                                       },
                                       imageUrl: item.imageUrl,
                                       prise: walletRepository.obscured

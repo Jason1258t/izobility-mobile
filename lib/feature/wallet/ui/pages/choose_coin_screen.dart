@@ -66,7 +66,8 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
                         id: "21",
                         imageUrl: 'assets/images/emerald_coin.png',
                         name: "Emerald",
-                        rubleExchangeRate: "-"),
+                        rubleExchangeRate: "-",
+                        description: ''),
                   ),
                 ),
                 ...List.generate(

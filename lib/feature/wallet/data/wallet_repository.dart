@@ -94,7 +94,6 @@ class WalletRepository {
     try {
       final data = await apiService.wallet.getEmeraldCoin();
       print(data);
-      print('-' * 100);
 
       emeraldInGameBalance = data['balance'];
 
@@ -103,7 +102,6 @@ class WalletRepository {
       emeraldInGameStream.add(LoadingStateEnum.success);
     } catch (e) {
       print(e);
-      print('-' * 100);
       emeraldInGameStream.add(LoadingStateEnum.fail);
     }
   }

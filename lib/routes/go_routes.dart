@@ -162,7 +162,14 @@ class CustomGoRoutes {
               )),
       GoRoute(
           path: RouteNames.walletCurrency,
-          builder: (context, state) => const CurrencyWalletScreen()),
+          builder: (context, state) {
+            print((state.extra as TokenData).amount);
+            print('-' * 100);
+
+            return CurrencyWalletScreen(
+              token: state.extra as TokenData,
+            );
+          }),
       GoRoute(
           path: RouteNames.walletViewSeed,
           builder: (context, state) => const WalletViewSeedPhraseScreen()),
@@ -171,7 +178,7 @@ class CustomGoRoutes {
           builder: (context, state) => const WalletAuthScreen()),
       GoRoute(
           path: RouteNames.walletInfoCurrency,
-          builder: (context, state) => const InfoCurrencyWalletScreen()),
+          builder: (context, state) => InfoCurrencyWalletScreen(token: state.extra as TokenData,)),
       GoRoute(
           path: RouteNames.walletSwap,
           builder: (context, state) => const SwapScreen()),

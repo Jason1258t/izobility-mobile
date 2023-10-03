@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
+import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -15,7 +16,9 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 final list = List.generate(100, (index) => 1);
 
 class CurrencyWalletScreen extends StatefulWidget {
-  const CurrencyWalletScreen({super.key});
+  const CurrencyWalletScreen({super.key, required this.token});
+
+  final TokenData token;
 
   @override
   State<CurrencyWalletScreen> createState() => _CurrencyWalletScreenState();
@@ -37,12 +40,15 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
             physics: const BouncingScrollPhysics(
                 decelerationRate: ScrollDecelerationRate.fast),
             slivers: [
-              const CustomSliverAppBar(
+              CustomSliverAppBar(
                 height: 90,
                 isBack: true,
-                title: 'Usd',
+                title: widget.token.name,
                 color: AppColors.purple200,
                 isInfo: true,
+                onTapRightIcon: () {
+                  context.push(RouteNames.walletInfoCurrency, extra: widget.token);
+                },
               ),
               SliverPersistentHeader(
                 pinned: true,
@@ -55,12 +61,27 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        Image.asset('assets/images/emerald_coin.png', fit: BoxFit.fill,),
-                        Text(walletRepository.obscured ? AppStrings.obscuredText :'123 123\$',
+                        CircleAvatar(
+                          radius: 20,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                image: DecorationImage(
+                                    image: NetworkImage(widget.token.imageUrl)
+                                )
+                            ),
+                          ),
+                        ),
+                        Text(
+                            walletRepository.obscured
+                                ? AppStrings.obscuredText
+                                : widget.token.amount,
                             style: AppTypography.font36w700
                                 .copyWith(color: AppColors.textPrimary)),
                         Text(
-                          walletRepository.obscured ? AppStrings.obscuredText : '≈ 2,545 \$',
+                          walletRepository.obscured
+                              ? AppStrings.obscuredText
+                              : '≈ ${widget.token.rubleExchangeRate} ₽',
                           style: AppTypography.font16w400
                               .copyWith(color: AppColors.blackGraySecondary),
                         ),
@@ -133,19 +154,26 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   ),
                 ),
               ),
-              SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate(list
-                        .map((item) => WalletTransactionContainer(
-                              title: 'Перевод',
-                              onTap: () {},
-                              prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
-                              address: 'asdfasdfasdf',
-                              isAddition: true,
-                            ))
-                        .toList()),
-                  )),
+              const SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  sliver: SliverToBoxAdapter(
+                    child: Text(
+                      'нету перевода у этой монете',
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                  // SliverList(
+                  //   delegate: SliverChildListDelegate(list
+                  //       .map((item) => WalletTransactionContainer(
+                  //             title: 'Перевод',
+                  //             onTap: () {},
+                  //             prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
+                  //             address: 'asdfasdfasdf',
+                  //             isAddition: true,
+                  //           ))
+                  //       .toList()),
+                  // )
+                  ),
             ],
           ),
         ),
