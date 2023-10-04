@@ -23,6 +23,10 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
 
+    List<TokenData> res = walletRepository.walletPage == 0
+        ? walletRepository.coinsInChain
+        : walletRepository.coinsInGame;
+
     return Container(
       color: Colors.white,
       child: Scaffold(
@@ -44,19 +48,19 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
               ),
               Column(children: [
                 ...List.generate(
-                    walletRepository.gameTokens.length,
+                    res.length,
                     (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: ChooseCoinCard(
                             onTap: () {
                               if (widget.path != AppStrings.nullText) {
                                 context.push('/wallet/${widget.path}',
-                                    extra: walletRepository.gameTokens[index]);
+                                    extra: res[index]);
                               } else {
                                 context.pop();
                               }
                             },
-                            coin: walletRepository.gameTokens[index],
+                            coin: res[index],
                           ),
                         )),
               ])
