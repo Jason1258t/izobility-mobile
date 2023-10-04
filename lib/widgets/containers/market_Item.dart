@@ -50,7 +50,7 @@ class MarketItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: (MediaQuery.of(context).size.width - 40) / 2,
-        height: (MediaQuery.of(context).size.width - 40) / 2 * 160 / 230,
+        height: (MediaQuery.of(context).size.width - 40) / 2 * 160 / 240,
         padding: const EdgeInsets.all(6),
         decoration: ShapeDecoration(
           shape:
@@ -100,9 +100,10 @@ class MarketItem extends StatelessWidget {
             ),
             SizedBox(
               width: 204,
-              height: 30,
+              height: 33,
               child: Text(
                 textDescription,
+                maxLines: 2,
                 style: AppTypography.font12w400
                     .copyWith(color: AppColors.textPrimary),
               ),

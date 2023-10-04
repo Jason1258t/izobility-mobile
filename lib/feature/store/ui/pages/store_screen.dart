@@ -117,7 +117,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         crossAxisSpacing: 8,
                         maxCrossAxisExtent:
                             MediaQuery.of(context).size.width / 2,
-                        childAspectRatio: 160 / 229));
+                        childAspectRatio: 160 / 240));
               } else if (state is StoreLoading) {
                 return const SliverToBoxAdapter(
                   child: CircularProgressIndicator(

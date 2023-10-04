@@ -125,8 +125,8 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
                             onTap: () {
-                              // context.push(
-                              //     '${RouteNames.walletChooseCoin}/replenish');
+                              context.push(
+                                  '${RouteNames.walletChooseCoin}/replenish');
                             },
                           ),
                           WalletAction(
@@ -313,8 +313,8 @@ class _WalletScreenState extends State<WalletScreen>
                             title: 'Пополнить',
                             icon: 'assets/icons/get.svg',
                             onTap: () {
-                              context.push(
-                                  '${RouteNames.walletChooseCoin}/replenish');
+                              // context.push(
+                              //     '${RouteNames.walletChooseCoin}/replenish');
                             },
                           ),
                           WalletAction(
@@ -338,6 +338,21 @@ class _WalletScreenState extends State<WalletScreen>
                         ],
                       ),
                     ),
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: false,
+                delegate: SliverAppBarDelegate(
+                  minHeight: 17,
+                  maxHeight: 17,
+                  child: Container(
+                    height: 18,
+                    decoration: const BoxDecoration(
+                        color: AppColors.purple200,
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
                 ),
               ),
