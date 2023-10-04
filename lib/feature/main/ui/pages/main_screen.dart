@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
@@ -81,7 +81,8 @@ class _MainScreenState extends State<MainScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16).copyWith(bottom: 0),
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
+                    physics: const BouncingScrollPhysics(
+                        decelerationRate: ScrollDecelerationRate.fast),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -114,8 +115,8 @@ class _MainScreenState extends State<MainScreen> {
                                 Dialogs.showModal(
                                     context,
                                     const Center(
-                                      child:
-                                          AppAnimations.circularProgressIndicator,
+                                      child: AppAnimations
+                                          .circularProgressIndicator,
                                     ));
                               } else {
                                 Dialogs.hide(context);
@@ -134,12 +135,14 @@ class _MainScreenState extends State<MainScreen> {
                               }
                             },
                             child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 16),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
                                 child: CustomTextField.withTwoIcon(
                                   suffixIconCallback: () {},
                                   obscured: false,
                                   secondSuffixIconCallback: () {
-                                    Clipboard.getData('text/plain').then((value) {
+                                    Clipboard.getData('text/plain')
+                                        .then((value) {
                                       setState(() {
                                         codeController.text = value != null
                                             ? value.text ?? codeController.text
@@ -177,19 +180,10 @@ class _MainScreenState extends State<MainScreen> {
                               context.go(RouteNames.games);
                             },
                             child: Ink(
-                              width: double.infinity,
-                              height: 120,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 8),
-                              decoration: BoxDecoration(
-                                color: AppColors.primary,
-                                borderRadius: BorderRadius.circular(12),
-                                image: const DecorationImage(
-                                  image: AssetImage(
-                                    'assets/images/Frame 1000007448.png'
-                                  ),
-                                  fit: BoxFit.cover
-                                )
+                              child: Image.asset(
+                                'assets/images/Frame 1000007448.png',
+                                width: double.infinity,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
@@ -200,19 +194,20 @@ class _MainScreenState extends State<MainScreen> {
                               height: 102,
                               child: state is MainScreenPreview
                                   ? ListView.builder(
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2),
                                       scrollDirection: Axis.horizontal,
                                       shrinkWrap: true,
                                       itemCount: repository.storiesList.length,
-                                      itemBuilder: (ctx, ind) => GuidesSuggestion(
-                                            text:
-                                                repository.storiesList[ind].title,
+                                      itemBuilder: (ctx, ind) =>
+                                          GuidesSuggestion(
+                                            text: repository
+                                                .storiesList[ind].title,
                                             imageUrl: repository
                                                 .storiesList[ind].previewUrl,
                                             onTap: () {
-                                              context
-                                                  .go('${RouteNames.story}/$ind');
+                                              context.go(
+                                                  '${RouteNames.story}/$ind');
                                             },
                                             viewed: false,
                                           ))
@@ -256,24 +251,24 @@ class _MainScreenState extends State<MainScreen> {
                               height: 260,
                               child: state is MainScreenPreview
                                   ? ListView.builder(
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 2),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2),
                                       scrollDirection: Axis.horizontal,
                                       shrinkWrap: true,
                                       itemCount: repository.marketItems.length,
                                       itemBuilder: (ctx, ind) => MarketItem(
-                                            coinData:
-                                                repository.marketItems[ind].coins,
-                                            textDescription:
-                                                repository.marketItems[ind].name,
+                                            coinData: repository
+                                                .marketItems[ind].coins,
+                                            textDescription: repository
+                                                .marketItems[ind].name,
                                             imageUrl: repository
                                                 .marketItems[ind].imageUrl,
                                             onTap: () {
                                               context.push(
                                                   "/store/${repository.marketItems[ind].id}");
                                             },
-                                            isNew:
-                                                repository.marketItems[ind].isNew,
+                                            isNew: repository
+                                                .marketItems[ind].isNew,
                                             pizdulkaUrl: '',
                                           ))
                                   : Container(),
