@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_cubit.dart';
+import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/utils/utils.dart';
