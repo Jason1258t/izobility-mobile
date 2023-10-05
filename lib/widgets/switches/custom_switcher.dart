@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
@@ -27,7 +30,7 @@ class CustomSwitcher extends StatelessWidget {
               onTap(0);
             },
             child: Container(
-              width: (sizeOf.width - 60) / 2,
+              width: (sizeOf.width - 60 - 84) * 0.5,
               height: 46,
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -45,12 +48,28 @@ class CustomSwitcher extends StatelessWidget {
               ),
             ),
           ),
+          Material(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(1000),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(1000),
+              onTap: () {
+                context.push('${RouteNames.walletChooseCoin}/chain_game_transfer');
+              },
+              child: Ink(
+                  padding: const EdgeInsets.all(5),
+                  child: SvgPicture.asset(
+                    "assets/icons/transfer_arrows.svg",
+                    width: 24,
+                  )),
+            ),
+          ),
           InkWell(
             onTap: () {
               onTap(1);
             },
             child: Container(
-              width: (sizeOf.width - 60) / 2,
+              width: (sizeOf.width - 60 - 84) * 0.5,
               height: 46,
               alignment: Alignment.center,
               decoration: BoxDecoration(

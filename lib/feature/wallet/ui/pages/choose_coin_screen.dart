@@ -54,7 +54,7 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
                           child: ChooseCoinCard(
                             onTap: () {
                               if (widget.path != AppStrings.nullText) {
-                                context.push('/wallet/${widget.path}',
+                                context.pushReplacement('/wallet/${widget.path}',
                                     extra: res[index]);
                               } else {
                                 context.pop();

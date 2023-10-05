@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:meta/meta.dart';
 
 part 'coin_send_state.dart';
@@ -22,6 +23,15 @@ class CoinSendCubit extends Cubit<CoinSendState> {
       print('-' * 10);
       print(ex);
       emit(CoinSendFailure());
+    }
+  }
+
+  Future<void> changeTransferType() async {
+    final currentType = walletRepository.transferType;
+    if (currentType == TransferTypes.inGame) {
+      walletRepository.transferType = TransferTypes.onChain;
+    } else {
+      walletRepository.transferType = TransferTypes.inGame;
     }
   }
 }

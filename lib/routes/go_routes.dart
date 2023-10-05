@@ -34,6 +34,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.da
 import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_enter_seed.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_game-chain_transfer.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_view_seed.dart';
@@ -150,6 +151,11 @@ class CustomGoRoutes {
           path: RouteNames.storePromo,
           builder: (context, state) => const PromoScreen()),
       GoRoute(
+          path: RouteNames.walletChainGameTransfer,
+          builder: (context, state) =>  WalletGameChainTransferScreen(
+            coin: state.extra as TokenData
+          )),
+      GoRoute(
           path: RouteNames.storeProduct,
           builder: (context, state) => ProductScreen(
                 id: state.pathParameters['id'] ?? "0",
@@ -163,9 +169,6 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.walletCurrency,
           builder: (context, state) {
-            print((state.extra as TokenData).amount);
-            print('-' * 100);
-
             return CurrencyWalletScreen(
               token: state.extra as TokenData,
             );
@@ -178,15 +181,17 @@ class CustomGoRoutes {
           builder: (context, state) => const WalletAuthScreen()),
       GoRoute(
           path: RouteNames.walletInfoCurrency,
-          builder: (context, state) => InfoCurrencyWalletScreen(token: state.extra as TokenData,)),
+          builder: (context, state) => InfoCurrencyWalletScreen(
+                token: state.extra as TokenData,
+              )),
       GoRoute(
           path: RouteNames.walletSwap,
           builder: (context, state) => const SwapScreen()),
       GoRoute(
           path: RouteNames.walletSendCurrency,
           builder: (context, state) => SendCurrencyScreen(
-            coin: state.extra as TokenData,
-          )),
+                coin: state.extra as TokenData,
+              )),
       GoRoute(
           path: RouteNames.walletReplenish,
           builder: (context, state) => const WalletReplenishScreen()),

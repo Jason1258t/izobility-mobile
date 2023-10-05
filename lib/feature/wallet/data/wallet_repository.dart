@@ -17,11 +17,18 @@ class WalletRepository {
       {required this.apiService, required this.prefs, required this.apiCripto});
 
   bool obscured = false;
+
+  List<TokenData> coinsInGame = [];
+  List<TokenData> coinsInChain = [];
+
   int emeraldInGameBalance = 0;
   double emeraldInWalletBalance = 0;
+
   int walletPage = 1;
+  TransferTypes transferType = TransferTypes.inGame;
 
   HDWallet? walletModel;
+// ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
     final seedPhrase = await prefs.getSeedPhrase();
@@ -56,9 +63,6 @@ class WalletRepository {
 
     walletModel = HDWallet.createWithMnemonic(seedPhrase!);
   }
-
-  List<TokenData> coinsInGame = [];
-  List<TokenData> coinsInChain = [];
 
   void setObscured(bool f) {
     obscured = f;
