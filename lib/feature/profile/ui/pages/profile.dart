@@ -12,9 +12,11 @@ import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
+import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -34,9 +36,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocListener<ProfileLinksCubit, ProfileLinksState>(
       listener: (context, state) {
         if (state is ProfileLinksFail) {
-          
+          context.pop();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.errorSnackBar("Попробуйте позже"));
         } else if (state is ProfileLinksLoading) {
-
+          Dialogs.show(
+              context,
+              Center(
+                child: CircularProgressIndicator(),
+              ));
+        } else {
+          context.pop();
         }
       },
       child: HomeScaffold(
