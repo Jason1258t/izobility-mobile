@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             label: "Карты",
                             description: 'Мои банковские карты',
                             onTap: () {
-                              context.push(RouteNames.cards);
+                              context.push(RouteNames.develop);
                             },
                           )
                         ],
@@ -137,6 +137,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                       label: 'Данные аккаунта',
                       iconPath: 'assets/icons/profile.svg',
+                    ),
+                    ProfileActionTile(
+                      onTap: () {
+                        context.push(RouteNames.profileEdit);
+                      },
+                      label: 'Язык Приложения',
+                      iconPath: 'assets/icons/world.svg',
                     ),
                     const PorfileBlocLabel(
                       text: 'Социальные сети Emerald',

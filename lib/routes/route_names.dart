@@ -44,6 +44,7 @@ abstract class RouteNames {
   static const String profileInventory = '/profile/inventory';
   static const String profileSettings = '/profile/settings';
   static const String profileAbout = '/profile/about';
+  static const String profileLanguage = '/profile/lang';
 
   static const String notifications = '/notifications';
 
