@@ -22,6 +22,7 @@ import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile_language.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
@@ -144,6 +145,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.profileAbout,
           builder: (context, state) => const ProfileAppAboutScreen()),
+      GoRoute(
+          path: RouteNames.profileLanguage,
+          builder: (context, state) => const ProfileLanguageScreen()),
       GoRoute(
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),

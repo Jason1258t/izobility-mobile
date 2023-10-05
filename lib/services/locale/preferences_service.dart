@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:izobility_mobile/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,6 +19,8 @@ class PreferencesService {
   static const String _userKey = 'user';
 
   static const String _seedPhrase = 'seedPhrase';
+
+  static const String _language = 'language';
 
   static const String _wallet = 'wallet';
 
@@ -94,6 +97,19 @@ class PreferencesService {
 
     final seedPhrase = prefs.getString(_seedPhrase);
     return seedPhrase;
+  }
+
+  void setLanguage(String countryCode) async {
+    final prefs = await _prefs;
+
+    prefs.setString(_language, countryCode);
+  }
+
+  Future<String?> getLanguage() async {
+    final prefs = await _prefs;
+
+    final language = prefs.getString(_language);
+    return language;
   }
 
   Future logout() async => (await _prefs).clear();

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:izobility_mobile/bloc_injector.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
@@ -49,14 +50,26 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Locale _locale = const Locale('en');
 
   setLocale(Locale locale) {
+    final repos = RepositoryProvider.of<UserRepository>(context);
+
+    repos.setLanguage(locale.languageCode);
+
     setState(() {
       _locale = locale;
     });
   }
 
+  getLocal() async {
+    _locale = Locale(
+        await RepositoryProvider.of<UserRepository>(context).getLanguage());
+  }
+
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+
+    getLocal();
+
     super.initState();
   }
 
@@ -72,6 +85,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     if (state == AppLifecycleState.paused) {
       BlocProvider.of<AppCubit>(context).pauseApp();
+    } else if (state == AppLifecycleState.resumed) {
+      BlocProvider.of<AppCubit>(context).resumeApp();
     }
     super.didChangeAppLifecycleState(state);
   }
