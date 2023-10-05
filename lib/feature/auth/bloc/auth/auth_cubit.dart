@@ -60,7 +60,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthProcessState());
     try {
       await authRepository.login(loginData!);
-
       emit(AuthSuccessState());
     } catch (e) {
       emit(AuthFailState());
