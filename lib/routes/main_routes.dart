@@ -13,6 +13,7 @@ final mainRoutesNames = [
   RouteNames.profileEdit,
   RouteNames.profileInventory,
   RouteNames.profileSettings,
+  RouteNames.profileLanguage,
   RouteNames.profileAbout,
   RouteNames.notifications,
   RouteNames.story,

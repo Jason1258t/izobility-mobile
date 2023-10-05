@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/models/user_details.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
@@ -50,6 +52,14 @@ class UserRepository {
       userDetailsDataStream.add(LoadingStateEnum.fail);
       rethrow;
     }
+  }
+
+  void setLanguage(String countryCode){
+    preferences.setLanguage(countryCode);
+  }
+
+  Future<String> getLanguage() async{
+     return await preferences.getLanguage() ?? 'en';
   }
 
   Future<void> updateUserData({

@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         } else if (state is ProfileLinksLoading) {
           Dialogs.show(
               context,
-              Center(
+              const Center(
                 child: CircularProgressIndicator(),
               ));
         } else {
@@ -140,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     ProfileActionTile(
                       onTap: () {
-                        context.push(RouteNames.profileEdit);
+                        context.push(RouteNames.profileLanguage);
                       },
                       label: 'Язык Приложения',
                       iconPath: 'assets/icons/world.svg',
