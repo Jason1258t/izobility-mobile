@@ -98,15 +98,11 @@ class MarketItem extends StatelessWidget {
             Wrap(
               children: _generatePriceItem(coinData ?? []),
             ),
-            SizedBox(
-              width: 204,
-              height: 33,
-              child: Text(
-                textDescription,
-                maxLines: 2,
-                style: AppTypography.font12w400
-                    .copyWith(color: AppColors.textPrimary),
-              ),
+            Text(
+              textDescription,
+              maxLines: 2,
+              style: AppTypography.font12w400
+                  .copyWith(color: AppColors.textPrimary),
             )
           ],
         ),

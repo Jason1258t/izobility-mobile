@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
-import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -248,7 +245,7 @@ class _MainScreenState extends State<MainScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             child: SizedBox(
                               width: MediaQuery.sizeOf(context).width - 32,
-                              height: 260,
+                              height: (MediaQuery.of(context).size.width - 40) / 2 * 240 / 160 + 2,
                               child: state is MainScreenPreview
                                   ? ListView.builder(
                                       padding: const EdgeInsets.symmetric(
