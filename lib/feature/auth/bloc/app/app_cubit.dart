@@ -30,18 +30,23 @@ class AppCubit extends Cubit<AppState> {
       }
       if (event == AppStateEnum.auth) {
         mainRepository.getPreview();
-        final String? pin = await authRepository.getPin();
+
         walletRepository.loadEmeraldCoin();
         userRepository.loadUserDetailsInfo();
         storeRepository.getMarketItems();
 
-        if (pin == null || pin.length < 4) {
-          emit(CreatePinState());
-        } else {
-          emit(EnterPinState());
-        }
+        emitPinState();
       }
     });
+  }
+
+  emitPinState() async {
+    final String? pin = await authRepository.getPin();
+    if (pin == null || pin.length < 4) {
+      emit(CreatePinState());
+    } else {
+      emit(EnterPinState());
+    }
   }
 
   Future<void> createPin(String pin) async {
@@ -56,14 +61,17 @@ class AppCubit extends Cubit<AppState> {
   }
 
   Future authWithBiometric() async {
-   final bool auth = await authRepository.localAuthenticate();
-   if (auth) emit(AppAuthState());
+    final bool auth = await authRepository.localAuthenticate();
+    if (auth) emit(AppAuthState());
   }
 
   bool needRepeatPin = false;
 
   void pauseApp() async {
-    emit(EnterPinState());
+    if (state is! AppUnAuthState) {
+      emit(EnterPinState());
+    }
+    emitPinState();
   }
 
   void resumeApp() {
