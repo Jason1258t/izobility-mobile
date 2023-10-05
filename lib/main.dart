@@ -72,6 +72,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     if (state == AppLifecycleState.paused) {
       BlocProvider.of<AppCubit>(context).pauseApp();
+    } else if (state == AppLifecycleState.resumed) {
+      BlocProvider.of<AppCubit>(context).resumeApp();
     }
     super.didChangeAppLifecycleState(state);
   }

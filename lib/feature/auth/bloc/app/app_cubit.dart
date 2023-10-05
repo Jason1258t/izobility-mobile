@@ -65,18 +65,17 @@ class AppCubit extends Cubit<AppState> {
     if (auth) emit(AppAuthState());
   }
 
-  bool needRepeatPin = false;
+  DateTime? activeWas;
 
   void pauseApp() async {
-    if (state is! AppUnAuthState) {
-      emit(EnterPinState());
-    }
-    emitPinState();
+    activeWas = DateTime.now();
   }
 
   void resumeApp() {
-    if (needRepeatPin) {
-      emit(EnterPinState());
+    if (state is! AppUnAuthState &&
+        DateTime.now().difference(activeWas ?? DateTime.now()).inSeconds > 20) {
+      emitPinState();
     }
+    activeWas = null;
   }
 }
