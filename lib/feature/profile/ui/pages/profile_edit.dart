@@ -74,8 +74,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           context: context,
                           builder: ((context) => PopupChoose(
                               label: localize!.save_chages,
-                              description:
-                                  localize.loose_data,
+                              description: localize.loose_data,
                               onAccept: () async {
                                 if (_nameController.text == "" ||
                                     _surnameController.text == "") {
@@ -151,6 +150,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     final user = context.read<UserRepository>().user;
     final localize = AppLocalizations.of(context)!;
 
+    Map<int, String> gender = {0: localize.man, 1: localize.woman};
+
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(16).copyWith(bottom: 0),
@@ -201,21 +202,21 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16)),
-                          child: const Column(
+                          child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 ProfileGenderChooseCard(
                                   genderIndex: 0,
-                                  text: "Мужской",
+                                  text: localize.man,
                                 ),
                                 ProfileGenderChooseCard(
                                   genderIndex: 1,
-                                  text: "Женский",
+                                  text: localize.woman,
                                 ),
                                 ProfileGenderChooseCard(
                                   genderIndex: 2,
-                                  text: "Другой",
+                                  text: localize.another,
                                 )
                               ]),
                         );
@@ -232,14 +233,14 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppStrings.gender[user.details?.gender] == null
+                      gender[user.details?.gender] == null
                           ? Text(
-                              "Пол",
+                              localize.sex,
                               style: AppTypography.font16w400
                                   .copyWith(color: AppColors.hintText),
                             )
                           : Text(
-                              AppStrings.gender[user.details?.gender]!,
+                              gender[user.details?.gender]!,
                               style: AppTypography.font16w400
                                   .copyWith(color: Colors.black),
                             ),
@@ -259,8 +260,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             CustomTextField.withOneIcon(
               readOnly: true,
               backgroundColor: Colors.white,
-              labelText: "Дата рождения",
-              hintText: "Дата рождения",
+              labelText: localize.birthday,
+              hintText: localize.birthday,
               controller: _birthdayController,
               width: double.infinity,
               obscured: false,
@@ -288,8 +289,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             CustomTextField(
                 readOnly: true,
                 backgroundColor: Colors.white,
-                labelText: "Телефон",
-                hintText: "Телефон",
+                labelText: localize.telephone,
+                hintText: localize.telephone,
                 controller: _phoneController,
                 width: double.infinity),
             const SizedBox(

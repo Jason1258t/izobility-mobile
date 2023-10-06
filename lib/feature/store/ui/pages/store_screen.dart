@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -23,9 +24,11 @@ class _StoreScreenState extends State<StoreScreen> {
     final sizeOf = MediaQuery.sizeOf(context);
     final storyRepository = RepositoryProvider.of<StoreRepository>(context);
 
+    final localize = AppLocalizations.of(context)!;
+
     return HomeScaffold(
       appBar: CustomAppBar(
-        text: 'Магазин',
+        text: localize.shop,
         context: context,
         isBack: false,
       ),
@@ -43,7 +46,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       ContainerWithText(
-                        title: 'Промокоды',
+                        title: localize.promo_codes,
                         path: 'category',
                         width: (sizeOf.width - 50) / 2,
                         onTap: () {
@@ -56,7 +59,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         width: 14,
                       ),
                       ContainerWithText(
-                        title: 'Подарки',
+                        title: localize.gifts,
                         path: 'gift',
                         width: (sizeOf.width - 50) / 2,
                         onTap: () {
@@ -71,7 +74,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     height: 10,
                   ),
                   ContainerWithText(
-                    title: 'Товары и NFT',
+                    title: localize.product_and_nft,
                     path: 'card',
                     width: sizeOf.width - 36,
                     onTap: () {
@@ -154,7 +157,8 @@ class ContainerWithText extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap: onTap,
-      child: Ink(
+      child: Container(
+        clipBehavior: Clip.hardEdge,
         width: width,
         height: 55,
         decoration: BoxDecoration(

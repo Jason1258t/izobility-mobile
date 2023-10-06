@@ -23,5 +23,5 @@ class AppStrings {
 
   static const String nullText = 'null';
 
-  static const Map<int, String> gender = {0: 'Мужчина', 1: "Женищина"};
+  // static const Map<int, String> gender = {0: 'Мужчина', 1: "Женищина"};
 }
