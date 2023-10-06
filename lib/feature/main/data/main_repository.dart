@@ -52,7 +52,6 @@ class MainScreenRepository {
       loadingState.add(LoadingStateEnum.success);
     } catch (e) {
       loadingState.add(LoadingStateEnum.fail);
-      rethrow;
     }
   }
 

@@ -10,24 +10,26 @@ class TextWithCheckBox extends StatelessWidget {
       required this.title});
 
   final bool value;
-  final Function(bool?) onTap;
+  final Function() onTap;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return InkWell(
+      onTap: onTap,
+      child: Row(
       children: [
-        Checkbox(
-          shape: const CircleBorder(),
-          value: value,
-          onChanged: onTap,
-        ),
         Text(
           title,
           style:
               AppTypography.font24w700.copyWith(color: AppColors.textPrimary),
-        )
+        ),
+        Container(
+          height: double.infinity,
+          width: 1,
+          color: Colors.black12,
+        ),
       ],
-    );
+    ));
   }
 }

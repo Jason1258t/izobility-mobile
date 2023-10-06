@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
+import 'package:izobility_mobile/localization/app_localizations_en.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 
@@ -25,6 +27,8 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
+    final locolize = AppLocalizations.of(context)!;
+
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(top: 8),
@@ -45,7 +49,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
               router.go(RouteNames.main);
             },
-            name: 'Главная',
+            name: locolize.main,
           ),
           NavigatorBarItem(
             asset: 'assets/icons/wallet.svg',
@@ -60,7 +64,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
               router.go('${RouteNames.wallet}/${isAuth.toString()}');
             },
-            name: 'Кошелек',
+            name: locolize.wallet,
           ),
           NavigatorBarItem(
             asset: 'assets/icons/gamepad.svg',
@@ -70,7 +74,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
               router.go(RouteNames.games);
             },
-            name: 'Игротека',
+            name: locolize.gaming,
           ),
           NavigatorBarItem(
             asset: 'assets/icons/card.svg',
@@ -90,7 +94,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
               router.go(RouteNames.profile);
             },
-            name: 'Профиль',
+            name: locolize.profile,
           ),
         ],
       ),

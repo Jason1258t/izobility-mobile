@@ -39,7 +39,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
             children: [
               TextWithCheckBox(
                 value: locale.languageCode == 'ru',
-                onTap: (bool? b) {
+                onTap: () {
                   MyApp.setLocale(context, const Locale('ru'));
                   setState(() {});
                 },
@@ -47,7 +47,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
               ),
               TextWithCheckBox(
                 value: locale.languageCode == 'en',
-                onTap: (bool? b) {
+                onTap: () {
                   MyApp.setLocale(context, const Locale('en'));
                   setState(() {});
                 },
@@ -55,7 +55,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
               ),
               TextWithCheckBox(
                 value: locale.languageCode == 'es',
-                onTap: (bool? b) {
+                onTap: () {
                   MyApp.setLocale(context, const Locale('es'));
                   setState(() {});
                 },

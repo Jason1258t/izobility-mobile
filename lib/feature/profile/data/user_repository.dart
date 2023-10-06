@@ -50,7 +50,6 @@ class UserRepository {
       print(ex);
 
       userDetailsDataStream.add(LoadingStateEnum.fail);
-      rethrow;
     }
   }
 
