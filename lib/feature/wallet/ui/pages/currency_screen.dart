@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
@@ -30,6 +29,8 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
     final sizeOf = MediaQuery.sizeOf(context);
 
     final walletRepository = context.read<WalletRepository>();
+
+    final localize = AppLocalizations.of(context)!;
 
     return Container(
       color: AppColors.purple200,
@@ -106,28 +107,28 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           WalletAction(
-                            title: 'Отправить',
+                            title: localize.send,
                             icon: 'assets/icons/send.svg',
                             onTap: () {
                               context.push(RouteNames.walletSendCurrency, extra: widget.token);
                             },
                           ),
                           WalletAction(
-                            title: 'Пополнить',
+                            title: localize.replenish,
                             icon: 'assets/icons/get.svg',
                             onTap: () {
                               context.push(RouteNames.walletReplenish);
                             },
                           ),
                           WalletAction(
-                            title: 'Купить',
+                            title: localize.buy,
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
                               context.push(RouteNames.walletBuyCurrency);
                             },
                           ),
                           WalletAction(
-                            title: 'Своп ',
+                            title: localize.swap,
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);

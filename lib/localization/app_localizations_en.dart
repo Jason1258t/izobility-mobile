@@ -230,8 +230,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get apllication_languahe => 'Application language';
 
   @override
-  String get ar_scanner => 'Ar Scanner';
+  String get ar_scanner => 'Ar \n Scanner';
 
   @override
-  String get qr_scanner => 'QR scanner';
+  String get qr_scanner => 'QR \n scanner';
+
+  @override
+  String get ar_map => 'Ar \n Map';
+
+  @override
+  String get switch_language => 'Switch language';
+
+  @override
+  String get activate => 'Activate';
+
+  @override
+  String get more => 'More';
+
+  @override
+  String get new_ => 'New';
+
+  @override
+  String get contract => 'Contract';
 }

@@ -74,6 +74,12 @@
 	 "surname": "Apellido",
 	 "develop": "¡Esta funcionalidad está en desarrollo! ¡Nuestros desarrolladores, diseñadores y gerentes trabajan 24/7 para implementar nuevas chips!",
 	 "apllication_languahe": "Lenguaje de aplicación",
-	 "ar_scanner": "Escáner",
-	 "qr_scanner": "Escáner QR"
+	 "ar_scanner": "Ar \n Escáner",
+	 "qr_scanner": "QR \n Escáner",
+	 "ar_map": "Ar \n Mapa",
+     "switch_language": "Cambiar de idioma",
+     "activate": "Activar",
+     "more": "Más",
+     "new_": "Nuevo",
+     "contract": "Contrato"
 }

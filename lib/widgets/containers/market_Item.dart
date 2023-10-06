@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/widgets/containers/purchase_condition.dart';
 
 import '../../models/api/coin_data.dart';
@@ -46,6 +47,8 @@ class MarketItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -85,7 +88,7 @@ class MarketItem extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8)),
                           ),
                           child: Text(
-                            'НОВОЕ',
+                            localize.new_,
                             style: AppTypography.font12w400,
                           ),
                         )

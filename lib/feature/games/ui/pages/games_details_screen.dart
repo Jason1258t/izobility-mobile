@@ -5,6 +5,7 @@ import 'package:izobility_mobile/feature/games/bloc/games/games_cubit.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_details_stats_card.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_screenshot_card.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 
 import 'package:izobility_mobile/utils/utils.dart';
@@ -59,7 +60,11 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
 
   CustomScrollView buildGamesDetailsContent() {
     final size = MediaQuery.sizeOf(context);
+
     final game = context.read<GamesRepository>().lastLoadedGameDetials;
+
+    final localize = AppLocalizations.of(context)!;
+
     return CustomScrollView(
       physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
       slivers: [
@@ -127,12 +132,12 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
               children: [
                 GamesDetialsStatsCard(
                     label: "${game.grade}",
-                    description: "${game.gradesQuantity} оценок"),
+                    description: "${game.gradesQuantity} ${localize.grades}"),
                 GamesDetialsStatsCard(
                     label: "${game.downloadsQuantity}",
-                    description: "Скачиваний"),
+                    description: localize.download_quantity),
                 GamesDetialsStatsCard(
-                    label: "${game.weight} MB", description: "Размер")
+                    label: "${game.weight} MB", description: localize.size)
               ],
             ),
           ),
@@ -150,7 +155,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
               onTap: () {
                 context.push(RouteNames.gamesDetailsLoading);
               },
-              text: "Скачать",
+              text: localize.download,
               radius: 100,
               height: 40,
             ),
@@ -201,7 +206,7 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Описание",
+                  localize.description,
                   style: AppTypography.font18w700.copyWith(color: Colors.black),
                 ),
                 const SizedBox(

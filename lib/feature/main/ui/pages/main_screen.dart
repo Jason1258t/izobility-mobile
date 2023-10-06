@@ -7,6 +7,7 @@ import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
@@ -33,6 +34,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final localize = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -87,19 +90,19 @@ class _MainScreenState extends State<MainScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               UtilityContainer(
-                                  name: 'QR\nСканер',
+                                  name: localize.qr_scanner,
                                   assetName: 'assets/icons/qrscaner.svg',
                                   callback: () {
                                     context.push(RouteNames.develop);
                                   }),
                               UtilityContainer(
-                                  name: 'AR\nСканер',
+                                  name: localize.ar_scanner,
                                   assetName: 'assets/icons/aritem.svg',
                                   callback: () {
                                     context.push(RouteNames.develop);
                                   }),
                               UtilityContainer(
-                                  name: 'AR\nКарта',
+                                  name: localize.ar_map,
                                   assetName: 'assets/icons/armap.svg',
                                   callback: () {
                                     context.push(RouteNames.develop);
@@ -150,7 +153,7 @@ class _MainScreenState extends State<MainScreen> {
                                   controller: codeController,
                                   width: double.infinity,
                                   backgroundColor: Colors.white,
-                                  hintText: 'Ваш промо-код',
+                                  hintText: localize.your_promo,
                                   onChange: (v) {
                                     setState(() {});
                                   },
@@ -158,7 +161,7 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           if (codeController.text.isNotEmpty) ...[
                             CustomButton(
-                                text: 'Активировать',
+                                text: localize.activate,
                                 onTap: () {
                                   BlocProvider.of<PromoCodeCubit>(context)
                                       .activateCode(codeController.text.trim());
@@ -216,7 +219,7 @@ class _MainScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                'Магазин',
+                                localize.shop,
                                 style: AppTypography.font24w700
                                     .copyWith(color: Colors.black),
                               ),

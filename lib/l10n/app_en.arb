@@ -74,6 +74,12 @@
   "surname": "Surname",
   "develop": "This functionality is under development! Our developers, designers and managers work 24/7 to roll out new chips!",
   "apllication_languahe": "Application language",
-  "ar_scanner": "Ar Scanner",
-  "qr_scanner": "QR scanner"
+  "ar_scanner": "Ar \n Scanner",
+  "qr_scanner": "QR \n scanner",
+  "ar_map": "Ar \n Map",
+  "switch_language": "Switch language",
+  "activate": "Activate",
+  "more": "More",
+  "new_": "New",
+  "contract": "Contract"
 }

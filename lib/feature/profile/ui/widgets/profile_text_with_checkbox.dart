@@ -16,20 +16,18 @@ class TextWithCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
-      child: Row(
-      children: [
-        Text(
-          title,
-          style:
-              AppTypography.font24w700.copyWith(color: AppColors.textPrimary),
-        ),
-        Container(
-          height: double.infinity,
-          width: 1,
-          color: Colors.black12,
-        ),
-      ],
-    ));
+        onTap: onTap,
+        child: Row(
+          children: [
+            Checkbox.adaptive(value: value, onChanged: (v) {
+              onTap();
+            }),
+            Text(
+              title,
+              style: AppTypography.font24w700
+                  .copyWith(color: AppColors.textPrimary),
+            ),
+          ],
+        ));
   }
 }

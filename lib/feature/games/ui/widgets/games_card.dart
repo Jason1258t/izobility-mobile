@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/game.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -18,6 +19,7 @@ class GamesCardState extends State<GamesCard> {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
 
+    final localize = AppLocalizations.of(context)!;
     return InkWell(
       onTap: () {
         context.push('${RouteNames.games}/${widget.game.gameId}');
@@ -85,7 +87,7 @@ class GamesCardState extends State<GamesCard> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 4),
                         child: Text(
-                          'Скачать',
+                          localize.download,
                           style:
                               AppTypography.font12w400.copyWith(color: Colors.black),
                         ),

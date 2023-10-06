@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_social_media_link.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
-import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
-import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
@@ -30,6 +28,8 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
     final sizeOf = MediaQuery.sizeOf(context);
 
     final walletRepository = context.read<WalletRepository>();
+
+    final localize = AppLocalizations.of(context)!;
 
     return Container(
       color: AppColors.purple200,
@@ -108,7 +108,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Описание',
+                        localize.description,
                         style: AppTypography.font16w400
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),
@@ -131,7 +131,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Контракты',
+                        localize.contract,
                         style: AppTypography.font16w400
                             .copyWith(color: AppColors.blackGraySecondary),
                       ),

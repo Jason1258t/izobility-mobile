@@ -230,8 +230,26 @@ class AppLocalizationsRu extends AppLocalizations {
   String get apllication_languahe => 'Язык приложения';
 
   @override
-  String get ar_scanner => 'Ar сканнер';
+  String get ar_scanner => 'Ar \n сканнер';
 
   @override
-  String get qr_scanner => 'Qr сканер';
+  String get qr_scanner => 'Qr \n сканер';
+
+  @override
+  String get ar_map => 'Ar \n Карта';
+
+  @override
+  String get switch_language => 'Смена языка';
+
+  @override
+  String get activate => 'Активировать';
+
+  @override
+  String get more => 'Еще';
+
+  @override
+  String get new_ => 'Новый';
+
+  @override
+  String get contract => 'контракт';
 }

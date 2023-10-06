@@ -84,7 +84,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
 
               router.go(RouteNames.basket);
             },
-            name: 'Магазин',
+            name: locolize.shop,
           ),
           NavigatorBarItem(
             asset: 'assets/icons/user.svg',

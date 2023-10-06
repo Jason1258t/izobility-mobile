@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
@@ -43,6 +44,8 @@ class _WalletScreenState extends State<WalletScreen>
     final sizeOf = MediaQuery.sizeOf(context);
 
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+
+    final localize = AppLocalizations.of(context)!;
 
     return tap
         ? MultiSliver(
@@ -114,7 +117,7 @@ class _WalletScreenState extends State<WalletScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           WalletAction(
-                            title: 'Отправить',
+                            title: localize.send,
                             icon: 'assets/icons/send.svg',
                             onTap: () {
                               context.push(
@@ -122,7 +125,7 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: 'Пополнить',
+                            title: localize.replenish,
                             icon: 'assets/icons/get.svg',
                             onTap: () {
                               context.push(
@@ -130,7 +133,7 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: 'Купить',
+                            title: localize.buy,
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
                               // context
@@ -138,7 +141,7 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: 'Своп',
+                            title: localize.swap,
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
                               // context.push(RouteNames.walletSwap);
@@ -188,9 +191,9 @@ class _WalletScreenState extends State<WalletScreen>
                         });
                       },
                       controller: _tabController,
-                      tabs: const [
+                      tabs: [
                         Tab(
-                          text: 'Токены',
+                          text: localize.tokens,
                         ),
                         Tab(text: 'NFT'),
                       ],
@@ -302,7 +305,7 @@ class _WalletScreenState extends State<WalletScreen>
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           WalletAction(
-                            title: 'Отправить',
+                            title: localize.send,
                             icon: 'assets/icons/send.svg',
                             onTap: () {
                               context.push(
@@ -310,7 +313,7 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: 'Пополнить',
+                            title: localize.replenish,
                             icon: 'assets/icons/get.svg',
                             onTap: () {
                               // context.push(
@@ -318,7 +321,7 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: 'Купить',
+                            title: localize.buy,
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
                               // print('~~~~~~~~~~~~~~~~~');
@@ -329,7 +332,7 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: 'Своп',
+                            title: localize.swap,
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
@@ -379,9 +382,9 @@ class _WalletScreenState extends State<WalletScreen>
                         });
                       },
                       controller: _tabController,
-                      tabs: const [
+                      tabs: [
                         Tab(
-                          text: 'Токены',
+                          text: localize.tokens,
                         ),
                         Tab(text: 'NFT'),
                       ],
@@ -446,6 +449,8 @@ class _WalletScreenState extends State<WalletScreen>
 
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       color: AppColors.purple200,
       child: SafeArea(
@@ -458,7 +463,7 @@ class _WalletScreenState extends State<WalletScreen>
               CustomSliverAppBar(
                 height: 90,
                 isBack: false,
-                title: 'Кошелек',
+                title: localize.wallet,
                 color: AppColors.purple200,
                 isSetting: true,
                 isInfo: true,

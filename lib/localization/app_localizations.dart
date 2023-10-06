@@ -548,14 +548,50 @@ abstract class AppLocalizations {
   /// No description provided for @ar_scanner.
   ///
   /// In en, this message translates to:
-  /// **'Ar Scanner'**
+  /// **'Ar \n Scanner'**
   String get ar_scanner;
 
   /// No description provided for @qr_scanner.
   ///
   /// In en, this message translates to:
-  /// **'QR scanner'**
+  /// **'QR \n scanner'**
   String get qr_scanner;
+
+  /// No description provided for @ar_map.
+  ///
+  /// In en, this message translates to:
+  /// **'Ar \n Map'**
+  String get ar_map;
+
+  /// No description provided for @switch_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch language'**
+  String get switch_language;
+
+  /// No description provided for @activate.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate'**
+  String get activate;
+
+  /// No description provided for @more.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get more;
+
+  /// No description provided for @new_.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get new_;
+
+  /// No description provided for @contract.
+  ///
+  /// In en, this message translates to:
+  /// **'Contract'**
+  String get contract;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

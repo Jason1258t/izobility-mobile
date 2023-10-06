@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_card.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/game.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -14,6 +15,8 @@ class GamesScreen extends StatefulWidget {
 class _GamesScreenState extends State<GamesScreen> {
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       color: AppColors.purpleBcg,
       child: SafeArea(
@@ -29,7 +32,7 @@ class _GamesScreenState extends State<GamesScreen> {
                 floating: false,
                 centerTitle: true,
                 title: Text(
-                  "Игротека",
+                  localize.gaming,
                   style: AppTypography.font16w700.copyWith(color: Colors.black),
                 ),
               ),
