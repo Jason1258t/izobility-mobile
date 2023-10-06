@@ -84,7 +84,7 @@ class AuthRepository {
           confirmCode: data.password!, userId: userId.toString());
     }
 
-    _auth(apiService.auth.login(email: data.email, password: data.password!));
+    await _auth(apiService.auth.login(email: data.email, password: data.password!));
   }
 
   Future checkLogin() async {
