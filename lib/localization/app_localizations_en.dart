@@ -252,4 +252,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contract => 'Contract';
+
+  @override
+  String get cards => 'Cards';
 }

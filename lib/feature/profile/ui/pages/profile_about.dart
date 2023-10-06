@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -16,13 +17,15 @@ class ProfileAppAboutScreen extends StatefulWidget {
 class _ProfileAppAboutScreenState extends State<ProfileAppAboutScreen> {
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       color: Colors.white,
       child: Scaffold(
           backgroundColor: AppColors.purpleBcg,
           appBar: CustomAppBar(
             context: context,
-            text: 'О приложении',
+            text: localize.about_app,
             isBack: true,
             onTap: () {
               context.pop();

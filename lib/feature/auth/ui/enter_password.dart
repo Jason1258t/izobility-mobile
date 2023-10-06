@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
@@ -12,7 +9,6 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../utils/ui/animations.dart';
 import '../../../utils/ui/dialogs.dart';
@@ -82,6 +78,11 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                       const Center(
                         child: AppAnimations.circularProgressIndicator,
                       ));
+                } else if (state is AuthFailState) {
+                  setState(() {
+                    filedError = 'Не правильно введен код';
+                  });
+                  Dialogs.hide(context);
                 } else {
                   Dialogs.hide(context);
                 }

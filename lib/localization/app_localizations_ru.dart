@@ -252,4 +252,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get contract => 'контракт';
+
+  @override
+  String get cards => 'Карты';
 }

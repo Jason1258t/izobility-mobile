@@ -592,6 +592,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contract'**
   String get contract;
+
+  /// No description provided for @cards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get cards;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

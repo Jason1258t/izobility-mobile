@@ -1,12 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -58,6 +56,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Container(
@@ -73,9 +73,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                       showDialog(
                           context: context,
                           builder: ((context) => PopupChoose(
-                              label: "Сохранить изменения?",
+                              label: localize!.save_chages,
                               description:
-                                  "Иначе вы потеряете введенные вами изменения",
+                                  localize.loose_data,
                               onAccept: () async {
                                 if (_nameController.text == "" ||
                                     _surnameController.text == "") {
@@ -120,7 +120,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 )
               ],
               context: context,
-              text: "Редактирование профиля",
+              text: localize.profile_code,
               isBack: true,
               onTap: () {
                 context.pop();
@@ -136,7 +136,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                   return buildUserDetialsInfo();
                 } else {
                   return const Center(
-                    child: Text('Sorry something wetn wrong'),
+                    child: Text('Sorry something went wrong'),
                   );
                 }
               },
@@ -149,6 +149,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   Widget buildUserDetialsInfo() {
     final user = context.read<UserRepository>().user;
+    final localize = AppLocalizations.of(context)!;
 
     return SingleChildScrollView(
       child: Container(
@@ -158,8 +159,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
           children: [
             CustomTextField(
                 backgroundColor: Colors.white,
-                labelText: "Имя",
-                hintText: user.details?.name ?? "Имя",
+                labelText: localize.name,
+                hintText: user.details?.name ?? localize.name,
                 controller: _nameController,
                 width: double.infinity),
             const SizedBox(
@@ -167,8 +168,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             ),
             CustomTextField(
                 backgroundColor: Colors.white,
-                labelText: "Фамилия",
-                hintText: "Фамилия",
+                labelText: localize.surname,
+                hintText: localize.surname,
                 controller: _surnameController,
                 width: double.infinity),
             const SizedBox(
@@ -176,7 +177,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             ),
             CustomTextField(
                 backgroundColor: Colors.white,
-                labelText: "Почта",
+                labelText: 'email',
                 hintText: "Почта",
                 controller: _emailController,
                 width: double.infinity),

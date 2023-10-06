@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
-import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_square.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -33,6 +33,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return BlocListener<ProfileLinksCubit, ProfileLinksState>(
       listener: (context, state) {
         if (state is ProfileLinksFail) {
@@ -53,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: Colors.white,
           appBar: CustomAppBar(
             context: context,
-            text: "Профиль",
+            text: localize.profile,
             isBack: false,
           ),
           body: SingleChildScrollView(
@@ -90,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         runSpacing: 10,
                         children: [
                           ProfileActionContainer(
-                            label: "Реферальная программа",
+                            label: localize.abstract_programm,
                             description: "Алмазный статус",
                             onTap: () {
                               context.push(RouteNames.develop);
@@ -104,14 +106,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                           ),
                           ProfileActionContainer(
-                            label: "Инвентарь",
+                            label: localize.inventory,
                             description: '2056 предметов',
                             onTap: () {
                               context.push(RouteNames.develop);
                             },
                           ),
                           ProfileActionContainer(
-                            label: "Карты",
+                            label: localize.cards,
                             description: 'Мои банковские карты',
                             onTap: () {
                               context.push(RouteNames.develop);
@@ -128,25 +130,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const PorfileBlocLabel(
-                      text: 'Аккаунт',
+                    PorfileBlocLabel(
+                      text: localize.account,
                     ),
                     ProfileActionTile(
                       onTap: () {
                         context.push(RouteNames.profileEdit);
                       },
-                      label: 'Данные аккаунта',
+                      label: localize.account_data,
                       iconPath: 'assets/icons/profile.svg',
                     ),
                     ProfileActionTile(
                       onTap: () {
                         context.push(RouteNames.profileLanguage);
                       },
-                      label: 'Язык Приложения',
+                      label: localize.switch_language,
                       iconPath: 'assets/icons/world.svg',
                     ),
-                    const PorfileBlocLabel(
-                      text: 'Социальные сети Emerald',
+                    PorfileBlocLabel(
+                      text: localize.social_net_em,
                     ),
                     ProfileActionTile(
                       onTap: () {
@@ -167,19 +169,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       label: 'Telegram',
                       iconPath: 'assets/icons/tg.svg',
                     ),
-                    const PorfileBlocLabel(
-                      text: 'Общие',
+                    PorfileBlocLabel(
+                      text: localize.general,
                     ),
                     ProfileActionTile(
                       onTap: () {
                         context.push(RouteNames.profileAbout);
                       },
-                      label: 'О приложении',
+                      label: localize.about_app,
                       iconPath: 'assets/icons/question.svg',
                     ),
                     ProfileActionTile(
                       onTap: () {},
-                      label: 'Политика конфиденциальности',
+                      label: localize.privacy_policy,
                       iconPath: 'assets/icons/safe.svg',
                     ),
                     ProfileActionTile(
@@ -187,7 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         showDialog(
                             context: context,
                             builder: (context) => PopupChoose(
-                                  label: "Вы точно хотите выйти?",
+                                  label: localize.confirm_logout,
                                   onAccept: () {
                                     context.read<ProfileCubit>().logout();
                                     context.read<AuthCubit>().checkLogin();
@@ -197,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                 ));
                       },
-                      label: 'Выйти',
+                      label: localize.logout,
                       iconPath: 'assets/icons/logout.svg',
                     ),
                   ],

@@ -252,4 +252,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get contract => 'Contrato';
+
+  @override
+  String get cards => 'tarjetas';
 }

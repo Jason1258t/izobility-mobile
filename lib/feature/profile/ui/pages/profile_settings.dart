@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_aspect.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_switch_card.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
@@ -16,6 +17,7 @@ class ProfileSettingsScreen extends StatefulWidget {
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   @override
   Widget build(BuildContext context) {
+
     return HomeScaffold(
         appBar: CustomAppBar(
           context: context,
