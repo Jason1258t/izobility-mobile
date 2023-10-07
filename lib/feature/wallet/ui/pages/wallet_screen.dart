@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -144,7 +145,9 @@ class _WalletScreenState extends State<WalletScreen>
                             title: localize.swap,
                             icon: 'assets/icons/swap.svg',
                             onTap: () {
-                              // context.push(RouteNames.walletSwap);
+                              context
+                                  .read<UserRepository>()
+                                  .validateUserPhone();
                             },
                           ),
                         ],

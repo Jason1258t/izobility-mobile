@@ -22,6 +22,9 @@ class ApiEndpoints {
 
   static const String userUpdateGender = '/user/update-gender';
 
+  static const String userValidatePhone = '/user/update-phone';
+  static const String userValiddatePhoneCode = '/user/update-phone-confirm';
+
   static const String mediaFiles = '/media';
 
   static const String newsList = '/news/list';

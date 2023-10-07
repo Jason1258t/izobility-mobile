@@ -34,9 +34,7 @@ class User with ApiHandler {
         "fam": surname.toString(),
         "name": name.toString(),
         "otch": "",
-      }); 
-
-
+      });
     }
 
     final responseUpdateBirthDay = await post(ApiEndpoints.userUpdateBirthday,
@@ -44,5 +42,15 @@ class User with ApiHandler {
 
     final responseUpdateGender =
         await post(ApiEndpoints.userUpdateGender, data: {"gender": gender});
+  }
+
+  Future<void> validateUserPhone(int userId) async {
+    await post(ApiEndpoints.confirmRegister, data: {
+      'phone': "9177044054",
+      'phone_country': "+7",
+      'token': currentToken.accessToken,
+      "id": userId,
+      'site_id': siteId
+    });
   }
 }

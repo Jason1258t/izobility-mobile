@@ -53,12 +53,12 @@ class UserRepository {
     }
   }
 
-  void setLanguage(String countryCode){
+  void setLanguage(String countryCode) {
     preferences.setLanguage(countryCode);
   }
 
-  Future<String> getLanguage() async{
-     return await preferences.getLanguage() ?? 'en';
+  Future<String> getLanguage() async {
+    return await preferences.getLanguage() ?? 'en';
   }
 
   Future<void> updateUserData({
@@ -69,6 +69,9 @@ class UserRepository {
   }) async {
     await apiService.user.updateUserData(
         name: name, surname: surname, gender: gender, birthday: birthday);
+  }
 
+  Future<void> validateUserPhone() async {
+    await apiService.user.validateUserPhone(int.parse(user.details!.id!));
   }
 }

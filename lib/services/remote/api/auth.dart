@@ -50,4 +50,5 @@ class Auth with ApiHandler {
 
     return res;
   }
+
 }
