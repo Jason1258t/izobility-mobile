@@ -19,10 +19,21 @@ class Wallet with ApiHandler {
     return await get(ApiEndpoints.wallet);
   }
 
-  Future<void> transferCoinToOnChain(int coinId, double amount) async {
-    await post(ApiEndpoints.walletTransferEmeraldToOnChain, data: {
+  Future<void> swapCoinInGameToOnChain(
+      int coinId, double amount, HDWallet wallet) async {
+    await post(ApiEndpoints.walletSwapInGameToOnChain, data: {
       'moneta_id': coinId,
-      'amount': amount
+      'amount': amount,
+      'wallet': wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain),
+    });
+  }
+
+  Future<void> swapCoinOnChainToInGame(
+      int coinId, double amount, HDWallet wallet) async {
+    await post(ApiEndpoints.walletSwapOnChainToInGame, data: {
+      'moneta_id': coinId,
+      'amount': amount,
+      'wallet': wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain)
     });
   }
 }

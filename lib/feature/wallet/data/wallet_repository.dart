@@ -94,17 +94,16 @@ class WalletRepository {
     await apiCripto.sendEmeraldTo(walletModel!, address, amount);
   }
 
-  Future<void> sendCoinInGameTo() async {
-    throw UnimplementedError();
-    // await apiService.wallet.sendCoinInGameTo(address, amount);
+  Future<void> sendCoinInGame() async {
+    // await apiCripto.sendEmeraldTo(walletModel!, address, amount);
   }
 
-  Future<void> transferCoinToOnChain(int coinId, double amount) async {
-    await apiService.wallet.transferCoinToOnChain(coinId, amount);
+  Future<void> swapCoinInGameToOnChain(int coinId, double amount) async {
+    await apiService.wallet.swapCoinInGameToOnChain(coinId, amount, walletModel!);
   }
 
-  Future<void> transferCoinToInGame() {
-    throw UnimplementedError();
+  Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
+    await apiService.wallet.swapCoinOnChainToInGame(coinId, amount, walletModel!);
   }
 
   void loadEmeraldCoin() async {
@@ -129,7 +128,7 @@ class WalletRepository {
     coinsInGame.clear();
     coinsInChain.clear();
 
-    coinsInChain.add(TokenData(
+    coinsInGame.add(TokenData(
         amount: obscured
             ? "****"
             : walletPage == 0

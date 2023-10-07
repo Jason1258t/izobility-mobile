@@ -32,7 +32,7 @@ class ApiEndpoints {
   static const String productsList = '/product/list';
   static const String productItemInfo = '/product/view/';
 
-  static const String walletTransferEmeraldToOnChain = "/wallet/transfer";
-  static const String walletTransferEmeraldToInGame = '/wallet/return';
+  static const String walletSwapInGameToOnChain = "/wallet/transfer";
+  static const String walletSwapOnChainToInGame = '/wallet/return';
   static const String walletTokenList = '/wallet/tokens-balance';
 }

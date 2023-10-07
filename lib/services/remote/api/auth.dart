@@ -16,7 +16,7 @@ class Auth with ApiHandler {
       "phone_country": "+7",
       "email": email,
       "promo": promo ?? "",
-      "site_id": 0
+      "site_id": siteId
     });
 
     return res;
@@ -37,7 +37,7 @@ class Auth with ApiHandler {
       "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
       "email": email,
       "password": password,
-      "site_id": 0
+      "site_id": siteId
     });
 
     refreshToken(response.data['jwt']);

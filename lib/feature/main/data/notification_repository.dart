@@ -1,4 +1,3 @@
-import 'package:izobility_mobile/models/notifications/notification_model.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
@@ -26,15 +25,6 @@ class NotificationsRepository {
   Future<dynamic> loadNotificationList() async {
     // final rawNotifications = await apiService.notifications.loadNotifications();
 
-    rawNotificationList = notificationResponse;
+    // rawNotificationList = notificationResponse;
   }
 }
-
-final notificationResponse = [
-  NotificationModel(
-      type: NotificationTransactionTypeEnum.none,
-      time: DateTime.now(),
-      name: "EMERALD",
-      description:
-          "Мы рады приветствовать вас в нашем замечатльном приложении Emerald! Желаем весело провести время здесь, удачи!"),
-];
