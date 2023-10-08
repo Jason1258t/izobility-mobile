@@ -38,8 +38,14 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     _nameController.text = userRepository.user.details?.name ?? "";
     _surnameController.text = userRepository.user.details?.fam ?? "";
     _emailController.text = userRepository.user.email ?? "";
-    _phoneController.text = userRepository.user.details?.phone ?? "";
-    if (userRepository.user.details != null && userRepository.user.details!.birthday != null) {
+    if (userRepository.user.details != null &&
+        userRepository.user.details!.phone != null) {
+      _phoneController.text =
+          "+${userRepository.user.details!.phoneCountry}${userRepository.user.details!.phone}";
+    }
+
+    if (userRepository.user.details != null &&
+        userRepository.user.details!.birthday != null) {
       _birthdayController.text =
           "${userRepository.user.details!.birthday!.day}.${userRepository.user.details!.birthday!.month}.${userRepository.user.details!.birthday!.year}";
     }
@@ -74,7 +80,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                       showDialog(
                           context: context,
                           builder: ((context) => PopupChoose(
-                              label: localize!.save_chages,
+                              label: localize.save_chages,
                               description: localize.loose_data,
                               onAccept: () async {
                                 if (_nameController.text == "" ||
@@ -82,7 +88,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text(
-                                              "Вы не можете изменить свое имя на пустое")));
+                                              "Вы не можете изменить ФИ имя на пустые")));
                                   context.pop();
                                   _nameController.text ==
                                       context
@@ -291,6 +297,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 suffixIconCallback: () {
                   context.push(RouteNames.profilePhone);
                 },
+                obscured: false,
                 suffixIconChild: const Icon(
                   Icons.navigate_next_rounded,
                   size: 24,

@@ -145,9 +145,6 @@ class _WalletScreenState extends State<WalletScreen>
                             title: localize.swap,
                             icon: 'assets/icons/transfer_arrows_bold.svg',
                             onTap: () {
-                              context
-                                  .read<UserRepository>()
-                                  .validateUserPhone();
                             },
                           ),
                         ],

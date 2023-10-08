@@ -71,7 +71,14 @@ class UserRepository {
         name: name, surname: surname, gender: gender, birthday: birthday);
   }
 
-  Future<void> validateUserPhone() async {
-    await apiService.user.validateUserPhone(int.parse(user.details!.id!));
+  Future<dynamic> validateUserPhone(
+      String countryCode, String phoneNumber) async {
+    final response = await apiService.user
+        .validateUserPhone(countryCode, phoneNumber, user.id!);
+    return response;
+  }
+
+  Future<dynamic> validatePhoneCode(String code) async {
+    await apiService.user.validatePhoneCode(code);
   }
 }

@@ -44,13 +44,17 @@ class User with ApiHandler {
         await post(ApiEndpoints.userUpdateGender, data: {"gender": gender});
   }
 
-  Future<void> validateUserPhone(int userId) async {
-    await post(ApiEndpoints.confirmRegister, data: {
-      'phone': "9177044054",
-      'phone_country': "+7",
-      'token': currentToken.accessToken,
-      "id": userId,
+  Future<dynamic> validateUserPhone(
+      String countryCode, String phoneNumber, int userId) async {
+    final response = await post(ApiEndpoints.userValidatePhone, data: {
+      'phone': phoneNumber,
+      'phone_country': countryCode,
       'site_id': siteId
     });
+    return response;
+  }
+
+  Future<void> validatePhoneCode(String code) async {
+    await post(ApiEndpoints.userValiddatePhoneCode, data: {"code": code});
   }
 }

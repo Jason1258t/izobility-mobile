@@ -10,6 +10,7 @@ import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
+import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_phone_change_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
@@ -75,6 +76,11 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
+            create: (_) => ProfilePhoneChangeCubit(
+                RepositoryProvider.of<UserRepository>(context)),
+            lazy: false,
+          ),
+          BlocProvider(
             create: (_) => StoreItemCubit(
                 storeRepository:
                     RepositoryProvider.of<StoreRepository>(context)),
@@ -109,8 +115,7 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (_) =>
-                ProfileLinksCubit(),
+            create: (_) => ProfileLinksCubit(),
             lazy: false,
           ),
           BlocProvider(

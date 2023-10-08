@@ -29,11 +29,26 @@ abstract class Validator {
       return 'Длина имени должна быть больше трех';
     }
   }
+
   static verifyCodeValidator(String name) {
     if (name.length == 6) {
       return null;
     } else {
       return 'Код неверной длины';
+    }
+  }
+
+  static verifyPhone(String phone) {
+    if (phone.length < 12) {
+      return "Слишком короткий";
+    }
+
+    if (phone.length > 14) {
+      return "Слишком длинный";
+    }
+
+    if (phone.substring(0, 1) != '+') {
+      return "Номер начинается с +";
     }
   }
 }
