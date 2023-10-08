@@ -58,7 +58,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: 43,
                   maxHeight: 43,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
@@ -109,7 +109,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: sizeOf.width * 0.156 + 40,
                   maxHeight: sizeOf.width * 0.156 + 40,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
@@ -165,7 +165,7 @@ class _WalletScreenState extends State<WalletScreen>
                   child: Container(
                     height: 18,
                     decoration: const BoxDecoration(
-                        color: AppColors.purple200,
+                        color: Colors.white,
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
@@ -249,7 +249,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: 43,
                   maxHeight: 43,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
@@ -299,7 +299,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: sizeOf.width * 0.156 + 40,
                   maxHeight: sizeOf.width * 0.156 + 40,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
@@ -356,7 +356,7 @@ class _WalletScreenState extends State<WalletScreen>
                   child: Container(
                     height: 18,
                     decoration: const BoxDecoration(
-                        color: AppColors.purple200,
+                        color: Colors.white,
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
@@ -467,7 +467,7 @@ class _WalletScreenState extends State<WalletScreen>
                 height: 90,
                 isBack: false,
                 title: localize.wallet,
-                color: AppColors.purple200,
+                color: Colors.white,
                 isSetting: true,
                 isInfo: true,
                 onTapRightIcon: () {
@@ -481,7 +481,7 @@ class _WalletScreenState extends State<WalletScreen>
                   minHeight: 98,
                   maxHeight: 98,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(

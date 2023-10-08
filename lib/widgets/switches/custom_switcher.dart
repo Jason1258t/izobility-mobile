@@ -19,7 +19,7 @@ class CustomSwitcher extends StatelessWidget {
       height: 50,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: AppColors.backgroundContent,
+        color: Color(0xFFEEEEEE),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
