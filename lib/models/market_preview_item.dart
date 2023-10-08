@@ -6,7 +6,7 @@ class MarketPreviewItem {
   final String name;
   final String imageUrl;
   final bool isNew;
-  final List<CoinData> coins;
+  final List<CoinPreviewData> coins;
   final String id;
 
   MarketPreviewItem.fish()
@@ -15,7 +15,7 @@ class MarketPreviewItem {
             'https://kartinkin.net/uploads/posts/2022-08/1661214768_6-kartinkin-net-p-burger-king-chiken-barbekyu-vkontakte-11.jpg',
         isNew = true,
         coins = [
-          CoinData(imageUrl: 'assets/images/Coins1.png', value: '1567.60')
+          CoinPreviewData(imageUrl: 'assets/images/Coins1.png', value: '1567.60')
         ],
         id = 'market';
 
@@ -27,7 +27,7 @@ class MarketPreviewItem {
         isNew = true,
         id = json['id'],
         coins = [
-          CoinData(
+          CoinPreviewData(
               imageUrl: 'assets/images/emerald_coin.png', value: json['price'])
         ];
 }

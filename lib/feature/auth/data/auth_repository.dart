@@ -1,14 +1,16 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:izobility_mobile/models/login_data.dart';
 import 'package:izobility_mobile/models/register_data.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:local_auth_android/local_auth_android.dart';
+import 'package:local_auth_ios/local_auth_ios.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../models/user.dart';
 import '../../../services/locale/preferences_service.dart';
-import 'package:local_auth_android/local_auth_android.dart';
-import 'package:local_auth_ios/local_auth_ios.dart';
 
 enum AppStateEnum { wait, auth, unAuth }
 
@@ -18,6 +20,16 @@ class AuthRepository {
   final ApiService apiService;
   final PreferencesService preferences;
   final LocalAuthentication _localAuth = LocalAuthentication();
+
+  int? userId;
+
+  AuthRepository({
+    required this.apiService,
+    required this.preferences,
+  });
+
+  BehaviorSubject<AppStateEnum> appState =
+      BehaviorSubject.seeded(AppStateEnum.wait);
 
   Future<bool> _canLocalAuth() async =>
       await _localAuth.canCheckBiometrics ||
@@ -37,21 +49,11 @@ class AuthRepository {
               cancelButton: 'Отмена',
             ),
           ],
-      options: const AuthenticationOptions(biometricOnly: true));
+          options: const AuthenticationOptions(biometricOnly: true));
 
       return didAuthenticate;
     }
   }
-
-  int? userId;
-
-  AuthRepository({
-    required this.apiService,
-    required this.preferences,
-  });
-
-  BehaviorSubject<AppStateEnum> appState =
-      BehaviorSubject.seeded(AppStateEnum.wait);
 
   Future _auth(Future authMethod) async {
     final res = await authMethod;
@@ -68,6 +70,7 @@ class AuthRepository {
 
     if (response.statusCode == 201) {
       userId = response.data['id'];
+      log(userId.toString());
       return EmailStateEnum.unregistered;
     } else {
       return EmailStateEnum.registered;
@@ -79,12 +82,14 @@ class AuthRepository {
   }
 
   Future login(LoginData data) async {
+    log(userId.toString());
     if (userId != null) {
       await apiService.auth.confirmRegistration(
           confirmCode: data.password!, userId: userId.toString());
     }
 
-    await _auth(apiService.auth.login(email: data.email, password: data.password!));
+    await _auth(
+        apiService.auth.login(email: data.email, password: data.password!));
   }
 
   Future checkLogin() async {

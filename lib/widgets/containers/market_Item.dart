@@ -20,10 +20,10 @@ class MarketItem extends StatelessWidget {
   final String textDescription;
   final bool isNew;
   final String pizdulkaUrl;
-  final List<CoinData>? coinData;
+  final List<CoinPreviewData>? coinData;
   final VoidCallback onTap;
 
-  List<Widget> _generatePriceItem(List<CoinData> coinsInfo) {
+  List<Widget> _generatePriceItem(List<CoinPreviewData> coinsInfo) {
     if(coinsInfo.isEmpty)  return [];
 
     List<Widget> children = [];

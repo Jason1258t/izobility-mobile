@@ -22,7 +22,7 @@ class Story {
 
   Story.fromJson({required Map<String, dynamic> json, required this.index})
       : title = json['head'].substring(
-            0, json['head'].length < 100 ? json['head'].length : 100),
+            0, json['head'].length < 50 ? json['head'].length : 50),
         subtitle = json['message'].substring(
             0, json['message'].length < 150 ? json['message'].length : 150),
         imageUrl = dotenv.get('BASE_SERVER_URL') + '/media/' + json['logo'],

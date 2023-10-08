@@ -7,7 +7,7 @@ import '../../utils/ui/fonts.dart';
 class PurchaseCondition extends StatelessWidget {
   const PurchaseCondition({super.key, required this.data});
 
-  final CoinData data;
+  final CoinPreviewData data;
 
   @override
   Widget build(BuildContext context) {
