@@ -14,3 +14,16 @@ final class ProfilePhoneChangeFailure extends ProfilePhoneChangeState {
 }
 
 final class ProfilePhoneChangeSuccess extends ProfilePhoneChangeState {}
+
+
+
+
+final class ProfilePhoneChangeCodeLoading extends ProfilePhoneChangeState {}
+
+final class  ProfilePhoneChangeCodeFailure extends ProfilePhoneChangeState {
+  final String errorText;
+
+  ProfilePhoneChangeCodeFailure({required this.errorText});
+}
+
+final class  ProfilePhoneChangeCodeSuccess extends ProfilePhoneChangeState {}

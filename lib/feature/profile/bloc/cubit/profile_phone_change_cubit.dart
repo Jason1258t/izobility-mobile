@@ -25,15 +25,14 @@ class ProfilePhoneChangeCubit extends Cubit<ProfilePhoneChangeState> {
   }
 
   Future<void> validatePhoneCode(String code) async {
-    emit(ProfilePhoneChangeLoading());
+    emit(ProfilePhoneChangeCodeLoading());
 
     try {
       await userRepository.validatePhoneCode(code);
-
-      emit(ProfilePhoneChangeSuccess());
-      await userRepository.loadUserDetailsInfo();
+      userRepository.loadUserDetailsInfo();
+      emit(ProfilePhoneChangeCodeSuccess());
     } catch (ex) {
-      emit(ProfilePhoneChangeFailure(errorText: "Неверный код"));
+      emit(ProfilePhoneChangeCodeFailure(errorText: "Неверный код"));
     }
   }
 }

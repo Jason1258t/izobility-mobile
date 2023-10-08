@@ -142,7 +142,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                   return buildUserDetialsInfo();
                 } else {
                   return const Center(
-                    child: Text('Sorry something went wrong'),
+                    child: Text('Ошибочка на сервере('),
                   );
                 }
               },

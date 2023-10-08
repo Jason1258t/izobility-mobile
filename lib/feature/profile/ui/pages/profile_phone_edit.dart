@@ -54,7 +54,7 @@ class _ProfilePhoneEditState extends State<ProfilePhoneEdit> {
         } else if (state is ProfilePhoneChangeSuccess) {
           context.pop();
 
-          context.push(RouteNames.profilePhoneConfirm);
+          context.pushReplacement(RouteNames.profilePhoneConfirm);
         }
       },
       child: GestureDetector(

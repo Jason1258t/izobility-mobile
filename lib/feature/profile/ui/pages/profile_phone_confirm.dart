@@ -29,19 +29,22 @@ class _ProfilePhoneConfirmState extends State<ProfilePhoneConfirm> {
     final size = MediaQuery.sizeOf(context);
     return BlocListener<ProfilePhoneChangeCubit, ProfilePhoneChangeState>(
       listener: (context, state) {
-        if (state is ProfilePhoneChangeFailure) {
+        if (state is ProfilePhoneChangeCodeFailure) {
           context.pop();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar(state.errorText));
-        } else if (state is ProfilePhoneChangeLoading) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.errorSnackBar(state.errorText));
+        } else if (state is ProfilePhoneChangeCodeLoading) {
           Dialogs.show(
               context,
               const Center(
                 child: CircularProgressIndicator.adaptive(),
               ));
-        } else if (state is ProfilePhoneChangeSuccess) {
+        } else if (state is ProfilePhoneChangeCodeSuccess) {
           context.pop();
+
+          ScaffoldMessenger.of(context).showSnackBar(
+              CustomSnackBar.successSnackBar("Успешная верификация"));
         }
       },
       child: GestureDetector(
