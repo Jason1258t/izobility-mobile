@@ -78,7 +78,7 @@ class _SwapScreenState extends State<SwapScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 16),
                 alignment: Alignment.center,
-                child: ButtonSwop(
+                child: ButtonSwap(
                   onTap: () {},
                 ),
               ),

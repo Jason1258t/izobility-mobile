@@ -19,7 +19,7 @@ class CustomSwitcher extends StatelessWidget {
       height: 50,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: AppColors.backgroundContent,
+        color: Color(0xFFEEEEEE),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -48,9 +48,11 @@ class CustomSwitcher extends StatelessWidget {
               ),
             ),
           ),
-          Material(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(1000),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(1000),
+              gradient: AppColors.gradient
+            ),
             child: InkWell(
               borderRadius: BorderRadius.circular(1000),
               onTap: () {
@@ -61,6 +63,7 @@ class CustomSwitcher extends StatelessWidget {
                   child: SvgPicture.asset(
                     "assets/icons/transfer_arrows.svg",
                     width: 24,
+                    color: Colors.black,
                   )),
             ),
           ),

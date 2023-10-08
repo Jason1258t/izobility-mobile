@@ -41,7 +41,8 @@ class AppColors {
   static const primaryPressedBackground = Color(0xFF681EE3);
   static const darkBlue = Color(0xFF1E45A2);
   static const purple100 = Color(0xFFECE8FF);
-  static const purpleBcg = Color(0xFFF5F2FF);
+  // static const purpleBcg = Color(0xFFF5F2FF);
+  static const purpleBcg = Color(0xFFF6F6F6);
   static const notificationRed = Color(0xFFFF3B30);
   static const grey700 = Color(0xFF333333);
   static const grey500 = Color(0xff757575);
@@ -49,4 +50,10 @@ class AppColors {
   static const purple600 = Color(0xFF7630F7);
   static const purple200 = Color(0xFFDAD4FF);
   static const purple400 = Color(0xFFA285FF);
+
+  static const gradient = LinearGradient(
+    begin: Alignment(-1, -1),
+    end: Alignment(1, 1),
+    colors: [Color(0xFF1CFE15), Color(0xFF4EFDC6)],
+  );
 }

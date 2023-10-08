@@ -10,7 +10,7 @@ class WalletAction extends StatelessWidget {
       required this.icon,
       required this.onTap,
       this.isActive = true,
-      this.iconColor = Colors.white});
+      this.iconColor = Colors.black});
 
   final String title;
   final String icon;
@@ -28,7 +28,8 @@ class WalletAction extends StatelessWidget {
           width: sizeOf.width * 0.156,
           height: sizeOf.width * 0.156,
           decoration: BoxDecoration(
-              color: isActive ? AppColors.primary : AppColors.purple100,
+              // color: isActive ? AppColors.primary : AppColors.purple100,
+              gradient: AppColors.gradient,
               borderRadius: BorderRadius.circular(100)),
           child: IconButton(
             onPressed: () => onTap(),
