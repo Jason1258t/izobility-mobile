@@ -49,4 +49,10 @@ class AppColors {
   static const purple600 = Color(0xFF7630F7);
   static const purple200 = Color(0xFFDAD4FF);
   static const purple400 = Color(0xFFA285FF);
+
+  static const gradient = LinearGradient(
+    begin: Alignment(-1, -1),
+    end: Alignment(1, 1),
+    colors: [Color(0xFF1CFE15), Color(0xFF4EFDC6)],
+  );
 }

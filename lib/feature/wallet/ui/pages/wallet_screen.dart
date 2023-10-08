@@ -143,7 +143,7 @@ class _WalletScreenState extends State<WalletScreen>
                           ),
                           WalletAction(
                             title: localize.swap,
-                            icon: 'assets/icons/swap.svg',
+                            icon: 'assets/icons/transfer_arrows_bold.svg',
                             onTap: () {
                               context
                                   .read<UserRepository>()
@@ -336,7 +336,7 @@ class _WalletScreenState extends State<WalletScreen>
                           ),
                           WalletAction(
                             title: localize.swap,
-                            icon: 'assets/icons/swap.svg',
+                            icon: 'assets/icons/transfer_arrows_bold.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
                             },

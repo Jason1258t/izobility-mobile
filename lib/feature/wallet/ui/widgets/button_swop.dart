@@ -3,18 +3,21 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../utils/utils.dart';
 
-class ButtonSwop extends StatelessWidget {
+class ButtonSwap extends StatelessWidget {
   final Function onTap;
 
-  const ButtonSwop({
+  const ButtonSwap({
     super.key, required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.purple600,
-      borderRadius: BorderRadius.circular(100),
+    return Container(
+      // color: AppColors.purple600,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        gradient: AppColors.gradient
+      ),
       child: InkWell(
         borderRadius: BorderRadius.circular(100),
         onTap: () {
@@ -27,7 +30,7 @@ class ButtonSwop extends StatelessWidget {
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
           ),
-          child: SvgPicture.asset("assets/icons/swap.svg", color: Colors.white,),
+          child: SvgPicture.asset("assets/icons/transfer_arrows_bold.svg", color: Colors.black,),
         ),
       ),
     );
