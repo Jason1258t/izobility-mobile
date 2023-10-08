@@ -23,6 +23,8 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_about.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_language.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_confirm.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_edit.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
@@ -146,6 +148,12 @@ class CustomGoRoutes {
           path: RouteNames.profileAbout,
           builder: (context, state) => const ProfileAppAboutScreen()),
       GoRoute(
+          path: RouteNames.profilePhoneConfirm,
+          builder: (context, state) => const ProfilePhoneConfirm()),
+      GoRoute(
+          path: RouteNames.profilePhone,
+          builder: (context, state) => const ProfilePhoneEdit()),
+      GoRoute(
           path: RouteNames.profileLanguage,
           builder: (context, state) => const ProfileLanguageScreen()),
       GoRoute(
@@ -156,9 +164,8 @@ class CustomGoRoutes {
           builder: (context, state) => const PromoScreen()),
       GoRoute(
           path: RouteNames.walletChainGameTransfer,
-          builder: (context, state) =>  WalletGameChainTransferScreen(
-            coin: state.extra as TokenData
-          )),
+          builder: (context, state) =>
+              WalletGameChainTransferScreen(coin: state.extra as TokenData)),
       GoRoute(
           path: RouteNames.storeProduct,
           builder: (context, state) => ProductScreen(

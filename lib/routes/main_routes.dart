@@ -32,5 +32,7 @@ final mainRoutesNames = [
   RouteNames.walletEnterSeedPhrase,
   RouteNames.walletSetting,
   RouteNames.walletViewSeed,
-  RouteNames.walletChainGameTransfer
+  RouteNames.walletChainGameTransfer,
+  RouteNames.profilePhone,
+  RouteNames.profilePhoneConfirm
 ];

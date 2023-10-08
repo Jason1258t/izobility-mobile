@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -38,7 +39,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     _surnameController.text = userRepository.user.details?.fam ?? "";
     _emailController.text = userRepository.user.email ?? "";
     _phoneController.text = userRepository.user.details?.phone ?? "";
-    if (userRepository.user.details != null) {
+    if (userRepository.user.details != null && userRepository.user.details!.birthday != null) {
       _birthdayController.text =
           "${userRepository.user.details!.birthday!.day}.${userRepository.user.details!.birthday!.month}.${userRepository.user.details!.birthday!.year}";
     }
@@ -286,7 +287,15 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             const SizedBox(
               height: 16,
             ),
-            CustomTextField(
+            CustomTextField.withOneIcon(
+                suffixIconCallback: () {
+                  context.push(RouteNames.profilePhone);
+                },
+                suffixIconChild: const Icon(
+                  Icons.navigate_next_rounded,
+                  size: 24,
+                  color: Colors.black,
+                ),
                 readOnly: true,
                 backgroundColor: Colors.white,
                 labelText: localize.telephone,
