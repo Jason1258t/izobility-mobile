@@ -99,11 +99,13 @@ class WalletRepository {
   }
 
   Future<void> swapCoinInGameToOnChain(int coinId, double amount) async {
-    await apiService.wallet.swapCoinInGameToOnChain(coinId, amount, walletModel!);
+    await apiService.wallet
+        .swapCoinInGameToOnChain(coinId, amount, walletModel!);
   }
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
-    await apiService.wallet.swapCoinOnChainToInGame(coinId, amount, walletModel!);
+    await apiService.wallet
+        .swapCoinOnChainToInGame(coinId, amount, walletModel!);
   }
 
   void loadEmeraldCoin() async {
@@ -148,5 +150,30 @@ class WalletRepository {
         print(e);
       }
     }
+  }
+
+  Future<dynamic> getBurseItemList(
+    BurseOrderType type,
+    int itemsQuantity,
+    int pageNumber
+  ) async {
+    final response = await apiService.wallet.getBurseItemList(
+      type,
+      itemsQuantity,
+      pageNumber
+    );
+    return response;
+  }
+
+  Future<void> createBurseOrder() async {
+    await apiService.wallet.createBurseOrder();
+  }
+
+  Future<void> buyBurseOrder() async {
+    await apiService.wallet.buyBurseOrder();
+  }
+
+  Future<void> canselBurseOrder() async {
+    await apiService.wallet.canselBurseOrder();
   }
 }

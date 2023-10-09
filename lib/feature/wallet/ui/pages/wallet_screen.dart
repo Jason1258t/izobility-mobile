@@ -8,6 +8,7 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
@@ -144,8 +145,7 @@ class _WalletScreenState extends State<WalletScreen>
                           WalletAction(
                             title: localize.swap,
                             icon: 'assets/icons/transfer_arrows_bold.svg',
-                            onTap: () {
-                            },
+                            onTap: () {},
                           ),
                         ],
                       ),
@@ -321,19 +321,17 @@ class _WalletScreenState extends State<WalletScreen>
                             },
                           ),
                           WalletAction(
-                            title: localize.buy,
+                            title: "Биржа",
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
-                              // print('~~~~~~~~~~~~~~~~~');
-                              // walletRepository.apiService.wallet.walletFunc1();
-                              // print(RepositoryProvider.of<WalletRepository>(
-                              //         context)
-                              //     .gameTokens);
+                              // context.push(RouteNames.walletBurse);
+                              walletRepository.getBurseItemList(
+                                  BurseOrderType.general, 10, 0);
                             },
                           ),
                           WalletAction(
                             title: localize.swap,
-                            icon: 'assets/icons/transfer_arrows_bold.svg',
+                            icon: 'assets/icons/burse.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
                             },

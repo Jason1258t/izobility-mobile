@@ -36,4 +36,20 @@ class Wallet with ApiHandler {
       'wallet': wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain)
     });
   }
+
+  Future<dynamic> getBurseItemList(
+      BurseOrderType type, int itemsQuantity, int pageNumber) async {
+    final response = post(ApiEndpoints.burseOrdersList, queryParameters: {
+      "isMy": type == BurseOrderType.my,
+      "page_size": itemsQuantity,
+      "page": pageNumber
+    });
+    return response;
+  }
+
+  Future<void> createBurseOrder() async {}
+
+  Future<void> buyBurseOrder() async {}
+
+  Future<void> canselBurseOrder() async {}
 }

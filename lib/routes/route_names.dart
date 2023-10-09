@@ -39,6 +39,11 @@ abstract class RouteNames {
   static const String walletEnterSeedPhrase = '/wallet/enter/seed_phrase';
   static const String walletChainGameTransfer = '/wallet/chain_game_transfer';
 
+  static const String walletBurse = '/wallet/burse';
+  static const String walletBurseBuyOrder = '/wallet/burse/order/buy';
+  static const String walletBurseCreateOrder = '/wallet/burse/order/create';
+  static const String walletBurseHistory = '/wallet/burse/history';
+
   static const String profile = '/profile';
 
   static const String profileEdit = '/profile/edit';

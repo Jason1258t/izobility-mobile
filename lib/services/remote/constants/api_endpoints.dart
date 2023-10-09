@@ -11,15 +11,10 @@ class ApiEndpoints {
   static const String userGameTokens = '/wallet/list';
 
   static const String userInfo = '/user/';
-
   static const String userUpdateName = '/user/update-fio';
-
   static const String userUpdatePhoto = '/user/update-photo';
-
   static const String userUpdatePhone = '/user/update-phone';
-
   static const String userUpdateBirthday = '/user/update-birth';
-
   static const String userUpdateGender = '/user/update-gender';
 
   static const String userValidatePhone = '/user/update-phone';
@@ -38,4 +33,9 @@ class ApiEndpoints {
   static const String walletSwapInGameToOnChain = "/wallet/transfer";
   static const String walletSwapOnChainToInGame = '/wallet/return';
   static const String walletTokenList = '/wallet/tokens-balance';
+
+  static const String burseOrdersList = '/trade/list';
+  static const String burseCreateOrder = '/trade/add-order';
+  static const String burseBuyOrder = '/trade/buy-order';
+  static const String burseCanselOrder = '/trade/cancel-order';
 }

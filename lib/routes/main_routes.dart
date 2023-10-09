@@ -34,5 +34,9 @@ final mainRoutesNames = [
   RouteNames.walletViewSeed,
   RouteNames.walletChainGameTransfer,
   RouteNames.profilePhone,
-  RouteNames.profilePhoneConfirm
+  RouteNames.profilePhoneConfirm,
+  RouteNames.walletBurse,
+  RouteNames.walletBurseHistory,
+  RouteNames.walletBurseBuyOrder,
+  RouteNames.walletBurseCreateOrder,
 ];
