@@ -324,9 +324,7 @@ class _WalletScreenState extends State<WalletScreen>
                             title: "Биржа",
                             icon: 'assets/icons/buy.svg',
                             onTap: () {
-                              // context.push(RouteNames.walletBurse);
-                              walletRepository.getBurseItemList(
-                                  BurseOrderType.general, 10, 0);
+                              context.push(RouteNames.walletBurse);
                             },
                           ),
                           WalletAction(

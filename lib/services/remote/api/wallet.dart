@@ -39,7 +39,7 @@ class Wallet with ApiHandler {
 
   Future<dynamic> getBurseItemList(
       BurseOrderType type, int itemsQuantity, int pageNumber) async {
-    final response = post(ApiEndpoints.burseOrdersList, queryParameters: {
+    final response = await post(ApiEndpoints.burseOrdersList, queryParameters: {
       "isMy": type == BurseOrderType.my,
       "page_size": itemsQuantity,
       "page": pageNumber
@@ -47,9 +47,23 @@ class Wallet with ApiHandler {
     return response;
   }
 
-  Future<void> createBurseOrder() async {}
+  Future<void> createBurseOrder(double amountFrom, double amountTo,
+      int monetIdFrom, int monetIdTo) async {
+    final response = await post(ApiEndpoints.burseCreateOrder, data: {
+      "amount_from": amountFrom,
+      "amount_to": amountTo,
+      "monet_from": monetIdFrom,
+      "monet_to": monetIdTo
+    });
+  }
 
-  Future<void> buyBurseOrder() async {}
+  Future<void> buyBurseOrder(int orderId) async {
+    final response =
+        await post(ApiEndpoints.burseBuyOrder, data: {"id": orderId});
+  }
 
-  Future<void> canselBurseOrder() async {}
+  Future<void> canselBurseOrder(int orderId) async {
+    final response =
+        await post(ApiEndpoints.burseCancelOrder, data: {"id": orderId});
+  }
 }
