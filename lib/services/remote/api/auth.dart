@@ -40,7 +40,9 @@ class Auth with ApiHandler {
       "site_id": siteId
     });
 
-    refreshToken(response.data['jwt']);
+    await refreshToken(response.data['jwt']);
+
+    print(dio.options.headers);
 
     return response.data;
   }
