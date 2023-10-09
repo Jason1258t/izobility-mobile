@@ -205,36 +205,36 @@ class _WalletScreenState extends State<WalletScreen>
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: tokenOrNft == 0
                       ? SliverList(
-                          delegate: SliverChildListDelegate(
-                              RepositoryProvider.of<WalletRepository>(context)
-                                  .coinsInChain
-                                  .map((item) => ValidToken(
-                                        title: item.name,
-                                        value:
-                                            double.parse(item.rubleExchangeRate)
-                                                .toStringAsFixed(2),
-                                        onTap: () {
-                                          context.push(
-                                              RouteNames.walletCurrency,
-                                              extra: item);
-                                        },
-                                        imageUrl: item.imageUrl,
-                                        prise: walletRepository.obscured
-                                            ? AppStrings.obscuredText
-                                            : item.amount,
-                                        increment: '0,02',
-                                        usdValue: walletRepository.obscured
-                                            ? AppStrings.obscuredText
-                                            : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
-                                      ))
-                                  .toList()),
-                        )
+                    delegate: SliverChildListDelegate(
+                        RepositoryProvider.of<WalletRepository>(context)
+                            .coinsInChain
+                            .map((item) => ValidToken(
+                          title: item.name,
+                          value:
+                          double.parse(item.rubleExchangeRate)
+                              .toStringAsFixed(2),
+                          onTap: () {
+                            context.push(
+                                RouteNames.walletCurrency,
+                                extra: item);
+                          },
+                          imageUrl: item.imageUrl,
+                          prise: walletRepository.obscured
+                              ? AppStrings.obscuredText
+                              : item.amount,
+                          increment: '0,02',
+                          usdValue: walletRepository.obscured
+                              ? AppStrings.obscuredText
+                              : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
+                        ))
+                            .toList()),
+                  )
                       : const SliverToBoxAdapter(
-                          child: Text(
-                            'Еще нету контрактов',
-                            textAlign: TextAlign.center,
-                          ),
-                        )),
+                    child: Text(
+                      'Еще нету контрактов',
+                      textAlign: TextAlign.center,
+                    ),
+                  )),
             ],
           )
         : MultiSliver(
