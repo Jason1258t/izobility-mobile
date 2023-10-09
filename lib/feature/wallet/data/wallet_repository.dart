@@ -133,7 +133,7 @@ class WalletRepository {
     coinsInGame.clear();
     coinsInChain.clear();
 
-    coinsInGame.add(TokenData(
+    final emeraldCoin = TokenData(
         amount: obscured
             ? "****"
             : walletPage == 0
@@ -144,7 +144,10 @@ class WalletRepository {
             'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
         name: "Emerald",
         rubleExchangeRate: "0",
-        description: ''));
+        description: '');
+
+    coinsInGame.add(emeraldCoin);
+    coinsInChain.add(emeraldCoin);
 
     for (var json in res) {
       try {
