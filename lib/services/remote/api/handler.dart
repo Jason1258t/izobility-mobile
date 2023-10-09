@@ -1,13 +1,42 @@
 part of 'api_service.dart';
 
+enum Methods { get, post, delete }
+
 mixin class ApiHandler {
   late final Dio dio;
   late final PreferencesService preferencesService;
   late final Token currentToken;
 
-  _errorHandler(Future<Response> method, String url) async {
+  _errorHandler(
+      {required Methods method,
+      required String url,
+      Map<String, dynamic>? queryParams,
+      Map<String, dynamic>? data}) async {
     try {
-      final res = await method;
+      Response res;
+
+      if (method == Methods.get) {
+        res = await dio.get(url, queryParameters: queryParams, data: data);
+      } else if (method == Methods.post) {
+        res = await dio.post(url, queryParameters: queryParams, data: data);
+      } else {
+        res = await dio.delete(url, data: data, queryParameters: queryParams);
+      }
+
+      if (res.statusCode == 401) {
+        final newToken = await dio.post(ApiEndpoints.refresh);
+
+        await refreshToken(newToken.data['jwt']);
+
+        if (method == Methods.get) {
+          res = await dio.get(url, queryParameters: queryParams, data: data);
+        } else if (method == Methods.post) {
+          res = await dio.post(url, queryParameters: queryParams, data: data);
+        } else {
+          res = await dio.delete(url, data: data, queryParameters: queryParams);
+        }
+      }
+
       return res.data;
     } catch (e) {
       log(url);
@@ -16,13 +45,12 @@ mixin class ApiHandler {
   }
 
   Future get(String url, {Map<String, dynamic>? queryParameters}) async {
-    return _errorHandler(dio.get(url, queryParameters: queryParameters), url);
+    return _errorHandler(url: url, queryParams: queryParameters, method: Methods.get);
   }
 
   Future post(String url,
       {dynamic data, Map<String, dynamic>? queryParameters}) async {
-    return _errorHandler(
-        dio.post(url, data: data, queryParameters: queryParameters), url);
+    return _errorHandler(url: url, data: data, queryParams: queryParameters, method: Methods.post);
   }
 
   Future delete(String url) async {
@@ -38,7 +66,7 @@ mixin class ApiHandler {
   Future<void> refreshToken(String jwt) async {
     Token token = Token(accessToken: jwt, refreshToken: null);
 
-    preferencesService.saveToken(token);
+    await preferencesService.saveToken(token);
 
     currentToken.accessToken = token.accessToken;
     currentToken.refreshToken = token.refreshToken;

@@ -25,14 +25,12 @@ class InfoCurrencyWalletScreen extends StatefulWidget {
 class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
   @override
   Widget build(BuildContext context) {
-    final sizeOf = MediaQuery.sizeOf(context);
-
     final walletRepository = context.read<WalletRepository>();
 
     final localize = AppLocalizations.of(context)!;
 
     return Container(
-      color: AppColors.purple200,
+      color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.purpleBcg,
@@ -44,7 +42,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                 height: 90,
                 isBack: true,
                 title: 'Usd',
-                color: AppColors.purple200,
+                color: Colors.white,
               ),
               SliverPersistentHeader(
                 pinned: true,
@@ -53,7 +51,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                   minHeight: 115,
                   maxHeight: 115,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: Column(
                       children: [
@@ -95,7 +93,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                   child: Container(
                     height: 18,
                     decoration: const BoxDecoration(
-                        color: AppColors.purple200,
+                        color: Colors.white,
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),
@@ -127,32 +125,35 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
               SliverPadding(
                 padding: const EdgeInsets.all(16),
                 sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        localize.contract,
-                        style: AppTypography.font16w400
-                            .copyWith(color: AppColors.blackGraySecondary),
-                      ),
-                      const SizedBox(height: 8,),
-                      const Wrap(
-                        direction: Axis.horizontal,
-                        alignment: WrapAlignment.spaceBetween,
-                        runAlignment: WrapAlignment.start,
-                        runSpacing: 10,
-                        children: [
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                          ButtonSocialMediaLink(text: "SEX"),
-                        ],
-                      )
-                    ],
+                  child: Container(
+                    color: AppColors.purpleBcg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          localize.contract,
+                          style: AppTypography.font16w400
+                              .copyWith(color: AppColors.blackGraySecondary),
+                        ),
+                        const SizedBox(height: 8,),
+                        const Wrap(
+                          direction: Axis.horizontal,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.start,
+                          runSpacing: 10,
+                          children: [
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                            ButtonSocialMediaLink(text: "SEX"),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               )

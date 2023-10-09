@@ -4,6 +4,7 @@ class ApiEndpoints {
   static const String confirmRegister = '/user/registration-confirm';
 
   static const String login = '/user/login';
+  static const String refresh = '/user/login-token';
 
   static const String resendCode = '/user/registration-resend';
 

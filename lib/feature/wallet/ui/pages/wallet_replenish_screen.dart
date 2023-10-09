@@ -83,6 +83,7 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         WalletAction(
+                          iconColor: Colors.black,
                           title: 'Копировать',
                           icon: 'assets/icons/copy.svg',
                           onTap: () {
@@ -95,13 +96,13 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
                           width: 10,
                         ),
                         WalletAction(
-                          iconColor: AppColors.primary,
+                          iconColor: Colors.black,
                           title: 'Поделиться',
                           icon: 'assets/icons/share.svg',
                           onTap: () async{
                             await Share.share(address);
                           },
-                          isActive: false,
+                          isActive: true,
                         ),
                       ],
                     ),

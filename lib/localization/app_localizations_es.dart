@@ -158,7 +158,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get check_email => 'Revisa el correo';
 
   @override
-  String get promo_codes => 'Códigos promocionales';
+  String get promo_codes => 'Promocionales';
 
   @override
   String get profile => 'Perfil';

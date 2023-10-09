@@ -146,7 +146,7 @@ abstract class AppLocalizations {
   /// No description provided for @logout.
   ///
   /// In en, this message translates to:
-  /// **'Go out'**
+  /// **'Log out'**
   String get logout;
 
   /// No description provided for @main.
