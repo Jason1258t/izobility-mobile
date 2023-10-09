@@ -29,7 +29,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirm_logout => 'Do you definitely want to go out?';
 
   @override
-  String get logout => 'Go out';
+  String get logout => 'Log out';
 
   @override
   String get main => 'home';

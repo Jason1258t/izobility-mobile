@@ -33,7 +33,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
     final localize = AppLocalizations.of(context)!;
 
     return Container(
-      color: AppColors.purple200,
+      color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.purpleBcg,
@@ -45,7 +45,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                 height: 90,
                 isBack: true,
                 title: widget.token.name,
-                color: AppColors.purple200,
+                color: Colors.white,
                 isInfo: true,
                 onTapRightIcon: () {
                   context.push(RouteNames.walletInfoCurrency, extra: widget.token);
@@ -58,7 +58,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   minHeight: 115,
                   maxHeight: 115,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: Column(
                       children: [
@@ -98,7 +98,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   minHeight: sizeOf.width * 0.156 + 40,
                   maxHeight: sizeOf.width * 0.156 + 40,
                   child: Container(
-                    color: AppColors.purple200,
+                    color: Colors.white,
                     alignment: Alignment.center,
                     child: Padding(
                       padding:
@@ -149,7 +149,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   child: Container(
                     height: 18,
                     decoration: const BoxDecoration(
-                        color: AppColors.purple200,
+                        color: Colors.white,
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(16))),
                   ),

@@ -4,14 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/profuct_my_coin_quantity.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_container.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
-import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
-
-import '../widgets/product_coin_price_container.dart';
 
 class PromoScreen extends StatefulWidget {
   const PromoScreen({super.key});
@@ -23,10 +21,12 @@ class PromoScreen extends StatefulWidget {
 class _PromoScreenState extends State<PromoScreen> {
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
-        text: "Промокод",
+        text: localize.promo_codes,
         isBack: true,
         onTap: () {
           context.pop();

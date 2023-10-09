@@ -195,7 +195,7 @@ class _WalletScreenState extends State<WalletScreen>
                         Tab(
                           text: localize.tokens,
                         ),
-                        Tab(text: 'NFT'),
+                        const Tab(text: 'NFT'),
                       ],
                     ),
                   ),
@@ -322,14 +322,14 @@ class _WalletScreenState extends State<WalletScreen>
                           ),
                           WalletAction(
                             title: "Биржа",
-                            icon: 'assets/icons/buy.svg',
+                            icon: 'assets/icons/burse.svg',
                             onTap: () {
                               context.push(RouteNames.walletBurse);
                             },
                           ),
                           WalletAction(
                             title: localize.swap,
-                            icon: 'assets/icons/burse.svg',
+                            icon: 'assets/icons/transfer_arrows_bold.svg',
                             onTap: () {
                               context.push(RouteNames.walletSwap);
                             },
@@ -382,7 +382,7 @@ class _WalletScreenState extends State<WalletScreen>
                         Tab(
                           text: localize.tokens,
                         ),
-                        Tab(text: 'NFT'),
+                        const Tab(text: 'NFT'),
                       ],
                     ),
                   ),
@@ -441,14 +441,12 @@ class _WalletScreenState extends State<WalletScreen>
 
   @override
   Widget build(BuildContext context) {
-    final sizeOf = MediaQuery.sizeOf(context);
-
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
     final localize = AppLocalizations.of(context)!;
 
     return Container(
-      color: AppColors.purple200,
+      color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: AppColors.purpleBcg,

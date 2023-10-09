@@ -26,6 +26,17 @@ class _StoreScreenState extends State<StoreScreen> {
 
     final localize = AppLocalizations.of(context)!;
 
+    String getStringCategoryByEnum(CategoryEnum categoryEnum) {
+      switch (categoryEnum){
+        case CategoryEnum.products:
+          return localize.product_and_nft;
+        case CategoryEnum.promos:
+          return localize.promo_codes;
+        case CategoryEnum.gifts:
+          return localize.gifts;
+      }
+    }
+
     return HomeScaffold(
       appBar: CustomAppBar(
         text: localize.shop,
@@ -48,23 +59,23 @@ class _StoreScreenState extends State<StoreScreen> {
                       ContainerWithText(
                         title: localize.promo_codes,
                         path: 'category',
-                        width: (sizeOf.width - 50) / 2,
+                        width: (sizeOf.width - 47) / 2,
                         onTap: () {
                           setState(() {
-                            storyRepository.setActiveCategory("Промокоды");
+                            storyRepository.setActiveCategory(CategoryEnum.promos);
                           });
                         },
                       ),
                       const SizedBox(
-                        width: 14,
+                        width: 8,
                       ),
                       ContainerWithText(
                         title: localize.gifts,
                         path: 'gift',
-                        width: (sizeOf.width - 50) / 2,
+                        width: (sizeOf.width - 47) / 2,
                         onTap: () {
                           setState(() {
-                            storyRepository.setActiveCategory("Подарки");
+                            storyRepository.setActiveCategory(CategoryEnum.gifts);
                           });
                         },
                       ),
@@ -79,7 +90,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     width: sizeOf.width - 36,
                     onTap: () {
                       setState(() {
-                        storyRepository.setActiveCategory("Товары и NFT");
+                        storyRepository.setActiveCategory(CategoryEnum.products);
                       });
                     },
                   ),
@@ -87,7 +98,7 @@ class _StoreScreenState extends State<StoreScreen> {
                     height: 20,
                   ),
                   Text(
-                    storyRepository.activeCategory,
+                    getStringCategoryByEnum(storyRepository.activeCategory),
                     style:
                         AppTypography.font24w700.copyWith(color: Colors.black),
                   ),
@@ -179,6 +190,7 @@ class ContainerWithText extends StatelessWidget {
             Text(
               title,
               style: AppTypography.font18w700.copyWith(color: Colors.black),
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

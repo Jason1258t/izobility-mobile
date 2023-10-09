@@ -62,7 +62,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
           FocusScope.of(context).unfocus();
         },
         child: Container(
-          color: AppColors.purple200,
+          color: Colors.white,
           child: SafeArea(
             child: Scaffold(
               backgroundColor: AppColors.purpleBcg,
@@ -74,7 +74,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                     height: 90,
                     isBack: true,
                     title: 'Отправить',
-                    color: AppColors.purple200,
+                    color: Colors.white,
                   ),
                   SliverPersistentHeader(
                     pinned: true,
@@ -83,7 +83,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       minHeight: 115,
                       maxHeight: 115,
                       child: Container(
-                        color: AppColors.purple200,
+                        color: Colors.white,
                         alignment: Alignment.center,
                         child: Column(
                           children: [
@@ -124,7 +124,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       child: Container(
                         height: 18,
                         decoration: const BoxDecoration(
-                            color: AppColors.purple200,
+                            color: Colors.white,
                             borderRadius: BorderRadius.vertical(
                                 bottom: Radius.circular(16))),
                       ),
