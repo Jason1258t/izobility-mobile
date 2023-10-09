@@ -49,7 +49,7 @@ class ApiCripto {
     return emeraldQuantity;
   }
 
-  Future<dynamic> sendEmeraldTo(
+  Future<String> sendEmeraldTo(
       HDWallet wallet, String address, double amount) async {
     final grade = (amount % 1).toString().substring(2).length;
 
@@ -89,7 +89,7 @@ class ApiCripto {
     print(res);
     print("---------------------------------");
 
-    return res;
+    return res.toString();
   }
 
   Future<dynamic> somethingElse() async {}

@@ -107,6 +107,8 @@ class WalletRepository {
   }
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
+    // final transactionCode = await apiCripto.sendEmeraldTo(walletModel, );
+
     await apiService.wallet
         .swapCoinOnChainToInGame(coinId, amount, walletModel!);
   }
