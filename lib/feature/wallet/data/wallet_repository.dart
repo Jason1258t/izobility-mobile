@@ -28,6 +28,9 @@ class WalletRepository {
   TransferTypes transferType = TransferTypes.inGame;
 
   HDWallet? walletModel;
+
+  List<dynamic> ordersGeneralList = [];
+  List<dynamic> ordersMyList = [];
 // ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
@@ -130,7 +133,7 @@ class WalletRepository {
     coinsInGame.clear();
     coinsInChain.clear();
 
-    coinsInGame.add(TokenData(
+    final emeraldCoin = TokenData(
         amount: obscured
             ? "****"
             : walletPage == 0
@@ -141,7 +144,10 @@ class WalletRepository {
             'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
         name: "Emerald",
         rubleExchangeRate: "0",
-        description: ''));
+        description: '');
+
+    coinsInGame.add(emeraldCoin);
+    coinsInChain.add(emeraldCoin);
 
     for (var json in res) {
       try {
@@ -153,27 +159,21 @@ class WalletRepository {
   }
 
   Future<dynamic> getBurseItemList(
-    BurseOrderType type,
-    int itemsQuantity,
-    int pageNumber
-  ) async {
-    final response = await apiService.wallet.getBurseItemList(
-      type,
-      itemsQuantity,
-      pageNumber
-    );
+      BurseOrderType type, int itemsQuantity, int pageNumber) async {
+    final response = await apiService.wallet
+        .getBurseItemList(type, itemsQuantity, pageNumber);
     return response;
   }
 
   Future<void> createBurseOrder() async {
-    await apiService.wallet.createBurseOrder();
+    await apiService.wallet.createBurseOrder(1, 1, 1, 1);
   }
 
   Future<void> buyBurseOrder() async {
-    await apiService.wallet.buyBurseOrder();
+    await apiService.wallet.buyBurseOrder(1);
   }
 
   Future<void> canselBurseOrder() async {
-    await apiService.wallet.canselBurseOrder();
+    await apiService.wallet.canselBurseOrder(1);
   }
 }

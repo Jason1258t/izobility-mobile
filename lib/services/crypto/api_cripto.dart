@@ -85,6 +85,9 @@ class ApiCripto {
         BigInt.from(amount * pow(10, grade)) * BigInt.from(pow(10, 18 - grade)),
       ],
     );
+    print("---------------------------------");
+    print(res);
+    print("---------------------------------");
 
     return res;
   }

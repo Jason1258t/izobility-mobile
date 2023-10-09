@@ -38,5 +38,5 @@ class ApiEndpoints {
   static const String burseOrdersList = '/trade/list';
   static const String burseCreateOrder = '/trade/add-order';
   static const String burseBuyOrder = '/trade/buy-order';
-  static const String burseCanselOrder = '/trade/cancel-order';
+  static const String burseCancelOrder = '/trade/cancel-order';
 }
