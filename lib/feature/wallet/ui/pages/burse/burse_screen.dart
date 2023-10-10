@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/burse_general_orders/burse_general_orders_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -27,6 +28,8 @@ class _BurseScreenState extends State<BurseScreen>
 
   @override
   void initState() {
+    context.read<WalletRepository>().getBurseGeneralItemList(10, 1);
+
     _tabController = TabController(length: 2, vsync: this);
     _tabController.index = isBurseOrMyOrder;
 
@@ -69,8 +72,8 @@ class _BurseScreenState extends State<BurseScreen>
               decelerationRate: ScrollDecelerationRate.fast),
           slivers: [
             SliverPersistentHeader(
-              pinned: true,
-              floating: false,
+              pinned: false,
+              floating: true,
               delegate: SliverAppBarDelegate(
                 minHeight: 115,
                 maxHeight: 115,
@@ -120,8 +123,8 @@ class _BurseScreenState extends State<BurseScreen>
               ),
             ),
             SliverPersistentHeader(
-              pinned: true,
-              floating: false,
+              pinned: false,
+              floating: true,
               delegate: SliverAppBarDelegate(
                 minHeight: 17,
                 maxHeight: 17,
@@ -168,39 +171,40 @@ class _BurseScreenState extends State<BurseScreen>
               ),
             ),
             SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 10)
+                        .copyWith(bottom: 0),
                 sliver: isBurseOrMyOrder == 0
                     ? SliverList(
-                  delegate: SliverChildListDelegate(
-                      RepositoryProvider.of<WalletRepository>(context)
-                          .coinsInChain
-                          .map((item) => OrderItem(
-                        title: item.name,
-                        value:
-                        double.parse(item.rubleExchangeRate)
-                            .toStringAsFixed(2),
-                        onTap: () {
-                          context.push(
-                              RouteNames.walletCurrency,
-                              extra: item);
-                        },
-                        imageUrl: item.imageUrl,
-                        prise: walletRepository.obscured
-                            ? AppStrings.obscuredText
-                            : item.amount,
-                        increment: '0,02',
-                        usdValue: walletRepository.obscured
-                            ? AppStrings.obscuredText
-                            : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
-                      ))
-                          .toList()),
-                )
+                        delegate: SliverChildListDelegate([
+                          BlocBuilder<BurseGeneralOrdersCubit,
+                              BurseGeneralOrdersState>(
+                            builder: (contex, state) {
+                              if (state is BurseGeneralOrdersSuccess) {
+                                return Column(
+                                  children: walletRepository.ordersGeneralList
+                                      .map((currentOrder) => OrderItem(
+                                          order: currentOrder,
+                                          ))
+                                      .toList(),
+                                );
+                              } else if (state is BurseGeneralOrdersLoading) {
+                                return const Center(
+                                  child: CircularProgressIndicator.adaptive(),
+                                );
+                              }
+
+                              return Container();
+                            },
+                          )
+                        ]),
+                      )
                     : const SliverToBoxAdapter(
-                  child: Text(
-                    'Еще нету контрактов',
-                    textAlign: TextAlign.center,
-                  ),
-                )),
+                        child: Text(
+                          'Еще нету контрактов',
+                          textAlign: TextAlign.center,
+                        ),
+                      )),
           ],
         ),
       ),

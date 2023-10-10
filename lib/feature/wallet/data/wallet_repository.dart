@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:izobility_mobile/models/api/token_data.dart';
+import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/services/crypto/api_cripto.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
@@ -169,17 +170,31 @@ class WalletRepository {
   }
 
   Future<dynamic> getBurseGeneralItemList(
-      BurseOrderType type, int itemsQuantity, int pageNumber) async {
-    final response = await apiService.wallet
-        .getBurseItemList(BurseOrderType.general, itemsQuantity, pageNumber);
+      int itemsQuantity, int pageNumber) async {
+    burseGeneralOrdersStream.add(LoadingStateEnum.loading);
 
-    
+    try {
+      final response = await apiService.wallet
+          .getBurseItemList(BurseOrderType.general, itemsQuantity, pageNumber);
 
-    return response;
+      final responseItems = response['objects'];
+
+      for (var json in responseItems) {
+        try {
+          ordersGeneralList.add(BurseOrderModel.fromJson(json));
+        } catch (e) {
+          print(e);
+          continue;
+        }
+      }
+
+      burseGeneralOrdersStream.add(LoadingStateEnum.success);
+    } catch (ex) {
+      burseGeneralOrdersStream.add(LoadingStateEnum.fail);
+    }
   }
 
-  Future<dynamic> getBurseMyItemList(
-      int itemsQuantity, int pageNumber) async {
+  Future<dynamic> getBurseMyItemList(int itemsQuantity, int pageNumber) async {
     final response = await apiService.wallet
         .getBurseItemList(BurseOrderType.my, itemsQuantity, pageNumber);
     return response;

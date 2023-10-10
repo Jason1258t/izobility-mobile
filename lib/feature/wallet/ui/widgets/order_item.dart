@@ -2,29 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
+import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class OrderItem extends StatelessWidget {
-  final String title;
-  final String prise;
-  final String increment;
-  final String value;
-  final String usdValue;
-  final String imageUrl;
-
-  final VoidCallback onTap;
+  final BurseOrderModel order;
 
   const OrderItem(
       {super.key,
-      required this.title,
-      required this.prise,
-      required this.increment,
-      required this.onTap,
-      required this.value,
-      required this.usdValue,
-      required this.imageUrl});
+      required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +46,7 @@ class OrderItem extends StatelessWidget {
                           color: AppColors.backgroundSecondary,
                           borderRadius: BorderRadius.circular(32),
                           image: DecorationImage(
-                              image: NetworkImage(imageUrl),
+                              image: NetworkImage(order.coinFrom.logo),
                               fit: BoxFit.cover)),
                     ),
                     const SizedBox(
@@ -69,7 +57,7 @@ class OrderItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          order.coinFrom.codename,
                           style: AppTypography.font16w400
                               .copyWith(color: AppColors.textPrimary),
                         ),
@@ -99,7 +87,7 @@ class OrderItem extends StatelessWidget {
                           color: AppColors.backgroundSecondary,
                           borderRadius: BorderRadius.circular(32),
                           image: DecorationImage(
-                              image: NetworkImage(imageUrl),
+                              image: NetworkImage(order.coinTo.logo),
                               fit: BoxFit.cover)),
                     ),
                     const SizedBox(
@@ -110,7 +98,7 @@ class OrderItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          order.coinTo.codename,
                           style: AppTypography.font16w400
                               .copyWith(color: AppColors.textPrimary),
                         ),
