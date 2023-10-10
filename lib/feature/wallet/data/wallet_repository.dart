@@ -33,6 +33,21 @@ class WalletRepository {
 
   List<dynamic> ordersGeneralList = [];
   List<dynamic> ordersMyList = [];
+
+  TokenData? activeBurseTo;
+  TokenData? activeBurseFrom;
+
+  BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
+  BehaviorSubject.seeded(LoadingStateEnum.wait);
+
+  BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
+  BehaviorSubject.seeded(LoadingStateEnum.wait);
+
+  BehaviorSubject<LoadingStateEnum> burseGeneralOrdersStream =
+  BehaviorSubject.seeded(LoadingStateEnum.wait);
+
+  BehaviorSubject<LoadingStateEnum> burseMyOrdersStream =
+  BehaviorSubject.seeded(LoadingStateEnum.wait);
 // ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
@@ -77,17 +92,7 @@ class WalletRepository {
     walletPage = page;
   }
 
-  BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
-      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
-  BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
-      BehaviorSubject.seeded(LoadingStateEnum.wait);
-
-  BehaviorSubject<LoadingStateEnum> burseGeneralOrdersStream =
-      BehaviorSubject.seeded(LoadingStateEnum.wait);
-
-  BehaviorSubject<LoadingStateEnum> burseMyOrdersStream =
-      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   Future<void> getUserEmeraldBill() async {
     emeraldInWalletStream.add(LoadingStateEnum.loading);
@@ -167,6 +172,9 @@ class WalletRepository {
         print(e);
       }
     }
+
+    activeBurseFrom = coinsInGame[0];
+    activeBurseTo = coinsInGame[1];
   }
 
   Future<dynamic> getBurseGeneralItemList(
@@ -213,5 +221,13 @@ class WalletRepository {
 
   Future<void> canselBurseOrder() async {
     await apiService.wallet.canselBurseOrder(1);
+  }
+
+  void setActiveBurseFrom(TokenData r) {
+    activeBurseFrom = r;
+  }
+
+  void setactiveBurseTo(TokenData r) {
+    activeBurseTo = r;
   }
 }

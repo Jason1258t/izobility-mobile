@@ -43,6 +43,7 @@ abstract class RouteNames {
   static const String walletBurseBuyOrder = '/wallet/burse/order/buy';
   static const String walletBurseCreateOrder = '/wallet/burse/order/create';
   static const String walletBurseHistory = '/wallet/burse/history';
+  static const String walletBurseChooseCoin = '/wallet/choose/coin';
   static const String walletBurseCreateOrderSuccess =
       '/wallet/burse/order/create/success';
 

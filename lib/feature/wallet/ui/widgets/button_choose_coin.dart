@@ -8,12 +8,13 @@ class ButtonChooseCoin extends StatelessWidget {
   final double width;
   final Function() onTap;
 
-  const ButtonChooseCoin(
-      {super.key,
-      required this.coinName,
-      required this.imagePath,
-      required this.width,
-      required this.onTap});
+  ButtonChooseCoin({
+    super.key,
+    required this.coinName,
+    required this.imagePath,
+    required this.width,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +41,13 @@ class ButtonChooseCoin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration: const BoxDecoration(shape: BoxShape.circle),
+              decoration:  BoxDecoration(borderRadius: BorderRadius.circular(100)),
               alignment: Alignment.center,
-              child: SvgPicture.asset(imagePath),
+              child: Image.network(
+                imagePath,
+                width: 24,
+                height: 24,
+              ),
             ),
             const SizedBox(
               width: 4,
@@ -51,11 +56,11 @@ class ButtonChooseCoin extends StatelessWidget {
               alignment: Alignment.centerLeft,
               width: 70,
               height: 24,
-              child: FittedBox(
-                child: Text(
-                  coinName,
-                  style: AppTypography.font16w700.copyWith(color: Colors.black),
-                ),
+              child: Text(
+                coinName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.font16w700.copyWith(color: Colors.black),
               ),
             ),
             const SizedBox(

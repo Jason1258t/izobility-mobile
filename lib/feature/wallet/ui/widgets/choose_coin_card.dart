@@ -30,9 +30,10 @@ class ChooseCoinCard extends StatelessWidget {
             children: [
               Container(
                   width: 32,
+                  height: 32,
                   clipBehavior: Clip.hardEdge,
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(1000)),
+                      BoxDecoration(borderRadius: BorderRadius.circular(100)),
                   child: Image.network(
                     coin.imageUrl,
                     fit: BoxFit.cover,

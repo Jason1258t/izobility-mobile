@@ -5,9 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_create_order/burse_create_order_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
+import 'package:izobility_mobile/services/remote/api/api_service.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -25,13 +28,11 @@ class BurseCreateOrderScreen extends StatefulWidget {
 }
 
 class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
-  TextEditingController _sendController = TextEditingController();
-  TextEditingController _getController = TextEditingController();
+  final _sendController = TextEditingController();
+  final _getController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-
     return Container(
       color: Colors.white,
       child: Scaffold(
@@ -77,6 +78,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
   Widget buildCreateOrderWidget() {
     final size = MediaQuery.sizeOf(context);
 
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -101,9 +103,13 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
               ),
               ButtonChooseCoin(
                 width: size.width * 0.3555,
-                coinName: 'Emerald',
-                imagePath: 'assets/icons/coin.svg',
-                onTap: () {},
+                coinName: walletRepository.activeBurseFrom!.name,
+                imagePath: walletRepository.activeBurseFrom!.imageUrl,
+                onTap: () {
+                  context
+                      .push(RouteNames.walletBurseChooseCoin, extra: true)
+                      .then((value) => setState(() {}));
+                },
               ),
             ],
           ),
@@ -135,14 +141,18 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
               ),
               ButtonChooseCoin(
                 width: size.width * 0.3555,
-                coinName: 'BTC',
-                imagePath: 'assets/icons/coin.svg',
-                onTap: () {},
+                coinName: walletRepository.activeBurseTo!.name,
+                imagePath: walletRepository.activeBurseTo!.imageUrl,
+                onTap: () {
+                  context
+                      .push(RouteNames.walletBurseChooseCoin, extra: false)
+                      .then((value) => setState(() {}));
+                },
               ),
             ],
           ),
         ),
-        Spacer(),
+        const Spacer(),
         CustomButton(
             text: "Создать свой заказ",
             onTap: () {
