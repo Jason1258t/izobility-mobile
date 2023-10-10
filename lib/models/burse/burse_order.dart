@@ -5,8 +5,8 @@ class BurseOrderModel {
   // String userIdFrom;
   // String BurseCoinModel;
   // String monetTo;
-  // String amountFrom;
-  // String amountTo;
+  String amountFrom;
+  String amountTo;
   DateTime createdAt;
   // String userIdBuy;
   // String closedAt;
@@ -22,6 +22,8 @@ class BurseOrderModel {
     // required this.amountFrom,
     // required this.amountTo,
     required this.createdAt,
+    required this.amountFrom,
+    required this.amountTo,
     // this.userIdBuy,
     // this.closedAt,
     // this.deletedAt,
@@ -35,8 +37,8 @@ class BurseOrderModel {
       // userIdFrom: json['user_id_from'] ?? "",
       // BurseCoinModel: json['monet_from'] ?? "",
       // monetTo: json['monet_to'] ?? "",
-      // amountFrom: json['amount_from'] ?? "",
-      // amountTo: json['amount_to'] ?? "",
+      amountFrom: json['amount_from'] ?? "",
+      amountTo: json['amount_to'] ?? "",
       createdAt: DateTime.parse(json['created_at']) ,
       // userIdBuy: json['user_id_buy'],
       // closedAt: json['closed_at'],
