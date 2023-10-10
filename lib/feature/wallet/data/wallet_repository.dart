@@ -181,6 +181,7 @@ class WalletRepository {
 
       for (var json in responseItems) {
         try {
+          print(json);
           ordersGeneralList.add(BurseOrderModel.fromJson(json));
         } catch (e) {
           print(e);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/models/api/burse_transfer.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -8,11 +10,11 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class OrderItem extends StatelessWidget {
+  final VoidCallback onTap;
   final BurseOrderModel order;
 
-  const OrderItem(
-      {super.key,
-      required this.order});
+  const OrderItem({super.key,
+    required this.order, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -50,19 +52,36 @@ class OrderItem extends StatelessWidget {
                               fit: BoxFit.cover)),
                     ),
                     const SizedBox(
-                      width: 12,
+                      width: 4,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          order.coinFrom.codename,
-                          style: AppTypography.font16w400
-                              .copyWith(color: AppColors.textPrimary),
+                        Row(
+                          children: [
+                            Container(
+                                constraints: const BoxConstraints(maxWidth: 50),
+                                child: Text(
+                                  order.amountFrom,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary,
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              order.coinFrom.codename,
+                              style: AppTypography.font16w400
+                                  .copyWith(color: AppColors.textPrimary),
+                            ),
+                          ],
                         ),
                         Text('Отправить',
-                            style: AppTypography.font14w400
+                            style: AppTypography.font16w400
                                 .copyWith(color: AppColors.disabledTextButton))
                       ],
                     ),
@@ -70,7 +89,7 @@ class OrderItem extends StatelessWidget {
                 ),
                 Container(
                     padding: const EdgeInsets.all(3),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         shape: BoxShape.circle, gradient: AppColors.gradient),
                     child: SvgPicture.asset(
                       'assets/icons/transfer_arrows.svg',
@@ -91,18 +110,35 @@ class OrderItem extends StatelessWidget {
                               fit: BoxFit.cover)),
                     ),
                     const SizedBox(
-                      width: 12,
+                      width: 4,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          order.coinTo.codename,
-                          style: AppTypography.font16w400
-                              .copyWith(color: AppColors.textPrimary),
+                        Row(
+                          children: [
+                            Container(
+                                constraints: const BoxConstraints(maxWidth: 50),
+                                child: Text(
+                                  order.amountTo,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary,
+                                  ),
+                                )),
+                            const SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              order.coinTo.codename,
+                              style: AppTypography.font16w400
+                                  .copyWith(color: AppColors.textPrimary),
+                            ),
+                          ],
                         ),
-                        Text('Отправить',
+                        Text('Получить',
                             style: AppTypography.font14w400
                                 .copyWith(color: AppColors.disabledTextButton))
                       ],
@@ -113,7 +149,6 @@ class OrderItem extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      ),);
   }
 }

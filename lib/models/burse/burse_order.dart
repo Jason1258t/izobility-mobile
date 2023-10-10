@@ -85,7 +85,6 @@ class BurseCoinModel {
     required this.amountSoctsetShare,
     required this.amountDraft,
     required this.url,
-
   });
 
   factory BurseCoinModel.fromJson(Map<String, dynamic> json) {

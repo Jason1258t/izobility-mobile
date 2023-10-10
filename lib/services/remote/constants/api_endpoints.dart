@@ -12,7 +12,8 @@ class ApiEndpoints {
   static const String restoreConfirm = '/user/restore-confirm';
 
   static const String wallet = '/balance/balance';
-  static const String userGameTokens = '/wallet/list';
+  // static const String userGameTokens = '/wallet/list';
+  static const String userGameTokens = '/balance/monets-list';
 
   static const String userInfo = '/user/';
   static const String userUpdateName = '/user/update-fio';

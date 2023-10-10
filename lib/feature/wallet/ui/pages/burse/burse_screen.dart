@@ -48,15 +48,16 @@ class _BurseScreenState extends State<BurseScreen>
           context: context,
           text: "Биржа",
           actions: [
-            InkWell(
-              onTap: () {
-                context.push(RouteNames.walletBurseBuyOrder);
-              },
-              child: Padding(
-                padding: EdgeInsets.only(right: 18),
-                child: Icon(
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                onTap: () {
+                  // context.push(RouteNames.walletBurseBuyOrder);
+                },
+                child: const Icon(
                   Icons.history,
-                  size: 25,
+                  size: 28,
                   color: Colors.black,
                 ),
               ),
@@ -179,12 +180,13 @@ class _BurseScreenState extends State<BurseScreen>
                         delegate: SliverChildListDelegate([
                           BlocBuilder<BurseGeneralOrdersCubit,
                               BurseGeneralOrdersState>(
-                            builder: (contex, state) {
+                            builder: (context, state) {
                               if (state is BurseGeneralOrdersSuccess) {
                                 return Column(
                                   children: walletRepository.ordersGeneralList
                                       .map((currentOrder) => OrderItem(
-                                          order: currentOrder,
+                                            order: currentOrder,
+                                            onTap: () {},
                                           ))
                                       .toList(),
                                 );

@@ -49,17 +49,45 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          color: Colors.red,
-                          height: 20,
-                          width: 100,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 24,
+                              height: 24,
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                  color: AppColors.backgroundSecondary,
+                                  borderRadius: BorderRadius.circular(32),
+                                  image: const DecorationImage(
+                                      image: NetworkImage(''),
+                                      fit: BoxFit.cover)),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '83.00 EMR',
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary),
+                                ),
+                                Text('Отправить',
+                                    style: AppTypography.font14w400.copyWith(
+                                        color: AppColors.disabledTextButton))
+                              ],
+                            ),
+                          ],
                         ),
                         const SizedBox(
                           height: 16,
                         ),
                         Container(
                             padding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 gradient: AppColors.gradient),
                             child: SvgPicture.asset(
@@ -70,11 +98,39 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                         const SizedBox(
                           height: 16,
                         ),
-                        Container(
-                          color: Colors.red,
-                          height: 20,
-                          width: 100,
-                        )
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 24,
+                              height: 24,
+                              padding: const EdgeInsets.all(4),
+                              decoration: BoxDecoration(
+                                  color: AppColors.backgroundSecondary,
+                                  borderRadius: BorderRadius.circular(32),
+                                  image: const DecorationImage(
+                                      image: NetworkImage(''),
+                                      fit: BoxFit.cover)),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '10.00 BNB',
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary),
+                                ),
+                                Text('Отправить',
+                                    style: AppTypography.font14w400.copyWith(
+                                        color: AppColors.disabledTextButton))
+                              ],
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

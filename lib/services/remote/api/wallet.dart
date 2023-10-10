@@ -11,12 +11,14 @@ class Wallet with ApiHandler {
   }
 
   Future getUserGameTokens() async {
-    final res = await get(ApiEndpoints.userGameTokens);
+    final res = await get(ApiEndpoints.userGameTokens, data: {
+      'site_id': siteId,
+    });
     return res['objects'];
   }
 
   Future<dynamic> getEmeraldCoin() async {
-    return await get(ApiEndpoints.wallet);
+    return await get(ApiEndpoints.wallet,);
   }
 
   Future<void> swapCoinInGameToOnChain(

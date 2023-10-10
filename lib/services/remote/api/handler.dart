@@ -44,8 +44,8 @@ mixin class ApiHandler {
     }
   }
 
-  Future get(String url, {Map<String, dynamic>? queryParameters}) async {
-    return _errorHandler(url: url, queryParams: queryParameters, method: Methods.get);
+  Future get(String url, {Map<String, dynamic>? queryParameters, Map<String, dynamic>? data}) async {
+    return _errorHandler(url: url, queryParams: queryParameters, method: Methods.get, data: data);
   }
 
   Future post(String url,
