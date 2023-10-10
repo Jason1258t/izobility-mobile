@@ -58,14 +58,14 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                           height: 16,
                         ),
                         Container(
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(3),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 gradient: AppColors.gradient),
                             child: SvgPicture.asset(
                               'assets/icons/transfer_arrows.svg',
                               color: Colors.black,
-                              width: 24,
+                              width: 20,
                             )),
                         const SizedBox(
                           height: 16,

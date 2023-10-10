@@ -82,6 +82,12 @@ class WalletRepository {
   BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
+  BehaviorSubject<LoadingStateEnum> burseGeneralOrdersStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
+  BehaviorSubject<LoadingStateEnum> burseMyOrdersStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
   Future<void> getUserEmeraldBill() async {
     emeraldInWalletStream.add(LoadingStateEnum.loading);
 
@@ -108,7 +114,8 @@ class WalletRepository {
   }
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
-    final transactionCode = await apiCripto.sendEmeraldTo(walletModel!, techWalletAddress, amount);
+    final transactionCode =
+        await apiCripto.sendEmeraldTo(walletModel!, techWalletAddress, amount);
 
     await apiService.wallet
         .swapCoinOnChainToInGame(coinId, amount, walletModel!, transactionCode);
@@ -161,10 +168,20 @@ class WalletRepository {
     }
   }
 
-  Future<dynamic> getBurseItemList(
+  Future<dynamic> getBurseGeneralItemList(
       BurseOrderType type, int itemsQuantity, int pageNumber) async {
     final response = await apiService.wallet
-        .getBurseItemList(type, itemsQuantity, pageNumber);
+        .getBurseItemList(BurseOrderType.general, itemsQuantity, pageNumber);
+
+    
+
+    return response;
+  }
+
+  Future<dynamic> getBurseMyItemList(
+      int itemsQuantity, int pageNumber) async {
+    final response = await apiService.wallet
+        .getBurseItemList(BurseOrderType.my, itemsQuantity, pageNumber);
     return response;
   }
 

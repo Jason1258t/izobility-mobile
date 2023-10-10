@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
@@ -15,20 +18,22 @@ class OrderItem extends StatelessWidget {
 
   const OrderItem(
       {super.key,
-        required this.title,
-        required this.prise,
-        required this.increment,
-        required this.onTap,
-        required this.value,
-        required this.usdValue,
-        required this.imageUrl});
+      required this.title,
+      required this.prise,
+      required this.increment,
+      required this.onTap,
+      required this.value,
+      required this.usdValue,
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          context.push(RouteNames.walletBurseBuyOrder);
+        },
         borderRadius: BorderRadius.circular(12),
         child: Ink(
           width: double.infinity,
@@ -53,7 +58,8 @@ class OrderItem extends StatelessWidget {
                           color: AppColors.backgroundSecondary,
                           borderRadius: BorderRadius.circular(32),
                           image: DecorationImage(
-                              image: NetworkImage(imageUrl), fit: BoxFit.cover)),
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover)),
                     ),
                     const SizedBox(
                       width: 12,
@@ -68,12 +74,21 @@ class OrderItem extends StatelessWidget {
                               .copyWith(color: AppColors.textPrimary),
                         ),
                         Text('Отправить',
-                            style: AppTypography.font14w400.copyWith(
-                                color: AppColors.disabledTextButton))
+                            style: AppTypography.font14w400
+                                .copyWith(color: AppColors.disabledTextButton))
                       ],
                     ),
                   ],
                 ),
+                Container(
+                    padding: const EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, gradient: AppColors.gradient),
+                    child: SvgPicture.asset(
+                      'assets/icons/transfer_arrows.svg',
+                      color: Colors.black,
+                      width: 20,
+                    )),
                 Row(
                   children: [
                     Container(
@@ -84,7 +99,8 @@ class OrderItem extends StatelessWidget {
                           color: AppColors.backgroundSecondary,
                           borderRadius: BorderRadius.circular(32),
                           image: DecorationImage(
-                              image: NetworkImage(imageUrl), fit: BoxFit.cover)),
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover)),
                     ),
                     const SizedBox(
                       width: 12,
@@ -99,8 +115,8 @@ class OrderItem extends StatelessWidget {
                               .copyWith(color: AppColors.textPrimary),
                         ),
                         Text('Отправить',
-                            style: AppTypography.font14w400.copyWith(
-                                color: AppColors.disabledTextButton))
+                            style: AppTypography.font14w400
+                                .copyWith(color: AppColors.disabledTextButton))
                       ],
                     ),
                   ],
