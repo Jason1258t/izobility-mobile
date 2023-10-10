@@ -7,6 +7,9 @@ class ApiEndpoints {
   static const String refresh = '/user/login-token';
 
   static const String resendCode = '/user/registration-resend';
+  static const String restore = '/user/restore';
+  static const String restoreCheck = '/user/restore-check';
+  static const String restoreConfirm = '/user/restore-confirm';
 
   static const String wallet = '/balance/balance';
   static const String userGameTokens = '/wallet/list';

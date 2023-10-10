@@ -11,7 +11,7 @@ class Auth with ApiHandler {
   }
 
   Future<dynamic> registerUser(String email, String? promo) async {
-    final res =  await dio.post(ApiEndpoints.register, data: {
+    final res = await dio.post(ApiEndpoints.register, data: {
       "phone": "",
       "phone_country": "+7",
       "email": email,
@@ -42,9 +42,36 @@ class Auth with ApiHandler {
 
     await refreshToken(response.data['jwt']);
 
-    print(dio.options.headers);
-
     return response.data;
+  }
+
+  Future restorePassword({required String email}) async {
+    await post(ApiEndpoints.restore, data: {
+      "login": "",
+      "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
+      "email": email,
+      "site_id": siteId
+    });
+  }
+
+  Future restoreConfirm({required String email, required String code}) async {
+    await post(ApiEndpoints.restoreCheck, data: {
+      "phone": "",
+      "phone_country": "+7",
+      "email": email,
+      "token": code,
+      "site_id": siteId
+    });
+
+    await post(ApiEndpoints.restoreConfirm, data: {
+      "login": "",
+      "phone_country": "+7",
+      "email": email,
+      "token": code,
+      "site_id": siteId,
+      "password": code,
+      "password_confirm": code
+    });
   }
 
   Future<dynamic> resendVerificationCode({required int userId}) async {
@@ -52,5 +79,4 @@ class Auth with ApiHandler {
 
     return res;
   }
-
 }

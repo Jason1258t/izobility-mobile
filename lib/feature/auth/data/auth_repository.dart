@@ -92,6 +92,9 @@ class AuthRepository {
         apiService.auth.login(email: data.email, password: data.password!));
   }
 
+  Future changePassword({required String email, required String code}) =>
+      apiService.auth.restoreConfirm(email: email, code: code);
+
   Future checkLogin() async {
     //await Future.delayed(Duration(seconds: 5));
     if (await preferences.getUser() != null) {

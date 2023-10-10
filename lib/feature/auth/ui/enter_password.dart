@@ -115,10 +115,17 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                   } else {
                     return TextButtonWithoutBackground(
                       onTap: () {
-                        BlocProvider.of<PasswordRecoveryCubit>(context)
-                            .sendRecoveryEmail(
-                                BlocProvider.of<AuthCubit>(context)
-                                    .getUserId()!);
+                        final recoveryBloc =
+                            BlocProvider.of<PasswordRecoveryCubit>(context);
+                        final authCubit = BlocProvider.of<AuthCubit>(context);
+                        if (!authCubit.userAlreadyRegistered) {
+                          recoveryBloc
+                              .resendRegisterEmail(authCubit.getUserId()!);
+                        } else {
+                          recoveryBloc
+                              .restorePassword(authCubit.loginData!.email);
+                          authCubit.needChangePassword = true;
+                        }
                       },
                       text: 'Отправить ещё раз',
                       textColor: Colors.black,
