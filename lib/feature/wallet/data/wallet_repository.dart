@@ -171,6 +171,8 @@ class WalletRepository {
 
   Future<dynamic> getBurseGeneralItemList(
       int itemsQuantity, int pageNumber) async {
+    ordersGeneralList.clear();
+
     burseGeneralOrdersStream.add(LoadingStateEnum.loading);
 
     try {
