@@ -11,12 +11,28 @@ class PasswordRecoveryCubit extends Cubit<PasswordRecoveryState> {
 
   PasswordRecoveryCubit({required this.apiService}) : super(PasswordRecoveryInitial());
 
-  void sendRecoveryEmail(int userId) async {
+  void resendRegisterEmail(int userId) async {
     int repeatDuration = 60;
 
     emit(PasswordRecoveryProcessState());
     try {
       await apiService.auth.resendVerificationCode(userId: userId);
+      emit(PasswordRecoveryEmailSent());
+      emit(PasswordRecoveryWait(remainingTime: repeatDuration));
+      _startTimer(repeatDuration);
+    } catch (e) {
+      emit(PasswordRecoveryFailState());
+      rethrow;
+    }
+  }
+
+  void restorePassword(String email) async {
+    int repeatDuration = 60;
+
+    emit(PasswordRecoveryProcessState());
+    try {
+      await apiService.auth.restorePassword(email: email);
+
       emit(PasswordRecoveryEmailSent());
       emit(PasswordRecoveryWait(remainingTime: repeatDuration));
       _startTimer(repeatDuration);
