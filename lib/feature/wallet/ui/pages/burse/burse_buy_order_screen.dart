@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class BurseBuyOrderScreen extends StatefulWidget {
-  const BurseBuyOrderScreen({super.key});
+  const BurseBuyOrderScreen({super.key, required this.order});
+
+  final BurseOrderModel order;
 
   @override
   State<BurseBuyOrderScreen> createState() => _BurseBuyOrderScreenState();
@@ -59,8 +61,8 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                               decoration: BoxDecoration(
                                   color: AppColors.backgroundSecondary,
                                   borderRadius: BorderRadius.circular(32),
-                                  image: const DecorationImage(
-                                      image: NetworkImage(''),
+                                  image: DecorationImage(
+                                      image: NetworkImage(widget.order.coinFrom.logo),
                                       fit: BoxFit.cover)),
                             ),
                             const SizedBox(
@@ -71,7 +73,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '83.00 EMR',
+                                  '${widget.order.amountFrom} ${widget.order.coinFrom.codename}',
                                   style: AppTypography.font16w400
                                       .copyWith(color: AppColors.textPrimary),
                                 ),
@@ -108,8 +110,8 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                               decoration: BoxDecoration(
                                   color: AppColors.backgroundSecondary,
                                   borderRadius: BorderRadius.circular(32),
-                                  image: const DecorationImage(
-                                      image: NetworkImage(''),
+                                  image: DecorationImage(
+                                      image: NetworkImage(widget.order.coinTo.logo),
                                       fit: BoxFit.cover)),
                             ),
                             const SizedBox(
@@ -120,7 +122,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '10.00 BNB',
+                                  '${widget.order.amountTo} ${widget.order.coinTo.codename}',
                                   style: AppTypography.font16w400
                                       .copyWith(color: AppColors.textPrimary),
                                 ),
@@ -151,7 +153,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                   Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(
-                        "Размещено: 11.08.2023 20:29",
+                        "Размещено: ${widget.order.createdAt}",
                         style: AppTypography.font12w400
                             .copyWith(color: AppColors.grey500),
                       )),

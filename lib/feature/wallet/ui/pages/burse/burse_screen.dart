@@ -124,8 +124,8 @@ class _BurseScreenState extends State<BurseScreen>
               ),
             ),
             SliverPersistentHeader(
-              pinned: false,
-              floating: true,
+              pinned: true,
+              floating: false,
               delegate: SliverAppBarDelegate(
                 minHeight: 17,
                 maxHeight: 17,
@@ -186,7 +186,9 @@ class _BurseScreenState extends State<BurseScreen>
                                   children: walletRepository.ordersGeneralList
                                       .map((currentOrder) => OrderItem(
                                             order: currentOrder,
-                                            onTap: () {},
+                                            onTap: () {
+                                              context.push(RouteNames.walletBurseBuyOrder, extra: currentOrder);
+                                            },
                                           ))
                                       .toList(),
                                 );

@@ -49,6 +49,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_view_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_setting.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
+import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
 
 import '../feature/auth/bloc/app/app_cubit.dart';
@@ -201,7 +202,9 @@ class CustomGoRoutes {
           builder: (context, state) => const BurseScreen()),
       GoRoute(
           path: RouteNames.walletBurseBuyOrder,
-          builder: (context, state) => const BurseBuyOrderScreen()),
+          builder: (context, state) => BurseBuyOrderScreen(
+                order: state.extra as BurseOrderModel,
+              )),
       GoRoute(
           path: RouteNames.walletBurseCreateOrderSuccess,
           builder: (context, state) => const BurseCreateOrderSuccessScreen()),
