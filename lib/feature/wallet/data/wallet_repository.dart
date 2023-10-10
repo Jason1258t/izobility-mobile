@@ -4,6 +4,7 @@ import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/services/crypto/api_cripto.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
+import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
@@ -107,10 +108,10 @@ class WalletRepository {
   }
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
-    // final transactionCode = await apiCripto.sendEmeraldTo(walletModel, );
+    final transactionCode = await apiCripto.sendEmeraldTo(walletModel!, techWalletAddress, amount);
 
     await apiService.wallet
-        .swapCoinOnChainToInGame(coinId, amount, walletModel!);
+        .swapCoinOnChainToInGame(coinId, amount, walletModel!, transactionCode);
   }
 
   void loadEmeraldCoin() async {

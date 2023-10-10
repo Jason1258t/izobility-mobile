@@ -28,13 +28,17 @@ class Wallet with ApiHandler {
     });
   }
 
-  Future<void> swapCoinOnChainToInGame(
-      int coinId, double amount, HDWallet wallet) async {
+  Future<void> swapCoinOnChainToInGame(int coinId, double amount,
+      HDWallet wallet, String transactionCode) async {
     await post(ApiEndpoints.walletSwapOnChainToInGame, data: {
       'moneta_id': coinId,
       'amount': amount,
-      'wallet': wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain)
+      'wallet': wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain),
+      'trx': transactionCode,
+      'site_id': siteId
     });
+
+    print("done---------------------- trx transfer");
   }
 
   Future<dynamic> getBurseItemList(
