@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -9,7 +11,6 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class BurseScreen extends StatefulWidget {
   const BurseScreen({super.key});
@@ -20,13 +21,15 @@ class BurseScreen extends StatefulWidget {
 
 class _BurseScreenState extends State<BurseScreen>
     with SingleTickerProviderStateMixin {
-  int isBurseOrMyOrder = 1;
+  int isBurseOrMyOrder = 0;
 
   late TabController _tabController;
 
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.index = isBurseOrMyOrder;
+
     super.initState();
   }
 
@@ -164,6 +167,40 @@ class _BurseScreenState extends State<BurseScreen>
                 ),
               ),
             ),
+            SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                sliver: isBurseOrMyOrder == 0
+                    ? SliverList(
+                  delegate: SliverChildListDelegate(
+                      RepositoryProvider.of<WalletRepository>(context)
+                          .coinsInChain
+                          .map((item) => OrderItem(
+                        title: item.name,
+                        value:
+                        double.parse(item.rubleExchangeRate)
+                            .toStringAsFixed(2),
+                        onTap: () {
+                          context.push(
+                              RouteNames.walletCurrency,
+                              extra: item);
+                        },
+                        imageUrl: item.imageUrl,
+                        prise: walletRepository.obscured
+                            ? AppStrings.obscuredText
+                            : item.amount,
+                        increment: '0,02',
+                        usdValue: walletRepository.obscured
+                            ? AppStrings.obscuredText
+                            : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
+                      ))
+                          .toList()),
+                )
+                    : const SliverToBoxAdapter(
+                  child: Text(
+                    'Еще нету контрактов',
+                    textAlign: TextAlign.center,
+                  ),
+                )),
           ],
         ),
       ),
