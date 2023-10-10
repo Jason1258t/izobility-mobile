@@ -109,7 +109,9 @@ class _BurseScreenState extends State<BurseScreen>
                     color: Colors.white,
                     child: CustomButton(
                       text: 'Создать свой заказ',
-                      onTap: () {},
+                      onTap: () {
+                        context.push(RouteNames.walletBurseCreateOrder);
+                      },
                       width: double.infinity,
                     )),
               ),
