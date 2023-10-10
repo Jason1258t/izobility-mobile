@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -43,13 +44,18 @@ class _BurseScreenState extends State<BurseScreen>
         appBar: CustomAppBar(
           context: context,
           text: "Биржа",
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(right: 18),
-              child: Icon(
-                Icons.history,
-                size: 25,
-                color: Colors.black,
+          actions: [
+            InkWell(
+              onTap: () {
+                context.push(RouteNames.walletBurseBuyOrder);
+              },
+              child: Padding(
+                padding: EdgeInsets.only(right: 18),
+                child: Icon(
+                  Icons.history,
+                  size: 25,
+                  color: Colors.black,
+                ),
               ),
             )
           ],
