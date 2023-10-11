@@ -114,6 +114,18 @@ class ApiCripto {
 
     return transactionCode;
   }
+
+  Future<double> getBnbBill(HDWallet wallet) async {
+    final walletAddess =
+        wallet.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+
+    print('BNB BALANCE- ---- -- ' + (walletAddess) ?? '');
+
+    final client = Web3Client("https://bsc-dataseed.binance.org/", Client());
+    final bal = await client.getBalance(EthereumAddress.fromHex(walletAddess));
+    return double.parse(
+        (bal.getInWei / BigInt.from(1000000000000000000)).toStringAsFixed(4));
+  }
 }
 
 class Token extends GeneratedContract {

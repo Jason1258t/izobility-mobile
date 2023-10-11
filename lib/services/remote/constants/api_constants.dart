@@ -12,12 +12,22 @@ const String urlInstagram = "";
 const String techWalletAddress = "0x96D5f5f85019bB53fDc0D0688b9dd9C9De483b3E";
 
 Map<String, CoinTransferModel> coinsTransferData = {
+  "18": CoinTransferModel(
+      abiName: "BNB -> NONE",
+      contract: "",
+      codename: "BNB",
+      description: 'BNB token super',
+      imageUrl: "https://api.z-boom.ru/media/" +
+          "moneta/e8c71a8b5df4433aa3f52bc77ea328e8.jpg",
+      name: "BNB",
+      rubleExchangeRate: "100"),
   "21": CoinTransferModel(
       abiName: "emerald_abi",
       contract: Contracts.emerald,
       codename: "EMRLD",
       description: "",
-      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcF4yF1AvmnftmrM6-j4kR9C3s1ltEI1KblTdbWAy5b6BQ7iwQ1VWt666FsHnt5TbQ8hU&usqp=CAU",
+      imageUrl:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcF4yF1AvmnftmrM6-j4kR9C3s1ltEI1KblTdbWAy5b6BQ7iwQ1VWt666FsHnt5TbQ8hU&usqp=CAU",
       name: "Emerald Token",
       rubleExchangeRate: "0"),
   "17": CoinTransferModel(
@@ -55,7 +65,7 @@ Map<String, CoinTransferModel> coinsTransferData = {
       imageUrl: "https://api.z-boom.ru/media/" +
           "moneta/fcc5ac35a6a7e4650e22ed18ce9de54a.jpg",
       name: "MOST Token",
-      rubleExchangeRate: "0")
+      rubleExchangeRate: "0"),
 };
 
 class CoinTransferModel {
