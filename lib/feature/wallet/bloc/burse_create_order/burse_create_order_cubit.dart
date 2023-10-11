@@ -14,11 +14,12 @@ class BurseCreateOrderCubit extends Cubit<BurseCreateOrderState> {
     emit(BurseCreateOrderInitial());
   }
 
-  void createOrder() async {
+  void createOrder(int amountFrom, int amountTo) async {
     emit(BurseCreateOrderLoading());
 
     await Future.delayed(Duration(seconds: 1));
     try {
+      await walletRepository.createBurseOrder(amountFrom, amountTo);
       emit(BurseCreateOrderSuccess());
     } catch (ex) {
       print(ex);

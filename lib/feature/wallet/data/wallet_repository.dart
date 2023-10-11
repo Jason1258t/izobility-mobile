@@ -211,8 +211,8 @@ class WalletRepository {
     return response;
   }
 
-  Future<void> createBurseOrder() async {
-    await apiService.wallet.createBurseOrder(1, 1, 1, 1);
+  Future<void> createBurseOrder(int amountFrom, int amountTo) async {
+    await apiService.wallet.createBurseOrder(amountFrom, amountTo, activeBurseTo!.id, activeBurseFrom!.id);
   }
 
   Future<void> buyBurseOrder() async {

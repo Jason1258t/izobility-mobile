@@ -53,8 +53,8 @@ class Wallet with ApiHandler {
     return response;
   }
 
-  Future<void> createBurseOrder(double amountFrom, double amountTo,
-      int monetIdFrom, int monetIdTo) async {
+  Future<void> createBurseOrder(int amountFrom, int amountTo,
+      String monetIdFrom, String monetIdTo) async {
     final response = await post(ApiEndpoints.burseCreateOrder, data: {
       "amount_from": amountFrom,
       "amount_to": amountTo,

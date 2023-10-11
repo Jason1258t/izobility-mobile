@@ -156,7 +156,10 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
         CustomButton(
             text: "Создать свой заказ",
             onTap: () {
-              context.read<BurseCreateOrderCubit>().createOrder();
+              context.read<BurseCreateOrderCubit>().createOrder(
+                int.parse(_sendController.text),
+                int.parse(_getController.text)
+              );
             },
             width: double.infinity)
       ],
