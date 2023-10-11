@@ -148,12 +148,12 @@ class WalletRepository {
     emeraldInGameStream.add(LoadingStateEnum.loading);
     try {
       final data = await apiService.wallet.getEmeraldCoin();
-      print(data);
 
       emeraldInGameBalance = data['balance'];
 
-      await getGameTokens();
+      getGameTokens();
 
+      emeraldInGameStream.add(LoadingStateEnum.success);
       emeraldInGameStream.add(LoadingStateEnum.success);
     } catch (e) {
       print(e);
@@ -170,11 +170,11 @@ class WalletRepository {
         amount: obscured
             ? "****"
             : walletPage == 0
-                ? emeraldInWalletBalance.toString()
-                : emeraldInGameBalance.toString(),
+            ? emeraldInWalletBalance.toString()
+            : emeraldInGameBalance.toString(),
         id: "21",
         imageUrl:
-            'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
+        'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
         name: "Emerald",
         rubleExchangeRate: "0",
         description: '');
@@ -194,8 +194,8 @@ class WalletRepository {
     activeBurseTo = coinsInGame[1];
   }
 
-  Future<dynamic> getBurseGeneralItemList(
-      int itemsQuantity, int pageNumber) async {
+  Future<dynamic> getBurseGeneralItemList(int itemsQuantity,
+      int pageNumber) async {
     ordersGeneralList.clear();
 
     burseGeneralOrdersStream.add(LoadingStateEnum.loading);

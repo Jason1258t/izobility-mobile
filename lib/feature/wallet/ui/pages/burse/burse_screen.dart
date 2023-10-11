@@ -53,7 +53,7 @@ class _BurseScreenState extends State<BurseScreen>
               child: InkWell(
                 splashColor: Colors.transparent,
                 onTap: () {
-                  // context.push(RouteNames.walletBurseBuyOrder);
+                  context.push(RouteNames.walletBurseHistory);
                 },
                 child: const Icon(
                   Icons.history,
