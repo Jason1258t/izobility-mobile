@@ -85,7 +85,7 @@ class _WalletGameChainTransferState
                           borderRadius: BorderRadius.circular(16),
                           onTap: () {
                             context.pushReplacement(
-                                "${RouteNames.walletChooseCoin}/chain_game_transfer");
+                                RouteNames.walletChooseCoin, extra: {'path':'chain_game_transfer'});
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(

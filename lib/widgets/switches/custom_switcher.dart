@@ -50,13 +50,13 @@ class CustomSwitcher extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(1000),
-              gradient: AppColors.gradient
-            ),
+                borderRadius: BorderRadius.circular(1000),
+                gradient: AppColors.gradient),
             child: InkWell(
               borderRadius: BorderRadius.circular(1000),
               onTap: () {
-                context.push('${RouteNames.walletChooseCoin}/chain_game_transfer');
+                context.push(RouteNames.walletChooseCoin,
+                    extra: {'path': 'chain_game_transfer'});
               },
               child: Ink(
                   padding: const EdgeInsets.all(5),

@@ -34,8 +34,11 @@ class WalletRepository {
   List<dynamic> ordersGeneralList = [];
   List<dynamic> ordersMyList = [];
 
-  TokenData? activeBurseTo;
-  TokenData? activeBurseFrom;
+  TokenData? activeBurseTokenTo;
+  TokenData? activeBurseTokenFrom;
+
+  TokenData? activeSwapTockenTo;
+  TokenData? activeSwapTockenFrom;
 
   BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
@@ -225,8 +228,11 @@ class WalletRepository {
       }
     }
 
-    activeBurseFrom = coinsInGame[0];
-    activeBurseTo = coinsInGame[1];
+    activeBurseTokenFrom = coinsInGame[0];
+    activeBurseTokenTo = coinsInGame[1];
+
+    activeSwapTockenFrom = coinsInGame[0];
+    activeSwapTockenTo = coinsInGame[1];
   }
 
   Future<dynamic> getBurseGeneralItemList(
@@ -265,7 +271,7 @@ class WalletRepository {
 
   Future<void> createBurseOrder(int amountFrom, int amountTo) async {
     await apiService.wallet.createBurseOrder(
-        amountFrom, amountTo, activeBurseTo!.id, activeBurseFrom!.id);
+        amountFrom, amountTo, activeBurseTokenTo!.id, activeBurseTokenFrom!.id);
   }
 
   Future<void> buyBurseOrder(int orderId) async {
@@ -276,11 +282,19 @@ class WalletRepository {
     await apiService.wallet.canselBurseOrder(1);
   }
 
-  void setActiveBurseFrom(TokenData r) {
-    activeBurseFrom = r;
+  void setActiveBurseTokenFrom(TokenData r) {
+    activeBurseTokenFrom = r;
   }
 
-  void setactiveBurseTo(TokenData r) {
-    activeBurseTo = r;
+  void setActiveBurseTokenTo(TokenData r) {
+    activeBurseTokenTo = r;
+  }
+
+  void setActiveSwapTokenFrom(TokenData r) {
+    activeSwapTockenFrom = r;
+  }
+
+  void setActiveSwapTokenTo(TokenData r) {
+    activeSwapTockenTo = r;
   }
 }

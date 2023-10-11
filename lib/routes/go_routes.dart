@@ -29,7 +29,6 @@ import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
-import 'package:izobility_mobile/feature/wallet/bloc/burse_create_order/burse_create_order_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_buy_order_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_create_order_screen.dart';
@@ -37,18 +36,18 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_create_orde
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_history_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/choose_coin_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/currency_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/info_currency_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/send_currence_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/swap_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_auth.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_enter_seed.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/auth/wallet_auth.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/auth/wallet_enter_seed.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/coin/wallet_coin_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/coin/wallet_info_coin_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_game-chain_transfer.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_replenish_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_view_seed.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_setting.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/settings/wallet_view_seed.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/settings/wallet_setting.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_send_coin_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_swap_screen.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
@@ -240,9 +239,10 @@ class CustomGoRoutes {
           path: RouteNames.walletSetting,
           builder: (context, state) => const WalletSettingScreen()),
       GoRoute(
-        path: '${RouteNames.walletChooseCoin}/:screen',
+        path: RouteNames.walletChooseCoin,
         builder: (context, state) => ChooseCoinScreen(
-          path: state.pathParameters['screen'] ?? '',
+          path: (state.extra as Map<String, dynamic>)['path'] as String,
+          fromOrTo: ((state.extra as Map<String, dynamic>)['fromOrTo'] ?? false) as bool,
         ),
       ),
       GoRoute(

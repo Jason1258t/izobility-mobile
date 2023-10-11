@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -24,6 +26,8 @@ class _SwapScreenState extends State<SwapScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
     return GestureDetector(
       onTap: () {
@@ -65,11 +69,14 @@ class _SwapScreenState extends State<SwapScreen> {
                     ),
                     ButtonChooseCoin(
                       width: size.width * 0.3555,
-                      coinName: 'Emerald',
-                      imagePath: 'assets/icons/coin.svg',
+                      coinName: walletRepository.activeSwapTockenFrom!.name,
+                      imagePath:
+                          walletRepository.activeSwapTockenFrom!.imageUrl,
                       onTap: () {
-                        context.push(
-                            '${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
+                        context.push(RouteNames.walletChooseCoin, extra: {
+                          'path': AppStrings.nullText,
+                          'fromOrTo': true
+                        }).then((value) => setState(() {}));
                       },
                     ),
                   ],
@@ -102,11 +109,13 @@ class _SwapScreenState extends State<SwapScreen> {
                     ),
                     ButtonChooseCoin(
                       width: size.width * 0.3555,
-                      coinName: 'BTC',
-                      imagePath: 'assets/icons/coin.svg',
+                      coinName: walletRepository.activeSwapTockenTo!.name,
+                      imagePath: walletRepository.activeSwapTockenTo!.imageUrl,
                       onTap: () {
-                        context.push(
-                            '${RouteNames.walletChooseCoin}/${AppStrings.nullText}');
+                        context.push(RouteNames.walletChooseCoin, extra: {
+                          'path': AppStrings.nullText,
+                          'fromOrTo': false
+                        }).then((value) => setState(() {}));
                       },
                     ),
                   ],

@@ -103,8 +103,8 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
               ),
               ButtonChooseCoin(
                 width: size.width * 0.3555,
-                coinName: walletRepository.activeBurseFrom!.name,
-                imagePath: walletRepository.activeBurseFrom!.imageUrl,
+                coinName: walletRepository.activeBurseTokenFrom!.name,
+                imagePath: walletRepository.activeBurseTokenFrom!.imageUrl,
                 onTap: () {
                   context
                       .push(RouteNames.walletBurseChooseCoin, extra: true)
@@ -141,8 +141,8 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
               ),
               ButtonChooseCoin(
                 width: size.width * 0.3555,
-                coinName: walletRepository.activeBurseTo!.name,
-                imagePath: walletRepository.activeBurseTo!.imageUrl,
+                coinName: walletRepository.activeBurseTokenTo!.name,
+                imagePath: walletRepository.activeBurseTokenTo!.imageUrl,
                 onTap: () {
                   context
                       .push(RouteNames.walletBurseChooseCoin, extra: false)

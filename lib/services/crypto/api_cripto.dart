@@ -128,6 +128,14 @@ class ApiCripto {
     return double.parse(
         (bal.getInWei / BigInt.from(1000000000000000000)).toStringAsFixed(4));
   }
+
+  static Future<double> gasPriceBnb() async {
+    final gasLimit = await clientBSC.estimateGas();
+    final gasPrice = await clientBSC.getGasPrice();
+    return (gasPrice.getInWei * gasLimit / BigInt.from(1000000000000000000))
+        .toDouble() *
+        0.97865;
+  }
 }
 
 class Token extends GeneratedContract {

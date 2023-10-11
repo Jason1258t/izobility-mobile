@@ -52,10 +52,10 @@ class _BurseChooseCoinScreenState extends State<BurseChooseCoinScreen> {
                           child: ChooseCoinCard(
                             onTap: () {
                               if (widget.fromOrTo) {
-                                walletRepository.setActiveBurseFrom(res[index]);
-                                print(walletRepository.activeBurseFrom!.name);
+                                walletRepository.setActiveBurseTokenFrom(res[index]);
+                                print(walletRepository.activeBurseTokenFrom!.name);
                               } else {
-                                walletRepository.setactiveBurseTo(res[index]);
+                                walletRepository.setActiveBurseTokenTo(res[index]);
                               }
                               setState(() {});
                               context.pop();
