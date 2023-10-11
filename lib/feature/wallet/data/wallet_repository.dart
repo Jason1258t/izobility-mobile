@@ -114,9 +114,11 @@ class WalletRepository {
 
     if (coin == null) {
       throw Exception();
+    } else if (coinId == 18) {
+      await apiCripto.sendBnb(walletModel!, amount, address);
+    } else {
+      await apiCripto.sendCoinOnChainTo(walletModel!, address, amount, coin);
     }
-
-    await apiCripto.sendCoinOnChainTo(walletModel!, address, amount, coin);
   }
 
   Future<void> sendCoinInGame() async {
@@ -132,11 +134,11 @@ class WalletRepository {
     final coin = coinsTransferData[coinId];
     late final String transactionCode;
 
-    if (coinId == 32) {
+    if (coinId == 18) {
       transactionCode =
           await apiCripto.sendBnb(walletModel!, amount, techWalletAddress);
     } else if (coin == null) {
-      throw Exception();
+      throw Exception("COIN IS NULL swapCoinOnChainToInGame method");
     } else {
       transactionCode = await apiCripto.sendCoinOnChainTo(
           walletModel!, techWalletAddress, amount, coin);
@@ -163,21 +165,34 @@ class WalletRepository {
   }
 
   Future<void> getOnChainCoinsData() async {
+    coinsInChain.clear();
+
     final List<String> coinsIdList = coinsTransferData.keys.toList();
 
     for (var coinId in coinsIdList) {
       final coin = coinsTransferData[coinId]!;
 
-      final coinBill = await apiCripto.getUserCoinBill(
-          walletModel!, coin);
+      if (coinId == "18") {
+        // bnb id
+        final bnbBill = await apiCripto.getBnbBill(walletModel!);
+        coinsInChain.add(TokenData(
+            amount: bnbBill.toString(),
+            id: coinId,
+            name: coin.name,
+            imageUrl: coin.imageUrl,
+            rubleExchangeRate: coin.rubleExchangeRate,
+            description: coin.description));
+      } else {
+        final coinBill = await apiCripto.getUserCoinBill(walletModel!, coin);
 
-      coinsInChain.add(TokenData(
-          amount: coinBill.toString(),
-          id: coinId,
-          name: coin.name,
-          imageUrl: coin.imageUrl,
-          rubleExchangeRate: coin.rubleExchangeRate,
-          description: coin.description));
+        coinsInChain.add(TokenData(
+            amount: coinBill.toString(),
+            id: coinId,
+            name: coin.name,
+            imageUrl: coin.imageUrl,
+            rubleExchangeRate: coin.rubleExchangeRate,
+            description: coin.description));
+      }
     }
   }
 
