@@ -25,10 +25,24 @@ class _BurseScreenState extends State<BurseScreen>
   int isBurseOrMyOrder = 0;
 
   late TabController _tabController;
+  late ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
-    context.read<WalletRepository>().getBurseGeneralItemList(30, 1);
+    final walletRepository = context.read<WalletRepository>();
+
+    walletRepository.getBurseGeneralItemList(10, walletRepository.burseGeneralCurrentPageIndex);
+
+    scrollController.addListener(() async {
+      if (scrollController.position.atEdge) {
+        double maxScroll = scrollController.position.maxScrollExtent;
+        double currentScroll = scrollController.position.pixels;
+
+        if (currentScroll >= maxScroll * 0.8) {
+          walletRepository.getBurseGeneralItemList(10, walletRepository.burseGeneralCurrentPageIndex + 1);
+        }
+      }
+    });
 
     _tabController = TabController(length: 2, vsync: this);
     _tabController.index = isBurseOrMyOrder;
@@ -69,6 +83,7 @@ class _BurseScreenState extends State<BurseScreen>
           },
         ),
         body: CustomScrollView(
+          controller: scrollController,
           physics: const BouncingScrollPhysics(
               decelerationRate: ScrollDecelerationRate.fast),
           slivers: [
@@ -187,7 +202,10 @@ class _BurseScreenState extends State<BurseScreen>
                                       .map((currentOrder) => OrderItem(
                                             order: currentOrder,
                                             onTap: () {
-                                              context.push(RouteNames.walletBurseBuyOrder, extra: currentOrder);
+                                              context.push(
+                                                  RouteNames
+                                                      .walletBurseBuyOrder,
+                                                  extra: currentOrder);
                                             },
                                           ))
                                       .toList(),
