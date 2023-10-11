@@ -23,6 +23,7 @@ import 'package:izobility_mobile/feature/wallet/bloc/burse_general_orders/burse_
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coins_on_chain/coins_on_chain_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/wallet_auth/wallet_auth_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -155,6 +156,11 @@ class MyBlocProviders extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => BurseBuyOrderCubit(
+                RepositoryProvider.of<WalletRepository>(context)),
+            lazy: false,
+          ),
+          BlocProvider(
+            create: (_) => CoinsOnChainCubit(
                 RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),

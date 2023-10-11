@@ -17,17 +17,16 @@ class ApiCripto {
   );
   static const chainIdBSC = 56;
 
-  Future<double> getUserEmeraldBill(
-    HDWallet wallet,
-  ) async {
+  Future<double> getUserCoinBill(
+      HDWallet wallet, CoinTransferModel coin) async {
     final abi = ContractAbi.fromJson(
-      await rootBundle.loadString('assets/abi/emerald_abi.json'),
+      await rootBundle.loadString('assets/abi/${coin.abiName}.json'),
       'count',
     );
 
     DeployedContract contract = DeployedContract(
       abi,
-      EthereumAddress.fromHex(Contracts.emerald),
+      EthereumAddress.fromHex(coin.contract),
     );
 
     Token token = Token(contract, clientBSC, chainIdBSC);
@@ -41,14 +40,14 @@ class ApiCripto {
       null,
     );
 
-    final emeraldQuantity =
+    final quantity =
         (BigInt.parse(res[0].toString()) ~/ BigInt.from(pow(10, 16))).toInt() /
             100;
-    print("${'-' * 10} EMERALD COIN ON MY NECK");
-    print(emeraldQuantity);
+    print("${'-' * 10} coin  ${coin.abiName} on my neck ");
+    print(quantity);
     print('-' * 10);
 
-    return emeraldQuantity;
+    return quantity;
   }
 
   Future<String> sendCoinOnChainTo(HDWallet wallet, String address,
@@ -109,7 +108,6 @@ class ApiCripto {
     final transactionCode =
         client.sendTransaction(credentials, transaction, chainId: chainIdBSC);
 
-        
     print("---------------------------------");
     print(transactionCode);
     print("---------------------------------");
