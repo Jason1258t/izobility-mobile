@@ -131,9 +131,10 @@ class WalletRepository {
   }
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
-    final coin = coinsTransferData[coinId];
+    final coin = coinsTransferData[coinId.toString()];
     late final String transactionCode;
-
+    print(coin?.name);
+    print(coinId);
     if (coinId == 18) {
       transactionCode =
           await apiCripto.sendBnb(walletModel!, amount, techWalletAddress);
