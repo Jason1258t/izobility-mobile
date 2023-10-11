@@ -323,7 +323,7 @@ class _WalletScreenState extends State<WalletScreen>
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     WalletAction(
                       title: localize.send,
@@ -341,14 +341,14 @@ class _WalletScreenState extends State<WalletScreen>
                             .push('${RouteNames.walletChooseCoin}/replenish');
                       },
                     ),
-                    WalletAction(
-                      title: localize.buy,
-                      icon: 'assets/icons/buy.svg',
-                      onTap: () {
-                        // context
-                        //     .push('${RouteNames.walletChooseCoin}/buy');
-                      },
-                    ),
+                    // WalletAction(
+                    //   title: localize.buy,
+                    //   icon: 'assets/icons/buy.svg',
+                    //   onTap: () {
+                    //     // context
+                    //     //     .push('${RouteNames.walletChooseCoin}/buy');
+                    //   },
+                    // ),
                     WalletAction(
                       title: localize.swap,
                       icon: 'assets/icons/transfer_arrows_bold.svg',
