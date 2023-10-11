@@ -38,16 +38,16 @@ class WalletRepository {
   TokenData? activeBurseFrom;
 
   BehaviorSubject<LoadingStateEnum> emeraldInGameStream =
-  BehaviorSubject.seeded(LoadingStateEnum.wait);
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   BehaviorSubject<LoadingStateEnum> emeraldInWalletStream =
-  BehaviorSubject.seeded(LoadingStateEnum.wait);
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   BehaviorSubject<LoadingStateEnum> burseGeneralOrdersStream =
-  BehaviorSubject.seeded(LoadingStateEnum.wait);
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 
   BehaviorSubject<LoadingStateEnum> burseMyOrdersStream =
-  BehaviorSubject.seeded(LoadingStateEnum.wait);
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
 // ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
@@ -92,8 +92,6 @@ class WalletRepository {
     walletPage = page;
   }
 
-
-
   Future<void> getUserEmeraldBill() async {
     emeraldInWalletStream.add(LoadingStateEnum.loading);
 
@@ -106,8 +104,17 @@ class WalletRepository {
     }
   }
 
-  Future<void> sendCoinOnChain(String address, double amount) async {
-    await apiCripto.sendEmeraldTo(walletModel!, address, amount);
+  Future<void> sendCoinOnChain(
+      String address, double amount, int coinId) async {
+    final coin = coinsTransferData[coinId.toString()];
+    print(coin);
+    print(coinId);
+
+    if (coin == null) {
+      throw Exception();
+    }
+
+    await apiCripto.sendCoinOnChainTo(walletModel!, address, amount, coin);
   }
 
   Future<void> sendCoinInGame() async {
@@ -120,8 +127,18 @@ class WalletRepository {
   }
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
-    final transactionCode =
-        await apiCripto.sendEmeraldTo(walletModel!, techWalletAddress, amount);
+    final coin = coinsTransferData[coinId];
+    late final String transactionCode;
+
+    if (coinId == 32) {
+      transactionCode =
+          await apiCripto.sendBnb(walletModel!, amount, techWalletAddress);
+    } else if (coin == null) {
+      throw Exception();
+    } else {
+      transactionCode = await apiCripto.sendCoinOnChainTo(
+          walletModel!, techWalletAddress, amount, coin);
+    }
 
     await apiService.wallet
         .swapCoinOnChainToInGame(coinId, amount, walletModel!, transactionCode);
@@ -212,7 +229,8 @@ class WalletRepository {
   }
 
   Future<void> createBurseOrder(int amountFrom, int amountTo) async {
-    await apiService.wallet.createBurseOrder(amountFrom, amountTo, activeBurseTo!.id, activeBurseFrom!.id);
+    await apiService.wallet.createBurseOrder(
+        amountFrom, amountTo, activeBurseTo!.id, activeBurseFrom!.id);
   }
 
   Future<void> buyBurseOrder(int orderId) async {

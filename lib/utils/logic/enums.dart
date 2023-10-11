@@ -9,3 +9,5 @@ enum CoinTypeEnum { BTC, ASSES, DICKS }
 enum TransferTypes {inGame, onChain}
 
 enum BurseOrderType {general, my}
+
+enum Coins {emerald, bnb, bcs, busd, most, tidex}

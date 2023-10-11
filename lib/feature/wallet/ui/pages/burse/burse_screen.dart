@@ -28,7 +28,7 @@ class _BurseScreenState extends State<BurseScreen>
 
   @override
   void initState() {
-    context.read<WalletRepository>().getBurseGeneralItemList(10, 1);
+    context.read<WalletRepository>().getBurseGeneralItemList(30, 1);
 
     _tabController = TabController(length: 2, vsync: this);
     _tabController.index = isBurseOrMyOrder;
