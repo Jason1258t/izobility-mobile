@@ -26,6 +26,8 @@ class WalletRepository {
   int emeraldInGameBalance = 0;
   double emeraldInWalletBalance = 0;
 
+  int burseGeneralCurrentPageIndex = 0;
+
   int walletPage = 1;
   TransferTypes transferType = TransferTypes.inGame;
 
@@ -231,7 +233,9 @@ class WalletRepository {
 
   Future<dynamic> getBurseGeneralItemList(
       int itemsQuantity, int pageNumber) async {
-    ordersGeneralList.clear();
+    if (pageNumber == 0) {
+      ordersGeneralList.clear();
+    }
 
     burseGeneralOrdersStream.add(LoadingStateEnum.loading);
 
@@ -245,6 +249,8 @@ class WalletRepository {
         try {
           print(json);
           ordersGeneralList.add(BurseOrderModel.fromJson(json));
+
+          burseGeneralCurrentPageIndex += 1;
         } catch (e) {
           print(e);
           continue;
