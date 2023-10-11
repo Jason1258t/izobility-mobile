@@ -95,6 +95,7 @@ class ApiCripto {
 
   Future<String> sendBnb(
       HDWallet wallet, double amount, String walletAddres) async {
+
     PrivateKey privateKey =
         wallet.getKeyForCoin(TWCoinType.TWCoinTypeSmartChain);
     final client = Web3Client("https://bsc-dataseed.binance.org/", Client());
@@ -105,7 +106,7 @@ class ApiCripto {
       value: EtherAmount.fromUnitAndValue(
           EtherUnit.wei, BigInt.from(amount * 1000000000000000000)),
     );
-    final transactionCode =
+    final transactionCode = await 
         client.sendTransaction(credentials, transaction, chainId: chainIdBSC);
 
     print("---------------------------------");
