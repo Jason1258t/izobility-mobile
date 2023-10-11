@@ -1,5 +1,4 @@
 import 'package:izobility_mobile/services/crypto/contracts.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 
 const int siteId = 2;
 

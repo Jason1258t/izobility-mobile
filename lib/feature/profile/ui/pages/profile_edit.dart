@@ -117,7 +117,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                         width: 45,
                         height: double.infinity,
                         alignment: Alignment.center,
-                        child: Icon(
+                        child: const Icon(
                           Icons.check,
                           size: 25,
                           weight: 700,
@@ -341,7 +341,10 @@ class ProfileGenderChooseCard extends StatelessWidget {
           Checkbox.adaptive(
             value: context.read<UserRepository>().user.details?.gender ==
                 genderIndex,
-            onChanged: (_) {},
+            onChanged: (_) {
+              context.read<ProfileCubit>().changeUserGender(genderIndex);
+              context.pop();
+            },
           ),
           const SizedBox(
             width: 0,
