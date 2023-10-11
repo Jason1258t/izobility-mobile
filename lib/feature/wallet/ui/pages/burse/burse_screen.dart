@@ -31,15 +31,17 @@ class _BurseScreenState extends State<BurseScreen>
   void initState() {
     final walletRepository = context.read<WalletRepository>();
 
-    walletRepository.getBurseGeneralItemList(10, walletRepository.burseGeneralCurrentPageIndex);
+    walletRepository.getBurseGeneralItemList(
+        20, walletRepository.burseGeneralCurrentPageIndex);
 
     scrollController.addListener(() async {
       if (scrollController.position.atEdge) {
         double maxScroll = scrollController.position.maxScrollExtent;
         double currentScroll = scrollController.position.pixels;
 
-        if (currentScroll >= maxScroll * 0.8) {
-          walletRepository.getBurseGeneralItemList(10, walletRepository.burseGeneralCurrentPageIndex + 1);
+        if (currentScroll >= maxScroll * 0.5 || currentScroll == 0) {
+          walletRepository.getBurseGeneralItemList(
+              20, walletRepository.burseGeneralCurrentPageIndex + 1);
         }
       }
     });
@@ -211,9 +213,22 @@ class _BurseScreenState extends State<BurseScreen>
                                       .toList(),
                                 );
                               } else if (state is BurseGeneralOrdersLoading) {
-                                return const Center(
-                                  child: CircularProgressIndicator.adaptive(),
-                                );
+                                return Column(children: [
+                                  ...walletRepository.ordersGeneralList
+                                      .map((currentOrder) => OrderItem(
+                                            order: currentOrder,
+                                            onTap: () {
+                                              context.push(
+                                                  RouteNames
+                                                      .walletBurseBuyOrder,
+                                                  extra: currentOrder);
+                                            },
+                                          ))
+                                      .toList(),
+                                  const Center(
+                                    child: CircularProgressIndicator.adaptive(),
+                                  )
+                                ]);
                               }
 
                               return Container();
