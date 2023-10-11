@@ -48,6 +48,7 @@ class WalletRepository {
 
   BehaviorSubject<LoadingStateEnum> burseMyOrdersStream =
   BehaviorSubject.seeded(LoadingStateEnum.wait);
+
 // ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
@@ -92,8 +93,6 @@ class WalletRepository {
     walletPage = page;
   }
 
-
-
   Future<void> getUserEmeraldBill() async {
     emeraldInWalletStream.add(LoadingStateEnum.loading);
 
@@ -121,7 +120,7 @@ class WalletRepository {
 
   Future<void> swapCoinOnChainToInGame(int coinId, double amount) async {
     final transactionCode =
-        await apiCripto.sendEmeraldTo(walletModel!, techWalletAddress, amount);
+    await apiCripto.sendEmeraldTo(walletModel!, techWalletAddress, amount);
 
     await apiService.wallet
         .swapCoinOnChainToInGame(coinId, amount, walletModel!, transactionCode);
@@ -131,12 +130,12 @@ class WalletRepository {
     emeraldInGameStream.add(LoadingStateEnum.loading);
     try {
       final data = await apiService.wallet.getEmeraldCoin();
-      print(data);
 
       emeraldInGameBalance = data['balance'];
 
-      await getGameTokens();
+      getGameTokens();
 
+      emeraldInGameStream.add(LoadingStateEnum.success);
       emeraldInGameStream.add(LoadingStateEnum.success);
     } catch (e) {
       print(e);
@@ -153,11 +152,11 @@ class WalletRepository {
         amount: obscured
             ? "****"
             : walletPage == 0
-                ? emeraldInWalletBalance.toString()
-                : emeraldInGameBalance.toString(),
+            ? emeraldInWalletBalance.toString()
+            : emeraldInGameBalance.toString(),
         id: "21",
         imageUrl:
-            'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
+        'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
         name: "Emerald",
         rubleExchangeRate: "0",
         description: '');
@@ -177,8 +176,8 @@ class WalletRepository {
     activeBurseTo = coinsInGame[1];
   }
 
-  Future<dynamic> getBurseGeneralItemList(
-      int itemsQuantity, int pageNumber) async {
+  Future<dynamic> getBurseGeneralItemList(int itemsQuantity,
+      int pageNumber) async {
     ordersGeneralList.clear();
 
     burseGeneralOrdersStream.add(LoadingStateEnum.loading);
@@ -212,7 +211,8 @@ class WalletRepository {
   }
 
   Future<void> createBurseOrder(int amountFrom, int amountTo) async {
-    await apiService.wallet.createBurseOrder(amountFrom, amountTo, activeBurseTo!.id, activeBurseFrom!.id);
+    await apiService.wallet.createBurseOrder(
+        amountFrom, amountTo, activeBurseTo!.id, activeBurseFrom!.id);
   }
 
   Future<void> buyBurseOrder() async {

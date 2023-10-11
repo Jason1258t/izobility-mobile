@@ -35,7 +35,6 @@ class NotificationsDateSector extends StatelessWidget {
               } else if (index == cards.length - 1) {
                 cardPose = NotificationPositionEnum.end;
               }
-
               // if (item is NotificationModel) {
               //   return NotificationTextCard(
               //     pose: cardPose,
