@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/burse_buy_order/burse_buy_order_cubit.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
 class BurseBuyOrderScreen extends StatefulWidget {
   const BurseBuyOrderScreen({super.key, required this.order});
@@ -31,140 +35,170 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
             context.pop();
           },
         ),
-        body: Container(
-          alignment: Alignment.topCenter,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              padding: const EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                  color: AppColors.backgroundSecondary,
-                                  borderRadius: BorderRadius.circular(32),
-                                  image: DecorationImage(
-                                      image: NetworkImage(widget.order.coinFrom.logo),
-                                      fit: BoxFit.cover)),
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${widget.order.amountFrom} ${widget.order.coinFrom.codename}',
-                                  style: AppTypography.font16w400
-                                      .copyWith(color: AppColors.textPrimary),
-                                ),
-                                Text('Отправить',
-                                    style: AppTypography.font14w400.copyWith(
-                                        color: AppColors.disabledTextButton))
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: AppColors.gradient),
-                            child: SvgPicture.asset(
-                              'assets/icons/transfer_arrows.svg',
-                              color: Colors.black,
-                              width: 20,
-                            )),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              padding: const EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                  color: AppColors.backgroundSecondary,
-                                  borderRadius: BorderRadius.circular(32),
-                                  image: DecorationImage(
-                                      image: NetworkImage(widget.order.coinTo.logo),
-                                      fit: BoxFit.cover)),
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${widget.order.amountTo} ${widget.order.coinTo.codename}',
-                                  style: AppTypography.font16w400
-                                      .copyWith(color: AppColors.textPrimary),
-                                ),
-                                Text('Отправить',
-                                    style: AppTypography.font14w400.copyWith(
-                                        color: AppColors.disabledTextButton))
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+        body: BlocListener<BurseBuyOrderCubit, BurseBuyOrderState>(
+          listener: (context, state) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+
+            if (state is BurseBuyOrderSuccess) {
+              context.pop();
+
+              // context.push(RouteNames.walletBurseCreateOrderSuccess);
+            } else if (state is BurseBuyOrderFailure) {
+              context.pop();
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                  CustomSnackBar.errorSnackBar('Недостаточно средств'));
+            } else if (state is BurseBuyOrderLoading) {
+              Dialogs.show(
+                  context,
+                  const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  ));
+            }
+          },
+          child: Container(
+            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 24,
+                                height: 24,
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                    color: AppColors.backgroundSecondary,
+                                    borderRadius: BorderRadius.circular(32),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            widget.order.coinFrom.logo),
+                                        fit: BoxFit.cover)),
+                              ),
+                              const SizedBox(
+                                width: 4,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${widget.order.amountFrom} ${widget.order.coinFrom.codename}',
+                                    style: AppTypography.font16w400
+                                        .copyWith(color: AppColors.textPrimary),
+                                  ),
+                                  Text('Отправить',
+                                      style: AppTypography.font14w400.copyWith(
+                                          color: AppColors.disabledTextButton))
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: AppColors.gradient),
+                              child: SvgPicture.asset(
+                                'assets/icons/transfer_arrows.svg',
+                                color: Colors.black,
+                                width: 20,
+                              )),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 24,
+                                height: 24,
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                    color: AppColors.backgroundSecondary,
+                                    borderRadius: BorderRadius.circular(32),
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            widget.order.coinTo.logo),
+                                        fit: BoxFit.cover)),
+                              ),
+                              const SizedBox(
+                                width: 4,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${widget.order.amountTo} ${widget.order.coinTo.codename}',
+                                    style: AppTypography.font16w400
+                                        .copyWith(color: AppColors.textPrimary),
+                                  ),
+                                  Text('Отправить',
+                                      style: AppTypography.font14w400.copyWith(
+                                          color: AppColors.disabledTextButton))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Align(
-                      alignment: Alignment.topCenter,
-                      child: Text(
-                        "Комиссия площадки: 1.0 STR",
-                        style: AppTypography.font12w400
-                            .copyWith(color: AppColors.grey500),
-                      )),
-                ],
-              ),
-              Column(
-                children: [
-                  Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Text(
-                        "Размещено: ${widget.order.createdAt}",
-                        style: AppTypography.font12w400
-                            .copyWith(color: AppColors.grey500),
-                      )),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  CustomButton(
-                      text: "Купить", onTap: () {}, width: double.infinity)
-                ],
-              )
-            ],
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          "Комиссия площадки: 1.0 STR",
+                          style: AppTypography.font12w400
+                              .copyWith(color: AppColors.grey500),
+                        )),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          "Размещено: ${widget.order.createdAt}",
+                          style: AppTypography.font12w400
+                              .copyWith(color: AppColors.grey500),
+                        )),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    CustomButton(
+                        text: "Купить",
+                        onTap: () {
+                          context
+                              .read<BurseBuyOrderCubit>()
+                              .buyOrder(int.parse(widget.order.id));
+                        },
+                        width: double.infinity)
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
