@@ -54,6 +54,9 @@ class WalletRepository {
   BehaviorSubject<LoadingStateEnum> burseMyOrdersStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
+  BehaviorSubject<LoadingStateEnum> coinsOnChainStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
 // ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
@@ -173,6 +176,8 @@ class WalletRepository {
   Future<void> getOnChainCoinsData() async {
     coinsInChain.clear();
 
+    coinsOnChainStream.add(LoadingStateEnum.loading);
+
     final List<String> coinsIdList = coinsTransferData.keys.toList();
 
     for (var coinId in coinsIdList) {
@@ -200,6 +205,8 @@ class WalletRepository {
             description: coin.description));
       }
     }
+
+    coinsOnChainStream.add(LoadingStateEnum.success);
   }
 
   Future getGameTokens() async {

@@ -40,7 +40,7 @@ class _WalletScreenState extends State<WalletScreen>
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
 
-    context.read<CoinsOnChainCubit>().loadCoinsOnChain();
+    context.read<WalletRepository>().getOnChainCoinsData();
     context.read<WalletRepository>().getUserEmeraldBill();
     super.initState();
   }
@@ -121,7 +121,7 @@ class _WalletScreenState extends State<WalletScreen>
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     WalletAction(
                       title: localize.send,
@@ -131,14 +131,14 @@ class _WalletScreenState extends State<WalletScreen>
                             extra: {'path': 'send_currency'});
                       },
                     ),
-                    WalletAction(
-                      title: localize.replenish,
-                      icon: 'assets/icons/get.svg',
-                      onTap: () {
-                        // context.push(
-                        //     '${RouteNames.walletChooseCoin}/replenish');
-                      },
-                    ),
+                    // WalletAction(
+                    //   title: localize.replenish,
+                    //   icon: 'assets/icons/get.svg',
+                    //   onTap: () {
+                    //     // context.push(
+                    //     //     '${RouteNames.walletChooseCoin}/replenish');
+                    //   },
+                    // ),
                     WalletAction(
                       title: "Биржа",
                       icon: 'assets/icons/burse.svg',

@@ -135,6 +135,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
+                        
                         obscured: false,
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),

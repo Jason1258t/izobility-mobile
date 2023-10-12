@@ -162,6 +162,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: TextFormField(
+              maxLines: 1,
               readOnly: readOnly,
               inputFormatters: mask == null ? [] : [mask!],
               obscureText: obscured,

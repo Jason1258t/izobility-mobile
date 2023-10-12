@@ -10,14 +10,20 @@ class CoinSendCubit extends Cubit<CoinSendState> {
 
   CoinSendCubit({required this.walletRepository}) : super(CoinSendInitial());
 
-  Future<void> sendCoinOnChain(String address, double amount, int coinId) async {
+  Future<void> sendCoinOnChain(
+      String address, double amount, int coinId) async {
     emit(CoinSendLoading());
 
     try {
       if (walletRepository.walletPage == 0) {
         await walletRepository.sendCoinOnChain(address, amount, coinId);
+
+        await Future.delayed(Duration(seconds: 5));
+        await walletRepository.getOnChainCoinsData();
       } else if (walletRepository.walletPage == 1) {
         await walletRepository.sendCoinInGame();
+
+        await walletRepository.getGameTokens();
       }
       emit(CoinSendSuccess());
     } catch (ex) {
@@ -42,9 +48,14 @@ class CoinSendCubit extends Cubit<CoinSendState> {
     try {
       if (walletRepository.transferType == TransferTypes.inGame) {
         await walletRepository.swapCoinInGameToOnChain(coinId, amount);
+
+        await walletRepository.getGameTokens();
       } else {
         await walletRepository.swapCoinOnChainToInGame(coinId, amount);
+
+        await walletRepository.getOnChainCoinsData();
       }
+
       emit(CoinSendSuccess());
     } catch (ex) {
       print(ex);

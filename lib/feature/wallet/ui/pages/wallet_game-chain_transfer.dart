@@ -224,6 +224,9 @@ class _WalletGameChainTransferState
                       CustomButton(
                           text: "Отправить",
                           onTap: () {
+                            
+
+
                             context.read<CoinSendCubit>().transferCoinGameChain(
                                 int.parse(widget.coin.id),
                                 double.parse(amountController.text));
