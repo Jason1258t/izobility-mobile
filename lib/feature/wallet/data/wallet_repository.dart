@@ -182,7 +182,7 @@ class WalletRepository {
         // bnb id
         final bnbBill = await apiCripto.getBnbBill(walletModel!);
         coinsInChain.add(TokenData(
-            amount: bnbBill.toString(),
+            amount: bnbBill.toStringAsFixed(5),
             id: coinId,
             name: coin.name,
             imageUrl: coin.imageUrl,
@@ -192,7 +192,7 @@ class WalletRepository {
         final coinBill = await apiCripto.getUserCoinBill(walletModel!, coin);
 
         coinsInChain.add(TokenData(
-            amount: coinBill.toString(),
+            amount: coinBill.toStringAsFixed(5),
             id: coinId,
             name: coin.name,
             imageUrl: coin.imageUrl,
@@ -212,7 +212,7 @@ class WalletRepository {
             ? "****"
             : walletPage == 0
                 ? emeraldInWalletBalance.toString()
-                : emeraldInGameBalance.toString(),
+                : emeraldInGameBalance.toStringAsFixed(5),
         id: "21",
         imageUrl:
             'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',

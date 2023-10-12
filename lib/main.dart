@@ -47,7 +47,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  Locale _locale = const Locale('en');
+  Locale? _locale;
 
   setLocale(Locale locale) {
     final repos = RepositoryProvider.of<UserRepository>(context);
