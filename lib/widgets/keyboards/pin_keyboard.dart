@@ -8,10 +8,14 @@ import '../../feature/auth/bloc/app/app_cubit.dart';
 
 class PinKeyboard extends StatefulWidget {
   const PinKeyboard(
-      {super.key, required this.commitCallback, required this.commitDuration});
+      {super.key,
+      required this.commitCallback,
+      required this.commitDuration,
+      this.isFinger = true});
 
   final Function(List<int>) commitCallback;
   final Duration commitDuration;
+  final bool isFinger;
 
   @override
   State<PinKeyboard> createState() => _PinKeyboardState();
@@ -99,20 +103,25 @@ class _PinKeyboardState extends State<PinKeyboard> {
     children.add(Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        InkWell(
-          onTap: () {
-            BlocProvider.of<AppCubit>(context).authWithBiometric();
-          },
-          child: Ink(
-            width: size.width * 0.19,
-            height: size.width * 0.19,
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset(
-              color: Colors.grey[500],
-              'assets/icons/fingerprint.svg',
-            ),
-          ),
-        ),
+        widget.isFinger
+            ? InkWell(
+                onTap: () {
+                  BlocProvider.of<AppCubit>(context).authWithBiometric();
+                },
+                child: Ink(
+                  width: size.width * 0.19,
+                  height: size.width * 0.19,
+                  padding: const EdgeInsets.all(12),
+                  child: SvgPicture.asset(
+                    color: Colors.grey[500],
+                    'assets/icons/fingerprint.svg',
+                  ),
+                ),
+              )
+            : Container(
+                width: size.width * 0.19,
+                height: size.width * 0.19,
+              ),
         KeyboardButton(
           onTap: () async {
             await _addNumber(0);

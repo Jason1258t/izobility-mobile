@@ -49,18 +49,19 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: AuthScaffold(
+        isAppBar: false,
         body: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(width: double.infinity, height: 32),
+            const SizedBox(width: double.infinity, height: 30),
             Image.asset(
               'assets/images/emerald_logo.png',
               width: 160,
               fit: BoxFit.fitWidth,
             ),
             const SizedBox(
-              height: 32,
+              height: 10,
             ),
             Text(
               message,
@@ -73,9 +74,10 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
             PinKeyboard(
               commitDuration: const Duration(milliseconds: 150),
               commitCallback: setPin,
+              isFinger: false,
             ),
             const SizedBox(
-              height: 40,
+              height: 25,
             ),
             TextButtonWithoutBackground(onTap: () {}, text: 'Поддержка')
           ],
