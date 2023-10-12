@@ -54,8 +54,7 @@ class ButtonChooseCoin extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerLeft,
-              width: 70,
-              height: 24,
+              width: width - 72,
               child: Text(
                 coinName,
                 maxLines: 1,
@@ -64,7 +63,7 @@ class ButtonChooseCoin extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              width: 8,
+              width: 5,
             ),
             const Icon(
               Icons.arrow_forward_ios_rounded,

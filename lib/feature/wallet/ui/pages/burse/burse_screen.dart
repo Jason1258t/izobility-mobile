@@ -5,7 +5,6 @@ import 'package:izobility_mobile/feature/wallet/bloc/burse_general_orders/burse_
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
-import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -39,7 +38,7 @@ class _BurseScreenState extends State<BurseScreen>
         double maxScroll = scrollController.position.maxScrollExtent;
         double currentScroll = scrollController.position.pixels;
 
-        if (currentScroll >= maxScroll * 0.5 || currentScroll == 0) {
+        if (currentScroll >= maxScroll * 0.8 || currentScroll == 0) {
           walletRepository.getBurseGeneralItemList(
               20, walletRepository.burseGeneralCurrentPageIndex + 1);
         }

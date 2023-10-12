@@ -5,7 +5,6 @@ import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
-import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';

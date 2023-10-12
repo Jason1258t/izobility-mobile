@@ -32,7 +32,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: (MediaQuery.sizeOf(context).width - 94) / 2,
+                  width: (MediaQuery.sizeOf(context).width - 116) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -57,11 +57,15 @@ class OrderItem extends StatelessWidget {
                           Row(
                             children: [
                               SizedBox(
-                                  width: 50,
+                                  width: ((MediaQuery.sizeOf(context).width -
+                                                  136) /
+                                              2 -
+                                          37) /
+                                      2,
                                   child: Text(
                                     order.amountFrom,
                                     maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                    overflow: TextOverflow.clip,
                                     style: AppTypography.font16w400.copyWith(
                                       color: AppColors.textPrimary,
                                     ),
@@ -69,10 +73,19 @@ class OrderItem extends StatelessWidget {
                               const SizedBox(
                                 width: 3,
                               ),
-                              Text(
-                                order.coinFrom.codename,
-                                style: AppTypography.font16w400
-                                    .copyWith(color: AppColors.textPrimary),
+                              SizedBox(
+                                width:
+                                    ((MediaQuery.sizeOf(context).width - 136) /
+                                                2 -
+                                            37) /
+                                        2,
+                                child: Text(
+                                  order.coinFrom.codename,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.clip,
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary),
+                                ),
                               ),
                             ],
                           ),
@@ -94,7 +107,7 @@ class OrderItem extends StatelessWidget {
                       width: 20,
                     )),
                 SizedBox(
-                  width: (MediaQuery.sizeOf(context).width - 94) / 2,
+                  width: (MediaQuery.sizeOf(context).width - 116) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -119,22 +132,36 @@ class OrderItem extends StatelessWidget {
                           Row(
                             children: [
                               SizedBox(
-                                  width: 50,
-                                  child: Text(
-                                    order.amountTo,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    style: AppTypography.font16w400.copyWith(
-                                      color: AppColors.textPrimary,
-                                    ),
-                                  )),
+                                width:
+                                    ((MediaQuery.sizeOf(context).width - 136) /
+                                                2 -
+                                            37) /
+                                        2,
+                                child: Text(
+                                  order.amountTo,
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 1,
+                                  style: AppTypography.font16w400.copyWith(
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ),
                               const SizedBox(
                                 width: 3,
                               ),
-                              Text(
-                                order.coinTo.codename,
-                                style: AppTypography.font16w400
-                                    .copyWith(color: AppColors.textPrimary),
+                              SizedBox(
+                                width:
+                                    ((MediaQuery.sizeOf(context).width - 136) /
+                                                2 -
+                                            37) /
+                                        2,
+                                child: Text(
+                                  order.coinTo.codename,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.clip,
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary),
+                                ),
                               ),
                             ],
                           ),
