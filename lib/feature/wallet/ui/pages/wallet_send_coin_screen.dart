@@ -173,7 +173,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                         keyboardType: TextInputType.number,
                         obscured: false,
                         suffixIconChild:
-                            Image.asset('assets/images/emerald_coin.png'),
+                            Image.network(widget.coin.imageUrl, width: 25,),
                         hintText: "Сумма",
                         suffixIconCallback: () {},
                         controller: amountController,

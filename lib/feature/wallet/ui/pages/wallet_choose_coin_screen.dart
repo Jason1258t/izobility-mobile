@@ -5,11 +5,13 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/choose_coin_card.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 
 class ChooseCoinScreen extends StatefulWidget {
-  const ChooseCoinScreen({super.key, required this.path, required this.fromOrTo});
+  const ChooseCoinScreen(
+      {super.key, required this.path, required this.fromOrTo});
 
   final String path;
   final bool fromOrTo;
@@ -23,9 +25,17 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
 
-    List<TokenData> res = walletRepository.walletPage == 0
+    List<TokenData> coinsList = [];
+
+    if (widget.path != 'chain_game_transfer') {
+      coinsList = walletRepository.walletPage == 0
         ? walletRepository.coinsInChain
         : walletRepository.coinsInGame;
+    }else {
+      coinsList = walletRepository.transferType == TransferTypes.onChain
+        ? walletRepository.coinsInChain
+        : walletRepository.coinsInGame;
+    }
 
     return Container(
       color: Colors.white,
@@ -48,25 +58,27 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
               ),
               Column(children: [
                 ...List.generate(
-                    res.length,
+                    coinsList.length,
                     (index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: ChooseCoinCard(
                             onTap: () {
                               if (widget.path != AppStrings.nullText) {
-                                context.pushReplacement('/wallet/${widget.path}',
-                                    extra: res[index]);
+                                context.pushReplacement(
+                                    '/wallet/${widget.path}',
+                                    extra: coinsList[index]);
                               } else {
                                 context.pop();
-                                if(widget.fromOrTo){
-                                  walletRepository.setActiveSwapTokenFrom(res[index]);
-                                }
-                                else{
-                                  walletRepository.setActiveSwapTokenTo(res[index]);
+                                if (widget.fromOrTo) {
+                                  walletRepository
+                                      .setActiveSwapTokenFrom(coinsList[index]);
+                                } else {
+                                  walletRepository
+                                      .setActiveSwapTokenTo(coinsList[index]);
                                 }
                               }
                             },
-                            coin: res[index],
+                            coin: coinsList[index],
                           ),
                         )),
               ])

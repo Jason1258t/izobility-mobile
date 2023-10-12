@@ -18,7 +18,8 @@ class CoinSendCubit extends Cubit<CoinSendState> {
       if (walletRepository.walletPage == 0) {
         await walletRepository.sendCoinOnChain(address, amount, coinId);
 
-        await Future.delayed(Duration(seconds: 5));
+        await Future.delayed(Duration(seconds: 5)); // cuz we can't  listening the blocchain op-s 
+
         await walletRepository.getOnChainCoinsData();
       } else if (walletRepository.walletPage == 1) {
         await walletRepository.sendCoinInGame();
@@ -53,6 +54,7 @@ class CoinSendCubit extends Cubit<CoinSendState> {
       } else {
         await walletRepository.swapCoinOnChainToInGame(coinId, amount);
 
+        await Future.delayed(Duration(seconds: 5)); // cuz we can't  listening the blocchain op-s 
         await walletRepository.getOnChainCoinsData();
       }
 
