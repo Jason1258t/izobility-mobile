@@ -180,7 +180,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       iconPath: 'assets/icons/question.svg',
                     ),
                     ProfileActionTile(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(RouteNames.profilePrivacyPolicy);
+                      },
                       label: localize.privacy_policy,
                       iconPath: 'assets/icons/safe.svg',
                     ),

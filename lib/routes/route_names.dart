@@ -56,6 +56,7 @@ abstract class RouteNames {
   static const String profileLanguage = '/profile/lang';
   static const String profilePhone = '/profile/phone';
   static const String profilePhoneConfirm = '/profile/phone/confirm';
+  static const String profilePrivacyPolicy = "/profile/privacy_policy";
 
   static const String notifications = '/notifications';
 

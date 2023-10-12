@@ -25,6 +25,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_edit.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_language.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_confirm.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_edit.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile_privacy_policy.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
@@ -146,6 +147,9 @@ class CustomGoRoutes {
           path: RouteNames.authPasswordRecoveryVerifyCode,
           builder: (context, state) => const VerifyRecoveryCodeScreen()),
       GoRoute(
+          path: RouteNames.profilePrivacyPolicy,
+          builder: (context, state) => const ProfilePrivacyPolicyScreen()),
+      GoRoute(
           path: RouteNames.profileEdit,
           builder: (context, state) => const ProfileEditScreen()),
       GoRoute(
@@ -242,7 +246,8 @@ class CustomGoRoutes {
         path: RouteNames.walletChooseCoin,
         builder: (context, state) => ChooseCoinScreen(
           path: (state.extra as Map<String, dynamic>)['path'] as String,
-          fromOrTo: ((state.extra as Map<String, dynamic>)['fromOrTo'] ?? false) as bool,
+          fromOrTo: ((state.extra as Map<String, dynamic>)['fromOrTo'] ?? false)
+              as bool,
         ),
       ),
       GoRoute(
