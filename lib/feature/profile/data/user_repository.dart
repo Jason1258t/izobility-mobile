@@ -53,7 +53,7 @@ class UserRepository {
     }
   }
 
-  void setLanguage(String countryCode) {
+  void setLanguage(String countryCode) async {
     preferences.setLanguage(countryCode);
   }
 

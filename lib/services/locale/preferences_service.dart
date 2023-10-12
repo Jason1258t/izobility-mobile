@@ -109,6 +109,7 @@ class PreferencesService {
     final prefs = await _prefs;
 
     final language = prefs.getString(_language);
+    print("CUrrent language == $language");
     return language;
   }
 

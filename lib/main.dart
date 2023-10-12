@@ -56,12 +56,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     setState(() {
       _locale = locale;
-    });
+    });    
   }
 
   getLocal() async {
     _locale = Locale(
         await RepositoryProvider.of<UserRepository>(context).getLanguage());
+
+    setState(() {
+      
+    });
   }
 
   @override

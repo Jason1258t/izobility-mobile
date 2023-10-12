@@ -121,7 +121,7 @@ class _WalletScreenState extends State<WalletScreen>
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     WalletAction(
                       title: localize.send,
