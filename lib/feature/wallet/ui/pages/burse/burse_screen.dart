@@ -237,7 +237,7 @@ class _BurseScreenState extends State<BurseScreen>
                       )
                     : const SliverToBoxAdapter(
                         child: Text(
-                          'Еще нету контрактов',
+                          'В разработке',
                           textAlign: TextAlign.center,
                         ),
                       )),

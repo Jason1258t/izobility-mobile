@@ -155,6 +155,7 @@ class CustomTextField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            
             width: width,
             height: height,
             decoration: BoxDecoration(
@@ -162,6 +163,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: TextFormField(
+              
               maxLines: 1,
               readOnly: readOnly,
               inputFormatters: mask == null ? [] : [mask!],
@@ -169,6 +171,7 @@ class CustomTextField extends StatelessWidget {
               onChanged: onChange,
               style: AppTypography.font16w400.copyWith(color: Colors.black),
               decoration: InputDecoration(
+                isDense: true,
                   fillColor: backgroundColor,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -194,7 +197,8 @@ class CustomTextField extends StatelessWidget {
                   floatingLabelAlignment: FloatingLabelAlignment.start,
                   hintText: hintText ?? labelText,
                   hintStyle: AppTypography.font16w400
-                      .copyWith(color: AppColors.hintText)),
+                      .copyWith(color: AppColors.hintText),
+                      ),
               keyboardType: keyboardType,
               controller: controller,
             ),
