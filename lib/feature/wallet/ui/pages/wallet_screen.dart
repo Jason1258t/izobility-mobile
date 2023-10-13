@@ -207,7 +207,7 @@ class _WalletScreenState extends State<WalletScreen>
           ),
         ),
         CupertinoSliverRefreshControl(
-          key: UniqueKey(),
+          key: ValueKey(1),
           onRefresh: () async {
             await context.read<WalletRepository>().getGameTokens();
           },
@@ -414,7 +414,7 @@ class _WalletScreenState extends State<WalletScreen>
           ),
         ),
         CupertinoSliverRefreshControl(
-          key: UniqueKey(),
+          key: ValueKey(2),
           onRefresh: () async {
             await context.read<WalletRepository>().getOnChainCoinsData();
           },
