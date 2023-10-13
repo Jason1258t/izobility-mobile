@@ -335,7 +335,7 @@ class _WalletScreenState extends State<WalletScreen>
                       icon: 'assets/icons/send.svg',
                       onTap: () {
                         context.push(RouteNames.walletChooseCoin,
-                            extra: {'path': 'send_currency'});
+                            extra: {'path': 'send_in_game_coin_currency'});
                       },
                     ),
                     WalletAction(

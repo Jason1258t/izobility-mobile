@@ -120,7 +120,7 @@ class _SwapScreenState extends State<SwapScreen> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
