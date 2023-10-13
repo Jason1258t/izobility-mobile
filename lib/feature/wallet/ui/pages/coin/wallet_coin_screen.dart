@@ -15,9 +15,11 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 final list = List.generate(100, (index) => 1);
 
 class CurrencyWalletScreen extends StatefulWidget {
-  const CurrencyWalletScreen({super.key, required this.token});
+  const CurrencyWalletScreen(
+      {super.key, required this.token, required this.inGameOrOrChain});
 
   final TokenData token;
+  final bool inGameOrOrChain;
 
   @override
   State<CurrencyWalletScreen> createState() => _CurrencyWalletScreenState();
@@ -48,7 +50,8 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                 color: Colors.white,
                 isInfo: true,
                 onTapRightIcon: () {
-                  context.push(RouteNames.walletInfoCurrency, extra: widget.token);
+                  context.push(RouteNames.walletInfoCurrency,
+                      extra: widget.token);
                 },
               ),
               SliverPersistentHeader(
@@ -68,9 +71,8 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
                                 image: DecorationImage(
-                                    image: NetworkImage(widget.token.imageUrl)
-                                )
-                            ),
+                                    image:
+                                        NetworkImage(widget.token.imageUrl))),
                           ),
                         ),
                         Text(
@@ -104,29 +106,33 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                       padding:
                           const EdgeInsets.only(left: 16, right: 16, top: 16),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           WalletAction(
                             title: localize.send,
                             icon: 'assets/icons/send.svg',
                             onTap: () {
-                              context.push(RouteNames.walletSendCurrency, extra: widget.token);
+                              context.push(
+                                  widget.inGameOrOrChain
+                                      ? RouteNames.walletSendInGameCoin
+                                      : RouteNames.walletSendOnChainCoin,
+                                  extra: widget.token);
                             },
                           ),
-                          WalletAction(
+                          !widget.inGameOrOrChain ? WalletAction(
                             title: localize.replenish,
                             icon: 'assets/icons/get.svg',
                             onTap: () {
                               context.push(RouteNames.walletReplenish);
                             },
-                          ),
-                          WalletAction(
-                            title: localize.buy,
-                            icon: 'assets/icons/buy.svg',
-                            onTap: () {
-                              context.push(RouteNames.walletBuyCurrency);
-                            },
-                          ),
+                          ) : Container(),
+                          // WalletAction(
+                          //   title: localize.buy,
+                          //   icon: 'assets/icons/buy.svg',
+                          //   onTap: () {
+                          //     context.push(RouteNames.walletBuyCurrency);
+                          //   },
+                          // ),
                           WalletAction(
                             title: localize.swap,
                             icon: 'assets/icons/swap.svg',

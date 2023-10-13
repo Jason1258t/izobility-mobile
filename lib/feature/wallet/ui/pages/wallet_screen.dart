@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coins_on_chain/coins_on_chain_cubit.dart';
@@ -9,7 +8,6 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
@@ -128,7 +126,7 @@ class _WalletScreenState extends State<WalletScreen>
                       icon: 'assets/icons/send.svg',
                       onTap: () {
                         context.push(RouteNames.walletChooseCoin,
-                            extra: {'path': 'send_currency'});
+                            extra: {'path': 'send_on_chain_coin_currency'});
                       },
                     ),
                     // WalletAction(
@@ -220,7 +218,7 @@ class _WalletScreenState extends State<WalletScreen>
                                     .toStringAsFixed(2),
                                 onTap: () {
                                   context.push(RouteNames.walletCurrency,
-                                      extra: item);
+                                      extra: {'token_data': item, 'in_game_or_on_chain': true});
                                   print("${item.name} ID HERE -----");
                                   print(item.id);
                                 },
@@ -416,7 +414,7 @@ class _WalletScreenState extends State<WalletScreen>
                       BlocBuilder<CoinsOnChainCubit, CoinsOnChainState>(
                         builder: (context, state) {
                           if (state is CoinsOnChainLoading) {
-                            return Center(
+                            return const Center(
                               child: CircularProgressIndicator.adaptive(),
                             );
                           } else if (state is CoinsOnChainSuccess) {
@@ -432,7 +430,7 @@ class _WalletScreenState extends State<WalletScreen>
                                         onTap: () {
                                           context.push(
                                               RouteNames.walletCurrency,
-                                              extra: item);
+                                              extra: {'token_data': item, 'in_game_or_on_chain': false});
                                         },
                                         imageUrl: item.imageUrl,
                                         prise: walletRepository.obscured

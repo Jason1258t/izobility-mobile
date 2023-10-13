@@ -42,6 +42,18 @@ class CoinSendCubit extends Cubit<CoinSendState> {
     }
   }
 
+  Future<void> sendInGameCoin(String email, int amount, int coinId) async {
+    emit(CoinSendLoading());
+
+    try {
+      await walletRepository.sendInGameCoinByEmail(email, amount, coinId);
+      emit(CoinSendSuccess());
+    } catch (ex) {
+      print(ex);
+      emit(CoinSendFailure());
+    }
+  }
+
   Future<void> transferCoinGameChain(int coinId, double amount) async {
     emit(CoinSendLoading());
 

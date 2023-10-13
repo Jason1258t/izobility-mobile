@@ -5,7 +5,7 @@ final mainRoutesNames = [
   RouteNames.walletCurrency,
   RouteNames.walletInfoCurrency,
   RouteNames.walletSwap,
-  RouteNames.walletSendCurrency,
+  RouteNames.walletSendOnChainCoin,
   RouteNames.walletReplenish,
   RouteNames.walletChooseCoin,
   RouteNames.walletBuyCurrency,

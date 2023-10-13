@@ -46,7 +46,8 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_replenish_screen
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/settings/wallet_view_seed.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/settings/wallet_setting.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_send_coin_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_send_ingame_coin_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_send_onchain_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_swap_screen.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
@@ -92,11 +93,6 @@ class CustomGoRoutes {
       if (appState is EnterPinState) {
         return RouteNames.authEnterPin;
       }
-
-      // log(state.matchedLocation.toString());
-      // log((appState is AppUnAuthState &&
-      //         !authRoutes.contains(state.matchedLocation))
-      //     .toString());
 
       if (appState is AppUnAuthState &&
           !authRoutes.contains(state.matchedLocation)) {
@@ -188,7 +184,8 @@ class CustomGoRoutes {
           path: RouteNames.walletCurrency,
           builder: (context, state) {
             return CurrencyWalletScreen(
-              token: state.extra as TokenData,
+              token: (state.extra as Map<String, dynamic>)['token_data'] as TokenData,
+              inGameOrOrChain: (state.extra as Map<String, dynamic>)['in_game_or_on_chain'] as bool,
             );
           }),
       GoRoute(
@@ -228,8 +225,13 @@ class CustomGoRoutes {
           path: RouteNames.walletSwap,
           builder: (context, state) => const SwapScreen()),
       GoRoute(
-          path: RouteNames.walletSendCurrency,
-          builder: (context, state) => SendCurrencyScreen(
+          path: RouteNames.walletSendOnChainCoin,
+          builder: (context, state) => SendOnChainCoinScreen(
+                coin: state.extra as TokenData,
+              )),
+      GoRoute(
+          path: RouteNames.walletSendInGameCoin,
+          builder: (context, state) => SendInGameCoinScreen(
                 coin: state.extra as TokenData,
               )),
       GoRoute(

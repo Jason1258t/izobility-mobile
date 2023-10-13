@@ -57,6 +57,9 @@ class WalletRepository {
   BehaviorSubject<LoadingStateEnum> coinsOnChainStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
+  BehaviorSubject<LoadingStateEnum> sendInGameTokenStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
 // ---------------------------------------
 
   Future<bool> checkWalletAuth() async {
@@ -171,6 +174,10 @@ class WalletRepository {
       print(e);
       emeraldInGameStream.add(LoadingStateEnum.fail);
     }
+  }
+
+  Future<void> sendInGameCoinByEmail(String email, int amount, int coinId) async {
+    await apiService.wallet.sendInGameCoinByEmail(email, amount, coinId);
   }
 
   Future<void> getOnChainCoinsData() async {

@@ -16,20 +16,21 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-class SendCurrencyScreen extends StatefulWidget {
-  const SendCurrencyScreen({super.key, required this.coin});
+class SendInGameCoinScreen extends StatefulWidget {
+  const SendInGameCoinScreen({super.key, required this.coin});
 
   final TokenData coin;
 
   @override
-  State<SendCurrencyScreen> createState() => _SendCurrencyScreenState();
+  State<SendInGameCoinScreen> createState() => _SendInGameCoinScreenState();
 }
 
-class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
-  final addressController = TextEditingController();
+class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
+  final emailController = TextEditingController();
   final amountController = TextEditingController();
 
-  bool isError = false;
+  bool isErrorAmount = false;
+  bool isErrorEmail = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
+              CustomSnackBar.errorSnackBar('ошибка перевода'));
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -135,21 +136,28 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
-                        
                         obscured: false,
+                        onChange: (v) {
+                          isErrorEmail = !RegExp(AppStrings.emailRegExp).hasMatch((v ?? "").trim());
+                          print(isErrorEmail);
+                          setState(() {});
+                        },
+                        error: isErrorEmail,
+                        errorText: 'Неверно введена почта',
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),
-                        hintText: "Адрес",
+                        hintText: "Почта",
                         suffixIconCallback: () {
                           Clipboard.getData(Clipboard.kTextPlain).then((value) {
                             setState(() {
-                              addressController.text = value!.text!;
+                              emailController.text = value!.text!;
                             });
                           });
                         },
-                        controller: addressController,
+                        controller: emailController,
                         width: double.infinity,
                         backgroundColor: Colors.white,
+                        keyboardType: TextInputType.emailAddress,
                       ),
                     ),
                   ),
@@ -159,15 +167,15 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
                         errorText: 'Ваш баланс меньше',
-                        error: isError,
+                        error: isErrorAmount,
                         onChange: (val) {
                           setState(() {
                             if (double.parse(widget.coin.amount.toString()) <
                                 double.parse(val!)) {
-                              isError = true;
+                              isErrorAmount = true;
                               return;
                             }
-                            isError = false;
+                            isErrorAmount = false;
                           });
                         },
                         keyboardType: TextInputType.number,
@@ -187,15 +195,18 @@ class _SendCurrencyScreenState extends State<SendCurrencyScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomButton(
-                        isActive: !isError,
+                        isActive: !isErrorAmount && !isErrorEmail,
                         text: 'Продолжить',
                         onTap: () {
-                          final address = addressController.text;
-                          final amount = double.parse(amountController.text);
+                          final address = emailController.text;
+                          final amount = int.parse(amountController.text);
 
-                          context
-                              .read<CoinSendCubit>()
-                              .sendCoinOnChain(address, amount, int.parse(widget.coin.id));
+                          print('$address' +
+                              '$amount' +
+                              '${int.parse(widget.coin.id)}');
+
+                          context.read<CoinSendCubit>().sendInGameCoin(
+                              address, amount, int.parse(widget.coin.id));
                         },
                         width: double.infinity,
                       ),

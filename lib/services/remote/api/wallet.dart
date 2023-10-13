@@ -18,7 +18,9 @@ class Wallet with ApiHandler {
   }
 
   Future<dynamic> getEmeraldCoin() async {
-    return await get(ApiEndpoints.wallet,);
+    return await get(
+      ApiEndpoints.wallet,
+    );
   }
 
   Future<void> swapCoinInGameToOnChain(
@@ -71,5 +73,13 @@ class Wallet with ApiHandler {
   Future<void> canselBurseOrder(int orderId) async {
     final response =
         await post(ApiEndpoints.burseCancelOrder, data: {"id": orderId});
+  }
+
+  Future<void> sendInGameCoinByEmail(
+      String email, int amount, int idCoin) async {
+    await post(ApiEndpoints.walletSendInGameCoin,
+        data: {"amount": amount,
+          "email": email,
+          "moneta_id": idCoin});
   }
 }
