@@ -4,7 +4,7 @@ import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/rxdart.dart';
 
-enum CategoryEnum {promos, gifts, products}
+enum CategoryEnum { promos, gifts, products }
 
 class StoreRepository {
   final ApiService apiService;
@@ -14,7 +14,11 @@ class StoreRepository {
   StoreRepository({required this.apiService});
 
   CategoryEnum activeCategory = CategoryEnum.products;
+
   List<MarketPreviewItem> marketItems = [];
+  List<dynamic> giftsList = [];
+  List<dynamic> promocodeList = [];
+
 
   BehaviorSubject<LoadingStateEnum> marketItemsStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);

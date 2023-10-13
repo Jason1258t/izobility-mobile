@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
@@ -92,7 +93,7 @@ class _MainScreenState extends State<MainScreen> {
                                   name: localize.qr_scanner,
                                   assetName: 'assets/icons/qrscaner.svg',
                                   callback: () {
-                                    context.push(RouteNames.develop);
+                                    context.push(RouteNames.mainQr);
                                   }),
                               UtilityContainer(
                                   name: localize.ar_scanner,
@@ -124,22 +125,20 @@ class _MainScreenState extends State<MainScreen> {
                                   ScaffoldMessenger.of(context);
                               if (state is PromoActivatedState) {
                                 scaffoldMessenger.showSnackBar(
-                                    CustomSnackBar.snackBarWithCustomText(
-                                        'Код активирован'));
+                                    CustomSnackBar.successSnackBar(
+                                        'Начислен коин: ${state.coinName}'));
                               }
                               if (state is PromoInvalidState) {
                                 scaffoldMessenger.showSnackBar(
-                                    CustomSnackBar.snackBarWithCustomText(
+                                    CustomSnackBar.errorSnackBar(
                                         'Ошибка активации'));
                               }
                             },
                             child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 16),
-                                child: CustomTextField.withTwoIcon(
-                                  suffixIconCallback: () {},
-                                  obscured: false,
-                                  secondSuffixIconCallback: () {
+                                child: CustomTextField.withOneIcon(
+                                  suffixIconCallback: () {
                                     Clipboard.getData('text/plain')
                                         .then((value) {
                                       setState(() {
@@ -151,6 +150,9 @@ class _MainScreenState extends State<MainScreen> {
                                       FocusScope.of(context).unfocus();
                                     });
                                   },
+                                  suffixIconChild: SvgPicture.asset(
+                                      "assets/icons/clipboard.svg"),
+                                  obscured: false,
                                   controller: codeController,
                                   width: double.infinity,
                                   backgroundColor: Colors.white,

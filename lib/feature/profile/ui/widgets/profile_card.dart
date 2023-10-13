@@ -21,16 +21,22 @@ class _ProfileCardState extends State<ProfileCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            width: 64,
-            height: 64,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: AppColors.primary),
-            child: const Icon(
-              Icons.camera_alt_outlined,
-              color: Colors.white,
-              size: 23,
+          Material(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(100000),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(100000),
+              onTap: () {},
+              child: Container(
+                width: 64,
+                height: 64,
+                alignment: Alignment.center,
+                child: const Icon(
+                  Icons.camera_alt_outlined,
+                  color: Colors.white,
+                  size: 23,
+                ),
+              ),
             ),
           ),
           const SizedBox(

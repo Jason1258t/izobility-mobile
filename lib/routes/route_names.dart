@@ -64,6 +64,7 @@ abstract class RouteNames {
   static const String story = '/story';
 
   static const String main = '/main';
+  static const String mainQr = '/main/qr';
 
   static const String basket = '/basket';
 

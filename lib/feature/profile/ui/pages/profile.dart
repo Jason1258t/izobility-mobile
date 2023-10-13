@@ -157,11 +157,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       label: 'TikTok',
                       iconPath: 'assets/icons/tiktok.svg',
                     ),
-                    ProfileActionTile(
-                      onTap: () {},
-                      label: 'Intagram',
-                      iconPath: 'assets/icons/instagram.svg',
-                    ),
+                    // ProfileActionTile(
+                    //   onTap: () {
+                    //     context
+                    //         .read<ProfileLinksCubit>()
+                    //         .loadLink(urlInstagram);
+                    //   },
+                    //   label: 'Intagram',
+                    //   iconPath: 'assets/icons/instagram.svg',
+                    // ),
                     ProfileActionTile(
                       onTap: () {
                         context.read<ProfileLinksCubit>().loadLink(urlTelegram);

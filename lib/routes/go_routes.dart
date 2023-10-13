@@ -16,6 +16,7 @@ import 'package:izobility_mobile/feature/games/ui/pages/games_details_screen.dar
 import 'package:izobility_mobile/feature/games/ui/pages/games_loading_screen.dart';
 import 'package:izobility_mobile/feature/games/ui/pages/games_screen.dart';
 import 'package:izobility_mobile/feature/home/ui/home_screen.dart';
+import 'package:izobility_mobile/feature/main/ui/pages/main_qr_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/main_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/notifications_screen.dart';
 import 'package:izobility_mobile/feature/main/ui/pages/story_screen.dart';
@@ -140,6 +141,9 @@ class CustomGoRoutes {
           path: RouteNames.authPasswordRecoveryEmail,
           builder: (context, state) => const PasswordRecoveryEmailScreen()),
       GoRoute(
+          path: RouteNames.mainQr,
+          builder: (context, state) => const MainQrScreen()),
+      GoRoute(
           path: RouteNames.authPasswordRecoveryVerifyCode,
           builder: (context, state) => const VerifyRecoveryCodeScreen()),
       GoRoute(
@@ -188,8 +192,10 @@ class CustomGoRoutes {
           path: RouteNames.walletCurrency,
           builder: (context, state) {
             return CurrencyWalletScreen(
-              token: (state.extra as Map<String, dynamic>)['token_data'] as TokenData,
-              inGameOrOrChain: (state.extra as Map<String, dynamic>)['in_game_or_on_chain'] as bool,
+              token: (state.extra as Map<String, dynamic>)['token_data']
+                  as TokenData,
+              inGameOrOrChain: (state.extra
+                  as Map<String, dynamic>)['in_game_or_on_chain'] as bool,
             );
           }),
       GoRoute(

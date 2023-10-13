@@ -11,14 +11,19 @@ class PromoCodeCubit extends Cubit<PromoCodeState> {
   final ApiService apiService;
   final WalletRepository walletRepository;
 
-  PromoCodeCubit({required this.apiService, required this.walletRepository}) : super(PromoCodeInitial());
+  PromoCodeCubit({required this.apiService, required this.walletRepository})
+      : super(PromoCodeInitial());
 
   void activateCode(String code) async {
     emit(PromoActivateProcessState());
     try {
-      await apiService.shop.activatePromoCode(code);
+      final promoResponse = await apiService.shop.activatePromoCode(code);
+      print("promo ${promoResponse}");
       walletRepository.loadEmeraldCoin();
-      emit(PromoActivatedState());
+      walletRepository.getGameTokens();
+      emit(PromoActivatedState(
+        coinName: promoResponse['monet'],
+      ));
     } catch (e) {
       emit(PromoInvalidState());
       rethrow;

@@ -27,7 +27,7 @@ class _StoreScreenState extends State<StoreScreen> {
     final localize = AppLocalizations.of(context)!;
 
     String getStringCategoryByEnum(CategoryEnum categoryEnum) {
-      switch (categoryEnum){
+      switch (categoryEnum) {
         case CategoryEnum.products:
           return localize.product_and_nft;
         case CategoryEnum.promos:
@@ -43,108 +43,135 @@ class _StoreScreenState extends State<StoreScreen> {
         context: context,
         isBack: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: CustomScrollView(
-            physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 200,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      ContainerWithText(
-                        title: localize.promo_codes,
-                        path: 'category',
-                        width: (sizeOf.width - 47) / 2,
-                        onTap: () {
-                          setState(() {
-                            storyRepository.setActiveCategory(CategoryEnum.promos);
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      ContainerWithText(
-                        title: localize.gifts,
-                        path: 'gift',
-                        width: (sizeOf.width - 47) / 2,
-                        onTap: () {
-                          setState(() {
-                            storyRepository.setActiveCategory(CategoryEnum.gifts);
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ContainerWithText(
-                    title: localize.product_and_nft,
-                    path: 'card',
-                    width: sizeOf.width - 36,
-                    onTap: () {
-                      setState(() {
-                        storyRepository.setActiveCategory(CategoryEnum.products);
-                      });
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    getStringCategoryByEnum(storyRepository.activeCategory),
-                    style:
-                        AppTypography.font24w700.copyWith(color: Colors.black),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          BlocBuilder<StoreCubit, StoreState>(
-            builder: (context, state) {
-              if (state is StoreSuccess) {
-                return SliverGrid(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => MarketItem(
-                        coinData: storyRepository.marketItems[index].coins,
-                        textDescription:
-                            storyRepository.marketItems[index].name,
-                        imageUrl: storyRepository.marketItems[index].imageUrl,
-                        onTap: () {
-                          context.push("/store/${storyRepository.marketItems[index].id}");
-                        },
-                        isNew: storyRepository.marketItems[index].isNew,
-                        pizdulkaUrl: '',
-                      ),
-                      childCount: storyRepository.marketItems.length,
+      body: RefreshIndicator.adaptive(
+        onRefresh: () {
+          return storyRepository.getMarketItems();
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 200,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            ContainerWithText(
+                              title: localize.promo_codes,
+                              path: 'category',
+                              width: (sizeOf.width - 47) / 2,
+                              onTap: () {
+                                setState(() {
+                                  storyRepository
+                                      .setActiveCategory(CategoryEnum.promos);
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            ContainerWithText(
+                              title: localize.gifts,
+                              path: 'gift',
+                              width: (sizeOf.width - 47) / 2,
+                              onTap: () {
+                                setState(() {
+                                  storyRepository
+                                      .setActiveCategory(CategoryEnum.gifts);
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ContainerWithText(
+                          title: localize.product_and_nft,
+                          path: 'card',
+                          width: sizeOf.width - 36,
+                          onTap: () {
+                            setState(() {
+                              storyRepository
+                                  .setActiveCategory(CategoryEnum.products);
+                            });
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          getStringCategoryByEnum(
+                              storyRepository.activeCategory),
+                          style: AppTypography.font24w700
+                              .copyWith(color: Colors.black),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        crossAxisSpacing: 8,
-                        maxCrossAxisExtent:
-                            MediaQuery.of(context).size.width / 2,
-                        childAspectRatio: 160 / 240));
-              } else if (state is StoreLoading) {
-                return const SliverToBoxAdapter(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primary,
                   ),
-                );
-              }
-              return const SliverToBoxAdapter(
-                child: Text('проблемс с беком'),
-              );
-            },
-          )
-        ]),
+                ),
+                BlocBuilder<StoreCubit, StoreState>(
+                  builder: (context, state) {
+                    if (state is StoreSuccess) {
+                      var shopItems = [];
+
+                      switch (storyRepository.activeCategory) {
+                        case CategoryEnum.products:
+                          shopItems = storyRepository.marketItems;
+                          break;
+                        case CategoryEnum.promos:
+                          shopItems = storyRepository.promocodeList;
+                          break;
+                        case CategoryEnum.gifts:
+                          shopItems = storyRepository.giftsList;
+                          break;
+                      }
+
+                      return SliverGrid(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => MarketItem(
+                              coinData: shopItems[index].coins,
+                              textDescription: shopItems[index].name,
+                              imageUrl: shopItems[index].imageUrl,
+                              onTap: () {
+                                context.push(
+                                    "/store/${storyRepository.marketItems[index].id}");
+                              },
+                              isNew: shopItems[index].isNew,
+                              pizdulkaUrl: '',
+                            ),
+                            childCount: shopItems.length,
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  crossAxisSpacing: 8,
+                                  maxCrossAxisExtent:
+                                      MediaQuery.of(context).size.width / 2,
+                                  childAspectRatio: 160 / 240));
+                    } else if (state is StoreLoading) {
+                      return const SliverToBoxAdapter(
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ),
+                        ),
+                      );
+                    }
+                    return const SliverToBoxAdapter(
+                      child: Text('проблемс с беком'),
+                    );
+                  },
+                )
+              ]),
+        ),
       ),
     );
   }
