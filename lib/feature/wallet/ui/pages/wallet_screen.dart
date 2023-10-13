@@ -417,6 +417,7 @@ class _WalletScreenState extends State<WalletScreen>
           key: ValueKey(2),
           onRefresh: () async {
             await context.read<WalletRepository>().getOnChainCoinsData();
+            await context.read<WalletRepository>().getUserEmeraldBill();
           },
         ),
         SliverPadding(
