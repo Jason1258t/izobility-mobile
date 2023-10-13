@@ -219,7 +219,6 @@ class WalletRepository {
   Future getGameTokens() async {
     final res = await apiService.wallet.getUserGameTokens();
     coinsInGame.clear();
-    coinsInChain.clear();
 
     final emeraldCoin = TokenData(
         amount: obscured

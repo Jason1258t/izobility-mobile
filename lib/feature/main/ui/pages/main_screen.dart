@@ -34,7 +34,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final localize = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
@@ -148,6 +147,8 @@ class _MainScreenState extends State<MainScreen> {
                                             ? value.text ?? codeController.text
                                             : codeController.text;
                                       });
+
+                                      FocusScope.of(context).unfocus();
                                     });
                                   },
                                   controller: codeController,
@@ -248,7 +249,11 @@ class _MainScreenState extends State<MainScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             child: SizedBox(
                               width: MediaQuery.sizeOf(context).width - 32,
-                              height: (MediaQuery.of(context).size.width - 40) / 2 * 240 / 160 + 2,
+                              height: (MediaQuery.of(context).size.width - 40) /
+                                      2 *
+                                      240 /
+                                      160 +
+                                  2,
                               child: state is MainScreenPreview
                                   ? ListView.builder(
                                       padding: const EdgeInsets.symmetric(
