@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -207,6 +208,12 @@ class _WalletScreenState extends State<WalletScreen>
             ),
           ),
         ),
+        CupertinoSliverRefreshControl(
+          key: UniqueKey(),
+          onRefresh: () async {
+            await context.read<WalletRepository>().getGameTokens();
+          },
+        ),
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           sliver: tokenOrNft == 0
@@ -407,6 +414,12 @@ class _WalletScreenState extends State<WalletScreen>
               ),
             ),
           ),
+        ),
+        CupertinoSliverRefreshControl(
+          key: UniqueKey(),
+          onRefresh: () async {
+            await context.read<WalletRepository>().getOnChainCoinsData();
+          },
         ),
         SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
