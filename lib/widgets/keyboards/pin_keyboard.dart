@@ -118,7 +118,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
                   ),
                 ),
               )
-            : Container(
+            : SizedBox(
                 width: size.width * 0.19,
                 height: size.width * 0.19,
               ),
