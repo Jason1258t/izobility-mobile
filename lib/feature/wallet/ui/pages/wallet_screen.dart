@@ -430,11 +430,7 @@ class _WalletScreenState extends State<WalletScreen>
                     delegate: SliverChildListDelegate([
                       BlocBuilder<CoinsOnChainCubit, CoinsOnChainState>(
                         builder: (context, state) {
-                          if (state is CoinsOnChainLoading) {
-                            return const Center(
-                              child: CircularProgressIndicator.adaptive(),
-                            );
-                          } else if (state is CoinsOnChainSuccess) {
+                          if (state is CoinsOnChainSuccess) {
                             return Column(
                               children: RepositoryProvider.of<WalletRepository>(
                                       context)

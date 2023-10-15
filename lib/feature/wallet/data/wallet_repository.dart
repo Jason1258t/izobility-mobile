@@ -176,7 +176,8 @@ class WalletRepository {
     }
   }
 
-  Future<void> sendInGameCoinByEmail(String email, int amount, int coinId) async {
+  Future<void> sendInGameCoinByEmail(
+      String email, int amount, int coinId) async {
     await apiService.wallet.sendInGameCoinByEmail(email, amount, coinId);
   }
 
@@ -213,6 +214,9 @@ class WalletRepository {
       }
     }
 
+    coinsInChain.sort((item1, item2) =>
+        double.parse(item2.amount).compareTo(double.parse(item1.amount)));
+
     coinsOnChainStream.add(LoadingStateEnum.success);
   }
 
@@ -242,6 +246,9 @@ class WalletRepository {
         print(e);
       }
     }
+
+    coinsInGame.sort((item1, item2) =>
+        double.parse(item2.amount).compareTo(double.parse(item1.amount)));
 
     activeBurseTokenFrom = coinsInGame[0];
     activeBurseTokenTo = coinsInGame[1];
