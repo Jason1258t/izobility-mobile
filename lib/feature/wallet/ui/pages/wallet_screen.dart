@@ -9,6 +9,7 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
@@ -418,9 +419,10 @@ class _WalletScreenState extends State<WalletScreen>
         ),
         CupertinoSliverRefreshControl(
           key: ValueKey(2),
-          onRefresh: () async {
-            await context.read<WalletRepository>().getOnChainCoinsData();
-            await context.read<WalletRepository>().getUserEmeraldBill();
+          onRefresh: () {
+            context.read<WalletRepository>().getOnChainCoinsData();
+            context.read<WalletRepository>().getUserEmeraldBill();
+            return Future.delayed(const Duration(milliseconds: 300));
           },
         ),
         SliverPadding(
@@ -459,6 +461,10 @@ class _WalletScreenState extends State<WalletScreen>
                                       ))
                                   .toList(),
                             );
+                          } else if (state is CoinsOnChainLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
                           }
 
                           return Container();
@@ -489,7 +495,7 @@ class _WalletScreenState extends State<WalletScreen>
           backgroundColor: AppColors.purpleBcg,
           body: CustomScrollView(
             physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.fast),
+                decelerationRate: ScrollDecelerationRate.normal),
             slivers: [
               CustomSliverAppBar(
                 height: 90,
