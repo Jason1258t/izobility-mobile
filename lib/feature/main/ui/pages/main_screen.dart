@@ -21,6 +21,7 @@ import 'package:izobility_mobile/widgets/popup/popup_promo_failure.dart';
 import 'package:izobility_mobile/widgets/popup/popup_promo_success.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
@@ -88,15 +89,31 @@ class _MainScreenState extends State<MainScreen> {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(height: 16,),
+                          const SizedBox(
+                            height: 16,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               UtilityContainer(
                                   name: localize.qr_scanner,
                                   assetName: 'assets/icons/qrscaner.svg',
-                                  callback: () {
-                                    context.push(RouteNames.mainQr);
+                                  callback: () async {
+                                    ScaffoldMessenger.of(context)
+                                        .clearSnackBars();
+                                    final permReq =
+                                        await (Permission.camera.request());
+
+                                    final perm = await Permission.camera.status;
+                                    print(perm);
+                                    if (perm.isDenied ||
+                                        perm.isPermanentlyDenied) {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                          CustomSnackBar.errorSnackBar(
+                                              "Нет разрешения"));
+                                    } else {
+                                      context.push(RouteNames.mainQr);
+                                    }
                                   }),
                               UtilityContainer(
                                   name: localize.ar_scanner,
@@ -124,12 +141,13 @@ class _MainScreenState extends State<MainScreen> {
                               } else {
                                 Dialogs.hide(context);
                               }
-                     
+
                               if (state is PromoActivatedState) {
                                 showDialog(
                                     context: context,
                                     builder: (context) => PopupPromoSuccess(
                                           coinName: state.coinName,
+                                          coinAmount: state.coinAmount,
                                         ));
                               }
                               if (state is PromoInvalidState) {

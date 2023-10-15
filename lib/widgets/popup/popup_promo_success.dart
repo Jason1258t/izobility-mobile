@@ -13,8 +13,10 @@ class PopupPromoSuccess extends StatefulWidget {
   // final String? description;
 
   final String coinName;
+  final String coinAmount;
 
-  const PopupPromoSuccess({super.key, required this.coinName
+  const PopupPromoSuccess({super.key, required this.coinName,
+  required this.coinAmount
       // required this.onAccept,
       // required this.onDecline,
       // required this.label,
@@ -63,7 +65,7 @@ class _PopupPromoSuccessState extends State<PopupPromoSuccess> {
                 height: 16,
               ),
               Text(
-                "${widget.coinName}",
+                "${widget.coinAmount} ${widget.coinName}",
                 style:
                     AppTypography.font32w700.copyWith(color: AppColors.primary),
               ),

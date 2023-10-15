@@ -22,9 +22,9 @@ class PromoCodeCubit extends Cubit<PromoCodeState> {
       walletRepository.loadEmeraldCoin();
       walletRepository.getGameTokens();
       emit(PromoActivatedState(
-        coinName: promoResponse['monet'],
-      ));
+          coinName: promoResponse['monet'], coinAmount: promoResponse['id']));
     } catch (e) {
+      print(e);
       emit(PromoInvalidState());
       rethrow;
     }
