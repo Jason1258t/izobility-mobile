@@ -123,7 +123,7 @@ class _CardsScreenState extends State<CardsScreen> {
                   Text(
                     'История',
                     style: AppTypography.font12w700
-                        .copyWith(color: AppColors.blackGraySecondary),
+                        .copyWith(color: AppColors.grey600),
                   ),
                   Column(
                     children: List.generate(

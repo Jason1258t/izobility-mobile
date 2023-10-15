@@ -107,8 +107,8 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                               walletRepository.obscured
                                   ? AppStrings.obscuredText
                                   : '≈ ${widget.coin.rubleExchangeRate} ₽',
-                              style: AppTypography.font16w400.copyWith(
-                                  color: AppColors.blackGraySecondary),
+                              style: AppTypography.font16w400
+                                  .copyWith(color: AppColors.grey600),
                             ),
                           ],
                         ),
@@ -135,7 +135,6 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
-                        
                         obscured: false,
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),
@@ -172,8 +171,10 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                         },
                         keyboardType: TextInputType.number,
                         obscured: false,
-                        suffixIconChild:
-                            Image.network(widget.coin.imageUrl, width: 25,),
+                        suffixIconChild: Image.network(
+                          widget.coin.imageUrl,
+                          width: 25,
+                        ),
                         hintText: "Сумма",
                         suffixIconCallback: () {},
                         controller: amountController,
@@ -193,9 +194,8 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                           final address = addressController.text;
                           final amount = double.parse(amountController.text);
 
-                          context
-                              .read<CoinSendCubit>()
-                              .sendCoinOnChain(address, amount, int.parse(widget.coin.id));
+                          context.read<CoinSendCubit>().sendCoinOnChain(
+                              address, amount, int.parse(widget.coin.id));
                         },
                         width: double.infinity,
                       ),

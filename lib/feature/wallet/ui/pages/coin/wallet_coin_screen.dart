@@ -86,7 +86,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                               ? AppStrings.obscuredText
                               : '≈ ${widget.token.rubleExchangeRate} ₽',
                           style: AppTypography.font16w400
-                              .copyWith(color: AppColors.blackGraySecondary),
+                              .copyWith(color: AppColors.grey600),
                         ),
                       ],
                     ),
@@ -119,13 +119,15 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                                   extra: widget.token);
                             },
                           ),
-                          !widget.inGameOrOrChain ? WalletAction(
-                            title: localize.replenish,
-                            icon: 'assets/icons/get.svg',
-                            onTap: () {
-                              context.push(RouteNames.walletReplenish);
-                            },
-                          ) : Container(),
+                          !widget.inGameOrOrChain
+                              ? WalletAction(
+                                  title: localize.replenish,
+                                  icon: 'assets/icons/get.svg',
+                                  onTap: () {
+                                    context.push(RouteNames.walletReplenish);
+                                  },
+                                )
+                              : Container(),
                           // WalletAction(
                           //   title: localize.buy,
                           //   icon: 'assets/icons/buy.svg',

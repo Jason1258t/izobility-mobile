@@ -55,15 +55,14 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                         CircleAvatar(
+                        CircleAvatar(
                           radius: 20,
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              image: DecorationImage(
-                                image: NetworkImage(widget.token.imageUrl)
-                              )
-                            ),
+                                borderRadius: BorderRadius.circular(100),
+                                image: DecorationImage(
+                                    image:
+                                        NetworkImage(widget.token.imageUrl))),
                           ),
                         ),
                         Text(
@@ -77,7 +76,7 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                               ? AppStrings.obscuredText
                               : '≈ ${widget.token.rubleExchangeRate} ₽',
                           style: AppTypography.font16w400
-                              .copyWith(color: AppColors.blackGraySecondary),
+                              .copyWith(color: AppColors.grey600),
                         ),
                       ],
                     ),
@@ -108,15 +107,15 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                       Text(
                         localize.description,
                         style: AppTypography.font16w400
-                            .copyWith(color: AppColors.blackGraySecondary),
+                            .copyWith(color: AppColors.grey600),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
                         widget.token.description,
-                        style:
-                            AppTypography.font14w400.copyWith(color: Colors.black),
+                        style: AppTypography.font14w400
+                            .copyWith(color: Colors.black),
                       ),
                     ],
                   ),
@@ -133,9 +132,11 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                         Text(
                           localize.contract,
                           style: AppTypography.font16w400
-                              .copyWith(color: AppColors.blackGraySecondary),
+                              .copyWith(color: AppColors.grey600),
                         ),
-                        const SizedBox(height: 8,),
+                        const SizedBox(
+                          height: 8,
+                        ),
                         const Wrap(
                           direction: Axis.horizontal,
                           alignment: WrapAlignment.spaceBetween,

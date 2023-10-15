@@ -34,7 +34,7 @@
 //                 Text(
 //                   "${data.time.hour}:${data.time.minute}",
 //                   style: AppTypography.font12w400
-//                       .copyWith(color: AppColors.blackGraySecondary),
+//                       .copyWith(color: AppColors.grey600),
 //                 )
 //               ],
 //             ),
@@ -44,7 +44,7 @@
 //             Text(
 //               data.description,
 //               style: AppTypography.font12w400
-//                   .copyWith(color: AppColors.blackGraySecondary),
+//                   .copyWith(color: AppColors.grey600),
 //             )
 //           ],
 //         ));

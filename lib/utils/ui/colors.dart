@@ -11,7 +11,7 @@ class AppColors {
   static const disabledTextButton = Color(0xff757575);
   static const textPrimary = Colors.black;
   static const textSecondary = Color(0xFF747474);
-  static const blackGraySecondary = Color(0xFF545454);
+  static const grey600 = Color(0xFF545454);
   static const hintText = Color(0xFFC2C2C2);
   static const textTertiary = Color(0xFFAAAAAA);
   static const textContrast = Colors.white;
@@ -50,6 +50,7 @@ class AppColors {
   static const purple600 = Color(0xFF7630F7);
   static const purple200 = Color(0xFFDAD4FF);
   static const purple400 = Color(0xFFA285FF);
+  static const secondarryDefaultBackground = Color(0xff1F1F1F);
 
   static const gradient = LinearGradient(
     begin: Alignment(-1, -1),

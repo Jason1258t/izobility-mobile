@@ -43,8 +43,8 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
         if (state is CoinSendFailure) {
           context.pop();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar('ошибка перевода'));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода'));
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -108,8 +108,8 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                               walletRepository.obscured
                                   ? AppStrings.obscuredText
                                   : '≈ ${widget.coin.rubleExchangeRate} ₽',
-                              style: AppTypography.font16w400.copyWith(
-                                  color: AppColors.blackGraySecondary),
+                              style: AppTypography.font16w400
+                                  .copyWith(color: AppColors.grey600),
                             ),
                           ],
                         ),
@@ -138,7 +138,8 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                       child: CustomTextField.withOneIcon(
                         obscured: false,
                         onChange: (v) {
-                          isErrorEmail = !RegExp(AppStrings.emailRegExp).hasMatch((v ?? "").trim());
+                          isErrorEmail = !RegExp(AppStrings.emailRegExp)
+                              .hasMatch((v ?? "").trim());
                           print(isErrorEmail);
                           setState(() {});
                         },

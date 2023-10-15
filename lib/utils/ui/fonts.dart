@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTypography {
   static final TextStyle _font = GoogleFonts.inter();
 
-  static final font16w700  =_font.copyWith(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 0.24,
-        );
-  static final font14w400  =_font.copyWith(
+  static final font16w700 = _font.copyWith(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 0.24,
+  );
+  static final font14w400 = _font.copyWith(
     color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.w400,
@@ -103,7 +103,7 @@ class AppTypography {
     fontWeight: FontWeight.w600,
     letterSpacing: 0.24,
   );
-    static final font18w600 = _font.copyWith(
+  static final font18w600 = _font.copyWith(
     color: Colors.white,
     fontSize: 18,
     fontWeight: FontWeight.w600,
@@ -114,6 +114,13 @@ class AppTypography {
     color: Colors.white,
     fontSize: 11,
     fontWeight: FontWeight.w400,
+    letterSpacing: 0.24,
+  );
+
+  static final font32w700 = _font.copyWith(
+    color: Colors.white,
+    fontSize: 32,
+    fontWeight: FontWeight.w700,
     letterSpacing: 0.24,
   );
 }

@@ -17,6 +17,8 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
 import 'package:izobility_mobile/widgets/containers/utility_container.dart';
 import 'package:izobility_mobile/widgets/indicators/notifications_indicator.dart';
+import 'package:izobility_mobile/widgets/popup/popup_promo_failure.dart';
+import 'package:izobility_mobile/widgets/popup/popup_promo_success.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
@@ -121,17 +123,23 @@ class _MainScreenState extends State<MainScreen> {
                               } else {
                                 Dialogs.hide(context);
                               }
-                              final scaffoldMessenger =
-                                  ScaffoldMessenger.of(context);
+                     
                               if (state is PromoActivatedState) {
-                                scaffoldMessenger.showSnackBar(
-                                    CustomSnackBar.successSnackBar(
-                                        'Начислен коин: ${state.coinName}'));
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => PopupPromoSuccess(
+                                          coinName: state.coinName,
+                                        ));
                               }
                               if (state is PromoInvalidState) {
-                                scaffoldMessenger.showSnackBar(
-                                    CustomSnackBar.errorSnackBar(
-                                        'Ошибка активации'));
+                                // scaffoldMessenger.showSnackBar(
+                                //     CustomSnackBar.errorSnackBar(
+                                //         'Ошибка активации'));
+
+                                showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        const PopupPromoFailure());
                               }
                             },
                             child: Padding(

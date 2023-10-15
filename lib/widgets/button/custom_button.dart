@@ -15,12 +15,15 @@ class CustomButton extends StatefulWidget {
 
   final Color color;
 
+  final bool withBorder;
+
   const CustomButton(
       {super.key,
       required this.text,
       required this.onTap,
       required this.width,
       this.isActive = true,
+      this.withBorder = true,
       this.height = 55,
       this.radius = 12,
       this.color = AppColors.primary});
@@ -38,16 +41,15 @@ class _CustomButtonState extends State<CustomButton> {
         decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
           side: BorderSide(
-              width: 0.50,
+              width: widget.withBorder ? 0.50 : 0,
               color: widget.isActive ? AppColors.primary : AppColors.disable),
           borderRadius: BorderRadius.circular(widget.radius),
         )),
         child: TextButton(
             onPressed: widget.isActive ? widget.onTap : () {},
             style: TextButton.styleFrom(
-                backgroundColor: widget.isActive
-                    ? widget.color
-                    : AppColors.disableButton,
+                backgroundColor:
+                    widget.isActive ? widget.color : AppColors.disableButton,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(widget.radius))),
             child: Text(widget.text, style: AppTypography.font16w600)));

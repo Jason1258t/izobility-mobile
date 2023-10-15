@@ -225,7 +225,10 @@ class _WalletScreenState extends State<WalletScreen>
                                     .toStringAsFixed(2),
                                 onTap: () {
                                   context.push(RouteNames.walletCurrency,
-                                      extra: {'token_data': item, 'in_game_or_on_chain': true});
+                                      extra: {
+                                        'token_data': item,
+                                        'in_game_or_on_chain': true
+                                      });
                                   print("${item.name} ID HERE -----");
                                   print(item.id);
                                 },
@@ -444,7 +447,10 @@ class _WalletScreenState extends State<WalletScreen>
                                         onTap: () {
                                           context.push(
                                               RouteNames.walletCurrency,
-                                              extra: {'token_data': item, 'in_game_or_on_chain': false});
+                                              extra: {
+                                                'token_data': item,
+                                                'in_game_or_on_chain': false
+                                              });
                                         },
                                         imageUrl: item.imageUrl,
                                         prise: walletRepository.obscured
@@ -527,7 +533,7 @@ class _WalletScreenState extends State<WalletScreen>
                           Text(
                             'Текущий баланс',
                             style: AppTypography.font14w400
-                                .copyWith(color: AppColors.blackGraySecondary),
+                                .copyWith(color: AppColors.grey600),
                           ),
                         ],
                       ),
