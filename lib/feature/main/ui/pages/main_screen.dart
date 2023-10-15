@@ -81,13 +81,14 @@ class _MainScreenState extends State<MainScreen> {
                   RepositoryProvider.of<MainScreenRepository>(context);
               return SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+                  padding: const EdgeInsets.all(16).copyWith(bottom: 0, top: 0),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(
                         decelerationRate: ScrollDecelerationRate.fast),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          const SizedBox(height: 16,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
