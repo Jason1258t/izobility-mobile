@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class MainQrScreen extends StatefulWidget {
@@ -29,32 +30,54 @@ class _MainQrScreenState extends State<MainQrScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-              flex: 4,
-              child: QRView(
-                key: qrKey,
-                overlay: QrScannerOverlayShape(
-                    borderColor: AppColors.primary,
-                    borderRadius: 10,
-                    borderLength: 50,
-                    borderWidth: 5,
-                    ),
-                onQRViewCreated: (controller) {
-                  controller.scannedDataStream.listen((data) {
-                    this.controller = controller;
-                    controller.stopCamera();
-                    log("QR CODE ${data.code.toString()}");
-                    context
-                        .read<PromoCodeCubit>()
-                        .activateCode(data.code.toString());
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Positioned.fill(
+                child: QRView(
+              key: qrKey,
+              overlay: QrScannerOverlayShape(
+                borderColor: AppColors.primary,
+                borderRadius: 10,
+                borderLength: 50,
+                borderWidth: 5,
+              ),
+              onQRViewCreated: (controller) {
+                controller.scannedDataStream.listen((data) {
+                  this.controller = controller;
+                  controller.stopCamera();
+                  log("QR CODE ${data.code.toString()}");
+                  context
+                      .read<PromoCodeCubit>()
+                      .activateCode(data.code.toString());
+                  context.pop();
+                });
+              },
+            )),
+            Positioned(
+                top: 20,
+                left: 20,
+                child: InkWell(
+                  onTap: () {
                     context.pop();
-                  });
-                },
-              )),
-        ],
+                  },
+                  child: Container(
+                      width: 28,
+                      height: 28,
+                      
+                      alignment: Alignment.centerRight,
+                      decoration: const BoxDecoration(
+                          color: AppColors.primary, shape: BoxShape.circle),
+                      child: const Icon(
+
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                        size: 20,
+                      )),
+                )),
+          ],
+        ),
       ),
     );
   }
