@@ -36,6 +36,12 @@ class _MainQrScreenState extends State<MainQrScreen> {
               flex: 4,
               child: QRView(
                 key: qrKey,
+                overlay: QrScannerOverlayShape(
+                    borderColor: AppColors.primary,
+                    borderRadius: 10,
+                    borderLength: 50,
+                    borderWidth: 5,
+                    ),
                 onQRViewCreated: (controller) {
                   controller.scannedDataStream.listen((data) {
                     this.controller = controller;
@@ -45,7 +51,6 @@ class _MainQrScreenState extends State<MainQrScreen> {
                         .read<PromoCodeCubit>()
                         .activateCode(data.code.toString());
                     context.pop();
-                    
                   });
                 },
               )),

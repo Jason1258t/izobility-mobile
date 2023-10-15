@@ -55,7 +55,7 @@ class _PopupPromoFailureState extends State<PopupPromoFailure> {
                 height: 4,
               ),
               Text(
-                "C этим QR-кодом что-то не так",
+                "C этим промокодом что-то не так",
                 textAlign: TextAlign.center,
                 style: AppTypography.font18w700.copyWith(color: AppColors.grey600),
               ),
