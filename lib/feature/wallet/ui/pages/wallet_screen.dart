@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coins_in_game/coins_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coins_on_chain/coins_on_chain_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
@@ -208,8 +209,9 @@ class _WalletScreenState extends State<WalletScreen>
           ),
         ),
         CupertinoSliverRefreshControl(
-          key: ValueKey(1),
+          key: ValueKey(0),
           onRefresh: () async {
+            // await context.read() // TODO implemetn z boom loading process
             await context.read<WalletRepository>().getGameTokens();
           },
         ),
@@ -217,32 +219,51 @@ class _WalletScreenState extends State<WalletScreen>
           padding: const EdgeInsets.symmetric(horizontal: 16),
           sliver: tokenOrNft == 0
               ? SliverList(
-                  delegate: SliverChildListDelegate(
-                      RepositoryProvider.of<WalletRepository>(context)
-                          .coinsInGame
-                          .map((item) => ValidToken(
-                                title: item.name,
-                                value: double.parse(item.rubleExchangeRate)
-                                    .toStringAsFixed(2),
-                                onTap: () {
-                                  context.push(RouteNames.walletCurrency,
-                                      extra: {
-                                        'token_data': item,
-                                        'in_game_or_on_chain': true
-                                      });
-                                  print("${item.name} ID HERE -----");
-                                  print(item.id);
-                                },
-                                imageUrl: item.imageUrl,
-                                prise: walletRepository.obscured
-                                    ? AppStrings.obscuredText
-                                    : item.amount,
-                                increment: '0,02',
-                                usdValue: walletRepository.obscured
-                                    ? AppStrings.obscuredText
-                                    : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
-                              ))
-                          .toList()),
+                  delegate: SliverChildListDelegate([
+                    BlocBuilder<CoinsInGameCubit, CoinsInGameState>(
+                      buildWhen: (previous, current) {
+                        return current is CoinsInGameSuccess ||
+                            current is CoinsInGameInitial;
+                      },
+                      builder: (context, state) {
+                        if (state is CoinsInGameSuccess) {
+                          return Column(
+                            children: RepositoryProvider.of<WalletRepository>(
+                                    context)
+                                .coinsInGame
+                                .map((item) => ValidToken(
+                                      title: item.name,
+                                      value:
+                                          double.parse(item.rubleExchangeRate)
+                                              .toStringAsFixed(2),
+                                      onTap: () {
+                                        context.push(RouteNames.walletCurrency,
+                                            extra: {
+                                              'token_data': item,
+                                              'in_game_or_on_chain': true
+                                            });
+                                      },
+                                      imageUrl: item.imageUrl,
+                                      prise: walletRepository.obscured
+                                          ? AppStrings.obscuredText
+                                          : item.amount,
+                                      increment: '0,02',
+                                      usdValue: walletRepository.obscured
+                                          ? AppStrings.obscuredText
+                                          : '${(double.parse(item.amount) * double.parse(item.rubleExchangeRate)).toStringAsFixed(2)} \$',
+                                    ))
+                                .toList(),
+                          );
+                        } else if (state is CoinsInGameLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          );
+                        }
+
+                        return Container();
+                      },
+                    )
+                  ]),
                 )
               : SliverGrid(
                   delegate: SliverChildBuilderDelegate(
@@ -419,10 +440,9 @@ class _WalletScreenState extends State<WalletScreen>
         ),
         CupertinoSliverRefreshControl(
           key: ValueKey(2),
-          onRefresh: () {
-            context.read<WalletRepository>().getOnChainCoinsData();
-            context.read<WalletRepository>().getUserEmeraldBill();
-            return Future.delayed(const Duration(milliseconds: 300));
+          onRefresh: () async {
+            await context.read<WalletRepository>().getOnChainCoinsData();
+            await context.read<WalletRepository>().getUserEmeraldBill();
           },
         ),
         SliverPadding(
@@ -431,6 +451,10 @@ class _WalletScreenState extends State<WalletScreen>
                 ? SliverList(
                     delegate: SliverChildListDelegate([
                       BlocBuilder<CoinsOnChainCubit, CoinsOnChainState>(
+                        buildWhen: (previous, current) {
+                          return current is CoinsOnChainSuccess ||
+                              walletRepository.coinsInChain == [];
+                        },
                         builder: (context, state) {
                           if (state is CoinsOnChainSuccess) {
                             return Column(

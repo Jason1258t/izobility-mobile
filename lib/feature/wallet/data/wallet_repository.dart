@@ -57,6 +57,9 @@ class WalletRepository {
   BehaviorSubject<LoadingStateEnum> coinsOnChainStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
+  BehaviorSubject<LoadingStateEnum> coinsInGameStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
   BehaviorSubject<LoadingStateEnum> sendInGameTokenStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
@@ -182,10 +185,9 @@ class WalletRepository {
   }
 
   Future<void> getOnChainCoinsData() async {
-    coinsInChain.clear();
-
     coinsOnChainStream.add(LoadingStateEnum.loading);
 
+    final List<TokenData> temporatyOnChainCoinDataList = [];
     final List<String> coinsIdList = coinsTransferData.keys.toList();
 
     for (var coinId in coinsIdList) {
@@ -194,7 +196,7 @@ class WalletRepository {
       if (coinId == "18") {
         // bnb id
         final bnbBill = await apiCripto.getBnbBill(walletModel!);
-        coinsInChain.add(TokenData(
+        temporatyOnChainCoinDataList.add(TokenData(
             amount: bnbBill.toStringAsFixed(5),
             id: coinId,
             name: coin.name,
@@ -204,7 +206,7 @@ class WalletRepository {
       } else {
         final coinBill = await apiCripto.getUserCoinBill(walletModel!, coin);
 
-        coinsInChain.add(TokenData(
+        temporatyOnChainCoinDataList.add(TokenData(
             amount: coinBill.toStringAsFixed(5),
             id: coinId,
             name: coin.name,
@@ -214,6 +216,9 @@ class WalletRepository {
       }
     }
 
+    coinsInChain.clear();
+    coinsInChain = temporatyOnChainCoinDataList;
+
     coinsInChain.sort((item1, item2) =>
         double.parse(item2.amount).compareTo(double.parse(item1.amount)));
 
@@ -221,40 +226,50 @@ class WalletRepository {
   }
 
   Future getGameTokens() async {
-    final res = await apiService.wallet.getUserGameTokens();
-    coinsInGame.clear();
+    coinsInGameStream.add(LoadingStateEnum.loading);
 
-    final emeraldCoin = TokenData(
-        amount: obscured
-            ? "****"
-            : walletPage == 0
-                ? emeraldInWalletBalance.toString()
-                : emeraldInGameBalance.toStringAsFixed(5),
-        id: "21",
-        imageUrl:
-            'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
-        name: "Emerald",
-        rubleExchangeRate: "0",
-        description: '');
+    try {
+      final res = await apiService.wallet.getUserGameTokens();
+      coinsInGame.clear();
 
-    coinsInGame.add(emeraldCoin);
+      final emeraldCoin = TokenData(
+          amount: obscured
+              ? "****"
+              : walletPage == 0
+                  ? emeraldInWalletBalance.toString()
+                  : emeraldInGameBalance.toStringAsFixed(5),
+          id: "21",
+          imageUrl:
+              'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
+          name: "Emerald",
+          rubleExchangeRate: "0",
+          description: '');
 
-    for (var json in res) {
-      try {
-        coinsInGame.add(TokenData.fromJson(json));
-      } catch (e) {
-        print(e);
+      coinsInGame.add(emeraldCoin);
+
+      for (var json in res) {
+        try {
+          coinsInGame.add(TokenData.fromJson(json));
+        } catch (e) {
+          print(e);
+        }
       }
+
+      coinsInGame.sort((item1, item2) =>
+          double.parse(item2.amount).compareTo(double.parse(item1.amount)));
+
+      activeBurseTokenFrom = coinsInGame[0];
+      activeBurseTokenTo = coinsInGame[1];
+
+      activeSwapTockenFrom = coinsInGame[0];
+      activeSwapTockenTo = coinsInGame[1];
+
+      
+      coinsInGameStream.add(LoadingStateEnum.success);
+    } catch (ex) {
+      print(ex);
+      coinsInGameStream.add(LoadingStateEnum.fail);
     }
-
-    coinsInGame.sort((item1, item2) =>
-        double.parse(item2.amount).compareTo(double.parse(item1.amount)));
-
-    activeBurseTokenFrom = coinsInGame[0];
-    activeBurseTokenTo = coinsInGame[1];
-
-    activeSwapTockenFrom = coinsInGame[0];
-    activeSwapTockenTo = coinsInGame[1];
   }
 
   Future<dynamic> getBurseGeneralItemList(
