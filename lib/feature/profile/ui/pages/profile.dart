@@ -14,6 +14,7 @@ import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
@@ -61,7 +62,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.fast),
+                parent: FixedExtentScrollPhysics()),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -71,6 +72,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      BlocBuilder<ProfileCubit, ProfileState>(
+                        builder: (context, state) {
+                          if (state is ProfileSuccessState ||
+                              state is ProfileFailureState) {
+                            if (context.read<UserRepository>().user.phone !=
+                                null) {
+                              return Container();
+                            } else {
+                              return Container(
+                                padding: const EdgeInsets.all(16),
+                                margin: const EdgeInsets.only(bottom: 16),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    gradient: AppColors.gradientGreenDark,
+                                    borderRadius: BorderRadius.circular(16)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Подтвердите номер телефона",
+                                      style: AppTypography.font18w700
+                                          .copyWith(color: Colors.white),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      "Без подтверждения номера телефона, у вас не будут доступны многие функции приложения",
+                                      style: AppTypography.font12w400
+                                          .copyWith(color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+                          }
+                          return Container();
+                        },
+                      ),
                       Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
