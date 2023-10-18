@@ -23,10 +23,11 @@ class WalletRepository {
   List<TokenData> coinsInGame = [];
   List<TokenData> coinsInChain = [];
 
-  int emeraldInGameBalance = 0;
+  double emeraldInGameBalance = 0;
   double emeraldInWalletBalance = 0;
 
   int burseGeneralCurrentPageIndex = 0;
+  int burseMyCurrentPageIndex = 0;
 
   int walletPage = 1;
   TransferTypes transferType = TransferTypes.inGame;
@@ -112,7 +113,7 @@ class WalletRepository {
 
     try {
       emeraldInWalletBalance = await apiCripto.getUserCoinBill(
-          walletModel!, coinsTransferData['21']!);
+          walletModel!, coinsTransferData['42']!);
       emeraldInWalletStream.add(LoadingStateEnum.success);
     } catch (ex) {
       log(ex.toString());
@@ -158,7 +159,7 @@ class WalletRepository {
       transactionCode = await apiCripto.sendCoinOnChainTo(
           walletModel!, techWalletAddress, amount, coin);
     }
-
+    print("trans_code $transactionCode");
     await apiService.wallet
         .swapCoinOnChainToInGame(coinId, amount, walletModel!, transactionCode);
   }
@@ -232,21 +233,6 @@ class WalletRepository {
       final res = await apiService.wallet.getUserGameTokens();
       coinsInGame.clear();
 
-      final emeraldCoin = TokenData(
-          amount: obscured
-              ? "****"
-              : walletPage == 0
-                  ? emeraldInWalletBalance.toString()
-                  : emeraldInGameBalance.toStringAsFixed(5),
-          id: "21",
-          imageUrl:
-              'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
-          name: "Emerald",
-          rubleExchangeRate: "0",
-          description: '');
-
-      coinsInGame.add(emeraldCoin);
-
       for (var json in res) {
         try {
           coinsInGame.add(TokenData.fromJson(json));
@@ -264,10 +250,9 @@ class WalletRepository {
       activeSwapTockenFrom = coinsInGame[0];
       activeSwapTockenTo = coinsInGame[1];
 
-      
       coinsInGameStream.add(LoadingStateEnum.success);
     } catch (ex) {
-      print(ex);
+      print("cur_ex $ex");
       coinsInGameStream.add(LoadingStateEnum.fail);
     }
   }
@@ -275,6 +260,7 @@ class WalletRepository {
   Future<dynamic> getBurseGeneralItemList(
       int itemsQuantity, int pageNumber) async {
     if (pageNumber == 0) {
+      burseGeneralCurrentPageIndex = 0;
       ordersGeneralList.clear();
     }
 
@@ -288,7 +274,6 @@ class WalletRepository {
 
       for (var json in responseItems) {
         try {
-          print(json);
           ordersGeneralList.add(BurseOrderModel.fromJson(json));
 
           burseGeneralCurrentPageIndex += 1;
@@ -305,9 +290,33 @@ class WalletRepository {
   }
 
   Future<dynamic> getBurseMyItemList(int itemsQuantity, int pageNumber) async {
-    final response = await apiService.wallet
-        .getBurseItemList(BurseOrderType.my, itemsQuantity, pageNumber);
-    return response;
+    if (pageNumber == 0) {
+      burseMyCurrentPageIndex = 0;
+      ordersMyList.clear();
+    }
+    burseGeneralOrdersStream.add(LoadingStateEnum.loading);
+
+    try {
+      final response = await apiService.wallet
+          .getBurseItemList(BurseOrderType.my, itemsQuantity, pageNumber);
+
+      for (var json in response['objects']) {
+        try {
+          ordersMyList.add(BurseOrderModel.fromJson(json));
+
+          burseMyCurrentPageIndex += 1;
+        } catch (e) {
+          print("cur_ex $e");
+          continue;
+        }
+      }
+      print(ordersMyList);
+
+      burseMyOrdersStream.add(LoadingStateEnum.success);
+    } catch (ex) {
+      print("getBurseMyItemList $ex");
+      burseMyOrdersStream.add(LoadingStateEnum.fail);
+    }
   }
 
   Future<void> createBurseOrder(int amountFrom, int amountTo) async {

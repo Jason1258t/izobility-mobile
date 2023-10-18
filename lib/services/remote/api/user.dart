@@ -57,4 +57,8 @@ class User with ApiHandler {
   Future<void> validatePhoneCode(String code) async {
     await post(ApiEndpoints.userValiddatePhoneCode, data: {"code": code});
   }
+
+  Future<void> updatePhoto(String photoInBase64) async {
+    await post(ApiEndpoints.userUpdatePhoto, data: {"image": photoInBase64});
+  }
 }

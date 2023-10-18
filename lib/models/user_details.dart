@@ -23,6 +23,7 @@ class UserDetailsModel {
   int? notif;
   String? fio;
   DateTime? birthday;
+  String? photo;
 
   UserDetailsModel(
       {required this.id,
@@ -48,7 +49,8 @@ class UserDetailsModel {
       required this.gender,
       required this.notif,
       required this.fio,
-      required this.birthday});
+      required this.birthday,
+      this.photo});
 
   factory UserDetailsModel.fromJson(Map<String, dynamic> json) {
     return UserDetailsModel(
@@ -75,6 +77,7 @@ class UserDetailsModel {
         gender: json['gender'],
         notif: json['notif'],
         fio: json['fio'],
+        photo: json['photo'],
         birthday: json["date_birth"] == null
             ? null
             : DateTime.tryParse(json["date_birth"]));
@@ -83,6 +86,7 @@ class UserDetailsModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
+    data['photo'] = photo;
     data['email'] = email;
     data['phone'] = phone;
     data['phone_country'] = phoneCountry;

@@ -9,7 +9,7 @@ const String urlTelegram = "https://t.me/emaraldverse_ru";
 
 const String urlInstagram = "";
 
-const String techWalletAddress = "0x96D5f5f85019bB53fDc0D0688b9dd9C9De483b3E";
+const String techWalletAddress = "0x453c00D63B3496D7DC48B98936CBF7873eFb4625";
 
 Map<String, CoinTransferModel> coinsTransferData = {
   "18": CoinTransferModel(
@@ -21,7 +21,7 @@ Map<String, CoinTransferModel> coinsTransferData = {
           "moneta/e8c71a8b5df4433aa3f52bc77ea328e8.jpg",
       name: "BNB",
       rubleExchangeRate: "100"),
-  "21": CoinTransferModel(
+  "42": CoinTransferModel(
       abiName: "emerald_abi",
       contract: Contracts.emerald,
       codename: "EMRLD",

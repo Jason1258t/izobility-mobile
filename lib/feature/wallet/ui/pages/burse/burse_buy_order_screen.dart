@@ -153,7 +153,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                     style: AppTypography.font16w400
                                         .copyWith(color: AppColors.textPrimary),
                                   ),
-                                  Text('Отправить',
+                                  Text('Получить',
                                       style: AppTypography.font14w400.copyWith(
                                           color: AppColors.disabledTextButton))
                                 ],

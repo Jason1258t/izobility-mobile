@@ -70,7 +70,6 @@ In addition, we rely on a legitimate interest in using your Personal Data for th
 •        Your IP address, browser type, your operating system, web pages that you visited before switching to our Services, pages of our Services that you viewed or the functions you used, as well as the time you spent on these pages or functions, links to our Services that you activated, identifiers devices and advertising networks, as well as your actions in the game, your in–game user settings and preferences and your in-game microtransactions - in order to understand who uses our Services and how.
 •        Your contact information, namely, your email address – in order to contact you for technical and customer support.
 
-Konstantin EMERALD, [12.10.2023 21:18]
 •        Your email address and information about your device – to share updates and news with you directly in the game or by email. You can unsubscribe from this at any time using your device or app settings.
 •        Analysis of your actions and achievements in the game – to show you gifts, promotions and other offers related to our Services, personalized for your personal user experience. You can opt out of this and a number of other types of processing of your Personal Data by performing the actions described below in section 6.
 •        To provide social features in our games so that you can interact and play with other players, including saving your correspondence with these players, finding your friends and allowing other players to find you, as well as sharing your gaming experience and achievements with friends.
@@ -94,7 +93,6 @@ Communication of information to our service providers. We involve third-party se
 •        provide technical and customer support; and
 •        process payments for tickets to in-person events and for other purchases.
 
-Konstantin EMERALD, [12.10.2023 21:18]
 Some third-party service providers may also collect information directly from you (for example, a payment acceptance operator may request your billing or financial information) as third-party actors in accordance with their own rules for the protection of such information. Such third-party service providers do not share your financial information with EMERALD VERSE, such as your credit card number, but may provide us with a limited amount of information related to your purchases, such as your zip code. We do not store your financial information, but transfer it to the payment service provider.
 Communication of information to other players. When you use the Services, in particular when you play our games, use social functions in them (including cross-game functions) or participate in in-person events, we will share your Personal Data with other players. Such Personal Data includes your in-game profile data (such as your user name, your avatar, your online status and your team), your in-game actions and achievements, the location in the real world of the resources with which you interact in the game, and your public messages in the game. In addition, the game contains links to third-party services through which you can share information outside of the Services; EMERALD VERSE does not control and is not responsible for the operation of such third-party functionality for information exchange.
 Information communicated to third parties. We exchange depersonalized data with third parties for the purposes of industry and market analysis. We may share data with our third-party publishing partners for their direct marketing activities, but only with your direct consent. We do not share Personal Data with any other third parties for direct marketing purposes.
@@ -106,7 +104,6 @@ If we transfer your Personal Data from EEA countries to other countries, includi
 •        The country to which your Personal Data is transferred, in the opinion of the European Commission, provides an adequate level of Personal Data protection, as in the EEA.
 •        When engaging service providers, we use special contracts in the form approved by the European Commission, which provide the same protection of Personal Data that they use in Europe.
 
-Konstantin EMERALD, [12.10.2023 21:18]
 •        If we involve service providers from the USA, they will be subject to the EU-US Data Protection Agreement, which requires them to provide your Personal Data with the same protection that they enjoy in the EEA.
 4.     How we protect your Personal Data
 We use appropriate legal, organizational and technical security measures to protect your Personal Data from accidental loss, unauthorized use or access, improper modification or disclosure. We also provide access to your Personal Data only to those employees, agents, contractors and other third parties who need it for their work. They will process your Personal Data only on the basis of our instructions and are bound by confidentiality obligations. We have implemented procedures that establish the course for actions in case of suspicion of a breach of confidentiality (leak) of Personal data. If we have such an obligation under the law, we will notify you and the competent supervisory authority of such a leak.
@@ -129,7 +126,6 @@ After you contact us, you can receive an email with the purpose of verifying the
 Unless otherwise specified for a particular Service, children are not allowed to use the Services, and we do not collect their Personal Data. We define the concept of "children" as follows:
 •        EEA residents: persons under the age of 16 or the age from which a person can provide consent to the processing of personal data in a relevant country;
 
-Konstantin EMERALD, [12.10.2023 21:18]
 •        Residents of the Republic of Korea: persons under the age of 14;
 •        residents of other regions: persons under the age of 13 or the age from which a person can provide consent to the processing of personal data in a relevant country.
 If we find out that we have received a child's Personal Data without parental consent, we will take steps to delete such information from our files as soon as possible.

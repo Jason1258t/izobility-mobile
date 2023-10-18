@@ -41,7 +41,7 @@ class Wallet with ApiHandler {
       'trx': transactionCode,
       'site_id': siteId
     });
-
+    print("trans $transactionCode");
     print("done---------------------- trx transfer");
   }
 
@@ -66,6 +66,7 @@ class Wallet with ApiHandler {
   }
 
   Future<void> buyBurseOrder(int orderId) async {
+    print("order_id $orderId");
     final response =
         await post(ApiEndpoints.burseBuyOrder, data: {"id": orderId});
   }
@@ -78,8 +79,6 @@ class Wallet with ApiHandler {
   Future<void> sendInGameCoinByEmail(
       String email, int amount, int idCoin) async {
     await post(ApiEndpoints.walletSendInGameCoin,
-        data: {"amount": amount,
-          "email": email,
-          "moneta_id": idCoin});
+        data: {"amount": amount, "email": email, "moneta_id": idCoin});
   }
 }

@@ -10,9 +10,9 @@ import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
-import 'package:izobility_mobile/feature/profile/bloc/cubit/profile_phone_change_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
+import 'package:izobility_mobile/feature/profile/bloc/profile_phone/profile_phone_change_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_item/store_item_cubit.dart';
@@ -20,6 +20,7 @@ import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_buy_order/burse_buy_order_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_create_order/burse_create_order_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_general_orders/burse_general_orders_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/burse_my_orders/burse_my_orders_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.dart';
@@ -162,6 +163,11 @@ class MyBlocProviders extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => CoinsOnChainCubit(
+                RepositoryProvider.of<WalletRepository>(context)),
+            lazy: false,
+          ),
+          BlocProvider(
+            create: (_) => BurseMyOrdersCubit(
                 RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),

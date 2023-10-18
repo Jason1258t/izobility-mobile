@@ -39,12 +39,12 @@ class BurseOrderModel {
       // monetTo: json['monet_to'] ?? "",
       amountFrom: double.parse(json['amount_from'] ?? "0").toStringAsFixed(2),
       amountTo: double.parse(json['amount_to'] ?? "0").toStringAsFixed(2),
-      createdAt: DateTime.parse(json['created_at']) ,
+      createdAt: DateTime.parse(json['created_at']),
       // userIdBuy: json['user_id_buy'],
       // closedAt: json['closed_at'],
       // deletedAt: json['deleted_at'],
-      coinFrom: BurseCoinModel.fromJson(json['monetfrom']),
-      coinTo: BurseCoinModel.fromJson(json['monetto']),
+      coinFrom: BurseCoinModel.fromJson(json['monetto']),
+      coinTo: BurseCoinModel.fromJson(json['monetfrom']),
     );
   }
 }

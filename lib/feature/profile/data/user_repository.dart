@@ -17,7 +17,7 @@ class UserRepository {
   BehaviorSubject<LoadingStateEnum> userDetailsDataStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
-  Future<void> loadUserData() async {
+  Future<void> loadUserDataFromCache() async {
     final cachedUser = await preferences.getUser();
     user = cachedUser!;
   }
@@ -80,5 +80,11 @@ class UserRepository {
 
   Future<dynamic> validatePhoneCode(String code) async {
     await apiService.user.validatePhoneCode(code);
+  }
+
+  Future<dynamic> updatePhoto(String photoInBase64) async {
+    await apiService.user.updatePhoto(photoInBase64);
+
+    await loadUserDetailsInfo();
   }
 }

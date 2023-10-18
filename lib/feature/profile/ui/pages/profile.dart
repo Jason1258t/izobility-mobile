@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_square.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
@@ -109,7 +110,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             label: localize.inventory,
                             description: '2056 предметов',
                             onTap: () {
-                              context.push(RouteNames.develop);
+                              // context.push(RouteNames.develop);
+
+                              final photo =
+                                  "https://api.z-boom.ru/user/photo/${context.read<UserRepository>().user.id}";
+                              print(photo);
                             },
                           ),
                           ProfileActionContainer(
