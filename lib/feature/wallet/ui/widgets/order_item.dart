@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
@@ -13,6 +16,8 @@ class OrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: InkWell(
@@ -63,7 +68,7 @@ class OrderItem extends StatelessWidget {
                                           37) /
                                       2,
                                   child: Text(
-                                    order.amountFrom,
+                                    walletRepository.obscured ? AppStrings.obscuredText : order.amountFrom,
                                     maxLines: 1,
                                     overflow: TextOverflow.clip,
                                     style: AppTypography.font16w400.copyWith(
@@ -138,7 +143,7 @@ class OrderItem extends StatelessWidget {
                                             37) /
                                         2,
                                 child: Text(
-                                  order.amountTo,
+                                  walletRepository.obscured ? AppStrings.obscuredText : order.amountTo,
                                   overflow: TextOverflow.clip,
                                   maxLines: 1,
                                   style: AppTypography.font16w400.copyWith(

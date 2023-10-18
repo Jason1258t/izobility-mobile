@@ -16,7 +16,7 @@ class PurchaseCondition extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
+          Image.network(
             data.imageUrl,
             width: 16,
             height: 16,

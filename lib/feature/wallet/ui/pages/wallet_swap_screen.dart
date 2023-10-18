@@ -114,7 +114,9 @@ class _SwapScreenState extends State<SwapScreen> {
                   child: ButtonSwap(
                     onTap: () {
                       swapInGameCoinsCubit.swapInGameCoins(
-                          int.parse(_enterCoinController.text), 1, 2);
+                          int.parse(_enterCoinController.text),
+                          int.parse(walletRepository.activeSwapTockenTo!.id),
+                          int.parse(walletRepository.activeSwapTockenFrom!.id));
                     },
                   ),
                 ),

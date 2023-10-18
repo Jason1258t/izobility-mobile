@@ -157,7 +157,8 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               const Text("У вас есть"),
               ProductMyCoinQuantity(
-                imagePath: "assets/icons/coin.svg",
+                imagePath: "https://api.z-boom.ru/media/" +
+                    "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg",
                 quantity: emeraldCoin.toDouble(),
               ),
               const SizedBox(

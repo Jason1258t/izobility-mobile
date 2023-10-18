@@ -15,7 +15,8 @@ class MarketPreviewItem {
             'https://kartinkin.net/uploads/posts/2022-08/1661214768_6-kartinkin-net-p-burger-king-chiken-barbekyu-vkontakte-11.jpg',
         isNew = true,
         coins = [
-          CoinPreviewData(imageUrl: 'assets/images/Coins1.png', value: '1567.60')
+          CoinPreviewData(
+              imageUrl: 'assets/images/Coins1.png', value: '1567.60')
         ],
         id = 'market';
 
@@ -28,6 +29,8 @@ class MarketPreviewItem {
         id = json['id'],
         coins = [
           CoinPreviewData(
-              imageUrl: 'assets/images/emerald_coin.png', value: json['price'])
+              imageUrl: "https://api.z-boom.ru/media/" +
+                  "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg",
+              value: json['price'])
         ];
 }
