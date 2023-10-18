@@ -212,7 +212,7 @@ class _WalletGameChainTransferState
                                 .copyWith(color: Colors.black),
                           ),
                           Text(
-                            "GAS: ",
+                            "GAS: ${walletRepository.gas}",
                             style: AppTypography.font12w400
                                 .copyWith(color: Colors.black),
                           )
@@ -224,9 +224,6 @@ class _WalletGameChainTransferState
                       CustomButton(
                           text: "Отправить",
                           onTap: () {
-                            
-
-
                             context.read<CoinSendCubit>().transferCoinGameChain(
                                 int.parse(widget.coin.id),
                                 double.parse(amountController.text));

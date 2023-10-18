@@ -27,6 +27,7 @@ import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.d
 import 'package:izobility_mobile/feature/wallet/bloc/coins_in_game/coins_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coins_on_chain/coins_on_chain_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/swap_in_game_coins/swap_in_game_coins_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/wallet_auth/wallet_auth_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
@@ -174,6 +175,12 @@ class MyBlocProviders extends StatelessWidget {
           BlocProvider(
             create: (_) => CoinsInGameCubit(
                 RepositoryProvider.of<WalletRepository>(context)),
+            lazy: false,
+          ),
+          BlocProvider(
+            create: (_) => SwapInGameCoinsCubit(
+                walletRepository:
+                    RepositoryProvider.of<WalletRepository>(context)),
             lazy: false,
           ),
         ],
