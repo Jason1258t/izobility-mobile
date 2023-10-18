@@ -34,6 +34,8 @@ class WalletRepository {
 
   HDWallet? walletModel;
 
+  double gas = 0.0;
+
   List<dynamic> ordersGeneralList = [];
   List<dynamic> ordersMyList = [];
 
@@ -169,7 +171,7 @@ class WalletRepository {
     try {
       final data = await apiService.wallet.getEmeraldCoin();
 
-      emeraldInGameBalance = data['balance'];
+      emeraldInGameBalance = double.parse(data['balance'].toString());
 
       getGameTokens();
 
@@ -346,5 +348,19 @@ class WalletRepository {
 
   void setActiveSwapTokenTo(TokenData r) {
     activeSwapTockenTo = r;
+  }
+
+  void loadGas() async {
+    final gasLimit = await ApiCripto.clientBSC.estimateGas();
+
+    final gasPrice = await ApiCripto.clientBSC.getGasPrice();
+
+    gas = (gasPrice.getInWei * gasLimit / BigInt.from(1000000000000000000))
+            .toDouble() *
+        0.97865;
+  }
+
+  Future<void> swapInGameCoins(int amount, int idToCoin, int idFromCoin) async{
+    await apiService.wallet.swapInGameCoins(amount, idToCoin, idFromCoin);
   }
 }

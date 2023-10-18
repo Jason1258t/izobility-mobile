@@ -199,12 +199,10 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                         isActive: !isErrorAmount && !isErrorEmail,
                         text: 'Продолжить',
                         onTap: () {
+                          FocusScope.of(context).unfocus();
+
                           final address = emailController.text;
                           final amount = int.parse(amountController.text);
-
-                          print('$address' +
-                              '$amount' +
-                              '${int.parse(widget.coin.id)}');
 
                           context.read<CoinSendCubit>().sendInGameCoin(
                               address, amount, int.parse(widget.coin.id));

@@ -40,7 +40,8 @@ class ButtonChooseCoin extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration:  BoxDecoration(borderRadius: BorderRadius.circular(100)),
+              decoration:  BoxDecoration(borderRadius: BorderRadius.circular(100),),
+              clipBehavior: Clip.hardEdge,
               alignment: Alignment.center,
               child: Image.network(
                 imagePath,

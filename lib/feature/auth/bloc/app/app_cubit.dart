@@ -32,6 +32,7 @@ class AppCubit extends Cubit<AppState> {
         mainRepository.getPreview();
 
         walletRepository.loadEmeraldCoin();
+        walletRepository.loadGas();
         userRepository.loadUserDetailsInfo();
         storeRepository.getMarketItems();
 
