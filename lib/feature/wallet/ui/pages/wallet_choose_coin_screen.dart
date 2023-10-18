@@ -29,12 +29,12 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
 
     if (widget.path != 'chain_game_transfer') {
       coinsList = walletRepository.walletPage == 0
-        ? walletRepository.coinsInChain
-        : walletRepository.coinsInGame;
-    }else {
+          ? walletRepository.coinsInChain
+          : walletRepository.coinsInGame;
+    } else {
       coinsList = walletRepository.transferType == TransferTypes.onChain
-        ? walletRepository.coinsInChain
-        : walletRepository.coinsInGame;
+          ? walletRepository.coinsInChain
+          : walletRepository.coinsInGame;
     }
 
     return Container(
@@ -69,10 +69,14 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
                                     extra: coinsList[index]);
                               } else {
                                 context.pop();
-                                if (widget.fromOrTo) {
+                                if (widget.fromOrTo &&
+                                    walletRepository.activeSwapTockenTo!.id !=
+                                        coinsList[index].id) {
                                   walletRepository
                                       .setActiveSwapTokenFrom(coinsList[index]);
-                                } else {
+                                } else if (walletRepository
+                                        .activeSwapTockenFrom!.id !=
+                                    coinsList[index].id) {
                                   walletRepository
                                       .setActiveSwapTokenTo(coinsList[index]);
                                 }

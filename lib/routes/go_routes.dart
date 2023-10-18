@@ -50,7 +50,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/settings/wallet_view_se
 import 'package:izobility_mobile/feature/wallet/ui/pages/settings/wallet_setting.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_send_ingame_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_send_onchain_coin_screen.dart';
-import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_swap_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/wallet_swap_in_game_token_screen.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/widgets/screens/develop_screen.dart';
