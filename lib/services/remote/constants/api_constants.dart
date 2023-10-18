@@ -26,8 +26,8 @@ Map<String, CoinTransferModel> coinsTransferData = {
       contract: Contracts.emerald,
       codename: "EMRLD",
       description: "",
-      imageUrl:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcF4yF1AvmnftmrM6-j4kR9C3s1ltEI1KblTdbWAy5b6BQ7iwQ1VWt666FsHnt5TbQ8hU&usqp=CAU",
+      imageUrl: "https://api.z-boom.ru/media/" +
+          "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg",
       name: "Emerald Token",
       rubleExchangeRate: "0"),
   "17": CoinTransferModel(

@@ -43,6 +43,8 @@ class _WalletScreenState extends State<WalletScreen>
 
     context.read<WalletRepository>().getOnChainCoinsData();
     context.read<WalletRepository>().getUserEmeraldBill();
+
+    context.read<WalletRepository>().getGameTokens();
     super.initState();
   }
 
@@ -94,9 +96,8 @@ class _WalletScreenState extends State<WalletScreen>
                           const SizedBox(
                             width: 10,
                           ),
-                          Image.asset(
-                            'assets/images/emerald_coin.png',
-                          ),
+                          Image.network("https://api.z-boom.ru/media/" +
+                              "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg"),
                         ],
                       );
                     } else if (state is CoinInGameLoading) {
@@ -223,7 +224,7 @@ class _WalletScreenState extends State<WalletScreen>
                     BlocBuilder<CoinsInGameCubit, CoinsInGameState>(
                       buildWhen: (previous, current) {
                         return current is CoinsInGameSuccess ||
-                            current is CoinsInGameInitial;
+                            previous is CoinsInGameInitial;
                       },
                       builder: (context, state) {
                         if (state is CoinsInGameSuccess) {
@@ -325,8 +326,9 @@ class _WalletScreenState extends State<WalletScreen>
                           const SizedBox(
                             width: 10,
                           ),
-                          Image.asset(
-                            'assets/images/emerald_coin.png',
+                          Image.network(
+                            "https://api.z-boom.ru/media/" +
+                              "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg"
                           ),
                         ],
                       );

@@ -62,11 +62,11 @@ class _MainScreenState extends State<MainScreen> {
                           text: RepositoryProvider.of<WalletRepository>(context)
                               .emeraldInGameBalance
                               .toString(),
-                          assetName: 'assets/images/emerald_coin.png');
+                          );
                     }
 
                     return const CashContainer(
-                        text: '0', assetName: 'assets/images/emerald_coin.png');
+                        text: '0',);
                   },
                 ),
                 const SizedBox(

@@ -166,14 +166,12 @@ class WalletRepository {
         .swapCoinOnChainToInGame(coinId, amount, walletModel!, transactionCode);
   }
 
-  void loadEmeraldCoin() async {
+  Future<void> loadEmeraldCoin() async {
     emeraldInGameStream.add(LoadingStateEnum.loading);
     try {
       final data = await apiService.wallet.getEmeraldCoin();
 
       emeraldInGameBalance = double.parse(data['balance'].toString());
-
-      getGameTokens();
 
       emeraldInGameStream.add(LoadingStateEnum.success);
     } catch (e) {
@@ -243,16 +241,14 @@ class WalletRepository {
         }
       }
 
+      await loadEmeraldCoin();
+
       final emeraldCoin = TokenData(
-          amount: obscured
-              ? "****"
-              : walletPage == 0
-              ? emeraldInWalletBalance.toString()
-              : emeraldInGameBalance.toStringAsFixed(5),
-          id: "21",
+          amount: obscured ? "****" : emeraldInGameBalance.toStringAsFixed(5),
+          id: "0",
           imageUrl:
-          'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
-          name: "Emerald",
+              'https://w7.pngwing.com/pngs/967/250/png-transparent-z-letter-font-letter-z-miscellaneous-angle-english.png',
+          name: "Z-BOOM",
           rubleExchangeRate: "0",
           description: '');
 
@@ -375,7 +371,7 @@ class WalletRepository {
         0.97865;
   }
 
-  Future<void> swapInGameCoins(int amount, int idToCoin, int idFromCoin) async{
+  Future<void> swapInGameCoins(int amount, int idToCoin, int idFromCoin) async {
     await apiService.wallet.swapInGameCoins(amount, idToCoin, idFromCoin);
   }
 }

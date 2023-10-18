@@ -3,9 +3,8 @@ import '../../utils/utils.dart';
 
 class CashContainer extends StatelessWidget {
   final String text;
-  final String assetName;
 
-  const CashContainer({super.key, required this.text, required this.assetName});
+  const CashContainer({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,9 @@ class CashContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(
-              assetName,
+            Image.network(
+              "https://api.z-boom.ru/media/" +
+                  "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg",
               width: 24,
             ),
             const SizedBox(

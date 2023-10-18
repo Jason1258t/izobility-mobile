@@ -192,9 +192,9 @@ class _ProfileCardState extends State<ProfileCard> {
       return null;
     }
 
-    final byteImage = await image.readAsBytes() as List<int>;
-    final base64Image = base64Encode(byteImage);
-    return image;
+    final byteImage = await image.readAsBytes();
+    final base64Image = base64Encode(byteImage.toList());
+    return base64Image;
   }
 
   Future<dynamic> getImageFromCameraInBase64() async {
