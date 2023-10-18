@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_buy_order/burse_buy_order_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -23,6 +25,8 @@ class BurseBuyOrderScreen extends StatefulWidget {
 class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
   @override
   Widget build(BuildContext context) {
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+
     return Container(
       color: Colors.white,
       child: Scaffold(
@@ -99,7 +103,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${widget.order.amountFrom} ${widget.order.coinFrom.codename}',
+                                    '${walletRepository.obscured ? AppStrings.obscuredText : widget.order.amountFrom} ${widget.order.coinFrom.codename}',
                                     style: AppTypography.font16w400
                                         .copyWith(color: AppColors.textPrimary),
                                   ),
@@ -149,7 +153,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${widget.order.amountTo} ${widget.order.coinTo.codename}',
+                                    '${walletRepository.obscured ? AppStrings.obscuredText : widget.order.amountTo} ${widget.order.coinTo.codename}',
                                     style: AppTypography.font16w400
                                         .copyWith(color: AppColors.textPrimary),
                                   ),

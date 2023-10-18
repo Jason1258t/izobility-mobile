@@ -6,10 +6,8 @@ import 'package:izobility_mobile/feature/wallet/bloc/burse_general_orders/burse_
 import 'package:izobility_mobile/feature/wallet/bloc/burse_my_orders/burse_my_orders_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
-import 'package:izobility_mobile/models/api/burse_transfer.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';

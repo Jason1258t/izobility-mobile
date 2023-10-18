@@ -35,7 +35,7 @@ class ProductMyCoinQuantity extends StatelessWidget {
           ),
           (context.read<StoreRepository>().lastOpenedMarketItem.price ?? 0) <=
                   quantity
-              ? Icon(
+              ? const Icon(
                   Icons.check,
                   color: AppColors.primary,
                   size: 24,

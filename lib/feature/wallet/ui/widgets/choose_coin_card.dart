@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
+import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class ChooseCoinCard extends StatelessWidget {
@@ -14,6 +17,8 @@ class ChooseCoinCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+
     return Material(
       borderRadius: BorderRadius.circular(16),
       color: Colors.white,
@@ -46,7 +51,7 @@ class ChooseCoinCard extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                coin.amount,
+                walletRepository.obscured ? AppStrings.obscuredText : coin.amount,
                 style: AppTypography.font18w700.copyWith(color: Colors.black),
               )
             ],

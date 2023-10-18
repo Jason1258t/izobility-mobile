@@ -83,7 +83,7 @@ class WalletTransactionContainer extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(  prise,
+                Text(prise,
                     style: AppTypography.font16w500
                         .copyWith(color: !isAddition ? AppColors.negative : AppColors.positive)),
               ],
