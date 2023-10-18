@@ -53,211 +53,229 @@ class _ProfileScreenState extends State<ProfileScreen> {
           context.pop();
         }
       },
-      child: HomeScaffold(
-          backgroundColor: Colors.white,
-          appBar: CustomAppBar(
-            context: context,
-            text: localize.profile,
-            isBack: false,
-          ),
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(16).copyWith(bottom: 0),
-                  color: AppColors.purpleBcg,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      BlocBuilder<ProfileCubit, ProfileState>(
-                        builder: (context, state) {
-
-                          if (state is ProfileSuccessState ||
-                              state is ProfileFailureState) {
-                            if (context.read<UserRepository>().user.phone !=
-                                null && context.read<UserRepository>().user.phone != "") {
-                              return Container();
-                            } else {
-                              return Container(
-                                padding: const EdgeInsets.all(16),
-                                margin: const EdgeInsets.only(bottom: 16),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    gradient: AppColors.gradientGreenDark,
-                                    borderRadius: BorderRadius.circular(16)),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Подтвердите номер телефона",
-                                      style: AppTypography.font18w700
-                                          .copyWith(color: Colors.white),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    const SizedBox(
-                                      height: 8,
-                                    ),
-                                    Text(
-                                      "Без подтверждения номера телефона, у вас не будут доступны многие функции приложения",
-                                      style: AppTypography.font12w400
-                                          .copyWith(color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              );
-                            }
-                          }
-                          return Container();
-                        },
-                      ),
-                      Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16)),
-                          child: const Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ProfileCard(),
-                            ],
-                          )),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Wrap(
-                        direction: Axis.horizontal,
-                        alignment: WrapAlignment.spaceBetween,
-                        runAlignment: WrapAlignment.start,
-                        runSpacing: 10,
-                        children: [
-                          ProfileActionContainer(
-                            label: localize.abstract_programm,
-                            description: "Алмазный статус",
-                            onTap: () {
-                              context.push(RouteNames.develop);
-                            },
-                          ),
-                          ProfileActionContainer(
-                            label: "Партнёрская программа",
-                            description: "Стандартный партнёр",
-                            onTap: () {
-                              context.push(RouteNames.develop);
-                            },
-                          ),
-                          ProfileActionContainer(
-                            label: localize.inventory,
-                            description: '2056 предметов',
-                            onTap: () {
-                              // context.push(RouteNames.develop);
-
-                              final photo =
-                                  "https://api.z-boom.ru/user/photo/${context.read<UserRepository>().user.id}";
-                              print(photo);
-                            },
-                          ),
-                          ProfileActionContainer(
-                            label: localize.cards,
-                            description: 'Мои банковские карты',
-                            onTap: () {
-                              context.push(RouteNames.develop);
-                            },
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                    ],
-                  ),
-                ),
-                Column(
+      child: Container(
+        color: Colors.white,
+        child: Scaffold(
+            backgroundColor: AppColors.purpleBcg,
+            appBar: CustomAppBar(
+              context: context,
+              text: localize.profile,
+              isBack: false,
+            ),
+            body: RefreshIndicator(
+              onRefresh: () {
+                return context.read<UserRepository>().loadUserDetailsInfo();
+              },
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    PorfileBlocLabel(
-                      text: localize.account,
+                    Container(
+                      padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+                      color: AppColors.purpleBcg,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          BlocBuilder<ProfileCubit, ProfileState>(
+                            builder: (context, state) {
+                              if (context.read<UserRepository>().user.phone !=
+                                      null &&
+                                  context.read<UserRepository>().user.phone !=
+                                      "") {
+                                return Container();
+                              } else {
+                                return Container(
+                                  padding: const EdgeInsets.all(16),
+                                  margin: const EdgeInsets.only(bottom: 16),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      gradient: AppColors.gradientGreenDark,
+                                      borderRadius: BorderRadius.circular(16)),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Подтвердите номер телефона",
+                                        style: AppTypography.font18w700
+                                            .copyWith(color: Colors.white),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                        "Без подтверждения номера телефона, у вас не будут доступны многие функции приложения",
+                                        style: AppTypography.font12w400
+                                            .copyWith(color: Colors.white),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                          Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: const Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ProfileCard(),
+                                ],
+                              )),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Wrap(
+                            direction: Axis.horizontal,
+                            alignment: WrapAlignment.spaceBetween,
+                            runAlignment: WrapAlignment.start,
+                            runSpacing: 10,
+                            children: [
+                              ProfileActionContainer(
+                                label: localize.abstract_programm,
+                                description: "Алмазный статус",
+                                onTap: () {
+                                  context.push(RouteNames.develop);
+                                },
+                              ),
+                              ProfileActionContainer(
+                                label: "Партнёрская программа",
+                                description: "Стандартный партнёр",
+                                onTap: () {
+                                  context.push(RouteNames.develop);
+                                },
+                              ),
+                              ProfileActionContainer(
+                                label: localize.inventory,
+                                description: '2056 предметов',
+                                onTap: () {
+                                  // context.push(RouteNames.develop);
+
+                                  final photo =
+                                      "https://api.z-boom.ru/user/photo/${context.read<UserRepository>().user.id}";
+                                  print(photo);
+                                },
+                              ),
+                              ProfileActionContainer(
+                                label: localize.cards,
+                                description: 'Мои банковские карты',
+                                onTap: () {
+                                  context.push(RouteNames.develop);
+                                },
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                        ],
+                      ),
                     ),
-                    ProfileActionTile(
-                      onTap: () {
-                        context.push(RouteNames.profileEdit);
-                      },
-                      label: localize.account_data,
-                      iconPath: 'assets/icons/profile.svg',
-                    ),
-                    ProfileActionTile(
-                      onTap: () {
-                        context.push(RouteNames.profileLanguage);
-                      },
-                      label: localize.switch_language,
-                      iconPath: 'assets/icons/world.svg',
-                    ),
-                    PorfileBlocLabel(
-                      text: localize.social_net_em,
-                    ),
-                    ProfileActionTile(
-                      onTap: () {
-                        context.read<ProfileLinksCubit>().loadLink(urlTikTOk);
-                      },
-                      label: 'TikTok',
-                      iconPath: 'assets/icons/tiktok.svg',
-                    ),
-                    // ProfileActionTile(
-                    //   onTap: () {
-                    //     context
-                    //         .read<ProfileLinksCubit>()
-                    //         .loadLink(urlInstagram);
-                    //   },
-                    //   label: 'Intagram',
-                    //   iconPath: 'assets/icons/instagram.svg',
-                    // ),
-                    ProfileActionTile(
-                      onTap: () {
-                        context.read<ProfileLinksCubit>().loadLink(urlTelegram);
-                      },
-                      label: 'Telegram',
-                      iconPath: 'assets/icons/tg.svg',
-                    ),
-                    PorfileBlocLabel(
-                      text: localize.general,
-                    ),
-                    ProfileActionTile(
-                      onTap: () {
-                        context.push(RouteNames.profileAbout);
-                      },
-                      label: localize.about_app,
-                      iconPath: 'assets/icons/question.svg',
-                    ),
-                    ProfileActionTile(
-                      onTap: () {
-                        context.push(RouteNames.profilePrivacyPolicy);
-                      },
-                      label: localize.privacy_policy,
-                      iconPath: 'assets/icons/safe.svg',
-                    ),
-                    ProfileActionTile(
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => PopupChoose(
-                                  label: localize.confirm_logout,
-                                  onAccept: () {
-                                    context.read<ProfileCubit>().logout();
-                                    context.read<AuthCubit>().checkLogin();
-                                  },
-                                  onDecline: () {
-                                    context.pop();
-                                  },
-                                ));
-                      },
-                      label: localize.logout,
-                      iconPath: 'assets/icons/logout.svg',
+                    Container(
+                      color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          PorfileBlocLabel(
+                            text: localize.account,
+                          ),
+                          ProfileActionTile(
+                            onTap: () {
+                              context.push(RouteNames.profileEdit);
+                            },
+                            label: localize.account_data,
+                            iconPath: 'assets/icons/profile.svg',
+                          ),
+                          ProfileActionTile(
+                            onTap: () {
+                              context.push(RouteNames.profileLanguage);
+                            },
+                            label: localize.switch_language,
+                            iconPath: 'assets/icons/world.svg',
+                          ),
+                          PorfileBlocLabel(
+                            text: localize.social_net_em,
+                          ),
+                          ProfileActionTile(
+                            onTap: () {
+                              context
+                                  .read<ProfileLinksCubit>()
+                                  .loadLink(urlTikTOk);
+                            },
+                            label: 'TikTok',
+                            iconPath: 'assets/icons/tiktok.svg',
+                          ),
+                          // ProfileActionTile(
+                          //   onTap: () {
+                          //     context
+                          //         .read<ProfileLinksCubit>()
+                          //         .loadLink(urlInstagram);
+                          //   },
+                          //   label: 'Intagram',
+                          //   iconPath: 'assets/icons/instagram.svg',
+                          // ),
+                          ProfileActionTile(
+                            onTap: () {
+                              context
+                                  .read<ProfileLinksCubit>()
+                                  .loadLink(urlTelegram);
+                            },
+                            label: 'Telegram',
+                            iconPath: 'assets/icons/tg.svg',
+                          ),
+                          PorfileBlocLabel(
+                            text: localize.general,
+                          ),
+                          ProfileActionTile(
+                            onTap: () {
+                              context.push(RouteNames.profileAbout);
+                            },
+                            label: localize.about_app,
+                            iconPath: 'assets/icons/question.svg',
+                          ),
+                          ProfileActionTile(
+                            onTap: () {
+                              context.push(RouteNames.profilePrivacyPolicy);
+                            },
+                            label: localize.privacy_policy,
+                            iconPath: 'assets/icons/safe.svg',
+                          ),
+                          ProfileActionTile(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => PopupChoose(
+                                        label: localize.confirm_logout,
+                                        onAccept: () {
+                                          context.read<ProfileCubit>().logout();
+                                          context
+                                              .read<AuthCubit>()
+                                              .checkLogin();
+                                        },
+                                        onDecline: () {
+                                          context.pop();
+                                        },
+                                      ));
+                            },
+                            label: localize.logout,
+                            iconPath: 'assets/icons/logout.svg',
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-              ],
-            ),
-          )),
+              ),
+            )),
+      ),
     );
   }
 }
