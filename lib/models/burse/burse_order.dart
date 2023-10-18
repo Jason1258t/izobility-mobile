@@ -43,8 +43,8 @@ class BurseOrderModel {
       // userIdBuy: json['user_id_buy'],
       // closedAt: json['closed_at'],
       // deletedAt: json['deleted_at'],
-      coinFrom: BurseCoinModel.fromJson(json['monetfrom']),
-      coinTo: BurseCoinModel.fromJson(json['monetto']),
+      coinFrom: BurseCoinModel.fromJson(json['monetto']),
+      coinTo: BurseCoinModel.fromJson(json['monetfrom']),
     );
   }
 }
