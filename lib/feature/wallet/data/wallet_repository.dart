@@ -243,6 +243,21 @@ class WalletRepository {
         }
       }
 
+      final emeraldCoin = TokenData(
+          amount: obscured
+              ? "****"
+              : walletPage == 0
+              ? emeraldInWalletBalance.toString()
+              : emeraldInGameBalance.toStringAsFixed(5),
+          id: "21",
+          imageUrl:
+          'https://assets.coingecko.com/coins/images/2655/large/emd.png?1644748192',
+          name: "Emerald",
+          rubleExchangeRate: "0",
+          description: '');
+
+      coinsInGame.add(emeraldCoin);
+
       coinsInGame.sort((item1, item2) =>
           double.parse(item2.amount).compareTo(double.parse(item1.amount)));
 
