@@ -61,8 +61,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             isBack: false,
           ),
           body: SingleChildScrollView(
-            physics:
-                const BouncingScrollPhysics(parent: FixedExtentScrollPhysics()),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -74,12 +72,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       BlocBuilder<ProfileCubit, ProfileState>(
                         builder: (context, state) {
-                          print(context.read<UserRepository>().user.phone);
 
                           if (state is ProfileSuccessState ||
                               state is ProfileFailureState) {
                             if (context.read<UserRepository>().user.phone !=
-                                null) {
+                                null && context.read<UserRepository>().user.phone != "") {
                               return Container();
                             } else {
                               return Container(
