@@ -334,7 +334,7 @@ class WalletRepository {
 
   Future<void> createBurseOrder(int amountFrom, int amountTo) async {
     await apiService.wallet.createBurseOrder(
-        amountFrom, amountTo, activeBurseTokenTo!.id, activeBurseTokenFrom!.id);
+        amountFrom, amountTo, activeBurseTokenFrom!.id, activeBurseTokenTo!.id);
   }
 
   Future<void> buyBurseOrder(int orderId) async {
