@@ -9,7 +9,7 @@ class GamesRepository {
       downloadsQuantity: 123,
       grade: 4.3,
       gradesQuantity: 100,
-      name: 'fuck my ass',
+      name: 'abobus',
       weight: 102,
       gameId: 0,
       screenshotList: [

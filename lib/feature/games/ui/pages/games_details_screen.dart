@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -5,11 +7,14 @@ import 'package:izobility_mobile/feature/games/bloc/games/games_cubit.dart';
 import 'package:izobility_mobile/feature/games/data/games_repository.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_details_stats_card.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_screenshot_card.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:flutter/services.dart';
 
 class GamesDetailsScreen extends StatefulWidget {
   final String gameId;
@@ -58,6 +63,43 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
     );
   }
 
+  loadAndroidUnity() async {
+    const String _channel = 'unity_activity';
+    const platform = MethodChannel(_channel);
+
+    final balances =
+        RepositoryProvider.of<WalletRepository>(context).getUnityBalances();
+
+    final user = RepositoryProvider.of<UserRepository>(context).getUserJson();
+
+    try {
+      try {
+        Future.wait([balances, user]).then((value) async {
+          final clientData = {}
+            ..addAll(value[0])
+            ..addAll(value[1]);
+
+          print('{');
+          clientData.forEach((key, value) {
+            print('      $key: $value,');
+          });
+          print('}');
+
+          final data = await platform.invokeMethod(
+            'startUnity',
+            {'user': jsonEncode(clientData)},
+          );
+          print('HERE 2');
+          print('DATA $data');
+        });
+      } catch (e) {
+        rethrow;
+      }
+    } on PlatformException catch (e) {
+      rethrow;
+    }
+  }
+
   CustomScrollView buildGamesDetailsContent() {
     final size = MediaQuery.sizeOf(context);
 
@@ -66,7 +108,8 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
     final localize = AppLocalizations.of(context)!;
 
     return CustomScrollView(
-      physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
+      physics: const BouncingScrollPhysics(
+          decelerationRate: ScrollDecelerationRate.fast),
       slivers: [
         const SliverAppBar(
           pinned: true,
@@ -103,7 +146,8 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
                     width: size.width * 0.4,
                     child: Text(
                       game.name,
-                      style: AppTypography.font16w400.copyWith(color: Colors.black),
+                      style: AppTypography.font16w400
+                          .copyWith(color: Colors.black),
                     ),
                   ),
                   const SizedBox(
@@ -111,8 +155,8 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
                   ),
                   Text(
                     game.companyName,
-                    style:
-                        AppTypography.font12w400.copyWith(color: AppColors.grey500),
+                    style: AppTypography.font12w400
+                        .copyWith(color: AppColors.grey500),
                   )
                 ],
               ),
@@ -153,7 +197,8 @@ class GamesDetailsScreenState extends State<GamesDetailsScreen> {
             child: CustomButton(
               width: double.infinity,
               onTap: () {
-                context.push(RouteNames.gamesDetailsLoading);
+                // context.push(RouteNames.gamesDetailsLoading);
+                loadAndroidUnity();
               },
               text: localize.download,
               radius: 100,

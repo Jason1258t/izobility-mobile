@@ -10,18 +10,8 @@ class User with ApiHandler {
     currentToken = token;
   }
 
-  Future<dynamic> getUserDetailsInfo({required int userId}) async {
-    final response = await dio.get(
-      "${ApiEndpoints.userInfo}${userId}",
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer ${currentToken.accessToken}',
-          'Content-Type': "application/json",
-        },
-      ),
-    );
-    return response.data;
-  }
+  Future<dynamic> getUserDetailsInfo({required int userId}) async =>
+      get("${ApiEndpoints.userInfo}$userId");
 
   Future<dynamic> updateUserData({
     required String name,

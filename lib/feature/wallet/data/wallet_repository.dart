@@ -10,6 +10,21 @@ import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
 
+class UnityWallet {
+  double bnbInGame;
+  double tdxInGame;
+  double busdInGame;
+
+  UnityWallet({this.bnbInGame = 0, this.busdInGame = 0, this.tdxInGame = 0});
+
+  Map<String, dynamic> toJson(double emerald) => {
+        "zboom_ingame": emerald,
+        "tdx_ingame": tdxInGame,
+        "bnb_ingame": bnbInGame,
+        "busd_ingame": busdInGame
+      };
+}
+
 class WalletRepository {
   final ApiService apiService;
   final PreferencesService prefs;
@@ -25,6 +40,8 @@ class WalletRepository {
 
   double emeraldInGameBalance = 0;
   double emeraldInWalletBalance = 0;
+
+  UnityWallet unityWallet = UnityWallet();
 
   int burseGeneralCurrentPageIndex = 0;
   int burseMyCurrentPageIndex = 0;
@@ -180,6 +197,14 @@ class WalletRepository {
     }
   }
 
+  Future<Map<String, dynamic>> getUnityBalances() async {
+    final data = await apiService.wallet.getEmeraldCoin();
+    Map<String, dynamic> result = unityWallet.toJson(emeraldInGameBalance)
+      ..addAll(data);
+
+    return result;
+  }
+
   Future<void> sendInGameCoinByEmail(
       String email, int amount, int coinId) async {
     await apiService.wallet.sendInGameCoinByEmail(email, amount, coinId);
@@ -233,14 +258,6 @@ class WalletRepository {
       final res = await apiService.wallet.getUserGameTokens();
       coinsInGame.clear();
 
-      for (var json in res) {
-        try {
-          coinsInGame.add(TokenData.fromJson(json));
-        } catch (e) {
-          print(e);
-        }
-      }
-
       await loadEmeraldCoin();
 
       final emeraldCoin = TokenData(
@@ -254,6 +271,20 @@ class WalletRepository {
 
       coinsInGame.add(emeraldCoin);
 
+      for (var json in res) {
+        try {
+          if (json['id'] == '17') {
+            unityWallet.busdInGame = double.parse(json['amount'] ?? "0");
+          } else if (json['id'] == '18') {
+            unityWallet.bnbInGame = double.parse(json['amount'] ?? "0");
+          } else if (json['id'] == '29') {
+            unityWallet.tdxInGame = double.parse(json['amount'] ?? "0");
+          }
+          coinsInGame.add(TokenData.fromJson(json));
+        } catch (e) {
+          print(e);
+        }
+      }
       coinsInGame.sort((item1, item2) =>
           double.parse(item2.amount).compareTo(double.parse(item1.amount)));
 
