@@ -20,4 +20,16 @@ class BurseBuyOrderCubit extends Cubit<BurseBuyOrderState> {
       emit(BurseBuyOrderFailure());
     }
   }
+
+  void cancelOrder(int orderId) async {
+    emit(BurseBuyOrderLoading());
+
+    try {
+      await walletRepository.canselBurseOrder(orderId);
+
+      emit(BurseBuyOrderSuccess());
+    } catch (ex) {
+      emit(BurseBuyOrderFailure());
+    }
+  }
 }

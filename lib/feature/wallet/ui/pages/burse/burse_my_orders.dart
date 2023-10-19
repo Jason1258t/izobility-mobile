@@ -16,16 +16,16 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
-class BurseBuyOrderScreen extends StatefulWidget {
-  const BurseBuyOrderScreen({super.key, required this.order});
+class BurseMyOrdersScreen extends StatefulWidget {
+  const BurseMyOrdersScreen({super.key, required this.order});
 
   final BurseOrderModel order;
 
   @override
-  State<BurseBuyOrderScreen> createState() => _BurseBuyOrderScreenState();
+  State<BurseMyOrdersScreen> createState() => _BurseMyOrdersScreenState();
 }
 
-class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
+class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
@@ -194,14 +194,15 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                     const SizedBox(
                       height: 4,
                     ),
-                    CustomButton(
-                        text: "Купить",
+                    widget.order.closedAt == null ? CustomButton(
+                        color: AppColors.red400,
+                        text: "Отменить",
                         onTap: () {
                           context
                               .read<BurseBuyOrderCubit>()
-                              .buyOrder(int.parse(widget.order.id));
+                              .cancelOrder(int.parse(widget.order.id));
                         },
-                        width: double.infinity)
+                        width: double.infinity) : Container()
                   ],
                 )
               ],
