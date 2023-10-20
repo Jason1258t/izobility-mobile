@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -57,6 +58,7 @@ class _BurseHistoryScreenState extends State<BurseHistoryScreen> {
                               .map((currentOrder) => Padding(
                                     padding: const EdgeInsets.only(bottom: 4),
                                     child: OrderItem(
+                                      type: BurseOrderType.general,
                                       order: currentOrder,
                                       onTap: () {},
                                     ),

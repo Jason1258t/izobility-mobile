@@ -372,8 +372,8 @@ class WalletRepository {
     await apiService.wallet.buyBurseOrder(orderId);
   }
 
-  Future<void> canselBurseOrder() async {
-    await apiService.wallet.canselBurseOrder(1);
+  Future<void> canselBurseOrder(int orderId) async {
+    await apiService.wallet.canselBurseOrder(orderId);
   }
 
   void setActiveBurseTokenFrom(TokenData r) {

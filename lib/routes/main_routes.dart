@@ -40,5 +40,6 @@ final mainRoutesNames = [
   RouteNames.walletBurseBuyOrder,
   RouteNames.walletBurseCreateOrder,
   RouteNames.walletBurseCreateOrderSuccess,
-  RouteNames.mainQr
+  RouteNames.mainQr,
+  RouteNames.walletBurseMyOrder
 ];

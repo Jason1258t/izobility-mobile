@@ -36,6 +36,7 @@ import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_choose_coin
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_create_order_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_create_order_success_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_history_screen.dart';
+import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_my_orders.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/buy_currency_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/auth/wallet_auth.dart';
@@ -261,6 +262,11 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.walletBuyCurrency,
           builder: (context, state) => const BuyCurrencyScreen()),
+      GoRoute(
+          path: RouteNames.walletBurseMyOrder,
+          builder: (context, state) =>  BurseMyOrdersScreen(
+            order: state.extra as BurseOrderModel,
+          )),
       GoRoute(
           path: RouteNames.cards,
           builder: (context, state) => const CardsScreen()),

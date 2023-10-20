@@ -8,6 +8,7 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -249,6 +250,7 @@ class BurseGeneralItemsListWidget extends StatelessWidget {
               return Column(
                 children: itemsList
                     .map((currentOrder) => OrderItem(
+                          type: BurseOrderType.general,
                           order: currentOrder,
                           onTap: () {
                             context.push(RouteNames.walletBurseBuyOrder,
@@ -261,6 +263,7 @@ class BurseGeneralItemsListWidget extends StatelessWidget {
               return Column(children: [
                 ...itemsList
                     .map((currentOrder) => OrderItem(
+                          type: BurseOrderType.general,
                           order: currentOrder,
                           onTap: () {
                             context.push(RouteNames.walletBurseBuyOrder,
@@ -304,9 +307,10 @@ class BurseMyItemsListWidget extends StatelessWidget {
               return Column(
                 children: itemsList
                     .map((currentOrder) => OrderItem(
+                          type: BurseOrderType.my,
                           order: currentOrder,
                           onTap: () {
-                            context.push(RouteNames.walletBurseBuyOrder,
+                            context.push(RouteNames.walletBurseMyOrder,
                                 extra: currentOrder);
                           },
                         ))
@@ -316,9 +320,10 @@ class BurseMyItemsListWidget extends StatelessWidget {
               return Column(children: [
                 ...itemsList
                     .map((currentOrder) => OrderItem(
+                          type: BurseOrderType.my,
                           order: currentOrder,
                           onTap: () {
-                            context.push(RouteNames.walletBurseBuyOrder,
+                            context.push(RouteNames.walletBurseMyOrder,
                                 extra: currentOrder);
                           },
                         ))

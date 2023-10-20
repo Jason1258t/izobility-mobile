@@ -9,7 +9,7 @@ class BurseOrderModel {
   String amountTo;
   DateTime createdAt;
   // String userIdBuy;
-  // String closedAt;
+  String? closedAt;
   // String deletedAt;
   BurseCoinModel coinFrom;
   BurseCoinModel coinTo;
@@ -25,7 +25,7 @@ class BurseOrderModel {
     required this.amountFrom,
     required this.amountTo,
     // this.userIdBuy,
-    // this.closedAt,
+    this.closedAt,
     // this.deletedAt,
     // required this.BurseCoinModel,
     required this.coinTo,
@@ -37,11 +37,11 @@ class BurseOrderModel {
       // userIdFrom: json['user_id_from'] ?? "",
       // BurseCoinModel: json['monet_from'] ?? "",
       // monetTo: json['monet_to'] ?? "",
-      amountFrom: double.parse(json['amount_from'] ?? "0").toStringAsFixed(2),
-      amountTo: double.parse(json['amount_to'] ?? "0").toStringAsFixed(2),
+      amountFrom: double.parse(json['amount_to'] ?? "0").toStringAsFixed(2),
+      amountTo: double.parse(json['amount_from'] ?? "0").toStringAsFixed(2),
       createdAt: DateTime.parse(json['created_at']),
       // userIdBuy: json['user_id_buy'],
-      // closedAt: json['closed_at'],
+      closedAt: json['closed_at'],
       // deletedAt: json['deleted_at'],
       coinFrom: BurseCoinModel.fromJson(json['monetto']),
       coinTo: BurseCoinModel.fromJson(json['monetfrom']),

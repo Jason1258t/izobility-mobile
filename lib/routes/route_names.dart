@@ -29,8 +29,10 @@ abstract class RouteNames {
   static const String walletCurrency = '/wallet/currency';
   static const String walletInfoCurrency = '/wallet/currency/info';
   static const String walletSwap = '/wallet/swap';
-  static const String walletSendOnChainCoin = '/wallet/send_in_game_coin_currency';
-  static const String walletSendInGameCoin = '/wallet/send_on_chain_coin_currency';
+  static const String walletSendOnChainCoin =
+      '/wallet/send_in_game_coin_currency';
+  static const String walletSendInGameCoin =
+      '/wallet/send_on_chain_coin_currency';
   static const String walletReplenish = '/wallet/replenish';
   static const String walletChooseCoin = '/wallet/choose_coin';
   static const String walletBuyCurrency = '/wallet/buy';
@@ -45,6 +47,7 @@ abstract class RouteNames {
   static const String walletBurseCreateOrder = '/wallet/burse/order/create';
   static const String walletBurseHistory = '/wallet/burse/history';
   static const String walletBurseChooseCoin = '/wallet/choose/coin';
+  static const String walletBurseMyOrder = '/wallet/burse/order/my';
   static const String walletBurseCreateOrderSuccess =
       '/wallet/burse/order/create/success';
 

@@ -5,14 +5,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
+import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class OrderItem extends StatelessWidget {
   final VoidCallback onTap;
   final BurseOrderModel order;
+  final BurseOrderType type;
 
-  const OrderItem({super.key, required this.order, required this.onTap});
+  const OrderItem({super.key, required this.order, required this.onTap, required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,9 @@ class OrderItem extends StatelessWidget {
                                           37) /
                                       2,
                                   child: Text(
-                                    walletRepository.obscured ? AppStrings.obscuredText : order.amountFrom,
+                                    walletRepository.obscured
+                                        ? AppStrings.obscuredText
+                                        : order.amountFrom,
                                     maxLines: 1,
                                     overflow: TextOverflow.clip,
                                     style: AppTypography.font16w400.copyWith(
@@ -107,9 +111,9 @@ class OrderItem extends StatelessWidget {
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle, gradient: AppColors.gradient),
                     child: SvgPicture.asset(
-                      'assets/icons/transfer_arrows.svg',
+                      type == BurseOrderType.general ? 'assets/icons/transfer_arrows.svg' : order.closedAt != null ? "assets/icons/completed.svg" : "assets/icons/clock.svg",
                       color: Colors.black,
-                      width: 20,
+                      width: 21,
                     )),
                 SizedBox(
                   width: (MediaQuery.sizeOf(context).width - 116) / 2,
@@ -143,7 +147,9 @@ class OrderItem extends StatelessWidget {
                                             37) /
                                         2,
                                 child: Text(
-                                  walletRepository.obscured ? AppStrings.obscuredText : order.amountTo,
+                                  walletRepository.obscured
+                                      ? AppStrings.obscuredText
+                                      : order.amountTo,
                                   overflow: TextOverflow.clip,
                                   maxLines: 1,
                                   style: AppTypography.font16w400.copyWith(

@@ -4,10 +4,9 @@ enum NotificationTransactionTypeEnum { get, give, none }
 
 enum LoadingStateEnum { wait, loading, success, fail }
 
-enum CoinTypeEnum { BTC, ASSES, DICKS }
-
 enum TransferTypes {inGame, onChain}
 
 enum BurseOrderType {general, my}
 
-enum Coins {emerald, bnb, bcs, busd, most, tidex}
+enum BurseOrderTransferType {buy, sell}
+
