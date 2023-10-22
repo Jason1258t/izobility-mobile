@@ -12,8 +12,6 @@ class Auth with ApiHandler {
 
   Future<dynamic> registerUser(String email, String? promo) async {
     final res = await dio.post(ApiEndpoints.register, data: {
-      "phone": "",
-      "phone_country": "+7",
       "email": email,
       "promo": promo ?? "",
       "site_id": siteId
@@ -33,8 +31,6 @@ class Auth with ApiHandler {
   Future<dynamic> login(
       {required String email, required String password}) async {
     final response = await dio.post(ApiEndpoints.login, data: {
-      "login": "",
-      "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
       "email": email,
       "password": password,
       "site_id": siteId
@@ -47,8 +43,6 @@ class Auth with ApiHandler {
 
   Future restorePassword({required String email}) async {
     await post(ApiEndpoints.restore, data: {
-      "login": "",
-      "phone_country": "+7", // DEFAULT VALUE FOR TESTS.
       "email": email,
       "site_id": siteId
     });
@@ -56,16 +50,12 @@ class Auth with ApiHandler {
 
   Future restoreConfirm({required String email, required String code}) async {
     await post(ApiEndpoints.restoreCheck, data: {
-      "phone": "",
-      "phone_country": "+7",
       "email": email,
       "token": code,
       "site_id": siteId
     });
 
     await post(ApiEndpoints.restoreConfirm, data: {
-      "login": "",
-      "phone_country": "+7",
       "email": email,
       "token": code,
       "site_id": siteId,
