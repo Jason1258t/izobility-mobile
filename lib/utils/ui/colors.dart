@@ -53,15 +53,4 @@ class AppColors {
   static const purple200 = Color(0xFFDAD4FF);
   static const purple400 = Color(0xFFA285FF);
   static const secondarryDefaultBackground = Color(0xff1F1F1F);
-
-  static const gradient = LinearGradient(
-    begin: Alignment(-1, -1),
-    end: Alignment(1, 1),
-    colors: [Color(0xFF1CFE15), Color(0xFF4EFDC6)],
-  );
-
-  static const gradientGreenDark = LinearGradient(colors: [
-    Color(0xff3FCA3B),
-    Color(0xff2FC294),
-  ]);
 }

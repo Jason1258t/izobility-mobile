@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
 
 class CustomSwitcher extends StatelessWidget {
   const CustomSwitcher({super.key, required this.active, required this.onTap});
@@ -51,7 +52,7 @@ class CustomSwitcher extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(1000),
-                gradient: AppColors.gradient),
+                gradient: AppGradients.gradientGreenWhite),
             child: InkWell(
               borderRadius: BorderRadius.circular(1000),
               onTap: () {

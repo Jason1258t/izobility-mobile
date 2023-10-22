@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
 
 class WalletAction extends StatelessWidget {
   const WalletAction(
@@ -29,7 +30,7 @@ class WalletAction extends StatelessWidget {
           height: sizeOf.width * 0.156,
           decoration: BoxDecoration(
               // color: isActive ? AppColors.primary : AppColors.purple100,
-              gradient: AppColors.gradient,
+              gradient: AppGradients.gradientGreenWhite,
               borderRadius: BorderRadius.circular(100)),
           child: IconButton(
             onPressed: () => onTap(),
