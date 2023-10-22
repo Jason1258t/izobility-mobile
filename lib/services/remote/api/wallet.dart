@@ -83,7 +83,18 @@ class Wallet with ApiHandler {
   }
 
   Future<void> swapInGameCoins(int amount, int idToCoin, int idFromCoin) async {
-    await post(ApiEndpoints.walletSwapCoins,
-        data: {"amount": amount, "monet_from": idFromCoin, "monet_to": idToCoin});
+    await post(ApiEndpoints.walletSwapCoins, data: {
+      "amount": amount,
+      "monet_from": idFromCoin,
+      "monet_to": idToCoin
+    });
+  }
+
+  Future<dynamic> getCoinOperations(
+      String walletAddress, String tokenAddress) async {
+    final response = await post(ApiEndpoints.walletTransactionList,
+        data: {'wallet': walletAddress, 'address': tokenAddress});
+
+    return response;
   }
 }

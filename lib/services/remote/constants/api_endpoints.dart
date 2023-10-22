@@ -40,6 +40,7 @@ class ApiEndpoints {
   static const String walletTokenList = '/wallet/tokens-balance';
   static const String walletSendInGameCoin = '/balance/moneta-send';
   static const String walletSwapCoins = '/balance/moneta-exchange';
+  static const String walletTransactionList = '/wallet/transacts';
 
   static const String burseOrdersList = '/trade/list';
   static const String burseCreateOrder = '/trade/add-order';
