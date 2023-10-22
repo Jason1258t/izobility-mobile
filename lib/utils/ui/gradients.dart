@@ -11,7 +11,7 @@ abstract class AppGradients {
       begin: const Alignment(-0.12, 0.99),
       end: const Alignment(0.12, -0.99),colors: [
     Color(0xff3FCA3B),
-    Color(0xff2FC294).withOpacity(0.3),
+    Color(0xff2FC294),
   ]);
 
   static final gradientWhiteGray = LinearGradient(
