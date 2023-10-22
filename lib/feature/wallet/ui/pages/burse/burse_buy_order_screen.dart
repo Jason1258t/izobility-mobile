@@ -49,12 +49,13 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
             if (state is BurseBuyOrderSuccess) {
               context.pop();
 
-              // context.push(RouteNames.walletBurseCreateOrderSuccess);
+               ScaffoldMessenger.of(context).showSnackBar(
+                  CustomSnackBar.successSnackBar('Успешно'));
             } else if (state is BurseBuyOrderFailure) {
               context.pop();
 
               ScaffoldMessenger.of(context).showSnackBar(
-                  CustomSnackBar.errorSnackBar('Недостаточно средств'));
+                  CustomSnackBar.errorSnackBar('Ошибка'));
             } else if (state is BurseBuyOrderLoading) {
               Dialogs.show(
                   context,
@@ -98,8 +99,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Image.network(
-                                    walletRepository
-                                        .activeSwapTockenFrom!.imageUrl,
+                                    widget.order.coinFrom.logo,
                                     width: 24,
                                     height: 24,
                                   ),
@@ -107,7 +107,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                     width: 10,
                                   ),
                                   Text(
-                                    walletRepository.activeSwapTockenFrom!.name,
+                                    widget.order.coinFrom.name,
                                     style: AppTypography.font18w700
                                         .copyWith(color: AppColors.textPrimary),
                                   ),
@@ -145,8 +145,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Image.network(
-                                    walletRepository
-                                        .activeSwapTockenTo!.imageUrl,
+                                    widget.order.coinTo.logo,
                                     width: 24,
                                     height: 24,
                                   ),
@@ -154,7 +153,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                                     width: 10,
                                   ),
                                   Text(
-                                    walletRepository.activeSwapTockenTo!.name,
+                                    widget.order.coinTo.name,
                                     style: AppTypography.font18w700
                                         .copyWith(color: AppColors.textPrimary),
                                   ),
