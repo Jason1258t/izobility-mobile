@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coins_in_game/coins_in_game_cubit.dart';
@@ -17,6 +19,7 @@ import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/containers/valid_token.dart';
+import 'package:izobility_mobile/widgets/popup/custom_popup.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -45,7 +48,25 @@ class _WalletScreenState extends State<WalletScreen>
     context.read<WalletRepository>().getUserEmeraldBill();
 
     context.read<WalletRepository>().getGameTokens();
+
     super.initState();
+    final UserRepository userRepository = context.read<UserRepository>();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      if (userRepository.user.phone == null ||
+          userRepository.user.phone == "") {
+        await showDialog(
+            context: context,
+            builder: (context) {
+              return CustomPopup(
+                  imagePath: "assets/images/sad_emoji.png",
+                  onTap: () {
+                    context.pop();
+                  },
+                  label:
+                      "Номер не подтверджен, поэтому функции внутренного кошелька не работают");
+            });
+      }
+    });
   }
 
   MultiSliver getActivePage(bool tap) {
@@ -326,10 +347,8 @@ class _WalletScreenState extends State<WalletScreen>
                           const SizedBox(
                             width: 10,
                           ),
-                          Image.network(
-                            "https://api.z-boom.ru/media/" +
-                              "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg"
-                          ),
+                          Image.network("https://api.z-boom.ru/media/" +
+                              "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg"),
                         ],
                       );
                     } else if (state is CoinInWalletLoadingState) {
