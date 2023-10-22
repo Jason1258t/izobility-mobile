@@ -26,16 +26,11 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
     final walletRepository = context.read<WalletRepository>();
 
     List<TokenData> coinsList = [];
+    print("${widget.path} path ${widget.fromOrTo}");
 
-    if (widget.path != 'chain_game_transfer') {
-      coinsList = walletRepository.walletPage == 0
+      coinsList = widget.fromOrTo
           ? walletRepository.coinsInChain
           : walletRepository.coinsInGame;
-    } else {
-      coinsList = walletRepository.transferType == TransferTypes.onChain
-          ? walletRepository.coinsInChain
-          : walletRepository.coinsInGame;
-    }
 
     return Container(
       color: Colors.white,

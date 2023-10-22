@@ -40,8 +40,8 @@ class _WalletGameChainTransferState
         if (state is CoinSendFailure) {
           context.pop();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода'));
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -84,8 +84,13 @@ class _WalletGameChainTransferState
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
                           onTap: () {
-                            context.pushReplacement(
-                                RouteNames.walletChooseCoin, extra: {'path':'chain_game_transfer'});
+                            print("path ${walletRepository.transferType}");
+                            context.pushReplacement(RouteNames.walletChooseCoin,
+                                extra: {
+                                  'path': 'chain_game_transfer',
+                                  'fromOrTo': walletRepository.transferType ==
+                                      TransferTypes.onChain
+                                });
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
