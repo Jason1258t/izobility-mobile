@@ -15,9 +15,9 @@ import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   margin: const EdgeInsets.only(bottom: 16),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                      gradient: AppColors.gradientGreenDark,
+                                      gradient: AppGradients.gradientGreenDark,
                                       borderRadius: BorderRadius.circular(16)),
                                   child: Column(
                                     crossAxisAlignment:

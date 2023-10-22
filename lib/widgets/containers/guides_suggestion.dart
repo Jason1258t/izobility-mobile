@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
 import '../../utils/ui/colors.dart';
 import '../../utils/ui/fonts.dart';
 
@@ -24,15 +25,6 @@ class GuidesSuggestion extends StatelessWidget {
   final BorderSide notWhite = BorderSide.none;
 
   final bool viewed;
-
-  final LinearGradient conteinerColorGradient = LinearGradient(
-    begin: const Alignment(-0.12, 0.99),
-    end: const Alignment(0.12, -0.99),
-    colors: [
-      Colors.black.withOpacity(0.6499999761581421),
-      Colors.black.withOpacity(0)
-    ],
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +52,7 @@ class GuidesSuggestion extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: ShapeDecoration(
-            gradient: conteinerColorGradient,
+            gradient: AppGradients.gradientWhiteGray,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
