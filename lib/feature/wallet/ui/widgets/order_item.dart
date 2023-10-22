@@ -8,6 +8,7 @@ import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
 
 class OrderItem extends StatelessWidget {
   final VoidCallback onTap;
@@ -109,7 +110,7 @@ class OrderItem extends StatelessWidget {
                 Container(
                     padding: const EdgeInsets.all(3),
                     decoration: const BoxDecoration(
-                        shape: BoxShape.circle, gradient: AppColors.gradient),
+                        shape: BoxShape.circle, gradient: AppGradients.gradientGreenWhite),
                     child: SvgPicture.asset(
                       type == BurseOrderType.general ? 'assets/icons/transfer_arrows.svg' : order.closedAt != null ? "assets/icons/completed.svg" : "assets/icons/clock.svg",
                       color: Colors.black,
