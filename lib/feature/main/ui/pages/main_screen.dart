@@ -91,8 +91,7 @@ class _MainScreenState extends State<MainScreen> {
                       await repository.getPreview();
                     },
                     child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(
-                          decelerationRate: ScrollDecelerationRate.fast),
+                      physics: AlwaysScrollableScrollPhysics(),
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

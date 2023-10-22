@@ -84,7 +84,6 @@ class _WalletGameChainTransferState
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
                           onTap: () {
-                            print("path ${walletRepository.transferType}");
                             context.pushReplacement(RouteNames.walletChooseCoin,
                                 extra: {
                                   'path': 'chain_game_transfer',
