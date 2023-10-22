@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -14,6 +18,8 @@ class CustomSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
+
+    final walletRepository = context.read<WalletRepository>();
 
     return Container(
       height: 50,
@@ -55,8 +61,10 @@ class CustomSwitcher extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(1000),
               onTap: () {
-                context.push(RouteNames.walletChooseCoin,
-                    extra: {'path': 'chain_game_transfer'});
+                context.push(RouteNames.walletChooseCoin, extra: {
+                  'path': 'chain_game_transfer',
+                  "fromOrTo": walletRepository.walletPage == 0
+                });
               },
               child: Ink(
                   padding: const EdgeInsets.all(5),
