@@ -194,6 +194,7 @@ class WalletRepository {
     } catch (e) {
       print(e);
       emeraldInGameStream.add(LoadingStateEnum.fail);
+      rethrow;
     }
   }
 
