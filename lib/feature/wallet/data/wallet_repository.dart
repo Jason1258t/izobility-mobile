@@ -8,6 +8,7 @@ import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
+import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
 
 class UnityWallet {
@@ -405,5 +406,13 @@ class WalletRepository {
 
   Future<void> swapInGameCoins(int amount, int idToCoin, int idFromCoin) async {
     await apiService.wallet.swapInGameCoins(amount, idToCoin, idFromCoin);
+  }
+
+  Future<void> getCoinOperations(String coinAddress) async {
+    final operationList = await apiService.wallet.getCoinOperations(
+        walletModel!.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain),
+        coinAddress);
+
+    print("OPERATION LIST---------------- \n  ${operationList}");
   }
 }

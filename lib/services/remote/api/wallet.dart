@@ -17,9 +17,11 @@ class Wallet with ApiHandler {
     return res['objects'];
   }
 
-  Future<dynamic> getEmeraldCoin() => get(
-        ApiEndpoints.wallet,
-      );
+  Future<dynamic> getEmeraldCoin() async {
+    return await get(
+      ApiEndpoints.wallet,
+    );
+  }
 
   Future<void> swapCoinInGameToOnChain(
       int coinId, double amount, HDWallet wallet) async {
@@ -86,5 +88,13 @@ class Wallet with ApiHandler {
       "monet_from": idFromCoin,
       "monet_to": idToCoin
     });
+  }
+
+  Future<dynamic> getCoinOperations(
+      String walletAddress, String tokenAddress) async {
+    final response = await post(ApiEndpoints.walletTransactionList,
+        data: {'wallet': walletAddress, 'address': tokenAddress});
+
+    return response;
   }
 }
