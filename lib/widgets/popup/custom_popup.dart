@@ -59,11 +59,6 @@ class _CustomPopupState extends State<CustomPopup> {
               const SizedBox(
                 height: 16,
               ),
-              // Text(
-              //   "${widget.coinAmount} ${widget.coinName}",
-              //   style:
-              //       AppTypography.font32w700.copyWith(color: AppColors.primary),
-              // ),
               const SizedBox(
                 height: 16,
               ),

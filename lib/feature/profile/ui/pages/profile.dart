@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return context.read<UserRepository>().loadUserDetailsInfo();
               },
               child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

@@ -9,8 +9,8 @@ abstract class AppGradients {
   );
 
   static const gradientGreenDark = LinearGradient(
-      begin: const Alignment(-0.12, 0.99),
-      end: const Alignment(0.12, -0.99),
+      begin: Alignment(-0.12, 0.99),
+      end: Alignment(0.12, -0.99),
       colors: [
         Color(0xff3FCA3B),
         Color(0xff2FC294),
@@ -24,10 +24,4 @@ abstract class AppGradients {
       Colors.black.withOpacity(0)
     ],
   );
-
-  static const gradientBlackGrey =
-      LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Colors.black, AppColors.switcherBackground]);
 }

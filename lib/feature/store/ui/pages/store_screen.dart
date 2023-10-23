@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/feature/store/ui/widgets/container_with_text.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -171,55 +172,6 @@ class _StoreScreenState extends State<StoreScreen> {
                   },
                 )
               ]),
-        ),
-      ),
-    );
-  }
-}
-
-class ContainerWithText extends StatelessWidget {
-  const ContainerWithText(
-      {super.key,
-      required this.title,
-      required this.path,
-      required this.width,
-      this.onTap});
-
-  final String title;
-  final String path;
-  final double width;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(10),
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        width: width,
-        height: 55,
-        decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.03),
-            borderRadius: BorderRadius.circular(10)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              'assets/icons/$path.svg',
-              width: 25,
-              height: 25,
-              color: Colors.black,
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              title,
-              style: AppTypography.font18w700.copyWith(color: Colors.black),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
         ),
       ),
     );

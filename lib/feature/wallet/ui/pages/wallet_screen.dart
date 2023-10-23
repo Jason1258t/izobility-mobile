@@ -55,12 +55,14 @@ class _WalletScreenState extends State<WalletScreen>
       if (userRepository.user.phone == null ||
           userRepository.user.phone == "") {
         await showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return CustomPopup(
                   imagePath: "assets/images/sad_emoji.png",
                   onTap: () {
                     context.pop();
+                    GoRouter.of(context).go(RouteNames.profile);
                   },
                   label:
                       "Номер не подтверджен, поэтому функции внутренного кошелька не работают");
