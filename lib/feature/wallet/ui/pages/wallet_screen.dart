@@ -55,12 +55,14 @@ class _WalletScreenState extends State<WalletScreen>
       if (userRepository.user.phone == null ||
           userRepository.user.phone == "") {
         await showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) {
               return CustomPopup(
                   imagePath: "assets/images/sad_emoji.png",
                   onTap: () {
                     context.pop();
+                    GoRouter.of(context).go(RouteNames.profile);
                   },
                   label:
                       "Номер не подтверджен, поэтому функции внутренного кошелька не работают");
@@ -215,6 +217,9 @@ class _WalletScreenState extends State<WalletScreen>
                         BorderSide(color: AppColors.textPrimary, width: 2),
                     insets: EdgeInsets.symmetric(horizontal: -40)),
                 onTap: (int val) {
+                  walletRepository.getCoinOperations(
+                      "0xe9e7cea3dedca5984780bafc599bd69add087d56");
+
                   setState(() {
                     tokenOrNft = val;
                   });
@@ -264,7 +269,6 @@ class _WalletScreenState extends State<WalletScreen>
                                               'token_data': item,
                                               'in_game_or_on_chain': true
                                             });
-                                        walletRepository.getCoinOperations(item.address ?? "");
                                       },
                                       imageUrl: item.imageUrl,
                                       prise: walletRepository.obscured

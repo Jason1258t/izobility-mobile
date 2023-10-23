@@ -1,3 +1,5 @@
+import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+
 class AppStrings {
   static const String emailRegExp =
       r"^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+";
@@ -17,6 +19,12 @@ class AppStrings {
     '10': 'октября',
     '11': 'ноября',
     '12': 'декабря',
+  };
+
+  static const Map<Enum, dynamic> shopPage = {
+    CategoryEnum.promos : 'category',
+    CategoryEnum.gifts : 'gift',
+    CategoryEnum.products : 'card',
   };
 
   static const String obscuredText = '****';
