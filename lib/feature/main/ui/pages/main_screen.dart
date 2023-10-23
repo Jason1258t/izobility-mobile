@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +43,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
+    final size = MediaQuery.sizeOf(context);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -93,49 +97,84 @@ class _MainScreenState extends State<MainScreen> {
                     child: SingleChildScrollView(
                       physics: AlwaysScrollableScrollPhysics(),
                       child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const SizedBox(
                               height: 16,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                UtilityContainer(
-                                    name: localize.qr_scanner,
-                                    assetName: 'assets/icons/qrscaner.svg',
-                                    callback: () async {
-                                      ScaffoldMessenger.of(context)
-                                          .clearSnackBars();
-                                      final permReq =
-                                          await (Permission.camera.request());
-
-                                      final perm =
-                                          await Permission.camera.status;
-                                      print(perm);
-                                      if (perm.isDenied ||
-                                          perm.isPermanentlyDenied) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                                CustomSnackBar.errorSnackBar(
-                                                    "Нет разрешения"));
-                                      } else {
-                                        context.push(RouteNames.mainQr);
-                                      }
-                                    }),
-                                UtilityContainer(
-                                    name: localize.ar_scanner,
-                                    assetName: 'assets/icons/aritem.svg',
-                                    callback: () {
-                                      context.push(RouteNames.develop);
-                                    }),
-                                UtilityContainer(
-                                    name: localize.ar_map,
-                                    assetName: 'assets/icons/armap.svg',
-                                    callback: () {
-                                      context.push(RouteNames.develop);
-                                    }),
-                              ],
+                            Material(
+                              borderRadius: BorderRadius.circular(16),
+                              color: Colors.white,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(16),
+                                onTap: () {
+                                  context.go(RouteNames.games);
+                                },
+                                child: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  height: 120,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        constraints:
+                                            BoxConstraints(maxWidth: 180),
+                                        height: double.infinity,
+                                        width: size.width * 0.28,
+                                        child: Image.asset(
+                                          "assets/images/activity_man.jpg",
+                                          fit: BoxFit.fitHeight,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 16,
+                                      ),
+                                      Container(
+                                        width: size.width * 0.58,
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                                "assets/icons/controller.svg"),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  "Активности",
+                                                  style: AppTypography
+                                                      .font18w700
+                                                      .copyWith(
+                                                          color: Colors.black),
+                                                ),
+                                                Text(
+                                                  "AR, QR, игры и т.д.",
+                                                  style: AppTypography
+                                                      .font12w400
+                                                      .copyWith(
+                                                          color: AppColors
+                                                              .grey600),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                             BlocListener<PromoCodeCubit, PromoCodeState>(
                               listener: (context, state) {
@@ -159,10 +198,6 @@ class _MainScreenState extends State<MainScreen> {
                                           ));
                                 }
                                 if (state is PromoInvalidState) {
-                                  // scaffoldMessenger.showSnackBar(
-                                  //     CustomSnackBar.errorSnackBar(
-                                  //         'Ошибка активации'));
-
                                   showDialog(
                                       context: context,
                                       builder: (context) =>
@@ -227,6 +262,11 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                               ),
                             ),
+
+                            const SizedBox(height: 16,),
+
+                            const Divider(color: AppColors.disableButton, height: 1,),
+
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               child: SizedBox(
@@ -292,49 +332,46 @@ class _MainScreenState extends State<MainScreen> {
                             const SizedBox(
                               height: 12,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: SizedBox(
-                                width: MediaQuery.sizeOf(context).width - 32,
-                                height:
-                                    (MediaQuery.of(context).size.width - 40) /
-                                            2 *
-                                            240 /
-                                            160 +
-                                        2,
-                                child: state is MainScreenPreview
-                                    ? ListView.builder(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 2),
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            repository.marketItems.length,
-                                        itemBuilder: (ctx, ind) => MarketItem(
-                                              coinData: repository
-                                                  .marketItems[ind].coins,
-                                              textDescription: repository
-                                                  .marketItems[ind].name,
-                                              imageUrl: repository
-                                                  .marketItems[ind].imageUrl,
-                                              onTap: () {
-                                                context.push(
-                                                    "/store/${repository.marketItems[ind].id}");
-                                              },
-                                              isNew: repository
-                                                  .marketItems[ind].isNew,
-                                              pizdulkaUrl: '',
-                                            ))
-                                    : ListView.builder(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 2),
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            repository.marketItems.length,
-                                        itemBuilder: (ctx, ind) =>
-                                            const MarketItemLoading()),
-                              ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width - 32,
+                              height:
+                                  (MediaQuery.of(context).size.width - 40) /
+                                          2 *
+                                          240 /
+                                          160 +
+                                      2,
+                              child: state is MainScreenPreview
+                                  ? ListView.builder(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemCount:
+                                          repository.marketItems.length,
+                                      itemBuilder: (ctx, ind) => MarketItem(
+                                            coinData: repository
+                                                .marketItems[ind].coins,
+                                            textDescription: repository
+                                                .marketItems[ind].name,
+                                            imageUrl: repository
+                                                .marketItems[ind].imageUrl,
+                                            onTap: () {
+                                              context.push(
+                                                  "/store/${repository.marketItems[ind].id}");
+                                            },
+                                            isNew: repository
+                                                .marketItems[ind].isNew,
+                                            pizdulkaUrl: '',
+                                          ))
+                                  : ListView.builder(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 2),
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemCount:
+                                          repository.marketItems.length,
+                                      itemBuilder: (ctx, ind) =>
+                                          const MarketItemLoading()),
                             ),
                             const SizedBox(
                               height: 30,

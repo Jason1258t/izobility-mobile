@@ -215,8 +215,6 @@ class _WalletScreenState extends State<WalletScreen>
                         BorderSide(color: AppColors.textPrimary, width: 2),
                     insets: EdgeInsets.symmetric(horizontal: -40)),
                 onTap: (int val) {
-                  walletRepository.getCoinOperations("0xe9e7cea3dedca5984780bafc599bd69add087d56");
-
                   setState(() {
                     tokenOrNft = val;
                   });
@@ -266,6 +264,7 @@ class _WalletScreenState extends State<WalletScreen>
                                               'token_data': item,
                                               'in_game_or_on_chain': true
                                             });
+                                        walletRepository.getCoinOperations(item.address ?? "");
                                       },
                                       imageUrl: item.imageUrl,
                                       prise: walletRepository.obscured

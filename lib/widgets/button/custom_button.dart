@@ -17,7 +17,13 @@ class CustomButton extends StatefulWidget {
 
   final bool withBorder;
 
-  const CustomButton(
+  Gradient? gradient;
+
+  final double fontSize;
+
+  final Color textColor;
+
+  CustomButton(
       {super.key,
       required this.text,
       required this.onTap,
@@ -26,6 +32,9 @@ class CustomButton extends StatefulWidget {
       this.withBorder = true,
       this.height = 55,
       this.radius = 12,
+      this.gradient,
+      this.fontSize = 16,
+      this.textColor = Colors.white,
       this.color = AppColors.primary});
 
   @override
@@ -38,20 +47,25 @@ class _CustomButtonState extends State<CustomButton> {
     return Container(
         width: widget.width,
         height: widget.height,
-        decoration: ShapeDecoration(
-            shape: RoundedRectangleBorder(
-          side: BorderSide(
+        decoration: BoxDecoration(
+          gradient: widget.gradient,
+          borderRadius: BorderRadius.circular(widget.radius),
+          border: Border.all(
               width: widget.withBorder ? 0.50 : 0,
               color: widget.isActive ? AppColors.primary : AppColors.disable),
-          borderRadius: BorderRadius.circular(widget.radius),
-        )),
+        ),
         child: TextButton(
             onPressed: widget.isActive ? widget.onTap : () {},
             style: TextButton.styleFrom(
-                backgroundColor:
-                    widget.isActive ? widget.color : AppColors.disableButton,
+                backgroundColor: widget.gradient == null
+                    ? widget.isActive
+                        ? widget.color
+                        : AppColors.disableButton
+                    : Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(widget.radius))),
-            child: Text(widget.text, style: AppTypography.font16w600)));
+            child: Text(widget.text,
+                style: AppTypography.font16w600
+                    .copyWith(color: widget.textColor, fontSize: widget.fontSize))));
   }
 }

@@ -382,6 +382,8 @@ class WalletRepository {
         walletModel!.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain),
         coinAddress);
 
+    
+
     print("OPERATION LIST---------------- \n  ${operationList}");
   }
 }
