@@ -24,4 +24,9 @@ abstract class AppGradients {
       Colors.black.withOpacity(0)
     ],
   );
+
+  static const gradientBlackGrey = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Colors.black, AppColors.switcherBackground]);
 }
