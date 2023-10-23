@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -12,7 +13,6 @@ import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
-final list = List.generate(100, (index) => 1);
 
 class CurrencyWalletScreen extends StatefulWidget {
   const CurrencyWalletScreen(
@@ -163,25 +163,20 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                   ),
                 ),
               ),
-              const SliverPadding(
+              SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  sliver: SliverToBoxAdapter(
-                    child: Text(
-                      'нету перевода у этой монете',
-                      textAlign: TextAlign.center,
-                    ),
+                  sliver:
+                  SliverList(
+                    delegate: SliverChildListDelegate(['1', '2', '3']
+                        .map((item) => WalletTransactionContainer(
+                              title: 'Перевод',
+                              onTap: () {},
+                              prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
+                              address: 'asdfasdfasdf',
+                              isAddition: true,
+                            ))
+                        .toList()),
                   )
-                  // SliverList(
-                  //   delegate: SliverChildListDelegate(list
-                  //       .map((item) => WalletTransactionContainer(
-                  //             title: 'Перевод',
-                  //             onTap: () {},
-                  //             prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
-                  //             address: 'asdfasdfasdf',
-                  //             isAddition: true,
-                  //           ))
-                  //       .toList()),
-                  // )
                   ),
             ],
           ),

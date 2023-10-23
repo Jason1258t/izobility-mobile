@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
 
 abstract class AppGradients {
   static const gradientGreenWhite = LinearGradient(
@@ -7,12 +8,13 @@ abstract class AppGradients {
     colors: [Color(0xFF1CFE15), Color(0xFF4EFDC6)],
   );
 
-  static final gradientGreenDark = LinearGradient(
+  static const gradientGreenDark = LinearGradient(
       begin: const Alignment(-0.12, 0.99),
-      end: const Alignment(0.12, -0.99),colors: [
-    Color(0xff3FCA3B),
-    Color(0xff2FC294),
-  ]);
+      end: const Alignment(0.12, -0.99),
+      colors: [
+        Color(0xff3FCA3B),
+        Color(0xff2FC294),
+      ]);
 
   static final gradientWhiteGray = LinearGradient(
     begin: const Alignment(-0.12, 0.99),
@@ -22,4 +24,10 @@ abstract class AppGradients {
       Colors.black.withOpacity(0)
     ],
   );
+
+  static const gradientBlackGrey =
+      LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Colors.black, AppColors.switcherBackground]);
 }
