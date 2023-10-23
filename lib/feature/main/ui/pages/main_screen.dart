@@ -207,8 +207,11 @@ class _MainScreenState extends State<MainScreen> {
                               child: Padding(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 16),
-                                  child: CustomTextField.withOneIcon(
+                                  child: CustomTextField.withTwoIcon(
                                     suffixIconCallback: () {
+                                      context.push(RouteNames.mainQr);
+                                    },
+                                    secondSuffixIconCallback: () {
                                       Clipboard.getData('text/plain')
                                           .then((value) {
                                         setState(() {
@@ -221,8 +224,6 @@ class _MainScreenState extends State<MainScreen> {
                                         FocusScope.of(context).unfocus();
                                       });
                                     },
-                                    suffixIconChild: SvgPicture.asset(
-                                        "assets/icons/clipboard.svg"),
                                     obscured: false,
                                     controller: codeController,
                                     width: double.infinity,
@@ -262,11 +263,13 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                               ),
                             ),
-
-                            const SizedBox(height: 16,),
-
-                            const Divider(color: AppColors.disableButton, height: 1,),
-
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            const Divider(
+                              color: AppColors.disableButton,
+                              height: 1,
+                            ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               child: SizedBox(
@@ -334,20 +337,18 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                             SizedBox(
                               width: MediaQuery.sizeOf(context).width - 32,
-                              height:
-                                  (MediaQuery.of(context).size.width - 40) /
-                                          2 *
-                                          240 /
-                                          160 +
-                                      2,
+                              height: (MediaQuery.of(context).size.width - 40) /
+                                      2 *
+                                      240 /
+                                      160 +
+                                  2,
                               child: state is MainScreenPreview
                                   ? ListView.builder(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 2),
                                       scrollDirection: Axis.horizontal,
                                       shrinkWrap: true,
-                                      itemCount:
-                                          repository.marketItems.length,
+                                      itemCount: repository.marketItems.length,
                                       itemBuilder: (ctx, ind) => MarketItem(
                                             coinData: repository
                                                 .marketItems[ind].coins,
@@ -368,8 +369,7 @@ class _MainScreenState extends State<MainScreen> {
                                           vertical: 2),
                                       scrollDirection: Axis.horizontal,
                                       shrinkWrap: true,
-                                      itemCount:
-                                          repository.marketItems.length,
+                                      itemCount: repository.marketItems.length,
                                       itemBuilder: (ctx, ind) =>
                                           const MarketItemLoading()),
                             ),
