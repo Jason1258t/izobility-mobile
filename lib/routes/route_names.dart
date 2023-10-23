@@ -84,4 +84,23 @@ abstract class RouteNames {
   static const String storePromo = '/store/promo';
 
   static const String develop = '/develop';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
