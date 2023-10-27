@@ -1,12 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_card.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/game.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:flutter/services.dart';
 
 class GamesScreen extends StatefulWidget {
   const GamesScreen({super.key});
@@ -16,6 +23,34 @@ class GamesScreen extends StatefulWidget {
 }
 
 class _GamesScreenState extends State<GamesScreen> {
+  void loadUnity() async {
+    const String channel = 'unity_activity';
+    const platform = MethodChannel(channel);
+
+    final Future<Map<String, dynamic>> userBalances =
+        RepositoryProvider.of<WalletRepository>(context).getUnityBalances();
+    final Future<Map<String, dynamic>> userData =
+        RepositoryProvider.of<UserRepository>(context).getUserJson();
+
+    Future.wait([userData, userBalances]).then((value) async {
+      final json = {}
+        ..addAll(value[0])
+        ..addAll(value[1]);
+      json.forEach((key, value) {
+        print('    $key: $value');
+      });
+      try {
+        BlocProvider.of<AppCubit>(context).runUnity();
+        print('trying to start');
+        final data = await platform.invokeMethod('startUnity', {'user': jsonEncode(json)});
+        print(data.toString());
+      } catch (e) {
+        print(e);
+      }
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
@@ -40,7 +75,6 @@ class _GamesScreenState extends State<GamesScreen> {
                   style: AppTypography.font16w700.copyWith(color: Colors.black),
                 ),
               ),
-         
               SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverToBoxAdapter(
@@ -60,18 +94,16 @@ class _GamesScreenState extends State<GamesScreen> {
                                   "assets/images/activity_man.jpg",
                                   fit: BoxFit.cover,
                                 )),
-
-                                Positioned.fill(child: Container(
+                                Positioned.fill(
+                                    child: Container(
                                   decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
                                         Colors.black.withOpacity(0.4),
                                         Colors.transparent
-                                      ]
-                                    )
-                                  ),
+                                      ])),
                                 )),
                                 Positioned(
                                   top: 0,
@@ -169,14 +201,15 @@ class _GamesScreenState extends State<GamesScreen> {
                                     ),
                                   ],
                                 ),
-
-                                const SizedBox(height: 24,),
+                                const SizedBox(
+                                  height: 24,
+                                ),
                                 CustomButton(
                                     gradient: AppGradients.gradientGreenWhite,
                                     textColor: Colors.black,
                                     fontSize: 18,
                                     text: "Использовать",
-                                    onTap: () {},
+                                    onTap: loadUnity,
                                     width: double.infinity)
                               ],
                             ),

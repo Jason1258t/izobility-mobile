@@ -23,21 +23,27 @@ class PinKeyboard extends StatefulWidget {
 
 class _PinKeyboardState extends State<PinKeyboard> {
   List<int> pin = [];
+  bool locked = false;
 
   Future<void> _addNumber(int number) async {
+    if (locked) return;
+
     if (pin.length < 4) pin.add(number);
 
     if (pin.length > 3) {
+      locked = true;
       setState(() {});
       await Future.delayed(widget.commitDuration);
       widget.commitCallback(pin);
-
-      pin.clear();
+      setState(() {
+        locked = false;
+        pin.clear();
+      });
     }
   }
 
   void _deleteNumber() {
-    if (pin.isNotEmpty) pin.removeAt(pin.length - 1);
+    if (pin.isNotEmpty && !locked) pin.removeAt(pin.length - 1);
   }
 
   Widget _buildPinIndicators() {
