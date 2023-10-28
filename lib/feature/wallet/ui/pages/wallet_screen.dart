@@ -269,6 +269,7 @@ class _WalletScreenState extends State<WalletScreen>
                                               'token_data': item,
                                               'in_game_or_on_chain': true
                                             });
+                                        walletRepository.getCoinOperations(item.address ?? "");
                                       },
                                       imageUrl: item.imageUrl,
                                       prise: walletRepository.obscured
