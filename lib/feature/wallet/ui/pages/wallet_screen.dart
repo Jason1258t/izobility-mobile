@@ -52,8 +52,8 @@ class _WalletScreenState extends State<WalletScreen>
     super.initState();
     final UserRepository userRepository = context.read<UserRepository>();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      if (userRepository.user.phone == null ||
-          userRepository.user.phone == "") {
+      if (userRepository.user.details?.phone == null ||
+          userRepository.user.details?.phone == "") {
         await showDialog(
             barrierDismissible: false,
             context: context,

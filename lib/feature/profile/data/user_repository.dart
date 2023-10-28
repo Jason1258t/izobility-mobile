@@ -53,6 +53,7 @@ class UserRepository {
     print("~`~~~~~~~~~~~changed user ~~~~~~~~~~");
     print(cachedUser);
     print("~`~~~~~~~~~~~changed user ~~~~~~~~~~");
+    
     if (cachedUser == null) {
       userDetailsDataStream.add(LoadingStateEnum.fail);
       return null;
