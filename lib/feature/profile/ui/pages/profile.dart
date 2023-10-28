@@ -79,9 +79,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           BlocBuilder<ProfileCubit, ProfileState>(
                             builder: (context, state) {
-                              if (context.read<UserRepository>().user.phone !=
+                              if (context.read<UserRepository>().user.details?.phone !=
                                       null &&
-                                  context.read<UserRepository>().user.phone !=
+                                  context.read<UserRepository>().user.details?.phone !=
                                       "") {
                                 return Container();
                               } else {

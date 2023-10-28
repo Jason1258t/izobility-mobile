@@ -29,7 +29,7 @@ class ProfilePhoneChangeCubit extends Cubit<ProfilePhoneChangeState> {
 
     try {
       await userRepository.validatePhoneCode(code);
-      userRepository.loadUserDetailsInfo();
+      await userRepository.loadUserDetailsInfo();
       emit(ProfilePhoneChangeCodeSuccess());
     } catch (ex) {
       emit(ProfilePhoneChangeCodeFailure(errorText: "Неверный код"));
