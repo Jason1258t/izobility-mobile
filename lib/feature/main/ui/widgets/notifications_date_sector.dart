@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/date_container.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_coin_card.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notification_text_card.dart';
+import 'package:izobility_mobile/models/notification_by_date.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class NotificationsDateSector extends StatelessWidget {
-  final List<dynamic> cards;
-  final DateTime date;
+  final NotificationsByDate notificationsByDate;
 
-  const NotificationsDateSector(
-      {super.key, required this.cards, required this.date});
+  const NotificationsDateSector({super.key, required this.notificationsByDate});
 
   @override
   Widget build(BuildContext context) {
@@ -20,32 +19,26 @@ class NotificationsDateSector extends StatelessWidget {
       children: [
         SliverPinnedHeader(
             child: DateText(
-          date: "${date.day} ${AppStrings.months[date.month.toString()]}",
+          date:
+              "${notificationsByDate.dateCreate.day} ${AppStrings.months[notificationsByDate.dateCreate.month.toString()]}",
         )),
         SliverList.separated(
-            itemCount: cards.length,
+            itemCount: notificationsByDate.notifications.length,
             separatorBuilder: (context, index) => const SizedBox(
                   height: 5,
                 ),
             itemBuilder: (context, index) {
               NotificationPositionEnum cardPose = NotificationPositionEnum.mid;
-              final item = cards[index];
-              if (index == 0 && cards.length != 1) {
+
+              if (index == 0 && notificationsByDate.notifications.length != 1) {
                 cardPose = NotificationPositionEnum.start;
-              } else if (index == cards.length - 1) {
+              } else if (index == notificationsByDate.notifications.length - 1) {
                 cardPose = NotificationPositionEnum.end;
               }
-              // if (item is NotificationModel) {
-              //   return NotificationTextCard(
-              //     pose: cardPose,
-              //     data: cards[index],
-              //   );
-              // } else {
-              //   return NotificationCoinCard(
-              //     pose: cardPose,
-              //     data: cards[index],
-              //   );
-              // }
+              return NotificationTextCard(
+                pose: cardPose,
+                data: notificationsByDate.notifications[index],
+              );
             }),
       ],
     );

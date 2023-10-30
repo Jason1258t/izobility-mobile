@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
-
 
 class NotificationCardContainer extends StatelessWidget {
   final NotificationPositionEnum pose;
@@ -15,7 +15,7 @@ class NotificationCardContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         pose == NotificationPositionEnum.end
-            ?  Image.asset("assets/images/emerald_coin.png")
+            ? Image.asset('assets/images/logo_coint_emrld.png', width: 28, height: 28,)
             : const SizedBox(
                 width: 28,
               ),
