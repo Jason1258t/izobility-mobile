@@ -207,7 +207,11 @@ class _MainScreenState extends State<MainScreen> {
                                       const EdgeInsets.symmetric(vertical: 16),
                                   child: CustomTextField.withTwoIcon(
                                     suffixIconCallback: () {
-                                      context.push(RouteNames.mainQr);
+                                      context.push(RouteNames.mainQr, extra: {
+                                        "onFound": (data) => context
+                                            .read<PromoCodeCubit>()
+                                            .activateCode(data.code.toString())
+                                      });
                                     },
                                     secondSuffixIconCallback: () {
                                       Clipboard.getData('text/plain')

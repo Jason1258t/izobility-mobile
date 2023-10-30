@@ -144,7 +144,9 @@ class CustomGoRoutes {
           builder: (context, state) => const PasswordRecoveryEmailScreen()),
       GoRoute(
           path: RouteNames.mainQr,
-          builder: (context, state) => const MainQrScreen()),
+          builder: (context, state) =>  MainQrScreen(
+            onFound: (state.extra as Map<String, dynamic>)['onFound'] as Function,
+          )),
       GoRoute(
           path: RouteNames.authPasswordRecoveryVerifyCode,
           builder: (context, state) => const VerifyRecoveryCodeScreen()),

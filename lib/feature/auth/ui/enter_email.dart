@@ -81,7 +81,13 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                       labelText: "Реферальный код",
                       controller: referalCodeController,
                       width: double.infinity,
-                      suffixIconCallback: () {},
+                      suffixIconCallback: () {
+                        context.push(RouteNames.mainQr, extra: {
+                          'onFound': (f) {
+                            referalCodeController.text = f.code.toString();
+                          }
+                        });
+                      },
                       suffixIconChild: SvgPicture.asset(
                         'assets/icons/scaner.svg',
                         color: AppColors.primary,
@@ -100,7 +106,8 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                               ));
 
                           BlocProvider.of<AuthCubit>(context)
-                              .checkEmail(emailController.text.trim(), referalCodeController.text)
+                              .checkEmail(emailController.text.trim(),
+                                  referalCodeController.text)
                               .then((accountState) {
                             context.push(RouteNames.authEnterPassword);
 
