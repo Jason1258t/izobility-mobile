@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +12,11 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/popup/popup_qr.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
+import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProfileReferalScreen extends StatefulWidget {
   const ProfileReferalScreen({super.key});
@@ -80,7 +85,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                   builder: (context, state) {
                                     if (state is ProfileReferalsLoading) {
                                       return Container(
-                                        height: 10,
+                                        height: 18,
                                         width: 30,
                                         decoration: BoxDecoration(
                                             borderRadius:
@@ -182,57 +187,102 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                     borderRadius: BorderRadius.circular(16),
                     gradient: AppGradients.shrek,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                  child: Stack(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        width: (size.width - 85) * 0.55,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      Positioned.fill(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              "Получайте деньги за реферал",
-                              style: AppTypography.font20w700.copyWith(
-                                  color: Colors.white, letterSpacing: 0),
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              width: (size.width - 85) * 0.55,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    "Получайте деньги за реферал",
+                                    style: AppTypography.font20w700.copyWith(
+                                        color: Colors.white, letterSpacing: 0),
+                                  ),
+                                  CustomButton(
+                                      gradient: AppGradients.accentGreen,
+                                      textColor: Colors.black,
+                                      fontSize: 14,
+                                      height: 28,
+                                      text: "Скопировать код",
+                                      onTap: () {
+                                        Clipboard.setData(ClipboardData(
+                                            text: context
+                                                .read<UserRepository>()
+                                                .user
+                                                .details!
+                                                .referalcode!));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                                CustomSnackBar.snackBarCopied);
+                                      },
+                                      width: double.infinity),
+                                ],
+                              ),
                             ),
-                            CustomButton(
-                                gradient: AppGradients.accentGreen,
-                                textColor: Colors.black,
-                                fontSize: 14,
-                                height: 28,
-                                text: "Скопировать код",
-                                onTap: () {},
-                                width: double.infinity),
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              width: (size.width - 85) * 0.4654545454,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/sky_money.png",
+                                    fit: BoxFit.fitHeight,
+                                    height: 96,
+                                  ),
+                                  CustomButton(
+                                      withBorder: false,
+                                      color: Colors.black,
+                                      textColor: Colors.white,
+                                      height: 28,
+                                      text: "Поделиться",
+                                      onTap: () async {
+                                        await Share.share(context
+                                            .read<UserRepository>()
+                                            .user
+                                            .details!
+                                            .referalcode!);
+                                      },
+                                      width: double.infinity),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        width: (size.width - 85) * 0.4654545454,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/images/sky_money.png",
-                              fit: BoxFit.fitHeight,
-                              height: 96,
+                      Positioned(
+                          top: 16,
+                          right: 16,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(6),
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => const PopupQr());
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                child: SvgPicture.asset(
+                                  "assets/icons/qr.svg",
+                                  width: 24,
+                                ),
+                              ),
                             ),
-                            CustomButton(
-                                withBorder: false,
-                                color: Colors.black,
-                                textColor: Colors.white,
-                                height: 28,
-                                text: "Поделиться",
-                                onTap: () {},
-                                width: double.infinity),
-                          ],
-                        ),
-                      )
+                          ))
                     ],
                   ),
                 ),
