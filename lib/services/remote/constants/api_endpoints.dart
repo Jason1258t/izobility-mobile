@@ -24,6 +24,7 @@ class ApiEndpoints {
 
   static const String userValidatePhone = '/user/update-phone';
   static const String userValiddatePhoneCode = '/user/update-phone-confirm';
+  static const String userReferals = '/user/referals';
 
   static const String mediaFiles = '/media';
 

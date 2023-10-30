@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:izobility_mobile/models/referal.dart';
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/models/user_details.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
@@ -8,11 +7,14 @@ import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/rxdart.dart';
 
 class UserRepository {
+  UserRepository({required this.apiService, required this.preferences}) {}
+
   final ApiService apiService;
   final PreferencesService preferences;
+
   UserModel user = UserModel();
 
-  UserRepository({required this.apiService, required this.preferences}) {}
+  List<ReferalModel> referalList = [];
 
   BehaviorSubject<LoadingStateEnum> userDetailsDataStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
@@ -30,7 +32,7 @@ class UserRepository {
     print("~`~~~~~~~~~~~changed user ~~~~~~~~~~");
     print(cachedUser);
     print("~`~~~~~~~~~~~changed user ~~~~~~~~~~");
-    
+
     if (cachedUser == null) {
       userDetailsDataStream.add(LoadingStateEnum.fail);
       return null;
@@ -87,5 +89,28 @@ class UserRepository {
     await apiService.user.updatePhoto(photoInBase64);
 
     await loadUserDetailsInfo();
+  }
+
+  Future<dynamic> loadReferalsList() async {
+    dynamic parseReferals(ReferalModel referal) {
+      referalList.add(referal);
+
+      for (var item in referal.referalList) {
+        parseReferals(item);
+      }
+    }
+
+    referalList.clear();
+
+    final response = (await apiService.user.getReferalList())['objects'];
+    final List<ReferalModel> parsedReferals = [];
+
+    for (var json in response) {
+      parsedReferals.add(ReferalModel.fromJson(json, 1));
+    }
+
+    for (var item in parsedReferals) {
+      parseReferals(item);
+    }
   }
 }

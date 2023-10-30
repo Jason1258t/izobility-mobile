@@ -77,6 +77,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                       height: 16,
                     ),
                     CustomTextField.withOneIcon(
+                      obscured: false,
                       labelText: "Реферальный код",
                       controller: referalCodeController,
                       width: double.infinity,

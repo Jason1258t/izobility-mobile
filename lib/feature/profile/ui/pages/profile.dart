@@ -142,7 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 label: localize.abstract_programm,
                                 description: "Алмазный статус",
                                 onTap: () {
-                                  context.push(RouteNames.develop);
+                                  context.push(RouteNames.profileReferal);
                                 },
                               ),
                               ProfileActionContainer(

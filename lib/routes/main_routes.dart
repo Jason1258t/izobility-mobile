@@ -41,5 +41,6 @@ final mainRoutesNames = [
   RouteNames.walletBurseCreateOrder,
   RouteNames.walletBurseCreateOrderSuccess,
   RouteNames.mainQr,
-  RouteNames.walletBurseMyOrder
+  RouteNames.walletBurseMyOrder,
+  RouteNames.profileReferal
 ];

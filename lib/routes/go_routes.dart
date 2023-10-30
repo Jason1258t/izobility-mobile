@@ -27,6 +27,7 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_language.dart'
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_confirm.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_edit.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_privacy_policy.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile_referal.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
@@ -166,6 +167,9 @@ class CustomGoRoutes {
           path: RouteNames.profilePhone,
           builder: (context, state) => const ProfilePhoneEdit()),
       GoRoute(
+          path: RouteNames.profileReferal,
+          builder: (context, state) => const ProfileReferalScreen()),
+      GoRoute(
           path: RouteNames.profileLanguage,
           builder: (context, state) => const ProfileLanguageScreen()),
       GoRoute(
@@ -264,9 +268,9 @@ class CustomGoRoutes {
           builder: (context, state) => const BuyCurrencyScreen()),
       GoRoute(
           path: RouteNames.walletBurseMyOrder,
-          builder: (context, state) =>  BurseMyOrdersScreen(
-            order: state.extra as BurseOrderModel,
-          )),
+          builder: (context, state) => BurseMyOrdersScreen(
+                order: state.extra as BurseOrderModel,
+              )),
       GoRoute(
           path: RouteNames.cards,
           builder: (context, state) => const CardsScreen()),

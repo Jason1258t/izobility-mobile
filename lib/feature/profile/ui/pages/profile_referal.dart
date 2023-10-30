@@ -1,0 +1,347 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/bloc/profile_referals/profile_referals_cubit.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/models/referal.dart';
+import 'package:izobility_mobile/utils/ui/colors.dart';
+import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
+import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
+
+class ProfileReferalScreen extends StatefulWidget {
+  const ProfileReferalScreen({super.key});
+
+  @override
+  State<ProfileReferalScreen> createState() => ProfileReferalScreenState();
+}
+
+class ProfileReferalScreenState extends State<ProfileReferalScreen> {
+  @override
+  void initState() {
+    context.read<ProfileReferalsCubit>().loadReferalList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+
+    return HomeScaffold(
+      appBar: CustomAppBar(
+        context: context,
+        text: "Рефералы",
+        isBack: true,
+        onTap: () {
+          context.pop();
+        },
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(8).copyWith(bottom: 0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                height: 75,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                decoration: BoxDecoration(
+                    color: AppColors.purpleBcg,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: (size.width - 65) * 0.49,
+                      alignment: Alignment.centerLeft,
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              BlocBuilder<ProfileReferalsCubit,
+                                  ProfileReferalsState>(
+                                builder: (context, state) {
+                                  if (state is ProfileReferalsLoading) {
+                                    return Container(
+                                      height: 10,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          gradient: AppGradients.accentGreen),
+                                    );
+                                  } else if (state is ProfileReferalsSuccess) {
+                                    return Text(
+                                      (List.generate(
+                                              context
+                                                  .read<UserRepository>()
+                                                  .referalList
+                                                  .length,
+                                              (index) => (context
+                                                  .read<UserRepository>()
+                                                  .referalList[index]
+                                                  .sum)))
+                                          .reduce((a, b) => a + b)
+                                          .toString(),
+                                      style: AppTypography.font18w700
+                                          .copyWith(color: Colors.black),
+                                    );
+                                  }
+
+                                  return Container(
+                                    height: 10,
+                                  );
+                                },
+                              ),
+                              Text(
+                                "Доход",
+                                style: AppTypography.font12w400
+                                    .copyWith(color: AppColors.grey500),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 1,
+                      color: AppColors.grey500,
+                      height: double.infinity,
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      width: (size.width - 65) * 0.5,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          BlocBuilder<ProfileReferalsCubit,
+                              ProfileReferalsState>(
+                            builder: (context, state) {
+                              if (state is ProfileReferalsLoading) {
+                                return Container(
+                                  height: 18,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      gradient: AppGradients.accentGreen),
+                                );
+                              } else if (state is ProfileReferalsSuccess) {
+                                return Text(
+                                  context
+                                      .read<UserRepository>()
+                                      .referalList
+                                      .length
+                                      .toString(),
+                                  style: AppTypography.font18w700
+                                      .copyWith(color: Colors.black),
+                                );
+                              }
+
+                              return Container(
+                                height: 18,
+                              );
+                            },
+                          ),
+                          Text(
+                            "Присоединилось",
+                            style: AppTypography.font12w400
+                                .copyWith(color: AppColors.grey500),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Container(
+                height: 140,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: AppGradients.shrek,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      width: (size.width - 85) * 0.55,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            "Получайте деньги за реферал",
+                            style: AppTypography.font20w700.copyWith(
+                                color: Colors.white, letterSpacing: 0),
+                          ),
+                          CustomButton(
+                              gradient: AppGradients.accentGreen,
+                              textColor: Colors.black,
+                              fontSize: 14,
+                              height: 28,
+                              text: "Сканировать код",
+                              onTap: () {},
+                              width: double.infinity),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      width: (size.width - 85) * 0.4654545454,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/sky_money.png",
+                            fit: BoxFit.fitHeight,
+                            height: 96,
+                          ),
+                          CustomButton(
+                              withBorder: false,
+                              color: Colors.black,
+                              textColor: Colors.white,
+                              height: 28,
+                              text: "Поделиться",
+                              onTap: () {},
+                              width: double.infinity),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Text(
+                "Мои рефералы",
+                textAlign: TextAlign.start,
+                style: AppTypography.font20w700
+                    .copyWith(color: const Color(0xff051532)),
+              ),
+              BlocBuilder<ProfileReferalsCubit, ProfileReferalsState>(
+                builder: (context, state) {
+                  if (state is ProfileReferalsLoading) {
+                    return Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );
+                  } else if (state is ProfileReferalsSuccess ||
+                      state is ProfileReferalsInitial) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: Column(
+                        children: buildReferalListWidget(),
+                      ),
+                    );
+                  }
+
+                  return Container();
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> buildReferalListWidget() {
+    final userRepository = context.read<UserRepository>();
+
+    return userRepository.referalList
+        .map((e) => ReferalCard(
+              referal: e,
+            ))
+        .toList();
+  }
+}
+
+class ReferalCard extends StatelessWidget {
+  final ReferalModel referal;
+
+  const ReferalCard({super.key, required this.referal});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Container(
+                clipBehavior: Clip.hardEdge,
+                width: 32,
+                height: 32,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: AppGradients.gradientGreenWhite),
+                child: SvgPicture.asset(
+                  "assets/icons/profile.svg",
+                  width: 26,
+                ),
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    referal.name == null ? referal.email : referal.name!,
+                    style:
+                        AppTypography.font16w400.copyWith(color: Colors.black),
+                  ),
+                  Text(
+                    "Уровень: ${referal.referalLevel}",
+                    style: AppTypography.font12w400
+                        .copyWith(color: AppColors.grey500),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                "+${referal.sum}",
+                style: AppTypography.font16w700.copyWith(
+                    color: referal.sum == 0
+                        ? AppColors.grey500
+                        : AppColors.green600),
+              ),
+              Image.asset(
+                "assets/images/logo_coint_emrld.png",
+                width: 24,
+                fit: BoxFit.fitWidth,
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}

@@ -61,6 +61,7 @@ abstract class RouteNames {
   static const String profilePhone = '/profile/phone';
   static const String profilePhoneConfirm = '/profile/phone/confirm';
   static const String profilePrivacyPolicy = "/profile/privacy_policy";
+  static const String profileReferal = "/pofile/referal";
 
   static const String notifications = '/notifications';
 
@@ -84,23 +85,4 @@ abstract class RouteNames {
   static const String storePromo = '/store/promo';
 
   static const String develop = '/develop';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
