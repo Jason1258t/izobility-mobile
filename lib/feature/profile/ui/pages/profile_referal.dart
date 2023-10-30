@@ -196,7 +196,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                               textColor: Colors.black,
                               fontSize: 14,
                               height: 28,
-                              text: "Сканировать код",
+                              text: "Скопировать код",
                               onTap: () {},
                               width: double.infinity),
                         ],
