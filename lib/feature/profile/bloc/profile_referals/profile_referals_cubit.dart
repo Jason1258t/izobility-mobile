@@ -9,7 +9,7 @@ class ProfileReferalsCubit extends Cubit<ProfileReferalsState> {
 
   ProfileReferalsCubit(this.userRepository) : super(ProfileReferalsInitial());
 
-  void loadReferalList() async {
+  Future<void> loadReferalList() async {
     emit(ProfileReferalsLoading());
 
     try {
