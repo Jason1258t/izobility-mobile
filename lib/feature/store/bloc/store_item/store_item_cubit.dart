@@ -14,7 +14,7 @@ class StoreItemCubit extends Cubit<StoreItemState> {
     emit(StoreItemLoadingState());
 
     final MarketItemModel? marketItem =
-        await storeRepository.getMarketItemInfo(id);
+        await storeRepository.getMarketItemInfoById(id);
 
     if (marketItem == null) {
       emit(StoreItemFailureState());

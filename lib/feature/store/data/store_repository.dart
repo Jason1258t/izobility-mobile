@@ -48,9 +48,9 @@ class StoreRepository {
     }
   }
 
-  Future<MarketItemModel?> getMarketItemInfo(int id) async {
+  Future<MarketItemModel?> getMarketItemInfoById(int id) async {
     try {
-      final response = await apiService.shop.getMarketItemInfoByd(id);
+      final response = await apiService.shop.getMarketItemInfoById(id);
       print(response);
       final MarketItemModel marketItem = MarketItemModel.fromJson(response);
 

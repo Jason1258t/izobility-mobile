@@ -23,7 +23,7 @@ class Shop with ApiHandler {
     return res['objects'];
   }
 
-  Future<dynamic> getMarketItemInfoByd(int id) async {
+  Future<dynamic> getMarketItemInfoById(int id) async {
     final response = await post("${ApiEndpoints.productItemInfo}$id");
     return response;
   }
