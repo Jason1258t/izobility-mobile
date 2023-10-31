@@ -8,6 +8,7 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 
 class StoreUserProductsScreen extends StatefulWidget {
   const StoreUserProductsScreen({super.key});
@@ -106,14 +107,16 @@ class UserProductItemWidget extends StatelessWidget {
                   style: AppTypography.font14w400.copyWith(color: Colors.black),
                 ),
                 InkWell(
+                  onTap: () {
+                    AppBottomSheets.showProductInfo(context, userProduct);
+                  },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         gradient: AppGradients.accentGreen),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(

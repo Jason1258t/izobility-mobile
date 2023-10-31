@@ -27,13 +27,14 @@ class ProfileActionTile extends StatelessWidget {
             SvgPicture.asset(
               iconPath,
               color: AppColors.textPrimary,
+              width: 24,
             ),
             const SizedBox(
               width: 20,
             ),
             Text(
               label,
-              style: AppTypography.font16w500.copyWith(color: AppColors.textPrimary),
+              style: AppTypography.font16w400.copyWith(color: AppColors.textPrimary),
             )
           ],
         ),
