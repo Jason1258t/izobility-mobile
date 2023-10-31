@@ -9,6 +9,7 @@ import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_squar
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
+import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -38,7 +39,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
-    final storeRepository = context.read<StoreRepository>();
 
     return BlocListener<ProfileLinksCubit, ProfileLinksState>(
       listener: (context, state) {
@@ -66,8 +66,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               isBack: false,
             ),
             body: RefreshIndicator(
-              onRefresh: () {
-                return context.read<UserRepository>().loadUserDetailsInfo();
+              onRefresh: () async {
+                await context.read<UserRepository>().loadUserDetailsInfo();
+                await context.read<StoreRepository>().getUserProductList();
               },
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -215,40 +216,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           Container(
                             height: 190,
-                            child: ListView.separated(
-                              itemCount: storeRepository.userProductList.length,
-                              scrollDirection: Axis.horizontal,
-                              separatorBuilder: (context, index) => SizedBox(
-                                width: 8,
-                              ),
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16)),
-                                  constraints:
-                                      const BoxConstraints(maxWidth: 250),
-                                  width:
-                                      MediaQuery.sizeOf(context).width * 0.38,
-                                  height: 190,
-                                  child: Material(
-                                    child: Ink.image(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        storeRepository.userProductList[index]
-                                            .product.images[0],
-                                      ),
-                                      child: InkWell(
-                                        onTap: () {
-                                          AppBottomSheets.showProductInfo(
-                                              context,
-                                              storeRepository
-                                                  .userProductList[index]);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                );
+                            child: BlocBuilder<StoreUserItemsCubit,
+                                StoreUserItemsState>(
+                              builder: (context, state) {
+                                if (state is StoreUserItemsLoading) {
+                                  return buildLoadingUserProducts();
+                                } else if (state is StoreUserItemsSuccess) {
+                                  return buildLoadedUserProducts();
+                                }
+
+                                return Container();
                               },
                             ),
                           ),
@@ -335,6 +312,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             )),
       ),
+    );
+  }
+
+  Widget buildLoadedUserProducts() {
+    final storeRepository = context.read<StoreRepository>();
+
+    return ListView.separated(
+      itemCount: storeRepository.userProductList.length,
+      scrollDirection: Axis.horizontal,
+      separatorBuilder: (context, index) => SizedBox(
+        width: 8,
+      ),
+      itemBuilder: (context, index) {
+        return Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+          constraints: const BoxConstraints(maxWidth: 250),
+          width: MediaQuery.sizeOf(context).width * 0.38,
+          height: 190,
+          child: Material(
+            child: Ink.image(
+              fit: BoxFit.cover,
+              image: NetworkImage(
+                storeRepository.userProductList[index].product.images[0],
+              ),
+              child: InkWell(
+                onTap: () {
+                  AppBottomSheets.showProductInfo(
+                      context, storeRepository.userProductList[index]);
+                },
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget buildLoadingUserProducts() {
+    return ListView.separated(
+      itemCount: 5,
+      scrollDirection: Axis.horizontal,
+      separatorBuilder: (context, index) => SizedBox(
+        width: 8,
+      ),
+      itemBuilder: (context, index) {
+        return Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+          constraints: const BoxConstraints(maxWidth: 250),
+          width: MediaQuery.sizeOf(context).width * 0.38,
+          height: 190,
+          child: Container(
+            decoration: BoxDecoration(
+                gradient: AppGradients.gradientGreenWhite,
+                borderRadius: BorderRadius.circular(16)),
+          ),
+        );
+      },
     );
   }
 }
