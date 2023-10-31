@@ -36,6 +36,7 @@ class AppCubit extends Cubit<AppState> {
           walletRepository.loadGas();
           userRepository.loadUserDetailsInfo();
           storeRepository.getMarketItems();
+          storeRepository.getUserProductList();
 
           emitPinState();
         }

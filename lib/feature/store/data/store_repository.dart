@@ -28,6 +28,9 @@ class StoreRepository {
   BehaviorSubject<LoadingStateEnum> marketItemsStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
+  BehaviorSubject<LoadingStateEnum> userProductListStream =
+      BehaviorSubject.seeded(LoadingStateEnum.wait);
+
   void setActiveCategory(CategoryEnum category) {
     activeCategory = category;
   }
@@ -78,15 +81,25 @@ class StoreRepository {
 
   Future<dynamic> buyProduct(int productId) async {
     final response = await apiService.shop.buyProduct(productId);
+
+    getUserProductList();
   }
 
   Future<dynamic> getUserProductList() async {
-    userProductList.clear();
+    userProductListStream.add(LoadingStateEnum.loading);
 
-    final response = (await apiService.shop.getUserProductList())['objects'];
+    try {
+      userProductList.clear();
 
-    for (var json in response) {
-      userProductList.add(UserProductModel.fromJson(json));
+      final response = (await apiService.shop.getUserProductList())['objects'];
+
+      for (var json in response) {
+        userProductList.add(UserProductModel.fromJson(json));
+      }
+      userProductListStream.add(LoadingStateEnum.success);
+    } catch (ex, stacktrace) {
+      print(stacktrace);
+      userProductListStream.add(LoadingStateEnum.fail);
     }
   }
 

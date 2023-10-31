@@ -20,7 +20,6 @@ class StoreUserProductsScreen extends StatefulWidget {
 class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
   @override
   void initState() {
-    context.read<StoreUserItemsCubit>().loadUserItems();
     super.initState();
   }
 
@@ -36,7 +35,7 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await context.read<StoreUserItemsCubit>().loadUserItems();
+          await context.read<StoreRepository>().getUserProductList();
         },
         child: Container(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
