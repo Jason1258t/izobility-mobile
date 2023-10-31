@@ -19,7 +19,6 @@ class StoreRepository {
   List<dynamic> giftsList = [];
   List<dynamic> promocodeList = [];
 
-
   BehaviorSubject<LoadingStateEnum> marketItemsStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
 
@@ -56,5 +55,17 @@ class StoreRepository {
       print(ex);
       return null;
     }
+  }
+
+  Future<dynamic> buyProduct(int productId) async {
+    final response = await apiService.shop.buyProduct(productId);
+  }
+
+  Future<dynamic> getUserProductList() async {
+    final response = await apiService.shop.getUserProductList();
+  }
+
+  Future<dynamic> sendRequestForRecievingByMail() async {
+    final response = await apiService.shop.sendRequestForRecievingByMail();
   }
 }

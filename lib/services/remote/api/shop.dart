@@ -24,4 +24,21 @@ class Shop with ApiHandler {
     final response = await post("${ApiEndpoints.productItemInfo}${id}");
     return response;
   }
+
+  Future<dynamic> buyProduct(int productId) async {
+    return await post(ApiEndpoints.productBuy, data: {
+      'id': productId,
+    }, queryParameters: {
+      "id": productId
+    });
+  }
+
+  Future<dynamic> getUserProductList() async {
+    return await get(ApiEndpoints.productUserList);
+  }
+
+  Future<dynamic> sendRequestForRecievingByMail() {
+    throw UnsupportedError(
+        "А НУ ДЕЛАЙ ЕПТА АЗАХААХАХА sendRequestForRecievingByMail");
+  }
 }
