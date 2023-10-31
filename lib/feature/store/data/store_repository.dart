@@ -19,6 +19,7 @@ class StoreRepository {
   List<dynamic> giftsList = [];
   List<dynamic> promocodeList = [];
 
+  int pageNumber = 1;
 
   BehaviorSubject<LoadingStateEnum> marketItemsStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
@@ -31,9 +32,11 @@ class StoreRepository {
     marketItemsStream.add(LoadingStateEnum.loading);
 
     try {
-      final res = await apiService.shop.getLimitedItems();
+      final res = await apiService.shop.getLimitedItems(10, pageNumber);
 
-      marketItems.clear();
+      if (pageNumber == 1) {
+        marketItems.clear();
+      }
 
       for (int i = 0; i < res.length; i++) {
         marketItems.add(MarketPreviewItem.fromJson(json: res[i]));
@@ -47,7 +50,7 @@ class StoreRepository {
 
   Future<MarketItemModel?> getMarketItemInfo(int id) async {
     try {
-      final response = await apiService.shop.getMarketItemInfo(id);
+      final response = await apiService.shop.getMarketItemInfoByd(id);
       print(response);
       final MarketItemModel marketItem = MarketItemModel.fromJson(response);
 
@@ -56,5 +59,11 @@ class StoreRepository {
       print(ex);
       return null;
     }
+  }
+
+  void setPageNumber(int number) {
+    pageNumber = number;
+
+    getMarketItems();
   }
 }

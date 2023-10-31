@@ -13,15 +13,18 @@ class Shop with ApiHandler {
   Future activatePromoCode(String code) =>
       post(ApiEndpoints.usePromoCode, data: {'code': code});
 
-  Future<List> getLimitedItems() async {
-    final res = await get(ApiEndpoints.productsList,
-        queryParameters: {'site_id': siteId});
+  Future<List> getLimitedItems(int pageSize, int pageNumber) async {
+    final res = await get(ApiEndpoints.productsList, queryParameters: {
+      'site_id': siteId,
+      "page_size": pageSize,
+      "page": pageNumber,
+    });
 
     return res['objects'];
   }
 
-  Future<dynamic> getMarketItemInfo(int id) async {
-    final response = await post("${ApiEndpoints.productItemInfo}${id}");
+  Future<dynamic> getMarketItemInfoByd(int id) async {
+    final response = await post("${ApiEndpoints.productItemInfo}$id");
     return response;
   }
 }

@@ -20,6 +20,27 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
+  late ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    final storeRepository = context.read<StoreRepository>();
+
+    scrollController.addListener(() async {
+      if (scrollController.position.atEdge) {
+        double maxScroll = scrollController.position.maxScrollExtent;
+        double currentScroll = scrollController.position.pixels;
+
+        if (currentScroll >= maxScroll * 0.8) {
+          storeRepository.setPageNumber(storeRepository.pageNumber + 1);
+          storeRepository.getMarketItems();
+        }
+      }
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
@@ -46,132 +67,117 @@ class _StoreScreenState extends State<StoreScreen> {
       ),
       body: RefreshIndicator.adaptive(
         onRefresh: () {
+          storyRepository.setPageNumber(1);
+
           return storyRepository.getMarketItems();
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 200,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
+          child: BlocBuilder<StoreCubit, StoreState>(
+            builder: (context, state) {
+              var shopItems = storyRepository.marketItems;
+              bool isLoading = state is StoreLoading;
+
+              return CustomScrollView(
+                  controller: scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                ContainerWithText(
+                                  title: localize.promo_codes,
+                                  path: 'category',
+                                  width: (sizeOf.width - 47) / 2,
+                                  onTap: () {
+                                    setState(() {
+                                      storyRepository.setActiveCategory(
+                                          CategoryEnum.promos);
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                ContainerWithText(
+                                  title: localize.gifts,
+                                  path: 'gift',
+                                  width: (sizeOf.width - 47) / 2,
+                                  onTap: () {
+                                    setState(() {
+                                      storyRepository.setActiveCategory(
+                                          CategoryEnum.gifts);
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             ContainerWithText(
-                              title: localize.promo_codes,
-                              path: 'category',
-                              width: (sizeOf.width - 47) / 2,
+                              title: localize.product_and_nft,
+                              path: 'card',
+                              width: sizeOf.width - 36,
                               onTap: () {
                                 setState(() {
                                   storyRepository
-                                      .setActiveCategory(CategoryEnum.promos);
+                                      .setActiveCategory(CategoryEnum.products);
                                 });
                               },
                             ),
                             const SizedBox(
-                              width: 8,
+                              height: 20,
                             ),
-                            ContainerWithText(
-                              title: localize.gifts,
-                              path: 'gift',
-                              width: (sizeOf.width - 47) / 2,
-                              onTap: () {
-                                setState(() {
-                                  storyRepository
-                                      .setActiveCategory(CategoryEnum.gifts);
-                                });
-                              },
+                            Text(
+                              getStringCategoryByEnum(
+                                  storyRepository.activeCategory),
+                              style: AppTypography.font24w700
+                                  .copyWith(color: Colors.black),
+                            ),
+                            const SizedBox(
+                              height: 10,
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ContainerWithText(
-                          title: localize.product_and_nft,
-                          path: 'card',
-                          width: sizeOf.width - 36,
-                          onTap: () {
-                            setState(() {
-                              storyRepository
-                                  .setActiveCategory(CategoryEnum.products);
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          getStringCategoryByEnum(
-                              storyRepository.activeCategory),
-                          style: AppTypography.font24w700
-                              .copyWith(color: Colors.black),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                BlocBuilder<StoreCubit, StoreState>(
-                  builder: (context, state) {
-                    if (state is StoreSuccess) {
-                      var shopItems = [];
-
-                      switch (storyRepository.activeCategory) {
-                        case CategoryEnum.products:
-                          shopItems = storyRepository.marketItems;
-                          break;
-                        case CategoryEnum.promos:
-                          shopItems = storyRepository.promocodeList;
-                          break;
-                        case CategoryEnum.gifts:
-                          shopItems = storyRepository.giftsList;
-                          break;
-                      }
-
-                      return SliverGrid(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) => MarketItem(
-                              coinData: shopItems[index].coins,
-                              textDescription: shopItems[index].name,
-                              imageUrl: shopItems[index].imageUrl,
-                              onTap: () {
-                                context.push(
-                                    "/store/${storyRepository.marketItems[index].id}");
-                              },
-                              isNew: shopItems[index].isNew,
-                              pizdulkaUrl: '',
-                            ),
-                            childCount: shopItems.length,
+                    SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => MarketItem(
+                            coinData: shopItems[index].coins,
+                            textDescription: shopItems[index].name,
+                            imageUrl: shopItems[index].imageUrl,
+                            onTap: () {
+                              context.push(
+                                  "/store/${storyRepository.marketItems[index].id}");
+                            },
+                            isNew: shopItems[index].isNew,
+                            pizdulkaUrl: '',
                           ),
-                          gridDelegate:
-                              SliverGridDelegateWithMaxCrossAxisExtent(
-                                  crossAxisSpacing: 8,
-                                  maxCrossAxisExtent:
-                                      MediaQuery.of(context).size.width / 2,
-                                  childAspectRatio: 160 / 240));
-                    } else if (state is StoreLoading) {
-                      return const SliverToBoxAdapter(
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: AppColors.primary,
-                          ),
+                          childCount: shopItems.length,
                         ),
-                      );
-                    }
-                    return const SliverToBoxAdapter(
-                      child: Text('проблемс с беком'),
-                    );
-                  },
-                )
-              ]),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            crossAxisSpacing: 8,
+                            maxCrossAxisExtent:
+                                MediaQuery.of(context).size.width / 2,
+                            childAspectRatio: 160 / 240)),
+                    isLoading
+                        ? const SliverToBoxAdapter(
+                            child: Center(child: CircularProgressIndicator()),
+                          )
+                        : SliverToBoxAdapter(
+                            child: Container(),
+                          )
+                  ]);
+            },
+          ),
         ),
       ),
     );

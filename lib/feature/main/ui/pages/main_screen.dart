@@ -93,7 +93,7 @@ class _MainScreenState extends State<MainScreen> {
                       await repository.getPreview();
                     },
                     child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +122,7 @@ class _MainScreenState extends State<MainScreen> {
                                     children: [
                                       Container(
                                         constraints:
-                                            BoxConstraints(maxWidth: 180),
+                                            const BoxConstraints(maxWidth: 180),
                                         height: double.infinity,
                                         width: size.width * 0.28,
                                         child: Image.asset(
@@ -133,7 +133,7 @@ class _MainScreenState extends State<MainScreen> {
                                       const SizedBox(
                                         width: 16,
                                       ),
-                                      Container(
+                                      SizedBox(
                                         width: size.width * 0.58,
                                         child: Row(
                                           children: [

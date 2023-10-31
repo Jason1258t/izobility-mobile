@@ -12,7 +12,7 @@ class NotificationsApi with ApiHandler {
 
   Future<dynamic> loadNotifications() async {
     final response = await get(ApiEndpoints.getNotifications);
-    print(response);
+
     return response;
   }
 }

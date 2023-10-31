@@ -37,7 +37,7 @@ class MainScreenRepository {
     }
   }
   Future getMarketItems() async {
-    final res = await apiService.shop.getLimitedItems();
+    final res = await apiService.shop.getLimitedItems(10, 0);
     marketItems.clear();
     for (int i = 0; i < res.length; i++) {
       marketItems.add(MarketPreviewItem.fromJson(json: res[i]));
