@@ -156,11 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 label: localize.inventory,
                                 description: '2056 предметов',
                                 onTap: () {
-                                  // context.push(RouteNames.develop);
-
-                                  final photo =
-                                      "https://api.z-boom.ru/user/photo/${context.read<UserRepository>().user.id}";
-                                  print(photo);
+                                  context.push(RouteNames.storeUserProducts);
                                 },
                               ),
                               ProfileActionContainer(

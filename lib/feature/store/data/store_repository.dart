@@ -1,4 +1,6 @@
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/models/market_item.dart';
+import 'package:izobility_mobile/models/store/user_product.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/widgets/containers/market_Item.dart';
@@ -20,6 +22,8 @@ class StoreRepository {
   List<dynamic> promocodeList = [];
 
   int pageNumber = 1;
+
+  List<UserProductModel> userProductList = [];
 
   BehaviorSubject<LoadingStateEnum> marketItemsStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
@@ -77,7 +81,13 @@ class StoreRepository {
   }
 
   Future<dynamic> getUserProductList() async {
-    final response = await apiService.shop.getUserProductList();
+    userProductList.clear();
+
+    final response = (await apiService.shop.getUserProductList())['objects'];
+
+    for (var json in response) {
+      userProductList.add(UserProductModel.fromJson(json));
+    }
   }
 
   Future<dynamic> sendRequestForReceivingByMail() async {

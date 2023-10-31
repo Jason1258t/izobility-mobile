@@ -32,6 +32,7 @@ import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/store_user_products_state.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_buy_order_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_create_order_screen.dart';
@@ -177,9 +178,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),
-      // GoRoute(
-      //     path: RouteNames.storePromo,
-      //     builder: (context, state) => const PromoScreen()),
+      GoRoute(
+          path: RouteNames.storeUserProducts,
+          builder: (context, state) => const StoreUserProductsScreen()),
       GoRoute(
           path: RouteNames.walletChainGameTransfer,
           builder: (context, state) =>
