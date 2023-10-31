@@ -66,4 +66,16 @@ class StoreRepository {
 
     getMarketItems();
   }
+
+  Future<dynamic> buyProduct(int productId) async {
+    final response = await apiService.shop.buyProduct(productId);
+  }
+
+  Future<dynamic> getUserProductList() async {
+    final response = await apiService.shop.getUserProductList();
+  }
+
+  Future<dynamic> sendRequestForReceivingByMail() async {
+    final response = await apiService.shop.sendRequestForRecievingByMail();
+  }
 }

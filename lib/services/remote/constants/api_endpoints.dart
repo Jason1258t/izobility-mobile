@@ -35,6 +35,9 @@ class ApiEndpoints {
   static const String usePromoCode = '/code/use';
   static const String productsList = '/product/list';
   static const String productItemInfo = '/product/view/';
+  static const String productBuy = '/product/buy';
+  static const String productUserList = '/order/list';
+  static const String productSendRequestForRecievingByMail = '/order/send-post';
 
   static const String walletSwapInGameToOnChain = "/wallet/transfer";
   static const String walletSwapOnChainToInGame = '/wallet/return';
