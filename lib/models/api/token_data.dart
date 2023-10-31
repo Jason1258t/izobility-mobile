@@ -19,10 +19,10 @@ class TokenData {
       this.address});
 
   TokenData.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        amount = double.parse(json['amount'] ?? "0").toStringAsFixed(5),
+      : id = json['id'].toString(),
+        amount = double.parse((json['amount'] ?? "0").toString()).toStringAsFixed(5),
         rubleExchangeRate =
-            double.parse(json['kurs_rub'] ?? "0").toStringAsFixed(5),
+            double.parse((json['kurs_rub'] ?? "0").toString()).toStringAsFixed(5),
         name = json['name'] ?? "0",
         imageUrl = '${dotenv.get('BASE_SERVER_URL')}media/' + json['logo'],
         description = json["description"] ?? '',

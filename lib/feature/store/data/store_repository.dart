@@ -1,7 +1,7 @@
 import 'package:izobility_mobile/models/market_item.dart';
-import 'package:izobility_mobile/models/market_preview_item.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
+import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:rxdart/rxdart.dart';
 
 enum CategoryEnum { promos, gifts, products }
@@ -9,13 +9,13 @@ enum CategoryEnum { promos, gifts, products }
 class StoreRepository {
   final ApiService apiService;
 
-  MarketItemModel lastOpenedMarketItem = MarketItemModel();
+  late MarketItemModel lastOpenedMarketItem;
 
   StoreRepository({required this.apiService});
 
   CategoryEnum activeCategory = CategoryEnum.products;
 
-  List<MarketPreviewItem> marketItems = [];
+  List<MarketItemModel> marketItems = [];
   List<dynamic> giftsList = [];
   List<dynamic> promocodeList = [];
 
@@ -39,7 +39,11 @@ class StoreRepository {
       }
 
       for (int i = 0; i < res.length; i++) {
-        marketItems.add(MarketPreviewItem.fromJson(json: res[i]));
+        try {
+          marketItems.add(MarketItemModel.fromJson(res[i]));
+        } catch (ex) {
+          print(ex);
+        }
       }
 
       marketItemsStream.add(LoadingStateEnum.success);
@@ -55,8 +59,9 @@ class StoreRepository {
       final MarketItemModel marketItem = MarketItemModel.fromJson(response);
 
       return marketItem;
-    } catch (ex) {
+    } catch (ex, stacktrace) {
       print(ex);
+      print(stacktrace);
       return null;
     }
   }

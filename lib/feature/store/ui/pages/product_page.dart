@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
+import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_item/store_item_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/product_link.dart';
@@ -9,12 +10,14 @@ import 'package:izobility_mobile/feature/store/ui/widgets/profuct_my_coin_quanti
 import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_container.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/utils/ui/colors.dart';
-import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/animations.dart';
+import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
+import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
 class ProductScreen extends StatefulWidget {
   final String id;
@@ -62,28 +65,53 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return HomeScaffold(
-      appBar: CustomAppBar(
-        context: context,
-        text: "Промокод",
-        isBack: true,
-        onTap: () {
+    return BlocListener<StoreBuyCubit, StoreBuyState>(
+      listener: (context, state) {
+        ScaffoldMessenger.of(context).clearSnackBars();
+
+        if (state is StoreBuyLoading) {
+          Dialogs.showModal(
+              context,
+              const Center(
+                child: AppAnimations.circularProgressIndicator,
+              ));
+        } else if (state is StoreBuyFailure) {
           context.pop();
-        },
-      ),
-      body: SingleChildScrollView(
-        child: BlocBuilder<StoreItemCubit, StoreItemState>(
-          builder: (context, state) {
-            if (state is StoreItemLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            } else if (state is StoreItemSuccessState) {
-              return buildMarketItemData();
-            } else {
-              return Container();
-            }
+
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
+        } else if (state is StoreBuySuccess) {
+          context.pop(); // clear dialog
+
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.successSnackBar('Успешно'));
+
+          context.pop(); // clear modal bottom sheet
+        }
+      },
+      child: HomeScaffold(
+        appBar: CustomAppBar(
+          context: context,
+          text: "Промокод",
+          isBack: true,
+          onTap: () {
+            context.pop();
           },
+        ),
+        body: SingleChildScrollView(
+          child: BlocBuilder<StoreItemCubit, StoreItemState>(
+            builder: (context, state) {
+              if (state is StoreItemLoadingState) {
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              } else if (state is StoreItemSuccessState) {
+                return buildMarketItemData();
+              } else {
+                return Container();
+              }
+            },
+          ),
         ),
       ),
     );
@@ -115,7 +143,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(
-                                marketItem.images![index].path,
+                                marketItem.images[index],
                               ),
                               fit: BoxFit.cover),
                         ),
@@ -142,13 +170,13 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 8,
               ),
               StorePriceContainer(
-                price: marketItem.price!,
+                marketItem: marketItem,
               ),
               const SizedBox(
                 height: 4,
               ),
               StoreItemQuantityContainer(
-                  itemsLost: marketItem.quantity!, itemsAll: 1000),
+                  itemsLost: int.parse(marketItem.quantity), itemsAll: 1000),
               const SizedBox(
                 height: 16,
               ),
@@ -165,10 +193,10 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 8,
               ),
               CustomButton(
-                  isActive: marketItem.price! <= emeraldCoin,
+                  isActive: marketItem.price <= emeraldCoin,
                   text: "Получить",
                   onTap: () {
-                    context.push(RouteNames.develop);
+                    AppBottomSheets.buyProductBottomSheet(context, marketItem);
                   },
                   width: double.infinity),
               const SizedBox(
@@ -192,7 +220,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 10,
               ),
               Text(
-                marketItem.description!,
+                marketItem.description,
                 style:
                     AppTypography.font12w400.copyWith(color: AppColors.grey500),
               ),

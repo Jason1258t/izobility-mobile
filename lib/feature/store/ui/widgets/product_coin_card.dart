@@ -18,8 +18,7 @@ class ProductCoinCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.network("https://api.z-boom.ru/media/" +
-            "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg", width: 27,),
+        Image.network(imagePath, width: 27,),
         const SizedBox(
           width: 6,
         ),

@@ -1,7 +1,7 @@
+import 'package:izobility_mobile/models/market_item.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../models/market_preview_item.dart';
 import '../../../models/story.dart';
 import '../../../services/remote/api/api_service.dart';
 
@@ -11,7 +11,7 @@ class MainScreenRepository {
 
   MainScreenRepository({required this.apiService});
 
-  List<MarketPreviewItem> marketItems = [];
+  List<MarketItemModel> marketItems = [];
   List<Story> storiesList = [];
   String bannerUrl = '';
 
@@ -40,7 +40,11 @@ class MainScreenRepository {
     final res = await apiService.shop.getLimitedItems(10, 0);
     marketItems.clear();
     for (int i = 0; i < res.length; i++) {
-      marketItems.add(MarketPreviewItem.fromJson(json: res[i]));
+      try{
+        marketItems.add(MarketItemModel.fromJson(res[i]));
+      }catch (ex){
+
+      }
     }
   }
 }

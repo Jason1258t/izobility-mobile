@@ -177,9 +177,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),
-      GoRoute(
-          path: RouteNames.storePromo,
-          builder: (context, state) => const PromoScreen()),
+      // GoRoute(
+      //     path: RouteNames.storePromo,
+      //     builder: (context, state) => const PromoScreen()),
       GoRoute(
           path: RouteNames.walletChainGameTransfer,
           builder: (context, state) =>

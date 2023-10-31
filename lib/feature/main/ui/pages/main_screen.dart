@@ -342,8 +342,7 @@ class _MainScreenState extends State<MainScreen> {
                               height: (MediaQuery.of(context).size.width - 40) /
                                       2 *
                                       240 /
-                                      160 +
-                                  2,
+                                      160 + 10,
                               child: state is MainScreenPreview
                                   ? ListView.builder(
                                       padding: const EdgeInsets.symmetric(
@@ -352,19 +351,7 @@ class _MainScreenState extends State<MainScreen> {
                                       shrinkWrap: true,
                                       itemCount: repository.marketItems.length,
                                       itemBuilder: (ctx, ind) => MarketItem(
-                                            coinData: repository
-                                                .marketItems[ind].coins,
-                                            textDescription: repository
-                                                .marketItems[ind].name,
-                                            imageUrl: repository
-                                                .marketItems[ind].imageUrl,
-                                            onTap: () {
-                                              context.push(
-                                                  "/store/${repository.marketItems[ind].id}");
-                                            },
-                                            isNew: repository
-                                                .marketItems[ind].isNew,
-                                            pizdulkaUrl: '',
+                                            marketItem: repository.marketItems[ind],
                                           ))
                                   : ListView.builder(
                                       padding: const EdgeInsets.symmetric(

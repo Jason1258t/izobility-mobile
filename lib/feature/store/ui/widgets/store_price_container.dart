@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
-import 'package:izobility_mobile/feature/store/ui/widgets/product_coin_card.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/product_coin_price_container.dart';
+import 'package:izobility_mobile/models/market_item.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class StorePriceContainer extends StatelessWidget {
-  final double price;
+  final MarketItemModel marketItem;
 
   const StorePriceContainer({
     super.key,
-    required this.price,
+    required this.marketItem,
   });
 
   @override
@@ -31,8 +29,8 @@ class StorePriceContainer extends StatelessWidget {
           ),
           ProductCoinPriceContainer(
             width: double.infinity,
-            imagePath: '',
-            quantity: price,
+            imagePath: marketItem.coin.imageUrl,
+            quantity: marketItem.price,
           ),
         ],
       ),

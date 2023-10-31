@@ -48,16 +48,16 @@ class _StoreScreenState extends State<StoreScreen> {
 
     final localize = AppLocalizations.of(context)!;
 
-    String getStringCategoryByEnum(CategoryEnum categoryEnum) {
-      switch (categoryEnum) {
-        case CategoryEnum.products:
-          return localize.product_and_nft;
-        case CategoryEnum.promos:
-          return localize.promo_codes;
-        case CategoryEnum.gifts:
-          return localize.gifts;
-      }
-    }
+    // String getStringCategoryByEnum(CategoryEnum categoryEnum) {
+    //   switch (categoryEnum) {
+    //     case CategoryEnum.products:
+    //       return localize.product_and_nft;
+    //     case CategoryEnum.promos:
+    //       return localize.promo_codes;
+    //     case CategoryEnum.gifts:
+    //       return localize.gifts;
+    //   }
+    // }
 
     return HomeScaffold(
       appBar: CustomAppBar(
@@ -82,84 +82,10 @@ class _StoreScreenState extends State<StoreScreen> {
                   controller: scrollController,
                   physics: const AlwaysScrollableScrollPhysics(),
                   slivers: [
-                    SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ContainerWithText(
-                                  title: localize.promo_codes,
-                                  path: 'category',
-                                  width: (sizeOf.width - 47) / 2,
-                                  onTap: () {
-                                    setState(() {
-                                      storyRepository.setActiveCategory(
-                                          CategoryEnum.promos);
-                                    });
-                                  },
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                ContainerWithText(
-                                  title: localize.gifts,
-                                  path: 'gift',
-                                  width: (sizeOf.width - 47) / 2,
-                                  onTap: () {
-                                    setState(() {
-                                      storyRepository.setActiveCategory(
-                                          CategoryEnum.gifts);
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            ContainerWithText(
-                              title: localize.product_and_nft,
-                              path: 'card',
-                              width: sizeOf.width - 36,
-                              onTap: () {
-                                setState(() {
-                                  storyRepository
-                                      .setActiveCategory(CategoryEnum.products);
-                                });
-                              },
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              getStringCategoryByEnum(
-                                  storyRepository.activeCategory),
-                              style: AppTypography.font24w700
-                                  .copyWith(color: Colors.black),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                     SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => MarketItem(
-                            coinData: shopItems[index].coins,
-                            textDescription: shopItems[index].name,
-                            imageUrl: shopItems[index].imageUrl,
-                            onTap: () {
-                              context.push(
-                                  "/store/${storyRepository.marketItems[index].id}");
-                            },
-                            isNew: shopItems[index].isNew,
-                            pizdulkaUrl: '',
+                            marketItem: shopItems[index],
                           ),
                           childCount: shopItems.length,
                         ),
@@ -167,7 +93,7 @@ class _StoreScreenState extends State<StoreScreen> {
                             crossAxisSpacing: 8,
                             maxCrossAxisExtent:
                                 MediaQuery.of(context).size.width / 2,
-                            childAspectRatio: 160 / 240)),
+                            childAspectRatio: 0.64)),
                     isLoading
                         ? const SliverToBoxAdapter(
                             child: Center(child: CircularProgressIndicator()),
