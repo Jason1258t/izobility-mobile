@@ -367,10 +367,10 @@ class ReferalCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: AppGradients.gradientGreenWhite),
-                child: SvgPicture.asset(
+                child: referal.photo == null ? SvgPicture.asset(
                   "assets/icons/profile.svg",
                   width: 26,
-                ),
+                ) : Image.network("https://api.z-boom.ru/user/photo/${referal.id}"),
               ),
               const SizedBox(
                 width: 12,
