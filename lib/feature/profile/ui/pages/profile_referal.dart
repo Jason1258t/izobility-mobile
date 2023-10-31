@@ -53,7 +53,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
         child: Container(
           padding: const EdgeInsets.all(8).copyWith(bottom: 0),
           child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -303,7 +303,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                 BlocBuilder<ProfileReferalsCubit, ProfileReferalsState>(
                   builder: (context, state) {
                     if (state is ProfileReferalsLoading) {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator.adaptive(),
                       );
                     } else if (state is ProfileReferalsSuccess ||
@@ -364,7 +364,7 @@ class ReferalCard extends StatelessWidget {
                 width: 32,
                 height: 32,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: AppGradients.gradientGreenWhite),
                 child: referal.photo == null ? SvgPicture.asset(
