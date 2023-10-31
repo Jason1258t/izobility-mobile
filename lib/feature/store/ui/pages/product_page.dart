@@ -82,11 +82,9 @@ class _ProductScreenState extends State<ProductScreen> {
               .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
         } else if (state is StoreBuySuccess) {
           context.pop(); // clear dialog
-
-          ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.successSnackBar('Успешно'));
-
           context.pop(); // clear modal bottom sheet
+
+          AppBottomSheets.productBought(context);
         }
       },
       child: HomeScaffold(
