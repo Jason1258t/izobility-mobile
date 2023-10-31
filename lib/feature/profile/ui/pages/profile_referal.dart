@@ -95,17 +95,22 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                     } else if (state
                                         is ProfileReferalsSuccess) {
                                       return Text(
-                                        (List.generate(
-                                                context
-                                                    .read<UserRepository>()
-                                                    .referalList
-                                                    .length,
-                                                (index) => (context
-                                                    .read<UserRepository>()
-                                                    .referalList[index]
-                                                    .sum)))
-                                            .reduce((a, b) => a + b)
-                                            .toString(),
+                                        context
+                                                .read<UserRepository>()
+                                                .referalList
+                                                .isNotEmpty
+                                            ? (List.generate(
+                                                    context
+                                                        .read<UserRepository>()
+                                                        .referalList
+                                                        .length,
+                                                    (index) => (context
+                                                        .read<UserRepository>()
+                                                        .referalList[index]
+                                                        .sum)))
+                                                .reduce((a, b) => a + b)
+                                                .toString()
+                                            : "0",
                                         style: AppTypography.font18w700
                                             .copyWith(color: Colors.black),
                                       );
@@ -303,12 +308,16 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                       );
                     } else if (state is ProfileReferalsSuccess ||
                         state is ProfileReferalsInitial) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Column(
-                          children: buildReferalListWidget(),
-                        ),
-                      );
+                      if (context.read<UserRepository>().referalList.isEmpty) {
+                        return Text("У вас пока нет рефералов :(");
+                      } else {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Column(
+                            children: buildReferalListWidget(),
+                          ),
+                        );
+                      }
                     }
 
                     return Container();
