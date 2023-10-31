@@ -78,7 +78,8 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 BlocBuilder<ProfileReferalsCubit,
                                     ProfileReferalsState>(
@@ -94,25 +95,42 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                       );
                                     } else if (state
                                         is ProfileReferalsSuccess) {
-                                      return Text(
-                                        context
-                                                .read<UserRepository>()
-                                                .referalList
-                                                .isNotEmpty
-                                            ? (List.generate(
-                                                    context
-                                                        .read<UserRepository>()
-                                                        .referalList
-                                                        .length,
-                                                    (index) => (context
-                                                        .read<UserRepository>()
-                                                        .referalList[index]
-                                                        .sum)))
-                                                .reduce((a, b) => a + b)
-                                                .toString()
-                                            : "0",
-                                        style: AppTypography.font18w700
-                                            .copyWith(color: Colors.black),
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            context
+                                                    .read<UserRepository>()
+                                                    .referalList
+                                                    .isNotEmpty
+                                                ? (List.generate(
+                                                        context
+                                                            .read<UserRepository>()
+                                                            .referalList
+                                                            .length,
+                                                        (index) => (context
+                                                            .read<UserRepository>()
+                                                            .referalList[index]
+                                                            .sum)))
+                                                    .reduce((a, b) => a + b)
+                                                    .toString()
+                                                : "0",
+                                            style: AppTypography.font18w700
+                                                .copyWith(color: Colors.black),
+                                          ),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Image.asset(
+                                            "assets/images/logo_coint_emrld.png",
+                                            width: 20,
+                                            fit: BoxFit.fitWidth,
+                                          )
+                                        ],
                                       );
                                     }
 
@@ -367,10 +385,13 @@ class ReferalCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: AppGradients.gradientGreenWhite),
-                child: referal.photo == null ? SvgPicture.asset(
-                  "assets/icons/profile.svg",
-                  width: 26,
-                ) : Image.network("https://api.z-boom.ru/user/photo/${referal.id}"),
+                child: referal.photo == null
+                    ? SvgPicture.asset(
+                        "assets/icons/profile.svg",
+                        width: 26,
+                      )
+                    : Image.network(
+                        "https://api.z-boom.ru/user/photo/${referal.id}"),
               ),
               const SizedBox(
                 width: 12,
@@ -400,6 +421,9 @@ class ReferalCard extends StatelessWidget {
                     color: referal.sum == 0
                         ? AppColors.grey500
                         : AppColors.green600),
+              ),
+              const SizedBox(
+                width: 4,
               ),
               Image.asset(
                 "assets/images/logo_coint_emrld.png",
