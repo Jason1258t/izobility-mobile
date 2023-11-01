@@ -207,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       context
                                           .push(RouteNames.storeUserProducts);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.arrow_forward_ios_outlined,
                                       size: 16,
                                       color: Colors.black,
@@ -324,18 +324,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Container(
       height: 190,
-      child: ListView.separated(
+      child: ListView.builder(
         itemCount: storeRepository.userProductList.length,
         scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) => SizedBox(
-          width: 8,
-        ),
         itemBuilder: (context, index) {
           return Container(
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
             constraints: const BoxConstraints(maxWidth: 250),
             width: MediaQuery.sizeOf(context).width * 0.38,
+            margin: const EdgeInsets.only(left: 16),
             height: 190,
             child: Material(
               child: Ink.image(
@@ -363,7 +361,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: ListView.separated(
         itemCount: 5,
         scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) => SizedBox(
+        separatorBuilder: (context, index) => const SizedBox(
           width: 8,
         ),
         itemBuilder: (context, index) {
