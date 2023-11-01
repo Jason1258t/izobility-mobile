@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,16 +37,13 @@ class _GamesScreenState extends State<GamesScreen> {
       final json = {}
         ..addAll(value[0])
         ..addAll(value[1]);
-      json.forEach((key, value) {
-        print('    $key: $value');
-      });
       try {
         BlocProvider.of<AppCubit>(context).runUnity();
-        print('trying to start');
+        log('trying to start');
         final data = await platform.invokeMethod('startUnity', {'user': jsonEncode(json)});
-        print(data.toString());
+        log(data.toString());
       } catch (e) {
-        print(e);
+        log(e.toString());
       }
 
     });

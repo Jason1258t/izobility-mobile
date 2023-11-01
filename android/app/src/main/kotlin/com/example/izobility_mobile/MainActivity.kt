@@ -33,8 +33,8 @@ class MainActivity : FlutterFragmentActivity() {
                 call?.let {
                     if (call.method.equals("startUnity", ignoreCase = true)) {
                         val user = call.argument<String?>(KEY_USER)
-
                         if (user != null) {
+                            Log.d("Android", user);
                             checkEnabledAndStartUnityActivity(user)
                         }
                     }
