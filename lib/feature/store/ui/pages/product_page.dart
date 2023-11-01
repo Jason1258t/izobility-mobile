@@ -9,7 +9,9 @@ import 'package:izobility_mobile/feature/store/ui/widgets/product_link.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/profuct_my_coin_quantity.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_container.dart';
 import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -96,19 +98,24 @@ class _ProductScreenState extends State<ProductScreen> {
             context.pop();
           },
         ),
-        body: SingleChildScrollView(
-          child: BlocBuilder<StoreItemCubit, StoreItemState>(
-            builder: (context, state) {
-              if (state is StoreItemLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(),
-                );
-              } else if (state is StoreItemSuccessState) {
-                return buildMarketItemData();
-              } else {
-                return Container();
-              }
-            },
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await context.read<WalletRepository>().getGameTokens();
+          },
+          child: SingleChildScrollView(
+            child: BlocBuilder<StoreItemCubit, StoreItemState>(
+              builder: (context, state) {
+                if (state is StoreItemLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  );
+                } else if (state is StoreItemSuccessState) {
+                  return buildMarketItemData();
+                } else {
+                  return Container();
+                }
+              },
+            ),
           ),
         ),
       ),
@@ -182,29 +189,73 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 16,
               ),
               const Text("У вас есть"),
-              ProductMyCoinQuantity(
-                imagePath: "https://api.z-boom.ru/media/" +
-                    "moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg",
-                quantity: emeraldCoin.toDouble(),
+              BlocBuilder<CoinInGameCubit, CoinInGameState>(
+                builder: (context, state) {
+                  if (state is CoinInGameLoading) {
+                    return Column(
+                      children: [
+                        Container(
+                          height: 56,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: AppColors.grey400.withOpacity(0.6),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomButton(
+                            isActive: false,
+                            text: "Получить",
+                            onTap: () {
+                              AppBottomSheets.buyProductBottomSheet(
+                                  context, marketItem);
+                            },
+                            width: double.infinity),
+                      ],
+                    );
+                  } else if (state is CoinInGameSuccess) {
+                    final double quantity = double.parse(context
+                        .read<WalletRepository>()
+                        .coinsInGame
+                        .where((element) => element.id == marketItem.coin.id)
+                        .toList()[0]
+                        .amount);
+
+                    return Column(
+                      children: [
+                        ProductMyCoinQuantity(
+                          imagePath: marketItem.coin.imageUrl,
+                          quantity: quantity,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        CustomButton(
+                            isActive: marketItem.price <= quantity,
+                            text: "Получить",
+                            onTap: () {
+                              AppBottomSheets.buyProductBottomSheet(
+                                  context, marketItem);
+                            },
+                            width: double.infinity),
+                      ],
+                    );
+                  }
+
+                  return Container();
+                },
               ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomButton(
-                  isActive: marketItem.price <= emeraldCoin,
-                  text: "Получить",
-                  onTap: () {
-                    AppBottomSheets.buyProductBottomSheet(context, marketItem);
-                  },
-                  width: double.infinity),
               const SizedBox(
                 height: 8,
               ),
               CustomButton(
                   isActive: true,
                   text: "Купить монет",
-                  onTap: () {
-                    context.push(RouteNames.develop);
+                  onTap: () async {
+                    // context.push(RouteNames.develop);
+                    await context.read<WalletRepository>().getGameTokens();
                   },
                   width: double.infinity),
               const SizedBox(
