@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
@@ -12,8 +13,10 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
+import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
 class StoreScreen extends StatefulWidget {
   const StoreScreen({super.key});
@@ -51,111 +54,136 @@ class _StoreScreenState extends State<StoreScreen> {
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
     final localize = AppLocalizations.of(context)!;
 
-    return DefaultTabController(
-        length: 4,
-        child: HomeScaffold(
-          appBar: CustomAppBar(
-            text: localize.shop,
-            context: context,
-            isBack: false,
-            bottom: TabBar(
-              indicatorColor: AppColors.grey800,
-              unselectedLabelColor: AppColors.grey400,
-              labelColor: AppColors.grey800,
-              onTap: (v) {
-                setState(() {
-                  currentCategory = v;
-                });
-              },
-              isScrollable: true,
-              tabs: [
-                Tab(
-                  icon: Text(
-                    "Все",
-                    style: AppTypography.font14w700,
-                  ),
-                ),
-                Tab(icon: Text("Места", style: AppTypography.font14w700)),
-                Tab(icon: Text("События", style: AppTypography.font14w700)),
-                Tab(icon: Text("Другое", style: AppTypography.font14w700)),
-              ],
-            ),
-          ),
-          body: RefreshIndicator.adaptive(
-            onRefresh: () {
-              storeRepository.setPageNumber(1);
+    return BlocListener<StoreBuyCubit, StoreBuyState>(
+      listener: (context, state) {
+        ScaffoldMessenger.of(context).clearSnackBars();
 
-              return storeRepository.getMarketItems();
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: BlocBuilder<StoreCubit, StoreState>(
-                builder: (context, state) {
-                  late final shopItems;
-                  if (currentCategory != 0) {
-                    shopItems = storeRepository.marketItems
-                        .where((element) =>
-                            element.category == currentCategory.toString())
-                        .toList();
-                  } else {
-                    shopItems = storeRepository.marketItems;
-                  }
+        if (state is StoreBuyLoading) {
+          showDialog(
+              context: context,
+              builder: (context) => const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  ));
+        } else if (state is StoreBuyFailure) {
+          context.pop();
 
-                  bool isLoading = state is StoreLoading;
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
+        } else if (state is StoreBuySuccess) {
+          print('------ popped');
+          context.pop(); // clear dialog
+          context.pop(); // clear modal
 
-                  return CustomScrollView(
-                      controller: scrollController,
-                      physics: const AlwaysScrollableScrollPhysics(
-                          parent: BouncingScrollPhysics()),
-                      slivers: [
-                        const SliverToBoxAdapter(
-                          child: SizedBox(
-                            height: 16,
-                          ),
-                        ),
-                        BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
-                          builder: (context, state) {
-                            if (state is StoreUserItemsSuccess) {
-                              if (storeRepository.userProductList.isNotEmpty) {
-                                return buildGetUserItemsBanner(sizeOf);
-                              }
-                            }
-
-                            return SliverToBoxAdapter(child: Container());
-                          },
-                        ),
-                        const SliverToBoxAdapter(
-                          child: SizedBox(
-                            height: 10,
-                          ),
-                        ),
-                        SliverGrid(
-                            delegate: SliverChildBuilderDelegate(
-                              (context, index) => MarketItem(
-                                marketItem: shopItems[index],
-                              ),
-                              childCount: shopItems.length,
-                            ),
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                                    crossAxisSpacing: 8,
-                                    maxCrossAxisExtent:
-                                        MediaQuery.of(context).size.width / 2,
-                                    childAspectRatio: 0.64)),
-                        isLoading
-                            ? const SliverToBoxAdapter(
-                                child:
-                                    Center(child: CircularProgressIndicator()),
-                              )
-                            : SliverToBoxAdapter(
-                                child: Container(),
-                              )
-                      ]);
+          AppBottomSheets.productBought(context);
+        }
+      },
+      child: DefaultTabController(
+          length: 4,
+          child: HomeScaffold(
+            appBar: CustomAppBar(
+              text: localize.shop,
+              context: context,
+              isBack: false,
+              bottom: TabBar(
+                indicatorColor: AppColors.grey800,
+                unselectedLabelColor: AppColors.grey400,
+                labelColor: AppColors.grey800,
+                onTap: (v) {
+                  setState(() {
+                    currentCategory = v;
+                  });
                 },
+                isScrollable: true,
+                tabs: [
+                  Tab(
+                    icon: Text(
+                      "Все",
+                      style: AppTypography.font14w700,
+                    ),
+                  ),
+                  Tab(icon: Text("Места", style: AppTypography.font14w700)),
+                  Tab(icon: Text("События", style: AppTypography.font14w700)),
+                  Tab(icon: Text("Другое", style: AppTypography.font14w700)),
+                ],
               ),
             ),
-          ),
-        ));
+            body: RefreshIndicator.adaptive(
+              onRefresh: () {
+                storeRepository.setPageNumber(1);
+
+                return storeRepository.getMarketItems();
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: BlocBuilder<StoreCubit, StoreState>(
+                  builder: (context, state) {
+                    late final shopItems;
+                    if (currentCategory != 0) {
+                      shopItems = storeRepository.marketItems
+                          .where((element) =>
+                              element.category == currentCategory.toString())
+                          .toList();
+                    } else {
+                      shopItems = storeRepository.marketItems;
+                    }
+
+                    bool isLoading = state is StoreLoading;
+
+                    return CustomScrollView(
+                        controller: scrollController,
+                        physics: const AlwaysScrollableScrollPhysics(
+                            parent: BouncingScrollPhysics()),
+                        slivers: [
+                          const SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: 16,
+                            ),
+                          ),
+                          BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
+                            builder: (context, state) {
+                              if (state is StoreUserItemsSuccess) {
+                                if (storeRepository
+                                    .userProductList.isNotEmpty) {
+                                  return buildGetUserItemsBanner(sizeOf);
+                                }
+                              }
+
+                              return SliverToBoxAdapter(child: Container());
+                            },
+                          ),
+                          const SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: 10,
+                            ),
+                          ),
+                          SliverGrid(
+                              delegate: SliverChildBuilderDelegate(
+                                (context, index) => MarketItem(
+                                  marketItem: shopItems[index],
+                                ),
+                                childCount: shopItems.length,
+                              ),
+                              gridDelegate:
+                                  SliverGridDelegateWithMaxCrossAxisExtent(
+                                      crossAxisSpacing: 8,
+                                      maxCrossAxisExtent:
+                                          MediaQuery.of(context).size.width / 2,
+                                      childAspectRatio: 0.64)),
+                          isLoading
+                              ? const SliverToBoxAdapter(
+                                  child: Center(
+                                      child: CircularProgressIndicator()),
+                                )
+                              : SliverToBoxAdapter(
+                                  child: Container(),
+                                )
+                        ]);
+                  },
+                ),
+              ),
+            ),
+          )),
+    );
   }
 
   SliverToBoxAdapter buildGetUserItemsBanner(Size sizeOf) {

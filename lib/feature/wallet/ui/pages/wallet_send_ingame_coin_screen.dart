@@ -151,7 +151,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                         suffixIconCallback: () {
                           Clipboard.getData(Clipboard.kTextPlain).then((value) {
                             setState(() {
-                              emailController.text = value!.text!;
+                              emailController.text = value!.text!.replaceAll("\n", "");
                             });
                           });
                         },

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/feature/wallet/bloc/coins_in_game/coins_in_game_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/market_item.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -76,15 +80,46 @@ class MarketItem extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            CustomButton(
-              fontSize: 14,
-              height: 28,
-              text: "Купить",
-              onTap: () {
-                AppBottomSheets.buyProductBottomSheet(context, marketItem);
+            BlocBuilder<CoinsInGameCubit, CoinsInGameState>(
+              builder: (context, state) {
+                if (state is CoinsInGameSuccess) {
+                  final double quantity = double.parse(context
+                      .read<WalletRepository>()
+                      .coinsInGame
+                      .where((element) => element.id == marketItem.coin.id)
+                      .toList()[0]
+                      .amount);
+
+                  return CustomButton(
+                    isActive: marketItem.price <= quantity,
+                    fontSize: 14,
+                    height: 28,
+                    text: "Купить",
+                    onTap: () {
+                      context.read<StoreRepository>().lastOpenedMarketItem =
+                          marketItem;
+                      AppBottomSheets.buyProductBottomSheet(
+                          context, marketItem);
+                    },
+                    width: 90,
+                    radius: 16,
+                  );
+                }
+
+                return CustomButton(
+                  isActive: false,
+                  fontSize: 14,
+                  height: 28,
+                  text: "Купить",
+                  onTap: () {
+                    context.read<StoreRepository>().lastOpenedMarketItem =
+                        marketItem;
+                    AppBottomSheets.buyProductBottomSheet(context, marketItem);
+                  },
+                  width: 90,
+                  radius: 16,
+                );
               },
-              width: 90,
-              radius: 16,
             )
           ],
         ),
