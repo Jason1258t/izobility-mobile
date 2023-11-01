@@ -176,7 +176,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reference_code => 'Reference code';
 
   @override
-  String get abstract_programm => 'Abstract program';
+  String get abstract_programm => 'Referal program';
 
   @override
   String get swap => 'Swap';

@@ -440,7 +440,7 @@ abstract class AppLocalizations {
   /// No description provided for @abstract_programm.
   ///
   /// In en, this message translates to:
-  /// **'Abstract program'**
+  /// **'Referal program'**
   String get abstract_programm;
 
   /// No description provided for @swap.

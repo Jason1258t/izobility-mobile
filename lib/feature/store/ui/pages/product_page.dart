@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_item/store_item_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
@@ -195,7 +196,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     return Column(
                       children: [
                         Container(
-                          height: 56,
+                          height: 40,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
@@ -254,8 +255,10 @@ class _ProductScreenState extends State<ProductScreen> {
                   isActive: true,
                   text: "Купить монет",
                   onTap: () async {
-                    // context.push(RouteNames.develop);
-                    await context.read<WalletRepository>().getGameTokens();
+                    context.read<ProfileLinksCubit>().loadLink(
+                        marketItem.coin.url == ""
+                            ? "https://oqopo.org/emerald-verse/"
+                            : marketItem.coin.url);
                   },
                   width: double.infinity),
               const SizedBox(

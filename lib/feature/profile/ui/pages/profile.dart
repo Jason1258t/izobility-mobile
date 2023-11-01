@@ -167,9 +167,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               ProfileActionContainer(
                                 label: localize.inventory,
-                                description: '2056 предметов',
+                                description: '- предметов',
                                 onTap: () {
-                                  context.push(RouteNames.storeUserProducts);
+                                  context.push(RouteNames.develop);
                                 },
                               ),
                               ProfileActionContainer(
