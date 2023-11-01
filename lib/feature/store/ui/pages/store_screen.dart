@@ -8,6 +8,7 @@ import 'package:izobility_mobile/feature/store/ui/widgets/container_with_text.da
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
+import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/containers/market_Item.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
@@ -48,17 +49,6 @@ class _StoreScreenState extends State<StoreScreen> {
 
     final localize = AppLocalizations.of(context)!;
 
-    // String getStringCategoryByEnum(CategoryEnum categoryEnum) {
-    //   switch (categoryEnum) {
-    //     case CategoryEnum.products:
-    //       return localize.product_and_nft;
-    //     case CategoryEnum.promos:
-    //       return localize.promo_codes;
-    //     case CategoryEnum.gifts:
-    //       return localize.gifts;
-    //   }
-    // }
-
     return HomeScaffold(
       appBar: CustomAppBar(
         text: localize.shop,
@@ -80,8 +70,72 @@ class _StoreScreenState extends State<StoreScreen> {
 
               return CustomScrollView(
                   controller: scrollController,
-                  physics: const AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics()),
                   slivers: [
+                    SliverToBoxAdapter(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        height: 145,
+                        decoration: BoxDecoration(
+                          gradient: AppGradients.shrek,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: sizeOf.width - 200,
+                                  child: Text(
+                                    'Ваши товары и все отстальное',
+                                    style: AppTypography.font20w700,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(100),
+                                        gradient: AppGradients.accentGreen),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "Получить",
+                                          style: AppTypography.font14w700
+                                              .copyWith(color: Colors.black),
+                                        ),
+                                        const Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.black,
+                                          size: 14,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SvgPicture.asset(
+                              'assets/icons/shopping_cart.svg',
+                              width: 124,
+                              height: 124,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: 10,
+                      ),
+                    ),
                     SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) => MarketItem(

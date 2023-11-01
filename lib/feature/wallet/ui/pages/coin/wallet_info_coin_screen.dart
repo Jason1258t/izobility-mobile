@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/feature/wallet/ui/widgets/button_social_media_link.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
@@ -38,10 +37,10 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
             physics: const BouncingScrollPhysics(
                 decelerationRate: ScrollDecelerationRate.fast),
             slivers: [
-              const CustomSliverAppBar(
+              CustomSliverAppBar(
                 height: 90,
                 isBack: true,
-                title: 'Usd',
+                title: widget.token.name,
                 color: Colors.white,
               ),
               SliverPersistentHeader(
@@ -93,71 +92,11 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
                     height: 18,
                     decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius:
-                            BorderRadius.vertical(bottom: Radius.circular(16))),
+                        borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(16))),
                   ),
                 ),
               ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        localize.description,
-                        style: AppTypography.font16w400
-                            .copyWith(color: AppColors.grey600),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        widget.token.description,
-                        style: AppTypography.font14w400
-                            .copyWith(color: Colors.black),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16),
-                sliver: SliverToBoxAdapter(
-                  child: Container(
-                    color: AppColors.purpleBcg,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          localize.contract,
-                          style: AppTypography.font16w400
-                              .copyWith(color: AppColors.grey600),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Wrap(
-                          direction: Axis.horizontal,
-                          alignment: WrapAlignment.spaceBetween,
-                          runAlignment: WrapAlignment.start,
-                          runSpacing: 10,
-                          children: [
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                            ButtonSocialMediaLink(text: "SEX"),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),

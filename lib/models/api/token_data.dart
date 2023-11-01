@@ -7,6 +7,7 @@ class TokenData {
   final String imageUrl;
   final String rubleExchangeRate;
   final String description;
+  final String url;
   String? address;
 
   TokenData(
@@ -16,6 +17,7 @@ class TokenData {
       required this.imageUrl,
       required this.rubleExchangeRate,
       required this.description,
+      required this.url,
       this.address});
 
   TokenData.fromJson(Map<String, dynamic> json)
@@ -25,6 +27,7 @@ class TokenData {
             double.parse((json['kurs_rub'] ?? "0").toString()).toStringAsFixed(5),
         name = json['name'] ?? "0",
         imageUrl = '${dotenv.get('BASE_SERVER_URL')}media/' + json['logo'],
+        url = json['url'] ?? "",
         description = json["description"] ?? '',
         address = json['address'];
 }

@@ -7,7 +7,6 @@ import 'package:izobility_mobile/models/store/user_product.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 
 class StoreUserProductsScreen extends StatefulWidget {
@@ -41,11 +40,11 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
         child: Container(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             child: BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
               builder: (context, state) {
                 if (state is StoreUserItemsLoading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator.adaptive(),
                   );
                 } else if (state is StoreUserItemsSuccess) {
@@ -77,7 +76,7 @@ class UserProductItemWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       height: 96,
-      decoration: BoxDecoration(),
+      decoration: const BoxDecoration(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,7 +110,7 @@ class UserProductItemWidget extends StatelessWidget {
                     AppBottomSheets.showProductInfo(context, userProduct);
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         gradient: AppGradients.accentGreen),
@@ -124,7 +123,7 @@ class UserProductItemWidget extends StatelessWidget {
                           style: AppTypography.font14w700
                               .copyWith(color: Colors.black),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward,
                           color: Colors.black,
                           size: 14,

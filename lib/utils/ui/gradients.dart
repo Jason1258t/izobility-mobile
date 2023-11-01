@@ -39,6 +39,6 @@ abstract class AppGradients {
   static const accentGreen = LinearGradient(
     begin: Alignment(0.71, -0.71),
     end: Alignment(-0.71, 0.71),
-    colors: [Color(0xFF1CFE15), Color(0xFF4EFDC6)],
+    colors: [Color(0xFF4EFDC6),Color(0xFF1CFE15),],
   );
 }

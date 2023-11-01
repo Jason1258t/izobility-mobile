@@ -204,6 +204,7 @@ class WalletRepository {
             id: coinId,
             name: coin.name,
             imageUrl: coin.imageUrl,
+            url: '',
             rubleExchangeRate: coin.rubleExchangeRate,
             description: coin.description));
       } else {
@@ -214,6 +215,7 @@ class WalletRepository {
             id: coinId,
             name: coin.name,
             imageUrl: coin.imageUrl,
+            url: '',
             rubleExchangeRate: coin.rubleExchangeRate,
             description: coin.description));
       }
@@ -248,6 +250,7 @@ class WalletRepository {
       final emeraldCoin = TokenData(
           amount: obscured ? "****" : emeraldInGameBalance.toStringAsFixed(5),
           id: "0",
+          url: '',
           imageUrl:
               'https://w7.pngwing.com/pngs/967/250/png-transparent-z-letter-font-letter-z-miscellaneous-angle-english.png',
           name: "Z-BOOM",

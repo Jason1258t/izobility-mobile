@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/feature/wallet/ui/widgets/button_social_media_link.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/transaction_container.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
@@ -12,7 +14,6 @@ import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
-
 
 class CurrencyWalletScreen extends StatefulWidget {
   const CurrencyWalletScreen(
@@ -48,7 +49,6 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                 isBack: true,
                 title: widget.token.name,
                 color: Colors.white,
-                isInfo: true,
                 onTapRightIcon: () {
                   context.push(RouteNames.walletInfoCurrency,
                       extra: widget.token);
@@ -128,13 +128,6 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                                   },
                                 )
                               : Container(),
-                          // WalletAction(
-                          //   title: localize.buy,
-                          //   icon: 'assets/icons/buy.svg',
-                          //   onTap: () {
-                          //     context.push(RouteNames.walletBuyCurrency);
-                          //   },
-                          // ),
                           WalletAction(
                             title: localize.swap,
                             icon: 'assets/icons/swap.svg',
@@ -164,20 +157,69 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                 ),
               ),
               SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  sliver:
-                  SliverList(
-                    delegate: SliverChildListDelegate(['1', '2', '3']
-                        .map((item) => WalletTransactionContainer(
-                              title: 'Перевод',
-                              onTap: () {},
-                              prise: walletRepository.obscured ? AppStrings.obscuredText :'+ 0,29 USDT',
-                              address: 'asdfasdfasdf',
-                              isAddition: true,
-                            ))
-                        .toList()),
-                  )
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        localize.description,
+                        style: AppTypography.font16w400
+                            .copyWith(color: AppColors.grey600),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        widget.token.description,
+                        style: AppTypography.font14w400
+                            .copyWith(color: Colors.black),
+                      ),
+                    ],
                   ),
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: Container(
+                    color: AppColors.purpleBcg,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          localize.contract,
+                          style: AppTypography.font16w400
+                              .copyWith(color: AppColors.grey600),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Wrap(
+                          direction: Axis.horizontal,
+                          alignment: WrapAlignment.spaceBetween,
+                          runAlignment: WrapAlignment.start,
+                          runSpacing: 10,
+                          children: [
+                            ButtonSocialMediaLink(
+                              text: "Сайт",
+                              onTap: () {
+                                context
+                                    .read<ProfileLinksCubit>()
+                                    .loadLink(widget.token.url);
+                              },
+                            ),
+                            ButtonSocialMediaLink(
+                              text: "BSC scan",
+                              onTap: () {},
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

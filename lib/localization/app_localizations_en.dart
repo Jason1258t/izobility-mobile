@@ -251,7 +251,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get new_ => 'New';
 
   @override
-  String get contract => 'Contract';
+  String get contract => 'Contacts';
 
   @override
   String get cards => 'Cards';

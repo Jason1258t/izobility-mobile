@@ -590,7 +590,7 @@ abstract class AppLocalizations {
   /// No description provided for @contract.
   ///
   /// In en, this message translates to:
-  /// **'Contract'**
+  /// **'Contacts'**
   String get contract;
 
   /// No description provided for @cards.

@@ -22,6 +22,7 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -250,10 +251,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             text: localize.social_net_em,
                           ),
                           ProfileActionTile(
-                            onTap: () {
+                            onTap: () async{
                               context
                                   .read<ProfileLinksCubit>()
                                   .loadLink(urlTikTOk);
+
+                              await launchUrl(Uri.parse(urlTikTOk));
                             },
                             label: 'TikTok',
                             iconPath: 'assets/icons/tiktok.svg',
