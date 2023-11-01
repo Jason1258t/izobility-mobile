@@ -57,6 +57,7 @@ class _CustomButtonState extends State<CustomButton> {
         child: TextButton(
             onPressed: widget.isActive ? widget.onTap : () {},
             style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
                 backgroundColor: widget.gradient == null
                     ? widget.isActive
                         ? widget.color

@@ -4,9 +4,12 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 
 class ButtonSocialMediaLink extends StatelessWidget {
   final String text;
+  final Function() onTap;
 
   const ButtonSocialMediaLink({
-    super.key, required this.text,
+    super.key,
+    required this.text,
+    required this.onTap,
   });
 
   @override
@@ -15,7 +18,7 @@ class ButtonSocialMediaLink extends StatelessWidget {
 
     return InkWell(
       borderRadius: BorderRadius.circular(100),
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(

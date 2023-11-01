@@ -34,10 +34,10 @@ class _BurseScreenState extends State<BurseScreen>
     final walletRepository = context.read<WalletRepository>();
 
     walletRepository.getBurseGeneralItemList(
-        20, walletRepository.burseGeneralCurrentPageIndex);
+        50, walletRepository.burseGeneralCurrentPageIndex);
 
     walletRepository.getBurseMyItemList(
-        500, walletRepository.burseMyCurrentPageIndex);
+        50, walletRepository.burseMyCurrentPageIndex);
 
     scrollController.addListener(() async {
       if (scrollController.position.atEdge) {
@@ -48,13 +48,13 @@ class _BurseScreenState extends State<BurseScreen>
           if (currentScroll >= maxScroll * 0.96 || currentScroll == 0) {
             print("BURSE PAGE UPPED");
             walletRepository.getBurseGeneralItemList(
-                20, walletRepository.burseGeneralCurrentPageIndex + 1);
+                50, walletRepository.burseGeneralCurrentPageIndex + 1);
           }
         } else {
           if (currentScroll >= maxScroll * 0.96 || currentScroll == 0) {
             print("MY BURSE PAGE UPPED");
             walletRepository.getBurseMyItemList(
-                20, walletRepository.burseMyCurrentPageIndex + 1);
+                50, walletRepository.burseMyCurrentPageIndex + 1);
           }
         }
       }
@@ -205,9 +205,9 @@ class _BurseScreenState extends State<BurseScreen>
             CupertinoSliverRefreshControl(
               onRefresh: () {
                 if (isBurseOrMyOrder == 0) {
-                  return walletRepository.getBurseGeneralItemList(20, 0);
+                  return walletRepository.getBurseGeneralItemList(50, 0);
                 } else {
-                  return walletRepository.getBurseMyItemList(500, 0);
+                  return walletRepository.getBurseMyItemList(50, 0);
                 }
               },
             ),

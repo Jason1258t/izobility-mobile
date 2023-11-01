@@ -17,7 +17,6 @@ class AppTypography {
     letterSpacing: 0.21,
   );
   static final font14w700 = _font.copyWith(
-    color: Colors.white,
     fontSize: 14,
     fontWeight: FontWeight.w700,
   );

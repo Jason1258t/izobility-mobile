@@ -61,13 +61,14 @@ abstract class RouteNames {
   static const String profilePhone = '/profile/phone';
   static const String profilePhoneConfirm = '/profile/phone/confirm';
   static const String profilePrivacyPolicy = "/profile/privacy_policy";
+  static const String profileReferal = "/pofile/referal";
 
   static const String notifications = '/notifications';
 
   static const String story = '/story';
 
   static const String main = '/main';
-  static const String mainQr = '/main/qr';
+  static const String mainQr = '/qr';
 
   static const String basket = '/basket';
 
@@ -82,25 +83,7 @@ abstract class RouteNames {
   static const String store = '/store';
   static const String storeProduct = '/store/:id';
   static const String storePromo = '/store/promo';
+  static const String storeUserProducts = '/store/user/products';
 
   static const String develop = '/develop';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

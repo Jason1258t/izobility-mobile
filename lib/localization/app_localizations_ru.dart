@@ -251,7 +251,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get new_ => 'Новый';
 
   @override
-  String get contract => 'контракт';
+  String get contract => 'Контакты';
 
   @override
   String get cards => 'Карты';

@@ -11,7 +11,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   NotificationsCubit(this._notificationsRepository)
       : super(NotificationsInitial());
 
-  void loadNotifications() async {
+  Future<void> loadNotifications() async {
     emit(NotificationsWaitingState());
     try {
       await _notificationsRepository.loadNotificationList();

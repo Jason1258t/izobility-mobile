@@ -10,6 +10,7 @@ class ChipCategoryCard extends StatefulWidget {
   final String text;
   final bool isActive;
   final int index;
+
   const ChipCategoryCard(
       {super.key,
       required this.text,
@@ -25,11 +26,11 @@ class _ChipCategoryCardState extends State<ChipCategoryCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<NotificationsCubit>().changeFilterCategory(widget.index);
-        log(context
-            .read<NotificationsRepository>()
-            .currentFilterIndex
-            .toString());
+        // context.read<NotificationsCubit>().changeFilterCategory(widget.index);
+        // log(context
+        //     .read<NotificationsRepository>()
+        //     .currentFilterIndex
+        //     .toString());
       },
       child: Container(
         alignment: Alignment.center,

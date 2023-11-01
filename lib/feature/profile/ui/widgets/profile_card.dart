@@ -137,7 +137,6 @@ class _ProfileCardState extends State<ProfileCard> {
                               );
                       } else if (state is ProfileWaiting) {
                         return const Center(
-                          child: CircularProgressIndicator(),
                         );
                       }
 
@@ -153,7 +152,6 @@ class _ProfileCardState extends State<ProfileCard> {
             builder: (context, state) {
               if (state is ProfileWaiting) {
                 return const Center(
-                  child: CircularProgressIndicator.adaptive(),
                 );
               } else if (state is ProfileSuccessState) {
                 final user = context.read<UserRepository>().user;

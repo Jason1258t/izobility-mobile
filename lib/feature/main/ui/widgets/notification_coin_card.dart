@@ -1,17 +1,18 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:izobility_mobile/feature/main/ui/widgets/notification_card_container.dart.dart';
+// import 'package:izobility_mobile/models/notification.dart';
 // import 'package:izobility_mobile/utils/logic/enums.dart';
 // import 'package:izobility_mobile/utils/utils.dart';
-
-
-
+//
+//
+//
 // class NotificationCoinCard extends StatelessWidget {
-//   // final NotificationCoinModel data;
+//   final Notificatian data;
 //   final NotificationPositionEnum pose;
-
+//
 //   const NotificationCoinCard({super.key, required this.data, required this.pose});
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return NotificationCardContainer(
@@ -33,7 +34,7 @@
 //                 ),
 //               ),
 //               Text(
-//                 "${data.time.hour}:${data.time.minute}",
+//                 "${data.dateCreate.hour}:${data.dateCreate.minute}",
 //                 style: AppTypography.font12w400
 //                     .copyWith(color: AppColors.grey600),
 //               )

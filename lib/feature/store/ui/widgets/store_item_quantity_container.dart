@@ -14,7 +14,7 @@ class StoreItemQuantityContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Осталось ${itemsLost} из ${itemsAll}",
+      "Осталось ${itemsLost}",
       style: AppTypography.font12w400.copyWith(color: AppColors.grey500),
     );
   }

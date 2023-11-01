@@ -66,6 +66,15 @@ Map<String, CoinTransferModel> coinsTransferData = {
           "moneta/fcc5ac35a6a7e4650e22ed18ce9de54a.jpg",
       name: "MOST Token",
       rubleExchangeRate: "0"),
+  "31": CoinTransferModel(
+      abiName: "unft_abi",
+      contract: Contracts.unft,
+      codename: "UNFT",
+      description: "",
+      imageUrl: "https://api.z-boom.ru/media/" +
+          "moneta/e17532f5e26d499bbbc5bf4238c959cc.jpg",
+      name: "Master NFT",
+      rubleExchangeRate: "0"),
 };
 
 class CoinTransferModel {

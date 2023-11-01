@@ -45,12 +45,16 @@ class AppColors {
   static const purpleBcg = Color(0xFFF6F6F6);
   static const notificationRed = Color(0xFFFF3B30);
   static const red400 = Color(0xFFFF6C64);
+  static const green600 = Color(0xff00B505);
 
+  static const grey200 = Color(0xffE2E2E2);
   static const grey700 = Color(0xFF333333);
   static const grey500 = Color(0xff757575);
   static const backgroundGrey = Color(0xffeeeeee);
   static const purple600 = Color(0xFF7630F7);
   static const purple200 = Color(0xFFDAD4FF);
   static const purple400 = Color(0xFFA285FF);
-  static const secondarryDefaultBackground = Color(0xff1F1F1F);
+  static const grey800 = Color(0xff1F1F1F);
+    static const grey400 = Color(0xffAFAFAF);
+
 }

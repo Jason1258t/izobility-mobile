@@ -29,4 +29,16 @@ abstract class AppGradients {
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [Colors.black, AppColors.switcherBackground]);
+
+  static const shrek = LinearGradient(
+    end: Alignment(0.98, -0.18),
+    begin: Alignment(-0.98, 0.18),
+    colors: [Color(0xFF2F9B67), Color(0xFF0D4128)],
+  );
+
+  static const accentGreen = LinearGradient(
+    begin: Alignment(0.71, -0.71),
+    end: Alignment(-0.71, 0.71),
+    colors: [Color(0xFF4EFDC6),Color(0xFF1CFE15),],
+  );
 }

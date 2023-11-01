@@ -27,10 +27,12 @@ import 'package:izobility_mobile/feature/profile/ui/pages/profile_language.dart'
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_confirm.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_phone_edit.dart';
 import 'package:izobility_mobile/feature/profile/ui/pages/profile_privacy_policy.dart';
+import 'package:izobility_mobile/feature/profile/ui/pages/profile_referal.dart';
 import 'package:izobility_mobile/feature/splash/splash.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/product_page.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/promo_screen.dart';
 import 'package:izobility_mobile/feature/store/ui/pages/store_screen.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/store_user_products_state.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_buy_order_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_choose_coin_screen.dart';
 import 'package:izobility_mobile/feature/wallet/ui/pages/burse/burse_create_order_screen.dart';
@@ -143,7 +145,9 @@ class CustomGoRoutes {
           builder: (context, state) => const PasswordRecoveryEmailScreen()),
       GoRoute(
           path: RouteNames.mainQr,
-          builder: (context, state) => const MainQrScreen()),
+          builder: (context, state) =>  MainQrScreen(
+            onFound: (state.extra as Map<String, dynamic>)['onFound'] as Function,
+          )),
       GoRoute(
           path: RouteNames.authPasswordRecoveryVerifyCode,
           builder: (context, state) => const VerifyRecoveryCodeScreen()),
@@ -166,14 +170,17 @@ class CustomGoRoutes {
           path: RouteNames.profilePhone,
           builder: (context, state) => const ProfilePhoneEdit()),
       GoRoute(
+          path: RouteNames.profileReferal,
+          builder: (context, state) => const ProfileReferalScreen()),
+      GoRoute(
           path: RouteNames.profileLanguage,
           builder: (context, state) => const ProfileLanguageScreen()),
       GoRoute(
           path: RouteNames.notifications,
           builder: (context, state) => const NotificationsScreen()),
       GoRoute(
-          path: RouteNames.storePromo,
-          builder: (context, state) => const PromoScreen()),
+          path: RouteNames.storeUserProducts,
+          builder: (context, state) => const StoreUserProductsScreen()),
       GoRoute(
           path: RouteNames.walletChainGameTransfer,
           builder: (context, state) =>
@@ -264,9 +271,9 @@ class CustomGoRoutes {
           builder: (context, state) => const BuyCurrencyScreen()),
       GoRoute(
           path: RouteNames.walletBurseMyOrder,
-          builder: (context, state) =>  BurseMyOrdersScreen(
-            order: state.extra as BurseOrderModel,
-          )),
+          builder: (context, state) => BurseMyOrdersScreen(
+                order: state.extra as BurseOrderModel,
+              )),
       GoRoute(
           path: RouteNames.cards,
           builder: (context, state) => const CardsScreen()),

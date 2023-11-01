@@ -9,6 +9,8 @@ import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_squar
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
+import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
+import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/services/remote/constants/api_constants.dart';
@@ -17,8 +19,10 @@ import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -63,8 +67,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               isBack: false,
             ),
             body: RefreshIndicator(
-              onRefresh: () {
-                return context.read<UserRepository>().loadUserDetailsInfo();
+              onRefresh: () async {
+                await context.read<UserRepository>().loadUserDetailsInfo();
+                await context.read<StoreRepository>().getUserProductList();
               },
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -79,9 +84,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           BlocBuilder<ProfileCubit, ProfileState>(
                             builder: (context, state) {
-                              if (context.read<UserRepository>().user.details?.phone !=
+                              if (context
+                                          .read<UserRepository>()
+                                          .user
+                                          .details
+                                          ?.phone !=
                                       null &&
-                                  context.read<UserRepository>().user.details?.phone !=
+                                  context
+                                          .read<UserRepository>()
+                                          .user
+                                          .details
+                                          ?.phone !=
                                       "") {
                                 return Container();
                               } else {
@@ -140,9 +153,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               ProfileActionContainer(
                                 label: localize.abstract_programm,
-                                description: "Алмазный статус",
+                                description: "",
                                 onTap: () {
-                                  context.push(RouteNames.develop);
+                                  context.push(RouteNames.profileReferal);
                                 },
                               ),
                               ProfileActionContainer(
@@ -156,11 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 label: localize.inventory,
                                 description: '2056 предметов',
                                 onTap: () {
-                                  // context.push(RouteNames.develop);
-
-                                  final photo =
-                                      "https://api.z-boom.ru/user/photo/${context.read<UserRepository>().user.id}";
-                                  print(photo);
+                                  context.push(RouteNames.storeUserProducts);
                                 },
                               ),
                               ProfileActionContainer(
@@ -183,6 +192,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Container(
+                            padding: const EdgeInsets.only(left: 16, right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Мои покупки",
+                                  style: AppTypography.font16w400
+                                      .copyWith(color: AppColors.textPrimary),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      context
+                                          .push(RouteNames.storeUserProducts);
+                                    },
+                                    icon: const Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      size: 16,
+                                      color: Colors.black,
+                                    ))
+                              ],
+                            ),
+                          ),
+                          BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
+                            builder: (context, state) {
+                              if (state is StoreUserItemsLoading) {
+                                return buildLoadingUserProducts();
+                              } else if (state is StoreUserItemsSuccess) {
+                                if (context
+                                    .read<StoreRepository>()
+                                    .userProductList
+                                    .isNotEmpty) {
+                                  return buildLoadedUserProducts();
+                                }
+                              }
+
+                              return Container();
+                            },
+                          ),
                           PorfileBlocLabel(
                             text: localize.account,
                           ),
@@ -204,23 +252,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             text: localize.social_net_em,
                           ),
                           ProfileActionTile(
-                            onTap: () {
+                            onTap: () async{
                               context
                                   .read<ProfileLinksCubit>()
                                   .loadLink(urlTikTOk);
+
+                              await launchUrl(Uri.parse(urlTikTOk));
                             },
                             label: 'TikTok',
                             iconPath: 'assets/icons/tiktok.svg',
                           ),
-                          // ProfileActionTile(
-                          //   onTap: () {
-                          //     context
-                          //         .read<ProfileLinksCubit>()
-                          //         .loadLink(urlInstagram);
-                          //   },
-                          //   label: 'Intagram',
-                          //   iconPath: 'assets/icons/instagram.svg',
-                          // ),
                           ProfileActionTile(
                             onTap: () {
                               context
@@ -274,6 +315,69 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             )),
+      ),
+    );
+  }
+
+  Widget buildLoadedUserProducts() {
+    final storeRepository = context.read<StoreRepository>();
+
+    return Container(
+      height: 190,
+      child: ListView.builder(
+        itemCount: storeRepository.userProductList.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+            constraints: const BoxConstraints(maxWidth: 250),
+            width: MediaQuery.sizeOf(context).width * 0.38,
+            margin: const EdgeInsets.only(left: 16),
+            height: 190,
+            child: Material(
+              child: Ink.image(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  storeRepository.userProductList[index].product.images[0],
+                ),
+                child: InkWell(
+                  onTap: () {
+                    AppBottomSheets.showProductInfo(
+                        context, storeRepository.userProductList[index]);
+                  },
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget buildLoadingUserProducts() {
+    return Container(
+      height: 190,
+      child: ListView.separated(
+        itemCount: 5,
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) => const SizedBox(
+          width: 8,
+        ),
+        itemBuilder: (context, index) {
+          return Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+            constraints: const BoxConstraints(maxWidth: 250),
+            width: MediaQuery.sizeOf(context).width * 0.38,
+            height: 190,
+            child: Container(
+              decoration: BoxDecoration(
+                  gradient: AppGradients.gradientGreenWhite,
+                  borderRadius: BorderRadius.circular(16)),
+            ),
+          );
+        },
       ),
     );
   }

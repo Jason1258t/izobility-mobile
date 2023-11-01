@@ -1,14 +1,14 @@
-class NotificationData {
+class Notificatian {
   final int id;
   final int userId;
-  final String dateCreate;
   final String header;
   final String message;
+  final DateTime dateCreate;
   final int type;
   final int isReaded;
   final String time;
 
-  NotificationData({
+  Notificatian({
     required this.id,
     required this.userId,
     required this.dateCreate,
@@ -19,16 +19,16 @@ class NotificationData {
     required this.time,
   });
 
-  factory NotificationData.fromJson(Map<String, dynamic> json) {
-    return NotificationData(
+  factory Notificatian.fromJson(Map<String, dynamic> json, DateTime d) {
+    return Notificatian(
       id: json['id'] as int,
       userId: json['user_id'] as int,
-      dateCreate: json['date_create'] as String,
       header: json['header'] as String,
       message: json['message'] as String,
       type: json['type'] as int,
       isReaded: json['is_readed'] as int,
       time: json['time'] as String,
+      dateCreate: d,
     );
   }
 

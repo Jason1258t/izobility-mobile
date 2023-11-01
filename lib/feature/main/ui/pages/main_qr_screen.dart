@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
-import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class MainQrScreen extends StatefulWidget {
-  const MainQrScreen({Key? key}) : super(key: key);
+  final Function onFound;
+
+  const MainQrScreen({Key? key, required this.onFound}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MainQrScreenState();
@@ -48,9 +48,7 @@ class _MainQrScreenState extends State<MainQrScreen> {
                   this.controller = controller;
                   controller.stopCamera();
                   log("QR CODE ${data.code.toString()}");
-                  context
-                      .read<PromoCodeCubit>()
-                      .activateCode(data.code.toString());
+                  widget.onFound(data);
                   context.pop();
                 });
               },
@@ -65,12 +63,10 @@ class _MainQrScreenState extends State<MainQrScreen> {
                   child: Container(
                       width: 28,
                       height: 28,
-                      
                       alignment: Alignment.centerRight,
                       decoration: const BoxDecoration(
                           color: AppColors.primary, shape: BoxShape.circle),
                       child: const Icon(
-
                         Icons.arrow_back_ios,
                         color: Colors.white,
                         size: 20,

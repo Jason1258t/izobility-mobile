@@ -8,4 +8,6 @@ class Contracts {
   static const most = "0x48c6b2a82a21230347b70ceada249208c0920412";
 
   static const tidex = "0x317eb4ad9cfaC6232f0046831322E895507bcBeb";
+
+  static const unft = "0x1dA151E28eA351Ba12d266Fbf6B4CD0727611AD8";
 }

@@ -51,4 +51,8 @@ class User with ApiHandler {
   Future<void> updatePhoto(String photoInBase64) async {
     await post(ApiEndpoints.userUpdatePhoto, data: {"image": photoInBase64});
   }
+
+  Future<dynamic> getReferalList() async {
+    return get(ApiEndpoints.userReferals);
+  }
 }

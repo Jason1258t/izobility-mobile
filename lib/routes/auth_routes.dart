@@ -5,5 +5,6 @@ final authRoutes = [
   RouteNames.authEnterPin,
   RouteNames.authCreatePin,
   RouteNames.authCreateName,
-  RouteNames.authEnterPassword
+  RouteNames.authEnterPassword,
+  RouteNames.mainQr
 ];

@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
-import 'package:izobility_mobile/models/market_item.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:meta/meta.dart';
 
