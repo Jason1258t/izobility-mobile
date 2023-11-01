@@ -21,6 +21,8 @@ class StoreScreen extends StatefulWidget {
 
 class _StoreScreenState extends State<StoreScreen> {
   late ScrollController scrollController = ScrollController();
+  int currentCategory = 0;
+
   @override
   void initState() {
     final storeRepository = context.read<StoreRepository>();
@@ -42,24 +44,12 @@ class _StoreScreenState extends State<StoreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final sizeOf = MediaQuery.sizeOf(context);
-    final storyRepository = RepositoryProvider.of<StoreRepository>(context);
-
+    final size = MediaQuery.sizeOf(context);
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
     final localize = AppLocalizations.of(context)!;
 
-    // String getStringCategoryByEnum(CategoryEnum categoryEnum) {
-    //   switch (categoryEnum) {
-    //     case CategoryEnum.products:
-    //       return localize.product_and_nft;
-    //     case CategoryEnum.promos:
-    //       return localize.promo_codes;
-    //     case CategoryEnum.gifts:
-    //       return localize.gifts;
-    //   }
-    // }
-
     return DefaultTabController(
-      length: 6,
+      length: 4,
       child: HomeScaffold(
         appBar: CustomAppBar(
           text: localize.shop,
@@ -70,41 +60,44 @@ class _StoreScreenState extends State<StoreScreen> {
             unselectedLabelColor: AppColors.grey400,
             labelColor: AppColors.grey800,
             onTap: (v) {
-
+              setState(() {
+                currentCategory = v;
+              });
             },
             isScrollable: true,
             tabs: [
               Tab(
-                
-                  icon: Text(
-                "Все",
-                style:
-                    AppTypography.font14w700,
+                icon: Text(
+                  "Все",
+                  style: AppTypography.font14w700,
+                ),
               ),
-              ),
-              Tab(
-                  icon: Text("Места",
-                      style: AppTypography.font14w700)),
-              Tab(
-                  icon: Text("События",
-                      style: AppTypography.font14w700)),
-              Tab(
-                  icon: Text("Другое",
-                      style: AppTypography.font14w700)),
+              Tab(icon: Text("Места", style: AppTypography.font14w700)),
+              Tab(icon: Text("События", style: AppTypography.font14w700)),
+              Tab(icon: Text("Другое", style: AppTypography.font14w700)),
             ],
           ),
         ),
         body: RefreshIndicator.adaptive(
           onRefresh: () {
-            storyRepository.setPageNumber(1);
+            storeRepository.setPageNumber(1);
 
-            return storyRepository.getMarketItems();
+            return storeRepository.getMarketItems();
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: BlocBuilder<StoreCubit, StoreState>(
               builder: (context, state) {
-                var shopItems = storyRepository.marketItems;
+                late final shopItems;
+                if (currentCategory != 0) {
+                  shopItems = storeRepository.marketItems
+                      .where((element) =>
+                          element.category == currentCategory.toString())
+                      .toList();
+                } else {
+                  shopItems = storeRepository.marketItems;
+                }
+
                 bool isLoading = state is StoreLoading;
 
                 return CustomScrollView(
