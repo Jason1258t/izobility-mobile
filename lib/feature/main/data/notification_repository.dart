@@ -26,10 +26,10 @@ class NotificationsRepository {
       {required this.apiService, required this.preferences});
 
   Future<dynamic> loadNotificationList() async {
-    notificationsByDates.clear();
-
     final rawNotifications = (await apiService.notifications.loadNotifications()
         as Map<String, dynamic>)['objects'] as Map<String, dynamic>;
+
+    notificationsByDates.clear();
 
     var c = 0;
     rawNotifications.forEach((key, value) {

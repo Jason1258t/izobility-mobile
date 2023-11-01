@@ -18,10 +18,6 @@ class StoreUserProductsScreen extends StatefulWidget {
 }
 
 class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
