@@ -90,15 +90,14 @@ class StoreRepository {
     userProductListStream.add(LoadingStateEnum.loading);
 
     try {
-      List<UserProductModel> tempList = [];
-
       final response = (await apiService.shop.getUserProductList())['objects'];
 
+      userProductList.clear();
+
       for (var json in response) {
-        tempList.add(UserProductModel.fromJson(json));
+        userProductList.add(UserProductModel.fromJson(json));
       }
 
-      userProductList = tempList;
       userProductListStream.add(LoadingStateEnum.success);
     } catch (ex, stacktrace) {
       print(stacktrace);
