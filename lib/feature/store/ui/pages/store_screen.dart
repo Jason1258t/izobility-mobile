@@ -22,6 +22,7 @@ class StoreScreen extends StatefulWidget {
 
 class _StoreScreenState extends State<StoreScreen> {
   late ScrollController scrollController = ScrollController();
+  int currentCategory = 0;
 
   @override
   void initState() {
@@ -44,29 +45,61 @@ class _StoreScreenState extends State<StoreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final sizeOf = MediaQuery.sizeOf(context);
-    final storyRepository = RepositoryProvider.of<StoreRepository>(context);
-
+    final size = MediaQuery.sizeOf(context);
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
     final localize = AppLocalizations.of(context)!;
 
-    return HomeScaffold(
-      appBar: CustomAppBar(
-        text: localize.shop,
-        context: context,
-        isBack: false,
-      ),
-      body: RefreshIndicator.adaptive(
-        onRefresh: () {
-          storyRepository.setPageNumber(1);
+    return DefaultTabController(
+      length: 4,
+      child: HomeScaffold(
+        appBar: CustomAppBar(
+          text: localize.shop,
+          context: context,
+          isBack: false,
+          bottom: TabBar(
+            indicatorColor: AppColors.grey800,
+            unselectedLabelColor: AppColors.grey400,
+            labelColor: AppColors.grey800,
+            onTap: (v) {
+              setState(() {
+                currentCategory = v;
+              });
+            },
+            isScrollable: true,
+            tabs: [
+              Tab(
+                icon: Text(
+                  "Все",
+                  style: AppTypography.font14w700,
+                ),
+              ),
+              Tab(icon: Text("Места", style: AppTypography.font14w700)),
+              Tab(icon: Text("События", style: AppTypography.font14w700)),
+              Tab(icon: Text("Другое", style: AppTypography.font14w700)),
+            ],
+          ),
+        ),
+        body: RefreshIndicator.adaptive(
+          onRefresh: () {
+            storeRepository.setPageNumber(1);
 
-          return storyRepository.getMarketItems();
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: BlocBuilder<StoreCubit, StoreState>(
-            builder: (context, state) {
-              var shopItems = storyRepository.marketItems;
-              bool isLoading = state is StoreLoading;
+            return storeRepository.getMarketItems();
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: BlocBuilder<StoreCubit, StoreState>(
+              builder: (context, state) {
+                late final shopItems;
+                if (currentCategory != 0) {
+                  shopItems = storeRepository.marketItems
+                      .where((element) =>
+                          element.category == currentCategory.toString())
+                      .toList();
+                } else {
+                  shopItems = storeRepository.marketItems;
+                }
+
+                bool isLoading = state is StoreLoading;
 
               return CustomScrollView(
                   controller: scrollController,

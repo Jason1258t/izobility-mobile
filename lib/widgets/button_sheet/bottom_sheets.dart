@@ -157,7 +157,7 @@ class AppBottomSheets {
                     height: 8,
                   ),
                   CustomButton(
-                      color: AppColors.secondarryDefaultBackground,
+                      color: AppColors.grey800,
                       text: "Закрыть",
                       onTap: () {
                         context.pop();
@@ -253,7 +253,9 @@ class AppBottomSheets {
                         ),
                         InkWell(
                             onTap: () {
-                              Clipboard.setData(ClipboardData(text: "${userProduct.id}-${userProduct.token}"));
+                              Clipboard.setData(ClipboardData(
+                                  text:
+                                      "${userProduct.id}-${userProduct.token}"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(CustomSnackBar.snackBarCopied);
                             },
@@ -268,7 +270,7 @@ class AppBottomSheets {
                     height: 32,
                   ),
                   CustomButton(
-                      color: AppColors.secondarryDefaultBackground,
+                      color: AppColors.grey800,
                       text: "Закрыть",
                       onTap: () {
                         context.pop();

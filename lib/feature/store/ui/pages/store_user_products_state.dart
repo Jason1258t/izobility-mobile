@@ -48,13 +48,19 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
                     child: CircularProgressIndicator.adaptive(),
                   );
                 } else if (state is StoreUserItemsSuccess) {
-                  return Column(
+                  if (context.read<StoreRepository>().userProductList.isEmpty) {
+                    return Text("У вас еще нет покупок! Исправляем :)");
+                  }else{
+                    return Column(
                     children: context
                         .read<StoreRepository>()
                         .userProductList
                         .map((e) => UserProductItemWidget(userProduct: e))
                         .toList(),
                   );
+                  }
+
+                  
                 }
                 return Container();
               },

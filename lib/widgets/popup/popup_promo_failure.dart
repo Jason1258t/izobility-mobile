@@ -40,9 +40,7 @@ class _PopupPromoFailureState extends State<PopupPromoFailure> {
           width: MediaQuery.sizeOf(context).width - 32,
           constraints: const BoxConstraints(maxWidth: 500),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16)
-          ),
+              color: Colors.white, borderRadius: BorderRadius.circular(16)),
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -57,14 +55,15 @@ class _PopupPromoFailureState extends State<PopupPromoFailure> {
               Text(
                 "C этим промокодом что-то не так",
                 textAlign: TextAlign.center,
-                style: AppTypography.font18w700.copyWith(color: AppColors.grey600),
+                style:
+                    AppTypography.font18w700.copyWith(color: AppColors.grey600),
               ),
               const SizedBox(
                 height: 48,
               ),
               CustomButton(
-                withBorder: false,
-                color: AppColors.secondarryDefaultBackground,
+                  withBorder: false,
+                  color: AppColors.grey800,
                   text: "Подтвердить",
                   onTap: () {
                     context.pop();
