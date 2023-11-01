@@ -236,6 +236,7 @@ class AppBottomSheets {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Ваш код',
