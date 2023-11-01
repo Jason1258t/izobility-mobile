@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
+import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/feature/store/ui/pages/store_user_products_state.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
@@ -105,68 +109,20 @@ class _StoreScreenState extends State<StoreScreen> {
                           parent: BouncingScrollPhysics()),
                       slivers: [
                         const SliverToBoxAdapter(
-                          child: SizedBox(height: 16,),
-                        ),
-                        SliverToBoxAdapter(
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            height: 145,
-                            decoration: BoxDecoration(
-                              gradient: AppGradients.shrek,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      width: sizeOf.width - 200,
-                                      child: Text(
-                                        'Ваши товары и все отстальное',
-                                        style: AppTypography.font20w700,
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 4),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            gradient: AppGradients.accentGreen),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(
-                                              "Получить",
-                                              style: AppTypography.font14w700
-                                                  .copyWith(
-                                                      color: Colors.black),
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.black,
-                                              size: 14,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Image.asset(
-                                  'assets/images/shopping_cart.png',
-                                ),
-                              ],
-                            ),
+                          child: SizedBox(
+                            height: 16,
                           ),
+                        ),
+                        BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
+                          builder: (context, state) {
+                            if (state is StoreUserItemsSuccess) {
+                              if (storeRepository.userProductList.isNotEmpty) {
+                                return buildGetUserItemsBanner(sizeOf);
+                              }
+                            }
+
+                            return Container();
+                          },
                         ),
                         const SliverToBoxAdapter(
                           child: SizedBox(
@@ -200,5 +156,67 @@ class _StoreScreenState extends State<StoreScreen> {
             ),
           ),
         ));
+  }
+
+  SliverToBoxAdapter buildGetUserItemsBanner(Size sizeOf) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        height: 145,
+        decoration: BoxDecoration(
+          gradient: AppGradients.shrek,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: sizeOf.width - 200,
+                  child: Text(
+                    'Ваши товары и все отстальное',
+                    style: AppTypography.font20w700,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    context.go(RouteNames.profile);
+                  },
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        gradient: AppGradients.accentGreen),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          "Получить",
+                          style: AppTypography.font14w700
+                              .copyWith(color: Colors.black),
+                        ),
+                        const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.black,
+                          size: 14,
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Image.asset(
+              'assets/images/shopping_cart.png',
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
