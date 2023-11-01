@@ -40,7 +40,7 @@ class _GamesScreenState extends State<GamesScreen> {
                   style: AppTypography.font16w700.copyWith(color: Colors.black),
                 ),
               ),
-         
+
               SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverToBoxAdapter(

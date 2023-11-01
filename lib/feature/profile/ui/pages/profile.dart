@@ -322,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget buildLoadedUserProducts() {
     final storeRepository = context.read<StoreRepository>();
 
-    return Container(
+    return SizedBox(
       height: 190,
       child: ListView.builder(
         itemCount: storeRepository.userProductList.length,
@@ -356,7 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget buildLoadingUserProducts() {
-    return Container(
+    return SizedBox(
       height: 190,
       child: ListView.separated(
         itemCount: 5,

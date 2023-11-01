@@ -31,20 +31,22 @@ class MainScreenRepository {
 
   Future getStories() async {
     final res = await apiService.news.getNews();
+
     storiesList.clear();
+
     for (int i = 0; i < res.length; i++) {
       storiesList.add(Story.fromJson(json: res[i], index: i));
     }
   }
   Future getMarketItems() async {
     final res = await apiService.shop.getLimitedItems(10, 0);
+
     marketItems.clear();
+
     for (int i = 0; i < res.length; i++) {
       try{
         marketItems.add(MarketItemModel.fromJson(res[i]));
-      }catch (ex){
-
-      }
+      }catch (ex){}
     }
   }
 }

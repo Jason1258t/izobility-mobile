@@ -19,7 +19,7 @@ class StoreRepository {
 
   List<MarketItemModel> marketItems = [];
   List<dynamic> giftsList = [];
-  List<dynamic> promocodeList = [];
+  List<dynamic> promoCodeList = [];
 
   int pageNumber = 1;
 
@@ -48,8 +48,9 @@ class StoreRepository {
       for (int i = 0; i < res.length; i++) {
         try {
           marketItems.add(MarketItemModel.fromJson(res[i]));
-        } catch (ex) {
+        } catch (ex, stackTrace) {
           print(ex);
+          print(stackTrace);
         }
       }
 
@@ -62,7 +63,7 @@ class StoreRepository {
   Future<MarketItemModel?> getMarketItemInfoById(int id) async {
     try {
       final response = await apiService.shop.getMarketItemInfoById(id);
-      print(response);
+
       final MarketItemModel marketItem = MarketItemModel.fromJson(response);
 
       return marketItem;
@@ -89,16 +90,15 @@ class StoreRepository {
     userProductListStream.add(LoadingStateEnum.loading);
 
     try {
-      userProductList.clear();
+      List<UserProductModel> tempList = [];
 
-      final List<UserProductModel> currentUserProductList = [];
-      final  response = (await apiService.shop.getUserProductList())['objects'];
+      final response = (await apiService.shop.getUserProductList())['objects'];
 
       for (var json in response) {
-        currentUserProductList.add(UserProductModel.fromJson(json));
+        tempList.add(UserProductModel.fromJson(json));
       }
 
-      userProductList = currentUserProductList;
+      userProductList = tempList;
       userProductListStream.add(LoadingStateEnum.success);
     } catch (ex, stacktrace) {
       print(stacktrace);
