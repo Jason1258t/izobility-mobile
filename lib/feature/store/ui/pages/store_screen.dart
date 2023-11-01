@@ -116,6 +116,7 @@ class _StoreScreenState extends State<StoreScreen> {
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   mainAxisAlignment:
@@ -160,10 +161,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                     )
                                   ],
                                 ),
-                                SvgPicture.asset(
-                                  'assets/icons/shopping_cart.svg',
-                                  width: 124,
-                                  height: 124,
+                                Image.asset(
+                                  'assets/images/shopping_cart.png',
                                 ),
                               ],
                             ),

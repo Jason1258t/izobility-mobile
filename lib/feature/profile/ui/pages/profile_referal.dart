@@ -212,77 +212,77 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                   ),
                   child: Stack(
                     children: [
-                      Positioned.fill(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              width: (size.width - 85) * 0.55,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    "Получайте деньги за реферал",
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            width: (size.width - 85) * 0.55,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FittedBox(
+                                  child: Text(
+                                    "Получайте деньги\nза реферал",
                                     style: AppTypography.font20w700.copyWith(
                                         color: Colors.white, letterSpacing: 0),
                                   ),
-                                  CustomButton(
-                                      gradient: AppGradients.accentGreen,
-                                      textColor: Colors.black,
-                                      fontSize: 14,
-                                      height: 28,
-                                      text: "Скопировать код",
-                                      onTap: () {
-                                        Clipboard.setData(ClipboardData(
-                                            text: context
-                                                .read<UserRepository>()
-                                                .user
-                                                .details!
-                                                .referalcode!));
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                                CustomSnackBar.snackBarCopied);
-                                      },
-                                      width: double.infinity),
-                                ],
-                              ),
+                                ),
+                                CustomButton(
+                                    gradient: AppGradients.accentGreen,
+                                    textColor: Colors.black,
+                                    fontSize: 14,
+                                    height: 28,
+                                    text: "Скопировать код",
+                                    onTap: () {
+                                      Clipboard.setData(ClipboardData(
+                                          text: context
+                                              .read<UserRepository>()
+                                              .user
+                                              .details!
+                                              .referalcode!));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                              CustomSnackBar.snackBarCopied);
+                                    },
+                                    width: double.infinity),
+                              ],
                             ),
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 16),
-                              width: (size.width - 85) * 0.4654545454,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/sky_money.png",
-                                    fit: BoxFit.fitHeight,
-                                    height: 96,
-                                  ),
-                                  CustomButton(
-                                      withBorder: false,
-                                      color: Colors.black,
-                                      textColor: Colors.white,
-                                      height: 28,
-                                      text: "Поделиться",
-                                      onTap: () async {
-                                        await Share.share(context
-                                            .read<UserRepository>()
-                                            .user
-                                            .details!
-                                            .referalcode!);
-                                      },
-                                      width: double.infinity),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            width: (size.width - 85) * 0.4654545454,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "assets/images/sky_money.png",
+                                  fit: BoxFit.fitHeight,
+                                  height: 96,
+                                ),
+                                CustomButton(
+                                    withBorder: false,
+                                    color: Colors.black,
+                                    textColor: Colors.white,
+                                    height: 28,
+                                    text: "Поделиться",
+                                    onTap: () async {
+                                      await Share.share(context
+                                          .read<UserRepository>()
+                                          .user
+                                          .details!
+                                          .referalcode!);
+                                    },
+                                    width: double.infinity),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                       Positioned(
                           top: 16,

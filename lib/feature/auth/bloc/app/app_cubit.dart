@@ -29,10 +29,10 @@ class AppCubit extends Cubit<AppState> {
         emit(AppUnAuthState());
       }
       if (event == AppStateEnum.auth) {
-        mainRepository.getPreview();
 
         try {
           await walletRepository.loadEmeraldCoin();
+          mainRepository.getPreview();
           walletRepository.loadGas();
           userRepository.loadUserDetailsInfo();
           storeRepository.getMarketItems();

@@ -60,6 +60,7 @@ class AppBottomSheets {
                           marketItem.coin.imageUrl,
                           width: 36,
                         )),
+                    const SizedBox(width: 5,),
                     Text(
                       "${marketItem.price} ${marketItem.coin.name}",
                       style: AppTypography.font20w700
