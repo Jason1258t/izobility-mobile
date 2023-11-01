@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
-import 'package:izobility_mobile/feature/store/ui/widgets/container_with_text.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -45,154 +43,163 @@ class _StoreScreenState extends State<StoreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+    final sizeOf = MediaQuery.sizeOf(context);
     final storeRepository = RepositoryProvider.of<StoreRepository>(context);
     final localize = AppLocalizations.of(context)!;
 
     return DefaultTabController(
-      length: 4,
-      child: HomeScaffold(
-        appBar: CustomAppBar(
-          text: localize.shop,
-          context: context,
-          isBack: false,
-          bottom: TabBar(
-            indicatorColor: AppColors.grey800,
-            unselectedLabelColor: AppColors.grey400,
-            labelColor: AppColors.grey800,
-            onTap: (v) {
-              setState(() {
-                currentCategory = v;
-              });
-            },
-            isScrollable: true,
-            tabs: [
-              Tab(
-                icon: Text(
-                  "Все",
-                  style: AppTypography.font14w700,
+        length: 4,
+        child: HomeScaffold(
+          appBar: CustomAppBar(
+            text: localize.shop,
+            context: context,
+            isBack: false,
+            bottom: TabBar(
+              indicatorColor: AppColors.grey800,
+              unselectedLabelColor: AppColors.grey400,
+              labelColor: AppColors.grey800,
+              onTap: (v) {
+                setState(() {
+                  currentCategory = v;
+                });
+              },
+              isScrollable: true,
+              tabs: [
+                Tab(
+                  icon: Text(
+                    "Все",
+                    style: AppTypography.font14w700,
+                  ),
                 ),
-              ),
-              Tab(icon: Text("Места", style: AppTypography.font14w700)),
-              Tab(icon: Text("События", style: AppTypography.font14w700)),
-              Tab(icon: Text("Другое", style: AppTypography.font14w700)),
-            ],
+                Tab(icon: Text("Места", style: AppTypography.font14w700)),
+                Tab(icon: Text("События", style: AppTypography.font14w700)),
+                Tab(icon: Text("Другое", style: AppTypography.font14w700)),
+              ],
+            ),
           ),
-        ),
-        body: RefreshIndicator.adaptive(
-          onRefresh: () {
-            storeRepository.setPageNumber(1);
+          body: RefreshIndicator.adaptive(
+            onRefresh: () {
+              storeRepository.setPageNumber(1);
 
-            return storeRepository.getMarketItems();
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: BlocBuilder<StoreCubit, StoreState>(
-              builder: (context, state) {
-                late final shopItems;
-                if (currentCategory != 0) {
-                  shopItems = storeRepository.marketItems
-                      .where((element) =>
-                          element.category == currentCategory.toString())
-                      .toList();
-                } else {
-                  shopItems = storeRepository.marketItems;
-                }
+              return storeRepository.getMarketItems();
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: BlocBuilder<StoreCubit, StoreState>(
+                builder: (context, state) {
+                  late final shopItems;
+                  if (currentCategory != 0) {
+                    shopItems = storeRepository.marketItems
+                        .where((element) =>
+                            element.category == currentCategory.toString())
+                        .toList();
+                  } else {
+                    shopItems = storeRepository.marketItems;
+                  }
 
-                bool isLoading = state is StoreLoading;
+                  bool isLoading = state is StoreLoading;
 
-              return CustomScrollView(
-                  controller: scrollController,
-                  physics: const AlwaysScrollableScrollPhysics(
-                      parent: BouncingScrollPhysics()),
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        height: 145,
-                        decoration: BoxDecoration(
-                          gradient: AppGradients.shrek,
-                          borderRadius: BorderRadius.circular(16),
+                  return CustomScrollView(
+                      controller: scrollController,
+                      physics: const AlwaysScrollableScrollPhysics(
+                          parent: BouncingScrollPhysics()),
+                      slivers: [
+                        const SliverToBoxAdapter(
+                          child: SizedBox(height: 16,),
                         ),
-                        child: Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        SliverToBoxAdapter(
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            height: 145,
+                            decoration: BoxDecoration(
+                              gradient: AppGradients.shrek,
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Row(
                               children: [
-                                SizedBox(
-                                  width: sizeOf.width - 200,
-                                  child: Text(
-                                    'Ваши товары и все отстальное',
-                                    style: AppTypography.font20w700,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                  },
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(100),
-                                        gradient: AppGradients.accentGreen),
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          "Получить",
-                                          style: AppTypography.font14w700
-                                              .copyWith(color: Colors.black),
-                                        ),
-                                        const Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.black,
-                                          size: 14,
-                                        )
-                                      ],
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: sizeOf.width - 200,
+                                      child: Text(
+                                        'Ваши товары и все отстальное',
+                                        style: AppTypography.font20w700,
+                                      ),
                                     ),
-                                  ),
-                                )
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 4),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            gradient: AppGradients.accentGreen),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              "Получить",
+                                              style: AppTypography.font14w700
+                                                  .copyWith(
+                                                      color: Colors.black),
+                                            ),
+                                            const Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.black,
+                                              size: 14,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SvgPicture.asset(
+                                  'assets/icons/shopping_cart.svg',
+                                  width: 124,
+                                  height: 124,
+                                ),
                               ],
                             ),
-                            SvgPicture.asset(
-                              'assets/icons/shopping_cart.svg',
-                              width: 124,
-                              height: 124,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 10,
-                      ),
-                    ),
-                    SliverGrid(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => MarketItem(
-                            marketItem: shopItems[index],
                           ),
-                          childCount: shopItems.length,
                         ),
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            crossAxisSpacing: 8,
-                            maxCrossAxisExtent:
-                                MediaQuery.of(context).size.width / 2,
-                            childAspectRatio: 0.64)),
-                    isLoading
-                        ? const SliverToBoxAdapter(
-                            child: Center(child: CircularProgressIndicator()),
-                          )
-                        : SliverToBoxAdapter(
-                            child: Container(),
-                          )
-                  ]);
-            },
+                        const SliverToBoxAdapter(
+                          child: SizedBox(
+                            height: 10,
+                          ),
+                        ),
+                        SliverGrid(
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) => MarketItem(
+                                marketItem: shopItems[index],
+                              ),
+                              childCount: shopItems.length,
+                            ),
+                            gridDelegate:
+                                SliverGridDelegateWithMaxCrossAxisExtent(
+                                    crossAxisSpacing: 8,
+                                    maxCrossAxisExtent:
+                                        MediaQuery.of(context).size.width / 2,
+                                    childAspectRatio: 0.64)),
+                        isLoading
+                            ? const SliverToBoxAdapter(
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              )
+                            : SliverToBoxAdapter(
+                                child: Container(),
+                              )
+                      ]);
+                },
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
