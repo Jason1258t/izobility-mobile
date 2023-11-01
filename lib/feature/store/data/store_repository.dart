@@ -91,13 +91,13 @@ class StoreRepository {
 
     try {
       final response = (await apiService.shop.getUserProductList())['objects'];
-
-      userProductList.clear();
+      List<UserProductModel> currentUserProductList = [];
 
       for (var json in response) {
-        userProductList.add(UserProductModel.fromJson(json));
+        currentUserProductList.add(UserProductModel.fromJson(json));
       }
 
+      userProductList = currentUserProductList;
       userProductListStream.add(LoadingStateEnum.success);
     } catch (ex, stacktrace) {
       print(stacktrace);
