@@ -267,7 +267,6 @@ class WalletRepository {
 
       activeSwapTockenFrom = coinsInGame[0];
       activeSwapTockenTo = coinsInGame[1];
-
       coinsInGameStream.add(LoadingStateEnum.success);
     } catch (ex) {
       print("cur_ex $ex");
@@ -384,8 +383,6 @@ class WalletRepository {
     final operationList = await apiService.wallet.getCoinOperations(
         walletModel!.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain),
         coinAddress);
-
-    
 
     print("OPERATION LIST---------------- \n  ${operationList}");
   }
