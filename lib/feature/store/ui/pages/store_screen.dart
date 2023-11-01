@@ -121,7 +121,7 @@ class _StoreScreenState extends State<StoreScreen> {
                               }
                             }
 
-                            return Container();
+                            return SliverToBoxAdapter(child: Container());
                           },
                         ),
                         const SliverToBoxAdapter(
