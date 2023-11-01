@@ -11,6 +11,7 @@ class CustomAppBar extends AppBar {
     required bool isBack,
     List<Widget>? actions,
     Color backgroundColor = Colors.white,
+    bottom
   }) : super(
           automaticallyImplyLeading: false,
           surfaceTintColor: Colors.transparent,
@@ -18,6 +19,7 @@ class CustomAppBar extends AppBar {
           backgroundColor: backgroundColor,
           centerTitle: true,
           actions: actions,
+          bottom: bottom,
           leading: isBack
               ? InkWell(
                   onTap: onTap,

@@ -21,7 +21,6 @@ class StoreScreen extends StatefulWidget {
 
 class _StoreScreenState extends State<StoreScreen> {
   late ScrollController scrollController = ScrollController();
-
   @override
   void initState() {
     final storeRepository = context.read<StoreRepository>();
@@ -59,50 +58,82 @@ class _StoreScreenState extends State<StoreScreen> {
     //   }
     // }
 
-    return HomeScaffold(
-      appBar: CustomAppBar(
-        text: localize.shop,
-        context: context,
-        isBack: false,
-      ),
-      body: RefreshIndicator.adaptive(
-        onRefresh: () {
-          storyRepository.setPageNumber(1);
+    return DefaultTabController(
+      length: 6,
+      child: HomeScaffold(
+        appBar: CustomAppBar(
+          text: localize.shop,
+          context: context,
+          isBack: false,
+          bottom: TabBar(
+            indicatorColor: AppColors.grey800,
+            unselectedLabelColor: AppColors.grey400,
+            labelColor: AppColors.grey800,
+            onTap: (v) {
 
-          return storyRepository.getMarketItems();
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: BlocBuilder<StoreCubit, StoreState>(
-            builder: (context, state) {
-              var shopItems = storyRepository.marketItems;
-              bool isLoading = state is StoreLoading;
-
-              return CustomScrollView(
-                  controller: scrollController,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  slivers: [
-                    SliverGrid(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => MarketItem(
-                            marketItem: shopItems[index],
-                          ),
-                          childCount: shopItems.length,
-                        ),
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            crossAxisSpacing: 8,
-                            maxCrossAxisExtent:
-                                MediaQuery.of(context).size.width / 2,
-                            childAspectRatio: 0.64)),
-                    isLoading
-                        ? const SliverToBoxAdapter(
-                            child: Center(child: CircularProgressIndicator()),
-                          )
-                        : SliverToBoxAdapter(
-                            child: Container(),
-                          )
-                  ]);
             },
+            isScrollable: true,
+            tabs: [
+              Tab(
+                
+                  icon: Text(
+                "Все",
+                style:
+                    AppTypography.font14w700,
+              ),
+              ),
+              Tab(
+                  icon: Text("Места",
+                      style: AppTypography.font14w700)),
+              Tab(
+                  icon: Text("События",
+                      style: AppTypography.font14w700)),
+              Tab(
+                  icon: Text("Другое",
+                      style: AppTypography.font14w700)),
+            ],
+          ),
+        ),
+        body: RefreshIndicator.adaptive(
+          onRefresh: () {
+            storyRepository.setPageNumber(1);
+
+            return storyRepository.getMarketItems();
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: BlocBuilder<StoreCubit, StoreState>(
+              builder: (context, state) {
+                var shopItems = storyRepository.marketItems;
+                bool isLoading = state is StoreLoading;
+
+                return CustomScrollView(
+                    controller: scrollController,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      SliverGrid(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => MarketItem(
+                              marketItem: shopItems[index],
+                            ),
+                            childCount: shopItems.length,
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  crossAxisSpacing: 8,
+                                  maxCrossAxisExtent:
+                                      MediaQuery.of(context).size.width / 2,
+                                  childAspectRatio: 0.64)),
+                      isLoading
+                          ? const SliverToBoxAdapter(
+                              child: Center(child: CircularProgressIndicator()),
+                            )
+                          : SliverToBoxAdapter(
+                              child: Container(),
+                            )
+                    ]);
+              },
+            ),
           ),
         ),
       ),

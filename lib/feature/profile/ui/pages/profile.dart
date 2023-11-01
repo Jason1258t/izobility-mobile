@@ -214,20 +214,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ],
                             ),
                           ),
-                          Container(
-                            height: 190,
-                            child: BlocBuilder<StoreUserItemsCubit,
-                                StoreUserItemsState>(
-                              builder: (context, state) {
-                                if (state is StoreUserItemsLoading) {
-                                  return buildLoadingUserProducts();
-                                } else if (state is StoreUserItemsSuccess) {
+                          BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
+                            builder: (context, state) {
+                              if (state is StoreUserItemsLoading) {
+                                return buildLoadingUserProducts();
+                              } else if (state is StoreUserItemsSuccess) {
+                                if (context
+                                    .read<StoreRepository>()
+                                    .userProductList
+                                    .isNotEmpty) {
                                   return buildLoadedUserProducts();
                                 }
+                              }
 
-                                return Container();
-                              },
-                            ),
+                              return Container();
+                            },
                           ),
                           PorfileBlocLabel(
                             text: localize.account,
@@ -318,59 +319,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget buildLoadedUserProducts() {
     final storeRepository = context.read<StoreRepository>();
 
-    return ListView.separated(
-      itemCount: storeRepository.userProductList.length,
-      scrollDirection: Axis.horizontal,
-      separatorBuilder: (context, index) => SizedBox(
-        width: 8,
-      ),
-      itemBuilder: (context, index) {
-        return Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-          constraints: const BoxConstraints(maxWidth: 250),
-          width: MediaQuery.sizeOf(context).width * 0.38,
-          height: 190,
-          child: Material(
-            child: Ink.image(
-              fit: BoxFit.cover,
-              image: NetworkImage(
-                storeRepository.userProductList[index].product.images[0],
-              ),
-              child: InkWell(
-                onTap: () {
-                  AppBottomSheets.showProductInfo(
-                      context, storeRepository.userProductList[index]);
-                },
+    return Container(
+      height: 190,
+      child: ListView.separated(
+        itemCount: storeRepository.userProductList.length,
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) => SizedBox(
+          width: 8,
+        ),
+        itemBuilder: (context, index) {
+          return Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+            constraints: const BoxConstraints(maxWidth: 250),
+            width: MediaQuery.sizeOf(context).width * 0.38,
+            height: 190,
+            child: Material(
+              child: Ink.image(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  storeRepository.userProductList[index].product.images[0],
+                ),
+                child: InkWell(
+                  onTap: () {
+                    AppBottomSheets.showProductInfo(
+                        context, storeRepository.userProductList[index]);
+                  },
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
   Widget buildLoadingUserProducts() {
-    return ListView.separated(
-      itemCount: 5,
-      scrollDirection: Axis.horizontal,
-      separatorBuilder: (context, index) => SizedBox(
-        width: 8,
+    return Container(
+      height: 190,
+      child: ListView.separated(
+        itemCount: 5,
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) => SizedBox(
+          width: 8,
+        ),
+        itemBuilder: (context, index) {
+          return Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+            constraints: const BoxConstraints(maxWidth: 250),
+            width: MediaQuery.sizeOf(context).width * 0.38,
+            height: 190,
+            child: Container(
+              decoration: BoxDecoration(
+                  gradient: AppGradients.gradientGreenWhite,
+                  borderRadius: BorderRadius.circular(16)),
+            ),
+          );
+        },
       ),
-      itemBuilder: (context, index) {
-        return Container(
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-          constraints: const BoxConstraints(maxWidth: 250),
-          width: MediaQuery.sizeOf(context).width * 0.38,
-          height: 190,
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: AppGradients.gradientGreenWhite,
-                borderRadius: BorderRadius.circular(16)),
-          ),
-        );
-      },
     );
   }
 }
