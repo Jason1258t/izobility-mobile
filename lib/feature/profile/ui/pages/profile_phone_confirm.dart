@@ -65,7 +65,7 @@ class _ProfilePhoneConfirmState extends State<ProfilePhoneConfirm> {
                 CustomTextField(
                     mask: AppMask.maskVerificationCodeFormatter,
                     backgroundColor: Colors.white,
-                    hintText: localize.telephone,
+                    hintText: "Last 4 digits of TN",
                     keyboardType: TextInputType.phone,
                     controller: controller,
                     width: size.width),

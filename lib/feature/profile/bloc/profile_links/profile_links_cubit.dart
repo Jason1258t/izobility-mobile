@@ -9,6 +9,7 @@ class ProfileLinksCubit extends Cubit<ProfileLinksState> {
 
   void loadLink(String url) async {
     try {
+      print(url);
       await launchUrl(Uri.parse(url));
       emit(ProfileLinksSuccess());
     } catch (ex) {

@@ -58,6 +58,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   height: 75,
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -69,7 +70,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: (size.width - 65) * 0.49,
+                        width: (size.width - 73) * 0.49,
                         alignment: Alignment.centerLeft,
                         child: Row(
                           children: [
@@ -156,7 +157,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                       ),
                       Container(
                         alignment: Alignment.centerRight,
-                        width: (size.width - 65) * 0.5,
+                        width: (size.width - 73) * 0.5,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -221,8 +222,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                             width: (size.width - 85) * 0.55,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 FittedBox(
@@ -312,34 +312,47 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-                Text(
-                  "Мои рефералы",
-                  textAlign: TextAlign.start,
-                  style: AppTypography.font20w700
-                      .copyWith(color: const Color(0xff051532)),
-                ),
-                BlocBuilder<ProfileReferalsCubit, ProfileReferalsState>(
-                  builder: (context, state) {
-                    if (state is ProfileReferalsLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
-                    } else if (state is ProfileReferalsSuccess ||
-                        state is ProfileReferalsInitial) {
-                      if (context.read<UserRepository>().referalList.isEmpty) {
-                        return Text("У вас пока нет рефералов :(");
-                      } else {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Column(
-                            children: buildReferalListWidget(),
-                          ),
-                        );
-                      }
-                    }
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Мои рефералы",
+                        textAlign: TextAlign.start,
+                        style: AppTypography.font20w700
+                            .copyWith(color: Colors.black),
+                      ),
+                      BlocBuilder<ProfileReferalsCubit, ProfileReferalsState>(
+                        builder: (context, state) {
+                          if (state is ProfileReferalsLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
+                          } else if (state is ProfileReferalsSuccess ||
+                              state is ProfileReferalsInitial) {
+                            if (context
+                                .read<UserRepository>()
+                                .referalList
+                                .isEmpty) {
+                              return Text("У вас пока нет рефералов :(");
+                            } else {
+                              return Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: Column(
+                                  children: buildReferalListWidget(),
+                                ),
+                              );
+                            }
+                          }
 
-                    return Container();
-                  },
+                          return Container();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 40,
