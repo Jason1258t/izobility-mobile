@@ -46,7 +46,6 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
             isSelected: widget.pageIndex == 0,
             onTap: () {
               //homeRepository.onSelectTab(0);
-
               router.go(RouteNames.main);
             },
             name: locolize.main,
