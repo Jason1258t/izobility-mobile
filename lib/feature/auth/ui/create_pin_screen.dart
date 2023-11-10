@@ -51,8 +51,8 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
       child: AuthScaffold(
         isAppBar: false,
         body: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const SizedBox(width: double.infinity, height: 30),
             Image.asset(
