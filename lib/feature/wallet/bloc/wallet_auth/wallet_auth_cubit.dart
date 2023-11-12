@@ -19,7 +19,7 @@ class WalletAuthCubit extends Cubit<WalletAuthState> {
 
       emit(WalletAuthSuccessState());
     } catch (ex) {
-      log(ex.toString());
+      print(ex.toString());
 
       emit(WalletAuthFailureState());
     }
