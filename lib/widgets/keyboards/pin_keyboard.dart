@@ -23,7 +23,6 @@ class PinKeyboard extends StatefulWidget {
 
 class _PinKeyboardState extends State<PinKeyboard> {
   List<int> pin = [];
-
   Future<void> _addNumber(int number) async {
     if (pin.length < 4) pin.add(number);
 
@@ -79,7 +78,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
     );
   }
 
-  Widget _generateNumbers(Size size) {
+  Widget _generateNumbers(double size) {
     List<Widget> children = [];
 
     for (int i = 0; i < 3; i++) {
@@ -91,7 +90,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
             setState(() {});
           },
           number: '${3 * i + j}',
-          side: size.width * 0.19,
+          side: size,
         ));
       }
       children.add(Row(
@@ -109,9 +108,9 @@ class _PinKeyboardState extends State<PinKeyboard> {
                   BlocProvider.of<AppCubit>(context).authWithBiometric();
                 },
                 child: Ink(
-                  width: size.width * 0.19,
-                  height: size.width * 0.19,
-                  padding: const EdgeInsets.all(12),
+                  width: size,
+                  height: size,
+                  padding: EdgeInsets.all(size * 12 / 70),
                   child: SvgPicture.asset(
                     color: Colors.grey[500],
                     'assets/icons/fingerprint.svg',
@@ -119,8 +118,8 @@ class _PinKeyboardState extends State<PinKeyboard> {
                 ),
               )
             : SizedBox(
-                width: size.width * 0.19,
-                height: size.width * 0.19,
+                width: size,
+                height: size,
               ),
         KeyboardButton(
           onTap: () async {
@@ -128,7 +127,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
             setState(() {});
           },
           number: '0',
-          side: size.width * 0.19,
+          side: size,
         ),
         KeyboardButton(
           onTap: () {
@@ -136,14 +135,14 @@ class _PinKeyboardState extends State<PinKeyboard> {
             setState(() {});
           },
           keyboardButtonType: KeyboardButtonType.delete,
-          side: size.width * 0.19,
+          side: size,
         ),
       ],
     ));
 
     return SizedBox(
-      width: size.width * 0.65,
-      height: size.width * 0.85,
+      width: size * 3 + size / 5 * 2,
+      height:  size * 4 + size / 5 * 3,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
@@ -155,6 +154,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final double buttonSize = size.width * 0.19 < 70 ? size.width * 0.19 : 70;
 
     return Column(
       mainAxisSize: MainAxisSize.max,
@@ -163,7 +163,7 @@ class _PinKeyboardState extends State<PinKeyboard> {
         const SizedBox(
           height: 32,
         ),
-        _generateNumbers(size)
+        _generateNumbers(buttonSize)
       ],
     );
   }
