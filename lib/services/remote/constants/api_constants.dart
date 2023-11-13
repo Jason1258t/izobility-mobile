@@ -39,6 +39,15 @@ Map<String, CoinTransferModel> coinsTransferData = {
           "moneta/82c4ba6cf8f75b0c30961bf817400ecf.jpg",
       name: "BSC-USD Token",
       rubleExchangeRate: "0"),
+  "46": CoinTransferModel(
+      abiName: "most-global_abi",
+      contract: Contracts.mostGlobal,
+      codename: "MGP",
+      description: "",
+      imageUrl: "https://api.z-boom.ru/media/" +
+          "moneta/6c376e1ff322628dd01d8005f5b2e026.jpg",
+      name: "MOST Global",
+      rubleExchangeRate: "0"),
   "27": CoinTransferModel(
       abiName: "busd_abi",
       contract: Contracts.busd,

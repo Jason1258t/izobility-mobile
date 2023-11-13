@@ -33,14 +33,13 @@ class KeyboardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-
     return InkWell(
       borderRadius: BorderRadius.circular(80),
       onTap: onTap,
       child: Ink(
         width: side,
         height: side,
+
         decoration: ShapeDecoration(
           color: AppColors.backgroundSecondary,
           shape: RoundedRectangleBorder(
@@ -48,7 +47,7 @@ class KeyboardButton extends StatelessWidget {
           ),
         ),
         child: Container(
-          padding: EdgeInsets.all(size.width * 0.055),
+          padding: EdgeInsets.all(side * 0.25),
           child: FittedBox(child: child),
         ),
       ),

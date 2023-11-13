@@ -22,12 +22,12 @@ class WalletAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-
+    final double buttonSize =  sizeOf.width * 0.156 < 70 ? sizeOf.width * 0.156 : 70;
     return Column(
       children: [
         Container(
-          width: sizeOf.width * 0.156,
-          height: sizeOf.width * 0.156,
+          width: buttonSize,
+          height: buttonSize,
           decoration: BoxDecoration(
               // color: isActive ? AppColors.primary : AppColors.purple100,
               gradient: AppGradients.gradientGreenWhite,
@@ -37,8 +37,8 @@ class WalletAction extends StatelessWidget {
             icon: SvgPicture.asset(
               icon,
               color: iconColor,
-              width: sizeOf.width * 0.067,
-              height: sizeOf.width * 0.067,
+              width: buttonSize * 0.067 / 0.156,
+              height: buttonSize * 0.067 / 0.156,
             ),
           ),
         ),

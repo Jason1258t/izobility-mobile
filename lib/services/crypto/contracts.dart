@@ -10,4 +10,6 @@ class Contracts {
   static const tidex = "0x317eb4ad9cfaC6232f0046831322E895507bcBeb";
 
   static const unft = "0x1dA151E28eA351Ba12d266Fbf6B4CD0727611AD8";
+
+  static const mostGlobal = "0xE703BcD08AF361b3de09a617fb74F98520954FcA";
 }

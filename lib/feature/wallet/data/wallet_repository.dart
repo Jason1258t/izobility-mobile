@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/services/crypto/api_cripto.dart';
@@ -88,7 +89,7 @@ class WalletRepository {
 
   Future<bool> checkWalletAuth() async {
     final seedPhrase = await prefs.getSeedPhrase();
-
+    print("SEEED $seedPhrase");
     return seedPhrase != null;
   }
 
@@ -116,7 +117,7 @@ class WalletRepository {
 
   Future<void> getWallet() async {
     final seedPhrase = await prefs.getSeedPhrase();
-
+    print("seed2 $seedPhrase");
     walletModel = HDWallet.createWithMnemonic(seedPhrase!);
   }
 
