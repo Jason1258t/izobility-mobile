@@ -55,7 +55,7 @@ class AppBottomSheets {
                   children: [
                     Container(
                         clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(shape: BoxShape.circle),
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
                         child: Image.network(
                           marketItem.coin.imageUrl,
                           width: 36,
@@ -132,7 +132,7 @@ class AppBottomSheets {
                     width: size.width * 0.66,
                     height: size.width * 0.66,
                     clipBehavior: Clip.hardEdge,
-                    constraints: BoxConstraints(maxWidth: 350, maxHeight: 350),
+                    constraints: const BoxConstraints(maxWidth: 350, maxHeight: 350),
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(8)),
                     child: Image.network(
@@ -213,7 +213,7 @@ class AppBottomSheets {
                     ],
                   ),
                   Container(
-                    constraints: BoxConstraints(maxWidth: 200, maxHeight: 200),
+                    constraints: const BoxConstraints(maxWidth: 200, maxHeight: 200),
                     child: QrImageView(
                       data: "${userProduct.id}-${userProduct.token}",
                       version: QrVersions.auto,
