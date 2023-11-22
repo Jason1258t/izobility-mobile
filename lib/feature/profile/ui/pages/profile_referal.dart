@@ -237,17 +237,13 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                     textColor: Colors.black,
                                     fontSize: 14,
                                     height: 28,
-                                    text: "Скопировать код",
-                                    onTap: () {
-                                      Clipboard.setData(ClipboardData(
-                                          text: context
-                                              .read<UserRepository>()
-                                              .user
-                                              .details!
-                                              .referalcode!));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                              CustomSnackBar.snackBarCopied);
+                                    text: "Поделиться",
+                                    onTap: () async {
+                                      await Share.share(context
+                                          .read<UserRepository>()
+                                          .user
+                                          .details!
+                                          .referalcode!);
                                     },
                                     width: double.infinity),
                               ],
@@ -265,20 +261,56 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                   fit: BoxFit.fitHeight,
                                   height: 96,
                                 ),
-                                CustomButton(
-                                    withBorder: false,
-                                    color: Colors.black,
-                                    textColor: Colors.white,
-                                    height: 28,
-                                    text: "Поделиться",
-                                    onTap: () async {
-                                      await Share.share(context
-                                          .read<UserRepository>()
-                                          .user
-                                          .details!
-                                          .referalcode!);
-                                    },
-                                    width: double.infinity),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      width: 28,
+                                      height: 28,
+                                      padding: const EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: InkWell(
+                                          child: SvgPicture.asset(
+                                              width: 24,
+                                              height: 24,
+                                              color: Colors.black,
+                                              'assets/icons/copy.svg'),
+                                          onTap: () async {
+                                            Clipboard.setData(ClipboardData(
+                                                text: context
+                                                    .read<UserRepository>()
+                                                    .user
+                                                    .details!
+                                                    .referalcode!));
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(CustomSnackBar
+                                                    .snackBarCopied);
+                                          }),
+                                    ),
+                                    const SizedBox(
+                                      width: 16,
+                                    ),
+                                    Container(
+                                      width: 28,
+                                      height: 28,
+                                      padding: const EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: InkWell(
+                                          child: SvgPicture.asset(
+                                              width: 24,
+                                              height: 24,
+                                              color: Colors.black,
+                                              'assets/icons/write.svg'),
+                                          onTap: () async {}),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           )
@@ -286,7 +318,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                       ),
                       Positioned(
                           top: 16,
-                          right: 16,
+                          right: 0,
                           child: Material(
                             borderRadius: BorderRadius.circular(6),
                             color: Colors.white,
@@ -336,7 +368,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                 .read<UserRepository>()
                                 .referalList
                                 .isEmpty) {
-                              return Text("У вас пока нет рефералов :(");
+                              return const Text("У вас пока нет рефералов :(");
                             } else {
                               return Container(
                                 padding:
