@@ -13,12 +13,12 @@ class UserDetailsModel {
   String? name;
   String? otch;
   String? partnerRole;
-  String? referalcode;
+  String? referalCode;
   String? lastLogin;
   String? dateLimit;
   String? siteId;
-  String? cityname;
-  String? countryname;
+  String? cityName;
+  String? countryName;
   int? gender;
   int? notif;
   String? fio;
@@ -40,12 +40,12 @@ class UserDetailsModel {
       required this.name,
       required this.otch,
       required this.partnerRole,
-      required this.referalcode,
+      required this.referalCode,
       required this.lastLogin,
       required this.dateLimit,
       required this.siteId,
-      required this.cityname,
-      required this.countryname,
+      required this.cityName,
+      required this.countryName,
       required this.gender,
       required this.notif,
       required this.fio,
@@ -68,12 +68,12 @@ class UserDetailsModel {
         name: json['name'],
         otch: json['otch'],
         partnerRole: json['partner_role'],
-        referalcode: json['referalcode'],
+        referalCode: json['referalcode'],
         lastLogin: json['last_login'],
         dateLimit: json['date_limit'],
         siteId: json['site_id'],
-        cityname: json['cityname'],
-        countryname: json['countryname'],
+        cityName: json['cityname'],
+        countryName: json['countryname'],
         gender: json['gender'],
         notif: json['notif'],
         fio: json['fio'],
@@ -100,12 +100,12 @@ class UserDetailsModel {
     data['name'] = name;
     data['otch'] = otch;
     data['partner_role'] = partnerRole;
-    data['referalcode'] = referalcode;
+    data['referalcode'] = referalCode;
     data['last_login'] = lastLogin;
     data['date_limit'] = dateLimit;
     data['site_id'] = siteId;
-    data['cityname'] = cityname;
-    data['countryname'] = countryname;
+    data['cityname'] = cityName;
+    data['countryname'] = countryName;
     data['gender'] = gender;
     data['notif'] = notif;
     data['fio'] = fio;
@@ -130,12 +130,12 @@ class UserDetailsModel {
         'name: $name, '
         'otch: $otch, '
         'partnerRole: $partnerRole, '
-        'referalcode: $referalcode, '
+        'referalcode: $referalCode, '
         'lastLogin: $lastLogin, '
         'dateLimit: $dateLimit, '
         'siteId: $siteId, '
-        'cityname: $cityname, '
-        'countryname: $countryname, '
+        'cityname: $cityName, '
+        'countryname: $countryName, '
         'gender: $gender, '
         'notif: $notif, '
         'fio: $fio'

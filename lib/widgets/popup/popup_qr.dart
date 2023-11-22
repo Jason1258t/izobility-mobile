@@ -63,7 +63,7 @@ class _PopupQrState extends State<PopupQr> {
                 ),
                 child: QrImageView(
                   data:
-                      context.read<UserRepository>().user.details!.referalcode!,
+                      context.read<UserRepository>().user.details!.referalCode!,
                   version: QrVersions.auto,
                   size: size.width * 0.5,
                 ),

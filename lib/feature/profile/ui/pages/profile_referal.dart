@@ -12,6 +12,7 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/popup/popup_qr.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
@@ -243,7 +244,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                           .read<UserRepository>()
                                           .user
                                           .details!
-                                          .referalcode!);
+                                          .referalCode!);
                                     },
                                     width: double.infinity),
                               ],
@@ -284,7 +285,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                                     .read<UserRepository>()
                                                     .user
                                                     .details!
-                                                    .referalcode!));
+                                                    .referalCode!));
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(CustomSnackBar
                                                     .snackBarCopied);
@@ -307,7 +308,9 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                               height: 24,
                                               color: Colors.black,
                                               'assets/icons/write.svg'),
-                                          onTap: () async {}),
+                                          onTap: () async {
+                                            AppBottomSheets.setReferalCode(context);
+                                          }),
                                     ),
                                   ],
                                 )
