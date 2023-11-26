@@ -65,4 +65,8 @@ class User with ApiHandler {
   Future<dynamic> getReferalList() async {
     return get(ApiEndpoints.userReferals);
   }
+
+  Future<dynamic> updateReferalCode(String referal) async {
+    return post(ApiEndpoints.userUpdateReferalCode, data: {'promo': referal});
+  }
 }

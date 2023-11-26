@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/models/market_item.dart';
@@ -12,6 +13,7 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
+import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class AppBottomSheets {
@@ -60,7 +62,9 @@ class AppBottomSheets {
                           marketItem.coin.imageUrl,
                           width: 36,
                         )),
-                    const SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     Text(
                       "${marketItem.price} ${marketItem.coin.name}",
                       style: AppTypography.font20w700
@@ -174,6 +178,78 @@ class AppBottomSheets {
         });
   }
 
+  static void setReferalCode(context) {
+    final codeController = TextEditingController();
+
+    final repository = RepositoryProvider.of<UserRepository>(context);
+    final initCode = repository.user.details!.referalCode;
+
+    codeController.text = initCode ?? '';
+
+    showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: const EdgeInsets.all(16).copyWith(bottom: 0),
+            width: double.infinity,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 54,
+                    height: 2,
+                    color: AppColors.grey200,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        borderRadius: BorderRadius.circular(1000),
+                        onTap: () => context.pop(),
+                        child: SvgPicture.asset(
+                          "assets/icons/cross_rounded.svg",
+                          color: AppColors.grey200,
+                          width: 30,
+                        ),
+                      )
+                    ],
+                  ),
+                  Text('Изменение реферального кода', style: AppTypography.font20w700.copyWith(color: Colors.black),),
+                  const SizedBox(
+                    height: 38,
+                  ),
+                  CustomTextField(
+                    controller: codeController,
+                    width: double.infinity,
+                    backgroundColor: Colors.white,
+                    labelText: 'Ваш код',
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  CustomButton(
+                      text: "Сохранить",
+                      onTap: () {
+                        repository.updateReferalCode(codeController.text);
+                      },
+                      width: double.infinity),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
   static void showProductInfo(context, UserProductModel userProduct) {
     final size = MediaQuery.sizeOf(context);
 
@@ -213,7 +289,8 @@ class AppBottomSheets {
                     ],
                   ),
                   Container(
-                    constraints: BoxConstraints(maxWidth: 200, maxHeight: 200),
+                    constraints:
+                        const BoxConstraints(maxWidth: 200, maxHeight: 200),
                     child: QrImageView(
                       data: "${userProduct.id}-${userProduct.token}",
                       version: QrVersions.auto,

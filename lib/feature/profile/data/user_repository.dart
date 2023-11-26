@@ -91,6 +91,12 @@ class UserRepository {
     await loadUserDetailsInfo();
   }
 
+  Future<dynamic> updateReferalCode(String referal) async {
+    await apiService.user.updateReferalCode(referal);
+
+    await loadUserDetailsInfo();
+  }
+
   Future<dynamic> loadReferalsList() async {
     dynamic parseReferals(ReferalModel referal) {
       referalList.add(referal);
