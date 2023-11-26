@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/user.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
@@ -21,6 +22,8 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +67,7 @@ class _ProfileCardState extends State<ProfileCard> {
                                     const SizedBox(
                                       width: 16,
                                     ),
-                                    Text('Сделать фото',
+                                    Text(localize.to_make_photo,
                                         style: AppTypography.font18w600
                                             .copyWith(
                                                 color: Colors.black,
@@ -96,7 +99,7 @@ class _ProfileCardState extends State<ProfileCard> {
                                       width: 16,
                                     ),
                                     Text(
-                                      'Выбрать из галереи',
+                                      localize.choose_from_gallery,
                                       style: AppTypography.font18w600.copyWith(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w400),
@@ -160,7 +163,7 @@ class _ProfileCardState extends State<ProfileCard> {
                   children: [
                     Text(
                       user.details?.name == null || user.details?.name == ""
-                          ? "Ваше имя"
+                          ? localize.your_name
                           : user.details!.name!,
                       style: AppTypography.font18w700
                           .copyWith(color: AppColors.textPrimary, height: 1),

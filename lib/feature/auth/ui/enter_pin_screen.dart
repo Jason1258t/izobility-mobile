@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/text_button_without_background.dart';
 import 'package:izobility_mobile/widgets/keyboards/pin_keyboard.dart';
@@ -14,19 +15,6 @@ class EnterPinScreen extends StatefulWidget {
 }
 
 class _EnterPinScreenState extends State<EnterPinScreen> {
-  String message = 'Ваш код доступа';
-  String retryMessage = 'Код неверный попробуйте заново';
-
-  void checkPin(List<int> intPin) {
-    BlocProvider.of<AppCubit>(context).checkPin(intPin.join()).then((value) {
-      if (!value) {
-        setState(() {
-          message = retryMessage;
-        });
-      }
-    });
-  }
-
   @override
   void initState() {
     BlocProvider.of<AppCubit>(context).authWithBiometric();
@@ -36,6 +24,21 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context);
+
+    String message = localize!.your_access_code;
+    String retryMessage = localize.try_wrong_code_again;
+
+    void checkPin(List<int> intPin) {
+      BlocProvider.of<AppCubit>(context).checkPin(intPin.join()).then((value) {
+        if (!value) {
+          setState(() {
+            message = retryMessage;
+          });
+        }
+      });
+    }
+
     return WillPopScope(
       onWillPop: () async => false,
       child: AuthScaffold(
@@ -57,8 +60,8 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
             ),
             Text(
               message,
-              style:
-                  AppTypography.font14w700.copyWith(color: AppColors.textSecondary),
+              style: AppTypography.font14w700
+                  .copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(
               height: 12,
@@ -70,7 +73,7 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
             const SizedBox(
               height: 40,
             ),
-            TextButtonWithoutBackground(onTap: () {}, text: 'Поддержка')
+            TextButtonWithoutBackground(onTap: () {}, text: localize.support)
           ],
         ),
       ),

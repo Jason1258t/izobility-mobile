@@ -185,7 +185,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
             CustomTextField(
                 backgroundColor: Colors.white,
                 labelText: 'email',
-                hintText: "Почта",
+                hintText: localize.mail,
                 controller: _emailController,
                 width: double.infinity),
             const SizedBox(
@@ -304,8 +304,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 ),
                 readOnly: true,
                 backgroundColor: Colors.white,
-                labelText: localize.telephone,
-                hintText: localize.telephone,
+                labelText: localize.phone,
+                hintText: localize.phone,
                 controller: _phoneController,
                 width: double.infinity),
             const SizedBox(

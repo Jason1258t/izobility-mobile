@@ -62,7 +62,7 @@ class _ProfilePhoneEditState extends State<ProfilePhoneEdit> {
         child: Scaffold(
           appBar: CustomAppBar(
             context: context,
-            text: "Подтвержение номера",
+            text: localize.number_confirmation,
             isBack: true,
             onTap: () {
               context.pop();

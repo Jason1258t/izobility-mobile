@@ -29,7 +29,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
           backgroundColor: AppColors.purpleBcg,
           appBar: CustomAppBar(
             context: context,
-            text: localize.switch_language,
+            text: localize.apllication_languahe,
             isBack: true,
             onTap: () {
               context.pop();

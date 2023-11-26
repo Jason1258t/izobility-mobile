@@ -68,7 +68,7 @@ class _StoreScreenState extends State<StoreScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
+              .showSnackBar(CustomSnackBar.successSnackBar(localize.erro));
         } else if (state is StoreBuySuccess) {
           print('------ popped');
           context.pop(); // clear dialog
@@ -97,13 +97,13 @@ class _StoreScreenState extends State<StoreScreen> {
                 tabs: [
                   Tab(
                     icon: Text(
-                      "Все",
+                      localize.all,
                       style: AppTypography.font14w700,
                     ),
                   ),
-                  Tab(icon: Text("Места", style: AppTypography.font14w700)),
-                  Tab(icon: Text("События", style: AppTypography.font14w700)),
-                  Tab(icon: Text("Другое", style: AppTypography.font14w700)),
+                  Tab(icon: Text(localize.places, style: AppTypography.font14w700)),
+                  Tab(icon: Text(localize.events, style: AppTypography.font14w700)),
+                  Tab(icon: Text(localize.other, style: AppTypography.font14w700)),
                 ],
               ),
             ),
@@ -187,6 +187,8 @@ class _StoreScreenState extends State<StoreScreen> {
   }
 
   SliverToBoxAdapter buildGetUserItemsBanner(Size sizeOf) {
+    final localize = AppLocalizations.of(context)!;
+
     return SliverToBoxAdapter(
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -205,7 +207,7 @@ class _StoreScreenState extends State<StoreScreen> {
                 SizedBox(
                   width: sizeOf.width - 200,
                   child: Text(
-                    'Ваши товары и все отстальное',
+                    localize.your_goods_and_all_backbone,
                     style: AppTypography.font20w700,
                   ),
                 ),
@@ -224,7 +226,7 @@ class _StoreScreenState extends State<StoreScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "Получить",
+                          localize.get,
                           style: AppTypography.font14w700
                               .copyWith(color: Colors.black),
                         ),

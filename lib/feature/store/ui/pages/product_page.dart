@@ -12,6 +12,7 @@ import 'package:izobility_mobile/feature/store/ui/widgets/store_item_quantity_co
 import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
@@ -68,6 +69,8 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return BlocListener<StoreBuyCubit, StoreBuyState>(
       listener: (context, state) {
         ScaffoldMessenger.of(context).clearSnackBars();
@@ -82,7 +85,7 @@ class _ProductScreenState extends State<ProductScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
+              .showSnackBar(CustomSnackBar.successSnackBar(localize.erro));
         } else if (state is StoreBuySuccess) {
           context.pop(); // clear dialog
           context.pop(); // clear modal bottom sheet
@@ -128,7 +131,7 @@ class _ProductScreenState extends State<ProductScreen> {
     final emeraldCoin = context.read<WalletRepository>().emeraldInGameBalance;
 
     final sizeOf = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -189,7 +192,7 @@ class _ProductScreenState extends State<ProductScreen> {
               const SizedBox(
                 height: 16,
               ),
-              const Text("У вас есть"),
+              Text(localize.you_have),
               BlocBuilder<CoinInGameCubit, CoinInGameState>(
                 builder: (context, state) {
                   if (state is CoinInGameLoading) {
@@ -208,7 +211,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         CustomButton(
                             isActive: false,
-                            text: "Получить",
+                            text: localize.get,
                             onTap: () {
                               AppBottomSheets.buyProductBottomSheet(
                                   context, marketItem);
@@ -235,7 +238,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                         CustomButton(
                             isActive: marketItem.price <= quantity,
-                            text: "Получить",
+                            text: localize.get,
                             onTap: () {
                               AppBottomSheets.buyProductBottomSheet(
                                   context, marketItem);
@@ -253,7 +256,7 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               CustomButton(
                   isActive: true,
-                  text: "Купить монет",
+                  text: localize.buy_coins,
                   onTap: () async {
                     context.read<ProfileLinksCubit>().loadLink(
                         marketItem.coin.url == ""
@@ -265,7 +268,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 height: 16,
               ),
               Text(
-                'Описание',
+                localize.description,
                 style: AppTypography.font18w700.copyWith(color: Colors.black),
               ),
               const SizedBox(
@@ -279,26 +282,26 @@ class _ProductScreenState extends State<ProductScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const ProductLink(
-                linkText: "О компании",
+              ProductLink(
+                linkText: localize.about_company,
               ),
               const SizedBox(
                 height: 5,
               ),
-              const ProductLink(
-                linkText: "Об акции",
+              ProductLink(
+                linkText: localize.about_sale,
               ),
               const SizedBox(
                 height: 5,
               ),
-              const ProductLink(
-                linkText: "Публичная офёрта",
+              ProductLink(
+                linkText: localize.public_offer,
               ),
               const SizedBox(
                 height: 5,
               ),
-              const ProductLink(
-                linkText: "О возврате",
+              ProductLink(
+                linkText: localize.about_give_back,
               ),
               const SizedBox(
                 height: 5,

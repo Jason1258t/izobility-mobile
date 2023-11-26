@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/story/story_cubit.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/story_indicator.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -69,16 +70,6 @@ class _StoryScreenState extends State<StoryScreen>
       lastTapTime = null;
     }
 
-    onPanUpdate(DragUpdateDetails details) {
-      print(details.delta.dx);
-
-      if (details.delta.dx > minDeltaToDetectSwipe) {
-        bloc.changeStory();
-      } else if (details.delta.dx < -minDeltaToDetectSwipe) {
-        bloc.prevStory();
-      }
-    }
-
 
     final Size size = MediaQuery.sizeOf(context);
     final double itemSize =
@@ -92,6 +83,8 @@ class _StoryScreenState extends State<StoryScreen>
         throw Exception('Could not launch $uri');
       }
     }
+
+    final localize = AppLocalizations.of(context)!;
 
     return WillPopScope(
       onWillPop: () async {
@@ -184,7 +177,7 @@ class _StoryScreenState extends State<StoryScreen>
                                     null) ...[
                                   const SizedBox(height: 16),
                                   CustomButton(
-                                      text: 'Читать',
+                                      text: localize.read,
                                       onTap: () {
                                         openUrl(bloc
                                             .storiesList[bloc.currentStoryIndex]

@@ -5,6 +5,7 @@ import 'package:izobility_mobile/feature/main/bloc/notifications/notifications_c
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/chips_category_list.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/notifications_date_sector.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
@@ -32,10 +33,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     final notificationsRepository =
         RepositoryProvider.of<NotificationsRepository>(context);
 
+    final localize = AppLocalizations.of(context)!;
+
     return HomeScaffold(
       appBar: CustomAppBar(
         isBack: true,
-        text: 'Уведомления',
+        text: localize.notification,
         context: context,
         onTap: () {
           context.pop();

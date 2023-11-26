@@ -83,12 +83,12 @@ class _GamesScreenState extends State<GamesScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          "Активности",
+                                          localize.activity,
                                           style: AppTypography.font18w700
                                               .copyWith(color: Colors.white),
                                         ),
                                         Text(
-                                          "AR, QR, игры и т.д.",
+                                          localize.er_qr_games,
                                           style: AppTypography.font12w400
                                               .copyWith(color: Colors.white),
                                         )
@@ -105,7 +105,7 @@ class _GamesScreenState extends State<GamesScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Что внутри?",
+                                  localize.what_is_inside,
                                   style: AppTypography.font20w700
                                       .copyWith(color: Colors.white),
                                 ),
@@ -123,7 +123,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "QR Сканер",
+                                      localize.qr_scanner,
                                       style: AppTypography.font14w400
                                           .copyWith(color: Colors.white),
                                     ),
@@ -143,7 +143,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "AR Сканер",
+                                      localize.ar_scanner,
                                       style: AppTypography.font14w400
                                           .copyWith(color: Colors.white),
                                     ),
@@ -163,7 +163,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "AR Карта",
+                                      localize.ar_card,
                                       style: AppTypography.font14w400
                                           .copyWith(color: Colors.white),
                                     ),
@@ -175,7 +175,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                     gradient: AppGradients.gradientGreenWhite,
                                     textColor: Colors.black,
                                     fontSize: 18,
-                                    text: "Использовать",
+                                    text: localize.use,
                                     onTap: () {},
                                     width: double.infinity)
                               ],

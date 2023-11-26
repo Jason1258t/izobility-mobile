@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_referals/profile_referals_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/referal.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -36,11 +37,11 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
-        text: "Рефералы",
+        text: localize.referrals,
         isBack: true,
         onTap: () {
           context.pop();
@@ -141,7 +142,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                   },
                                 ),
                                 Text(
-                                  "Доход",
+                                  localize.income,
                                   style: AppTypography.font12w400
                                       .copyWith(color: AppColors.grey500),
                                 )
@@ -191,7 +192,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                               },
                             ),
                             Text(
-                              "Присоединилось",
+                              localize.joined,
                               style: AppTypography.font12w400
                                   .copyWith(color: AppColors.grey500),
                             )
@@ -227,7 +228,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                               children: [
                                 FittedBox(
                                   child: Text(
-                                    "Получайте деньги\nза реферал",
+                                    localize.get_money_for_invite,
                                     style: AppTypography.font20w700.copyWith(
                                         color: Colors.white, letterSpacing: 0),
                                   ),
@@ -237,7 +238,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                     textColor: Colors.black,
                                     fontSize: 14,
                                     height: 28,
-                                    text: "Скопировать код",
+                                    text: localize.copy_code,
                                     onTap: () {
                                       Clipboard.setData(ClipboardData(
                                           text: context
@@ -270,7 +271,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                     color: Colors.black,
                                     textColor: Colors.white,
                                     height: 28,
-                                    text: "Поделиться",
+                                    text: localize.share,
                                     onTap: () async {
                                       await Share.share(context
                                           .read<UserRepository>()
@@ -319,7 +320,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Мои рефералы",
+                        localize.my_referals,
                         textAlign: TextAlign.start,
                         style: AppTypography.font20w700
                             .copyWith(color: Colors.black),
@@ -336,7 +337,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                 .read<UserRepository>()
                                 .referalList
                                 .isEmpty) {
-                              return Text("У вас пока нет рефералов :(");
+                              return Text(localize.you_have_no_referrals);
                             } else {
                               return Container(
                                 padding:
@@ -383,6 +384,8 @@ class ReferalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
@@ -418,7 +421,7 @@ class ReferalCard extends StatelessWidget {
                         AppTypography.font16w400.copyWith(color: Colors.black),
                   ),
                   Text(
-                    "Уровень: ${referal.referalLevel}",
+                    "${localize.level}: ${referal.referalLevel}",
                     style: AppTypography.font12w400
                         .copyWith(color: AppColors.grey500),
                   ),

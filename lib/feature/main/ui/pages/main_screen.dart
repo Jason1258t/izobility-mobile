@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
             context.pop();
 
             ScaffoldMessenger.of(context)
-                .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
+                .showSnackBar(CustomSnackBar.successSnackBar(localize.erro));
           } else if (state is StoreBuySuccess) {
             print('------ popped');
             context.pop(); // clear dialog
@@ -177,7 +177,7 @@ class _MainScreenState extends State<MainScreen> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    "Активности",
+                                                    localize.activity,
                                                     style: AppTypography
                                                         .font18w700
                                                         .copyWith(
@@ -185,7 +185,7 @@ class _MainScreenState extends State<MainScreen> {
                                                                 Colors.black),
                                                   ),
                                                   Text(
-                                                    "AR, QR, игры и т.д.",
+                                                    localize.er_qr_games,
                                                     style: AppTypography
                                                         .font12w400
                                                         .copyWith(
@@ -358,7 +358,7 @@ class _MainScreenState extends State<MainScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 18, top: 6, bottom: 6),
                                       child: Text(
-                                        'Ещё',
+                                        localize.more,
                                         style: AppTypography.font12w400
                                             .copyWith(color: AppColors.disable),
                                       ),

@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if (state is ProfileLinksFail) {
           context.pop();
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.errorSnackBar("Попробуйте позже"));
+              .showSnackBar(CustomSnackBar.errorSnackBar(localize.try_later));
         } else if (state is ProfileLinksLoading) {
           Dialogs.show(
               context,
@@ -110,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Подтвердите номер телефона",
+                                        localize.confirm_phone,
                                         style: AppTypography.font18w700
                                             .copyWith(color: Colors.white),
                                         textAlign: TextAlign.left,
@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         height: 8,
                                       ),
                                       Text(
-                                        "Без подтверждения номера телефона, у вас не будут доступны многие функции приложения",
+                                        localize.without_phone_not_more_functions,
                                         style: AppTypography.font12w400
                                             .copyWith(color: Colors.white),
                                       )
@@ -159,22 +159,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 },
                               ),
                               ProfileActionContainer(
-                                label: "Партнёрская программа",
-                                description: "Стандартный партнёр",
+                                label: localize.affiliate_program,
+                                description: localize.standard_partner,
                                 onTap: () {
                                   context.push(RouteNames.develop);
                                 },
                               ),
                               ProfileActionContainer(
                                 label: localize.inventory,
-                                description: '- предметов',
+                                description: localize.objects,
                                 onTap: () {
                                   context.push(RouteNames.develop);
                                 },
                               ),
                               ProfileActionContainer(
                                 label: localize.cards,
-                                description: 'Мои банковские карты',
+                                description: localize.my_bank_cards,
                                 onTap: () {
                                   context.push(RouteNames.develop);
                                 },
@@ -198,7 +198,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Мои покупки",
+                                  localize.my_pyrchases,
                                   style: AppTypography.font16w400
                                       .copyWith(color: AppColors.textPrimary),
                                 ),
@@ -245,7 +245,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onTap: () {
                               context.push(RouteNames.profileLanguage);
                             },
-                            label: localize.switch_language,
+                            label: localize.apllication_languahe,
                             iconPath: 'assets/icons/world.svg',
                           ),
                           PorfileBlocLabel(

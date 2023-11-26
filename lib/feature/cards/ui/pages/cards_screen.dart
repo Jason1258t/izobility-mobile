@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/card_transaction_widget.dart';
 import 'package:izobility_mobile/feature/cards/ui/widgets/credit_card_widget.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -24,7 +25,7 @@ class _CardsScreenState extends State<CardsScreen> {
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return HomeScaffold(
       backgroundColor: AppColors.purpleBcg,
       appBar: CustomAppBar(
@@ -33,7 +34,7 @@ class _CardsScreenState extends State<CardsScreen> {
           context.pop();
         },
         context: context,
-        text: 'Карты',
+        text: localize.cards,
         isBack: true,
       ),
       body: SingleChildScrollView(
@@ -98,17 +99,17 @@ class _CardsScreenState extends State<CardsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             WalletAction(
-                              title: 'Отправить',
+                              title: localize.send,
                               icon: 'assets/icons/send.svg',
                               onTap: () {},
                             ),
                             WalletAction(
-                              title: 'Пополнить',
+                              title: localize.replenish,
                               icon: 'assets/icons/get.svg',
                               onTap: () {},
                             ),
                             WalletAction(
-                              title: 'Купить',
+                              title: localize.buy,
                               icon: 'assets/icons/buy.svg',
                               onTap: () {},
                             ),
@@ -121,7 +122,7 @@ class _CardsScreenState extends State<CardsScreen> {
                     height: 18,
                   ),
                   Text(
-                    'История',
+                    localize.story,
                     style: AppTypography.font12w700
                         .copyWith(color: AppColors.grey600),
                   ),

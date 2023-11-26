@@ -188,7 +188,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          localize.contract,
+                          localize.contacts,
                           style: AppTypography.font16w400
                               .copyWith(color: AppColors.grey600),
                         ),
