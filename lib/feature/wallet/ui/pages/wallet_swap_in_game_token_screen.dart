@@ -5,6 +5,7 @@ import 'package:izobility_mobile/feature/wallet/bloc/swap_in_game_coins/swap_in_
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -32,6 +33,7 @@ class _SwapScreenState extends State<SwapScreen> {
 
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
     final swapInGameCoinsCubit = BlocProvider.of<SwapInGameCoinsCubit>(context);
+    final localize = AppLocalizations.of(context)!;
 
     return GestureDetector(
       onTap: () {
@@ -45,7 +47,7 @@ class _SwapScreenState extends State<SwapScreen> {
             context.pop();
 
             ScaffoldMessenger.of(context)
-                .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода'));
+                .showSnackBar(CustomSnackBar.errorSnackBar(localize.erro));
           } else if (state is SwapInGameCoinsLoading) {
             Dialogs.show(
                 context,
@@ -62,7 +64,7 @@ class _SwapScreenState extends State<SwapScreen> {
         child: HomeScaffold(
           appBar: CustomAppBar(
             context: context,
-            text: "Своп",
+            text: localize.swap,
             isBack: true,
             onTap: () {
               context.pop();
@@ -100,7 +102,7 @@ class _SwapScreenState extends State<SwapScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Из',
+                                      localize.from,
                                       style: AppTypography.font14w400
                                           .copyWith(color: AppColors.grey600),
                                     ),
@@ -209,14 +211,14 @@ class _SwapScreenState extends State<SwapScreen> {
                     CustomTextField(
                       controller: _enterAmountCoinController,
                       width: double.infinity,
-                      hintText: 'Количество',
+                      hintText: localize.quantity,
                       backgroundColor: Colors.white,
                       keyboardType: TextInputType.number,
                     ),
                   ],
                 ),
                 CustomButton(
-                    text: 'Подтвердить',
+                    text: localize.confirm,
                     onTap: () {
                       swapInGameCoinsCubit.swapInGameCoins(
                           int.parse(_enterAmountCoinController.text),

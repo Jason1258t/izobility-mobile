@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -22,7 +23,7 @@ class _WalletViewSeedPhraseScreenState
   @override
   Widget build(BuildContext context) {
     final walletSeed = context.read<WalletRepository>().walletModel!.mnemonic().split(" ");
-
+    final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -31,7 +32,7 @@ class _WalletViewSeedPhraseScreenState
           appBar: CustomAppBar(
             context: context,
             isBack: true,
-            text: "Моя seed-фраза",
+            text: localize.my_seed,
             onTap: () {
               context.pop();
             },
@@ -67,7 +68,7 @@ class _WalletViewSeedPhraseScreenState
                   ),
                   CustomButton(
                       height: 48,
-                      text: "Скопировать",
+                      text: localize.copy,
                       onTap: () {
                         Clipboard.setData(
                             ClipboardData(text: walletSeed.join(" ")));

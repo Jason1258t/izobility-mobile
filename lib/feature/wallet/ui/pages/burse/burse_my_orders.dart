@@ -16,6 +16,8 @@ import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 
+import '../../../../../localization/app_localizations.dart';
+
 class BurseMyOrdersScreen extends StatefulWidget {
   const BurseMyOrdersScreen({super.key, required this.order});
 
@@ -29,14 +31,14 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Scaffold(
         backgroundColor: AppColors.backgroundGrey,
         appBar: CustomAppBar(
           context: context,
-          text: "Покупка заказа",
+          text: localize.buying_order,
           isBack: true,
           onTap: () {
             context.pop();
@@ -55,7 +57,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
               context.pop();
 
               ScaffoldMessenger.of(context).showSnackBar(
-                  CustomSnackBar.errorSnackBar('Ошибка'));
+                  CustomSnackBar.errorSnackBar(localize.erro));
             } else if (state is BurseBuyOrderLoading) {
               Dialogs.show(
                   context,
@@ -88,7 +90,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Отправить',
+                                localize.send,
                                 style: AppTypography.font14w400
                                     .copyWith(color: AppColors.grey600),
                               ),
@@ -134,7 +136,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Получить',
+                                localize.get,
                                 style: AppTypography.font14w400
                                     .copyWith(color: AppColors.grey600),
                               ),
@@ -175,7 +177,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
                     Align(
                         alignment: Alignment.topCenter,
                         child: Text(
-                          "Комиссия площадки: 1.0 EMRLD",
+                          "${localize.seto_commission}: 1.0 EMRLD",
                           style: AppTypography.font12w400
                               .copyWith(color: AppColors.grey500),
                         )),
@@ -186,7 +188,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
                     Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(
-                          "Размещено: ${widget.order.createdAt.year}.${widget.order.createdAt.month}.${widget.order.createdAt.day} ${widget.order.createdAt.hour}:${widget.order.createdAt.minute}",
+                          "${localize.placed}: ${widget.order.createdAt.year}.${widget.order.createdAt.month}.${widget.order.createdAt.day} ${widget.order.createdAt.hour}:${widget.order.createdAt.minute}",
                           style: AppTypography.font12w400
                               .copyWith(color: AppColors.grey500),
                         )),

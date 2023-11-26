@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -20,12 +21,12 @@ class _BurseHistoryScreenState extends State<BurseHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Scaffold(
         backgroundColor: AppColors.purpleBcg,
         appBar: CustomAppBar(
           context: context,
-          text: "Покупка заказа",
+          text: localize.buying_order,
           isBack: true,
           onTap: () {
             context.pop();

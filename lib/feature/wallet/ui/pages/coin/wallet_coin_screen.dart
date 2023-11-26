@@ -202,7 +202,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                           runSpacing: 10,
                           children: [
                             ButtonSocialMediaLink(
-                              text: "Сайт",
+                              text: localize.website,
                               onTap: () {
                                 context
                                     .read<ProfileLinksCubit>()

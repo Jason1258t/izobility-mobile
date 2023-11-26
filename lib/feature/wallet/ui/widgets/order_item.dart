@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
@@ -20,7 +21,7 @@ class OrderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: InkWell(
@@ -99,7 +100,7 @@ class OrderItem extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text('Отправить',
+                          Text(localize.send,
                               style: AppTypography.font16w400.copyWith(
                                   color: AppColors.disabledTextButton))
                         ],
@@ -177,7 +178,7 @@ class OrderItem extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text('Получить',
+                          Text(localize.get,
                               style: AppTypography.font14w400.copyWith(
                                   color: AppColors.disabledTextButton))
                         ],

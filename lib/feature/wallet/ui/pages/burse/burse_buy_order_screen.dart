@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_buy_order/burse_buy_order_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/models/api/burse_transfer.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
-import 'package:izobility_mobile/routes/go_routes.dart';
-import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -29,14 +25,14 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Scaffold(
         backgroundColor: AppColors.backgroundGrey,
         appBar: CustomAppBar(
           context: context,
-          text: "Покупка заказа",
+          text: localize.buying_order,
           isBack: true,
           onTap: () {
             context.pop();
@@ -55,7 +51,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
               context.pop();
 
               ScaffoldMessenger.of(context).showSnackBar(
-                  CustomSnackBar.errorSnackBar('Ошибка'));
+                  CustomSnackBar.errorSnackBar(localize.erro));
             } else if (state is BurseBuyOrderLoading) {
               Dialogs.show(
                   context,
@@ -88,7 +84,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Отправить',
+                                localize.send,
                                 style: AppTypography.font14w400
                                     .copyWith(color: AppColors.grey600),
                               ),
@@ -134,7 +130,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Получить',
+                                localize.get,
                                 style: AppTypography.font14w400
                                     .copyWith(color: AppColors.grey600),
                               ),
@@ -175,7 +171,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                     Align(
                         alignment: Alignment.topCenter,
                         child: Text(
-                          "Комиссия площадки: 1.0 EMRLD",
+                          "${localize.seto_commission}: 1.0 EMRLD",
                           style: AppTypography.font12w400
                               .copyWith(color: AppColors.grey500),
                         )),
@@ -186,7 +182,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                     Align(
                         alignment: Alignment.bottomCenter,
                         child: Text(
-                          "Размещено: ${widget.order.createdAt.year}.${widget.order.createdAt.month}.${widget.order.createdAt.day} ${widget.order.createdAt.hour}:${widget.order.createdAt.minute}",
+                          "${localize.placed}: ${widget.order.createdAt.year}.${widget.order.createdAt.month}.${widget.order.createdAt.day} ${widget.order.createdAt.hour}:${widget.order.createdAt.minute}",
                           style: AppTypography.font12w400
                               .copyWith(color: AppColors.grey500),
                         )),
@@ -194,7 +190,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
                       height: 4,
                     ),
                     CustomButton(
-                        text: "Купить",
+                        text: localize.buy,
                         onTap: () {
                           context
                               .read<BurseBuyOrderCubit>()

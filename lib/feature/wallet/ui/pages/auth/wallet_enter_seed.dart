@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/wallet_auth/wallet_auth_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -25,6 +26,8 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return BlocListener<WalletAuthCubit, WalletAuthState>(
       listener: (context, state) {
         ScaffoldMessenger.of(context).clearSnackBars();
@@ -33,7 +36,7 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
+              CustomSnackBar.errorSnackBar(localize.inapproprivate_seed_phrase));
         } else if (state is WalletAuthLoadingState) {
           Dialogs.show(
               context,
@@ -57,7 +60,7 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
             backgroundColor: AppColors.purpleBcg,
             appBar: CustomAppBar(
               context: context,
-              text: 'Ввод seed-phrase',
+              text: localize.enter_seed,
               onTap: () {
                 context.pop();
               },
@@ -80,13 +83,13 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
                     width: double.infinity,
                     height: 200,
                     maxLines: 7,
-                    hintText: 'Введите Seed-фразу',
+                    hintText: localize.enter_seed,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomButton(
-                      text: 'Войти',
+                      text: localize.to_come_in,
                       onTap: () {
                         context
                             .read<WalletAuthCubit>()

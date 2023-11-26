@@ -6,6 +6,7 @@ import 'package:izobility_mobile/feature/wallet/bloc/burse_general_orders/burse_
 import 'package:izobility_mobile/feature/wallet/bloc/burse_my_orders/burse_my_orders_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
@@ -69,14 +70,14 @@ class _BurseScreenState extends State<BurseScreen>
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Scaffold(
         backgroundColor: AppColors.purpleBcg,
         appBar: CustomAppBar(
           context: context,
-          text: "Биржа",
+          text: localize.exchange,
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20),
@@ -146,7 +147,7 @@ class _BurseScreenState extends State<BurseScreen>
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     color: Colors.white,
                     child: CustomButton(
-                      text: 'Создать свой заказ',
+                      text: localize.create_your_own_order,
                       onTap: () {
                         context.push(RouteNames.walletBurseCreateOrder);
                       },
@@ -192,11 +193,11 @@ class _BurseScreenState extends State<BurseScreen>
                       });
                     },
                     controller: _tabController,
-                    tabs: const [
+                    tabs:  [
                       Tab(
-                        text: 'Биржа',
+                        text: localize.exchange,
                       ),
-                      Tab(text: 'Мои заказы'),
+                      Tab(text: localize.my_orders),
                     ],
                   ),
                 ),

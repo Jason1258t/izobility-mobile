@@ -65,7 +65,7 @@ class _WalletScreenState extends State<WalletScreen>
                     GoRouter.of(context).go(RouteNames.profile);
                   },
                   label:
-                      "Номер не подтверджен, поэтому функции внутренного кошелька не работают");
+                      AppLocalizations.of(context)!.number_not_confirmed);
             });
       }
     });
@@ -85,6 +85,8 @@ class _WalletScreenState extends State<WalletScreen>
 
   MultiSliver buildInGameTab(WalletRepository walletRepository, Size sizeOf,
       AppLocalizations localize) {
+
+    final localize = AppLocalizations.of(context)!;
     return MultiSliver(
       children: [
         SliverPersistentHeader(
@@ -165,7 +167,7 @@ class _WalletScreenState extends State<WalletScreen>
                     //   },
                     // ),
                     WalletAction(
-                      title: "Биржа",
+                      title: localize.exchange,
                       icon: 'assets/icons/burse.svg',
                       onTap: () {
                         context.push(RouteNames.walletBurse);
@@ -290,7 +292,7 @@ class _WalletScreenState extends State<WalletScreen>
                     )
                   ]),
                 )
-              : SliverToBoxAdapter(child: Container(child: Text("В разарботке")))
+              : SliverToBoxAdapter(child: Container(child: Text("in developing")))
       
         ),
       ],

@@ -5,6 +5,7 @@ import 'package:izobility_mobile/feature/wallet/bloc/burse_create_order/burse_cr
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
@@ -27,13 +28,15 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       color: Colors.white,
       child: Scaffold(
         backgroundColor: AppColors.purpleBcg,
         appBar: CustomAppBar(
           context: context,
-          text: "Создание заказа",
+          text: localize.creating_order,
           isBack: true,
           onTap: () {
             context.pop();
@@ -54,7 +57,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
                   context.pop();
 
                   ScaffoldMessenger.of(context).showSnackBar(
-                      CustomSnackBar.errorSnackBar('Что то пошло не так('));
+                      CustomSnackBar.errorSnackBar(localize.erro));
                 } else if (state is BurseCreateOrderLoading) {
                   Dialogs.show(
                       context,
@@ -71,7 +74,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
 
   Widget buildCreateOrderWidget() {
     final size = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -89,7 +92,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
                   child: CustomTextField(
                       keyboardType: TextInputType.number,
                       backgroundColor: Colors.white,
-                      hintText: "Количество",
+                      hintText: localize.quantity,
                       controller: _sendController,
                       width: double.maxFinite)),
               const SizedBox(
@@ -127,7 +130,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
                   child: CustomTextField(
                       keyboardType: TextInputType.number,
                       backgroundColor: Colors.white,
-                      hintText: "Количество",
+                      hintText: localize.quantity,
                       controller: _getController,
                       width: double.maxFinite)),
               const SizedBox(
@@ -148,7 +151,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
         ),
         const Spacer(),
         CustomButton(
-            text: "Создать свой заказ",
+            text: localize.create_your_own_order,
             onTap: () {
               context.read<BurseCreateOrderCubit>().createOrder(
                 int.parse(_sendController.text),

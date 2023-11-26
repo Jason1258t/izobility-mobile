@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
@@ -22,14 +23,14 @@ class _BurseCreateOrderSuccessScreenState extends State<BurseCreateOrderSuccessS
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Scaffold(
           backgroundColor: AppColors.purpleBcg,
           appBar: CustomAppBar(
             context: context,
-            text: "Создание заказа",
+            text: localize.creating_order,
             isBack: true,
             onTap: () {
               context.pop();
@@ -43,6 +44,8 @@ class _BurseCreateOrderSuccessScreenState extends State<BurseCreateOrderSuccessS
   }
 
   Widget buildCreateOrderSuccessWidget() {
+    final localize = AppLocalizations.of(context)!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -63,7 +66,7 @@ class _BurseCreateOrderSuccessScreenState extends State<BurseCreateOrderSuccessS
                 height: 5,
               ),
               Text(
-                "Поздравляем!\nВаш заказ размещен!!",
+                localize.congratulations_your_place_order,
                 textAlign: TextAlign.center,
                 style: AppTypography.font18w700.copyWith(color: Colors.white),
               ),
@@ -74,7 +77,7 @@ class _BurseCreateOrderSuccessScreenState extends State<BurseCreateOrderSuccessS
           height: 16,
         ),
         CustomButton(
-            text: "На биржу",
+            text: localize.on_exchange,
             onTap: () {
               context.pop();
               context.pop();
