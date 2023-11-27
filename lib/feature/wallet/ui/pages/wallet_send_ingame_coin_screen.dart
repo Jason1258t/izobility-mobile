@@ -45,7 +45,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода'));
+              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода')); //  TODO неаерно переведено
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -56,7 +56,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.successSnackBar('Успешно отправлено'));
+              CustomSnackBar.successSnackBar(localize.succedssfully_sent));
         }
       },
       child: GestureDetector(

@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_buy_order/burse_buy_order_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/models/api/burse_transfer.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
-import 'package:izobility_mobile/routes/go_routes.dart';
-import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -30,7 +25,6 @@ class BurseMyOrdersScreen extends StatefulWidget {
 class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
   @override
   Widget build(BuildContext context) {
-    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
     final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
@@ -52,7 +46,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
               context.pop();
 
               ScaffoldMessenger.of(context)
-                  .showSnackBar(CustomSnackBar.successSnackBar('Успешно'));
+                  .showSnackBar(CustomSnackBar.successSnackBar(localize.success));
             } else if (state is BurseBuyOrderFailure) {
               context.pop();
 
@@ -198,7 +192,7 @@ class _BurseMyOrdersScreenState extends State<BurseMyOrdersScreen> {
                     widget.order.closedAt == null
                         ? CustomButton(
                             color: AppColors.red400,
-                            text: "Отменить",
+                            text: localize.cancel,
                             onTap: () {
                               context
                                   .read<BurseBuyOrderCubit>()

@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
@@ -10,8 +7,6 @@ import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/button/custom_text_button.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class WalletAuthScreen extends StatefulWidget {
   const WalletAuthScreen({super.key});
@@ -71,7 +66,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                   height: 10,
                 ),
                 Text(
-                  'или',
+                  localize.or,
                   style: AppTypography.font14w400
                       .copyWith(color: AppColors.disabledTextButton),
                 ),

@@ -17,12 +17,8 @@ class BurseCreateOrderSuccessScreen extends StatefulWidget {
 }
 
 class _BurseCreateOrderSuccessScreenState extends State<BurseCreateOrderSuccessScreen> {
-  final _sendController = TextEditingController();
-  final _getController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
     final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,

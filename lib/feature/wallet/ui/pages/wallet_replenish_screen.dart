@@ -32,7 +32,7 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
-        text: 'Получить %Валюты%',
+        text: localize.get_currency,
         isBack: true,
         onTap: () {
           context.pop();

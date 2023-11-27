@@ -419,7 +419,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get bind_new_punishment => 'Atar un nuevo castigo';
 
   @override
-  String get turn_on_nfc_nyAttach_card => 'Encienda NFC Adjunte la tarjeta';
+  String get turn_on_nfc_nyAttach_card => 'Encienda NFC \n y adjunte la tarjeta';
 
   @override
   String get we_will_automatically_collect_data => 'Recopilaremos automáticamente los datos y los ingresaremos';
@@ -443,7 +443,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get erro => 'Error';
 
   @override
-  String get your_amount_is => 'Tu cantidad es ';
+  String get your_amount_is => 'Tu cantidad en';
 
   @override
   String get confirm => 'Confirmar';
@@ -579,4 +579,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get contacts => 'Contactos';
+
+  @override
+  String get or => 'o';
+
+  @override
+  String get success => 'Exitosamente';
+
+  @override
+  String get you_send => 'Enviarás';
+
+  @override
+  String get you_get => 'Obtendrás';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get get_currency => 'Obtener un %moneda %';
+
+  @override
+  String get to => 'EN';
+
+  @override
+  String get sec => 'segundo';
+
+  @override
+  String get success_verification => 'Verificación exitosa';
+
+  @override
+  String get promocode => 'Código promocional';
 }

@@ -53,7 +53,7 @@ class _WalletGameChainTransferState
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.successSnackBar('Успешно отправлено'));
+              CustomSnackBar.successSnackBar(localize.succedssfully_sent));
         }
       },
       child: GestureDetector(
@@ -142,7 +142,7 @@ class _WalletGameChainTransferState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Из",
+                                    localize.from,
                                     style: AppTypography.font14w400
                                         .copyWith(color: AppColors.grey700),
                                   ),
@@ -159,7 +159,7 @@ class _WalletGameChainTransferState
                                     height: 1,
                                     color: Colors.grey[200],
                                   ),
-                                  Text("в",
+                                  Text(localize.to,
                                       style: AppTypography.font14w400
                                           .copyWith(color: AppColors.grey700)),
                                   Text(

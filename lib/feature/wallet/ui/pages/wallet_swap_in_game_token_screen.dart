@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/swap_in_game_coins/swap_in_game_coins_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
-import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
-import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
@@ -58,7 +56,7 @@ class _SwapScreenState extends State<SwapScreen> {
             context.pop();
 
             ScaffoldMessenger.of(context).showSnackBar(
-                CustomSnackBar.successSnackBar('Успешно отправлено'));
+                CustomSnackBar.successSnackBar(localize.succedssfully_sent));
           }
         },
         child: HomeScaffold(

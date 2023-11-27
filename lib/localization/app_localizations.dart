@@ -926,7 +926,7 @@ abstract class AppLocalizations {
   /// No description provided for @turn_on_nfc_nyAttach_card.
   ///
   /// In en, this message translates to:
-  /// **'Turn on nfc attach the card'**
+  /// **'Turn on nfc \n and attach the card'**
   String get turn_on_nfc_nyAttach_card;
 
   /// No description provided for @we_will_automatically_collect_data.
@@ -974,7 +974,7 @@ abstract class AppLocalizations {
   /// No description provided for @your_amount_is.
   ///
   /// In en, this message translates to:
-  /// **'Your amount is '**
+  /// **'Your amount in'**
   String get your_amount_is;
 
   /// No description provided for @confirm.
@@ -1246,6 +1246,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contacts'**
   String get contacts;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully'**
+  String get success;
+
+  /// No description provided for @you_send.
+  ///
+  /// In en, this message translates to:
+  /// **'You will send'**
+  String get you_send;
+
+  /// No description provided for @you_get.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll get'**
+  String get you_get;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @get_currency.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a %currency %'**
+  String get get_currency;
+
+  /// No description provided for @to.
+  ///
+  /// In en, this message translates to:
+  /// **'IN'**
+  String get to;
+
+  /// No description provided for @sec.
+  ///
+  /// In en, this message translates to:
+  /// **'sec'**
+  String get sec;
+
+  /// No description provided for @success_verification.
+  ///
+  /// In en, this message translates to:
+  /// **'Successful verification'**
+  String get success_verification;
+
+  /// No description provided for @promocode.
+  ///
+  /// In en, this message translates to:
+  /// **'Promo code'**
+  String get promocode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

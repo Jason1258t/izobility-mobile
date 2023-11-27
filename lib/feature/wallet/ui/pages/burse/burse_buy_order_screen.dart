@@ -46,7 +46,7 @@ class _BurseBuyOrderScreenState extends State<BurseBuyOrderScreen> {
               context.pop();
 
                ScaffoldMessenger.of(context).showSnackBar(
-                  CustomSnackBar.successSnackBar('Успешно'));
+                  CustomSnackBar.successSnackBar(localize.success));
             } else if (state is BurseBuyOrderFailure) {
               context.pop();
 

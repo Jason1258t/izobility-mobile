@@ -19,13 +19,11 @@ import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
-import 'package:izobility_mobile/widgets/containers/utility_container.dart';
 import 'package:izobility_mobile/widgets/indicators/notifications_indicator.dart';
 import 'package:izobility_mobile/widgets/popup/popup_promo_failure.dart';
 import 'package:izobility_mobile/widgets/popup/popup_promo_success.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
@@ -56,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
           if (state is StoreBuyLoading) {
             showDialog(
                 context: context,
-                builder: (context) => Center(
+                builder: (context) => const Center(
                       child: CircularProgressIndicator.adaptive(),
                     ));
           } else if (state is StoreBuyFailure) {

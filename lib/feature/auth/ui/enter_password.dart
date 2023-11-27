@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/utils/logic/validators.dart';
@@ -30,6 +31,8 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () async => FocusScope.of(context).unfocus(),
       child: AuthScaffold(
@@ -53,7 +56,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
               obscured: hidePassword,
               controller: passwordController,
               width: double.infinity,
-              labelText: "Код подтверждения",
+              labelText: localize.confirmation_code,
               mask: AppMask.maskVerificationCodeFormatter,
               suffixIconCallback: () {
                 setState(() {
@@ -80,7 +83,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                       ));
                 } else if (state is AuthFailState) {
                   setState(() {
-                    filedError = 'Не правильно введен код';
+                    filedError = localize.incorrect_code;
                   });
                   Dialogs.hide(context);
                 } else {
@@ -89,7 +92,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
               },
               child: CustomButton(
                   isActive: buttonActive,
-                  text: 'Войти',
+                  text: localize.to_come_in,
                   onTap: () {
                     FocusScope.of(context).unfocus();
                     BlocProvider.of<AuthCubit>(context).loginData!.password =
@@ -108,7 +111,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                     builder: (context, state) {
                   if (state is PasswordRecoveryWait) {
                     return Text(
-                      'Отправить ещё раз (${state.remainingTime} сек)',
+                      '${localize.send_again} (${state.remainingTime} ${localize.sec})',
                       style: AppTypography.font12w400
                           .copyWith(color: AppColors.disabledTextButton),
                     );
@@ -127,7 +130,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                           authCubit.needChangePassword = true;
                         }
                       },
-                      text: 'Отправить ещё раз',
+                      text: localize.send_again,
                       textColor: Colors.black,
                       textStyle: AppTypography.font12w400,
                     );
@@ -149,14 +152,14 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Проверить почту',
+                      localize.check_email,
                       style: AppTypography.font24w700,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
-                      'Мы отправили письмо для восстановления вашего аккаунта',
+                      localize.we_sent_letter_to_restore_account,
                       style: AppTypography.font12w400,
                     )
                   ],

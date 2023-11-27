@@ -85,9 +85,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                 if (_nameController.text == "" ||
                                     _surnameController.text == "") {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
+                                      SnackBar(
                                           content: Text(
-                                              "Вы не можете изменить ФИ имя на пустые")));
+                                              localize.you_cannot_change_of_empty)));
                                   context.pop();
                                   _nameController.text ==
                                       context
@@ -140,8 +140,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                 } else if (state is ProfileSuccessState) {
                   return buildUserDetialsInfo();
                 } else {
-                  return const Center(
-                    child: Text('Ошибочка на сервере('),
+                  return Center(
+                    child: Text(localize.error_on_server),
                   );
                 }
               },

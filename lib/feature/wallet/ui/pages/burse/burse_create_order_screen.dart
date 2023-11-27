@@ -81,7 +81,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          'Вы отправите',
+          localize.you_send,
           style: AppTypography.font20w700.copyWith(color: Colors.black),
         ),
         SizedBox(
@@ -119,7 +119,7 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
           ),
         ),
         Text(
-          'Вы получите',
+          localize.you_get,
           style: AppTypography.font20w700.copyWith(color: Colors.black),
         ),
         SizedBox(

@@ -44,7 +44,7 @@ class _ProfilePhoneConfirmState extends State<ProfilePhoneConfirm> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.successSnackBar("Успешная верификация"));
+              CustomSnackBar.successSnackBar(localize.success_verification));
         }
       },
       child: GestureDetector(

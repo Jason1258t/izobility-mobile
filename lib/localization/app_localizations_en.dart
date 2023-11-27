@@ -419,7 +419,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bind_new_punishment => 'Bind a new punishment';
 
   @override
-  String get turn_on_nfc_nyAttach_card => 'Turn on nfc attach the card';
+  String get turn_on_nfc_nyAttach_card => 'Turn on nfc \n and attach the card';
 
   @override
   String get we_will_automatically_collect_data => 'We will automatically collect the data and enter it';
@@ -443,7 +443,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get erro => 'Error';
 
   @override
-  String get your_amount_is => 'Your amount is ';
+  String get your_amount_is => 'Your amount in';
 
   @override
   String get confirm => 'Confirm';
@@ -579,4 +579,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contacts => 'Contacts';
+
+  @override
+  String get or => 'or';
+
+  @override
+  String get success => 'Successfully';
+
+  @override
+  String get you_send => 'You will send';
+
+  @override
+  String get you_get => 'You\'ll get';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get get_currency => 'Get a %currency %';
+
+  @override
+  String get to => 'IN';
+
+  @override
+  String get sec => 'sec';
+
+  @override
+  String get success_verification => 'Successful verification';
+
+  @override
+  String get promocode => 'Promo code';
 }

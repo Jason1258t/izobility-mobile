@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
@@ -13,7 +12,6 @@ import 'package:izobility_mobile/feature/store/ui/widgets/store_price_container.
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
-import 'package:izobility_mobile/services/remote/api/api_service.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -96,7 +94,7 @@ class _ProductScreenState extends State<ProductScreen> {
       child: HomeScaffold(
         appBar: CustomAppBar(
           context: context,
-          text: "Промокод",
+          text: localize.promocode,
           isBack: true,
           onTap: () {
             context.pop();

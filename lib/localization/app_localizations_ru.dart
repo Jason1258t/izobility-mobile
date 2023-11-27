@@ -419,7 +419,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bind_new_punishment => 'Привязать новую кару';
 
   @override
-  String get turn_on_nfc_nyAttach_card => 'Включите NFC\nи приложите карту';
+  String get turn_on_nfc_nyAttach_card => 'Включите NFC \n и приложите карту';
 
   @override
   String get we_will_automatically_collect_data => 'Мы автоматически соберём данные и внесём их';
@@ -443,7 +443,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get erro => 'Ошибка';
 
   @override
-  String get your_amount_is => 'Ваша сумма';
+  String get your_amount_is => 'Ваша сумма в';
 
   @override
   String get confirm => 'Подтвердить';
@@ -579,4 +579,34 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get contacts => 'Контакты';
+
+  @override
+  String get or => 'или';
+
+  @override
+  String get success => 'Успешно';
+
+  @override
+  String get you_send => 'Вы отправите';
+
+  @override
+  String get you_get => 'Вы получите';
+
+  @override
+  String get cancel => 'Отменить';
+
+  @override
+  String get get_currency => 'Получить %Валюты%';
+
+  @override
+  String get to => 'В';
+
+  @override
+  String get sec => 'сек';
+
+  @override
+  String get success_verification => 'Успешная верификация';
+
+  @override
+  String get promocode => 'Промокод';
 }
