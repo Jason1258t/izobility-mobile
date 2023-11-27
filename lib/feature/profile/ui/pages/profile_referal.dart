@@ -308,7 +308,8 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                               color: Colors.black,
                                               'assets/icons/write.svg'),
                                           onTap: () async {
-                                            AppBottomSheets.setReferalCode(context);
+                                            AppBottomSheets.setReferalCode(
+                                                context);
                                           }),
                                     ),
                                   ],
@@ -376,7 +377,8 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 12),
                                 child: Column(
-                                  children: buildReferalListWidget(),
+                                  children: buildReferalListWidget() +
+                                      (context.read<UserRepository>().referalList.length > 50 ? [Text("И еще ${context.read<UserRepository>().referalList.length - 50}...", style: AppTypography.font14w700.copyWith(color: Colors.black),)] : []),
                                 ),
                               );
                             }
@@ -401,12 +403,16 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
 
   List<Widget> buildReferalListWidget() {
     final userRepository = context.read<UserRepository>();
+    List<Widget> referalWidgetList = [];
+    int lastIndex = userRepository.referalList.length > 25
+        ? 25
+        : userRepository.referalList.length;
 
-    return userRepository.referalList
-        .map((e) => ReferalCard(
-              referal: e,
-            ))
-        .toList();
+    for (int i = 0; i < lastIndex; i++) {
+      referalWidgetList
+          .add(ReferalCard(referal: userRepository.referalList[i]));
+    }
+    return referalWidgetList;
   }
 }
 
@@ -445,20 +451,24 @@ class ReferalCard extends StatelessWidget {
               const SizedBox(
                 width: 12,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    referal.name == null ? referal.email : referal.name!,
-                    style:
-                        AppTypography.font16w400.copyWith(color: Colors.black),
-                  ),
-                  Text(
-                    "${localize.level}: ${referal.referalLevel}",
-                    style: AppTypography.font12w400
-                        .copyWith(color: AppColors.grey500),
-                  ),
-                ],
+              SizedBox(
+                width: 160,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      referal.name == null ? referal.email : referal.name!,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.font16w400
+                          .copyWith(color: Colors.black),
+                    ),
+                    Text(
+                      "${localize.level}: ${referal.referalLevel}",
+                      style: AppTypography.font12w400
+                          .copyWith(color: AppColors.grey500),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
