@@ -379,7 +379,8 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 12),
                                 child: Column(
-                                  children: buildReferalListWidget(),
+                                  children: buildReferalListWidget() +
+                                      (context.read<UserRepository>().referalList.length > 50 ? [Text("И еще ${context.read<UserRepository>().referalList.length - 50}...", style: AppTypography.font14w700.copyWith(color: Colors.black),)] : []),
                                 ),
                               );
                             }
