@@ -83,9 +83,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get enter_seed_phrase => 'Войти по Seed-фразе';
 
   @override
-  String get auth_by_seed => 'Войти по Seed-phrase';
-
-  @override
   String get all => 'Все';
 
   @override

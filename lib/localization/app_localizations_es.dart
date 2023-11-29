@@ -5,608 +5,605 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get objects => '- objetos';
+  String get objects => '- objeto';
 
   @override
-  String get incorrect_code => '* Código incorrecto';
+  String get incorrect_code => '* Código incorrect';
 
   @override
-  String get incorrect_email => '* El correo es incorrecto';
+  String get incorrect_email => '* El correo es incorrect';
 
   @override
-  String get two_fa => '2FA Autenticación de dos factores';
+  String get two_fa => '2FA Autenticación de dos factore';
 
   @override
-  String get address => 'DIRECCIÓN';
+  String get address => 'DIRECCIÓ';
 
   @override
-  String get account => 'Cuenta';
+  String get account => 'Cuent';
 
   @override
-  String get activate => 'Activar';
+  String get activate => 'Activa';
 
   @override
-  String get activity => 'Actividad';
+  String get activity => 'Activida';
 
   @override
-  String get promotion => 'Promoción';
+  String get promotion => 'Promoció';
 
   @override
-  String get without_phone_not_more_functions => 'Sin confirmar el número de teléfono, no tendrá acceso a muchas aplicaciones';
+  String get without_phone_not_more_functions => 'Sin confirmar el número de teléfono, no tendrá acceso a muchas aplicacione';
 
   @override
-  String get safety => 'Seguridad';
+  String get safety => 'Segurida';
 
   @override
-  String get exchange => 'Intercambio';
+  String get exchange => 'Intercambi';
 
   @override
-  String get to => 'EN';
+  String get to => 'E';
 
   @override
-  String get your_profile_indicate_id => 'Su perfil indicará ID *user576767';
+  String get your_profile_indicate_id => 'Su perfil indicará ID *user57676';
 
   @override
-  String get your_balance_smaller => 'Tu equilibrio es más pequeño';
+  String get your_balance_smaller => 'Tu equilibrio es más pequeñ';
 
   @override
-  String get your_access_code => 'Su código de acceso';
+  String get your_access_code => 'Su código de acces';
 
   @override
-  String get your_promo => 'Tu código de promoción';
+  String get your_promo => 'Tu código de promoció';
 
   @override
-  String get your_mail => 'Tu correo';
+  String get your_mail => 'Tu corre';
 
   @override
-  String get your_amount_is => 'Tu cantidad en';
+  String get your_amount_is => 'Tu cantidad e';
 
   @override
-  String get your_name => 'Su nombre';
+  String get your_name => 'Su nombr';
 
   @override
-  String get your_goods_and_all_backbone => 'Tus bienes y toda la columna vertebral';
+  String get your_goods_and_all_backbone => 'Tus bienes y toda la columna vertebra';
 
   @override
-  String get enter_seed => 'Ingrese a Phot-Phot';
+  String get enter_seed => 'Ingrese a Phot-Pho';
 
   @override
-  String get turn_on_nfc_ny_attach_card => 'Encienda NFC \n y adjunte la tarjeta';
+  String get turn_on_nfc_ny_attach_card => 'Encienda NFC \n y adjunte la tarjet';
 
   @override
-  String get turn_on_nfc => 'Encienda NFC';
+  String get turn_on_nfc => 'Encienda NF';
 
   @override
-  String get to_come_in => 'Entrar';
+  String get to_come_in => 'Entra';
 
   @override
   String get enter_seed_phrase => 'Ingrese por frase inicia';
 
   @override
-  String get auth_by_seed => 'Ingrese el phot de semillas';
+  String get all => 'Tod';
 
   @override
-  String get all => 'Todo';
+  String get entance_emerald => 'Entrada a la esmerald';
 
   @override
-  String get entance_emerald => 'Entrada a la esmeralda';
+  String get you_cannot_change_of_empty => 'No puedes cambiar el nombre del vací';
 
   @override
-  String get you_cannot_change_of_empty => 'No puedes cambiar el nombre del vacío';
+  String get you_send => 'Enviará';
 
   @override
-  String get you_send => 'Enviarás';
+  String get you_get => 'Obtendrá';
 
   @override
-  String get you_get => 'Obtendrás';
+  String get confirm_logout => '¿Definitivamente quieres salir';
 
   @override
-  String get confirm_logout => '¿Definitivamente quieres salir?';
+  String get choose_from_gallery => 'Elija entre la galerí';
 
   @override
-  String get choose_from_gallery => 'Elija entre la galería';
+  String get logout => 'Sali';
 
   @override
-  String get logout => 'Salir';
+  String get main => 'hoga';
 
   @override
-  String get main => 'hogar';
+  String get yes => 'S';
 
   @override
-  String get yes => 'Sí';
+  String get next => 'Má';
 
   @override
-  String get next => 'Más';
+  String get account_data => 'Datos de cuent';
 
   @override
-  String get account_data => 'Datos de cuenta';
+  String get birthday => 'Fecha de nacimient';
 
   @override
-  String get birthday => 'Fecha de nacimiento';
+  String get it_nesessary_to_get_it => 'Es necesario conseguirl';
 
   @override
-  String get it_nesessary_to_get_it => 'Es necesario conseguirlo';
+  String get have_to_get => 'Para el recibo no v';
 
   @override
-  String get have_to_get => 'Para el recibo no va';
+  String get welcome_to_emerald => '¡Bienvenido al verso Emerald! \n \n abstat, puede jugar realidad aumentada y encontrar criptomotriz y nft, que se pueden intercambiar por regalos o vender en el mercado de valores. Realidad aumentada en la tienda de recuerdos. El empaque de bienes y en los supermercados';
 
   @override
-  String get welcome_to_emerald => 'n los supermercados.';
+  String get available => 'Disponibl';
 
   @override
-  String get available => 'Disponible';
+  String get income => 'Ingres';
 
   @override
-  String get income => 'Ingreso';
+  String get other => 'Otr';
 
   @override
-  String get other => 'Otro';
+  String get another => 'Otr';
 
   @override
-  String get another => 'Otro';
+  String get more => 'Má';
 
   @override
-  String get more => 'Más';
+  String get there_are_still_contacts => 'Todavía no hay contrato';
 
   @override
-  String get there_are_still_contacts => 'Todavía no hay contratos';
+  String get woman => 'Femenin';
 
   @override
-  String get woman => 'Femenino';
+  String get gaming => 'Jueg';
 
   @override
-  String get gaming => 'Juego';
+  String get game => 'Jueg';
 
   @override
-  String get game => 'Juego';
+  String get from => 'd';
 
   @override
-  String get from => 'de';
+  String get or => '';
 
   @override
-  String get or => 'o';
+  String get name => 'Nombr';
 
   @override
-  String get name => 'Nombre';
+  String get loose_data => 'De lo contrario, perderá los cambios que ha realizad';
 
   @override
-  String get loose_data => 'De lo contrario, perderá los cambios que ha realizado';
+  String get inventory => 'Inventari';
 
   @override
-  String get inventory => 'Inventario';
+  String get use => 'Usa';
 
   @override
-  String get use => 'Usar';
+  String get story => 'Histori';
 
   @override
-  String get story => 'Historia';
+  String get no_enough => '¡Parece que hay algo que falta aquí';
 
   @override
-  String get no_enough => '¡Parece que hay algo que falta aquí!';
+  String get cards => 'Tarjeta';
 
   @override
-  String get cards => 'Tarjetas';
+  String get code_is_wrong => 'El código está ma';
 
   @override
-  String get code_is_wrong => 'El código está mal';
+  String get try_wrong_code_again => 'Prueba el código incorrecto nuevament';
 
   @override
-  String get try_wrong_code_again => 'Prueba el código incorrecto nuevamente';
+  String get confirmation_code => 'código de confirmació';
 
   @override
-  String get confirmation_code => 'código de confirmación';
+  String get quantity => 'Cantida';
 
   @override
-  String get quantity => 'Cantidad';
+  String get seto_commission => 'Comisión cuadrada';
 
   @override
-  String get seto_commission => 'Comisión cuadrada:';
+  String get currency_conversion => 'Conversión de Moned';
 
   @override
-  String get currency_conversion => 'Conversión de Moneda';
+  String get contacts => 'Contacto';
 
   @override
-  String get contacts => 'Contactos';
+  String get wallet => 'Billeter';
 
   @override
-  String get wallet => 'Billetera';
+  String get buy => 'Compra';
 
   @override
-  String get buy => 'Comprar';
+  String get buy_coins => 'Comprar moneda';
 
   @override
-  String get buy_coins => 'Comprar monedas';
+  String get shop => 'Comerci';
 
   @override
-  String get shop => 'Comercio';
+  String get places => 'Lugare';
 
   @override
-  String get places => 'Lugares';
+  String get my => 'M';
 
   @override
-  String get my => 'Mi';
+  String get my_bank_cards => 'Mis tarjetas bancaria';
 
   @override
-  String get my_bank_cards => 'Mis tarjetas bancarias';
+  String get my_orders => 'Mis ordene';
 
   @override
-  String get my_orders => 'Mis ordenes';
+  String get my_pyrchases => 'Mis compra';
 
   @override
-  String get my_pyrchases => 'Mis compras';
-
-  @override
-  String get my_referals => 'Mis resúmenes';
+  String get my_referals => 'Mis resúmene';
 
   @override
   String get my_seed => 'Mi frase semill';
 
   @override
-  String get man => 'Masculino';
+  String get man => 'Masculin';
 
   @override
-  String get we_will_automatically_collect_data => 'Recopilaremos automáticamente los datos y los ingresaremos';
+  String get we_will_automatically_collect_data => 'Recopilaremos automáticamente los datos y los ingresaremo';
 
   @override
-  String get auth_code_sended => 'Enviamos el código para la autorización a la solicitud';
+  String get auth_code_sended => 'Enviamos el código para la autorización a la solicitu';
 
   @override
-  String get we_sent_letter_to_restore_account => 'Enviamos una carta para restaurar su cuenta';
+  String get we_sent_letter_to_restore_account => 'Enviamos una carta para restaurar su cuent';
 
   @override
-  String get on_exchange => 'En el intercambio';
+  String get on_exchange => 'En el intercambi';
 
   @override
-  String get setting => 'Ajustes';
+  String get setting => 'Ajuste';
 
   @override
   String get inapproprivate_seed_phrase => 'frase semilla infie';
 
   @override
-  String get main_incorrectly_introduced => 'El correo se introduce incorrectamente';
+  String get main_incorrectly_introduced => 'El correo se introduce incorrectament';
 
   @override
-  String get no => 'No';
+  String get no => 'N';
 
   @override
-  String get nickname => 'Mella';
+  String get nickname => 'Mell';
 
   @override
-  String get card_number => 'Número de tarjeta';
+  String get card_number => 'Número de tarjet';
 
   @override
-  String get number_not_confirmed => 'El número no se confirma, por lo que las funciones de la billetera interna no funcionan';
+  String get number_not_confirmed => 'El número no se confirma, por lo que las funciones de la billetera interna no funciona';
 
   @override
-  String get about_give_back => 'Sobre el regreso';
+  String get about_give_back => 'Sobre el regres';
 
   @override
-  String get about_company => 'Acerca de la compañía';
+  String get about_company => 'Acerca de la compañí';
 
   @override
-  String get about_app => 'Sobre el apéndice';
+  String get about_app => 'Sobre el apéndic';
 
   @override
-  String get about_sale => 'Sobre la acción';
+  String get about_sale => 'Sobre la acció';
 
   @override
-  String get general => 'Son comunes';
+  String get general => 'Son comune';
 
   @override
-  String get operation_with_coin => 'Operación con una moneda';
+  String get operation_with_coin => 'Operación con una moned';
 
   @override
-  String get description => 'Descripción';
+  String get description => 'Descripció';
 
   @override
-  String get description_cryptocurrency => 'La descripción de la criptomoneda que admite el ecosistema de la cadena de binance.';
+  String get description_cryptocurrency => 'La descripción de la criptomoneda que admite el ecosistema de la cadena de binance';
 
   @override
-  String get main_one => 'El principal';
+  String get main_one => 'El principa';
 
   @override
-  String get remain => 'Izquierda';
+  String get remain => 'Izquierd';
 
   @override
-  String get cencellation => 'Cancelación';
+  String get cencellation => 'Cancelació';
 
   @override
-  String get cancel => 'Cancelar';
+  String get cancel => 'Cancela';
 
   @override
-  String get send => 'Enviar';
+  String get send => 'Envia';
 
   @override
-  String get send_again => 'Enviar de nuevo';
+  String get send_again => 'Enviar de nuev';
 
   @override
-  String get sending_data => 'Enviando datos';
+  String get sending_data => 'Enviando dato';
 
   @override
-  String get sending_data_for_analytics => 'Enviar datos para análisis y mejorar el rendimiento de la aplicación';
+  String get sending_data_for_analytics => 'Enviar datos para análisis y mejorar el rendimiento de la aplicació';
 
   @override
-  String get grades => 'Evaluaciones';
+  String get grades => 'Evaluacione';
 
   @override
-  String get erro => 'Error';
+  String get erro => 'Erro';
 
   @override
-  String get translation_error => 'error de traducción';
+  String get translation_error => 'error de traducció';
 
   @override
-  String get error_on_server => 'Error en el servidor (';
+  String get error_on_server => 'Error en el servidor ';
 
   @override
-  String get affiliate_program => 'Programa de afiliación';
+  String get affiliate_program => 'Programa de afiliació';
 
   @override
-  String get personalization => 'Personalización';
+  String get personalization => 'Personalizació';
 
   @override
-  String get pincodes_not_mutch => 'Los códigos PIN no coinciden';
+  String get pincodes_not_mutch => 'Los códigos PIN no coincide';
 
   @override
-  String get repeat_access_code => 'Repita el código de acceso';
+  String get repeat_access_code => 'Repita el código de acces';
 
   @override
-  String get gifts => 'Presente';
+  String get gifts => 'Present';
 
   @override
-  String get support => 'Apoyo';
+  String get support => 'Apoy';
 
   @override
-  String get share => 'Compartir';
+  String get share => 'Comparti';
 
   @override
-  String get confirm_phone => 'Confirmar el número de teléfono';
+  String get confirm_phone => 'Confirmar el número de teléfon';
 
   @override
-  String get confim_your_identity => 'confirme su identidad';
+  String get confim_your_identity => 'confirme su identida';
 
   @override
-  String get confirm => 'Confirmar';
+  String get confirm => 'Confirma';
 
   @override
-  String get confirmation_entrace => 'Confirmación de la entrada o acción en la aplicación';
+  String get confirmation_entrace => 'Confirmación de la entrada o acción en la aplicació';
 
   @override
-  String get number_confirmation => 'Confirmación de números';
+  String get number_confirmation => 'Confirmación de número';
 
   @override
-  String get congratulations_your_place_order => '¡Felicitaciones! \nvash se coloca el pedido!';
+  String get congratulations_your_place_order => '¡Felicitaciones! \nvash se coloca el pedido';
 
   @override
-  String get purchase => 'Compra';
+  String get purchase => 'Compr';
 
   @override
-  String get buying_order => 'Comprar un pedido';
+  String get buying_order => 'Comprar un pedid';
 
   @override
-  String get sex => 'Piso';
+  String get sex => 'Pis';
 
   @override
-  String get privacy_policy => 'política de privacidad';
+  String get privacy_policy => 'política de privacida';
 
   @override
-  String get get_money_for_invite => 'Obtenga dinero para invitaciones';
+  String get get_money_for_invite => 'Obtenga dinero para invitacione';
 
   @override
-  String get get => 'Conseguir';
+  String get get => 'Consegui';
 
   @override
-  String get get_currency => 'Obtener un %moneda %';
+  String get get_currency => 'Obtener un %moneda ';
 
   @override
-  String get replenish => 'Reponer';
+  String get replenish => 'Repone';
 
   @override
-  String get try_later => 'intenta más tarde';
+  String get try_later => 'intenta más tard';
 
   @override
-  String get mail => 'Correo';
+  String get mail => 'Corre';
 
   @override
-  String get hello => 'Hola';
+  String get hello => 'Hol';
 
   @override
-  String get bind_new_punishment => 'Atar un nuevo castigo';
+  String get bind_new_punishment => 'Atar un nuevo castig';
 
   @override
-  String get exercise_password => 'Ejercer la contraseña';
+  String get exercise_password => 'Ejercer la contraseñ';
 
   @override
-  String get come_up_with_access_code => 'Crear un código de acceso';
+  String get come_up_with_access_code => 'Crear un código de acces';
 
   @override
-  String get joined => 'Unido';
+  String get joined => 'Unid';
 
   @override
-  String get check_email => 'Revisa el correo';
+  String get check_email => 'Revisa el corre';
 
   @override
-  String get sale => 'Venta';
+  String get sale => 'Vent';
 
   @override
-  String get continue_ => 'Continuar';
+  String get continue_ => 'Continua';
 
   @override
-  String get promocode => 'Código promocional';
+  String get promocode => 'Código promociona';
 
   @override
-  String get promo_codes => 'Códigos promocionales';
+  String get promo_codes => 'Códigos promocionale';
 
   @override
-  String get profile => 'Perfil';
+  String get profile => 'Perfi';
 
   @override
-  String get public_offer => 'Oferta pública';
+  String get public_offer => 'Oferta públic';
 
   @override
-  String get push_notification => 'Notificaciones push';
+  String get push_notification => 'Notificaciones pus';
 
   @override
-  String get size => 'Tamaño';
+  String get size => 'Tamañ';
 
   @override
-  String get placed => 'Metido';
+  String get placed => 'Metid';
 
   @override
-  String get profile_code => 'Edición de perfil';
+  String get profile_code => 'Edición de perfi';
 
   @override
-  String get reference_code => 'Código de referencia';
+  String get reference_code => 'Código de referenci';
 
   @override
-  String get referrals => 'Referencias';
+  String get referrals => 'Referencia';
 
   @override
-  String get abstract_programm => 'Programa abstracto';
+  String get abstract_programm => 'Programa abstract';
 
   @override
-  String get referal_code => 'Código de referencia';
+  String get referal_code => 'Código de referenci';
 
   @override
-  String get russian_ruble => 'Rublo ruso';
+  String get russian_ruble => 'Rublo rus';
 
   @override
-  String get website => 'Sitio web';
+  String get website => 'Sitio we';
 
   @override
-  String get swap => 'Intercambio';
+  String get swap => 'Intercambi';
 
   @override
-  String get to_make_photo => 'Para hacer una foto';
+  String get to_make_photo => 'Para hacer una fot';
 
   @override
-  String get sec => 'segundo';
+  String get sec => 'segund';
 
   @override
-  String get download => 'Descargar';
+  String get download => 'Descarga';
 
   @override
-  String get download_quantity => 'Descargas';
+  String get download_quantity => 'Descarga';
 
   @override
-  String get copulated => '¡Copulada!';
+  String get copulated => '¡Copulada';
 
   @override
-  String get copy => 'Copiar';
+  String get copy => 'Copia';
 
   @override
-  String get copy_code => 'Copiar el código';
+  String get copy_code => 'Copiar el códig';
 
   @override
-  String get hide_name => 'Ocultar el nombre real';
+  String get hide_name => 'Ocultar el nombre rea';
 
   @override
-  String get events => 'Eventos';
+  String get events => 'Evento';
 
   @override
-  String get creating_order => 'Creando un pedido';
+  String get creating_order => 'Creando un pedid';
 
   @override
-  String get create_wallet => 'Crea una billetera';
+  String get create_wallet => 'Crea una billeter';
 
   @override
-  String get create_your_own_order => 'Crea tu propio pedido';
+  String get create_your_own_order => 'Crea tu propio pedid';
 
   @override
-  String get save => 'Ahorrar';
+  String get save => 'Ahorra';
 
   @override
-  String get save_chages => '¿Guardar cambios?';
+  String get save_chages => '¿Guardar cambios';
 
   @override
-  String get social_net_em => 'Redes sociales esmeralda';
+  String get social_net_em => 'Redes sociales esmerald';
 
   @override
-  String get validity => 'Validez';
+  String get validity => 'Valide';
 
   @override
-  String get standard_partner => 'Socio estándar';
+  String get standard_partner => 'Socio estánda';
 
   @override
-  String get sum => 'Suma';
+  String get sum => 'Sum';
 
   @override
-  String get current_balance => 'Saldo actual';
+  String get current_balance => 'Saldo actua';
 
   @override
-  String get phone => 'Teléfono';
+  String get phone => 'Teléfon';
 
   @override
-  String get product_and_nft => 'Productos y NFT';
+  String get product_and_nft => 'Productos y NF';
 
   @override
-  String get tokens => 'Tokens';
+  String get tokens => 'Token';
 
   @override
-  String get you_have => 'Tienes';
+  String get you_have => 'Tiene';
 
   @override
-  String get you_have_no_puchases_yet => '¡Todavía no tienes compras! Correcto :)';
+  String get you_have_no_puchases_yet => '¡Todavía no tienes compras! Correcto :';
 
   @override
-  String get you_have_no_referrals => 'Todavía no tienes referencias :(';
+  String get you_have_no_referrals => 'Todavía no tienes referencias :';
 
   @override
-  String get notification => 'Notificaciones';
+  String get notification => 'Notificacione';
 
   @override
-  String get notification_with_confidential_data => 'Notificaciones con datos confidenciales';
+  String get notification_with_confidential_data => 'Notificaciones con datos confidenciale';
 
   @override
-  String get smart_notification => 'Notificaciones inteligentes';
+  String get smart_notification => 'Notificaciones inteligente';
 
   @override
-  String get oops => 'Ups...';
+  String get oops => 'Ups..';
 
   @override
-  String get level => 'Nivel';
+  String get level => 'Nive';
 
   @override
-  String get success_verification => 'Verificación exitosa';
+  String get success_verification => 'Verificación exitos';
 
   @override
-  String get success => 'Exitosamente';
+  String get success => 'Exitosament';
 
   @override
-  String get succedssfully_sent => 'enviado exitosamente';
+  String get succedssfully_sent => 'enviado exitosament';
 
   @override
-  String get successfilly_we_return_to_input => 'Con éxito, volvemos a la entrada';
+  String get successfilly_we_return_to_input => 'Con éxito, volvemos a la entrad';
 
   @override
-  String get surname => 'Apellido';
+  String get surname => 'Apellid';
 
   @override
-  String get read => 'Leer';
+  String get read => 'Lee';
 
   @override
-  String get what_is_inside => '¿Qué hay dentro?';
+  String get what_is_inside => '¿Qué hay dentro';
 
   @override
-  String get develop => '¡Esta funcionalidad está en desarrollo! ¡Nuestros desarrolladores, diseñadores y gerentes trabajan 24/7 para implementar nuevas chips!';
+  String get develop => '¡Esta funcionalidad está en desarrollo! ¡Nuestros desarrolladores, diseñadores y gerentes trabajan 24/7 para implementar nuevas chips';
 
   @override
-  String get language => 'Idioma';
+  String get language => 'Idiom';
 
   @override
-  String get apllication_languahe => 'Lenguaje de aplicación';
+  String get apllication_languahe => 'Lenguaje de aplicació';
 
   @override
-  String get ar_card => 'Tarjeta AR';
+  String get ar_card => 'Tarjeta A';
 
   @override
-  String get ar_scanner => 'Escáner';
+  String get ar_scanner => 'Escáne';
 
   @override
-  String get er_qr_games => 'AR, QR, juegos, etc.';
+  String get er_qr_games => 'AR, QR, juegos, etc';
 
   @override
-  String get bsc_scan => 'Escaneo de BSC';
+  String get bsc_scan => 'Escaneo de BS';
 
   @override
-  String get qr_scanner => 'Escáner QR';
+  String get qr_scanner => 'Escáner Q';
 }

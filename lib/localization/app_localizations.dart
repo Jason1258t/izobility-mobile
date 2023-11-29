@@ -102,469 +102,463 @@ abstract class AppLocalizations {
   /// No description provided for @objects.
   ///
   /// In en, this message translates to:
-  /// **'- objects'**
+  /// **'- item'**
   String get objects;
 
   /// No description provided for @incorrect_code.
   ///
   /// In en, this message translates to:
-  /// **'* Incorrect code'**
+  /// **'* Incorrect cod'**
   String get incorrect_code;
 
   /// No description provided for @incorrect_email.
   ///
   /// In en, this message translates to:
-  /// **'* The mail is incorrect'**
+  /// **'* The email is incorrec'**
   String get incorrect_email;
 
   /// No description provided for @two_fa.
   ///
   /// In en, this message translates to:
-  /// **'2FA two -factor authentication'**
+  /// **'2FA two -factor authenticatio'**
   String get two_fa;
 
   /// No description provided for @address.
   ///
   /// In en, this message translates to:
-  /// **'Address'**
+  /// **'Addres'**
   String get address;
 
   /// No description provided for @account.
   ///
   /// In en, this message translates to:
-  /// **'Account'**
+  /// **'Accoun'**
   String get account;
 
   /// No description provided for @activate.
   ///
   /// In en, this message translates to:
-  /// **'Activate'**
+  /// **'Activat'**
   String get activate;
 
   /// No description provided for @activity.
   ///
   /// In en, this message translates to:
-  /// **'Activity'**
+  /// **'Activit'**
   String get activity;
 
   /// No description provided for @promotion.
   ///
   /// In en, this message translates to:
-  /// **'Promotion'**
+  /// **'Promotio'**
   String get promotion;
 
   /// No description provided for @without_phone_not_more_functions.
   ///
   /// In en, this message translates to:
-  /// **'Without confirming the phone number, you will not have access to many applications'**
+  /// **'Without confirming the phone number, you will not have access to many application'**
   String get without_phone_not_more_functions;
 
   /// No description provided for @safety.
   ///
   /// In en, this message translates to:
-  /// **'Safety'**
+  /// **'Safet'**
   String get safety;
 
   /// No description provided for @exchange.
   ///
   /// In en, this message translates to:
-  /// **'Exchange'**
+  /// **'Exchang'**
   String get exchange;
 
   /// No description provided for @to.
   ///
   /// In en, this message translates to:
-  /// **'IN'**
+  /// **'t'**
   String get to;
 
   /// No description provided for @your_profile_indicate_id.
   ///
   /// In en, this message translates to:
-  /// **'Your profile will indicate ID *user576767'**
+  /// **'Your profile will indicate ID *user57676'**
   String get your_profile_indicate_id;
 
   /// No description provided for @your_balance_smaller.
   ///
   /// In en, this message translates to:
-  /// **'Your balance is smaller'**
+  /// **'Your balance is smalle'**
   String get your_balance_smaller;
 
   /// No description provided for @your_access_code.
   ///
   /// In en, this message translates to:
-  /// **'Your access code'**
+  /// **'Your access cod'**
   String get your_access_code;
 
   /// No description provided for @your_promo.
   ///
   /// In en, this message translates to:
-  /// **'Your promo code'**
+  /// **'Your promo cod'**
   String get your_promo;
 
   /// No description provided for @your_mail.
   ///
   /// In en, this message translates to:
-  /// **'Your mail'**
+  /// **'Your mai'**
   String get your_mail;
 
   /// No description provided for @your_amount_is.
   ///
   /// In en, this message translates to:
-  /// **'Your amount in'**
+  /// **'Your amount i'**
   String get your_amount_is;
 
   /// No description provided for @your_name.
   ///
   /// In en, this message translates to:
-  /// **'your name'**
+  /// **'your nam'**
   String get your_name;
 
   /// No description provided for @your_goods_and_all_backbone.
   ///
   /// In en, this message translates to:
-  /// **'Your goods and all the backbone'**
+  /// **'Your goods and all the backbon'**
   String get your_goods_and_all_backbone;
 
   /// No description provided for @enter_seed.
   ///
   /// In en, this message translates to:
-  /// **'Enter Seed-Phot'**
+  /// **'Enter Seed-Pho'**
   String get enter_seed;
 
   /// No description provided for @turn_on_nfc_ny_attach_card.
   ///
   /// In en, this message translates to:
-  /// **'Turn on nfc \n and attach the card'**
+  /// **'Turn on nfc \n and attach the car'**
   String get turn_on_nfc_ny_attach_card;
 
   /// No description provided for @turn_on_nfc.
   ///
   /// In en, this message translates to:
-  /// **'Turn on NFC'**
+  /// **'Turn on NF'**
   String get turn_on_nfc;
 
   /// No description provided for @to_come_in.
   ///
   /// In en, this message translates to:
-  /// **'To come in'**
+  /// **'Ente'**
   String get to_come_in;
 
   /// No description provided for @enter_seed_phrase.
   ///
   /// In en, this message translates to:
-  /// **'Enter by seed-phrase'**
+  /// **'Enter by seed-phras'**
   String get enter_seed_phrase;
-
-  /// No description provided for @auth_by_seed.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter the Seed-Phot'**
-  String get auth_by_seed;
 
   /// No description provided for @all.
   ///
   /// In en, this message translates to:
-  /// **'All'**
+  /// **'Al'**
   String get all;
 
   /// No description provided for @entance_emerald.
   ///
   /// In en, this message translates to:
-  /// **'Entrance to Emerald'**
+  /// **'Entrance to Emeral'**
   String get entance_emerald;
 
   /// No description provided for @you_cannot_change_of_empty.
   ///
   /// In en, this message translates to:
-  /// **'You cannot change the name of the empty'**
+  /// **'You cannot change the name of the empt'**
   String get you_cannot_change_of_empty;
 
   /// No description provided for @you_send.
   ///
   /// In en, this message translates to:
-  /// **'You will send'**
+  /// **'You will sen'**
   String get you_send;
 
   /// No description provided for @you_get.
   ///
   /// In en, this message translates to:
-  /// **'You\'ll get'**
+  /// **'You\'ll ge'**
   String get you_get;
 
   /// No description provided for @confirm_logout.
   ///
   /// In en, this message translates to:
-  /// **'Do you definitely want to go out?'**
+  /// **'Do you definitely want to go out'**
   String get confirm_logout;
 
   /// No description provided for @choose_from_gallery.
   ///
   /// In en, this message translates to:
-  /// **'Choose from the gallery'**
+  /// **'Choose from the galler'**
   String get choose_from_gallery;
 
   /// No description provided for @logout.
   ///
   /// In en, this message translates to:
-  /// **'Go out'**
+  /// **'Go ou'**
   String get logout;
 
   /// No description provided for @main.
   ///
   /// In en, this message translates to:
-  /// **'home'**
+  /// **'hom'**
   String get main;
 
   /// No description provided for @yes.
   ///
   /// In en, this message translates to:
-  /// **'Yes'**
+  /// **'Ye'**
   String get yes;
 
   /// No description provided for @next.
   ///
   /// In en, this message translates to:
-  /// **'Further'**
+  /// **'Furthe'**
   String get next;
 
   /// No description provided for @account_data.
   ///
   /// In en, this message translates to:
-  /// **'Account data'**
+  /// **'Account dat'**
   String get account_data;
 
   /// No description provided for @birthday.
   ///
   /// In en, this message translates to:
-  /// **'Date of Birth'**
+  /// **'Date of Birt'**
   String get birthday;
 
   /// No description provided for @it_nesessary_to_get_it.
   ///
   /// In en, this message translates to:
-  /// **'It is necessary to get it'**
+  /// **'It is necessary to get i'**
   String get it_nesessary_to_get_it;
 
   /// No description provided for @have_to_get.
   ///
   /// In en, this message translates to:
-  /// **'For receipt is not going'**
+  /// **'For receipt is not goin'**
   String get have_to_get;
 
   /// No description provided for @welcome_to_emerald.
   ///
   /// In en, this message translates to:
-  /// **' In supermarkets. \n \n, shake coins with each other, exchange them for gifts in a prize store and participate in competitions.'**
+  /// **'Welcome to Emerald Verse! \n \n Abstat you can play augmented reality and find cryptocoons and nft, which can be exchanged for gifts or sell on the stock market. \n Site coins from Emerald Verse and exchange \n for amazing NFT goods with augmented reality In the souvenir store. \n \n emorald Verse, these are AR games, loyalty programs, city quests and wow effects in augmented reality. \n \n jit at home, in institutions or \n gorod, find the effects of augmented reality on the packaging of goods and In supermarkets. \n \n, shake coins with each other, exchange them for gifts in a prize store and participate in competitions'**
   String get welcome_to_emerald;
 
   /// No description provided for @available.
   ///
   /// In en, this message translates to:
-  /// **'Available'**
+  /// **'Availabl'**
   String get available;
 
   /// No description provided for @income.
   ///
   /// In en, this message translates to:
-  /// **'Income'**
+  /// **'Incom'**
   String get income;
 
   /// No description provided for @other.
   ///
   /// In en, this message translates to:
-  /// **'Other'**
+  /// **'Othe'**
   String get other;
 
   /// No description provided for @another.
   ///
   /// In en, this message translates to:
-  /// **'Another'**
+  /// **'Anothe'**
   String get another;
 
   /// No description provided for @more.
   ///
   /// In en, this message translates to:
-  /// **'More'**
+  /// **'Mor'**
   String get more;
 
   /// No description provided for @there_are_still_contacts.
   ///
   /// In en, this message translates to:
-  /// **'There are still no contracts'**
+  /// **'There are still no contract'**
   String get there_are_still_contacts;
 
   /// No description provided for @woman.
   ///
   /// In en, this message translates to:
-  /// **'Female'**
+  /// **'Femal'**
   String get woman;
 
   /// No description provided for @gaming.
   ///
   /// In en, this message translates to:
-  /// **'Game'**
+  /// **'Gam'**
   String get gaming;
 
   /// No description provided for @game.
   ///
   /// In en, this message translates to:
-  /// **'Game'**
+  /// **'Gam'**
   String get game;
 
   /// No description provided for @from.
   ///
   /// In en, this message translates to:
-  /// **'from'**
+  /// **'fro'**
   String get from;
 
   /// No description provided for @or.
   ///
   /// In en, this message translates to:
-  /// **'or'**
+  /// **'o'**
   String get or;
 
   /// No description provided for @name.
   ///
   /// In en, this message translates to:
-  /// **'Name'**
+  /// **'Nam'**
   String get name;
 
   /// No description provided for @loose_data.
   ///
   /// In en, this message translates to:
-  /// **'Otherwise you will lose the changes you have made'**
+  /// **'Otherwise you will lose the changes you have mad'**
   String get loose_data;
 
   /// No description provided for @inventory.
   ///
   /// In en, this message translates to:
-  /// **'Inventory'**
+  /// **'Inventor'**
   String get inventory;
 
   /// No description provided for @use.
   ///
   /// In en, this message translates to:
-  /// **'Use'**
+  /// **'Us'**
   String get use;
 
   /// No description provided for @story.
   ///
   /// In en, this message translates to:
-  /// **'Story'**
+  /// **'Stor'**
   String get story;
 
   /// No description provided for @no_enough.
   ///
   /// In en, this message translates to:
-  /// **'It seems that something is missing here!'**
+  /// **'It seems that something is missing here'**
   String get no_enough;
 
   /// No description provided for @cards.
   ///
   /// In en, this message translates to:
-  /// **'Cards'**
+  /// **'Card'**
   String get cards;
 
   /// No description provided for @code_is_wrong.
   ///
   /// In en, this message translates to:
-  /// **'The code is wrong'**
+  /// **'The code is wron'**
   String get code_is_wrong;
 
   /// No description provided for @try_wrong_code_again.
   ///
   /// In en, this message translates to:
-  /// **'Try the wrong code again'**
+  /// **'Try the wrong code agai'**
   String get try_wrong_code_again;
 
   /// No description provided for @confirmation_code.
   ///
   /// In en, this message translates to:
-  /// **'confirmation code'**
+  /// **'confirmation cod'**
   String get confirmation_code;
 
   /// No description provided for @quantity.
   ///
   /// In en, this message translates to:
-  /// **'Quantity'**
+  /// **'Quantit'**
   String get quantity;
 
   /// No description provided for @seto_commission.
   ///
   /// In en, this message translates to:
-  /// **'Square Commission:'**
+  /// **'Square Commission'**
   String get seto_commission;
 
   /// No description provided for @currency_conversion.
   ///
   /// In en, this message translates to:
-  /// **'Currency conversion'**
+  /// **'Currency conversio'**
   String get currency_conversion;
 
   /// No description provided for @contacts.
   ///
   /// In en, this message translates to:
-  /// **'Contacts'**
+  /// **'Contact'**
   String get contacts;
 
   /// No description provided for @wallet.
   ///
   /// In en, this message translates to:
-  /// **'Wallet'**
+  /// **'Walle'**
   String get wallet;
 
   /// No description provided for @buy.
   ///
   /// In en, this message translates to:
-  /// **'Buy'**
+  /// **'Bu'**
   String get buy;
 
   /// No description provided for @buy_coins.
   ///
   /// In en, this message translates to:
-  /// **'Buy coins'**
+  /// **'Buy coin'**
   String get buy_coins;
 
   /// No description provided for @shop.
   ///
   /// In en, this message translates to:
-  /// **'Shop'**
+  /// **'Sho'**
   String get shop;
 
   /// No description provided for @places.
   ///
   /// In en, this message translates to:
-  /// **'Places'**
+  /// **'Place'**
   String get places;
 
   /// No description provided for @my.
   ///
   /// In en, this message translates to:
-  /// **'My'**
+  /// **'M'**
   String get my;
 
   /// No description provided for @my_bank_cards.
   ///
   /// In en, this message translates to:
-  /// **'My bank cards'**
+  /// **'My bank card'**
   String get my_bank_cards;
 
   /// No description provided for @my_orders.
   ///
   /// In en, this message translates to:
-  /// **'My orders'**
+  /// **'My order'**
   String get my_orders;
 
   /// No description provided for @my_pyrchases.
   ///
   /// In en, this message translates to:
-  /// **'My purchases'**
+  /// **'My purchase'**
   String get my_pyrchases;
 
   /// No description provided for @my_referals.
   ///
   /// In en, this message translates to:
-  /// **'My abstracts'**
+  /// **'My abstract'**
   String get my_referals;
 
   /// No description provided for @my_seed.
@@ -576,37 +570,37 @@ abstract class AppLocalizations {
   /// No description provided for @man.
   ///
   /// In en, this message translates to:
-  /// **'Male'**
+  /// **'Mal'**
   String get man;
 
   /// No description provided for @we_will_automatically_collect_data.
   ///
   /// In en, this message translates to:
-  /// **'We will automatically collect the data and enter it'**
+  /// **'We will automatically collect the data and enter i'**
   String get we_will_automatically_collect_data;
 
   /// No description provided for @auth_code_sended.
   ///
   /// In en, this message translates to:
-  /// **'We sent the code for authorization to the application'**
+  /// **'We sent the code for authorization to the applicatio'**
   String get auth_code_sended;
 
   /// No description provided for @we_sent_letter_to_restore_account.
   ///
   /// In en, this message translates to:
-  /// **'We sent a letter to restore your account'**
+  /// **'We sent a letter to restore your accoun'**
   String get we_sent_letter_to_restore_account;
 
   /// No description provided for @on_exchange.
   ///
   /// In en, this message translates to:
-  /// **'On the exchange'**
+  /// **'On the exchang'**
   String get on_exchange;
 
   /// No description provided for @setting.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'Setting'**
   String get setting;
 
   /// No description provided for @inapproprivate_seed_phrase.
@@ -618,697 +612,697 @@ abstract class AppLocalizations {
   /// No description provided for @main_incorrectly_introduced.
   ///
   /// In en, this message translates to:
-  /// **'Mail is incorrectly introduced'**
+  /// **'Mail is incorrectly introduce'**
   String get main_incorrectly_introduced;
 
   /// No description provided for @no.
   ///
   /// In en, this message translates to:
-  /// **'No'**
+  /// **'N'**
   String get no;
 
   /// No description provided for @nickname.
   ///
   /// In en, this message translates to:
-  /// **'Nick'**
+  /// **'Nic'**
   String get nickname;
 
   /// No description provided for @card_number.
   ///
   /// In en, this message translates to:
-  /// **'Card number'**
+  /// **'Card numbe'**
   String get card_number;
 
   /// No description provided for @number_not_confirmed.
   ///
   /// In en, this message translates to:
-  /// **'The number is not confirmed, so the functions of the internal wallet do not work'**
+  /// **'The number is not confirmed, so the functions of the internal wallet do not wor'**
   String get number_not_confirmed;
 
   /// No description provided for @about_give_back.
   ///
   /// In en, this message translates to:
-  /// **'About the return'**
+  /// **'About the retur'**
   String get about_give_back;
 
   /// No description provided for @about_company.
   ///
   /// In en, this message translates to:
-  /// **'About company'**
+  /// **'About compan'**
   String get about_company;
 
   /// No description provided for @about_app.
   ///
   /// In en, this message translates to:
-  /// **'About the appendix'**
+  /// **'About the appendi'**
   String get about_app;
 
   /// No description provided for @about_sale.
   ///
   /// In en, this message translates to:
-  /// **'About the action'**
+  /// **'About the actio'**
   String get about_sale;
 
   /// No description provided for @general.
   ///
   /// In en, this message translates to:
-  /// **'Are common'**
+  /// **'Are commo'**
   String get general;
 
   /// No description provided for @operation_with_coin.
   ///
   /// In en, this message translates to:
-  /// **'Operation with a coin'**
+  /// **'Operation with a coi'**
   String get operation_with_coin;
 
   /// No description provided for @description.
   ///
   /// In en, this message translates to:
-  /// **'Description'**
+  /// **'Descriptio'**
   String get description;
 
   /// No description provided for @description_cryptocurrency.
   ///
   /// In en, this message translates to:
-  /// **'The description of the cryptocurrency that supports the Binance Chain ecosystem.'**
+  /// **'The description of the cryptocurrency that supports the Binance Chain ecosystem'**
   String get description_cryptocurrency;
 
   /// No description provided for @main_one.
   ///
   /// In en, this message translates to:
-  /// **'The main one'**
+  /// **'The main on'**
   String get main_one;
 
   /// No description provided for @remain.
   ///
   /// In en, this message translates to:
-  /// **'Left'**
+  /// **'Lef'**
   String get remain;
 
   /// No description provided for @cencellation.
   ///
   /// In en, this message translates to:
-  /// **'Cancellation'**
+  /// **'Cancellatio'**
   String get cencellation;
 
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'Cancel'**
+  /// **'Cance'**
   String get cancel;
 
   /// No description provided for @send.
   ///
   /// In en, this message translates to:
-  /// **'Send'**
+  /// **'Sen'**
   String get send;
 
   /// No description provided for @send_again.
   ///
   /// In en, this message translates to:
-  /// **'Send again'**
+  /// **'Send agai'**
   String get send_again;
 
   /// No description provided for @sending_data.
   ///
   /// In en, this message translates to:
-  /// **'Sending data'**
+  /// **'Sending dat'**
   String get sending_data;
 
   /// No description provided for @sending_data_for_analytics.
   ///
   /// In en, this message translates to:
-  /// **'Sending data for analytics and improving the performance of the application'**
+  /// **'Sending data for analytics and improving the performance of the applicatio'**
   String get sending_data_for_analytics;
 
   /// No description provided for @grades.
   ///
   /// In en, this message translates to:
-  /// **'Assessments'**
+  /// **'Assessment'**
   String get grades;
 
   /// No description provided for @erro.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
+  /// **'Erro'**
   String get erro;
 
   /// No description provided for @translation_error.
   ///
   /// In en, this message translates to:
-  /// **'translation error'**
+  /// **'transaction erro'**
   String get translation_error;
 
   /// No description provided for @error_on_server.
   ///
   /// In en, this message translates to:
-  /// **'Error on the server ('**
+  /// **'Error on the server '**
   String get error_on_server;
 
   /// No description provided for @affiliate_program.
   ///
   /// In en, this message translates to:
-  /// **'Affiliate program'**
+  /// **'Affiliate progra'**
   String get affiliate_program;
 
   /// No description provided for @personalization.
   ///
   /// In en, this message translates to:
-  /// **'Personalization'**
+  /// **'Personalizatio'**
   String get personalization;
 
   /// No description provided for @pincodes_not_mutch.
   ///
   /// In en, this message translates to:
-  /// **'Pin codes do not match'**
+  /// **'Pin codes do not matc'**
   String get pincodes_not_mutch;
 
   /// No description provided for @repeat_access_code.
   ///
   /// In en, this message translates to:
-  /// **'Repeat the access code'**
+  /// **'Repeat the access cod'**
   String get repeat_access_code;
 
   /// No description provided for @gifts.
   ///
   /// In en, this message translates to:
-  /// **'Present'**
+  /// **'Gift'**
   String get gifts;
 
   /// No description provided for @support.
   ///
   /// In en, this message translates to:
-  /// **'Support'**
+  /// **'Suppor'**
   String get support;
 
   /// No description provided for @share.
   ///
   /// In en, this message translates to:
-  /// **'Share'**
+  /// **'Shar'**
   String get share;
 
   /// No description provided for @confirm_phone.
   ///
   /// In en, this message translates to:
-  /// **'Confirm the phone number'**
+  /// **'Confirm the phone numbe'**
   String get confirm_phone;
 
   /// No description provided for @confim_your_identity.
   ///
   /// In en, this message translates to:
-  /// **'Confirm your identity'**
+  /// **'Confirm your identit'**
   String get confim_your_identity;
 
   /// No description provided for @confirm.
   ///
   /// In en, this message translates to:
-  /// **'Confirm'**
+  /// **'Confir'**
   String get confirm;
 
   /// No description provided for @confirmation_entrace.
   ///
   /// In en, this message translates to:
-  /// **'Confirmation of the entrance or action in the application'**
+  /// **'Confirmation of the entrance or action in the applicatio'**
   String get confirmation_entrace;
 
   /// No description provided for @number_confirmation.
   ///
   /// In en, this message translates to:
-  /// **'Number confirmation'**
+  /// **'Number confirmatio'**
   String get number_confirmation;
 
   /// No description provided for @congratulations_your_place_order.
   ///
   /// In en, this message translates to:
-  /// **'Congratulations! \nvash is placed the order !!'**
+  /// **'Congratulations! \nvash is placed the order !'**
   String get congratulations_your_place_order;
 
   /// No description provided for @purchase.
   ///
   /// In en, this message translates to:
-  /// **'Purchase'**
+  /// **'Purchas'**
   String get purchase;
 
   /// No description provided for @buying_order.
   ///
   /// In en, this message translates to:
-  /// **'Buying an order'**
+  /// **'Buying an orde'**
   String get buying_order;
 
   /// No description provided for @sex.
   ///
   /// In en, this message translates to:
-  /// **'Floor'**
+  /// **'Gende'**
   String get sex;
 
   /// No description provided for @privacy_policy.
   ///
   /// In en, this message translates to:
-  /// **'Privacy Policy'**
+  /// **'Privacy Polic'**
   String get privacy_policy;
 
   /// No description provided for @get_money_for_invite.
   ///
   /// In en, this message translates to:
-  /// **'Get money \n for invitations'**
+  /// **'Get money \n for invitation'**
   String get get_money_for_invite;
 
   /// No description provided for @get.
   ///
   /// In en, this message translates to:
-  /// **'Get'**
+  /// **'Ge'**
   String get get;
 
   /// No description provided for @get_currency.
   ///
   /// In en, this message translates to:
-  /// **'Get a %currency %'**
+  /// **'Get a %currency '**
   String get get_currency;
 
   /// No description provided for @replenish.
   ///
   /// In en, this message translates to:
-  /// **'Replenish'**
+  /// **'Replenis'**
   String get replenish;
 
   /// No description provided for @try_later.
   ///
   /// In en, this message translates to:
-  /// **'try later'**
+  /// **'try late'**
   String get try_later;
 
   /// No description provided for @mail.
   ///
   /// In en, this message translates to:
-  /// **'Mail'**
+  /// **'Emai'**
   String get mail;
 
   /// No description provided for @hello.
   ///
   /// In en, this message translates to:
-  /// **'Hello'**
+  /// **'Hell'**
   String get hello;
 
   /// No description provided for @bind_new_punishment.
   ///
   /// In en, this message translates to:
-  /// **'Bind a new punishment'**
+  /// **'Bind a new punishmen'**
   String get bind_new_punishment;
 
   /// No description provided for @exercise_password.
   ///
   /// In en, this message translates to:
-  /// **'Exercise the password'**
+  /// **'Exercise the passwor'**
   String get exercise_password;
 
   /// No description provided for @come_up_with_access_code.
   ///
   /// In en, this message translates to:
-  /// **'Come up with an access code'**
+  /// **'Come up with an access cod'**
   String get come_up_with_access_code;
 
   /// No description provided for @joined.
   ///
   /// In en, this message translates to:
-  /// **'Joined'**
+  /// **'Joine'**
   String get joined;
 
   /// No description provided for @check_email.
   ///
   /// In en, this message translates to:
-  /// **'Check the mail'**
+  /// **'Check the mai'**
   String get check_email;
 
   /// No description provided for @sale.
   ///
   /// In en, this message translates to:
-  /// **'Sale'**
+  /// **'Sal'**
   String get sale;
 
   /// No description provided for @continue_.
   ///
   /// In en, this message translates to:
-  /// **'Continue'**
+  /// **'Continu'**
   String get continue_;
 
   /// No description provided for @promocode.
   ///
   /// In en, this message translates to:
-  /// **'Promo code'**
+  /// **'Promo cod'**
   String get promocode;
 
   /// No description provided for @promo_codes.
   ///
   /// In en, this message translates to:
-  /// **'Promo codes'**
+  /// **'Promo code'**
   String get promo_codes;
 
   /// No description provided for @profile.
   ///
   /// In en, this message translates to:
-  /// **'Profile'**
+  /// **'Profil'**
   String get profile;
 
   /// No description provided for @public_offer.
   ///
   /// In en, this message translates to:
-  /// **'Public offer'**
+  /// **'Public offe'**
   String get public_offer;
 
   /// No description provided for @push_notification.
   ///
   /// In en, this message translates to:
-  /// **'Push notifications'**
+  /// **'Push notification'**
   String get push_notification;
 
   /// No description provided for @size.
   ///
   /// In en, this message translates to:
-  /// **'Size'**
+  /// **'Siz'**
   String get size;
 
   /// No description provided for @placed.
   ///
   /// In en, this message translates to:
-  /// **'Placed'**
+  /// **'Place'**
   String get placed;
 
   /// No description provided for @profile_code.
   ///
   /// In en, this message translates to:
-  /// **'Profile editing'**
+  /// **'Profile editin'**
   String get profile_code;
 
   /// No description provided for @reference_code.
   ///
   /// In en, this message translates to:
-  /// **'Reference code'**
+  /// **'Reference cod'**
   String get reference_code;
 
   /// No description provided for @referrals.
   ///
   /// In en, this message translates to:
-  /// **'Referrals'**
+  /// **'Referral'**
   String get referrals;
 
   /// No description provided for @abstract_programm.
   ///
   /// In en, this message translates to:
-  /// **'Abstract program'**
+  /// **'Abstract progra'**
   String get abstract_programm;
 
   /// No description provided for @referal_code.
   ///
   /// In en, this message translates to:
-  /// **'Referral code'**
+  /// **'Referral cod'**
   String get referal_code;
 
   /// No description provided for @russian_ruble.
   ///
   /// In en, this message translates to:
-  /// **'Russian ruble'**
+  /// **'Russian rubl'**
   String get russian_ruble;
 
   /// No description provided for @website.
   ///
   /// In en, this message translates to:
-  /// **'Website'**
+  /// **'Websit'**
   String get website;
 
   /// No description provided for @swap.
   ///
   /// In en, this message translates to:
-  /// **'Swap'**
+  /// **'Swa'**
   String get swap;
 
   /// No description provided for @to_make_photo.
   ///
   /// In en, this message translates to:
-  /// **'To make a photo'**
+  /// **'To make a phot'**
   String get to_make_photo;
 
   /// No description provided for @sec.
   ///
   /// In en, this message translates to:
-  /// **'sec'**
+  /// **'se'**
   String get sec;
 
   /// No description provided for @download.
   ///
   /// In en, this message translates to:
-  /// **'Download'**
+  /// **'Downloa'**
   String get download;
 
   /// No description provided for @download_quantity.
   ///
   /// In en, this message translates to:
-  /// **'Downloads'**
+  /// **'Download'**
   String get download_quantity;
 
   /// No description provided for @copulated.
   ///
   /// In en, this message translates to:
-  /// **'Copulated!'**
+  /// **'Copulated'**
   String get copulated;
 
   /// No description provided for @copy.
   ///
   /// In en, this message translates to:
-  /// **'Copy'**
+  /// **'Cop'**
   String get copy;
 
   /// No description provided for @copy_code.
   ///
   /// In en, this message translates to:
-  /// **'Copy the code'**
+  /// **'Copy the cod'**
   String get copy_code;
 
   /// No description provided for @hide_name.
   ///
   /// In en, this message translates to:
-  /// **'Hide the real name'**
+  /// **'Hide the real nam'**
   String get hide_name;
 
   /// No description provided for @events.
   ///
   /// In en, this message translates to:
-  /// **'Events'**
+  /// **'Event'**
   String get events;
 
   /// No description provided for @creating_order.
   ///
   /// In en, this message translates to:
-  /// **'Creating an order'**
+  /// **'Creating an orde'**
   String get creating_order;
 
   /// No description provided for @create_wallet.
   ///
   /// In en, this message translates to:
-  /// **'Create a wallet'**
+  /// **'Create a walle'**
   String get create_wallet;
 
   /// No description provided for @create_your_own_order.
   ///
   /// In en, this message translates to:
-  /// **'Create your own order'**
+  /// **'Create your own orde'**
   String get create_your_own_order;
 
   /// No description provided for @save.
   ///
   /// In en, this message translates to:
-  /// **'Save'**
+  /// **'Sav'**
   String get save;
 
   /// No description provided for @save_chages.
   ///
   /// In en, this message translates to:
-  /// **'Save changes?'**
+  /// **'Save changes'**
   String get save_chages;
 
   /// No description provided for @social_net_em.
   ///
   /// In en, this message translates to:
-  /// **'Social networks Emerald'**
+  /// **'Social networks Emeral'**
   String get social_net_em;
 
   /// No description provided for @validity.
   ///
   /// In en, this message translates to:
-  /// **'Validity'**
+  /// **'Validit'**
   String get validity;
 
   /// No description provided for @standard_partner.
   ///
   /// In en, this message translates to:
-  /// **'Standard partner'**
+  /// **'Standard partne'**
   String get standard_partner;
 
   /// No description provided for @sum.
   ///
   /// In en, this message translates to:
-  /// **'Sum'**
+  /// **'Su'**
   String get sum;
 
   /// No description provided for @current_balance.
   ///
   /// In en, this message translates to:
-  /// **'Current balance'**
+  /// **'Current balanc'**
   String get current_balance;
 
   /// No description provided for @phone.
   ///
   /// In en, this message translates to:
-  /// **'Telephone'**
+  /// **'Telephon'**
   String get phone;
 
   /// No description provided for @product_and_nft.
   ///
   /// In en, this message translates to:
-  /// **'Products and NFT'**
+  /// **'Products and NF'**
   String get product_and_nft;
 
   /// No description provided for @tokens.
   ///
   /// In en, this message translates to:
-  /// **'Tokens'**
+  /// **'Token'**
   String get tokens;
 
   /// No description provided for @you_have.
   ///
   /// In en, this message translates to:
-  /// **'You have'**
+  /// **'You hav'**
   String get you_have;
 
   /// No description provided for @you_have_no_puchases_yet.
   ///
   /// In en, this message translates to:
-  /// **'You have no purchases yet! Correct :)'**
+  /// **'You have no purchases yet! Correct :'**
   String get you_have_no_puchases_yet;
 
   /// No description provided for @you_have_no_referrals.
   ///
   /// In en, this message translates to:
-  /// **'You have no referrals yet :('**
+  /// **'You have no referrals yet :'**
   String get you_have_no_referrals;
 
   /// No description provided for @notification.
   ///
   /// In en, this message translates to:
-  /// **'Notifications'**
+  /// **'Notification'**
   String get notification;
 
   /// No description provided for @notification_with_confidential_data.
   ///
   /// In en, this message translates to:
-  /// **'Notifications with confidential data'**
+  /// **'Notifications with confidential dat'**
   String get notification_with_confidential_data;
 
   /// No description provided for @smart_notification.
   ///
   /// In en, this message translates to:
-  /// **'Smart notifications'**
+  /// **'Smart notification'**
   String get smart_notification;
 
   /// No description provided for @oops.
   ///
   /// In en, this message translates to:
-  /// **'Oops...'**
+  /// **'Oops..'**
   String get oops;
 
   /// No description provided for @level.
   ///
   /// In en, this message translates to:
-  /// **'Level'**
+  /// **'Leve'**
   String get level;
 
   /// No description provided for @success_verification.
   ///
   /// In en, this message translates to:
-  /// **'Successful verification'**
+  /// **'Successful verificatio'**
   String get success_verification;
 
   /// No description provided for @success.
   ///
   /// In en, this message translates to:
-  /// **'Successfully'**
+  /// **'Successfull'**
   String get success;
 
   /// No description provided for @succedssfully_sent.
   ///
   /// In en, this message translates to:
-  /// **'successfully sent'**
+  /// **'successfully sen'**
   String get succedssfully_sent;
 
   /// No description provided for @successfilly_we_return_to_input.
   ///
   /// In en, this message translates to:
-  /// **'Successfully, we return to the input'**
+  /// **'Successfully, we return to the inpu'**
   String get successfilly_we_return_to_input;
 
   /// No description provided for @surname.
   ///
   /// In en, this message translates to:
-  /// **'Surname'**
+  /// **'Surnam'**
   String get surname;
 
   /// No description provided for @read.
   ///
   /// In en, this message translates to:
-  /// **'Read'**
+  /// **'Rea'**
   String get read;
 
   /// No description provided for @what_is_inside.
   ///
   /// In en, this message translates to:
-  /// **'What is inside?'**
+  /// **'What is inside'**
   String get what_is_inside;
 
   /// No description provided for @develop.
   ///
   /// In en, this message translates to:
-  /// **'This functionality is under development! Our developers, designers and managers work 24/7 to roll out new chips!'**
+  /// **'This functionality is under development! Our developers, designers and managers work 24/7 to roll out new chips'**
   String get develop;
 
   /// No description provided for @language.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
+  /// **'Languag'**
   String get language;
 
   /// No description provided for @apllication_languahe.
   ///
   /// In en, this message translates to:
-  /// **'Application language'**
+  /// **'Application languag'**
   String get apllication_languahe;
 
   /// No description provided for @ar_card.
   ///
   /// In en, this message translates to:
-  /// **'AR card'**
+  /// **'AR ma'**
   String get ar_card;
 
   /// No description provided for @ar_scanner.
   ///
   /// In en, this message translates to:
-  /// **'Ar Scanner'**
+  /// **'Ar Scanne'**
   String get ar_scanner;
 
   /// No description provided for @er_qr_games.
   ///
   /// In en, this message translates to:
-  /// **'AR, QR, Games, etc.'**
+  /// **'AR, QR, Games, etc'**
   String get er_qr_games;
 
   /// No description provided for @bsc_scan.
   ///
   /// In en, this message translates to:
-  /// **'BSC Scan'**
+  /// **'BSC Sca'**
   String get bsc_scan;
 
   /// No description provided for @qr_scanner.
   ///
   /// In en, this message translates to:
-  /// **'QR scanner'**
+  /// **'QR scanne'**
   String get qr_scanner;
 }
 
