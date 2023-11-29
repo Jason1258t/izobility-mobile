@@ -100,7 +100,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                       height: 16,
                     ),
                     CustomButton(
-                        text: '',
+                        text: localize.continue_,
                         onTap: () {
                           Dialogs.showModal(
                               context,

@@ -101,7 +101,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      localize.turn_on_nfc_nyAttach_card,
+                      localize.turn_on_nfc_ny_attach_card,
                       style: AppTypography.font24w700,
                     ),
                     const SizedBox(

@@ -7,10 +7,10 @@ import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
-import '../../../utils/logic/validators.dart';
-import '../../../widgets/button/custom_button.dart';
-import '../../../widgets/scaffold/auth_scaffold.dart';
-import '../../../widgets/text_field/custom_text_field.dart';
+import '../../../../utils/logic/validators.dart';
+import '../../../../widgets/button/custom_button.dart';
+import '../../../../widgets/scaffold/auth_scaffold.dart';
+import '../../../../widgets/text_field/custom_text_field.dart';
 
 class VerifyRecoveryCodeScreen extends StatefulWidget {
   const VerifyRecoveryCodeScreen({super.key});

@@ -151,6 +151,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(width: double.infinity,),
                     Text(
                       localize.check_email,
                       style: AppTypography.font24w700,

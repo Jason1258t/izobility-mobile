@@ -10,7 +10,7 @@ import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-import '../bloc/password_recovery/password_recovery_cubit.dart';
+import '../../bloc/password_recovery/password_recovery_cubit.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key, required this.creatingVariant});
