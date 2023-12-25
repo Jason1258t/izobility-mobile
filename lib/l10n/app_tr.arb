@@ -203,5 +203,9 @@
 "ar_scanner": "Taramacı",
 "er_qr_games": "AR, QR, oyunlar vb.",
 "bsc_scan": "BSC taraması",
-"qr_scanner": "Qr tarayıcı"
+"qr_scanner": "Qr tarayıcı",
+"games_banner_title": "Oyna ve kazanın",
+"games_banner_text": "Artırılmış Gerçeklik Oyunları",
+"games_banner_button": "Oynamak",
+"exchange_banner_button": "Gitmek"
 }

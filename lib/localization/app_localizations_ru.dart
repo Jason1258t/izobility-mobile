@@ -609,4 +609,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get qr_scanner => 'Qr сканер';
+
+  @override
+  String get games_banner_title => 'Играй и зарабатывай';
+
+  @override
+  String get games_banner_text => 'Игры в дополненной реальности';
+
+  @override
+  String get games_banner_button => 'Играть';
+
+  @override
+  String get exchange_banner_button => 'Перейти';
 }

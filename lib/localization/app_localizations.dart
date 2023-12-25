@@ -1310,6 +1310,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'QR scanner'**
   String get qr_scanner;
+
+  /// No description provided for @games_banner_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Play and earn'**
+  String get games_banner_title;
+
+  /// No description provided for @games_banner_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Augmented reality games'**
+  String get games_banner_text;
+
+  /// No description provided for @games_banner_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get games_banner_button;
+
+  /// No description provided for @exchange_banner_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Go'**
+  String get exchange_banner_button;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

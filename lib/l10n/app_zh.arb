@@ -203,5 +203,9 @@
 "ar_scanner": "AR扫描仪",
 "er_qr_games": "AR，QR，游戏等",
 "bsc_scan": "BSC扫描",
-"qr_scanner": "QR扫描仪"
+"qr_scanner": "QR扫描仪",
+"games_banner_title": "玩并赚钱",
+"games_banner_text": "增强现实游戏",
+"games_banner_button": "玩",
+"exchange_banner_button": "去"
 }

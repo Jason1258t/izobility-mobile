@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/banners/exchange.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/banners/games.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/guides_suggestion_loading.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/market_item.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
@@ -204,19 +206,7 @@ class _MainScreenState extends State<MainScreen> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(12),
-                                onTap: () {
-                                  context.go(RouteNames.games);
-                                },
-                                child: Ink(
-                                  child: Image.asset(
-                                    'assets/images/banners/games-banner.png',
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
+                              const GamesBanner(),
                               BlocListener<PromoCodeCubit, PromoCodeState>(
                                 listener: (context, state) {
                                   if (state is PromoActivateProcessState) {
@@ -296,19 +286,20 @@ class _MainScreenState extends State<MainScreen> {
                                   height: 16,
                                 )
                               ],
-                              InkWell(
-                                borderRadius: BorderRadius.circular(12),
-                                onTap: () {
-                                  launchUrl(Uri.parse('https://altcoinshub.com/en/'));
-                                },
-                                child: Ink(
-                                  child: Image.asset(
-                                    'assets/images/banners/exchange-banner.png',
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
+                              // InkWell(
+                              //   borderRadius: BorderRadius.circular(12),
+                              //   onTap: () {
+                              //     launchUrl(Uri.parse('https://altcoinshub.com/en/'));
+                              //   },
+                              //   child: Ink(
+                              //     child: Image.asset(
+                              //       'assets/images/banners/exchange-banner.png',
+                              //       width: double.infinity,
+                              //       fit: BoxFit.cover,
+                              //     ),
+                              //   ),
+                              // ),
+                              ExchangeBanner(),
                               const SizedBox(
                                 height: 16,
                               ),

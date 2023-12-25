@@ -609,4 +609,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qr_scanner => 'QR scanner';
+
+  @override
+  String get games_banner_title => 'Play and earn';
+
+  @override
+  String get games_banner_text => 'Augmented reality games';
+
+  @override
+  String get games_banner_button => 'Play';
+
+  @override
+  String get exchange_banner_button => 'Go';
 }

@@ -203,5 +203,9 @@
 "ar_scanner": "Ar Scanner",
 "er_qr_games": "AR, QR, Games, etc.",
 "bsc_scan": "BSC Scan",
-"qr_scanner": "QR scanner"
+"qr_scanner": "QR scanner",
+"games_banner_title": "Play and earn",
+"games_banner_text": "Augmented reality games",
+"games_banner_button": "Play",
+"exchange_banner_button": "Go"
 }

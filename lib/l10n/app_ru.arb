@@ -203,5 +203,9 @@
 "ar_scanner": "Ar сканнер",
 "er_qr_games": "AR, QR, игры и т.д.",
 "bsc_scan": "BSC scan",
-"qr_scanner": "Qr сканер"
+"qr_scanner": "Qr сканер",
+"games_banner_title": "Играй и зарабатывай",
+"games_banner_text": "Игры в дополненной реальности",
+"games_banner_button": "Играть",
+"exchange_banner_button": "Перейти"
 }
