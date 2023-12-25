@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_card.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -107,6 +112,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                         .copyWith(bottom: 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           localize.activity,

@@ -83,6 +83,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get enter_seed_phrase => 'Войти по Seed-фразе';
 
   @override
+  String get auth_by_seed => 'Войти по Seed-phrase';
+
+  @override
   String get all => 'Все';
 
   @override
@@ -371,7 +374,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get number_confirmation => 'Подтвержение номера';
 
   @override
-  String get congratulations_your_place_order => 'Поздравляем!\nВаш заказ размещен!!';
+  String get congratulations_your_place_order => 'Поздравляем!\n Ваш заказ размещен!!';
 
   @override
   String get purchase => 'Покупка';
