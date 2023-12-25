@@ -26,9 +26,87 @@ import 'package:izobility_mobile/widgets/popup/popup_promo_success.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
+
+
+final _oldActivityBanner = Material(
+  borderRadius: BorderRadius.circular(16),
+  color: Colors.white,
+  child: InkWell(
+    borderRadius: BorderRadius.circular(16),
+    onTap: () {
+      // context.go(RouteNames.games);
+    },
+    child: Container(
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      height: 120,
+      child: Row(
+        crossAxisAlignment:
+        CrossAxisAlignment.center,
+        mainAxisAlignment:
+        MainAxisAlignment.start,
+        children: [
+          Container(
+            constraints: const BoxConstraints(
+                maxWidth: 180),
+            height: double.infinity,
+            // width: size.width * 0.28,
+            child: Image.asset(
+              "assets/images/activity_man.jpg",
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          SizedBox(
+            // width: size.width * 0.58,
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                    "assets/icons/controller.svg"),
+                const SizedBox(
+                  width: 8,
+                ),
+                Column(
+                  mainAxisAlignment:
+                  MainAxisAlignment.center,
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      "Активности",
+                      style: AppTypography
+                          .font18w700
+                          .copyWith(
+                          color:
+                          Colors.black),
+                    ),
+                    Text(
+                      "AR, QR, игры и т.д.",
+                      style: AppTypography
+                          .font12w400
+                          .copyWith(
+                          color: AppColors
+                              .grey600),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    ),
+  ),
+);
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -127,78 +205,16 @@ class _MainScreenState extends State<MainScreen> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              Material(
-                                borderRadius: BorderRadius.circular(16),
-                                color: Colors.white,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(16),
-                                  onTap: () {
-                                    context.go(RouteNames.games);
-                                  },
-                                  child: Container(
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    height: 120,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          constraints: const BoxConstraints(
-                                              maxWidth: 180),
-                                          height: double.infinity,
-                                          width: size.width * 0.28,
-                                          child: Image.asset(
-                                            "assets/images/activity_man.jpg",
-                                            fit: BoxFit.fitHeight,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 16,
-                                        ),
-                                        SizedBox(
-                                          width: size.width * 0.58,
-                                          child: Row(
-                                            children: [
-                                              SvgPicture.asset(
-                                                  "assets/icons/controller.svg"),
-                                              const SizedBox(
-                                                width: 8,
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    "Активности",
-                                                    style: AppTypography
-                                                        .font18w700
-                                                        .copyWith(
-                                                            color:
-                                                                Colors.black),
-                                                  ),
-                                                  Text(
-                                                    "AR, QR, игры и т.д.",
-                                                    style: AppTypography
-                                                        .font12w400
-                                                        .copyWith(
-                                                            color: AppColors
-                                                                .grey600),
-                                                  )
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                              InkWell(
+                                borderRadius: BorderRadius.circular(12),
+                                onTap: () {
+                                  context.go(RouteNames.games);
+                                },
+                                child: Ink(
+                                  child: Image.asset(
+                                    'assets/images/banners/games-banner.png',
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -284,11 +300,11 @@ class _MainScreenState extends State<MainScreen> {
                               InkWell(
                                 borderRadius: BorderRadius.circular(12),
                                 onTap: () {
-                                  context.go(RouteNames.games);
+                                  launchUrl(Uri.parse('https://altcoinshub.com/en/'));
                                 },
                                 child: Ink(
                                   child: Image.asset(
-                                    'assets/images/Frame 1000007448.png',
+                                    'assets/images/banners/exchange-banner.png',
                                     width: double.infinity,
                                     fit: BoxFit.cover,
                                   ),

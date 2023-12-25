@@ -22,6 +22,7 @@ import 'package:izobility_mobile/widgets/containers/valid_token.dart';
 import 'package:izobility_mobile/widgets/popup/custom_popup.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../widgets/containers/market_Item.dart';
 
@@ -389,6 +390,13 @@ class _WalletScreenState extends State<WalletScreen>
                     //     //     .push('${RouteNames.walletChooseCoin}/buy');
                     //   },
                     // ),
+                    WalletAction(
+                      title: "Биржа",
+                      icon: 'assets/icons/burse.svg',
+                      onTap: () {
+                        launchUrl(Uri.parse('https://altcoinshub.com/en/'));
+                      },
+                    ),
                     WalletAction(
                       title: localize.swap,
                       icon: 'assets/icons/transfer_arrows_bold.svg',
