@@ -26,7 +26,6 @@
 "turn_on_nfc": "Включить NFC",
 "to_come_in": "Войти",
 "enter_seed_phrase": "Войти по Seed-фразе",
-"auth_by_seed": "Войти по Seed-phrase",
 "all": "Все",
 "entance_emerald": "Вход в Emerald",
 "you_cannot_change_of_empty": "Вы не можете изменить ФИ имя на пустые",
@@ -123,13 +122,12 @@
 "confirm": "Подтвердить",
 "confirmation_entrace": "Подтверждения входа или действий в приложении",
 "number_confirmation": "Подтвержение номера",
-"congratulations_your_place_order": "Поздравляем!\n Ваш заказ размещен!!",
+"congratulations_your_place_order": "Поздравляем!\nВаш заказ размещен!!",
 "purchase": "Покупка",
 "buying_order": "Покупка заказа",
 "sex": "Пол",
 "privacy_policy": "Политика конфиденциальности",
 "get_money_for_invite": "Получайте деньги \n за приглашения",
-"get": "Получить",
 "get": "Получить",
 "get_currency": "Получить %Валюты%",
 "replenish": "Пополнить",
@@ -201,5 +199,7 @@
 "apllication_languahe": "Язык приложения",
 "ar_card": "AR Карта",
 "ar_scanner": "Ar сканнер",
-"er_qr_games": "AR, QR, игры и т.д."
+"er_qr_games": "AR, QR, игры и т.д.",
+"bsc_scan": "BSC scan",
+"qr_scanner": "Qr сканер"
 }

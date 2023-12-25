@@ -1,16 +1,12 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/button/custom_text_button.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class WalletAuthScreen extends StatefulWidget {
   const WalletAuthScreen({super.key});
@@ -23,7 +19,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
-
+    final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Scaffold(
@@ -31,7 +27,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
           appBar: CustomAppBar(
             context: context,
             isBack: false,
-            text: "Кошелек",
+            text: localize.wallet,
           ),
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
@@ -53,7 +49,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Создать кошелек',
+                          localize.create_wallet,
                           style: AppTypography.font16w700
                               .copyWith(color: AppColors.textPrimary),
                         ),
@@ -70,7 +66,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                   height: 10,
                 ),
                 Text(
-                  'или',
+                  localize.or,
                   style: AppTypography.font14w400
                       .copyWith(color: AppColors.disabledTextButton),
                 ),
@@ -92,7 +88,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Войти по Seed-фразе',
+                          localize.enter_seed_phrase,
                           style: AppTypography.font16w700
                               .copyWith(color: AppColors.textPrimary),
                         ),

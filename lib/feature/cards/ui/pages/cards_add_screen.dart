@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/mask_text_field.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -25,7 +26,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -39,7 +40,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
           onTap: () {
             context.pop();
           },
-          text: "Привязать новую кару",
+          text: localize.bind_new_punishment,
         ),
         body: Container(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
@@ -50,7 +51,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
             CustomTextField(
               mask: AppMask.maskCardFormatter,
               backgroundColor: Colors.white,
-              hintText: "Номер карты",
+              hintText: localize.card_number,
               controller: _cardNumberController,
               width: double.infinity,
               keyboardType: TextInputType.number,
@@ -66,7 +67,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                 CustomTextField(
                   mask: AppMask.maskDateFormatter,
                   backgroundColor: Colors.white,
-                  hintText: "Срок действия",
+                  hintText: localize.validity,
                   controller: _cvvController,
                   width: size.width * 0.4333,
                   keyboardType: TextInputType.number,
@@ -85,7 +86,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
               height: 32,
             ),
             CustomButton(
-                text: "Продолжить", onTap: () {}, width: double.infinity),
+                text: localize.continue_, onTap: () {}, width: double.infinity),
             const SizedBox(
               height: 32,
             ),
@@ -100,14 +101,14 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Включите NFC\nи приложите карту",
+                      localize.turn_on_nfc_ny_attach_card,
                       style: AppTypography.font24w700,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
-                      "Мы автоматически соберём данные и внесём их",
+                      localize.we_will_automatically_collect_data,
                       style: AppTypography.font12w400,
                     ),
                     const SizedBox(
@@ -125,7 +126,7 @@ class _CardsAddScreenState extends State<CardsAddScreen> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 28.5, vertical: 4),
                           child: Text(
-                            "Включить NFC",
+                            localize.turn_on_nfc,
                             style: AppTypography.font14w700,
                           ),
                         ),

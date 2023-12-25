@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
@@ -73,7 +74,7 @@ class WalletTransactionContainer extends StatelessWidget {
                         SizedBox(
                           width: sizeOf.width - 230,
                           child: Text(
-                              'На: $address asdfasdfasdasdfasdfasdffasdf',
+                              '${AppLocalizations.of(context)!.to}: $address asdfasdfasdasdfasdfasdffasdf',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: AppTypography.font14w400.copyWith(

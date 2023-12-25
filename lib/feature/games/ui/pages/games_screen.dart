@@ -1,10 +1,5 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/games/ui/widgets/games_card.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
@@ -73,6 +68,7 @@ class _GamesScreenState extends State<GamesScreen> {
                   style: AppTypography.font16w700.copyWith(color: Colors.black),
                 ),
               ),
+
               SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverToBoxAdapter(
@@ -113,12 +109,12 @@ class _GamesScreenState extends State<GamesScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          "Активности",
+                                          localize.activity,
                                           style: AppTypography.font18w700
                                               .copyWith(color: Colors.white),
                                         ),
                                         Text(
-                                          "AR, QR, игры и т.д.",
+                                          localize.er_qr_games,
                                           style: AppTypography.font12w400
                                               .copyWith(color: Colors.white),
                                         )
@@ -135,7 +131,7 @@ class _GamesScreenState extends State<GamesScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Что внутри?",
+                                  localize.what_is_inside,
                                   style: AppTypography.font20w700
                                       .copyWith(color: Colors.white),
                                 ),
@@ -153,7 +149,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "QR Сканер",
+                                      localize.qr_scanner,
                                       style: AppTypography.font14w400
                                           .copyWith(color: Colors.white),
                                     ),
@@ -173,7 +169,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "AR Сканер",
+                                      localize.ar_scanner,
                                       style: AppTypography.font14w400
                                           .copyWith(color: Colors.white),
                                     ),
@@ -193,7 +189,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                       width: 8,
                                     ),
                                     Text(
-                                      "AR Карта",
+                                      localize.ar_card,
                                       style: AppTypography.font14w400
                                           .copyWith(color: Colors.white),
                                     ),
@@ -206,7 +202,7 @@ class _GamesScreenState extends State<GamesScreen> {
                                     gradient: AppGradients.gradientGreenWhite,
                                     textColor: Colors.black,
                                     fontSize: 18,
-                                    text: "Использовать",
+                                    text: localize.use,
                                     onTap: loadUnity,
                                     width: double.infinity)
                               ],

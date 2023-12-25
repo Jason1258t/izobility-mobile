@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
@@ -35,7 +36,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
-
+    final localize = AppLocalizations.of(context)!;
     return BlocListener<CoinSendCubit, CoinSendState>(
       listener: (context, state) {
         ScaffoldMessenger.of(context).clearSnackBars();
@@ -44,7 +45,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода'));
+              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода')); //  TODO неаерно переведено
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -55,7 +56,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.successSnackBar('Успешно отправлено'));
+              CustomSnackBar.successSnackBar(localize.succedssfully_sent));
         }
       },
       child: GestureDetector(
@@ -71,10 +72,10 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                 physics: const BouncingScrollPhysics(
                     decelerationRate: ScrollDecelerationRate.fast),
                 slivers: [
-                  const CustomSliverAppBar(
+                  CustomSliverAppBar(
                     height: 90,
                     isBack: true,
-                    title: 'Отправить',
+                    title: localize.send,
                     color: Colors.white,
                   ),
                   SliverPersistentHeader(
@@ -144,10 +145,10 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                           setState(() {});
                         },
                         error: isErrorEmail,
-                        errorText: 'Неверно введена почта',
+                        errorText: localize.main_incorrectly_introduced,
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),
-                        hintText: "Почта",
+                        hintText: localize.mail,
                         suffixIconCallback: () {
                           Clipboard.getData(Clipboard.kTextPlain).then((value) {
                             setState(() {
@@ -167,7 +168,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
-                        errorText: 'Ваш баланс меньше',
+                        errorText: localize.your_balance_smaller,
                         error: isErrorAmount,
                         onChange: (val) {
                           setState(() {
@@ -182,7 +183,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                         keyboardType: TextInputType.number,
                         obscured: false,
                         suffixIconChild: Image.network(widget.coin.imageUrl, width: 25,),
-                        hintText: "Сумма",
+                        hintText: localize.sum,
                         suffixIconCallback: () {},
                         controller: amountController,
                         width: double.infinity,
@@ -196,7 +197,7 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomButton(
                         isActive: !isErrorAmount && !isErrorEmail,
-                        text: 'Продолжить',
+                        text: localize.continue_,
                         onTap: () {
                           FocusScope.of(context).unfocus();
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -15,14 +16,16 @@ class WalletSettingScreen extends StatefulWidget {
 }
 
 class _WalletSettingScreenState extends State<WalletSettingScreen> {
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {final localize = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Scaffold(
         appBar: CustomAppBar(
           context: context,
-          text: 'Настройки',
+          text: localize.setting,
           isBack: true,
           onTap: () {
             context.pop();
@@ -35,13 +38,13 @@ class _WalletSettingScreenState extends State<WalletSettingScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButton(
-                  text: 'Моя Seed-фраза',
+                  text: localize.my_seed,
                   onTap: () {
                     context.push(RouteNames.walletViewSeed);
                   },
                   width: double.infinity),
               CustomButton(
-                text: 'Выйти',
+                text: localize.logout,
                 onTap: () async {
                   await context
                       .read<WalletRepository>()

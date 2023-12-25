@@ -19,7 +19,6 @@ import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/containers/cash_container.dart';
-import 'package:izobility_mobile/widgets/containers/utility_container.dart';
 import 'package:izobility_mobile/widgets/indicators/notifications_indicator.dart';
 import 'package:izobility_mobile/widgets/popup/popup_promo_failure.dart';
 import 'package:izobility_mobile/widgets/popup/popup_promo_success.dart';
@@ -134,14 +133,14 @@ class _MainScreenState extends State<MainScreen> {
           if (state is StoreBuyLoading) {
             showDialog(
                 context: context,
-                builder: (context) => Center(
+                builder: (context) => const Center(
                       child: CircularProgressIndicator.adaptive(),
                     ));
           } else if (state is StoreBuyFailure) {
             context.pop();
 
             ScaffoldMessenger.of(context)
-                .showSnackBar(CustomSnackBar.successSnackBar('Ошибка'));
+                .showSnackBar(CustomSnackBar.successSnackBar(localize.erro));
           } else if (state is StoreBuySuccess) {
             print('------ popped');
             context.pop(); // clear dialog
@@ -374,7 +373,7 @@ class _MainScreenState extends State<MainScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 18, top: 6, bottom: 6),
                                       child: Text(
-                                        'Ещё',
+                                        localize.more,
                                         style: AppTypography.font12w400
                                             .copyWith(color: AppColors.disable),
                                       ),

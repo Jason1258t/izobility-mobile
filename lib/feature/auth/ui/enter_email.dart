@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -31,6 +32,8 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return SafeArea(
       child: GestureDetector(
         onTap: () async {
@@ -55,7 +58,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                 Column(
                   children: [
                     CustomTextField(
-                      labelText: "Ваша почта",
+                      labelText: localize.your_mail,
                       keyboardType: TextInputType.emailAddress,
                       errorText: fieldError,
                       error: fieldError != null,
@@ -78,7 +81,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                     ),
                     CustomTextField.withOneIcon(
                       obscured: false,
-                      labelText: "Реферальный код",
+                      labelText: localize.referal_code,
                       controller: referalCodeController,
                       width: double.infinity,
                       suffixIconCallback: () {
@@ -97,7 +100,7 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                       height: 16,
                     ),
                     CustomButton(
-                        text: 'Далее',
+                        text: localize.continue_,
                         onTap: () {
                           Dialogs.showModal(
                               context,

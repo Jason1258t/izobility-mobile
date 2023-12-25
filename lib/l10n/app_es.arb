@@ -26,7 +26,6 @@
 "turn_on_nfc": "Encienda NF",
 "to_come_in": "Entra",
 "enter_seed_phrase": "Ingrese por frase inicia",
-"auth_by_seed": "Ingrese el phot de semilla",
 "all": "Tod",
 "entance_emerald": "Entrada a la esmerald",
 "you_cannot_change_of_empty": "No puedes cambiar el nombre del vací",
@@ -123,13 +122,12 @@
 "confirm": "Confirma",
 "confirmation_entrace": "Confirmación de la entrada o acción en la aplicació",
 "number_confirmation": "Confirmación de número",
-"congratulations_your_place_order": "¡Felicitaciones",
+"congratulations_your_place_order": "¡Felicitaciones! \nvash se coloca el pedido",
 "purchase": "Compr",
 "buying_order": "Comprar un pedid",
 "sex": "Pis",
 "privacy_policy": "política de privacida",
 "get_money_for_invite": "Obtenga dinero para invitacione",
-"get": "Consegui",
 "get": "Consegui",
 "get_currency": "Obtener un %moneda ",
 "replenish": "Repone",
@@ -201,5 +199,7 @@
 "apllication_languahe": "Lenguaje de aplicació",
 "ar_card": "Tarjeta A",
 "ar_scanner": "Escáne",
-"er_qr_games": "AR, QR, juegos, etc"
+"er_qr_games": "AR, QR, juegos, etc",
+"bsc_scan": "Escaneo de BS",
+"qr_scanner": "Escáner Q"
 }

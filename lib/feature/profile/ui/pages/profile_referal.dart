@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_referals/profile_referals_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/referal.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -16,7 +16,6 @@ import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/popup/popup_qr.dart';
 import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProfileReferalScreen extends StatefulWidget {
@@ -37,11 +36,11 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
-        text: "Рефералы",
+        text: localize.referrals,
         isBack: true,
         onTap: () {
           context.pop();
@@ -142,7 +141,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                   },
                                 ),
                                 Text(
-                                  "Доход",
+                                  localize.income,
                                   style: AppTypography.font12w400
                                       .copyWith(color: AppColors.grey500),
                                 )
@@ -192,7 +191,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                               },
                             ),
                             Text(
-                              "Присоединилось",
+                              localize.joined,
                               style: AppTypography.font12w400
                                   .copyWith(color: AppColors.grey500),
                             )
@@ -228,7 +227,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                               children: [
                                 FittedBox(
                                   child: Text(
-                                    "Получайте деньги\nза реферал",
+                                    localize.get_money_for_invite,
                                     style: AppTypography.font20w700.copyWith(
                                         color: Colors.white, letterSpacing: 0),
                                   ),
@@ -238,7 +237,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                     textColor: Colors.black,
                                     fontSize: 14,
                                     height: 28,
-                                    text: "Поделиться",
+                                    text: localize.share,
                                     onTap: () async {
                                       await Share.share(context
                                           .read<UserRepository>()
@@ -309,7 +308,8 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                               color: Colors.black,
                                               'assets/icons/write.svg'),
                                           onTap: () async {
-                                            AppBottomSheets.setReferalCode(context);
+                                            AppBottomSheets.setReferalCode(
+                                                context);
                                           }),
                                     ),
                                   ],
@@ -354,7 +354,7 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Мои рефералы",
+                        localize.my_referals,
                         textAlign: TextAlign.start,
                         style: AppTypography.font20w700
                             .copyWith(color: Colors.black),
@@ -371,13 +371,14 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
                                 .read<UserRepository>()
                                 .referalList
                                 .isEmpty) {
-                              return const Text("У вас пока нет рефералов :(");
+                              return Text(localize.you_have_no_referrals);
                             } else {
                               return Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 12),
                                 child: Column(
-                                  children: buildReferalListWidget(),
+                                  children: buildReferalListWidget() +
+                                      (context.read<UserRepository>().referalList.length > 50 ? [Text("И еще ${context.read<UserRepository>().referalList.length - 50}...", style: AppTypography.font14w700.copyWith(color: Colors.black),)] : []),
                                 ),
                               );
                             }
@@ -402,12 +403,16 @@ class ProfileReferalScreenState extends State<ProfileReferalScreen> {
 
   List<Widget> buildReferalListWidget() {
     final userRepository = context.read<UserRepository>();
+    List<Widget> referalWidgetList = [];
+    int lastIndex = userRepository.referalList.length > 25
+        ? 25
+        : userRepository.referalList.length;
 
-    return userRepository.referalList
-        .map((e) => ReferalCard(
-              referal: e,
-            ))
-        .toList();
+    for (int i = 0; i < lastIndex; i++) {
+      referalWidgetList
+          .add(ReferalCard(referal: userRepository.referalList[i]));
+    }
+    return referalWidgetList;
   }
 }
 
@@ -418,6 +423,8 @@ class ReferalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
@@ -444,20 +451,24 @@ class ReferalCard extends StatelessWidget {
               const SizedBox(
                 width: 12,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    referal.name == null ? referal.email : referal.name!,
-                    style:
-                        AppTypography.font16w400.copyWith(color: Colors.black),
-                  ),
-                  Text(
-                    "Уровень: ${referal.referalLevel}",
-                    style: AppTypography.font12w400
-                        .copyWith(color: AppColors.grey500),
-                  ),
-                ],
+              SizedBox(
+                width: 160,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      referal.name == null ? referal.email : referal.name!,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.font16w400
+                          .copyWith(color: Colors.black),
+                    ),
+                    Text(
+                      "${localize.level}: ${referal.referalLevel}",
+                      style: AppTypography.font12w400
+                          .copyWith(color: AppColors.grey500),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

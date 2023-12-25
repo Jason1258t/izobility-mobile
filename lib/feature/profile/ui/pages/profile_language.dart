@@ -21,7 +21,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
     locale = Locale(AppLocalizations.of(context)!.localeName);
 
     final localize = AppLocalizations.of(context)!;
-
+    const separate = SizedBox(height: 10,);
     return Container(
       color: Colors.white,
       child: SafeArea(
@@ -29,7 +29,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
           backgroundColor: AppColors.purpleBcg,
           appBar: CustomAppBar(
             context: context,
-            text: localize.switch_language,
+            text: localize.apllication_languahe,
             isBack: true,
             onTap: () {
               context.pop();
@@ -39,7 +39,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                SizedBox(height: 10,),
+                separate,
                 TextWithCheckBox(
                   value: locale.languageCode == 'ru',
                   onTap: () {
@@ -48,7 +48,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
                   },
                   title: 'Русский',
                 ),
-                SizedBox(height: 10,),
+                separate,
                 TextWithCheckBox(
                   value: locale.languageCode == 'en',
                   onTap: () {
@@ -57,7 +57,7 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
                   },
                   title: 'English',
                 ),
-                SizedBox(height: 10,),
+                separate,
                 TextWithCheckBox(
                   value: locale.languageCode == 'es',
                   onTap: () {
@@ -65,6 +65,24 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
                     setState(() {});
                   },
                   title: 'Spanish',
+                ),
+                separate,
+                TextWithCheckBox(
+                  value: locale.languageCode == 'tr',
+                  onTap: () {
+                    MyApp.setLocale(context, const Locale('tr'));
+                    setState(() {});
+                  },
+                  title: 'Türkçe',
+                ),
+                separate,
+                TextWithCheckBox(
+                  value: locale.languageCode == 'zh',
+                  onTap: () {
+                    MyApp.setLocale(context, const Locale('zh'));
+                    setState(() {});
+                  },
+                  title: '中国人',
                 ),
               ],
             ),

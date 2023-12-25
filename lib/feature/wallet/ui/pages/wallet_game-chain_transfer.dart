@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
@@ -32,7 +33,7 @@ class _WalletGameChainTransferState
   @override
   Widget build(BuildContext context) {
     final WalletRepository walletRepository = context.read<WalletRepository>();
-
+    final localize = AppLocalizations.of(context)!;
     return BlocListener<CoinSendCubit, CoinSendState>(
       listener: (context, state) {
         ScaffoldMessenger.of(context).clearSnackBars();
@@ -41,7 +42,7 @@ class _WalletGameChainTransferState
           context.pop();
 
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода'));
+              .showSnackBar(CustomSnackBar.errorSnackBar(localize.erro));
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -52,7 +53,7 @@ class _WalletGameChainTransferState
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.successSnackBar('Успешно отправлено'));
+              CustomSnackBar.successSnackBar(localize.succedssfully_sent));
         }
       },
       child: GestureDetector(
@@ -66,7 +67,7 @@ class _WalletGameChainTransferState
               backgroundColor: AppColors.purpleBcg,
               appBar: CustomAppBar(
                 context: context,
-                text: "Операция с монетой",
+                text: localize.operation_with_coin,
                 isBack: true,
                 onTap: () {
                   context.pop();
@@ -141,7 +142,7 @@ class _WalletGameChainTransferState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Из",
+                                    localize.from,
                                     style: AppTypography.font14w400
                                         .copyWith(color: AppColors.grey700),
                                   ),
@@ -158,7 +159,7 @@ class _WalletGameChainTransferState
                                     height: 1,
                                     color: Colors.grey[200],
                                   ),
-                                  Text("в",
+                                  Text(localize.to,
                                       style: AppTypography.font14w400
                                           .copyWith(color: AppColors.grey700)),
                                   Text(
@@ -200,7 +201,7 @@ class _WalletGameChainTransferState
                       ),
                       CustomTextField(
                           keyboardType: TextInputType.number,
-                          hintText: "Количество",
+                          hintText: localize.quantity,
                           backgroundColor: Colors.white,
                           controller: amountController,
                           width: MediaQuery.sizeOf(context).width),
@@ -211,7 +212,7 @@ class _WalletGameChainTransferState
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Доступно: ${widget.coin.amount}",
+                            "${localize.available}: ${widget.coin.amount}",
                             style: AppTypography.font12w400
                                 .copyWith(color: Colors.black),
                           ),
@@ -226,7 +227,7 @@ class _WalletGameChainTransferState
                         height: 16,
                       ),
                       CustomButton(
-                          text: "Отправить",
+                          text: localize.send,
                           onTap: () {
                             context.read<CoinSendCubit>().transferCoinGameChain(
                                 int.parse(widget.coin.id),

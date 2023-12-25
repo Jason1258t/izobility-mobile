@@ -17,11 +17,11 @@ class ProfileSettingsScreen extends StatefulWidget {
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   @override
   Widget build(BuildContext context) {
-
+    final localize = AppLocalizations.of(context)!;
     return HomeScaffold(
         appBar: CustomAppBar(
           context: context,
-          text: 'Настройки',
+          text: localize.setting,
           isBack: true,
           onTap: () {
             context.pop();

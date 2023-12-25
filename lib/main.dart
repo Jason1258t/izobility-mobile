@@ -22,7 +22,6 @@ void main() async {
   ]);
 
   StreamAuthNotifier notifier = StreamAuthNotifier();
-
   Bloc.observer = CustomBlocObserver(authNotifier: notifier);
 
   await dotenv.load();
@@ -48,23 +47,20 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Locale? _locale;
 
-  setLocale(Locale locale) async{
+  setLocale(Locale locale) async {
     final repos = RepositoryProvider.of<UserRepository>(context);
-
     repos.setLanguage(locale.languageCode);
 
     setState(() {
       _locale = locale;
-    });    
+    });
   }
 
   getLocal() async {
     _locale = Locale(
         await RepositoryProvider.of<UserRepository>(context).getLanguage());
 
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override

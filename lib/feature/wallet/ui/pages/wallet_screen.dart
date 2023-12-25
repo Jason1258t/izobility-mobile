@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_wallet/coin_in_wallet_cubit.dart';
@@ -12,7 +11,6 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
@@ -23,8 +21,6 @@ import 'package:izobility_mobile/widgets/popup/custom_popup.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../../../widgets/containers/market_Item.dart';
 
 final list = List.generate(100, (index) => 1);
 
@@ -66,7 +62,7 @@ class _WalletScreenState extends State<WalletScreen>
                     GoRouter.of(context).go(RouteNames.profile);
                   },
                   label:
-                      "Номер не подтверджен, поэтому функции внутренного кошелька не работают");
+                      AppLocalizations.of(context)!.number_not_confirmed);
             });
       }
     });
@@ -86,6 +82,8 @@ class _WalletScreenState extends State<WalletScreen>
 
   MultiSliver buildInGameTab(WalletRepository walletRepository, Size sizeOf,
       AppLocalizations localize) {
+
+    final localize = AppLocalizations.of(context)!;
     return MultiSliver(
       children: [
         SliverPersistentHeader(
@@ -166,7 +164,7 @@ class _WalletScreenState extends State<WalletScreen>
                     //   },
                     // ),
                     WalletAction(
-                      title: "Биржа",
+                      title: localize.exchange,
                       icon: 'assets/icons/burse.svg',
                       onTap: () {
                         context.push(RouteNames.walletBurse);
@@ -294,7 +292,7 @@ class _WalletScreenState extends State<WalletScreen>
                     )
                   ]),
                 )
-              : SliverToBoxAdapter(child: Container(child: Text("В разарботке")))
+              : SliverToBoxAdapter(child: Container(child: Text("in developing")))
       
         ),
       ],
@@ -575,7 +573,7 @@ class _WalletScreenState extends State<WalletScreen>
                             height: 16,
                           ),
                           Text(
-                            'Текущий баланс',
+                            localize.current_balance,
                             style: AppTypography.font14w400
                                 .copyWith(color: AppColors.grey600),
                           ),

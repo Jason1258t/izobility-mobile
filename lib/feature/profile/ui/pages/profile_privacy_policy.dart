@@ -4,8 +4,6 @@ import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/button/custom_text_button.dart';
-import 'package:izobility_mobile/widgets/scaffold/home_scaffold.dart';
 
 class ProfilePrivacyPolicyScreen extends StatefulWidget {
   const ProfilePrivacyPolicyScreen({super.key});

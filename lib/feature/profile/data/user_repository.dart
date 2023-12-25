@@ -135,7 +135,12 @@ class UserRepository {
     final List<ReferalModel> parsedReferals = [];
 
     for (var json in response) {
-      parsedReferals.add(ReferalModel.fromJson(json, 1));
+      try {
+        parsedReferals.add(ReferalModel.fromJson(json, 1));
+      } catch (e) {
+        print(e);
+        print("$json HERE");
+      }
     }
 
     for (var item in parsedReferals) {

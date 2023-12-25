@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_send/coin_send_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
@@ -34,7 +35,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
-
+    final localize = AppLocalizations.of(context)!;
     return BlocListener<CoinSendCubit, CoinSendState>(
       listener: (context, state) {
         ScaffoldMessenger.of(context).clearSnackBars();
@@ -43,7 +44,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar('Неверная seed-phrase'));
+              CustomSnackBar.errorSnackBar(localize.inapproprivate_seed_phrase));
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -54,7 +55,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.successSnackBar('Успешно отправлено'));
+              CustomSnackBar.successSnackBar(localize.succedssfully_sent));
         }
       },
       child: GestureDetector(
@@ -70,10 +71,10 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                 physics: const BouncingScrollPhysics(
                     decelerationRate: ScrollDecelerationRate.fast),
                 slivers: [
-                  const CustomSliverAppBar(
+                  CustomSliverAppBar(
                     height: 90,
                     isBack: true,
-                    title: 'Отправить',
+                    title: localize.send,
                     color: Colors.white,
                   ),
                   SliverPersistentHeader(
@@ -138,7 +139,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                         obscured: false,
                         suffixIconChild:
                             SvgPicture.asset('assets/icons/clipboard.svg'),
-                        hintText: "Адрес",
+                        hintText: localize.address,
                         suffixIconCallback: () {
                           Clipboard.getData(Clipboard.kTextPlain).then((value) {
                             setState(() {
@@ -157,7 +158,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                       padding:
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomTextField.withOneIcon(
-                        errorText: 'Ваш баланс меньше',
+                        errorText: localize.your_balance_smaller,
                         error: isError,
                         onChange: (val) {
                           setState(() {
@@ -175,7 +176,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                           widget.coin.imageUrl,
                           width: 25,
                         ),
-                        hintText: "Сумма",
+                        hintText: localize.sum,
                         suffixIconCallback: () {},
                         controller: amountController,
                         width: double.infinity,
@@ -189,7 +190,7 @@ class _SendOnChainCoinScreenState extends State<SendOnChainCoinScreen> {
                           const EdgeInsets.only(left: 17, right: 17, top: 20),
                       child: CustomButton(
                         isActive: !isError,
-                        text: 'Продолжить',
+                        text: localize.continue_,
                         onTap: () {
                           final address = addressController.text;
                           final amount = double.parse(amountController.text);

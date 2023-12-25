@@ -8,11 +8,11 @@ import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_re
 import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/widgets/scaffold/auth_scaffold.dart';
 
-import '../../../utils/ui/animations.dart';
-import '../../../utils/ui/dialogs.dart';
-import '../../../utils/logic/validators.dart';
-import '../../../widgets/button/custom_button.dart';
-import '../../../widgets/text_field/custom_text_field.dart';
+import '../../../../utils/ui/animations.dart';
+import '../../../../utils/ui/dialogs.dart';
+import '../../../../utils/logic/validators.dart';
+import '../../../../widgets/button/custom_button.dart';
+import '../../../../widgets/text_field/custom_text_field.dart';
 
 class PasswordRecoveryEmailScreen extends StatefulWidget {
   const PasswordRecoveryEmailScreen({super.key});

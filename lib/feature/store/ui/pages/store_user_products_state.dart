@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/store/user_product.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
@@ -21,12 +22,14 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         context: context,
         isBack: true,
-        text: "Мое",
+        text: localize.my,
         onTap: () => context.pop(),
       ),
       body: RefreshIndicator(
@@ -45,7 +48,7 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
                   );
                 } else if (state is StoreUserItemsSuccess) {
                   if (context.read<StoreRepository>().userProductList.isEmpty) {
-                    return Text("У вас еще нет покупок! Исправляем :)");
+                    return Text(localize.you_have_no_puchases_yet);
                   }else{
                     return Column(
                     children: context
@@ -75,6 +78,8 @@ class UserProductItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localize = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       height: 96,
@@ -121,7 +126,7 @@ class UserProductItemWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "Активировать",
+                          localize.activate,
                           style: AppTypography.font14w700
                               .copyWith(color: Colors.black),
                         ),

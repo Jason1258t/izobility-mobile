@@ -188,7 +188,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          localize.contract,
+                          localize.contacts,
                           style: AppTypography.font16w400
                               .copyWith(color: AppColors.grey600),
                         ),
@@ -202,7 +202,7 @@ class _CurrencyWalletScreenState extends State<CurrencyWalletScreen> {
                           runSpacing: 10,
                           children: [
                             ButtonSocialMediaLink(
-                              text: "Сайт",
+                              text: localize.website,
                               onTap: () {
                                 context
                                     .read<ProfileLinksCubit>()

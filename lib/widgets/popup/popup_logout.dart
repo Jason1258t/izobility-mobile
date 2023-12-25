@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 
@@ -24,7 +25,7 @@ class _PopupChooseState extends State<PopupChoose> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-
+    final localization = AppLocalizations.of(context);
     return Dialog(
       insetPadding: EdgeInsets.zero,
       elevation: 0,
@@ -77,7 +78,7 @@ class _PopupChooseState extends State<PopupChoose> {
                             widget.onDecline();
                           },
                           color: AppColors.primary,
-                          text: "Нет",
+                          text: localization!.no,
                           width: size.width * 0.35,
                         ),
                         PopupActionButton(
@@ -86,7 +87,7 @@ class _PopupChooseState extends State<PopupChoose> {
                             widget.onAccept();
                           },
                           color: AppColors.primary,
-                          text: "Да",
+                          text: localization.yes,
                           width: size.width * 0.35,
                         )
                       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
@@ -22,7 +23,7 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
-
+    final localize = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -87,8 +88,8 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomTextField.withTwoIcon(
                       error: false,
-                      errorText: 'Ошибка',
-                      labelText: 'Ваша сумма в \$',
+                      errorText: localize.erro,
+                      labelText: '${localize.your_amount_is} \$',
                       suffixIconCallback: () {},
                       secondSuffixIconCallback: () {},
                       controller: amountController,
@@ -102,7 +103,7 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
                     padding:
                         const EdgeInsets.only(left: 17, right: 17, top: 20),
                     child: CustomButton(
-                      text: 'Подтвердить',
+                      text: localize.confirm,
                       onTap: () {},
                       width: double.infinity,
                     ),

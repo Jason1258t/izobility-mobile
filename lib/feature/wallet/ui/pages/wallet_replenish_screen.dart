@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/wallet_action.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
@@ -26,12 +27,12 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
 
     final sizeOf = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     final address = walletRepository.walletModel!.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
     return HomeScaffold(
       appBar: CustomAppBar(
         context: context,
-        text: 'Получить %Валюты%',
+        text: localize.get_currency,
         isBack: true,
         onTap: () {
           context.pop();
@@ -84,7 +85,7 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
                       children: [
                         WalletAction(
                           iconColor: Colors.black,
-                          title: 'Копировать',
+                          title: localize.copy,
                           icon: 'assets/icons/copy.svg',
                           onTap: () {
                             Clipboard.setData(ClipboardData(text: address));
@@ -97,7 +98,7 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
                         ),
                         WalletAction(
                           iconColor: Colors.black,
-                          title: 'Поделиться',
+                          title: localize.share,
                           icon: 'assets/icons/share.svg',
                           onTap: () async{
                             await Share.share(address);

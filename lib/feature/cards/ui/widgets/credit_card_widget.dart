@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/button_sheet/custom_buttom_sheet.dart';
@@ -26,7 +27,7 @@ class CreditCardWidget extends StatelessWidget {
     }
 
     final sizeof = MediaQuery.sizeOf(context);
-
+    final localize = AppLocalizations.of(context)!;
     return InkWell(
       onTap: () {
         showBottomSheetBuy();
@@ -50,7 +51,8 @@ class CreditCardWidget extends StatelessWidget {
                     FittedBox(
                       child: Text(
                         '3 753 ₽',
-                        style: AppTypography.font24w700.copyWith(color: Colors.white),
+                        style: AppTypography.font24w700
+                            .copyWith(color: Colors.white),
                       ),
                     ),
                     const SizedBox(
@@ -66,17 +68,21 @@ class CreditCardWidget extends StatelessWidget {
                         ),
                         Text(
                           '... 5623',
-                          style:
-                              AppTypography.font16w400.copyWith(color: Colors.white),
+                          style: AppTypography.font16w400
+                              .copyWith(color: Colors.white),
                         ),
                         const Spacer(),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Text('основная',style: AppTypography.font14w400,),
+                          child: Text(
+                            localize.main_one,
+                            style: AppTypography.font14w400,
+                          ),
                         ),
                       ],
                     ),
