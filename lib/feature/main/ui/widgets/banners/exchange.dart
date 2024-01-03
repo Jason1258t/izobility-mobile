@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/banners/banner.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
+import 'package:izobility_mobile/widgets/popup/custom_popup.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ExchangeBanner extends StatelessWidget {
@@ -12,6 +14,17 @@ class ExchangeBanner extends StatelessWidget {
     return BannerWidget(
         onTap: () {
           launchUrl(Uri.parse('https://altcoinshub.com/en/'));
+          // showDialog(
+          //     barrierDismissible: false,
+          //     context: context,
+          //     builder: (context) {
+          //       return CustomPopup(
+          //           imagePath: "assets/images/sad_emoji.png",
+          //           onTap: () {
+          //             context.pop();
+          //           },
+          //           label: 'Sorry, we are carrying out technical work and will return it soon');
+          //     });
         },
         asset: 'assets/images/banners/exchange-banner.png',
         child: Column(
@@ -51,7 +64,6 @@ class ExchangeBanner extends StatelessWidget {
                     size: 16,
                     weight: 1500,
                   )
-
                 ],
               ),
             )

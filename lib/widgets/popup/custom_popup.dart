@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
@@ -64,7 +65,7 @@ class _CustomPopupState extends State<CustomPopup> {
               ),
               CustomButton(
                   isActive: true,
-                  text: "Подтвердить",
+                  text: AppLocalizations.of(context)!.confirm,
                   onTap: () {
                     widget.onTap();
                   },

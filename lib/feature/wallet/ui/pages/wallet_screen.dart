@@ -393,6 +393,17 @@ class _WalletScreenState extends State<WalletScreen>
                       icon: 'assets/icons/burse.svg',
                       onTap: () {
                         launchUrl(Uri.parse('https://altcoinshub.com/en/'));
+                        // showDialog(
+                        //     barrierDismissible: false,
+                        //     context: context,
+                        //     builder: (context) {
+                        //       return CustomPopup(
+                        //           imagePath: "assets/images/sad_emoji.png",
+                        //           onTap: () {
+                        //             context.pop();
+                        //           },
+                        //           label: 'Sorry, we are carrying out technical work and will return it soon');
+                        //     });
                       },
                     ),
                     WalletAction(
