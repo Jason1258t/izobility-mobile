@@ -6,10 +6,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
+import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
-import 'package:izobility_mobile/utils/logic/validators.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
@@ -29,6 +29,25 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
   bool buttonActive = false;
 
   String? fieldError;
+
+  Future checkEmail() async {
+    final bloc = BlocProvider.of<AuthCubit>(context);
+    final email = emailController.text.trim();
+    final referralCode = referalCodeController.text.trim();
+    await bloc.checkEmail(email, referralCode);
+  }
+
+  void checkEmailAndPush() async {
+    Dialogs.showModal(
+        context,
+        const Center(
+          child: AppAnimations.circularProgressIndicator,
+        ));
+    checkEmail().then((value) {
+      Dialogs.hide(context);
+      context.push(RouteNames.authEnterPassword);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
