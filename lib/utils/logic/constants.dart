@@ -30,6 +30,8 @@ class AppStrings {
   static const String obscuredText = '****';
 
   static const String nullText = 'null';
+  static const String emeraldIconUrl = "https://api.z-boom.ru/media/moneta/22aca8bb1a77d571aff193a7dcb6d2d1.jpg";
+
 
   // static const Map<int, String> gender = {0: 'Мужчина', 1: "Женищина"};
 }
