@@ -5,605 +5,620 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get objects => '- Nesnele';
+  String get objects => '- Nesneler';
 
   @override
-  String get incorrect_code => '* Yanlış ko';
+  String get incorrect_code => '* Yanlış kod';
 
   @override
-  String get incorrect_email => '* Posta yanlı';
+  String get incorrect_email => '* Posta yanlış';
 
   @override
-  String get two_fa => '2FA İki Faktör Kimlik Doğrulamas';
+  String get two_fa => '2FA İki Faktör Kimlik Doğrulaması';
 
   @override
-  String get address => 'Adre';
+  String get address => 'Adres';
 
   @override
-  String get account => 'Hesa';
+  String get account => 'Hesap';
 
   @override
-  String get activate => 'Etkinleştirme';
+  String get activate => 'Etkinleştirmek';
 
   @override
-  String get activity => 'Aktivit';
+  String get activity => 'Aktivite';
 
   @override
-  String get promotion => 'Terf';
+  String get promotion => 'Terfi';
 
   @override
-  String get without_phone_not_more_functions => 'Telefon numarasını onaylamadan, birçok uygulamaya erişiminiz olmayaca';
+  String get without_phone_not_more_functions => 'Telefon numarasını onaylamadan, birçok uygulamaya erişiminiz olmayacak';
 
   @override
-  String get safety => 'Emniye';
+  String get safety => 'Emniyet';
 
   @override
-  String get exchange => 'Değişm';
+  String get exchange => 'Değişme';
 
   @override
-  String get to => 'İÇİND';
+  String get to => 'İÇİNDE';
 
   @override
-  String get your_profile_indicate_id => 'Profiliniz kimliği gösterecek *kullanıcı57676';
+  String get your_profile_indicate_id => 'Profiliniz kimliği gösterecek *kullanıcı576767';
 
   @override
-  String get your_balance_smaller => 'Dengeniz daha küçü';
+  String get your_balance_smaller => 'Dengeniz daha küçük';
 
   @override
-  String get your_access_code => 'Erişim Kodunu';
+  String get your_access_code => 'Erişim Kodunuz';
 
   @override
-  String get your_promo => 'Promosyon Kodunu';
+  String get your_promo => 'Promosyon Kodunuz';
 
   @override
-  String get your_mail => 'Mail adresini';
+  String get your_mail => 'Mail adresiniz';
 
   @override
-  String get your_amount_is => 'Miktarını';
+  String get your_amount_is => 'Miktarınız';
 
   @override
-  String get your_name => 'Adını';
+  String get your_name => 'Adınız';
 
   @override
-  String get your_goods_and_all_backbone => 'Mallarınız ve tüm omurg';
+  String get your_goods_and_all_backbone => 'Mallarınız ve tüm omurga';
 
   @override
-  String get enter_seed => 'Tohum fotoğrafı giri';
+  String get enter_seed => 'Tohum fotoğrafı girin';
 
   @override
-  String get turn_on_nfc_ny_attach_card => 'NFC \n\'yi açın ve kartı ekleyi';
+  String get turn_on_nfc_ny_attach_card => 'NFC \n\'yi açın ve kartı ekleyin';
 
   @override
-  String get turn_on_nfc => 'NFC\'yi a';
+  String get turn_on_nfc => 'NFC\'yi aç';
 
   @override
-  String get to_come_in => 'İçeri ge';
+  String get to_come_in => 'İçeri gel';
 
   @override
-  String get enter_seed_phrase => 'Tohum cümlesine göre giri';
+  String get enter_seed_phrase => 'Tohum cümlesine göre girin';
 
   @override
-  String get all => 'Tü';
+  String get auth_by_seed => 'Tohum fotoğrafını girin';
 
   @override
-  String get entance_emerald => 'Emerald\'a giri';
+  String get all => 'Tüm';
 
   @override
-  String get you_cannot_change_of_empty => 'Boşun adını değiştiremezsi';
+  String get entance_emerald => 'Emerald\'a giriş';
 
   @override
-  String get you_send => 'Göndereceksi';
+  String get you_cannot_change_of_empty => 'Boşun adını değiştiremezsin';
 
   @override
-  String get you_get => 'Alacaksını';
+  String get you_send => 'Göndereceksin';
 
   @override
-  String get confirm_logout => 'Kesinlikle dışarı çıkmak istiyor musun';
+  String get you_get => 'Alacaksınız';
 
   @override
-  String get choose_from_gallery => 'Galeri arasından seçim yapı';
+  String get confirm_logout => 'Kesinlikle dışarı çıkmak istiyor musun?';
 
   @override
-  String get logout => 'Dışarı çıkma';
+  String get choose_from_gallery => 'Galeri arasından seçim yapın';
 
   @override
-  String get main => 'E';
+  String get logout => 'Dışarı çıkmak';
 
   @override
-  String get yes => 'Eve';
+  String get main => 'Ev';
 
   @override
-  String get next => 'Daha öt';
+  String get yes => 'Evet';
 
   @override
-  String get account_data => 'Hesap veris';
+  String get next => 'Daha öte';
 
   @override
-  String get birthday => 'Doğum tarih';
+  String get account_data => 'Hesap verisi';
 
   @override
-  String get it_nesessary_to_get_it => 'Almak gereki';
+  String get birthday => 'Doğum tarihi';
 
   @override
-  String get have_to_get => 'Makbuz için gitmiyo';
+  String get it_nesessary_to_get_it => 'Almak gerekir';
 
   @override
-  String get welcome_to_emerald => 'Emerald ayetine hoş geldiniz! \n \n abstat Artırılmış gerçeklik oynayabilir ve borsada hediyeler için değiştirilebilen veya satılabilen kriptocoons ve nft bulabilirsiniz. Hediyelik eşya mağazasında artırılmış gerçeklik. \n \nemorald ayet, bunlar Artırılmış Gerçeklikte AR oyunları, sadakat programları, şehir görevleri ve vay etkileri. Malların ve süpermarketlerin ambalajı';
+  String get have_to_get => 'Makbuz için gitmiyor';
 
   @override
-  String get available => 'Mevcu';
+  String get welcome_to_emerald => 'Emerald ayetine hoş geldiniz! \n \n Abstat Artırılmış gerçeklik oynayabilir ve borsada hediyeler için değiştirilebilen veya satılabilen kriptocoons ve nft bulabilirsiniz. Hediyelik eşya mağazasında artırılmış gerçeklik. \n \nemorald ayet, bunlar Artırılmış Gerçeklikte AR oyunları, sadakat programları, şehir görevleri ve vay etkileri. Malların ve süpermarketlerin ambalajı.';
 
   @override
-  String get income => 'Geli';
+  String get available => 'Mevcut';
 
   @override
-  String get other => 'Diğe';
+  String get income => 'Gelir';
 
   @override
-  String get another => 'Bir diğe';
+  String get other => 'Diğer';
 
   @override
-  String get more => 'Dah';
+  String get another => 'Bir diğer';
 
   @override
-  String get there_are_still_contacts => 'Hala sözleşme yo';
+  String get more => 'Daha';
 
   @override
-  String get woman => 'Diş';
+  String get there_are_still_contacts => 'Hala sözleşme yok';
 
   @override
-  String get gaming => 'Oyu';
+  String get woman => 'Dişi';
 
   @override
-  String get game => 'Oyu';
+  String get gaming => 'Oyun';
 
   @override
-  String get from => 'itibare';
+  String get game => 'Oyun';
 
   @override
-  String get or => 'vey';
+  String get from => 'itibaren';
 
   @override
-  String get name => 'İsi';
+  String get or => 'veya';
 
   @override
-  String get loose_data => 'Aksi takdirde yaptığınız değişiklikleri kaybedeceksini';
+  String get name => 'İsim';
 
   @override
-  String get inventory => 'Envante';
+  String get loose_data => 'Aksi takdirde yaptığınız değişiklikleri kaybedeceksiniz';
 
   @override
-  String get use => 'Kullanma';
+  String get inventory => 'Envanter';
 
   @override
-  String get story => 'Hikay';
+  String get use => 'Kullanmak';
 
   @override
-  String get no_enough => 'Görünüşe göre burada bir şeyler eksik';
+  String get story => 'Hikaye';
 
   @override
-  String get cards => 'Kar';
+  String get no_enough => 'Görünüşe göre burada bir şeyler eksik!';
 
   @override
-  String get code_is_wrong => 'Kod yanlı';
+  String get cards => 'Kart';
 
   @override
-  String get try_wrong_code_again => 'Yanlış kodu tekrar deneyi';
+  String get code_is_wrong => 'Kod yanlış';
 
   @override
-  String get confirmation_code => 'onay kod';
+  String get try_wrong_code_again => 'Yanlış kodu tekrar deneyin';
 
   @override
-  String get quantity => 'Mikta';
+  String get confirmation_code => 'onay kodu';
 
   @override
-  String get seto_commission => 'Kare Komisyon';
+  String get quantity => 'Miktar';
 
   @override
-  String get currency_conversion => 'Para birimi dönüştürm';
+  String get seto_commission => 'Kare Komisyon:';
 
   @override
-  String get contacts => 'Kontakla';
+  String get currency_conversion => 'Para birimi dönüştürme';
 
   @override
-  String get wallet => 'Cüzda';
+  String get contacts => 'Kontaklar';
 
   @override
-  String get buy => 'Satın alma';
+  String get wallet => 'Cüzdan';
 
   @override
-  String get buy_coins => 'Jeton satın alı';
+  String get buy => 'Satın almak';
 
   @override
-  String get shop => 'Mağaz';
+  String get buy_coins => 'Jeton satın alın';
 
   @override
-  String get places => 'Ye';
+  String get shop => 'Mağaza';
 
   @override
-  String get my => 'Beni';
+  String get places => 'Yer';
 
   @override
-  String get my_bank_cards => 'Banka Kartları';
+  String get my => 'Benim';
 
   @override
-  String get my_orders => 'Siparişleri';
+  String get my_bank_cards => 'Banka Kartlarım';
 
   @override
-  String get my_pyrchases => 'Satın alımları';
+  String get my_orders => 'Siparişlerim';
 
   @override
-  String get my_referals => 'Özetleri';
+  String get my_pyrchases => 'Satın alımlarım';
 
   @override
-  String get my_seed => 'Benim tohum cümle';
+  String get my_referals => 'Özetlerim';
 
   @override
-  String get man => 'Erke';
+  String get my_seed => 'Benim tohum cümlem';
 
   @override
-  String get we_will_automatically_collect_data => 'Verileri otomatik olarak toplayacağız ve gireceği';
+  String get man => 'Erkek';
 
   @override
-  String get auth_code_sended => 'Yetkilendirme kodu uygulamaya gönderdi';
+  String get we_will_automatically_collect_data => 'Verileri otomatik olarak toplayacağız ve gireceğiz';
 
   @override
-  String get we_sent_letter_to_restore_account => 'Hesabınızı geri yüklemek için bir mektup gönderdi';
+  String get auth_code_sended => 'Yetkilendirme kodu uygulamaya gönderdik';
 
   @override
-  String get on_exchange => 'Borsa üzerind';
+  String get we_sent_letter_to_restore_account => 'Hesabınızı geri yüklemek için bir mektup gönderdik';
 
   @override
-  String get setting => 'Ayarla';
+  String get on_exchange => 'Borsa üzerinde';
 
   @override
-  String get inapproprivate_seed_phrase => 'sadakatsiz tohum cümles';
+  String get setting => 'Ayarlar';
 
   @override
-  String get main_incorrectly_introduced => 'Posta yanlış tanıtıld';
+  String get inapproprivate_seed_phrase => 'sadakatsiz tohum cümlesi';
 
   @override
-  String get no => 'HAYI';
+  String get main_incorrectly_introduced => 'Posta yanlış tanıtıldı';
 
   @override
-  String get nickname => 'Nic';
+  String get no => 'HAYIR';
 
   @override
-  String get card_number => 'Kart numaras';
+  String get nickname => 'Nick';
 
   @override
-  String get number_not_confirmed => 'Sayı doğrulanmadı, bu nedenle dahili cüzdanın işlevleri çalışmıyo';
+  String get card_number => 'Kart numarası';
 
   @override
-  String get about_give_back => 'Dönüş hakkınd';
+  String get number_not_confirmed => 'Sayı doğrulanmadı, bu nedenle dahili cüzdanın işlevleri çalışmıyor';
 
   @override
-  String get about_company => 'Şirket hakkınd';
+  String get about_give_back => 'Dönüş hakkında';
 
   @override
-  String get about_app => 'Ek hakkınd';
+  String get about_company => 'Şirket hakkında';
 
   @override
-  String get about_sale => 'Eylem hakkınd';
+  String get about_app => 'Ek hakkında';
 
   @override
-  String get general => 'Yaygındı';
+  String get about_sale => 'Eylem hakkında';
 
   @override
-  String get operation_with_coin => 'Bir madeni para ile operasyo';
+  String get general => 'Yaygındır';
 
   @override
-  String get description => 'Tanı';
+  String get operation_with_coin => 'Bir bozuk para ile çalışma';
 
   @override
-  String get description_cryptocurrency => 'Binance zinciri ekosistemini destekleyen kripto para biriminin tanımı';
+  String get description => 'Tanım';
 
   @override
-  String get main_one => 'An';
+  String get description_cryptocurrency => 'Binance zinciri ekosistemini destekleyen kripto para biriminin tanımı.';
 
   @override
-  String get remain => 'So';
+  String get main_one => 'Ana';
 
   @override
-  String get cencellation => 'İpta';
+  String get remain => 'Sol';
 
   @override
-  String get cancel => 'İptal etme';
+  String get cencellation => 'İptal';
 
   @override
-  String get send => 'Gönderme';
+  String get cancel => 'İptal etmek';
 
   @override
-  String get send_again => 'Tekrar gönderi';
+  String get send => 'Göndermek';
 
   @override
-  String get sending_data => 'Veri Gönderm';
+  String get send_again => 'Tekrar gönderin';
 
   @override
-  String get sending_data_for_analytics => 'Analytics için veri gönderme ve uygulamanın performansını iyileştirm';
+  String get sending_data => 'Veri Gönderme';
 
   @override
-  String get grades => 'Değerlendirm';
+  String get sending_data_for_analytics => 'Analytics için veri gönderme ve uygulamanın performansını iyileştirme';
 
   @override
-  String get erro => 'Hat';
+  String get grades => 'Değerlendirme';
 
   @override
-  String get translation_error => 'çeviri hatas';
+  String get erro => 'Hata';
 
   @override
-  String get error_on_server => 'Sunucuda hata ';
+  String get translation_error => 'çeviri hatası';
 
   @override
-  String get affiliate_program => 'Ortaklık Program';
+  String get error_on_server => 'Sunucudaki hata (';
 
   @override
-  String get personalization => 'Kişiselleştirm';
+  String get affiliate_program => 'Ortaklık Programı';
 
   @override
-  String get pincodes_not_mutch => 'Pin kodları eşleşmiyo';
+  String get personalization => 'Kişiselleştirme';
 
   @override
-  String get repeat_access_code => 'Erişim kodunu tekrarlayı';
+  String get pincodes_not_mutch => 'Pin kodları eşleşmiyor';
 
   @override
-  String get gifts => 'Sunma';
+  String get repeat_access_code => 'Erişim kodunu tekrarlayın';
 
   @override
-  String get support => 'Deste';
+  String get gifts => 'Sunmak';
 
   @override
-  String get share => 'Paylaşma';
+  String get support => 'Destek';
 
   @override
-  String get confirm_phone => 'Telefon numarasını onaylayı';
+  String get share => 'Paylaşmak';
 
   @override
-  String get confim_your_identity => 'Kimliğinizi onaylayı';
+  String get confirm_phone => 'Telefon numarasını onaylayın';
 
   @override
-  String get confirm => 'Onaylama';
+  String get confim_your_identity => 'Kimliğinizi onaylayın';
 
   @override
-  String get confirmation_entrace => 'Uygulamada giriş veya eylemin teyid';
+  String get confirm => 'Onaylamak';
 
   @override
-  String get number_confirmation => 'Sayı Onay';
+  String get confirmation_entrace => 'Uygulamada giriş veya eylemin teyidi';
 
   @override
-  String get congratulations_your_place_order => 'Tebrikler! \nvash sipariş verilir !';
+  String get number_confirmation => 'Sayı Onayı';
 
   @override
-  String get purchase => 'Satın alma';
+  String get congratulations_your_place_order => 'Tebrikler! \n Siparişiniz yerleştirilir !!';
 
   @override
-  String get buying_order => 'Bir Sipariş Satın Alm';
+  String get purchase => 'Satın almak';
 
   @override
-  String get sex => 'Zemi';
+  String get buying_order => 'Bir Sipariş Satın Alma';
 
   @override
-  String get privacy_policy => 'Gizlilik Politikas';
+  String get sex => 'Zemin';
 
   @override
-  String get get_money_for_invite => 'Davetiyeler için para alın';
+  String get privacy_policy => 'Gizlilik Politikası';
 
   @override
-  String get get => 'Elde etme';
+  String get get_money_for_invite => 'Davetiyeler için para alın \n';
 
   @override
-  String get get_currency => '%Para Birimi A';
+  String get get => 'Elde etmek';
 
   @override
-  String get replenish => 'Yenileme';
+  String get get_currency => '%Para Birimi Al';
 
   @override
-  String get try_later => 'daha sonra tekrar deneyi';
+  String get replenish => 'Yenilemek';
 
   @override
-  String get mail => 'Post';
+  String get try_later => 'daha sonra tekrar deneyin';
 
   @override
-  String get hello => 'Merhab';
+  String get mail => 'Posta';
 
   @override
-  String get bind_new_punishment => 'Yeni bir ceza bağlayı';
+  String get hello => 'Merhaba';
 
   @override
-  String get exercise_password => 'Şifreyi kullanı';
+  String get bind_new_punishment => 'Yeni bir ceza bağlayın';
 
   @override
-  String get come_up_with_access_code => 'Bir erişim kodu ile ge';
+  String get exercise_password => 'Şifreyi kullanın';
 
   @override
-  String get joined => 'Katıld';
+  String get come_up_with_access_code => 'Bir erişim kodu ile gel';
 
   @override
-  String get check_email => 'Postayı kontrol e';
+  String get joined => 'Katıldı';
 
   @override
-  String get sale => 'Satı';
+  String get check_email => 'Postayı kontrol et';
 
   @override
-  String get continue_ => 'Devam etme';
+  String get sale => 'Satış';
 
   @override
-  String get promocode => 'Promosyon kod';
+  String get continue_ => 'Devam etmek';
 
   @override
-  String get promo_codes => 'Promosyon kodlar';
+  String get promocode => 'Promosyon kodu';
 
   @override
-  String get profile => 'Profi';
+  String get promo_codes => 'Promosyon kodları';
 
   @override
-  String get public_offer => 'Halka açık tekli';
+  String get profile => 'Profil';
 
   @override
-  String get push_notification => 'Push bildirimler';
+  String get public_offer => 'Halka açık teklif';
 
   @override
-  String get size => 'Boyu';
+  String get push_notification => 'Push bildirimleri';
 
   @override
-  String get placed => 'Yerleştirilmi';
+  String get size => 'Boyut';
 
   @override
-  String get profile_code => 'Profil Düzenlem';
+  String get placed => 'Yerleştirilmiş';
 
   @override
-  String get reference_code => 'Referans Kod';
+  String get profile_code => 'Profil Düzenleme';
 
   @override
-  String get referrals => 'Yönlendirmele';
+  String get reference_code => 'Referans Kodu';
 
   @override
-  String get abstract_programm => 'Soyut progra';
+  String get referrals => 'Yönlendirmeler';
 
   @override
-  String get referal_code => 'Yönlendirme Kod';
+  String get abstract_programm => 'Soyut program';
 
   @override
-  String get russian_ruble => 'Rus Rubles';
+  String get referal_code => 'Yönlendirme Kodu';
 
   @override
-  String get website => 'İnternet sites';
+  String get russian_ruble => 'Rus Rublesi';
 
   @override
-  String get swap => 'Taka';
+  String get website => 'İnternet sitesi';
 
   @override
-  String get to_make_photo => 'Fotoğraf yapmak içi';
+  String get swap => 'Takas';
 
   @override
-  String get sec => 'se';
+  String get to_make_photo => 'Fotoğraf yapmak için';
 
   @override
-  String get download => 'İndirme';
+  String get sec => 'sec';
 
   @override
-  String get download_quantity => 'İndirilenle';
+  String get download => 'İndirmek';
 
   @override
-  String get copulated => 'Kopyalanmış';
+  String get download_quantity => 'İndirilenler';
 
   @override
-  String get copy => 'Kopy';
+  String get copulated => 'Kopyalanmış!';
 
   @override
-  String get copy_code => 'Kodu kopyal';
+  String get copy => 'Kopya';
 
   @override
-  String get hide_name => 'Gerçek adı gizl';
+  String get copy_code => 'Kodu kopyala';
 
   @override
-  String get events => 'Olayla';
+  String get hide_name => 'Gerçek adı gizle';
 
   @override
-  String get creating_order => 'Sipariş Oluşturm';
+  String get events => 'Olaylar';
 
   @override
-  String get create_wallet => 'Bir cüzdan oluştu';
+  String get creating_order => 'Sipariş Oluşturma';
 
   @override
-  String get create_your_own_order => 'Kendi Siparişinizi Oluşturu';
+  String get create_wallet => 'Bir cüzdan oluştur';
 
   @override
-  String get save => 'Kaydetme';
+  String get create_your_own_order => 'Kendi Siparişinizi Oluşturun';
 
   @override
-  String get save_chages => 'Değişiklikleri Kaydet';
+  String get save => 'Kaydetmek';
 
   @override
-  String get social_net_em => 'Sosyal Ağlar Emeral';
+  String get save_chages => 'Değişiklikleri Kaydet?';
 
   @override
-  String get validity => 'Geçerlili';
+  String get social_net_em => 'Sosyal Ağlar Emerald';
 
   @override
-  String get standard_partner => 'Standart iş ortağ';
+  String get validity => 'Geçerlilik';
 
   @override
-  String get sum => 'Öze';
+  String get standard_partner => 'Standart iş ortağı';
 
   @override
-  String get current_balance => 'Mevcut bakiy';
+  String get sum => 'Özet';
 
   @override
-  String get phone => 'Telefo';
+  String get current_balance => 'Mevcut bakiye';
 
   @override
-  String get product_and_nft => 'Ürünler ve NF';
+  String get phone => 'Telefon';
 
   @override
-  String get tokens => 'Jeto';
+  String get product_and_nft => 'Ürünler ve NFT';
 
   @override
-  String get you_have => 'Va';
+  String get tokens => 'Jeton';
 
   @override
-  String get you_have_no_puchases_yet => 'Henüz alımınız yok! Doğru :';
+  String get you_have => 'Var';
 
   @override
-  String get you_have_no_referrals => 'Henüz yönlendirmeniz yok :';
+  String get you_have_no_puchases_yet => 'Henüz alımınız yok! Doğru :)';
 
   @override
-  String get notification => 'Bildirimle';
+  String get you_have_no_referrals => 'Henüz yönlendirmeniz yok :(';
 
   @override
-  String get notification_with_confidential_data => 'Gizli verilerle bildirimle';
+  String get notification => 'Bildirimler';
 
   @override
-  String get smart_notification => 'Akıllı bildirimle';
+  String get notification_with_confidential_data => 'Gizli verilerle bildirimler';
 
   @override
-  String get oops => 'Oops ..';
+  String get smart_notification => 'Akıllı bildirimler';
 
   @override
-  String get level => 'Seviyes';
+  String get oops => 'Oops ...';
 
   @override
-  String get success_verification => 'Başarılı doğrulam';
+  String get level => 'Seviyesi';
 
   @override
-  String get success => 'Başarıyl';
+  String get success_verification => 'Başarılı doğrulama';
 
   @override
-  String get succedssfully_sent => 'Başarıyla gönderild';
+  String get success => 'Başarıyla';
 
   @override
-  String get successfilly_we_return_to_input => 'Başarıyla, girişe geri dönüyoru';
+  String get succedssfully_sent => 'Başarıyla gönderildi';
 
   @override
-  String get surname => 'Soyad';
+  String get successfilly_we_return_to_input => 'Başarıyla, girişe geri dönüyoruz';
 
   @override
-  String get read => 'Okuma';
+  String get surname => 'Soyadı';
 
   @override
-  String get what_is_inside => 'İçerideki ne';
+  String get read => 'Okumak';
 
   @override
-  String get develop => 'Bu işlev geliştirilmektedir! Geliştiricilerimiz, tasarımcılarımız ve yöneticilerimiz yeni yongalar yapmak için 7/24 çalışıyor';
+  String get what_is_inside => 'İçerideki ne?';
 
   @override
-  String get language => 'Di';
+  String get develop => 'Bu işlev geliştirilmektedir! Geliştiricilerimiz, tasarımcılarımız ve yöneticilerimiz yeni yongalar yapmak için 7/24 çalışıyor!';
 
   @override
-  String get apllication_languahe => 'Uygulama dil';
+  String get language => 'Dil';
 
   @override
-  String get ar_card => 'AR kart';
+  String get apllication_languahe => 'Uygulama dili';
 
   @override
-  String get ar_scanner => 'AR tarayıcıs';
+  String get ar_card => 'AR kartı';
 
   @override
-  String get er_qr_games => 'AR, QR, oyunlar vb';
+  String get ar_scanner => 'Taramacı';
 
   @override
-  String get bsc_scan => 'BSC taramas';
+  String get er_qr_games => 'AR, QR, oyunlar vb.';
 
   @override
-  String get qr_scanner => 'Qr tarayıc';
+  String get bsc_scan => 'BSC taraması';
+
+  @override
+  String get qr_scanner => 'Qr tarayıcı';
+
+  @override
+  String get games_banner_title => 'Oyna ve kazanın';
+
+  @override
+  String get games_banner_text => 'Artırılmış Gerçeklik Oyunları';
+
+  @override
+  String get games_banner_button => 'Oynamak';
+
+  @override
+  String get exchange_banner_button => 'Gitmek';
 }
