@@ -32,11 +32,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //
-              PorfileBlocLabel(text: "Память"),
+              ProfileBlocLabel(text: "Память"),
               ProfileAspect(
                   label: 'Место хранения файлов контента', text: "жопа/да"),
               //
-              PorfileBlocLabel(text: "Безопасность"),
+              ProfileBlocLabel(text: "Безопасность"),
               ProfileSwitchCard(
                   label: "2FA Двухфакторная аутентификация",
                   description:
@@ -49,12 +49,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   label: "Скрыть реальное имя",
                   description: "В вашем профиле будет указан ID *user576767"),
               //
-              PorfileBlocLabel(text: "Персонализация"),
+              ProfileBlocLabel(text: "Персонализация"),
               ProfileAspect(label: 'Язык', text: "Русский"),
               ProfileAspect(
                   label: 'Конвертация валюты', text: "Российский рубль"),
               //
-              PorfileBlocLabel(text: "Уведомления"),
+              ProfileBlocLabel(text: "Уведомления"),
               ProfileSwitchCard(
                   label: "Пуш уведомления",
                   description:

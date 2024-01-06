@@ -5,10 +5,10 @@ import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile/profile_cubit.dart';
 import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_links_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
-import 'package:izobility_mobile/feature/profile/ui/widgets/profile_action_square.dart';
-import 'package:izobility_mobile/feature/profile/ui/widgets/profile_actione_tile.dart';
+import 'package:izobility_mobile/feature/profile/ui/widgets/profile/profile_action_square.dart';
+import 'package:izobility_mobile/feature/profile/ui/widgets/profile/profile_actione_tile.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
-import 'package:izobility_mobile/feature/profile/ui/widgets/profile_card.dart';
+import 'package:izobility_mobile/feature/profile/ui/widgets/profile/profile_card.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
@@ -221,7 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               return Container();
                             },
                           ),
-                          PorfileBlocLabel(
+                          ProfileBlocLabel(
                             text: localize.account,
                           ),
                           ProfileActionTile(
@@ -238,7 +238,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             label: localize.apllication_languahe,
                             iconPath: 'assets/icons/world.svg',
                           ),
-                          PorfileBlocLabel(
+                          ProfileBlocLabel(
                             text: localize.social_net_em,
                           ),
                           ProfileActionTile(
@@ -261,7 +261,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             label: 'Telegram',
                             iconPath: 'assets/icons/tg.svg',
                           ),
-                          PorfileBlocLabel(
+                          ProfileBlocLabel(
                             text: localize.general,
                           ),
                           ProfileActionTile(

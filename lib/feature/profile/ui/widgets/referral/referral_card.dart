@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/models/referal.dart';
-import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
 class ReferralCard extends StatelessWidget {

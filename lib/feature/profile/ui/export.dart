@@ -6,5 +6,5 @@ export 'pages/profile_language.dart';
 export 'pages/profile_phone_confirm.dart';
 export 'pages/profile_phone_edit.dart';
 export 'pages/profile_privacy_policy.dart';
-export 'pages/profile_referal.dart';
+export 'pages/profile_referral.dart';
 export 'pages/profile_settings.dart';

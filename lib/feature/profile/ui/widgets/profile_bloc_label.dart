@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 
-class PorfileBlocLabel extends StatelessWidget {
+class ProfileBlocLabel extends StatelessWidget {
   final String text;
   
-  const PorfileBlocLabel({
+  const ProfileBlocLabel({
     super.key, required this.text,
   });
 
