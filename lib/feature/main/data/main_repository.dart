@@ -46,7 +46,7 @@ class MainScreenRepository {
     for (int i = 0; i < res.length; i++) {
       try{
         marketItems.add(MarketItemModel.fromJson(res[i]));
-      }catch (ex){}
+      }catch (e){}
     }
   }
 }
