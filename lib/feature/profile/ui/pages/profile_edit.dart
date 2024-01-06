@@ -63,7 +63,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
-
+    final userRepository = RepositoryProvider.of<UserRepository>(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Container(
@@ -86,23 +86,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                     _surnameController.text == "") {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text(
-                                              localize.you_cannot_change_of_empty)));
+                                          content: Text(localize
+                                              .you_cannot_change_of_empty)));
                                   context.pop();
                                   _nameController.text ==
-                                      context
-                                          .read<UserRepository>()
-                                          .user
-                                          .details!
-                                          .name;
+                                      userRepository.user.details!.name;
                                 } else {
                                   context.read<ProfileCubit>().updateUserData(
                                         birthday: _birthdayController.text,
-                                        gender: context
-                                            .read<UserRepository>()
-                                            .user
-                                            .details!
-                                            .gender!,
+                                        gender: userRepository
+                                            .user.details!.gender!,
                                         name: _nameController.text,
                                         surname: _surnameController.text,
                                       );

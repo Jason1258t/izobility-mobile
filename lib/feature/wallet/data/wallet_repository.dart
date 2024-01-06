@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/models/burse/burse_order.dart';
+import 'package:izobility_mobile/models/unity_wallet.dart';
 import 'package:izobility_mobile/services/crypto/api_cripto.dart';
 import 'package:izobility_mobile/services/locale/preferences_service.dart';
 import 'package:izobility_mobile/services/remote/api/api_service.dart';
@@ -11,21 +12,6 @@ import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_ffi.dart';
 import 'package:trust_wallet_core_lib/trust_wallet_core_lib.dart';
-
-class UnityWallet {
-  double bnbInGame;
-  double tdxInGame;
-  double busdInGame;
-
-  UnityWallet({this.bnbInGame = 0, this.busdInGame = 0, this.tdxInGame = 0});
-
-  Map<String, dynamic> toJson(double emerald) => {
-        "zboom_ingame": emerald,
-        "tdx_ingame": tdxInGame,
-        "bnb_ingame": bnbInGame,
-        "busd_ingame": busdInGame
-      };
-}
 
 class WalletRepository {
   final ApiService apiService;
@@ -266,7 +252,7 @@ class WalletRepository {
       await loadEmeraldCoin();
 
       final emeraldCoin = TokenData(
-          amount: obscured ? "****" : emeraldInGameBalance.toStringAsFixed(5),
+          amount: emeraldInGameBalance.toStringAsFixed(5),
           id: "0",
           url: '',
           imageUrl:

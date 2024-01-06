@@ -40,7 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
-
+    final userRepository = RepositoryProvider.of<UserRepository>(context);
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
     return BlocListener<ProfileLinksCubit, ProfileLinksState>(
       listener: (context, state) {
         if (state is ProfileLinksFail) {
@@ -68,8 +69,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             body: RefreshIndicator(
               onRefresh: () async {
-                await context.read<UserRepository>().loadUserDetailsInfo();
-                await context.read<StoreRepository>().getUserProductList();
+                userRepository.loadUserDetailsInfo();
+                storeRepository.getUserProductList();
               },
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -84,18 +85,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           BlocBuilder<ProfileCubit, ProfileState>(
                             builder: (context, state) {
-                              if (context
-                                          .read<UserRepository>()
-                                          .user
-                                          .details
-                                          ?.phone !=
-                                      null &&
-                                  context
-                                          .read<UserRepository>()
-                                          .user
-                                          .details
-                                          ?.phone !=
-                                      "") {
+                              if (userRepository.user.details?.phone != null &&
+                                  userRepository.user.details?.phone != "") {
                                 return Container();
                               } else {
                                 return Container(
@@ -119,7 +110,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         height: 8,
                                       ),
                                       Text(
-                                        localize.without_phone_not_more_functions,
+                                        localize
+                                            .without_phone_not_more_functions,
                                         style: AppTypography.font12w400
                                             .copyWith(color: Colors.white),
                                       )
@@ -220,10 +212,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               if (state is StoreUserItemsLoading) {
                                 return buildLoadingUserProducts();
                               } else if (state is StoreUserItemsSuccess) {
-                                if (context
-                                    .read<StoreRepository>()
-                                    .userProductList
-                                    .isNotEmpty) {
+                                if (storeRepository
+                                    .userProductList.isNotEmpty) {
                                   return buildLoadedUserProducts();
                                 }
                               }
@@ -252,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             text: localize.social_net_em,
                           ),
                           ProfileActionTile(
-                            onTap: () async{
+                            onTap: () async {
                               context
                                   .read<ProfileLinksCubit>()
                                   .loadLink(urlTikTOk);

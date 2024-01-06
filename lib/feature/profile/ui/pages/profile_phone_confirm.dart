@@ -75,8 +75,7 @@ class _ProfilePhoneConfirmState extends State<ProfilePhoneConfirm> {
                 CustomButton(
                     text: localize.next,
                     onTap: () => {
-                          context
-                              .read<ProfilePhoneChangeCubit>()
+                          BlocProvider.of<ProfilePhoneChangeCubit>(context)
                               .validatePhoneCode(controller.text)
                         },
                     width: size.width)

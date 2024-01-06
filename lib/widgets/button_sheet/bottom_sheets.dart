@@ -237,7 +237,7 @@ class AppBottomSheets {
                   CustomButton(
                       text: "Сохранить",
                       onTap: () {
-                        repository.updateReferalCode(codeController.text);
+                        repository.updateReferralCode(codeController.text);
                       },
                       width: double.infinity),
                   const SizedBox(

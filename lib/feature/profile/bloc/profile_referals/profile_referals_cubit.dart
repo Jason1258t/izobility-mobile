@@ -4,16 +4,16 @@ import 'package:meta/meta.dart';
 
 part 'profile_referals_state.dart';
 
-class ProfileReferalsCubit extends Cubit<ProfileReferalsState> {
+class ProfileReferralsCubit extends Cubit<ProfileReferralsState> {
   final UserRepository userRepository;
 
-  ProfileReferalsCubit(this.userRepository) : super(ProfileReferalsInitial());
+  ProfileReferralsCubit(this.userRepository) : super(ProfileReferalsInitial());
 
   Future<void> loadReferalList() async {
     emit(ProfileReferalsLoading());
 
     try {
-      await userRepository.loadReferalsList();
+      await userRepository.loadReferralsList();
       emit(ProfileReferalsSuccess());
     } catch (ex) {
       print(ex);

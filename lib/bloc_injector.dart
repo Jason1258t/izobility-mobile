@@ -172,7 +172,7 @@ class MyBlocProviders extends StatelessWidget {
             lazy: false,
           ),
           BlocProvider(
-            create: (_) => ProfileReferalsCubit(
+            create: (_) => ProfileReferralsCubit(
                 RepositoryProvider.of<UserRepository>(context)),
             lazy: false,
           ),

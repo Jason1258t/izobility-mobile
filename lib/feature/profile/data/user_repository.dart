@@ -15,7 +15,7 @@ class UserRepository {
   UserModel user = UserModel();
   Map<String, dynamic>? _userJson;
 
-  List<ReferalModel> referalList = [];
+  List<ReferalModel> referralsList = [];
 
   BehaviorSubject<LoadingStateEnum> userDetailsDataStream =
       BehaviorSubject.seeded(LoadingStateEnum.wait);
@@ -32,6 +32,11 @@ class UserRepository {
 
       _userJson = response;
     }
+
+    return _buildUserJson();
+  }
+
+  Map<String, dynamic> _buildUserJson() {
     final Map<String, dynamic> r = {};
     r.addAll({
       "contact": _userJson!['email'],
@@ -51,10 +56,6 @@ class UserRepository {
     userDetailsDataStream.add(LoadingStateEnum.loading);
 
     final UserModel? cachedUser = await preferences.getUser();
-
-    print("~`~~~~~~~~~~~changed user ~~~~~~~~~~");
-    print(cachedUser);
-    print("~`~~~~~~~~~~~changed user ~~~~~~~~~~");
 
     if (cachedUser == null) {
       userDetailsDataStream.add(LoadingStateEnum.fail);
@@ -114,37 +115,37 @@ class UserRepository {
     await loadUserDetailsInfo();
   }
 
-  Future<dynamic> updateReferalCode(String referal) async {
-    await apiService.user.updateReferalCode(referal);
+  Future<dynamic> updateReferralCode(String referral) async {
+    await apiService.user.updateReferalCode(referral);
 
     await loadUserDetailsInfo();
   }
 
-  Future<dynamic> loadReferalsList() async {
-    dynamic parseReferals(ReferalModel referal) {
-      referalList.add(referal);
+  Future<dynamic> loadReferralsList() async {
+    dynamic parseReferrals(ReferalModel referral) {
+      referralsList.add(referral);
 
-      for (var item in referal.referalList) {
-        parseReferals(item);
+      for (var item in referral.referalList) {
+        parseReferrals(item);
       }
     }
 
-    referalList.clear();
+    referralsList.clear();
 
     final response = (await apiService.user.getReferalList())['objects'];
-    final List<ReferalModel> parsedReferals = [];
+    final List<ReferalModel> parsedReferrals = [];
 
     for (var json in response) {
       try {
-        parsedReferals.add(ReferalModel.fromJson(json, 1));
+        parsedReferrals.add(ReferalModel.fromJson(json, 1));
       } catch (e) {
         print(e);
         print("$json HERE");
       }
     }
 
-    for (var item in parsedReferals) {
-      parseReferals(item);
+    for (var item in parsedReferrals) {
+      parseReferrals(item);
     }
   }
 }

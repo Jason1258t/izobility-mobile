@@ -1,15 +1,15 @@
 part of 'profile_referals_cubit.dart';
 
 @immutable
-sealed class ProfileReferalsState {}
+sealed class ProfileReferralsState {}
 
-final class ProfileReferalsInitial extends ProfileReferalsState {}
+final class ProfileReferalsInitial extends ProfileReferralsState {}
 
-final class ProfileReferalsLoading extends ProfileReferalsState {}
-
-
-final class ProfileReferalsFailure extends ProfileReferalsState {}
+final class ProfileReferalsLoading extends ProfileReferralsState {}
 
 
-final class ProfileReferalsSuccess extends ProfileReferalsState {}
+final class ProfileReferalsFailure extends ProfileReferralsState {}
+
+
+final class ProfileReferalsSuccess extends ProfileReferralsState {}
 

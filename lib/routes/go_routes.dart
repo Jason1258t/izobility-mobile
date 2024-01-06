@@ -133,7 +133,7 @@ class CustomGoRoutes {
           builder: (context, state) => const ProfilePhoneEdit()),
       GoRoute(
           path: RouteNames.profileReferal,
-          builder: (context, state) => const ProfileReferalScreen()),
+          builder: (context, state) => const ProfileReferralScreen()),
       GoRoute(
           path: RouteNames.profileLanguage,
           builder: (context, state) => const ProfileLanguageScreen()),
