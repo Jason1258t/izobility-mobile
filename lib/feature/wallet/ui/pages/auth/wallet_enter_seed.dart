@@ -10,6 +10,7 @@ import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffol.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/big_text_field.dart';
 
@@ -35,7 +36,8 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
           context.pop();
 
           ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar(localize.inapproprivate_seed_phrase));
+              CustomSnackBar.errorSnackBar(
+                  localize.inapproprivate_seed_phrase));
         } else if (state is WalletAuthLoadingState) {
           Dialogs.show(
               context,
@@ -49,55 +51,51 @@ class _EnterSeedPhraseScreenState extends State<EnterSeedPhraseScreen> {
           context.push('${RouteNames.wallet}/true');
         }
       },
-      child: GestureDetector(
+      child: WalletScaffold(
         onTap: () {
           FocusScope.of(context).unfocus();
         },
-        child: Container(
-          color: Colors.white,
-          child: Scaffold(
-            backgroundColor: AppColors.purpleBcg,
-            appBar: CustomAppBar(
-              context: context,
-              text: localize.enter_seed,
-              onTap: () {
-                context.pop();
-              },
-              isBack: true,
-            ),
-            body: Container(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  OutLineTextField(
-                    onTapSuffixIcon: () {
-                      Clipboard.getData(Clipboard.kTextPlain).then((value) {
-                        setState(() {
-                          seedPhraseController.text = value!.text!;
-                        });
-                      });
-                    },
-                    icon: 'assets/icons/clipboard.svg',
-                    controller: seedPhraseController,
-                    width: double.infinity,
-                    height: 200,
-                    maxLines: 7,
-                    hintText: localize.enter_seed,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomButton(
-                      text: localize.to_come_in,
-                      onTap: () {
-                        context
-                            .read<WalletAuthCubit>()
-                            .authWalletBySeedPhrase(seedPhraseController.text);
-                      },
-                      width: double.infinity)
-                ],
+        backgroundColor: Colors.white,
+        scaffoldColor: AppColors.purpleBcg,
+        appBar: CustomAppBar(
+          context: context,
+          text: localize.enter_seed,
+          onTap: () {
+            context.pop();
+          },
+          isBack: true,
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              OutLineTextField(
+                onTapSuffixIcon: () {
+                  Clipboard.getData(Clipboard.kTextPlain).then((value) {
+                    setState(() {
+                      seedPhraseController.text = value!.text!;
+                    });
+                  });
+                },
+                icon: 'assets/icons/clipboard.svg',
+                controller: seedPhraseController,
+                width: double.infinity,
+                height: 200,
+                maxLines: 7,
+                hintText: localize.enter_seed,
               ),
-            ),
+              const SizedBox(
+                height: 20,
+              ),
+              CustomButton(
+                  text: localize.to_come_in,
+                  onTap: () {
+                    context
+                        .read<WalletAuthCubit>()
+                        .authWalletBySeedPhrase(seedPhraseController.text);
+                  },
+                  width: double.infinity)
+            ],
           ),
         ),
       ),

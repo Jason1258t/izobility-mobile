@@ -102,7 +102,7 @@ class _BurseScreenState extends State<BurseScreen>
         body: CustomScrollView(
           controller: scrollController,
           physics:
-              BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           slivers: [
             SliverPersistentHeader(
               pinned: false,

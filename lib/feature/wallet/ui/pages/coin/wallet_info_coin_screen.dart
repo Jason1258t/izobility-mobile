@@ -30,75 +30,73 @@ class _InfoCurrencyWalletScreenState extends State<InfoCurrencyWalletScreen> {
 
     return Container(
       color: Colors.white,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: AppColors.purpleBcg,
-          body: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.fast),
-            slivers: [
-              CustomSliverAppBar(
-                height: 90,
-                isBack: true,
-                title: widget.token.name,
-                color: Colors.white,
-              ),
-              SliverPersistentHeader(
-                pinned: true,
-                floating: false,
-                delegate: SliverAppBarDelegate(
-                  minHeight: 115,
-                  maxHeight: 115,
-                  child: Container(
-                    color: Colors.white,
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 20,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                image: DecorationImage(
-                                    image:
-                                        NetworkImage(widget.token.imageUrl))),
-                          ),
+      child: Scaffold(
+        backgroundColor: AppColors.purpleBcg,
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast),
+          slivers: [
+            CustomSliverAppBar(
+              height: 90,
+              isBack: true,
+              title: widget.token.name,
+              color: Colors.white,
+            ),
+            SliverPersistentHeader(
+              pinned: true,
+              floating: false,
+              delegate: SliverAppBarDelegate(
+                minHeight: 115,
+                maxHeight: 115,
+                child: Container(
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                  image:
+                                      NetworkImage(widget.token.imageUrl))),
                         ),
-                        Text(
-                            walletRepository.obscured
-                                ? AppStrings.obscuredText
-                                : widget.token.amount,
-                            style: AppTypography.font36w700
-                                .copyWith(color: AppColors.textPrimary)),
-                        Text(
+                      ),
+                      Text(
                           walletRepository.obscured
                               ? AppStrings.obscuredText
-                              : '≈ ${widget.token.rubleExchangeRate} ₽',
-                          style: AppTypography.font16w400
-                              .copyWith(color: AppColors.grey600),
-                        ),
-                      ],
-                    ),
+                              : widget.token.amount,
+                          style: AppTypography.font36w700
+                              .copyWith(color: AppColors.textPrimary)),
+                      Text(
+                        walletRepository.obscured
+                            ? AppStrings.obscuredText
+                            : '≈ ${widget.token.rubleExchangeRate} ₽',
+                        style: AppTypography.font16w400
+                            .copyWith(color: AppColors.grey600),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              SliverPersistentHeader(
-                pinned: true,
-                floating: false,
-                delegate: SliverAppBarDelegate(
-                  minHeight: 17,
-                  maxHeight: 17,
-                  child: Container(
-                    height: 18,
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.vertical(
-                            bottom: Radius.circular(16))),
-                  ),
+            ),
+            SliverPersistentHeader(
+              pinned: true,
+              floating: false,
+              delegate: SliverAppBarDelegate(
+                minHeight: 17,
+                maxHeight: 17,
+                child: Container(
+                  height: 18,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                          bottom: Radius.circular(16))),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

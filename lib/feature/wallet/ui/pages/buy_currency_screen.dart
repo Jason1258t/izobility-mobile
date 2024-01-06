@@ -24,6 +24,7 @@ class _BuyCurrencyScreenState extends State<BuyCurrencyScreen> {
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
     final localize = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
