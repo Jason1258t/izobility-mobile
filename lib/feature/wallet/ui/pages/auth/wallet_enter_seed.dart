@@ -10,7 +10,7 @@ import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
-import 'package:izobility_mobile/widgets/scaffold/wallet_scaffol.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/big_text_field.dart';
 

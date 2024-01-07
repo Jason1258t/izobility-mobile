@@ -7,7 +7,7 @@ import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/scaffold/wallet_scaffol.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 
 class WalletAuthScreen extends StatefulWidget {
   const WalletAuthScreen({super.key});
@@ -21,6 +21,7 @@ class WalletAuthScreenState extends State<WalletAuthScreen> {
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
     final localize = AppLocalizations.of(context)!;
+
     return WalletScaffold(
       onTap: () {},
       appBar: CustomAppBar(

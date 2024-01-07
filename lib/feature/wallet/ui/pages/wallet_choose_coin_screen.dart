@@ -5,9 +5,9 @@ import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/choose_coin_card.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/logic/constants.dart';
-import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 
 class ChooseCoinScreen extends StatefulWidget {
   const ChooseCoinScreen(
@@ -31,57 +31,55 @@ class _ChooseCoinScreenState extends State<ChooseCoinScreen> {
         ? walletRepository.coinsInChain
         : walletRepository.coinsInGame;
 
-    return Container(
-      color: Colors.white,
-      child: Scaffold(
-        backgroundColor: AppColors.purpleBcg,
-        appBar: CustomAppBar(
-          context: context,
-          text: "Coin",
-          isBack: true,
-          onTap: () {
-            context.pop();
-          },
-        ),
-        body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              const SizedBox(
-                height: 16,
-              ),
-              Column(children: [
-                ...List.generate(
-                    coinsList.length,
-                    (index) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: ChooseCoinCard(
-                            onTap: () {
-                              if (widget.path != AppStrings.nullText) {
-                                context.pushReplacement(
-                                    '/wallet/${widget.path}',
-                                    extra: coinsList[index]);
-                              } else {
-                                context.pop();
-                                if (widget.fromOrTo &&
-                                    walletRepository.activeSwapTockenTo!.id !=
-                                        coinsList[index].id) {
-                                  walletRepository
-                                      .setActiveSwapTokenFrom(coinsList[index]);
-                                } else if (walletRepository
-                                        .activeSwapTockenFrom!.id !=
-                                    coinsList[index].id) {
-                                  walletRepository
-                                      .setActiveSwapTokenTo(coinsList[index]);
-                                }
+    return WalletScaffold(
+      backgroundColor: Colors.white,
+      scaffoldColor: AppColors.purpleBcg,
+      appBar: CustomAppBar(
+        context: context,
+        text: "Coin",
+        isBack: true,
+        onTap: () {
+          context.pop();
+        },
+      ),
+      onTap: () {},
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            const SizedBox(
+              height: 16,
+            ),
+            Column(children: [
+              ...List.generate(
+                  coinsList.length,
+                  (index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: ChooseCoinCard(
+                          onTap: () {
+                            if (widget.path != AppStrings.nullText) {
+                              context.pushReplacement('/wallet/${widget.path}',
+                                  extra: coinsList[index]);
+                            } else {
+                              context.pop();
+                              if (widget.fromOrTo &&
+                                  walletRepository.activeSwapTockenTo!.id !=
+                                      coinsList[index].id) {
+                                walletRepository
+                                    .setActiveSwapTokenFrom(coinsList[index]);
+                              } else if (walletRepository
+                                      .activeSwapTockenFrom!.id !=
+                                  coinsList[index].id) {
+                                walletRepository
+                                    .setActiveSwapTokenTo(coinsList[index]);
                               }
-                            },
-                            coin: coinsList[index],
-                          ),
-                        )),
-              ])
-            ]),
-          ),
+                            }
+                          },
+                          coin: coinsList[index],
+                        ),
+                      )),
+            ])
+          ]),
         ),
       ),
     );

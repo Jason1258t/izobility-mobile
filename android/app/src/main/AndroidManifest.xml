@@ -37,8 +37,8 @@
 <!--            android:process=":UnityAsLibrary"-->
 <!--            android:hardwareAccelerated="false"-->
 <!--            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"-->
-            >
-        </activity>
+<!--            >-->
+<!--        </activity>-->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

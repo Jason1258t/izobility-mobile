@@ -8,6 +8,7 @@ import 'package:izobility_mobile/utils/logic/constants.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class BurseHistoryScreen extends StatefulWidget {
@@ -22,55 +23,58 @@ class _BurseHistoryScreenState extends State<BurseHistoryScreen> {
   Widget build(BuildContext context) {
     final walletRepository = RepositoryProvider.of<WalletRepository>(context);
     final localize = AppLocalizations.of(context)!;
-    return Scaffold(
-        backgroundColor: AppColors.purpleBcg,
-        appBar: CustomAppBar(
-          context: context,
-          text: localize.buying_order,
-          isBack: true,
-          onTap: () {
-            context.pop();
-          },
-        ),
-        body: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.fast),
-            slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                sliver: MultiSliver(
-                    children: List.generate(
-                  9,
-                  (index) => MultiSliver(
-                    pushPinnedChildren: true,
-                    children: [
-                      SliverPinnedHeader(
-                          child: Container(
-                        padding: const EdgeInsets.all(5),
-                        color: AppColors.purpleBcg,
-                        child: Text(
-                          "${DateTime.now().day} ${AppStrings.months[(DateTime.now().month - index).toString()]}",
-                          textAlign: TextAlign.center,
-                        ),
-                      )),
-                      SliverToBoxAdapter(
-                        child: Column(
-                          children: walletRepository.ordersGeneralList
-                              .map((currentOrder) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 4),
-                                    child: OrderItem(
-                                      type: BurseOrderType.general,
-                                      order: currentOrder,
-                                      onTap: () {},
-                                    ),
-                                  ))
-                              .toList(),
-                        ),
+    return WalletScaffold(
+      onTap: () {},
+      backgroundColor: Colors.white,
+      scaffoldColor: AppColors.purpleBcg,
+      appBar: CustomAppBar(
+        context: context,
+        text: localize.buying_order,
+        isBack: true,
+        onTap: () {
+          context.pop();
+        },
+      ),
+      body: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast),
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              sliver: MultiSliver(
+                  children: List.generate(
+                9,
+                (index) => MultiSliver(
+                  pushPinnedChildren: true,
+                  children: [
+                    SliverPinnedHeader(
+                        child: Container(
+                      padding: const EdgeInsets.all(5),
+                      color: AppColors.purpleBcg,
+                      child: Text(
+                        "${DateTime.now().day} ${AppStrings.months[(DateTime.now().month - index).toString()]}",
+                        textAlign: TextAlign.center,
                       ),
-                    ],
-                  ),
-                )),
-              )
-            ]));
+                    )),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children: walletRepository.ordersGeneralList
+                            .map((currentOrder) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 4),
+                                  child: OrderItem(
+                                    type: BurseOrderType.general,
+                                    order: currentOrder,
+                                    onTap: () {},
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+            )
+          ]),
+    );
   }
 }

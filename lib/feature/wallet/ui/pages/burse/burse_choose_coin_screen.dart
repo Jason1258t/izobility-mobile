@@ -6,7 +6,7 @@ import 'package:izobility_mobile/feature/wallet/ui/widgets/choose_coin_card.dart
 import 'package:izobility_mobile/models/api/token_data.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/scaffold/wallet_scaffol.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 
 class BurseChooseCoinScreen extends StatefulWidget {
   const BurseChooseCoinScreen({super.key, required this.fromOrTo});
@@ -55,8 +55,6 @@ class _BurseChooseCoinScreenState extends State<BurseChooseCoinScreen> {
                             if (widget.fromOrTo) {
                               walletRepository
                                   .setActiveBurseTokenFrom(res[index]);
-                              print(
-                                  walletRepository.activeBurseTokenFrom!.name);
                             } else {
                               walletRepository
                                   .setActiveBurseTokenTo(res[index]);

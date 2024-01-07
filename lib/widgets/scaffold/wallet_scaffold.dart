@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 class WalletScaffold extends StatefulWidget {
   final Widget body;
   final Function onTap;
-  final AppBar appBar;
+  final AppBar? appBar;
   final Color scaffoldColor;
   final Color backgroundColor;
 
   const WalletScaffold(
       {super.key,
         required this.body,
-      required this.onTap,
-      required this.appBar,
+      required this.onTap, this.appBar,
       required this.backgroundColor,
       required this.scaffoldColor});
 

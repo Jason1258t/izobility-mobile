@@ -14,6 +14,7 @@ import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
@@ -44,8 +45,9 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
         if (state is CoinSendFailure) {
           context.pop();
 
-          ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar.errorSnackBar('ошибка перевода')); //  TODO неаерно переведено
+          ScaffoldMessenger.of(context).showSnackBar(
+              CustomSnackBar.errorSnackBar(
+                  'ошибка перевода')); //  TODO неаерно переведено
         } else if (state is CoinSendLoading) {
           Dialogs.show(
               context,
@@ -59,162 +61,156 @@ class _SendInGameCoinScreenState extends State<SendInGameCoinScreen> {
               CustomSnackBar.successSnackBar(localize.succedssfully_sent));
         }
       },
-      child: GestureDetector(
+      child: WalletScaffold(
+        backgroundColor: Colors.white,
+        scaffoldColor: AppColors.purpleBcg,
         onTap: () {
           FocusScope.of(context).unfocus();
         },
-        child: Container(
-          color: Colors.white,
-          child: SafeArea(
-            child: Scaffold(
-              backgroundColor: AppColors.purpleBcg,
-              body: CustomScrollView(
-                physics: const BouncingScrollPhysics(
-                    decelerationRate: ScrollDecelerationRate.fast),
-                slivers: [
-                  CustomSliverAppBar(
-                    height: 90,
-                    isBack: true,
-                    title: localize.send,
-                    color: Colors.white,
-                  ),
-                  SliverPersistentHeader(
-                    pinned: true,
-                    floating: false,
-                    delegate: SliverAppBarDelegate(
-                      minHeight: 115,
-                      maxHeight: 115,
-                      child: Container(
-                        color: Colors.white,
-                        alignment: Alignment.center,
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            widget.coin.imageUrl))),
-                              ),
-                            ),
-                            Text(
-                                walletRepository.obscured
-                                    ? AppStrings.obscuredText
-                                    : widget.coin.amount,
-                                style: AppTypography.font36w700
-                                    .copyWith(color: AppColors.textPrimary)),
-                            Text(
-                              walletRepository.obscured
-                                  ? AppStrings.obscuredText
-                                  : '≈ ${widget.coin.rubleExchangeRate} ₽',
-                              style: AppTypography.font16w400
-                                  .copyWith(color: AppColors.grey600),
-                            ),
-                          ],
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast),
+          slivers: [
+            CustomSliverAppBar(
+              height: 90,
+              isBack: true,
+              title: localize.send,
+              color: Colors.white,
+            ),
+            SliverPersistentHeader(
+              pinned: true,
+              floating: false,
+              delegate: SliverAppBarDelegate(
+                minHeight: 115,
+                maxHeight: 115,
+                child: Container(
+                  color: Colors.white,
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                  image: NetworkImage(widget.coin.imageUrl))),
                         ),
                       ),
-                    ),
-                  ),
-                  SliverPersistentHeader(
-                    pinned: true,
-                    floating: false,
-                    delegate: SliverAppBarDelegate(
-                      minHeight: 17,
-                      maxHeight: 17,
-                      child: Container(
-                        height: 18,
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.vertical(
-                                bottom: Radius.circular(16))),
+                      Text(
+                          walletRepository.obscured
+                              ? AppStrings.obscuredText
+                              : widget.coin.amount,
+                          style: AppTypography.font36w700
+                              .copyWith(color: AppColors.textPrimary)),
+                      Text(
+                        walletRepository.obscured
+                            ? AppStrings.obscuredText
+                            : '≈ ${widget.coin.rubleExchangeRate} ₽',
+                        style: AppTypography.font16w400
+                            .copyWith(color: AppColors.grey600),
                       ),
-                    ),
+                    ],
                   ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 17, right: 17, top: 20),
-                      child: CustomTextField.withOneIcon(
-                        obscured: false,
-                        onChange: (v) {
-                          isErrorEmail = !RegExp(AppStrings.emailRegExp)
-                              .hasMatch((v ?? "").trim());
-                          print(isErrorEmail);
-                          setState(() {});
-                        },
-                        error: isErrorEmail,
-                        errorText: localize.main_incorrectly_introduced,
-                        suffixIconChild:
-                            SvgPicture.asset('assets/icons/clipboard.svg'),
-                        hintText: localize.mail,
-                        suffixIconCallback: () {
-                          Clipboard.getData(Clipboard.kTextPlain).then((value) {
-                            setState(() {
-                              emailController.text = value!.text!.replaceAll("\n", "");
-                            });
-                          });
-                        },
-                        controller: emailController,
-                        width: double.infinity,
-                        backgroundColor: Colors.white,
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 17, right: 17, top: 20),
-                      child: CustomTextField.withOneIcon(
-                        errorText: localize.your_balance_smaller,
-                        error: isErrorAmount,
-                        onChange: (val) {
-                          setState(() {
-                            if (double.parse(widget.coin.amount.toString()) <
-                                double.parse(val!)) {
-                              isErrorAmount = true;
-                              return;
-                            }
-                            isErrorAmount = false;
-                          });
-                        },
-                        keyboardType: TextInputType.number,
-                        obscured: false,
-                        suffixIconChild: Image.network(widget.coin.imageUrl, width: 25,),
-                        hintText: localize.sum,
-                        suffixIconCallback: () {},
-                        controller: amountController,
-                        width: double.infinity,
-                        backgroundColor: Colors.white,
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 17, right: 17, top: 20),
-                      child: CustomButton(
-                        isActive: !isErrorAmount && !isErrorEmail,
-                        text: localize.continue_,
-                        onTap: () {
-                          FocusScope.of(context).unfocus();
-
-                          final address = emailController.text;
-                          final amount = int.parse(amountController.text);
-
-                          context.read<CoinSendCubit>().sendInGameCoin(
-                              address, amount, int.parse(widget.coin.id));
-                        },
-                        width: double.infinity,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
+            SliverPersistentHeader(
+              pinned: true,
+              floating: false,
+              delegate: SliverAppBarDelegate(
+                minHeight: 17,
+                maxHeight: 17,
+                child: Container(
+                  height: 18,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(16))),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 17, right: 17, top: 20),
+                child: CustomTextField.withOneIcon(
+                  obscured: false,
+                  onChange: (v) {
+                    isErrorEmail = !RegExp(AppStrings.emailRegExp)
+                        .hasMatch((v ?? "").trim());
+                    print(isErrorEmail);
+                    setState(() {});
+                  },
+                  error: isErrorEmail,
+                  errorText: localize.main_incorrectly_introduced,
+                  suffixIconChild:
+                      SvgPicture.asset('assets/icons/clipboard.svg'),
+                  hintText: localize.mail,
+                  suffixIconCallback: () {
+                    Clipboard.getData(Clipboard.kTextPlain).then((value) {
+                      setState(() {
+                        emailController.text =
+                            value!.text!.replaceAll("\n", "");
+                      });
+                    });
+                  },
+                  controller: emailController,
+                  width: double.infinity,
+                  backgroundColor: Colors.white,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 17, right: 17, top: 20),
+                child: CustomTextField.withOneIcon(
+                  errorText: localize.your_balance_smaller,
+                  error: isErrorAmount,
+                  onChange: (val) {
+                    setState(() {
+                      if (double.parse(widget.coin.amount.toString()) <
+                          double.parse(val!)) {
+                        isErrorAmount = true;
+                        return;
+                      }
+                      isErrorAmount = false;
+                    });
+                  },
+                  keyboardType: TextInputType.number,
+                  obscured: false,
+                  suffixIconChild: Image.network(
+                    widget.coin.imageUrl,
+                    width: 25,
+                  ),
+                  hintText: localize.sum,
+                  suffixIconCallback: () {},
+                  controller: amountController,
+                  width: double.infinity,
+                  backgroundColor: Colors.white,
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 17, right: 17, top: 20),
+                child: CustomButton(
+                  isActive: !isErrorAmount && !isErrorEmail,
+                  text: localize.continue_,
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+
+                    final address = emailController.text;
+                    final amount = int.parse(amountController.text);
+
+                    context.read<CoinSendCubit>().sendInGameCoin(
+                        address, amount, int.parse(widget.coin.id));
+                  },
+                  width: double.infinity,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

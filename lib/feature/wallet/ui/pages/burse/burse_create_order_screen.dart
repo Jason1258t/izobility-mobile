@@ -12,6 +12,7 @@ import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
@@ -30,45 +31,43 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
 
-    return Container(
-      color: Colors.white,
-      child: Scaffold(
-        backgroundColor: AppColors.purpleBcg,
-        appBar: CustomAppBar(
-          context: context,
-          text: localize.creating_order,
-          isBack: true,
-          onTap: () {
-            context.pop();
-          },
-        ),
-        body: Container(
-            color: AppColors.purpleBcg,
-            padding: const EdgeInsets.all(16),
-            child: BlocListener<BurseCreateOrderCubit, BurseCreateOrderState>(
-              listener: (context, state) {
-                ScaffoldMessenger.of(context).clearSnackBars();
-
-                if (state is BurseCreateOrderSuccess) {
-                  context.pop();
-
-                  context.push(RouteNames.walletBurseCreateOrderSuccess);
-                } else if (state is BurseCreateOrderFailure) {
-                  context.pop();
-
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      CustomSnackBar.errorSnackBar(localize.erro));
-                } else if (state is BurseCreateOrderLoading) {
-                  Dialogs.show(
-                      context,
-                      const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      ));
-                }
-              },
-              child: buildCreateOrderWidget(),
-            )),
+    return WalletScaffold(
+      onTap: () {},
+      backgroundColor: Colors.white,
+      scaffoldColor: AppColors.purpleBcg,
+      appBar: CustomAppBar(
+        context: context,
+        text: localize.creating_order,
+        isBack: true,
+        onTap: () {
+          context.pop();
+        },
       ),
+      body: Container(
+          padding: const EdgeInsets.all(16),
+          child: BlocListener<BurseCreateOrderCubit, BurseCreateOrderState>(
+            listener: (context, state) {
+              ScaffoldMessenger.of(context).clearSnackBars();
+
+              if (state is BurseCreateOrderSuccess) {
+                context.pop();
+
+                context.push(RouteNames.walletBurseCreateOrderSuccess);
+              } else if (state is BurseCreateOrderFailure) {
+                context.pop();
+
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(CustomSnackBar.errorSnackBar(localize.erro));
+              } else if (state is BurseCreateOrderLoading) {
+                Dialogs.show(
+                    context,
+                    const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    ));
+              }
+            },
+            child: buildCreateOrderWidget(),
+          )),
     );
   }
 
@@ -154,9 +153,8 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
             text: localize.create_your_own_order,
             onTap: () {
               context.read<BurseCreateOrderCubit>().createOrder(
-                int.parse(_sendController.text),
-                int.parse(_getController.text)
-              );
+                  int.parse(_sendController.text),
+                  int.parse(_getController.text));
             },
             width: double.infinity)
       ],
