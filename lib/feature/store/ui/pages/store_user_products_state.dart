@@ -23,7 +23,7 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
-
+    final storeRepository = RepositoryProvider.of<StoreRepository>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
@@ -47,12 +47,11 @@ class _StoreUserProductsScreenState extends State<StoreUserProductsScreen> {
                     child: CircularProgressIndicator.adaptive(),
                   );
                 } else if (state is StoreUserItemsSuccess) {
-                  if (context.read<StoreRepository>().userProductList.isEmpty) {
+                  if (storeRepository.userProductList.isEmpty) {
                     return Text(localize.you_have_no_puchases_yet);
                   }else{
                     return Column(
-                    children: context
-                        .read<StoreRepository>()
+                    children: storeRepository
                         .userProductList
                         .map((e) => UserProductItemWidget(userProduct: e))
                         .toList(),

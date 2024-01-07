@@ -75,4 +75,5 @@ flutter:
     - assets/images/banners/
     - assets/images/splash_background.png
     - assets/abi/
+    - assets/privacy_policy/
     - .env
