@@ -39,8 +39,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ProfileBlocLabel(text: "Безопасность"),
               ProfileSwitchCard(
                   label: "2FA Двухфакторная аутентификация",
-                  description:
-                      "Подтверждения входа или действий в приложении"),
+                  description: "Подтверждения входа или действий в приложении"),
               ProfileSwitchCard(
                   label: "Отправка данных",
                   description:

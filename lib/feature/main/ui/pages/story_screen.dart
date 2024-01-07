@@ -50,7 +50,6 @@ class _StoryScreenState extends State<StoryScreen>
       animationController.addListener(bloc.controllerListener);
     }
 
-
     onTapDown(TapDownDetails details) {
       lastTapTime = DateTime.now();
       bloc.pause();
@@ -58,10 +57,12 @@ class _StoryScreenState extends State<StoryScreen>
 
     onTapUp(TapUpDetails details) {
       log('tapUp');
-      final bool tap = DateTime.now().difference(lastTapTime!).inMilliseconds < 200;
+      final bool tap =
+          DateTime.now().difference(lastTapTime!).inMilliseconds < 200;
 
       if (tap) {
-        final bool right = details.localPosition.dx > MediaQuery.sizeOf(context).width / 2;
+        final bool right =
+            details.localPosition.dx > MediaQuery.sizeOf(context).width / 2;
         if (right) {
           bloc.changeStory();
         } else {
@@ -72,7 +73,6 @@ class _StoryScreenState extends State<StoryScreen>
       bloc.play();
       lastTapTime = null;
     }
-
 
     final Size size = MediaQuery.sizeOf(context);
     final double itemSize =
@@ -130,24 +130,27 @@ class _StoryScreenState extends State<StoryScreen>
                         children: [
                           BlocBuilder<StoryCubit, StoryState>(
                               builder: (context, state) {
-                                int i = 0;
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                                  child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: bloc.storiesList.map((e) {
-                                        i++;
-                                        return StoryDurationIndicator(
-                                            width: itemSize,
-                                            duration: e.duration,
-                                            index: i - 1);
-                                      }).toList()),
-                                );
-                              }),
+                            int i = 0;
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: bloc.storiesList.map((e) {
+                                    i++;
+                                    return StoryDurationIndicator(
+                                        width: itemSize,
+                                        duration: e.duration,
+                                        index: i - 1);
+                                  }).toList()),
+                            );
+                          }),
                           InkWell(
                             onTap: exit,
                             child: Ink(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               child: SvgPicture.asset(
                                 'assets/icons/cross_rounded.svg',
                                 color: Colors.white,

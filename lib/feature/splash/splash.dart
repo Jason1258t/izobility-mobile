@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/utils/ui/animations.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,10 +22,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // SvgPicture.asset(
-              //   'assets/icons/Logotype.svg',
-              //   width: MediaQuery.sizeOf(context).width - 40,
-              // ),
               Image.asset(
                 'assets/images/logo.png',
                 width: MediaQuery.sizeOf(context).width * 2 / 3,

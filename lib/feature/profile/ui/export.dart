@@ -1,7 +1,6 @@
 export 'pages/profile.dart';
 export 'pages/profile_about.dart';
 export 'pages/profile_edit.dart';
-export 'pages/profile_inventory.dart';
 export 'pages/profile_language.dart';
 export 'pages/profile_phone_confirm.dart';
 export 'pages/profile_phone_edit.dart';

@@ -68,7 +68,7 @@ class ProfileReferralScreenState extends State<ProfileReferralScreen> {
                 const SizedBox(
                   height: 16,
                 ),
-               const InvitesBanner(),
+                const InvitesBanner(),
                 const SizedBox(
                   height: 24,
                 ),

@@ -99,9 +99,15 @@ class _StoreScreenState extends State<StoreScreen> {
                       style: AppTypography.font14w700,
                     ),
                   ),
-                  Tab(icon: Text(localize.places, style: AppTypography.font14w700)),
-                  Tab(icon: Text(localize.events, style: AppTypography.font14w700)),
-                  Tab(icon: Text(localize.other, style: AppTypography.font14w700)),
+                  Tab(
+                      icon: Text(localize.places,
+                          style: AppTypography.font14w700)),
+                  Tab(
+                      icon: Text(localize.events,
+                          style: AppTypography.font14w700)),
+                  Tab(
+                      icon: Text(localize.other,
+                          style: AppTypography.font14w700)),
                 ],
               ),
             ),

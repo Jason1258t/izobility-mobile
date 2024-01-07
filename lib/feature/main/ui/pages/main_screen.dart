@@ -26,8 +26,6 @@ import 'package:izobility_mobile/widgets/popup/popup_promo_failure.dart';
 import 'package:izobility_mobile/widgets/popup/popup_promo_success.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
@@ -122,7 +120,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
-    final size = MediaQuery.sizeOf(context);
 
     return GestureDetector(
       onTap: () {

@@ -21,7 +21,9 @@ class _ProfileLanguageScreenState extends State<ProfileLanguageScreen> {
     locale = Locale(AppLocalizations.of(context)!.localeName);
 
     final localize = AppLocalizations.of(context)!;
-    const separate = SizedBox(height: 10,);
+    const separate = SizedBox(
+      height: 10,
+    );
     return Container(
       color: Colors.white,
       child: SafeArea(

@@ -9,10 +9,12 @@ class ProfilePrivacyPolicyScreen extends StatefulWidget {
   const ProfilePrivacyPolicyScreen({super.key});
 
   @override
-  State<ProfilePrivacyPolicyScreen> createState() => _ProfilePrivacyPolicyScreenState();
+  State<ProfilePrivacyPolicyScreen> createState() =>
+      _ProfilePrivacyPolicyScreenState();
 }
 
-class _ProfilePrivacyPolicyScreenState extends State<ProfilePrivacyPolicyScreen> {
+class _ProfilePrivacyPolicyScreenState
+    extends State<ProfilePrivacyPolicyScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
