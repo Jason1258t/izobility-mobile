@@ -9,13 +9,18 @@ class ProductLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: AppColors.grey500, width: 2))
-      ),
-      child: Text(
-        linkText,
-        style: AppTypography.font14w700.copyWith(color: AppColors.grey500),
+    return InkWell(
+      onTap: () {
+
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.grey500, width: 2))
+        ),
+        child: Text(
+          linkText,
+          style: AppTypography.font14w700.copyWith(color: AppColors.grey500),
+        ),
       ),
     );
   }

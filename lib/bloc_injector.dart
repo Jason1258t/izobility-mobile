@@ -15,6 +15,7 @@ import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/data/notification_repository.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/main.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -41,7 +42,8 @@ class MyBlocProviders extends StatelessWidget {
         authRepository: RepositoryProvider.of<AuthRepository>(context),
         mainRepository: RepositoryProvider.of<MainScreenRepository>(context),
         walletRepository: RepositoryProvider.of<WalletRepository>(context),
-        storeRepository: RepositoryProvider.of<StoreRepository>(context));
+        storeRepository: RepositoryProvider.of<StoreRepository>(context),
+        burseRepository: RepositoryProvider.of<BurseRepository>(context));
 
     return MultiBlocProvider(
         providers: [
@@ -131,12 +133,12 @@ class MyBlocProviders extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => BurseCreateOrderCubit(
-                RepositoryProvider.of<WalletRepository>(context)),
+                RepositoryProvider.of<BurseRepository>(context)),
             lazy: false,
           ),
           BlocProvider(
             create: (_) => BurseGeneralOrdersCubit(
-                RepositoryProvider.of<WalletRepository>(context)),
+                RepositoryProvider.of<BurseRepository>(context)),
             lazy: false,
           ),
           BlocProvider(
@@ -147,7 +149,7 @@ class MyBlocProviders extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => BurseBuyOrderCubit(
-                RepositoryProvider.of<WalletRepository>(context)),
+                RepositoryProvider.of<BurseRepository>(context)),
             lazy: false,
           ),
           BlocProvider(
@@ -157,7 +159,7 @@ class MyBlocProviders extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => BurseMyOrdersCubit(
-                RepositoryProvider.of<WalletRepository>(context)),
+                RepositoryProvider.of<BurseRepository>(context)),
             lazy: false,
           ),
           BlocProvider(
@@ -213,6 +215,9 @@ class MyRepositoryProviders extends StatelessWidget {
       RepositoryProvider(
         create: (_) => WalletRepository(
             apiService: api, prefs: prefs, apiCripto: ApiCripto()),
+      ),
+      RepositoryProvider(
+        create: (_) => BurseRepository(apiService: api),
       ),
       RepositoryProvider(
         create: (_) => MainScreenRepository(apiService: api),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/choose_coin_card.dart';
 import 'package:izobility_mobile/models/api/token_data.dart';
@@ -21,6 +22,7 @@ class _BurseChooseCoinScreenState extends State<BurseChooseCoinScreen> {
   @override
   Widget build(BuildContext context) {
     final walletRepository = context.read<WalletRepository>();
+    final burseRepository = context.read<BurseRepository>();
 
     List<TokenData> res = walletRepository.walletPage == 0
         ? walletRepository.coinsInChain
@@ -53,10 +55,10 @@ class _BurseChooseCoinScreenState extends State<BurseChooseCoinScreen> {
                         child: ChooseCoinCard(
                           onTap: () {
                             if (widget.fromOrTo) {
-                              walletRepository
+                              burseRepository
                                   .setActiveBurseTokenFrom(res[index]);
                             } else {
-                              walletRepository
+                              burseRepository
                                   .setActiveBurseTokenTo(res[index]);
                             }
                             setState(() {});

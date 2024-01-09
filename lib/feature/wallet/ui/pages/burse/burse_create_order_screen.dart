@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/burse_create_order/burse_create_order_cubit.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_choose_coin.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/button_swop.dart';
@@ -74,7 +75,8 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
   Widget buildCreateOrderWidget() {
     final size = MediaQuery.sizeOf(context);
     final localize = AppLocalizations.of(context)!;
-    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+    final burseRepository = RepositoryProvider.of<BurseRepository>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -99,8 +101,8 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
               ),
               ButtonChooseCoin(
                 width: size.width * 0.3555,
-                coinName: walletRepository.activeBurseTokenFrom!.name,
-                imagePath: walletRepository.activeBurseTokenFrom!.imageUrl,
+                coinName: burseRepository.activeBurseTokenFrom!.name,
+                imagePath: burseRepository.activeBurseTokenFrom!.imageUrl,
                 onTap: () {
                   context
                       .push(RouteNames.walletBurseChooseCoin, extra: true)
@@ -137,8 +139,8 @@ class _BurseCreateOrderScreenState extends State<BurseCreateOrderScreen> {
               ),
               ButtonChooseCoin(
                 width: size.width * 0.3555,
-                coinName: walletRepository.activeBurseTokenTo!.name,
-                imagePath: walletRepository.activeBurseTokenTo!.imageUrl,
+                coinName: burseRepository.activeBurseTokenTo!.name,
+                imagePath: burseRepository.activeBurseTokenTo!.imageUrl,
                 onTap: () {
                   context
                       .push(RouteNames.walletBurseChooseCoin, extra: false)

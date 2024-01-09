@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/feature/wallet/ui/widgets/order_item.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
@@ -21,7 +22,7 @@ class BurseHistoryScreen extends StatefulWidget {
 class _BurseHistoryScreenState extends State<BurseHistoryScreen> {
   @override
   Widget build(BuildContext context) {
-    final walletRepository = RepositoryProvider.of<WalletRepository>(context);
+    final burseRepository = RepositoryProvider.of<BurseRepository>(context);
     final localize = AppLocalizations.of(context)!;
     return WalletScaffold(
       onTap: () {},
@@ -58,7 +59,7 @@ class _BurseHistoryScreenState extends State<BurseHistoryScreen> {
                     )),
                     SliverToBoxAdapter(
                       child: Column(
-                        children: walletRepository.ordersGeneralList
+                        children: burseRepository.ordersGeneralList
                             .map((currentOrder) => Padding(
                                   padding: const EdgeInsets.only(bottom: 4),
                                   child: OrderItem(

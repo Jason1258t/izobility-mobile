@@ -1,19 +1,19 @@
 import 'package:bloc/bloc.dart';
-import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'burse_buy_order_state.dart';
 
 class BurseBuyOrderCubit extends Cubit<BurseBuyOrderState> {
-  final WalletRepository walletRepository;
+  final BurseRepository burseRepository;
 
-  BurseBuyOrderCubit(this.walletRepository) : super(BurseBuyOrderInitial());
+  BurseBuyOrderCubit(this.burseRepository) : super(BurseBuyOrderInitial());
 
   void buyOrder(int orderId) async {
     emit(BurseBuyOrderLoading());
 
     try {
-      await walletRepository.buyBurseOrder(orderId);
+      await burseRepository.buyBurseOrder(orderId);
 
       emit(BurseBuyOrderSuccess());
     } catch (ex) {
@@ -25,7 +25,7 @@ class BurseBuyOrderCubit extends Cubit<BurseBuyOrderState> {
     emit(BurseBuyOrderLoading());
 
     try {
-      await walletRepository.canselBurseOrder(orderId);
+      await burseRepository.canselBurseOrder(orderId);
 
       emit(BurseBuyOrderSuccess());
     } catch (ex) {
