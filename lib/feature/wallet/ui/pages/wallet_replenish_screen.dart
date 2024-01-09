@@ -29,13 +29,14 @@ class _WalletReplenishScreenState extends State<WalletReplenishScreen> {
     final sizeOf = MediaQuery.sizeOf(context);
     final localize = AppLocalizations.of(context)!;
     final address = walletRepository.walletModel!.getAddressForCoin(TWCoinType.TWCoinTypeSmartChain);
+
     return WalletScaffold(
       onTap: () {},
       backgroundColor: Colors.white,
       scaffoldColor: AppColors.purpleBcg,
       appBar: CustomAppBar(
         context: context,
-        text: localize.get_currency,
+        text: localize.get,
         isBack: true,
         onTap: () {
           context.pop();

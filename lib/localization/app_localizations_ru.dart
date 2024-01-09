@@ -395,9 +395,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get get => 'Получить';
 
   @override
-  String get get_currency => 'Получить %Валюты%';
-
-  @override
   String get replenish => 'Пополнить';
 
   @override

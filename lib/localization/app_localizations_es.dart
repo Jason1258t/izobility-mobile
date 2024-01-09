@@ -395,9 +395,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get get => 'Conseguir';
 
   @override
-  String get get_currency => 'Obtener un %moneda %';
-
-  @override
   String get replenish => 'Reponer';
 
   @override
