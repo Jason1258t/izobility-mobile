@@ -7,9 +7,9 @@ import 'package:izobility_mobile/feature/profile/bloc/profile_links/profile_link
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile/profile_action_square.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile/profile_actione_tile.dart';
+import 'package:izobility_mobile/feature/profile/ui/widgets/profile/user_products.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile_bloc_label.dart';
 import 'package:izobility_mobile/feature/profile/ui/widgets/profile/profile_card.dart';
-import 'package:izobility_mobile/feature/store/bloc/store_user_items/store_user_items_cubit.dart';
 import 'package:izobility_mobile/feature/store/data/store_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/routes/go_routes.dart';
@@ -19,7 +19,6 @@ import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
-import 'package:izobility_mobile/widgets/button_sheet/bottom_sheets.dart';
 import 'package:izobility_mobile/widgets/popup/popup_logout.dart';
 import 'package:izobility_mobile/widgets/snack_bar/custom_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -207,20 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ],
                             ),
                           ),
-                          BlocBuilder<StoreUserItemsCubit, StoreUserItemsState>(
-                            builder: (context, state) {
-                              if (state is StoreUserItemsLoading) {
-                                return buildLoadingUserProducts();
-                              } else if (state is StoreUserItemsSuccess) {
-                                if (storeRepository
-                                    .userProductList.isNotEmpty) {
-                                  return buildLoadedUserProducts();
-                                }
-                              }
-
-                              return Container();
-                            },
-                          ),
+                          const UserProductsWidget(),
                           ProfileBlocLabel(
                             text: localize.account,
                           ),
@@ -305,69 +291,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             )),
-      ),
-    );
-  }
-
-  Widget buildLoadedUserProducts() {
-    final storeRepository = context.read<StoreRepository>();
-
-    return SizedBox(
-      height: 190,
-      child: ListView.builder(
-        itemCount: storeRepository.userProductList.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            constraints: const BoxConstraints(maxWidth: 250),
-            width: MediaQuery.sizeOf(context).width * 0.38,
-            margin: const EdgeInsets.only(left: 16),
-            height: 190,
-            child: Material(
-              child: Ink.image(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                  storeRepository.userProductList[index].product.images[0],
-                ),
-                child: InkWell(
-                  onTap: () {
-                    AppBottomSheets.showProductInfo(
-                        context, storeRepository.userProductList[index]);
-                  },
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget buildLoadingUserProducts() {
-    return SizedBox(
-      height: 190,
-      child: ListView.separated(
-        itemCount: 5,
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) => const SizedBox(
-          width: 8,
-        ),
-        itemBuilder: (context, index) {
-          return Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            constraints: const BoxConstraints(maxWidth: 250),
-            width: MediaQuery.sizeOf(context).width * 0.38,
-            height: 190,
-            child: Container(
-              decoration: BoxDecoration(
-                  gradient: AppGradients.gradientGreenWhite,
-                  borderRadius: BorderRadius.circular(16)),
-            ),
-          );
-        },
       ),
     );
   }
