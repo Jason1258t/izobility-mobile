@@ -1,13 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'burse_create_order_state.dart';
 
 class BurseCreateOrderCubit extends Cubit<BurseCreateOrderState> {
-  final WalletRepository walletRepository;
+  final BurseRepository burseRepository;
 
-  BurseCreateOrderCubit(this.walletRepository)
+  BurseCreateOrderCubit(this.burseRepository)
       : super(BurseCreateOrderInitial());
 
   void clearState() {
@@ -19,7 +20,7 @@ class BurseCreateOrderCubit extends Cubit<BurseCreateOrderState> {
 
     await Future.delayed(Duration(seconds: 1));
     try {
-      await walletRepository.createBurseOrder(amountFrom, amountTo);
+      await burseRepository.createBurseOrder(amountFrom, amountTo);
       emit(BurseCreateOrderSuccess());
     } catch (ex) {
       print(ex);

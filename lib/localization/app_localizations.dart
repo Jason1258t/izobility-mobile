@@ -879,12 +879,6 @@ abstract class AppLocalizations {
   /// **'Get'**
   String get get;
 
-  /// No description provided for @get_currency.
-  ///
-  /// In en, this message translates to:
-  /// **'Get a %currency %'**
-  String get get_currency;
-
   /// No description provided for @replenish.
   ///
   /// In en, this message translates to:

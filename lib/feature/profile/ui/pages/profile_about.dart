@@ -37,16 +37,24 @@ class _ProfileAppAboutScreenState extends State<ProfileAppAboutScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 16,),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Container(
                     alignment: Alignment.center,
                     height: 70,
-                    child: Image.asset("assets/images/logo.png", fit: BoxFit.fitHeight,),
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
-                  const SizedBox(height: 32,),
+                  const SizedBox(
+                    height: 32,
+                  ),
                   Text(
                     localize.welcome_to_emerald,
-                    style: AppTypography.font14w400.copyWith(color: Colors.black),
+                    style:
+                        AppTypography.font14w400.copyWith(color: Colors.black),
                   )
                 ],
               ),

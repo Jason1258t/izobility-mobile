@@ -41,8 +41,8 @@ class _ProfilePhoneEditState extends State<ProfilePhoneEdit> {
         if (state is ProfilePhoneChangeFailure) {
           context.pop();
 
-          ScaffoldMessenger.of(context).showSnackBar(
-              CustomSnackBar.errorSnackBar(state.errorText));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar.errorSnackBar(state.errorText));
         } else if (state is ProfilePhoneChangeLoading) {
           Dialogs.show(
               context,

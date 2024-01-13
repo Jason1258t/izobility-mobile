@@ -395,9 +395,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get get => '得到';
 
   @override
-  String get get_currency => '获得％货币％';
-
-  @override
   String get replenish => '补充';
 
   @override

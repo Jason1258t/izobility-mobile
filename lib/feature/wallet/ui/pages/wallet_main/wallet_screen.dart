@@ -11,6 +11,7 @@ import 'package:izobility_mobile/widgets/app_bar/custom_sliver_app_bar_delegate.
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/widgets/popup/custom_popup.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 import 'package:izobility_mobile/widgets/switches/custom_switcher.dart';
 
 import 'sections/wallet_in_game_tab.dart';
@@ -94,65 +95,62 @@ class _WalletScreenState extends State<WalletScreen>
 
     final localize = AppLocalizations.of(context)!;
 
-    return Container(
-      color: Colors.white,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: AppColors.purpleBcg,
-          body: CustomScrollView(
-            physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.normal),
-            slivers: [
-              CustomSliverAppBar(
-                height: 90,
-                isBack: false,
-                title: localize.wallet,
+    return WalletScaffold(
+      backgroundColor: Colors.white,
+      scaffoldColor: AppColors.purpleBcg,
+      onTap: () {},
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+            decelerationRate: ScrollDecelerationRate.normal),
+        slivers: [
+          CustomSliverAppBar(
+            height: 90,
+            isBack: false,
+            title: localize.wallet,
+            color: Colors.white,
+            isSetting: true,
+            isInfo: true,
+            onTapRightIcon: () {
+              context.push(RouteNames.walletSetting);
+            },
+          ),
+          SliverPersistentHeader(
+            pinned: false,
+            floating: true,
+            delegate: SliverAppBarDelegate(
+              minHeight: 98,
+              maxHeight: 98,
+              child: Container(
                 color: Colors.white,
-                isSetting: true,
-                isInfo: true,
-                onTapRightIcon: () {
-                  context.push(RouteNames.walletSetting);
-                },
-              ),
-              SliverPersistentHeader(
-                pinned: false,
-                floating: true,
-                delegate: SliverAppBarDelegate(
-                  minHeight: 98,
-                  maxHeight: 98,
-                  child: Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomSwitcher(
-                            active: walletRepository.walletPage,
-                            onTap: (int val) {
-                              setState(() {
-                                walletRepository.setWalletPage(val);
-                              });
-                            },
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          Text(
-                            localize.current_balance,
-                            style: AppTypography.font14w400
-                                .copyWith(color: AppColors.grey600),
-                          ),
-                        ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomSwitcher(
+                        active: walletRepository.walletPage,
+                        onTap: (int val) {
+                          setState(() {
+                            walletRepository.setWalletPage(val);
+                          });
+                        },
                       ),
-                    ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        localize.current_balance,
+                        style: AppTypography.font14w400
+                            .copyWith(color: AppColors.grey600),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              getActivePage(walletRepository.walletPage == 0 ? true : false),
-            ],
+            ),
           ),
-        ),
+          getActivePage(walletRepository.walletPage == 0 ? true : false),
+        ],
       ),
     );
   }

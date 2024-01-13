@@ -32,7 +32,7 @@ class _CustomMainNavigationBarState extends State<CustomMainNavigationBar> {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.only(top: 8),
-      height: 64,
+      height: 80,
       decoration: const BoxDecoration(
           color: AppColors.backgroundContent,
           border: Border(

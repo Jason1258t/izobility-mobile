@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
+import 'package:izobility_mobile/feature/wallet/data/burse_repository.dart';
 import 'package:izobility_mobile/utils/logic/enums.dart';
 import 'package:meta/meta.dart';
 
 part 'burse_my_orders_state.dart';
 
 class BurseMyOrdersCubit extends Cubit<BurseMyOrdersState> {
-  final WalletRepository walletRepository;
+  final BurseRepository walletRepository;
 
   BurseMyOrdersCubit(this.walletRepository) : super(BurseMyOrdersInitial()) {
     walletRepository.burseMyOrdersStream.listen((value) {

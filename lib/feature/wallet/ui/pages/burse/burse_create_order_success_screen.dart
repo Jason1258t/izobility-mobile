@@ -8,34 +8,38 @@ import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
 import 'package:izobility_mobile/widgets/app_bar/custom_app_bar.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
+import 'package:izobility_mobile/widgets/scaffold/wallet_scaffold.dart';
 
 class BurseCreateOrderSuccessScreen extends StatefulWidget {
   const BurseCreateOrderSuccessScreen({super.key});
 
   @override
-  State<BurseCreateOrderSuccessScreen> createState() => _BurseCreateOrderSuccessScreenState();
+  State<BurseCreateOrderSuccessScreen> createState() =>
+      _BurseCreateOrderSuccessScreenState();
 }
 
-class _BurseCreateOrderSuccessScreenState extends State<BurseCreateOrderSuccessScreen> {
+class _BurseCreateOrderSuccessScreenState
+    extends State<BurseCreateOrderSuccessScreen> {
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
-    return Container(
-      color: Colors.white,
-      child: Scaffold(
-          backgroundColor: AppColors.purpleBcg,
-          appBar: CustomAppBar(
-            context: context,
-            text: localize.creating_order,
-            isBack: true,
-            onTap: () {
-              context.pop();
-            },
-          ),
-          body: Container(
-              color: AppColors.purpleBcg,
-              padding: const EdgeInsets.all(16),
-              child: buildCreateOrderSuccessWidget())),
+
+    return WalletScaffold(
+      appBar: CustomAppBar(
+        context: context,
+        text: localize.creating_order,
+        isBack: true,
+        onTap: () {
+          context.pop();
+        },
+      ),
+      onTap: () {},
+      scaffoldColor: AppColors.purpleBcg,
+      backgroundColor: Colors.white,
+      body: Container(
+          color: AppColors.purpleBcg,
+          padding: const EdgeInsets.all(16),
+          child: buildCreateOrderSuccessWidget()),
     );
   }
 

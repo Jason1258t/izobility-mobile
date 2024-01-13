@@ -395,9 +395,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get get => 'Elde etmek';
 
   @override
-  String get get_currency => '%Para Birimi Al';
-
-  @override
   String get replenish => 'Yenilemek';
 
   @override

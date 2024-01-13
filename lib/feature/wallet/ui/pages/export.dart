@@ -5,7 +5,7 @@ export 'burse/burse_create_order_success_screen.dart';
 export 'burse/burse_history_screen.dart';
 export 'burse/burse_my_orders.dart';
 export 'burse/burse_screen.dart';
-export 'buy_currency_screen.dart';
+export '../../../unused_screens/buy_currency_screen.dart';
 export 'auth/wallet_auth.dart';
 export 'auth/wallet_enter_seed.dart';
 export 'coin/wallet_coin_screen.dart';

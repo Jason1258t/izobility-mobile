@@ -32,13 +32,13 @@
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
-        <activity
-            android:name="com.unity3d.player.UnityPlayerActivity"
-            android:process=":UnityAsLibrary"
-            android:hardwareAccelerated="false"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
-            >
-        </activity>
+<!--        <activity-->
+<!--            android:name="com.unity3d.player.UnityPlayerActivity"-->
+<!--            android:process=":UnityAsLibrary"-->
+<!--            android:hardwareAccelerated="false"-->
+<!--            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"-->
+<!--            >-->
+<!--        </activity>-->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />

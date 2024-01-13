@@ -126,7 +126,6 @@ class _ProductScreenState extends State<ProductScreen> {
 
   Column buildMarketItemData() {
     final marketItem = context.read<StoreRepository>().lastOpenedMarketItem;
-    final emeraldCoin = context.read<WalletRepository>().emeraldInGameBalance;
 
     final sizeOf = MediaQuery.sizeOf(context);
     final localize = AppLocalizations.of(context)!;
@@ -139,7 +138,7 @@ class _ProductScreenState extends State<ProductScreen> {
               height: sizeOf.width,
               child: PageView.builder(
                   controller: pageController,
-                  itemCount: marketItem.images!.length,
+                  itemCount: marketItem.images.length,
                   pageSnapping: true,
                   itemBuilder: (context, index) {
                     return InkWell(
@@ -161,7 +160,7 @@ class _ProductScreenState extends State<ProductScreen> {
             const SizedBox(
               height: 10,
             ),
-            getImageIndicator(marketItem.images!.length),
+            getImageIndicator(marketItem.images.length),
           ],
         ),
         Container(
@@ -170,7 +169,7 @@ class _ProductScreenState extends State<ProductScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                marketItem.name!,
+                marketItem.name,
                 style: AppTypography.font20w700.copyWith(color: Colors.black),
               ),
               const SizedBox(

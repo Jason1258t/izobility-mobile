@@ -90,8 +90,8 @@ SPEC CHECKSUMS:
   SwiftProtobuf: b70d65f419fbfe61a2d58003456ca5da58e337d6
   trust_wallet_core_lib: 1d25320104cd3a7fee634d5f57596200da2b5d7c
   TrustWalletCore: 640ca389b23abaf0b55b8064fd6c23191c52af3f
-  url_launcher_ios: 68d46cc9766d0c41dbdc884310529557e3cd7a86
+  url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
 
 PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3
