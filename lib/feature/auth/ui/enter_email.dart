@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:country_picker/country_picker.dart';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,7 +14,6 @@ import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/dialogs.dart';
 import 'package:izobility_mobile/widgets/button/custom_button.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
-
 import '../bloc/auth/auth_cubit.dart';
 
 class EnterEmailScreen extends StatefulWidget {
@@ -137,7 +138,8 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                           });
                         },
                         isActive: buttonActive,
-                        width: double.infinity),
+                        width: double.infinity
+                    ),
                   ],
                 )
               ],

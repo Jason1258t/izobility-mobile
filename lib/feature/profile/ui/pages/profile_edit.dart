@@ -23,6 +23,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _countryController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
 
   @override
   void initState() {
@@ -66,6 +68,10 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   void saveChanges() {
     final userRepository = RepositoryProvider.of<UserRepository>(context);
+
+    print(_countryController.text.split('    ')[1]);
+    print(_cityController.text);
+
     if (_nameController.text == "" || _surnameController.text == "") {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
@@ -73,11 +79,14 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
       context.pop();
       _nameController.text == userRepository.user.details!.name;
     } else {
+
       context.read<ProfileCubit>().updateUserData(
             birthday: _birthdayController.text,
             gender: userRepository.user.details!.gender!,
             name: _nameController.text,
             surname: _surnameController.text,
+            city: _cityController.text,
+            country: _countryController.text,
           );
 
       context.pop();
@@ -139,6 +148,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                     phoneController: _phoneController,
                     emailController: _emailController,
                     birthdayController: _birthdayController,
+                    cityController: _cityController,
+                    countryController: _countryController,
                     birthdayToString: birthdayToString,
                   );
                 } else {

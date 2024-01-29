@@ -1,3 +1,4 @@
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,7 +8,7 @@ import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/utils.dart';
 import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 
-class UserDetailInfo extends StatelessWidget {
+class UserDetailInfo extends StatefulWidget {
   const UserDetailInfo(
       {super.key,
       required this.nameController,
@@ -15,15 +16,24 @@ class UserDetailInfo extends StatelessWidget {
       required this.emailController,
       required this.phoneController,
       required this.birthdayController,
-      required this.birthdayToString});
+      required this.birthdayToString,
+      required this.countryController,
+      required this.cityController});
 
   final TextEditingController nameController;
   final TextEditingController surnameController;
   final TextEditingController emailController;
   final TextEditingController phoneController;
   final TextEditingController birthdayController;
+  final TextEditingController countryController;
+  final TextEditingController cityController;
   final String Function(DateTime) birthdayToString;
 
+  @override
+  State<UserDetailInfo> createState() => _UserDetailInfoState();
+}
+
+class _UserDetailInfoState extends State<UserDetailInfo> {
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserRepository>().user;
@@ -41,7 +51,7 @@ class UserDetailInfo extends StatelessWidget {
                 backgroundColor: Colors.white,
                 labelText: localize.name,
                 hintText: user.details?.name ?? localize.name,
-                controller: nameController,
+                controller: widget.nameController,
                 width: double.infinity),
             const SizedBox(
               height: 16,
@@ -50,7 +60,7 @@ class UserDetailInfo extends StatelessWidget {
                 backgroundColor: Colors.white,
                 labelText: localize.surname,
                 hintText: localize.surname,
-                controller: surnameController,
+                controller: widget.surnameController,
                 width: double.infinity),
             const SizedBox(
               height: 16,
@@ -59,7 +69,7 @@ class UserDetailInfo extends StatelessWidget {
                 backgroundColor: Colors.white,
                 labelText: 'email',
                 hintText: localize.mail,
-                controller: emailController,
+                controller: widget.emailController,
                 width: double.infinity),
             const SizedBox(
               height: 16,
@@ -141,7 +151,7 @@ class UserDetailInfo extends StatelessWidget {
               backgroundColor: Colors.white,
               labelText: localize.birthday,
               hintText: localize.birthday,
-              controller: birthdayController,
+              controller: widget.birthdayController,
               width: double.infinity,
               obscured: false,
               suffixIconChild: const Icon(
@@ -157,7 +167,8 @@ class UserDetailInfo extends StatelessWidget {
                   lastDate: DateTime(2100),
                 );
                 if (date != null) {
-                  birthdayController.text = birthdayToString(date);
+                  widget.birthdayController.text =
+                      widget.birthdayToString(date);
                 }
               },
             ),
@@ -178,10 +189,25 @@ class UserDetailInfo extends StatelessWidget {
                 backgroundColor: Colors.white,
                 labelText: localize.phone,
                 hintText: localize.phone,
-                controller: phoneController,
+                controller: widget.phoneController,
                 width: double.infinity),
             const SizedBox(
               height: 16,
+            ),
+            CSCPicker(
+              onCountryChanged: (value) {
+                widget.countryController.text = value;
+                setState(() {});
+              },
+              onStateChanged: (value) {
+                setState(() {});
+              },
+              onCityChanged: (value) {
+                if (value != null) {
+                  widget.cityController.text = value;
+                }
+                setState(() {});
+              },
             ),
           ],
         ),

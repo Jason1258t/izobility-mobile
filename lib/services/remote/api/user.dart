@@ -18,12 +18,14 @@ class User with ApiHandler {
     required String surname,
     required int gender,
     required String birthday,
+    required String country,
+    required String city,
   }) async {
     if (name != "" && surname != "") {
       final responseUpdateName = await post(ApiEndpoints.userUpdateName, data: {
         "fam": surname.toString(),
         "name": name.toString(),
-        "otch": "",
+        "otch": ""
       });
     }
 
@@ -32,6 +34,12 @@ class User with ApiHandler {
 
     final responseUpdateGender =
         await post(ApiEndpoints.userUpdateGender, data: {"gender": gender});
+
+    final responseUpdateCountry =
+        await post(ApiEndpoints.userUpdateGender, data: {"city": city});
+
+    final responseUpdateCity =
+        await post(ApiEndpoints.userUpdateGender, data: {"country": country});
   }
 
   Future<dynamic> validateUserPhone(

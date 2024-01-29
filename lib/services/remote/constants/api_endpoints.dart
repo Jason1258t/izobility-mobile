@@ -20,6 +20,8 @@ class ApiEndpoints {
   static const String userUpdatePhoto = '/user/upload-photo';
   static const String userUpdatePhone = '/user/update-phone';
   static const String userUpdateBirthday = '/user/update-birth';
+  static const String userUpdateCity = '/user/update-city';
+  static const String userUpdateCountry = '/user/update-country';
   static const String userUpdateGender = '/user/update-gender';
   static const String userValidatePhone = '/user/update-phone';
   static const String userUpdateReferalCode = '/user/update-promo';

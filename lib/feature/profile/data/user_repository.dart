@@ -93,9 +93,16 @@ class UserRepository {
     required String surname,
     required int gender,
     required String birthday,
+    required String city,
+    required String country,
   }) async {
     await apiService.user.updateUserData(
-        name: name, surname: surname, gender: gender, birthday: birthday);
+        name: name,
+        surname: surname,
+        gender: gender,
+        birthday: birthday,
+        city: city,
+        country: country);
   }
 
   Future<dynamic> validateUserPhone(

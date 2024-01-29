@@ -38,11 +38,13 @@ class ProfileCubit extends Cubit<ProfileState> {
     required String surname,
     required int gender,
     required String birthday,
+    required String city,
+    required String country,
   }) async {
     emit(ProfileWaiting());
     try {
       await _userRepository.updateUserData(
-          name: name, surname: surname, gender: gender, birthday: birthday);
+          name: name, surname: surname, gender: gender, birthday: birthday, country: country, city: city);
       await _userRepository.loadUserDetailsInfo();
       emit(ProfileSuccessState());
     } catch (ex) {
