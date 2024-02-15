@@ -283,19 +283,6 @@ class _MainScreenState extends State<MainScreen> {
                                   height: 16,
                                 )
                               ],
-                              // InkWell(
-                              //   borderRadius: BorderRadius.circular(12),
-                              //   onTap: () {
-                              //     launchUrl(Uri.parse('https://altcoinshub.com/en/'));
-                              //   },
-                              //   child: Ink(
-                              //     child: Image.asset(
-                              //       'assets/images/banners/exchange-banner.png',
-                              //       width: double.infinity,
-                              //       fit: BoxFit.cover,
-                              //     ),
-                              //   ),
-                              // ),
                               ExchangeBanner(),
                               const SizedBox(
                                 height: 16,

@@ -167,7 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 label: localize.cards,
                                 description: localize.my_bank_cards,
                                 onTap: () {
-                                  context.push(RouteNames.develop);
+                                  context.push(RouteNames.cards);
                                 },
                               )
                             ],

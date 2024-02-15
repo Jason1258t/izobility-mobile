@@ -35,7 +35,7 @@ class CreditCardWidget extends StatelessWidget {
       child: Container(
         width: sizeof.width - 40,
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          color: AppColors.primary2,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(

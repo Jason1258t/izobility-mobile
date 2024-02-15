@@ -11,27 +11,33 @@ class WalletAction extends StatelessWidget {
       required this.icon,
       required this.onTap,
       this.isActive = true,
-      this.iconColor = Colors.black});
+      this.iconColor = Colors.black,
+      this.color});
 
   final String title;
   final String icon;
   final Function onTap;
   final bool isActive;
   final Color iconColor;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
-    final double buttonSize =  sizeOf.width * 0.156 < 70 ? sizeOf.width * 0.156 : 70;
+    final double buttonSize =
+        sizeOf.width * 0.156 < 70 ? sizeOf.width * 0.156 : 70;
     return Column(
       children: [
         Container(
           width: buttonSize,
           height: buttonSize,
-          decoration: BoxDecoration(
-              // color: isActive ? AppColors.primary : AppColors.purple100,
-              gradient: AppGradients.gradientGreenWhite,
-              borderRadius: BorderRadius.circular(100)),
+          decoration: color == null
+              ? BoxDecoration(
+                  // color: isActive ? AppColors.primary : AppColors.purple100,
+                  gradient: AppGradients.gradientGreenWhite,
+                  borderRadius: BorderRadius.circular(100))
+              : BoxDecoration(
+                  color: color, borderRadius: BorderRadius.circular(100)),
           child: IconButton(
             onPressed: () => onTap(),
             icon: SvgPicture.asset(
@@ -47,7 +53,7 @@ class WalletAction extends StatelessWidget {
         ),
         Text(
           title,
-          style: AppTypography.font12w700.copyWith(color: AppColors.primary),
+          style: AppTypography.font12w700.copyWith(color: color == null ? AppColors.primary : color),
         ),
       ],
     );

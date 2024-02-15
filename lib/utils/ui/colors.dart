@@ -17,7 +17,7 @@ class AppColors {
   static const textContrast = Colors.white;
   static const textLink = Color(0xFF2D81E0);
   static const cityText = Color(0xFF033E67);
-  // static const primary = Color(0xFF7E49FF);
+  static const primary2 = Color(0xFF7E49FF);
   static const negative = Color(0xFFE64646);
   static const positive = Color(0xFF2F8D32);
   static const lightGreen = Color(0xFFCBFFC5);

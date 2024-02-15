@@ -28,7 +28,6 @@ class _CardsScreenState extends State<CardsScreen> {
     return HomeScaffold(
       backgroundColor: AppColors.purpleBcg,
       appBar: CustomAppBar(
-        backgroundColor: AppColors.purpleBcg,
         onTap: () {
           context.pop();
         },
@@ -62,14 +61,52 @@ class _CardsScreenState extends State<CardsScreen> {
                           },
                           child: Container(
                               width: sizeOf.width - 40,
+                              padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                color: AppColors.grey500,
+                                color: AppColors.purple200,
                                 borderRadius: BorderRadius.circular(16),
                               ),
-                              child: const Icon(
-                                Icons.add_rounded,
-                                size: 50,
-                                color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: sizeOf.width * 0.2,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.purple400,
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.purple400,
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      InkWell(
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primary2,
+                                            borderRadius: BorderRadius.circular(16),
+                                          ),
+                                          child: Text('Привязать карту', style: AppTypography.font14w400,),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
                               )),
                         ),
                       );
@@ -101,16 +138,19 @@ class _CardsScreenState extends State<CardsScreen> {
                               title: localize.send,
                               icon: 'assets/icons/send.svg',
                               onTap: () {},
+                              color: AppColors.purple400,
                             ),
                             WalletAction(
                               title: localize.replenish,
                               icon: 'assets/icons/get.svg',
                               onTap: () {},
+                              color: AppColors.purple400,
                             ),
                             WalletAction(
                               title: localize.buy,
                               icon: 'assets/icons/buy.svg',
                               onTap: () {},
+                              color: AppColors.purple400,
                             ),
                           ],
                         ),
