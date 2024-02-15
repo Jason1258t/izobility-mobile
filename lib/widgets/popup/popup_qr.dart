@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -43,8 +44,8 @@ class _PopupQrState extends State<PopupQr> {
                 constraints: const BoxConstraints(
                   maxWidth: 360
                 ),
-                child: Image.asset(
-                  "assets/images/emerald_logo.png",
+                child: SvgPicture.asset(
+                  "assets/icons/top page navigation.svg",
                   fit: BoxFit.fitWidth,
                   width: size.width * 0.44,
                 ),

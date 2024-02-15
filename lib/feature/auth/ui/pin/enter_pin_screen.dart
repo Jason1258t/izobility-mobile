@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/utils.dart';
@@ -50,8 +51,8 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(width: double.infinity, height: 32),
-            Image.asset(
-              'assets/images/emerald_logo.png',
+            SvgPicture.asset(
+              'assets/icons/top page navigation.svg',
               width: 160,
               fit: BoxFit.fitWidth,
             ),

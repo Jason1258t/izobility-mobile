@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:izobility_mobile/feature/auth/bloc/auth/auth_cubit.dart';
 import 'package:izobility_mobile/feature/auth/bloc/password_recovery/password_recovery_cubit.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
@@ -42,8 +43,8 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
             const SizedBox(
               height: 32,
             ),
-            Image.asset(
-              'assets/images/emerald_logo.png',
+            SvgPicture.asset(
+              'assets/icons/top page navigation.svg',
               width: 160,
               fit: BoxFit.fitWidth,
             ),
@@ -151,7 +152,9 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(width: double.infinity,),
+                    const SizedBox(
+                      width: double.infinity,
+                    ),
                     Text(
                       localize.check_email,
                       style: AppTypography.font24w700,

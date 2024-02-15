@@ -30,7 +30,6 @@ import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
 
-
 final _oldActivityBanner = Material(
   borderRadius: BorderRadius.circular(16),
   color: Colors.white,
@@ -46,14 +45,11 @@ final _oldActivityBanner = Material(
       ),
       height: 120,
       child: Row(
-        crossAxisAlignment:
-        CrossAxisAlignment.center,
-        mainAxisAlignment:
-        MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            constraints: const BoxConstraints(
-                maxWidth: 180),
+            constraints: const BoxConstraints(maxWidth: 180),
             height: double.infinity,
             // width: size.width * 0.28,
             child: Image.asset(
@@ -68,33 +64,24 @@ final _oldActivityBanner = Material(
             // width: size.width * 0.58,
             child: Row(
               children: [
-                SvgPicture.asset(
-                    "assets/icons/controller.svg"),
+                SvgPicture.asset("assets/icons/controller.svg"),
                 const SizedBox(
                   width: 8,
                 ),
                 Column(
-                  mainAxisAlignment:
-                  MainAxisAlignment.center,
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
                       "Активности",
-                      style: AppTypography
-                          .font18w700
-                          .copyWith(
-                          color:
-                          Colors.black),
+                      style: AppTypography.font18w700
+                          .copyWith(color: Colors.black),
                     ),
                     Text(
                       "AR, QR, игры и т.д.",
-                      style: AppTypography
-                          .font12w400
-                          .copyWith(
-                          color: AppColors
-                              .grey600),
+                      style: AppTypography.font12w400
+                          .copyWith(color: AppColors.grey600),
                     )
                   ],
                 ),
@@ -116,10 +103,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final TextEditingController codeController = TextEditingController();
+  PageController pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
+
+    final sizeOf = MediaQuery.sizeOf(context);
 
     return GestureDetector(
       onTap: () {
@@ -154,8 +144,8 @@ class _MainScreenState extends State<MainScreen> {
               surfaceTintColor: Colors.transparent,
               title: Row(
                 children: [
-                  Image.asset(
-                    'assets/images/logo.png',
+                  SvgPicture.asset(
+                    'assets/icons/top page navigation.svg',
                     width: MediaQuery.sizeOf(context).width / 3.6,
                     fit: BoxFit.fitWidth,
                   ),
@@ -169,7 +159,6 @@ class _MainScreenState extends State<MainScreen> {
                               .toString(),
                         );
                       }
-
                       return const CashContainer(
                         text: '0',
                       );
@@ -203,7 +192,38 @@ class _MainScreenState extends State<MainScreen> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              const GamesBanner(),
+                              Container(
+                                height: sizeOf.width * 0.4,
+                                constraints:
+                                    const BoxConstraints(minHeight: 170),
+                                child: PageView(
+                                  scrollDirection: Axis.horizontal,
+                                  controller: pageController,
+                                  children: [
+                                    'Frame 1000007449.png',
+                                    'Frame 1000007788.png',
+                                    'Frame 1000007789.png'
+                                  ].map((e) {
+                                    return InkWell(
+                                      onTap: (){
+                                        if(e == 'Frame 1000007449.png'){
+                                          context.go(RouteNames.games);
+                                        }
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(right: 10),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                            image: AssetImage('assets/images/$e'),
+                                          )),
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              // const GamesBanner(),
                               BlocListener<PromoCodeCubit, PromoCodeState>(
                                 listener: (context, state) {
                                   if (state is PromoActivateProcessState) {
@@ -283,14 +303,6 @@ class _MainScreenState extends State<MainScreen> {
                                   height: 16,
                                 )
                               ],
-                              ExchangeBanner(),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              const Divider(
-                                color: AppColors.disableButton,
-                                height: 1,
-                              ),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 16),
@@ -327,6 +339,17 @@ class _MainScreenState extends State<MainScreen> {
                                           itemBuilder: (ctx, ind) =>
                                               const GuidesSuggestionLoading()),
                                 ),
+                              ),
+                              const Divider(
+                                color: AppColors.disableButton,
+                                height: 1,
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              ExchangeBanner(),
+                              const SizedBox(
+                                height: 16,
                               ),
                               Row(
                                 mainAxisAlignment:

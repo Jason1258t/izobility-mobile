@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
@@ -43,8 +44,8 @@ class _ProfileAppAboutScreenState extends State<ProfileAppAboutScreen> {
                   Container(
                     alignment: Alignment.center,
                     height: 70,
-                    child: Image.asset(
-                      "assets/images/logo.png",
+                    child: SvgPicture.asset(
+                      "assets/icons/top page navigation.svg",
                       fit: BoxFit.fitHeight,
                     ),
                   ),
