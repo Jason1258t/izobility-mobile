@@ -1,6 +1,6 @@
 package com.emerald.izobility
 
-//import com.unity3d.player.UnityPlayerActivity
+import com.unity3d.player.UnityPlayerActivity
 import io.flutter.embedding.android.FlutterFragmentActivity
 
 import io.flutter.embedding.android.FlutterActivity
@@ -25,40 +25,40 @@ class MainActivity : FlutterFragmentActivity() {
         System.loadLibrary("TrustWalletCore")
     }
 
-//    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-//        GeneratedPluginRegistrant.registerWith(flutterEngine)
-//        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel)
-//            .setMethodCallHandler { call: MethodCall?, result: MethodChannel.Result? ->
-//                Log.d("Android", "call method");
-//                call?.let {
-//                    if (call.method.equals("startUnity", ignoreCase = true)) {
-//                        val user = call.argument<String?>(KEY_USER)
-//                        if (user != null) {
-//                            Log.d("Android", user);
-//                            checkEnabledAndStartUnityActivity(user)
-//                        }
-//                    }
-//                }
-//            }
-//    }
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel)
+            .setMethodCallHandler { call: MethodCall?, result: MethodChannel.Result? ->
+                Log.d("Android", "call method");
+                call?.let {
+                    if (call.method.equals("startUnity", ignoreCase = true)) {
+                        val user = call.argument<String?>(KEY_USER)
+                        if (user != null) {
+                            Log.d("Android", user);
+                            checkEnabledAndStartUnityActivity(user)
+                        }
+                    }
+                }
+            }
+    }
 
-//    private fun checkEnabledAndStartUnityActivity(
-//        user: String,
-//    ) {
-//        if (unityActivityEnabled) {
-//            unityActivityEnabled = false
-//            Thread(Runnable {
-//                Thread.sleep(4000)
-//                unityActivityEnabled = true
-//            }).start()
-//
-//            startUnityActivity(user);
-//        }
-//    }
+    private fun checkEnabledAndStartUnityActivity(
+        user: String,
+    ) {
+        if (unityActivityEnabled) {
+            unityActivityEnabled = false
+            Thread(Runnable {
+                Thread.sleep(4000)
+                unityActivityEnabled = true
+            }).start()
 
-//    private fun startUnityActivity(user: String) {
-//        val intent = Intent(this, UnityPlayerActivity::class.java)
-//        intent.putExtra(KEY_USER, user)
-//        startActivity(intent)
-//    }
+            startUnityActivity(user);
+        }
+    }
+
+    private fun startUnityActivity(user: String) {
+        val intent = Intent(this, UnityPlayerActivity::class.java)
+        intent.putExtra(KEY_USER, user)
+        startActivity(intent)
+    }
 }

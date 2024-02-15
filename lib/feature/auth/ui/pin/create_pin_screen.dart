@@ -65,6 +65,7 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
               fit: BoxFit.fitWidth,
             ),
             const SizedBox(
+              width: double.infinity,
               height: 10,
             ),
             Text(
