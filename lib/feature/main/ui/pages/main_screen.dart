@@ -9,6 +9,7 @@ import 'package:izobility_mobile/feature/main/ui/widgets/banners/exchange.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/banners/games.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/guides_suggestion_loading.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/market_item.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/medium_activiry_widget.dart';
 import 'package:izobility_mobile/feature/store/bloc/store_buy/store_buy_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/coin_in_game/coin_in_game_cubit.dart';
 import 'package:izobility_mobile/feature/wallet/bloc/promo_code/promo_code_cubit.dart';
@@ -111,6 +112,8 @@ class _MainScreenState extends State<MainScreen> {
 
     final sizeOf = MediaQuery.sizeOf(context);
 
+    GoRouter router = GoRouter.of(context);
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -184,10 +187,48 @@ class _MainScreenState extends State<MainScreen> {
                       physics: const AlwaysScrollableScrollPhysics(),
                       child: Column(
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Row(
+                              children: [
+                                MediumActivityWidget(
+                                  width: (sizeOf.width - 60) / 3,
+                                  height: (sizeOf.width - 60) / 4.28,
+                                  iconName: 'assets/icons/link.svg',
+                                  text: 'Рефералы',
+                                  onTap: () {
+                                    context
+                                        .push(RouteNames.profileReferal);
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                MediumActivityWidget(
+                                  width: (sizeOf.width - 60) / 3,
+                                  height: (sizeOf.width - 60) / 4.28,
+                                  iconName: 'assets/icons/credit-card.svg',
+                                  text: 'Карты',
+                                  onTap: () async{
+                                    context.push(RouteNames.cards);
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                MediumActivityWidget(
+                                    width: (sizeOf.width - 60) / 3,
+                                    height: (sizeOf.width - 60) / 4.28,
+                                    iconName: 'assets/icons/scaner.svg',
+                                    text: 'QR оплата',
+                                    onTap: () {}),
+                              ],
+                            ),
+                          ),
                           Container(
                             height: sizeOf.width * 0.3,
-                            constraints:
-                            const BoxConstraints(minHeight: 170),
+                            constraints: const BoxConstraints(minHeight: 170),
                             child: PageView(
                               scrollDirection: Axis.horizontal,
                               controller: pageController,
@@ -197,9 +238,8 @@ class _MainScreenState extends State<MainScreen> {
                                 'Frame 1000007789.png'
                               ].map((e) {
                                 return InkWell(
-
-                                  onTap: (){
-                                    if(e == 'Frame 1000007449.png'){
+                                  onTap: () {
+                                    if (e == 'Frame 1000007449.png') {
                                       context.go(RouteNames.games);
                                     }
                                   },
@@ -208,8 +248,8 @@ class _MainScreenState extends State<MainScreen> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
-                                            image: AssetImage('assets/images/$e'),
-                                          )),
+                                        image: AssetImage('assets/images/$e'),
+                                      )),
                                     ),
                                   ),
                                 );
@@ -239,7 +279,8 @@ class _MainScreenState extends State<MainScreen> {
                                       if (state is PromoActivatedState) {
                                         showDialog(
                                             context: context,
-                                            builder: (context) => PopupPromoSuccess(
+                                            builder: (context) =>
+                                                PopupPromoSuccess(
                                                   coinName: state.coinName,
                                                   coinAmount: state.coinAmount,
                                                 ));
@@ -256,21 +297,23 @@ class _MainScreenState extends State<MainScreen> {
                                             vertical: 16),
                                         child: CustomTextField.withTwoIcon(
                                           suffixIconCallback: () {
-                                            context.push(RouteNames.mainQr, extra: {
-                                              "onFound": (data) => context
-                                                  .read<PromoCodeCubit>()
-                                                  .activateCode(
-                                                      data.code.toString())
-                                            });
+                                            context.push(RouteNames.mainQr,
+                                                extra: {
+                                                  "onFound": (data) => context
+                                                      .read<PromoCodeCubit>()
+                                                      .activateCode(
+                                                          data.code.toString())
+                                                });
                                           },
                                           secondSuffixIconCallback: () {
                                             Clipboard.getData('text/plain')
                                                 .then((value) {
                                               setState(() {
-                                                codeController.text = value != null
-                                                    ? value.text ??
-                                                        codeController.text
-                                                    : codeController.text;
+                                                codeController.text =
+                                                    value != null
+                                                        ? value.text ??
+                                                            codeController.text
+                                                        : codeController.text;
                                               });
 
                                               FocusScope.of(context).unfocus();
@@ -290,7 +333,8 @@ class _MainScreenState extends State<MainScreen> {
                                     CustomButton(
                                         text: localize.activate,
                                         onTap: () {
-                                          BlocProvider.of<PromoCodeCubit>(context)
+                                          BlocProvider.of<PromoCodeCubit>(
+                                                  context)
                                               .activateCode(
                                                   codeController.text.trim());
                                           setState(() {
@@ -303,15 +347,17 @@ class _MainScreenState extends State<MainScreen> {
                                     )
                                   ],
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 16),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
                                     child: SizedBox(
-                                      width: MediaQuery.sizeOf(context).width - 32,
+                                      width:
+                                          MediaQuery.sizeOf(context).width - 32,
                                       height: 102,
                                       child: state is MainScreenPreview
                                           ? ListView.builder(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 2),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 2),
                                               scrollDirection: Axis.horizontal,
                                               shrinkWrap: true,
                                               itemCount:
@@ -330,8 +376,9 @@ class _MainScreenState extends State<MainScreen> {
                                                     viewed: false,
                                                   ))
                                           : ListView.builder(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 2),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 2),
                                               scrollDirection: Axis.horizontal,
                                               shrinkWrap: true,
                                               itemCount: 4,
@@ -346,14 +393,15 @@ class _MainScreenState extends State<MainScreen> {
                                   const SizedBox(
                                     height: 16,
                                   ),
-                                  ExchangeBanner(),
+                                  const ExchangeBanner(),
                                   const SizedBox(
                                     height: 16,
                                   ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Text(
                                         localize.shop,
@@ -372,7 +420,8 @@ class _MainScreenState extends State<MainScreen> {
                                           child: Text(
                                             localize.more,
                                             style: AppTypography.font12w400
-                                                .copyWith(color: AppColors.disable),
+                                                .copyWith(
+                                                    color: AppColors.disable),
                                           ),
                                         ),
                                       ),
@@ -382,13 +431,14 @@ class _MainScreenState extends State<MainScreen> {
                                     height: 12,
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.sizeOf(context).width - 32,
-                                    height:
-                                        (MediaQuery.of(context).size.width - 40) /
-                                                2 *
-                                                240 /
-                                                160 +
-                                            10,
+                                    width:
+                                        MediaQuery.sizeOf(context).width - 32,
+                                    height: (MediaQuery.of(context).size.width -
+                                                40) /
+                                            2 *
+                                            240 /
+                                            160 +
+                                        10,
                                     child: state is MainScreenPreview
                                         ? ListView.builder(
                                             padding: const EdgeInsets.symmetric(
@@ -397,9 +447,10 @@ class _MainScreenState extends State<MainScreen> {
                                             shrinkWrap: true,
                                             itemCount:
                                                 repository.marketItems.length,
-                                            itemBuilder: (ctx, ind) => MarketItem(
-                                                  marketItem:
-                                                      repository.marketItems[ind],
+                                            itemBuilder: (ctx, ind) =>
+                                                MarketItem(
+                                                  marketItem: repository
+                                                      .marketItems[ind],
                                                 ))
                                         : ListView.builder(
                                             padding: const EdgeInsets.symmetric(

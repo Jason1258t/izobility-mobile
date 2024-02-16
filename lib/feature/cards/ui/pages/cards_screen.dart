@@ -32,6 +32,7 @@ class _CardsScreenState extends State<CardsScreen> {
     return HomeScaffold(
       backgroundColor: AppColors.purpleBcg,
       appBar: CustomAppBar(
+        backgroundColor: Colors.transparent,
         onTap: () {
           context.pop();
         },
