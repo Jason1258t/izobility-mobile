@@ -19,12 +19,16 @@ class CardsScreen extends StatefulWidget {
 }
 
 class _CardsScreenState extends State<CardsScreen> {
-  PageController pageController = PageController(viewportFraction: 0.9);
+  PageController pageController =
+      PageController(viewportFraction: 0.9, initialPage: 0);
+
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
     final sizeOf = MediaQuery.sizeOf(context);
     final localize = AppLocalizations.of(context)!;
+
     return HomeScaffold(
       backgroundColor: AppColors.purpleBcg,
       appBar: CustomAppBar(
@@ -39,6 +43,22 @@ class _CardsScreenState extends State<CardsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 8,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                    4,
+                    (index) => Container(
+                          width: 10,
+                          margin: const EdgeInsets.only(right: 5),
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: index == currentPage
+                                ? AppColors.primary2
+                                : AppColors.purple100,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        )).toList()),
             Container(
               height: sizeOf.width * 0.45,
               constraints: const BoxConstraints(minHeight: 170),
@@ -46,6 +66,10 @@ class _CardsScreenState extends State<CardsScreen> {
                   itemCount: 4,
                   controller: pageController,
                   pageSnapping: true,
+                  onPageChanged: (val) {
+                    currentPage = val;
+                    setState(() {});
+                  },
                   itemBuilder: (context, index) {
                     if (index != 3) {
                       return const Padding(
@@ -68,7 +92,8 @@ class _CardsScreenState extends State<CardsScreen> {
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     width: sizeOf.width * 0.2,
@@ -79,14 +104,16 @@ class _CardsScreenState extends State<CardsScreen> {
                                     ),
                                   ),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         width: double.infinity,
                                         height: 30,
                                         decoration: BoxDecoration(
                                           color: AppColors.purple400,
-                                          borderRadius: BorderRadius.circular(16),
+                                          borderRadius:
+                                              BorderRadius.circular(16),
                                         ),
                                       ),
                                       const SizedBox(
@@ -99,9 +126,13 @@ class _CardsScreenState extends State<CardsScreen> {
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
                                             color: AppColors.primary2,
-                                            borderRadius: BorderRadius.circular(16),
+                                            borderRadius:
+                                                BorderRadius.circular(16),
                                           ),
-                                          child: Text('Привязать карту', style: AppTypography.font14w400,),
+                                          child: Text(
+                                            'Привязать карту',
+                                            style: AppTypography.font14w400,
+                                          ),
                                         ),
                                       )
                                     ],

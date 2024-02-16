@@ -103,7 +103,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final TextEditingController codeController = TextEditingController();
-  PageController pageController = PageController();
+  PageController pageController = PageController(viewportFraction: 0.9);
 
   @override
   Widget build(BuildContext context) {
@@ -176,246 +176,247 @@ class _MainScreenState extends State<MainScreen> {
                 final repository =
                     RepositoryProvider.of<MainScreenRepository>(context);
                 return SafeArea(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.all(16).copyWith(bottom: 0, top: 0),
-                    child: RefreshIndicator(
-                      onRefresh: () async {
-                        await repository.getPreview();
-                      },
-                      child: SingleChildScrollView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Container(
-                                height: sizeOf.width * 0.4,
-                                constraints:
-                                    const BoxConstraints(minHeight: 170),
-                                child: PageView(
-                                  scrollDirection: Axis.horizontal,
-                                  controller: pageController,
-                                  children: [
-                                    'Frame 1000007449.png',
-                                    'Frame 1000007788.png',
-                                    'Frame 1000007789.png'
-                                  ].map((e) {
-                                    return InkWell(
-                                      onTap: (){
-                                        if(e == 'Frame 1000007449.png'){
-                                          context.go(RouteNames.games);
-                                        }
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(right: 10),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      await repository.getPreview();
+                    },
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: sizeOf.width * 0.3,
+                            constraints:
+                            const BoxConstraints(minHeight: 170),
+                            child: PageView(
+                              scrollDirection: Axis.horizontal,
+                              controller: pageController,
+                              children: [
+                                'Frame 1000007449.png',
+                                'Frame 1000007788.png',
+                                'Frame 1000007789.png'
+                              ].map((e) {
+                                return InkWell(
+
+                                  onTap: (){
+                                    if(e == 'Frame 1000007449.png'){
+                                      context.go(RouteNames.games);
+                                    }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
                                             image: AssetImage('assets/images/$e'),
                                           )),
-                                        ),
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                              // const GamesBanner(),
-                              BlocListener<PromoCodeCubit, PromoCodeState>(
-                                listener: (context, state) {
-                                  if (state is PromoActivateProcessState) {
-                                    Dialogs.showModal(
-                                        context,
-                                        const Center(
-                                          child: AppAnimations
-                                              .circularProgressIndicator,
-                                        ));
-                                  } else {
-                                    Dialogs.hide(context);
-                                  }
-
-                                  if (state is PromoActivatedState) {
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => PopupPromoSuccess(
-                                              coinName: state.coinName,
-                                              coinAmount: state.coinAmount,
-                                            ));
-                                  }
-                                  if (state is PromoInvalidState) {
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) =>
-                                            const PopupPromoFailure());
-                                  }
-                                },
-                                child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    child: CustomTextField.withTwoIcon(
-                                      suffixIconCallback: () {
-                                        context.push(RouteNames.mainQr, extra: {
-                                          "onFound": (data) => context
-                                              .read<PromoCodeCubit>()
-                                              .activateCode(
-                                                  data.code.toString())
-                                        });
-                                      },
-                                      secondSuffixIconCallback: () {
-                                        Clipboard.getData('text/plain')
-                                            .then((value) {
-                                          setState(() {
-                                            codeController.text = value != null
-                                                ? value.text ??
-                                                    codeController.text
-                                                : codeController.text;
-                                          });
-
-                                          FocusScope.of(context).unfocus();
-                                        });
-                                      },
-                                      obscured: false,
-                                      controller: codeController,
-                                      width: double.infinity,
-                                      backgroundColor: Colors.white,
-                                      hintText: localize.your_promo,
-                                      onChange: (v) {
-                                        setState(() {});
-                                      },
-                                    )),
-                              ),
-                              if (codeController.text.isNotEmpty) ...[
-                                CustomButton(
-                                    text: localize.activate,
-                                    onTap: () {
-                                      BlocProvider.of<PromoCodeCubit>(context)
-                                          .activateCode(
-                                              codeController.text.trim());
-                                      setState(() {
-                                        codeController.text = '';
-                                      });
-                                    },
-                                    width: double.infinity),
-                                const SizedBox(
-                                  height: 16,
-                                )
-                              ],
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                child: SizedBox(
-                                  width: MediaQuery.sizeOf(context).width - 32,
-                                  height: 102,
-                                  child: state is MainScreenPreview
-                                      ? ListView.builder(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 2),
-                                          scrollDirection: Axis.horizontal,
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              repository.storiesList.length,
-                                          itemBuilder: (ctx, ind) =>
-                                              GuidesSuggestion(
-                                                text: repository
-                                                    .storiesList[ind].title,
-                                                imageUrl: repository
-                                                    .storiesList[ind]
-                                                    .previewUrl,
-                                                onTap: () {
-                                                  context.go(
-                                                      '${RouteNames.story}/$ind');
-                                                },
-                                                viewed: false,
-                                              ))
-                                      : ListView.builder(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 2),
-                                          scrollDirection: Axis.horizontal,
-                                          shrinkWrap: true,
-                                          itemCount: 4,
-                                          itemBuilder: (ctx, ind) =>
-                                              const GuidesSuggestionLoading()),
-                                ),
-                              ),
-                              const Divider(
-                                color: AppColors.disableButton,
-                                height: 1,
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              ExchangeBanner(),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    localize.shop,
-                                    style: AppTypography.font24w700
-                                        .copyWith(color: Colors.black),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () {
-                                      context.go(RouteNames.basket);
-                                    },
-                                    child: Ink(
-                                      padding: const EdgeInsets.only(
-                                          left: 18, top: 6, bottom: 6),
-                                      child: Text(
-                                        localize.more,
-                                        style: AppTypography.font12w400
-                                            .copyWith(color: AppColors.disable),
-                                      ),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              SizedBox(
-                                width: MediaQuery.sizeOf(context).width - 32,
-                                height:
-                                    (MediaQuery.of(context).size.width - 40) /
-                                            2 *
-                                            240 /
-                                            160 +
-                                        10,
-                                child: state is MainScreenPreview
-                                    ? ListView.builder(
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // const GamesBanner(),
+                                  BlocListener<PromoCodeCubit, PromoCodeState>(
+                                    listener: (context, state) {
+                                      if (state is PromoActivateProcessState) {
+                                        Dialogs.showModal(
+                                            context,
+                                            const Center(
+                                              child: AppAnimations
+                                                  .circularProgressIndicator,
+                                            ));
+                                      } else {
+                                        Dialogs.hide(context);
+                                      }
+
+                                      if (state is PromoActivatedState) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) => PopupPromoSuccess(
+                                                  coinName: state.coinName,
+                                                  coinAmount: state.coinAmount,
+                                                ));
+                                      }
+                                      if (state is PromoInvalidState) {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                const PopupPromoFailure());
+                                      }
+                                    },
+                                    child: Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 2),
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            repository.marketItems.length,
-                                        itemBuilder: (ctx, ind) => MarketItem(
-                                              marketItem:
-                                                  repository.marketItems[ind],
-                                            ))
-                                    : ListView.builder(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 2),
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            repository.marketItems.length,
-                                        itemBuilder: (ctx, ind) =>
-                                            const MarketItemLoading()),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                            ]),
+                                            vertical: 16),
+                                        child: CustomTextField.withTwoIcon(
+                                          suffixIconCallback: () {
+                                            context.push(RouteNames.mainQr, extra: {
+                                              "onFound": (data) => context
+                                                  .read<PromoCodeCubit>()
+                                                  .activateCode(
+                                                      data.code.toString())
+                                            });
+                                          },
+                                          secondSuffixIconCallback: () {
+                                            Clipboard.getData('text/plain')
+                                                .then((value) {
+                                              setState(() {
+                                                codeController.text = value != null
+                                                    ? value.text ??
+                                                        codeController.text
+                                                    : codeController.text;
+                                              });
+
+                                              FocusScope.of(context).unfocus();
+                                            });
+                                          },
+                                          obscured: false,
+                                          controller: codeController,
+                                          width: double.infinity,
+                                          backgroundColor: Colors.white,
+                                          hintText: localize.your_promo,
+                                          onChange: (v) {
+                                            setState(() {});
+                                          },
+                                        )),
+                                  ),
+                                  if (codeController.text.isNotEmpty) ...[
+                                    CustomButton(
+                                        text: localize.activate,
+                                        onTap: () {
+                                          BlocProvider.of<PromoCodeCubit>(context)
+                                              .activateCode(
+                                                  codeController.text.trim());
+                                          setState(() {
+                                            codeController.text = '';
+                                          });
+                                        },
+                                        width: double.infinity),
+                                    const SizedBox(
+                                      height: 16,
+                                    )
+                                  ],
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 16),
+                                    child: SizedBox(
+                                      width: MediaQuery.sizeOf(context).width - 32,
+                                      height: 102,
+                                      child: state is MainScreenPreview
+                                          ? ListView.builder(
+                                              padding: const EdgeInsets.symmetric(
+                                                  vertical: 2),
+                                              scrollDirection: Axis.horizontal,
+                                              shrinkWrap: true,
+                                              itemCount:
+                                                  repository.storiesList.length,
+                                              itemBuilder: (ctx, ind) =>
+                                                  GuidesSuggestion(
+                                                    text: repository
+                                                        .storiesList[ind].title,
+                                                    imageUrl: repository
+                                                        .storiesList[ind]
+                                                        .previewUrl,
+                                                    onTap: () {
+                                                      context.go(
+                                                          '${RouteNames.story}/$ind');
+                                                    },
+                                                    viewed: false,
+                                                  ))
+                                          : ListView.builder(
+                                              padding: const EdgeInsets.symmetric(
+                                                  vertical: 2),
+                                              scrollDirection: Axis.horizontal,
+                                              shrinkWrap: true,
+                                              itemCount: 4,
+                                              itemBuilder: (ctx, ind) =>
+                                                  const GuidesSuggestionLoading()),
+                                    ),
+                                  ),
+                                  const Divider(
+                                    color: AppColors.disableButton,
+                                    height: 1,
+                                  ),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  ExchangeBanner(),
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        localize.shop,
+                                        style: AppTypography.font24w700
+                                            .copyWith(color: Colors.black),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () {
+                                          context.go(RouteNames.basket);
+                                        },
+                                        child: Ink(
+                                          padding: const EdgeInsets.only(
+                                              left: 18, top: 6, bottom: 6),
+                                          child: Text(
+                                            localize.more,
+                                            style: AppTypography.font12w400
+                                                .copyWith(color: AppColors.disable),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 12,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.sizeOf(context).width - 32,
+                                    height:
+                                        (MediaQuery.of(context).size.width - 40) /
+                                                2 *
+                                                240 /
+                                                160 +
+                                            10,
+                                    child: state is MainScreenPreview
+                                        ? ListView.builder(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 2),
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                repository.marketItems.length,
+                                            itemBuilder: (ctx, ind) => MarketItem(
+                                                  marketItem:
+                                                      repository.marketItems[ind],
+                                                ))
+                                        : ListView.builder(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 2),
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                repository.marketItems.length,
+                                            itemBuilder: (ctx, ind) =>
+                                                const MarketItemLoading()),
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                ]),
+                          ),
+                        ],
                       ),
                     ),
                   ),
