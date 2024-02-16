@@ -222,7 +222,11 @@ class _MainScreenState extends State<MainScreen> {
                                     height: (sizeOf.width - 60) / 4.28,
                                     iconName: 'assets/icons/scaner.svg',
                                     text: 'QR оплата',
-                                    onTap: () {}),
+                                    onTap: () {
+                                      context.push(RouteNames.mainQr,extra: {
+                                      "onFound": (data) => {}
+                                      });
+                                    }),
                               ],
                             ),
                           ),
