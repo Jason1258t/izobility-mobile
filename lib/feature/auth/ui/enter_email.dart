@@ -54,21 +54,21 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
 
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () async {
-          FocusScope.of(context).unfocus();
-        },
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          resizeToAvoidBottomInset: false,
-          body: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 100, 16, 0),
+    return GestureDetector(
+      onTap: () async {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 100, 16, 0),
+          child: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SvgPicture.asset(
-                  'assets/icons/top page navigation.svg',
+                Image.asset(
+                  'assets/images/logo.png',
                   width: 160,
                   fit: BoxFit.fitWidth,
                 ),
@@ -127,13 +127,13 @@ class _EnterEmailScreenState extends State<EnterEmailScreen> {
                               const Center(
                                 child: AppAnimations.circularProgressIndicator,
                               ));
-
+            
                           BlocProvider.of<AuthCubit>(context)
                               .checkEmail(emailController.text.trim(),
                                   referalCodeController.text)
                               .then((accountState) {
                             context.push(RouteNames.authEnterPassword);
-
+            
                             Dialogs.hide(context);
                           });
                         },

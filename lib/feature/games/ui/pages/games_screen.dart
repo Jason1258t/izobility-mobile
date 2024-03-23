@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:izobility_mobile/feature/auth/bloc/app/app_cubit.dart';
 import 'package:izobility_mobile/feature/profile/data/user_repository.dart';
 import 'package:izobility_mobile/feature/wallet/data/wallet_repository.dart';
 import 'package:izobility_mobile/localization/app_localizations.dart';
+import 'package:izobility_mobile/routes/go_routes.dart';
 import 'package:izobility_mobile/utils/ui/colors.dart';
 import 'package:izobility_mobile/utils/ui/fonts.dart';
 import 'package:izobility_mobile/utils/ui/gradients.dart';
@@ -38,12 +41,12 @@ class _GamesScreenState extends State<GamesScreen> {
       try {
         BlocProvider.of<AppCubit>(context).runUnity();
         log('trying to start');
-        final data = await platform.invokeMethod('startUnity', {'user': jsonEncode(json)});
+        final data = await platform
+            .invokeMethod('startUnity', {'user': jsonEncode(json)});
         log(data.toString());
       } catch (e) {
         log(e.toString());
       }
-
     });
   }
 
@@ -71,7 +74,6 @@ class _GamesScreenState extends State<GamesScreen> {
                   style: AppTypography.font16w700.copyWith(color: Colors.black),
                 ),
               ),
-
               SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   sliver: SliverToBoxAdapter(
@@ -110,7 +112,8 @@ class _GamesScreenState extends State<GamesScreen> {
                                         .copyWith(bottom: 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           localize.activity,
@@ -207,7 +210,14 @@ class _GamesScreenState extends State<GamesScreen> {
                                     textColor: Colors.black,
                                     fontSize: 18,
                                     text: localize.use,
-                                    onTap: loadUnity,
+                                    onTap: () {
+                                      if(Platform.isIOS){
+                                        context.pushNamed(RouteNames.gamesIos);
+                                      }
+                                      else{
+                                        loadUnity();
+                                      }
+                                    },
                                     width: double.infinity)
                               ],
                             ),

@@ -90,8 +90,8 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
           const SizedBox(
             height: 32,
           ),
-          SvgPicture.asset(
-            'assets/icons/logo.svg',
+          Image.asset(
+            'assets/images/logo.png',
             width: 180,
           ),
           const SizedBox(

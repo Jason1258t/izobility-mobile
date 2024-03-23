@@ -59,8 +59,8 @@ class _CreatePinScreenState extends State<CreatePinScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SvgPicture.asset(
-              'assets/icons/top page navigation.svg',
+            Image.asset(
+              'assets/images/logo.png',
               width: 160,
               fit: BoxFit.fitWidth,
             ),

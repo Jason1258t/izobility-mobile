@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:izobility_mobile/feature/games/ui/pages/ios_unity_screen.dart';
 import 'package:izobility_mobile/feature/profile/ui/export.dart';
 import 'package:izobility_mobile/feature/cards/ui/pages/cards_screen.dart';
 import 'package:izobility_mobile/feature/cards/ui/pages/cards_add_screen.dart';
@@ -116,6 +117,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.profilePrivacyPolicy,
           builder: (context, state) => const ProfilePrivacyPolicyScreen()),
+      GoRoute(
+          path: RouteNames.gamesIos,
+          builder: (context, state) => const UnityIosScreen()),
       GoRoute(
           path: RouteNames.profileEdit,
           builder: (context, state) => const ProfileEditScreen()),

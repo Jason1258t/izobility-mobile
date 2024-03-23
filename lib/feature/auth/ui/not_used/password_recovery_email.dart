@@ -39,7 +39,7 @@ class _PasswordRecoveryEmailScreenState
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
-              'assets/icons/logo.svg',
+              'assets/images/logo.png',
               width: 180,
             ),
             const SizedBox(

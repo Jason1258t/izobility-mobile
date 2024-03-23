@@ -43,8 +43,8 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
             const SizedBox(
               height: 32,
             ),
-            SvgPicture.asset(
-              'assets/icons/top page navigation.svg',
+            Image.asset(
+              'assets/images/logo.png',
               width: 160,
               fit: BoxFit.fitWidth,
             ),

@@ -51,8 +51,8 @@ class _EnterPinScreenState extends State<EnterPinScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(width: double.infinity, height: 32),
-            SvgPicture.asset(
-              'assets/icons/top page navigation.svg',
+            Image.asset(
+              'assets/images/logo.png',
               width: 160,
               fit: BoxFit.fitWidth,
             ),
