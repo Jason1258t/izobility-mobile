@@ -23,8 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture.asset(
-                'assets/icons/top page navigation.svg',
+              Image.asset(
+                'assets/images/logo.png',
                 width: MediaQuery.sizeOf(context).width * 2 / 3,
                 fit: BoxFit.fitWidth,
               ),

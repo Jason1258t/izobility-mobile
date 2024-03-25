@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
-		231DCE1A2BAEBDE60092159D /* UnityFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 231DCE192BAEBDE60092159D /* UnityFramework.framework */; };
-		231DCE1B2BAEBDE60092159D /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 231DCE192BAEBDE60092159D /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -29,20 +27,6 @@
 			remoteInfo = Runner;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		231DCE1C2BAEBDE60092159D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				231DCE1B2BAEBDE60092159D /* UnityFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
@@ -85,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEDF1A210754F70D21ED97A0 /* Pods_Runner.framework in Frameworks */,
-				231DCE1A2BAEBDE60092159D /* UnityFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +187,6 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				68A9080A46E8CF7CAE8EC8B1 /* [CP] Embed Pods Frameworks */,
 				86F94F77A05FADB660A294D1 /* [CP] Copy Pods Resources */,
-				231DCE1C2BAEBDE60092159D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

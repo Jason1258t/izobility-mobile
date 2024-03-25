@@ -117,9 +117,9 @@ class CustomGoRoutes {
       GoRoute(
           path: RouteNames.profilePrivacyPolicy,
           builder: (context, state) => const ProfilePrivacyPolicyScreen()),
-      GoRoute(
-          path: RouteNames.gamesIos,
-          builder: (context, state) => const UnityIosScreen()),
+      // GoRoute(
+      //     path: RouteNames.gamesIos,
+      //     builder: (context, state) => const UnityIosScreen()),
       GoRoute(
           path: RouteNames.profileEdit,
           builder: (context, state) => const ProfileEditScreen()),

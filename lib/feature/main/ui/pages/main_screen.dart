@@ -7,6 +7,7 @@ import 'package:izobility_mobile/feature/main/bloc/main/main_screen_cubit.dart';
 import 'package:izobility_mobile/feature/main/data/main_repository.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/banners/exchange.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/banners/games.dart';
+import 'package:izobility_mobile/feature/main/ui/widgets/banners/keine_export.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/guides_suggestion_loading.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/market_item.dart';
 import 'package:izobility_mobile/feature/main/ui/widgets/medium_activiry_widget.dart';
@@ -31,70 +32,6 @@ import 'package:izobility_mobile/widgets/text_field/custom_text_field.dart';
 import '../../../../widgets/containers/guides_suggestion.dart';
 import '../../../../widgets/containers/market_Item.dart';
 
-final _oldActivityBanner = Material(
-  borderRadius: BorderRadius.circular(16),
-  color: Colors.white,
-  child: InkWell(
-    borderRadius: BorderRadius.circular(16),
-    onTap: () {
-      // context.go(RouteNames.games);
-    },
-    child: Container(
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      height: 120,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            constraints: const BoxConstraints(maxWidth: 180),
-            height: double.infinity,
-            // width: size.width * 0.28,
-            child: Image.asset(
-              "assets/images/activity_man.jpg",
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          SizedBox(
-            // width: size.width * 0.58,
-            child: Row(
-              children: [
-                SvgPicture.asset("assets/icons/controller.svg"),
-                const SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      "Активности",
-                      style: AppTypography.font18w700
-                          .copyWith(color: Colors.black),
-                    ),
-                    Text(
-                      "AR, QR, игры и т.д.",
-                      style: AppTypography.font12w400
-                          .copyWith(color: AppColors.grey600),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    ),
-  ),
-);
-
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -104,15 +41,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final TextEditingController codeController = TextEditingController();
-  PageController pageController = PageController(viewportFraction: 0.9);
+  PageController pageController1 = PageController(viewportFraction: 0.9);
+  PageController pageControllerExchange =
+      PageController(viewportFraction: 0.99);
 
   @override
   Widget build(BuildContext context) {
     final localize = AppLocalizations.of(context)!;
 
     final sizeOf = MediaQuery.sizeOf(context);
-
-    GoRouter router = GoRouter.of(context);
 
     return GestureDetector(
       onTap: () {
@@ -198,8 +135,7 @@ class _MainScreenState extends State<MainScreen> {
                                   iconName: 'assets/icons/link.svg',
                                   text: 'Рефералы',
                                   onTap: () {
-                                    context
-                                        .push(RouteNames.profileReferal);
+                                    context.push(RouteNames.profileReferal);
                                   },
                                 ),
                                 const SizedBox(
@@ -210,7 +146,7 @@ class _MainScreenState extends State<MainScreen> {
                                   height: (sizeOf.width - 60) / 4.28,
                                   iconName: 'assets/icons/credit-card.svg',
                                   text: 'Карты',
-                                  onTap: () async{
+                                  onTap: () async {
                                     context.push(RouteNames.cards);
                                   },
                                 ),
@@ -223,9 +159,8 @@ class _MainScreenState extends State<MainScreen> {
                                     iconName: 'assets/icons/scaner.svg',
                                     text: 'QR оплата',
                                     onTap: () {
-                                      context.push(RouteNames.mainQr,extra: {
-                                      "onFound": (data) => {}
-                                      });
+                                      context.push(RouteNames.mainQr,
+                                          extra: {"onFound": (data) => {}});
                                     }),
                               ],
                             ),
@@ -235,25 +170,26 @@ class _MainScreenState extends State<MainScreen> {
                             constraints: const BoxConstraints(minHeight: 170),
                             child: PageView(
                               scrollDirection: Axis.horizontal,
-                              controller: pageController,
+                              controller: pageController1,
                               children: [
                                 'Frame 1000007449.png',
-                                'Frame 1000007788.png',
+                                'Frame 1000007787.png',
                                 'Frame 1000007789.png'
                               ].map((e) {
-                                return InkWell(
-                                  onTap: () {
-                                    if (e == 'Frame 1000007449.png') {
-                                      context.go(RouteNames.games);
-                                    }
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
+                                return Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      if (e == 'Frame 1000007449.png') {
+                                        context.go(RouteNames.games);
+                                      }
+                                    },
                                     child: Container(
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
-                                        image: AssetImage('assets/images/$e'),
-                                      )),
+                                              image: AssetImage(
+                                                  'assets/images/$e'),
+                                              fit: BoxFit.fitWidth)),
                                     ),
                                   ),
                                 );
@@ -397,7 +333,22 @@ class _MainScreenState extends State<MainScreen> {
                                   const SizedBox(
                                     height: 16,
                                   ),
-                                  const ExchangeBanner(),
+                                  Container(
+                                    height: sizeOf.width * 124 / 328,
+                                    child: PageView(
+                                        scrollDirection: Axis.horizontal,
+                                        controller: pageControllerExchange,
+                                        children: [
+                                          ExchangeBanner(),
+                                          KeineExchangeBanner(),
+                                        ]
+                                            .map((e) => Padding(
+                                                  padding:
+                                                      EdgeInsets.only(right: 5),
+                                                  child: e,
+                                                ))
+                                            .toList()),
+                                  ),
                                   const SizedBox(
                                     height: 16,
                                   ),
